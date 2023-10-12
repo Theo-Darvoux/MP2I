@@ -197,8 +197,38 @@
     \emph{Initialisation.}\\
     Initialisation triviale pour $n=1$.\\
     \emph{Hérédité.}\\
-    Soit $n\geq1$ tel que $\forall k\in[1,n], \hspace{0.25cm} \mathcal{P}_k$ soit vraie. Montrons que $\mathcal{P}_{n+1}$ est vraie.
+    Soit $n\geq1$ tel que $\forall k\in[1,n], \hspace{0.25cm} \mathcal{P}_k$ soit vraie. Montrons que $\mathcal{P}_{n+1}$ est vraie.\\
+    On a :
+    \begin{align*}
+        u_{n+1} 
+        &= \frac{2}{n}\sum^{n}_{k=1}{u_k}\\
+        &\stackrel{HR}{=} \frac{2}{n}\sum^{n}_{k=1}{3k}\\
+        &= \frac{6}{n}\sum^{n}_{k=1}{k}\\
+        &= \frac{3n(n+1)}{n}\\
+        &= 3(n+1)
+    \end{align*}
+    C'est exactement $\mathcal{P}_{n+1}$.\\
+    \emph{Conclusion.}\\
+    Par le principe de récurrence forte, $\mathcal{P}_n$ est vraie pour tout $n\geq1$.
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.9}
 
+\section*{Exercice 0.10 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Comme on l'a fait plus haut pour le principe de récurrence, écrire un <<principe de récurrence forte>> à l'aide d'une suite de quantificateurs.\\
+    Soit une assertion dont le sens dépend d'un entier $n$, et que l'on note $\mathcal{P}_n$.
+    \begin{equation*}
+        [\forall{n\in\mathbb{N} \hspace{0.25cm}}(\forall{k\in[0, n] \hspace{0.25cm} \mathcal{P}_k}) \Rightarrow \mathcal{P}_{n+1}] \Longrightarrow (\forall{n\in\mathbb{N}} \hspace{0.25cm} \mathcal{P}_n)
+    \end{equation*}
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.10}
+
+\section*{Exercice 0.11 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Déterminer les fonctions $f: \mathbb{R} \rightarrow \mathbb{R}$ telles que 
+    \begin{equation*}
+        \forall{x\in\mathbb{R},\forall{y\in\mathbb{R}}, \hspace{0.5cm} f(x)f(y) - f(xy) = x + y}
+    \end{equation*}
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.11}
 \end{document}
