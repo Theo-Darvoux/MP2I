@@ -1,2 +1,1 @@
-# Mathematiques
-pizza sur pizza ça fait un
+🍕 sur 🍕 ça fait un
