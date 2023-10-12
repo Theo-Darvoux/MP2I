@@ -1,0 +1,204 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[skins]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e}
+\usepackage{amsmath, amssymb, amsthm}
+
+\def\pagetitle{Logique}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+\date{Septembre 2023}
+\author{DARVOUX Théo}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+
+\begin{document}
+\renewcommand*\contentsname{Exercices.}
+\renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\maketitle
+\hrule
+\tableofcontents
+\vspace{0.5cm}
+\hrule
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+
+
+\section*{Exercice 0.1 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Que répond un mathématicien à la question <<Vous êtes gaucher ou droitier ?>>.\\
+    - << OUI >>
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.1}
+
+\section*{Exercice 0.2 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    C'est l'histoire de cinq mathématiciens qui vont au restaurant. Ils ont pris un menu avec thé ou (bien) café compris. À la fin du repas, le serveur demande : \textbf{tout le monde} prendra du café ? Le premier mathématicien répond <<Je ne sais pas>>. Idem pour le second, le troisième, et le quatrièeme. Le cinquième répond <<Quatre cafés et un thé SVP>>. Expliquer.\\[0.5cm]
+    Le premier, deuxième, troisième et quatrième veulent un café car s'ils voulaient un thé, ils auraient répondu <<Non>>. Le cinquième sait alors qu'ils veulent tous les quatres un café et choisit un thé pour lui-même. 
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.2}
+
+\section*{Exercice 0.3 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $(u_n)_{n\in\mathbb{N}}$ une suite de réels.\\
+    Plus tard dans l'année, nous définirons la phrase <<$u_n\underset{n\rightarrow+\infty}{\longrightarrow}+\infty$>> par l'assertion :
+    \begin{equation*}
+        \forall M\in\mathbb{R}\hspace{0.5cm}\exists p\in\mathbb{N}\hspace{0.5cm} \forall{n}\in\mathbb{N}\hspace{0.5cm}n\geq p\Longrightarrow u_n\geq M.
+    \end{equation*}
+    \emph{(pas besoin de comprendre pourquoi à ce stade !)}\\
+    Écrire la négation de cette assertion.
+    \begin{equation*}
+        \exists{M\in\mathbb{R}}\hspace{0.5cm}\forall{p\in\mathbb{N}}\hspace{0.5cm}\exists{n\in\mathbb{N}}\hspace{0.5cm}\left(n\geq{p}\hspace{0.25cm}\text{et}\hspace{0.25cm}u_n<M\right)
+    \end{equation*}
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.3}
+
+\section*{Exercice 0.4 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    1. Nier l'assertion :
+    \begin{equation}
+        \exists{x\in\mathbb{R}}\hspace{0.5cm}\forall{y\in\mathbb{R}}\hspace{0.5cm}x+y\geq0
+    \end{equation}
+    Sa négation est :
+    \begin{equation*}
+        \forall{x\in\mathbb{R}}\hspace{0.5cm}\exists{y\in\mathbb{R}}\hspace{0.5cm}x+y<0
+    \end{equation*}
+    Prouver que l'assertion (1) est fausse.\\
+    Soit $x\in\mathbb{R}$. Posons $y=-(x+1)$.\\
+    On a $x+y=-1$ c'est pourquoi $x+y>0$. Ainsi, la négation de (1) est toujours vraie.\\
+    On en déduit que (1) est toujours fausse.
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.4}
+
+\section*{Exercice 0.5 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    <<S'il faut beau, je ne prends pas mon parapluie.>>\\
+    Écrire la contraposée de la réciproque.\\[0.5cm]
+    Sa réciproque est :\\
+    <<Si je ne prends pas mon parapluie, il fait beau.>>\\[0.5cm]
+    La contraposée de cette réciproque est :\\
+    <<S'il ne fait pas beau, je prends mon parapluie.>>
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.5}
+
+\section*{Exercice 0.6 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $(u_n)$ une suite réelle. Démontrer l'équivalence des deux assertions :
+    \begin{itemize}
+        \item[1.] $P:\forall{n\in\mathbb{N}}$ \hspace{0.25cm} $u_{n+1} \geq u_n$. 
+        \item[2.] $Q:\forall{(n,p)\in\mathbb{N}^2}$ \hspace{0.25cm} $p \geq n \Longrightarrow u_p \geq u_n$. 
+    \end{itemize}
+    Supposons $Q$, montrons $P$.\\
+    Soit $n\in\mathbb{N}$.\\
+    D'après $Q$, on a $n+1\geq n \Longrightarrow u_{n+1} \geq u_n$.\\
+    Ainsi, $Q\Longrightarrow P$.\\[0.5cm]
+    Supposons $P$, montrons $Q$.\\
+    Soient $n\in\mathbb{N}$ et $p\in\mathbb{N}$ tels que $p\geq n$, montrons que $u_p\geq u_n$.\\
+    D'après $P$, $(u_n)$ est une suite croissante, ainsi, puisque $p\geq n$ : $u_p\geq u_n$.
+    \end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.6}
+
+\section*{Exercice 0.7 [$\blacklozenge\blacklozenge\lozenge$] [Récurrence Standard]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Déterminer les entiers naturels $n$ tels que $2^n\geq n^2$.\\
+    Soit $\mathcal{P}_n$ la proposition : <<$2^n\geq n^2$>>.\\
+    Montrons que $\mathcal{P}_n$ est vraie pour tout entier naturel $n$ supérieur à 4.\\[0.5cm]
+    \emph{Initialisation.}\\
+    Posons $n=4$.\\
+    $2^4 \geq 4^2$. Ainsi, $\mathcal{P}_4$ est vérifiée.\\[0.5cm]
+    \emph{Hérédité.}\\
+    Soit $n$ un entier naturel supérieur à 4 fixé tel que $\mathcal{P}_n$ soit vraie. Montrons que $\mathcal{P}_{n+1}$ est vraie.\\
+    On a :
+    \begin{equation*}
+        2^n \geq n^2 \iff 2^{n+1} \geq 2n^2
+    \end{equation*}
+    Or, pour tout n, on a : $n^2 \geq 2n + 1$ (polynome du second degré)\\
+    Ainsi,
+    \begin{equation*}
+        2^n \geq n^2 \iff 2^{n+1} \geq n^2 + 2n + 1 \iff 2^{n+1} \geq (n+1)^2
+    \end{equation*}
+    C'est exactement $\mathcal{P}_{n+1}$.\\[0.5cm]
+    \emph{Conclusion.}\\
+    Par le principe du raisonnement par récurrence, $\mathcal{P}_n$ est vraie pour tout $n\in\mathbb{N} : n\geq4$.\\
+    De plus, on peut vérifier facilement que $\mathcal{P}_n$ est vraie pour $n\in\{0,1,2\}$.\\
+    Ainsi, $\mathcal{P}_n$ est vraie pour tout entier naturel $n$ différent de 3.
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.7}
+
+\section*{Exercice 0.8 [$\blacklozenge\blacklozenge\lozenge$] [Récurrence Double]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $x$ un réel non nul.
+    \begin{itemize}
+        \item[1.] Pour $n$ un entier naturel, calculer $(x^n+\frac{1}{x^n})\cdot(x+\frac{1}{x})$
+        \item[2.] Supposons que $x+\frac{1}{x}\in\mathbb{Z}$. Démontrer que $\forall n\in\mathbb{N}$ $x^n + \frac{1}{x}\in\mathbb{Z}$ 
+    \end{itemize}
+    1.
+    \begin{equation*}
+        (x^n + \frac{1}{x^n})\cdot(x+\frac{1}{x}) = x^{n+1}+x^{n-1}+x^{1-n}+x^{-n-1}
+    \end{equation*}
+    2.\\
+    Soit $\mathcal{P}_n$ la proposition : <<$x^n+\frac{1}{x^n}\in\mathbb{Z}$>>.\\
+    Montrons que $\mathcal{P}_n$ est vraie pour tout $n\in\mathbb{N}$.\\
+    \emph{Initialisation.}\\
+    Pour $n=0$.\\
+    $x^0 + \frac{1}{x^n} = 1 + \frac{1}{1} = 2$. Or $2\in\mathbb{Z}$. Mézalor, $\mathcal{P}_0$ est vérifiée.\\
+    Pour $n=1$.\\
+    $x^1 + \frac{1}{x^1} = x + \frac{1}{x}$. Or on a supposé que ceci appartenait à $\mathbb{Z}$. Conséquemment, $\mathcal{P}_1$ est vérifiée.\\[0.5cm]
+    \emph{Hérédité.}\\
+    Soit $n\in\mathbb{N}$ tel que $\mathcal{P}_n$ et $\mathcal{P}_{n+1}$ soient vérifiées. Montrons $\mathcal{P}_{n+2}$.\\
+    On a:
+    \begin{equation*}
+        (x^{n+1}+\frac{1}{x^{n+1}})\cdot(x+\frac{1}{x})=x^{n+2}+\frac{1}{x^{n+2}}+x^n+\frac{1}{x^{n}}
+    \end{equation*}
+    D'où :
+    \begin{equation*}
+        (x^{n+1}+\frac{1}{x^{n+1}})\cdot(x+\frac{1}{x})-(x^n+\frac{1}{x^n}) = x^{n+2}+\frac{1}{x^{n+2}}
+    \end{equation*}
+    Or, par hypothèse de récurrence, $x^{n+1}+\frac{1}{x^{n+1}}\in\mathbb{Z}$, ainsi que $x^n+\frac{1}{x^n}\in\mathbb{Z}$.\\
+    Enfin, par stabilité de $\mathbb{Z}$ en somme et en produit, on obtient que :
+    \begin{equation*}
+        (x^{n+1}+\frac{1}{x^{n+1}})\cdot(x+\frac{1}{x})-(x^n+\frac{1}{x^n})\in\mathbb{Z}
+    \end{equation*}
+    Alors :
+    \begin{align*}
+        x^{n+2} + \frac{1}{x^{n+2}} \in \mathbb{Z}
+    \end{align*}
+    C'est exactement $\mathcal{P}_{n+2}$.\\
+    \emph{Conclusion.}\\
+    Par le principe de récurrence double, $\mathcal{P}_n$ est vraie pour tout $n\in\mathbb{N}$.
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.8}
+
+\section*{Exercice 0.9 [$\blacklozenge\lozenge\lozenge$] [Récurrence Forte]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $(u_n)$, définie par récurrence par
+    \begin{equation*}
+        \begin{cases}
+            u_1 = 3\\
+            \forall{n\geq1} \hspace{0.25cm} u_{n+1}= \frac{2}{n}\sum\limits^{n}_{k=1}{u_k}
+        \end{cases}
+    \end{equation*}
+    Démontrer par récurrence forte que $\forall{n\geq1}$ $u_n=3n$.\\
+    Soit $\mathcal{P}_n$ la proposition : <<$\forall{n\geq1}$, $u_n=3n$>>.\\
+    \emph{Initialisation.}\\
+    Initialisation triviale pour $n=1$.\\
+    \emph{Hérédité.}\\
+    Soit $n\geq1$ tel que $\forall k\in[1,n], \hspace{0.25cm} \mathcal{P}_k$ soit vraie. Montrons que $\mathcal{P}_{n+1}$ est vraie.
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.9}
+
+\end{document}
