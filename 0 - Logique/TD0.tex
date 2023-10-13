@@ -155,7 +155,7 @@
     Montrons que $\mathcal{P}_n$ est vraie pour tout $n\in\mathbb{N}$.\\
     \emph{Initialisation.}\\
     Pour $n=0$.\\
-    $x^0 + \frac{1}{x^n} = 1 + \frac{1}{1} = 2$. Or $2\in\mathbb{Z}$. Mézalor, $\mathcal{P}_0$ est vérifiée.\\
+    $x^0 + \frac{1}{x^0} = 1 + \frac{1}{1} = 2$. Or $2\in\mathbb{Z}$. Mézalor, $\mathcal{P}_0$ est vérifiée.\\
     Pour $n=1$.\\
     $x^1 + \frac{1}{x^1} = x + \frac{1}{x}$. Or on a supposé que ceci appartenait à $\mathbb{Z}$. Conséquemment, $\mathcal{P}_1$ est vérifiée.\\[0.5cm]
     \emph{Hérédité.}\\
@@ -236,7 +236,7 @@
     Ainsi, $f(x)f(0)-f(0)=x$. Donc $f(x)=x+1$.\\
     On en déduit que $f$ est unique si elle existe.\\ 
     \emph{Synthèse.}\\
-    Posons g. Montrons que $g : \begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto{x+1}\end{cases}$ est solution.\\
+    Posons $g: \begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto{x+1}\end{cases}$. Montrons que $g$ est solution.\\
     Soient $(x,y)\in\mathbb{R}^2$.
     \begin{align*}
         g(x)g(y)-g(xy)
@@ -255,6 +255,23 @@
     \begin{equation*}
         \forall{x\in\mathbb{R}},\forall{y\in\mathbb{R}}, \hspace{0.25cm} f(x-f(y)) = 1-x-y
     \end{equation*}
+    \emph{Analyse.}\\
+    Soit $(x,y)\in\mathbb{R}^2$.\\
+    Lorsque $x=f(0), y=0$, $f(0)=1-f(0)$.\\
+    Ainsi, $2f(0)=1$, donc $f(0)=\frac{1}{2}$.\\
+    Lorsque $y=0$, $f(x-\frac{1}{2})=1-x$.\\
+    Posons $z=x-\frac{1}{2}$.\\
+    On a $f(z)=1-z-\frac{1}{2} = \frac{1}{2}-z$.\\
+    Alors $f(x)=\frac{1}{2}-x$ \emph{(car $z\in\mathbb{R}$)}\\
+    On en déduit que $f$ est unique si elle existe.\\
+    \emph{Synthèse.}\\
+    Posons $g:\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto{\frac{1}{2}-x}\end{cases}$. Montrons que $g$ est solution.\\
+    Soient $(x,y)\in\mathbb{R}^2$.
+    \begin{equation*}
+        g(x-g(y))=\frac{1}{2}-(x - (\frac{1}{2}-y)) = 1 - x - y
+    \end{equation*}
+    \emph{Conclusion.}\\
+    La fonction $g$ est alors solution unique.
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.12}
 \end{document}
