@@ -229,6 +229,23 @@
     \begin{equation*}
         \forall{x\in\mathbb{R},\forall{y\in\mathbb{R}}, \hspace{0.5cm} f(x)f(y) - f(xy) = x + y}
     \end{equation*}
+    \emph{Analyse.}\\
+    Soit $(x,y)\in\mathbb{R}^2$.\\
+    Lorsque $x=y=0$, $f^2(0)-f(0)=0$. Donc $f(0) = 0$ ou $f(0) = 1$.\\
+    Lorsque $y=0$, $f(x)f(0)-f(0)=x$. Ainsi, la possibilité $f(0)=0$ est éliminée.\\
+    Ainsi, $f(x)f(0)-f(0)=x$. Donc $f(x)=x+1$.\\
+    On en déduit que $f$ est unique si elle existe.\\ 
+    \emph{Synthèse.}\\
+    Posons g. Montrons que $g : \begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto{x+1}\end{cases}$ est solution.\\
+    Soient $(x,y)\in\mathbb{R}^2$.
+    \begin{align*}
+        g(x)g(y)-g(xy)
+        &=(x+1)(y+1)-(xy+1)\\
+        &=xy+x+y+1-xy-1\\
+        &=x+y
+    \end{align*}
+    \emph{Conclusion.}\\
+    La fonction $g$ est alors solution unique.
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.11}
 \end{document}
