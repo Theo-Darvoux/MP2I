@@ -1,0 +1,77 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[skins]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e}
+\usepackage{amsmath, amssymb, amsthm}
+
+\def\pagetitle{Propriétés de $\mathbb{R}$}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+\date{Septembre 2023}
+\author{DARVOUX Théo}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+
+\begin{document}
+\renewcommand*\contentsname{Exercices.}
+\renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\maketitle
+\hrule
+\tableofcontents
+\vspace{0.5cm}
+\hrule
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+
+
+\section*{Exercice 2.1 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient $a$ et $b$ deux nombres réels strictement positifs. Démontrer l'inégalité
+    \begin{equation*}
+        \frac{a^2}{b}+\frac{b^2}{a} \geq a + b
+    \end{equation*}
+    On a :
+    \begin{align*}
+        &\hspace{1.2cm}\frac{a^2}{b}+\frac{b^2}{a} \geq a+b\\
+        &\iff \frac{a^3+b^3-a^2+b^2}{ab}\geq0\\
+        &\iff \frac{(a^2-2ab+b^2)(a+b)}{ab}\geq0\\
+        &\iff\frac{(a-b)^2(a+b)}{ab}\geq0
+    \end{align*}
+    Or $(a-b)^2\geq0$, $(a+b)\geq0$ et $ab\geq0$.\\
+    Ainsi, cette inégalité est vraie pour tout $(a,b)\in\mathbb{R}^*_+$.
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.1}
+
+\section*{Exercice 2.1 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient $a$ et $b$ deux nombres réels strictement positifs. Démontrer l'inégalité
+    \begin{equation*}
+        \frac{a^2}{b}+\frac{b^2}{a} \geq a + b
+    \end{equation*}
+    On a :
+    \begin{align*}
+        &\hspace{1.2cm}\frac{a^2}{b}+\frac{b^2}{a} \geq a+b\\
+        &\iff \frac{a^3+b^3-a^2+b^2}{ab}\geq0\\
+        &\iff \frac{(a^2-2ab+b^2)(a+b)}{ab}\geq0\\
+        &\iff\frac{(a-b)^2(a+b)}{ab}\geq0
+    \end{align*}
+    Or $(a-b)^2\geq0$, $(a+b)\geq0$ et $ab\geq0$.\\
+    Ainsi, cette inégalité est vraie pour tout $(a,b)\in\mathbb{R}^*_+$.
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.1}
+
+\end{document}
