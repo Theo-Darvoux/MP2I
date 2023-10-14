@@ -38,6 +38,7 @@
 \fancyhead[R]{2023-2024}
 
 
+
 \section*{Exercice 0.1 [$\blacklozenge\lozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Que répond un mathématicien à la question <<Vous êtes gaucher ou droitier ?>>.\\
@@ -230,14 +231,17 @@
         \forall{x\in\mathbb{R},\forall{y\in\mathbb{R}}, \hspace{0.5cm} f(x)f(y) - f(xy) = x + y}
     \end{equation*}
     \emph{Analyse.}\\
-    Soit $(x,y)\in\mathbb{R}^2$.\\
-    Lorsque $x=y=0$, $f^2(0)-f(0)=0$. Donc $f(0) = 0$ ou $f(0) = 1$.\\
-    Lorsque $y=0$, $f(x)f(0)-f(0)=x$. Ainsi, la possibilité $f(0)=0$ est éliminée.\\
+    Soit $(x,y)\in\mathbb{R}^2$.
+    \begin{itemize}
+        \item[1.] Lorsque $x=y=0$, $f^2(0)-f(0)=0$. Donc $f(0) = 0$ ou $f(0) = 1$.
+        \item[2.] Lorsque $y=0$, $f(x)f(0)-f(0)=x$. Ainsi, la possibilité $f(0)=0$ est éliminée.
+    \end{itemize}
     Ainsi, $f(x)f(0)-f(0)=x$. Donc $f(x)=x+1$.\\
-    On en déduit que $f$ est unique si elle existe.\\ 
+    Alors $f$ est solution si elle existe.\\[0.25cm]
     \emph{Synthèse.}\\
-    Posons $g: \begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto{x+1}\end{cases}$. Montrons que $g$ est solution.\\
-    Soient $(x,y)\in\mathbb{R}^2$.
+    Soient $(x,y)\in\mathbb{R}^2$.\\
+    Posons $g: \begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto{x+1}\end{cases}$.\\
+    On a :
     \begin{align*}
         g(x)g(y)-g(xy)
         &=(x+1)(y+1)-(xy+1)\\
@@ -245,7 +249,7 @@
         &=x+y
     \end{align*}
     \emph{Conclusion.}\\
-    La fonction $g$ est alors solution unique.
+    La fonction $x\mapsto x+1$ est alors solution unique.
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.11}
 
@@ -256,21 +260,60 @@
         \forall{x\in\mathbb{R}},\forall{y\in\mathbb{R}}, \hspace{0.25cm} f(x-f(y)) = 1-x-y
     \end{equation*}
     \emph{Analyse.}\\
-    Soit $(x,y)\in\mathbb{R}^2$.\\
-    Lorsque $x=f(0), y=0$, $f(0)=1-f(0)$. Ainsi, $2f(0)=1$, donc $f(0)=\frac{1}{2}$.\\
-    Lorsque $y=0$, $f(x-\frac{1}{2})=1-x$.\\
+    Soit $(x,y)\in\mathbb{R}^2$.
+    \begin{itemize}
+        \item[1.] Lorsque $x=f(0), y=0$, $f(0)=1-f(0)$. Ainsi, $2f(0)=1$, donc $f(0)=\frac{1}{2}$.
+        \item[2.] Lorsque $y=0$, $f(x-\frac{1}{2})=1-x$.
+    \end{itemize}
     Posons $z=x-\frac{1}{2}$.\\
     On a $f(z)=1-z-\frac{1}{2} = \frac{1}{2}-z$.\\
-    Alors $f(x)=\frac{1}{2}-x$ \emph{(car $z\in\mathbb{R}$)}\\
-    On en déduit que $f$ est unique si elle existe.\\
+    Donc $f(x)=\frac{1}{2}-x$ \emph{(car $z\in\mathbb{R}$)}\\
+    Alors $f$ est solution si elle existe.\\[0.25cm]
     \emph{Synthèse.}\\
-    Posons $g:\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto{\frac{1}{2}-x}\end{cases}$. Montrons que $g$ est solution.\\
-    Soient $(x,y)\in\mathbb{R}^2$.
+    Soient $(x,y)\in\mathbb{R}^2$.\\
+    Posons $g:\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto{\frac{1}{2}-x}\end{cases}$.\\
+    On a :
     \begin{equation*}
         g(x-g(y))=\frac{1}{2}-(x - (\frac{1}{2}-y)) = 1 - x - y
     \end{equation*}
     \emph{Conclusion.}\\
-    La fonction $g$ est alors solution unique.
+    La fonction $x\mapsto\frac{1}{2}-x$ est alors solution unique.
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.12}
+
+\section*{Exercice 0.13 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Déterminer les fonctions $f: \mathbb{R}_+^* \rightarrow \mathbb{R}_+^*$ telles que 
+    \begin{equation*}
+        \forall{x,y\in\mathbb{R}^*_+}, \hspace{0.25cm} xf(xy) = f(y).
+    \end{equation*}
+    \emph{Analyse.}\\
+    Soient $x,y\in\mathbb{R}^*_+$
+    \begin{itemize}
+        \item[1.] Lorsque $y=1$, $f(1)=xf(x)$.
+        \item[2.] Lorsque $x=\frac{1}{y}$, $f(1)=yf(y)$
+    \end{itemize}
+    Alors $xf(x)=yf(y)$, donc $f(x)=\frac{yf(y)}{x}=\frac{f(1)}{x}$.\\
+    En posant $a=f(1)$, $f(x)=\frac{a}{x}$.\\[0.25cm]
+    \emph{Synthèse.}\\
+    Soient $x,y\in\mathbb{R}^*_+$.\\
+    Soit $a\in\mathbb{R^*_+}$, posons $g:\begin{cases}\mathbb{R}^*_+\rightarrow\mathbb{R}^*_+\\x\mapsto\frac{a}{x}\end{cases}$.\\
+    On a :
+    \begin{equation*}
+        xg(xy)=x\frac{a}{xy}=\frac{a}{y}=g(y).
+    \end{equation*}
+    \emph{Conclusion.}\\
+    Les solutions sont donc toutes les fonctions de la forme $x\mapsto\frac{a}{x}$ avec $a\in\mathbb{R^*_+}$.
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.13}
+
+\section*{Exercice 0.14 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Déterminer les fonctions $f: \mathbb{R}* \rightarrow \mathbb{R}$ telles que 
+    \begin{equation*}
+        \forall{(x,y)\in\mathbb{R}}, \hspace{0.25cm} f(f(x)+y) = f(x^2-y)+4x^2y.
+    \end{equation*}
+
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.14}
 \end{document}
