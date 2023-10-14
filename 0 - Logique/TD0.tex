@@ -359,5 +359,46 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.15}
 
+\section*{Exercice 0.16 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $E$ l'ensemble des fonctions dérivables sur $\mathbb{R}$.\\
+    On considère $F$ l'ensemble des fonctions affines, et $G$ l'ensemble des fonctions $g$ dérivables sur $\mathbb{R}$ telles que $g(0)=g'(0)=0$.\\
+    Démontrer que toute fonction de $E$ s'écrit de manière unique comme la somme d'une fonction de $F$ et d'une fonction de $G$.\\[0.5cm]
+    Soit $h$ une fonction dérivable sur $\mathbb{R}$.\\
+    \emph{Analyse.}\\
+    On suppose qu'il existe $f\in F$ et $g\in G$ telles que :
+    \begin{equation*}
+        \forall{x\in\mathbb{R}}, \hspace{0.25cm} h(x)=f(x)+g(x)
+    \end{equation*}
+    On a :
+    \begin{itemize}
+        \item $f\in F$ donc $\exists(a,b)\in\mathbb{R}^2$ | $\forall{x\in\mathbb{R}}$, $f(x)=ax+b$.
+        \item $f$ est dérivable sur $\mathbb{R}$ et $\forall{x\in\mathbb{R}}$, $f'(x)=a$.
+        \item $g\in G$ donc $g(0)=g'(0)=0$.  
+        \item $\forall{x\in\mathbb{R}}$, $h(x)=f(x)+g(x)$ donc $h'(x)=f'(x)+g'(x)=a+g'(x)$.
+        \item $h(0)=f(0)+g(0)=b$ et $h'(0)=f'(0)+g'(0)=a$
+    \end{itemize}
+    Ainsi, si $f$ existe, $\forall{x\in\mathbb{R}}, f(x) = h'(0)x+h(0)$.\\
+    De plus, si $g$ existe, $\forall{x\in\mathbb{R}}, g(x) = h(x)-f(x)$.\\[0.5cm]
+    \emph{Synthèse.}\\
+    Soient $f$ et $g$ deux fonctions définies comme :
+    \begin{equation*}
+        f:\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto h'(0)x+h(0)\end{cases} g:\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto h(x)-h'(0)x-h(0)\end{cases}
+    \end{equation*}
+    \begin{itemize}
+        \item $f$ est une fonction affine de coefficient $h'(0)$ et d'ordonnée à l'origine $h(0)$ donc $f\in F$.
+        \item $g$ est dérivable sur $\mathbb{R}$, et $\forall{x\in\mathbb{R}}$, $g'(x)=h'(x)-h'(0)$.
+        \item $g(0)=0$ et $g'(0)=0$. Ainsi, $g\in G$.
+    \end{itemize}
+    Soit $x\in\mathbb{R}$.
+    \begin{align*}
+        f(x) + g(x) 
+        &= h'(0)x + h(0) + h(x) - h'(0)x - h(0)\\
+        &= h(x)
+    \end{align*}
+    \emph{Conclusion.}\\
+    Toute fonction dérivable dans $\mathbb{R}$ s'écrit de manière unique comme la somme d'une fonction affine $f:x\mapsto h'(0)x+h(0)$ et d'une fonction $g:x\mapsto h(x)-h'(0)x-h(0)$ dérivable sur $\mathbb{R}$ tel que $g(0)=g'(0)=0$.
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.16}
 
 \end{document}
