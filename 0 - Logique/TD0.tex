@@ -248,7 +248,7 @@
         &=xy+x+y+1-xy-1\\
         &=x+y
     \end{align*}
-    \emph{Conclusion.}\\
+    \emph{Conclusion:}
     La fonction $x\mapsto x+1$ est alors solution unique.
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.11}
@@ -267,7 +267,7 @@
     \end{itemize}
     Posons $z=x-\frac{1}{2}$.\\
     On a $f(z)=1-z-\frac{1}{2} = \frac{1}{2}-z$.\\
-    Donc $f(x)=\frac{1}{2}-x$ \emph{(car $z\in\mathbb{R}$)}\\
+    Donc $f(x)=\frac{1}{2}-x$ \emph{(car $z\in\mathbb{R}$)}.
     Alors $f$ est solution si elle existe.\\[0.25cm]
     \emph{Synthèse.}\\
     Soient $(x,y)\in\mathbb{R}^2$.\\
@@ -276,7 +276,7 @@
     \begin{equation*}
         g(x-g(y))=\frac{1}{2}-(x - (\frac{1}{2}-y)) = 1 - x - y
     \end{equation*}
-    \emph{Conclusion.}\\
+    \emph{Conclusion:} 
     La fonction $x\mapsto\frac{1}{2}-x$ est alors solution unique.
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.12}
@@ -294,7 +294,8 @@
         \item[2.] Lorsque $x=\frac{1}{y}$, $f(1)=yf(y)$
     \end{itemize}
     Alors $xf(x)=yf(y)$, donc $f(x)=\frac{yf(y)}{x}=\frac{f(1)}{x}$.\\
-    En posant $a=f(1)$, $f(x)=\frac{a}{x}$.\\[0.25cm]
+    En posant $a=f(1)$, $f(x)=\frac{a}{x}$.
+    Donc $f$ est solution si elle existe.\\[0.2cm]
     \emph{Synthèse.}\\
     Soient $x,y\in\mathbb{R}^*_+$.\\
     Soit $a\in\mathbb{R^*_+}$, posons $g:\begin{cases}\mathbb{R}^*_+\rightarrow\mathbb{R}^*_+\\x\mapsto\frac{a}{x}\end{cases}$.\\
@@ -302,18 +303,35 @@
     \begin{equation*}
         xg(xy)=x\frac{a}{xy}=\frac{a}{y}=g(y).
     \end{equation*}
-    \emph{Conclusion.}\\
-    Les solutions sont donc toutes les fonctions de la forme $x\mapsto\frac{a}{x}$ avec $a\in\mathbb{R^*_+}$.
+    \emph{Conclusion:}
+    Les solutions sont donc les fonctions de la forme $x\mapsto\frac{a}{x}$ avec $a\in\mathbb{R^*_+}$.
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.13}
 
 \section*{Exercice 0.14 [$\blacklozenge\blacklozenge\blacklozenge$]}
 \begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
-    Déterminer les fonctions $f: \mathbb{R}* \rightarrow \mathbb{R}$ telles que 
+    Déterminer les fonctions $f: \mathbb{R} \rightarrow \mathbb{R}$ telles que 
     \begin{equation*}
         \forall{(x,y)\in\mathbb{R}}, \hspace{0.25cm} f(f(x)+y) = f(x^2-y)+4x^2y.
     \end{equation*}
-
+    \emph{Analyse.}
+    Soit $(x,y)\in\mathbb{R}^2$
+    \begin{itemize}
+        \item[(1)] Lorsque $y=x^2$, $f(f(x)+x^2)=f(0)+4x^4$
+        \item[(2)] Lorsque $y=-f(x)$, $f(0)=f(x^2+f(x))-4x^2f(x)$ 
+        \item[(1)] + (2) : $4x^2(x^2 - f(x)) = 0$.
+    \end{itemize}
+    Ainsi, lorsque $x\neq0$, on a: $x^2-f(x) = 0$, c'est-à-dire $f(x)=x^2$.\\
+    Donc $f$ est solution si elle existe.\\[0.2cm]
+    \emph{Synthèse.}\\
+    Soient $x,y\in\mathbb{R}$.\\
+    Posons $g:\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto x^2\end{cases}$\\
+    On a :
+    \begin{equation*}
+        (x^2+y)^2 = x^4 + 2x^2y + y^2 = (x^4-2x^2y+y^2)+4x^2y=(x^2-y)^2+4x^2y
+    \end{equation*}
+    \emph{Conclusion:}
+    La fonction $x\mapsto x^2$ est donc solution unique.
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.14}
 \end{document}
