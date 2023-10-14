@@ -231,7 +231,7 @@
         \forall{x\in\mathbb{R},\forall{y\in\mathbb{R}}, \hspace{0.5cm} f(x)f(y) - f(xy) = x + y}
     \end{equation*}
     \emph{Analyse.}\\
-    Soit $(x,y)\in\mathbb{R}^2$.
+    Supposons qu'il existe $f$ une telle fonction. Soit $(x,y)\in\mathbb{R}^2$.
     \begin{itemize}
         \item[1.] Lorsque $x=y=0$, $f^2(0)-f(0)=0$. Donc $f(0) = 0$ ou $f(0) = 1$.
         \item[2.] Lorsque $y=0$, $f(x)f(0)-f(0)=x$. Ainsi, la possibilité $f(0)=0$ est éliminée.
@@ -260,7 +260,7 @@
         \forall{x\in\mathbb{R}},\forall{y\in\mathbb{R}}, \hspace{0.25cm} f(x-f(y)) = 1-x-y
     \end{equation*}
     \emph{Analyse.}\\
-    Soit $(x,y)\in\mathbb{R}^2$.
+    Supposons qu'il existe $f$ une telle fonction. Soit $(x,y)\in\mathbb{R}^2$.
     \begin{itemize}
         \item[1.] Lorsque $x=f(0), y=0$, $f(0)=1-f(0)$. Ainsi, $2f(0)=1$, donc $f(0)=\frac{1}{2}$.
         \item[2.] Lorsque $y=0$, $f(x-\frac{1}{2})=1-x$.
@@ -288,7 +288,7 @@
         \forall{x,y\in\mathbb{R}^*_+}, \hspace{0.25cm} xf(xy) = f(y).
     \end{equation*}
     \emph{Analyse.}\\
-    Soient $x,y\in\mathbb{R}^*_+$
+    Supposons qu'il existe $f$ une telle fonction. Soient $x,y\in\mathbb{R}^*_+$
     \begin{itemize}
         \item[1.] Lorsque $y=1$, $f(1)=xf(x)$.
         \item[2.] Lorsque $x=\frac{1}{y}$, $f(1)=yf(y)$
@@ -315,7 +315,7 @@
         \forall{(x,y)\in\mathbb{R}}, \hspace{0.25cm} f(f(x)+y) = f(x^2-y)+4x^2y.
     \end{equation*}
     \emph{Analyse.}
-    Soit $(x,y)\in\mathbb{R}^2$
+    Supposons qu'il existe $f$ une telle fonction. Soit $(x,y)\in\mathbb{R}^2$. 
     \begin{itemize}
         \item[(1)] Lorsque $y=x^2$, $f(f(x)+x^2)=f(0)+4x^4$
         \item[(2)] Lorsque $y=-f(x)$, $f(0)=f(x^2+f(x))-4x^2f(x)$ 
@@ -334,4 +334,30 @@
     La fonction $x\mapsto x^2$ est donc solution unique.
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.14}
+
+\section*{Exercice 0.15 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre l'équation
+    \begin{equation*}
+        x^2 + x\sqrt{1-x^2}-1=0
+    \end{equation*}
+    \emph{Analyse.}
+    Supposons qu'il existe $x\in\mathbb{R}$ vérifiant cette équation.
+    \begin{align*}
+        x^2-1=-x\sqrt{1-x^2} 
+        &\Rightarrow (x^2-1)^2=(-x\sqrt{1-x^2})^2\\
+        &\Rightarrow x^4 - 2x^2 + 1 = -x^4+x^2\\
+        &\Rightarrow 2x^4-3x^2+1=0
+    \end{align*}
+    Posons $\omega=x^2$. On a alors $2\omega^2-3\omega+1=0$.\\
+    Les racines de ce polynome sont : $\omega_1=\frac{1}{2}$ et $\omega_1=1$.\\
+    Ainsi, si $x$ existe alors $x\in\{-\frac{\sqrt{2}}{2},-1,1,\frac{\sqrt{2}}{2}\}$.\\[0.25cm]
+    \emph{Synthèse.}\\
+    On remarque que l'équation est vérifiée lorsque $x\in\{-1,1\frac{\sqrt{2}}{2}\}$ uniquement.\\[0.25cm]
+    \emph{Conclusion.}\\
+    L'équation admet donc pour ensemble de solutions : $\{-1,1,\frac{\sqrt{2}}{2}\}$.
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 0.15}
+
+
 \end{document}
