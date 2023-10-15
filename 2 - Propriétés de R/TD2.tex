@@ -47,13 +47,39 @@
     On a :
     \begin{align*}
         &\hspace{1.2cm}\frac{a^2}{b}+\frac{b^2}{a} \geq a+b\\
-        &\iff \frac{a^3+b^3-a^2+b^2}{ab}\geq0\\
-        &\iff \frac{(a^2-2ab+b^2)(a+b)}{ab}\geq0\\
+        &\iff\frac{a^3-a^2b+b^3-ab^2}{ab}\geq0\\
+        &\iff\frac{a^2(a-b)+b^2(b-a)}{ab}\geq0\\
+        &\iff\frac{(a-b)(a^2-b^2)}{ab}\geq0\\
         &\iff\frac{(a-b)^2(a+b)}{ab}\geq0
     \end{align*}
     Or $(a-b)^2\geq0$, $(a+b)\geq0$ et $ab\geq0$.\\
     Ainsi, cette inégalité est vraie pour tout $(a,b)\in\mathbb{R}^*_+$.
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.1}
+
+\section*{Exercice 2.2 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    1. Montrer que $\forall(a,b)\in(\mathbb{R}_+)^2$ $\sqrt{a+b}\leq\sqrt{a}+\sqrt{b}$.\\
+    Soit $(a,b)\in(\mathbb{R}_+)^2$.
+    \begin{align*}
+        &\hspace{0.9cm}\sqrt{a+b}\leq\sqrt{a}+\sqrt{b}\\
+        &\iff a+b\leq a + 2\sqrt{ab} + b\\
+        &\iff 2\sqrt{ab} \geq 0
+    \end{align*}
+    Ainsi, $\forall(a,b)\in(\mathbb{R}_+)^2$ $\sqrt{a+b}\leq\sqrt{a}+\sqrt{b}$.\\[0.5cm]
+    2. Montrer que $\forall(a,b)\in(\mathbb{R}_+)^2$ $|\sqrt{a}-\sqrt{b}|\leq\sqrt{|a-b|}$.\\
+    Soit $(a,b)\in(\mathbb{R}_+)^2$.\\
+    Considérons $a\geq b$, alors $|a-b| = a-b$.
+    \begin{align*}
+        &\hspace{1.2cm}|\sqrt{a}-\sqrt{b}|\leq\sqrt{a-b}\\
+        &\iff a - 2\sqrt{ab} + b \leq a-b\\
+        &\iff 2b \leq 2\sqrt{ab}\\
+        &\iff b^2 \leq ab & \text{Or $a\geq b$ donc $ab \geq b^2$}
+    \end{align*}
+    Le raisonnement est symétrique lorsque $b\geq a$.\\
+    Ainsi, $\forall(a,b)\in(\mathbb{R}_+)^2$ $|\sqrt{a}-\sqrt{b}|\leq\sqrt{|a-b|}$.
+
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.2}
 
 \end{document}
