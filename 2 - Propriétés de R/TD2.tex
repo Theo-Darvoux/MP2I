@@ -38,6 +38,7 @@
 \fancyhead[R]{2023-2024}
 
 
+\addcontentsline{toc}{section}{Inégalités}
 \section*{Exercice 2.1 [$\blacklozenge\lozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Soient $a$ et $b$ deux nombres réels strictement positifs. Démontrer l'inégalité
@@ -62,19 +63,22 @@
     1. Montrer que $\forall(a,b)\in(\mathbb{R}_+)^2$ $\sqrt{a+b}\leq\sqrt{a}+\sqrt{b}$.\\
     Soit $(a,b)\in(\mathbb{R}_+)^2$.
     \begin{align*}
-        &\hspace{0.9cm}\sqrt{a+b}\leq\sqrt{a}+\sqrt{b}\\
-        &\iff a+b\leq a + 2\sqrt{ab} + b\\
-        &\iff 2\sqrt{ab} \geq 0
+        &\sqrt{a+b}\leq\sqrt{a}+\sqrt{b}\\
+        \iff&a+b\leq a + 2\sqrt{ab} + b\\
+        \iff&2\sqrt{ab} \geq 0\\
+        \iff&\sqrt{ab} \geq 0\\
+        \iff&ab \geq 0
     \end{align*}
     Ainsi, $\forall(a,b)\in(\mathbb{R}_+)^2$ $\sqrt{a+b}\leq\sqrt{a}+\sqrt{b}$.\\[0.5cm]
     2. Montrer que $\forall(a,b)\in(\mathbb{R}_+)^2$ $|\sqrt{a}-\sqrt{b}|\leq\sqrt{|a-b|}$.\\
     Soit $(a,b)\in(\mathbb{R}_+)^2$.\\
     Considérons $a\geq b$, alors $|a-b| = a-b$.
     \begin{align*}
-        &\hspace{1.2cm}|\sqrt{a}-\sqrt{b}|\leq\sqrt{a-b}\\
-        &\iff a - 2\sqrt{ab} + b \leq a-b\\
-        &\iff 2b \leq 2\sqrt{ab}\\
-        &\iff b^2 \leq ab & \text{Or $a\geq b$ donc $ab \geq b^2$}
+        &|\sqrt{a}-\sqrt{b}|\leq\sqrt{a-b}\\
+        \iff& a - 2\sqrt{ab} + b \leq a-b\\
+        \iff& 2b \leq 2\sqrt{ab}\\
+        \iff& b^2 \leq ab\\
+        \iff&b \leq a
     \end{align*}
     Le raisonnement est symétrique lorsque $b\geq a$.\\
     Ainsi, $\forall(a,b)\in(\mathbb{R}_+)^2$ $|\sqrt{a}-\sqrt{b}|\leq\sqrt{|a-b|}$.
@@ -119,5 +123,26 @@
     Ainsi, toutes les inégalités sont vraies et $a\leq h \leq g \leq m \leq b$.
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.4}
+
+\addcontentsline{toc}{section}{Valeurs absolues}
+
+\section*{Exercice 2.5 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre l'équation
+    \begin{equation*}
+        \ln|x|+\ln|x+1|=0
+    \end{equation*}
+    Soit $x\in\mathbb{R}^*_+$.
+    \begin{align*}
+        &\ln|x|+\ln|x+1|=0\\
+        \iff&\ln\left(|x(x+1|\right)=0\\
+        \iff&|x(x+1)|=1\\
+        \iff&x(x+1)=1\\
+        \iff&x^2+x-1=0\\
+        \iff&x=\frac{1\pm\sqrt{5}}{2}
+    \end{align*}
+    L'ensemble des solutions de l'équation est : $\{\frac{1-\sqrt{5}}{2},\frac{1+\sqrt{5}}{2}\}$
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.5}
 
 \end{document}
