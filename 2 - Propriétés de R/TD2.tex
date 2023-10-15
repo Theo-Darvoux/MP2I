@@ -38,7 +38,8 @@
 \fancyhead[R]{2023-2024}
 
 
-\addcontentsline{toc}{section}{Inégalités}
+\addcontentsline{toc}{section}{Inégalités.}
+
 \section*{Exercice 2.1 [$\blacklozenge\lozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Soient $a$ et $b$ deux nombres réels strictement positifs. Démontrer l'inégalité
@@ -124,7 +125,7 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.4}
 
-\addcontentsline{toc}{section}{Valeurs absolues}
+\addcontentsline{toc}{section}{Valeurs absolues.}
 
 \section*{Exercice 2.5 [$\blacklozenge\lozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
@@ -168,5 +169,20 @@
     Ainsi, l'unique solution à l'équation est $\frac{8}{3}$.
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.6}
+
+\addcontentsline{toc}{section}{Entiers, rationnels.}
+
+\section*{Exercice 2.7 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Démontrer l'égalité $\lfloor\frac{\lfloor{nx}\rfloor}{n}\rfloor=\lfloor{x}\rfloor$ pour tout entier $n\in\mathbb{N}^*$ et tout réel $x$.\\
+    Soient $(x,n)\in\mathbb{R}\times\mathbb{N}^*$.\\
+    Notons $r$ la partie décimale de $x$, ainsi $x=\lfloor{x}\rfloor+r$.\\
+    On a alors $nx=n\lfloor{x}\rfloor+nr$ et $\lfloor{nx}\rfloor=\lfloor{n\lfloor{x}\rfloor+nr}\rfloor=n\lfloor{x}\rfloor+\lfloor{nr}\rfloor$.\\
+    Conséquemment, $\frac{\lfloor{nx}\rfloor}{n}=\lfloor{x}\rfloor+\frac{\lfloor{nr}\rfloor}{n}$.\\
+    Or, $0\leq\frac{\lfloor{nr}\rfloor}{n}<1$ car $0\leq r<1$, donc $\lfloor{x}\rfloor\leq\lfloor{x}\rfloor+\frac{\lfloor{nr}\rfloor}{n}<\lfloor{x}\rfloor+1$.\\
+    Ainsi, $\lfloor{x}\rfloor\leq\lfloor\frac{\lfloor{nx}\rfloor}{n}\rfloor<\lfloor{x}+1\rfloor$.\\
+    Par conséquent, $\lfloor\frac{\lfloor{nx}\rfloor}{n}\rfloor = \lfloor{x}\rfloor$.
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.7}
 
 \end{document}
