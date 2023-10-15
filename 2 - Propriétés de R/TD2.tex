@@ -98,4 +98,26 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.3}
 
+\section*{Exercice 2.4 [$\blacklozenge\blacklozenge\lozenge$] \emph{Plusieurs façons de définir une moyenne}}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient $a$ et $b$ deux réels tels que $0 < a \leq b$. On définit les nombres $m,g,h$ par
+    \begin{equation*}
+        m=\frac{a+b}{2}, \hspace{1.5cm} g=\sqrt{ab}, \hspace{1.5cm} \frac{1}{h}=\frac{1}{2}\left(\frac{1}{a}+\frac{1}{b}\right).
+    \end{equation*}
+    Et on les appelle respectivement moyenne arithmétique, géométrique et harmonique de $a$ et $b$.\\
+    Démontrer l'encadrement
+    \begin{equation*}
+        a \leq h \leq g \leq m \leq b
+    \end{equation*}
+    Montrons les inégalités une par une :
+    \begin{itemize}
+        \item $m \leq b \iff \frac{a+b}{2}-b\leq 0 \iff \frac{a-b}{2} \leq 0 \iff a - b \leq 0 \iff a \leq b$.
+        \item $g \leq m \iff \sqrt{ab} \leq \frac{a+b}{2} \iff \frac{a - 2\sqrt{ab} + b}{2} \geq 0 \iff \frac{(\sqrt{a}-\sqrt{b})^2}{2} \geq 0$.
+        \item $h \leq g \iff \frac{1}{h} \geq \frac{1}{g} \iff \frac{1}{2a}+\frac{1}{2b}-\frac{1}{\sqrt{ab}} \geq 0 \iff \frac{a-2\sqrt{ab}+b}{2ab} \geq 0 \iff \frac{(\sqrt{a}-\sqrt{b})^2}{2ab}\geq0$.
+        \item $a \leq h \iff \frac{1}{a} \geq \frac{1}{h} \iff \frac{1}{a}-\frac{1}{2a}-\frac{1}{2b}\geq 0 \iff \frac{b-a}{2ab}\geq0 \iff b-a\geq 0 \iff a \leq b$
+    \end{itemize}
+    Ainsi, toutes les inégalités sont vraies et $a\leq h \leq g \leq m \leq b$.
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.4}
+
 \end{document}
