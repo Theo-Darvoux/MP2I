@@ -276,12 +276,15 @@
 
 \section*{Exercice 2.10 [$\blacklozenge\blacklozenge\blacklozenge$]}
 \begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
-    Soient $x$ et $y$ deux rationnels positifs tels que $\sqrt{x}$ et $\sqrt{y}$ soient irrationnels.\\
+    Soient $x$ et $y$ deux rationnels positifs tels que \\$\sqrt{x}$ et $\sqrt{y}$ soient irrationnels.\\
     Montrer que $\sqrt{x} + \sqrt{y}$ est irrationnel.\\[1cm]
     Supposons $\sqrt{x}+\sqrt{y}\in\mathbb{Q}$. Il existe $p\in\mathbb{N}$ et $q\in\mathbb{N}^*$ premiers entre eux tels que :
-    \begin{equation*}
-        \sqrt{x}+\sqrt{y}=\frac{p}{q}
-    \end{equation*}
+    \begin{align*}
+        &\sqrt{x}+\sqrt{y}=\frac{p}{q}\\
+        \iff&(\sqrt{x}+\sqrt{y})^2=\left(\frac{p}{q}\right)^2\\
+        \iff&x+2\sqrt{xy}+y=\frac{p^2}{q^2}\\
+        \iff&\sqrt{xy}=\frac{p^2-xq^2-yq^2}{2q^2}\\
+    \end{align*}
     
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.10}
