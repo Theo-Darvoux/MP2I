@@ -253,6 +253,24 @@
         \lfloor{\sum^{p^2-1}_{k=1}{\frac{1}{\sqrt{k}}}}\rfloor = 2p-2
     \end{equation*}
 \end{tcolorbox}
-\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.8}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.9}
 
+\section*{Exercice 2.9 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Prouver que $\frac{\ln(2)}{\ln(3)}$ est un nombre irrationnel.\\
+    Supposons que $\frac{\ln{2}}{\ln{3}}\in\mathbb{Q}$. Alors il existe $p\in\mathbb{N}$ et $q\in\mathbb{N}^*$ premiers entre eux tels que :
+    \begin{equation*}
+        \frac{\ln{2}}{\ln{3}}=\frac{p}{q}
+    \end{equation*}
+    Alors :
+    \begin{align*}
+        &p\ln{3}=q\ln{2}\\
+        \iff&\ln(3^p)=\ln(2^q)\\
+        \iff&e^{\ln(3^p)}=e^{\ln{2^q}}\\
+        \iff&3^p=2^q
+    \end{align*}
+    Or $3^p$ est toujours impair et $2^q$ est toujours pair, donc cela est absurde.\\
+    Ainsi, $\frac{\ln2}{\ln3}$ est irrationnel.
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.9}
 \end{document}
