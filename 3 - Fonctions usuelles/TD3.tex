@@ -1,0 +1,59 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[skins]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e}
+\usepackage{amsmath, amssymb, amsthm}
+
+\def\pagetitle{Fonctions usuelles}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+\date{Septembre 2023}
+\author{DARVOUX Théo}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+
+\begin{document}
+\renewcommand*\contentsname{Exercices.}
+\renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\maketitle
+\hrule
+\tableofcontents
+\vspace{0.5cm}
+\hrule
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+
+
+\addcontentsline{toc}{section}{Exponentielle and friends.}
+
+\section*{Exercice 3.1 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre $2\ln\left(\frac{x+3}{2}\right)=\ln(x)+\ln(3)$, sur $\mathbb{R}^*_+$.\\
+    Soit $x\in\mathbb{R^*_+}$.\\
+    On a :
+    \begin{align*}
+        &2\ln\left(\frac{x+3}{2}\right)=\ln(x)+\ln(3)\\
+        \iff&\ln\left(\left(\frac{x+3}{2}\right)^2\right)=\ln(3x)\\
+        \iff&\frac{(x+3)^2}{4}=3x\\
+        \iff&x^2-6x+9=0\\
+        \iff&x=3
+    \end{align*}
+    Ainsi, $3$ est l'unique solution.
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 3.1}
+
+\end{document}
