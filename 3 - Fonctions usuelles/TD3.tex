@@ -3,14 +3,19 @@
 \usepackage[T1]{fontenc}
 \usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
 \usepackage[skins]{tcolorbox}
-\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol}
 \usepackage{amsmath, amssymb, amsthm}
+\usepackage{tkz-tab}
 
 \def\pagetitle{Fonctions usuelles}
 
 \title{\bf{\pagetitle}\\\large{Corrigé}}
 \date{Septembre 2023}
 \author{DARVOUX Théo}
+
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\tah}{th}
 
 \hypersetup{
     colorlinks=true,
@@ -36,7 +41,7 @@
 \fancyhead[L]{MP2I Paul Valéry}
 \fancyhead[C]{\pagetitle}
 \fancyhead[R]{2023-2024}
-
+\allowdisplaybreaks
 
 \addcontentsline{toc}{section}{Exponentielle and friends.}
 
@@ -94,5 +99,93 @@
     Les uniques solutions sont donc $1$ et $4$.
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 3.3}
+
+\section*{Exercice 3.4 [$\blacklozenge\lozenge\lozenge$] Trigonométrie hyperbolique.}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    1. Montrer que pour tous réels $a$ et $b$, on a
+    \begin{itemize}
+        \item[(a)] $\ch(a+b)=\ch(a)\ch(b)+\sh(a)\sh(b)$.
+        \item[(b)] $\sh(a+b)=\sh(a)\ch(b)+\ch(a)\sh(b)$.
+        \item[(c)] Trouver une identité pour $\tah(a+b)$.
+    \end{itemize}
+    2. Pour $x$ réel, on pose $t=\tah\left(\frac{x}{2}\right)$. Montrer que
+    \begin{equation*}
+        \text{(a) } \ch(x)=\frac{1+t^2}{1-t^2} \hspace{0.5cm} \text{(b) } \sh(x)=\frac{2t}{1-t^2} \hspace{0.5cm} \text{(c) } \tah{x}=\frac{2t}{1+t^2}
+    \end{equation*}
+    1.\\
+    (a)
+    \begin{align*}
+        \ch(a)\ch(b)+\sh(a)\sh(b)&=\frac{e^{a+b}+e^{-a-b}}{2}=\ch(a+b)
+    \end{align*}
+    (b)
+    \begin{align*}
+        \sh(a)\ch(b)+\ch(a)\sh(b)&=\frac{e^{a+b}-e^{a-b}}{2}=\sh(a+b)
+    \end{align*}
+    (c)
+    \begin{align*}
+        \tah(a+b)&=\frac{\sh(a)\ch(b)+\ch(a)\sh(b)}{\ch(a)\ch(b)+\sh(a)\sh(b)}\\
+    \end{align*}
+    On divise en haut et en bas par $\ch(a)\ch(b)$.
+    \begin{align*}
+        \tah(a+b)&=\frac{\frac{\sh(a)}{\ch(a)}+\frac{\sh(b)}{\ch(b)}}{1+\frac{\sh(a)}{\ch(a)}\cdot\frac{\sh(b)}{\ch(b)}}=\frac{\tah(a)+\tah(b)}{1+\tah(a)\tah(b)}
+    \end{align*}
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    2.\\
+    (a)
+    \begin{align*}
+        \frac{1+t^2}{1-t^2}&=\frac{1+\tah^2(\frac{x}{2})}{1-\tah^2(\frac{x}{2})}=\frac{\ch^2(\frac{x}{2})+\sh^2(\frac{x}{2})}{\ch^2(\frac{x}{2})-\sh^2(\frac{x}{2})}\\
+        &=\ch^2\left(\frac{x}{2}+\frac{x}{2}\right)=\ch(x)
+    \end{align*}
+    (b)
+    \begin{align*}
+        \frac{2t}{1-t^2}&=\frac{2\tah(\frac{x}{2})}{1-\tah^2(\frac{x}{2})}=\frac{2\sh(\frac{x}{2})\ch(\frac{x}{2})}{\ch^2(\frac{x}{2})-\sh^2(\frac{x}{2})}\\
+        &=\sh\left(\frac{x}{2}+\frac{x}{2}\right)=\sh(x)
+    \end{align*}
+    (c)
+    \begin{align*}
+        \frac{2t}{1+t^2}&=\frac{2\tah(\frac{x}{2})}{1+\tah^2(\frac{x}{2})}=\frac{2\sh(\frac{x}{2})\ch(\frac{x}{2})}{\ch^2(\frac{x}{2})+\sh^2(\frac{x}{2})}\\
+        &=\frac{\sh(x)}{\ch(x)}=\tah(x)
+    \end{align*}
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 3.4}
+
+\section*{Exercice 3.5 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Sans calculatrice, comparer $\pi^e$ et $e^\pi$.\\
+    Soit $f:x\mapsto\frac{x}{\ln(x)}$. $f$ est dérivable sur $\mathbb{R}^*_+$, de dérivée :
+    \begin{equation*}
+        f':\begin{cases}\mathbb{R}^*_+\rightarrow\mathbb{R}\\x\mapsto\frac{\ln(x)-1}{\ln^2(x)}\end{cases}
+    \end{equation*}
+    Un magnifique tableau de variations :
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=3]{$x$/0.6,$f'(x)$/0.6,$f$/1.4}
+            {$0$,$1$,$e$,$+\infty$}
+            \tkzTabLine{d,-,d,-,z,+}
+            \tkzTabVar{+/$+\infty$,-D+/$-\infty$/$+\infty$,-/$e$,+/$+\infty$}
+        \end{tikzpicture}
+    \end{center}
+    On en conclut que :
+    \begin{align*}
+        &\frac{\pi}{\ln(\pi)}>e\\
+        \iff&\pi>e\ln(\pi)\\
+        \iff&e^\pi>e^{e\ln{\pi}}\\
+        \iff&e^\pi>\pi^e
+    \end{align*}
+    Donc $e^\pi>\pi^e$.
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 3.5}
+
+\section*{Exercice 3.6 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    1. Étudier les variations de $f:x\mapsto\sqrt[3]{x}-\sqrt[3]{x+1}$.\\
+    2. Des deux nombres $\sqrt[3]{2}+\sqrt[3]{4}$ et $\sqrt[3]{24}$, lequel est le plus grand ?\\
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 3.6}
 
 \end{document}
