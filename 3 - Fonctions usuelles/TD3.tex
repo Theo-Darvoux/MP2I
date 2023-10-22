@@ -183,7 +183,29 @@
 \section*{Exercice 3.6 [$\blacklozenge\blacklozenge\blacklozenge$]}
 \begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
     1. Étudier les variations de $f:x\mapsto\sqrt[3]{x}-\sqrt[3]{x+1}$.\\
-    2. Des deux nombres $\sqrt[3]{2}+\sqrt[3]{4}$ et $\sqrt[3]{24}$, lequel est le plus grand ?\\
+    2. Des deux nombres $\sqrt[3]{2}+\sqrt[3]{4}$ et $\sqrt[3]{24}$, lequel est le plus grand ?\\[0.5cm]
+    1. $f$ est définie, continue et dérivable sur $\mathbb{R}_+$ de dérivée :
+    \begin{equation*}
+        f':\begin{cases}\mathbb{R}_+\rightarrow\mathbb{R}\\x\mapsto \frac{1}{3}\left(\frac{1}{x^{2/3}}-\frac{1}{(x+1)^{2/3}}\right)\end{cases}
+    \end{equation*}
+    On a :
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=8]{$x$/0.6,$f'(x)$/0.6,$f$/1.4}
+            {$0$,$+\infty$}
+            \tkzTabLine{d,+,}
+            \tkzTabVar{-/$-1$,+/$0$}
+        \end{tikzpicture}
+    \end{center}
+    2. 
+    \begin{align*}
+        &\sqrt[3]{2}+\sqrt[3]{4}-\sqrt[3]{24}\\
+        =&\sqrt[3]{2}+\sqrt[3]{4}-2\sqrt[3]{3}\\
+        =&\sqrt[3]{2}-\sqrt[3]{3}-(\sqrt[3]{3}-\sqrt[3]{4})
+    \end{align*}
+    Or $f$ est croissante sur $\mathbb{R}_+$, c'est-à-dire que les différences entre racines cubiques successives augmentent.\\
+    Ainsi, $\sqrt[3]{3}-\sqrt[3]{4}>\sqrt[3]{2}-\sqrt[3]{3}$.\\
+    On en conclut que $\sqrt[3]{24}>\sqrt[3]{2}+\sqrt[3]{4}$.
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 3.6}
