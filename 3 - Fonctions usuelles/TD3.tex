@@ -63,7 +63,7 @@
 
 \section*{Exercice 3.2 [$\blacklozenge\blacklozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
-    Résoudre l'équation $ch(x)=2$. Que dire des solutions ?\\
+    Résoudre l'équation $\ch(x)=2$. Que dire des solutions ?\\
     Soit $x\in\mathbb{R}$.\\
     On a :
     \begin{align*}
@@ -117,10 +117,12 @@
     \begin{align*}
         \ch(a)\ch(b)+\sh(a)\sh(b)&=\frac{e^{a+b}+e^{-a-b}}{2}=\ch(a+b)
     \end{align*}
+    \qed\\
     (b)
     \begin{align*}
         \sh(a)\ch(b)+\ch(a)\sh(b)&=\frac{e^{a+b}-e^{a-b}}{2}=\sh(a+b)
     \end{align*}
+    \qed\\
     (c)
     \begin{align*}
         \tah(a+b)&=\frac{\sh(a)\ch(b)+\ch(a)\sh(b)}{\ch(a)\ch(b)+\sh(a)\sh(b)}\\
@@ -138,11 +140,13 @@
         \frac{1+t^2}{1-t^2}&=\frac{1+\tah^2(\frac{x}{2})}{1-\tah^2(\frac{x}{2})}=\frac{\ch^2(\frac{x}{2})+\sh^2(\frac{x}{2})}{\ch^2(\frac{x}{2})-\sh^2(\frac{x}{2})}\\
         &=\ch^2\left(\frac{x}{2}+\frac{x}{2}\right)=\ch(x)
     \end{align*}
+    \qed\\
     (b)
     \begin{align*}
         \frac{2t}{1-t^2}&=\frac{2\tah(\frac{x}{2})}{1-\tah^2(\frac{x}{2})}=\frac{2\sh(\frac{x}{2})\ch(\frac{x}{2})}{\ch^2(\frac{x}{2})-\sh^2(\frac{x}{2})}\\
         &=\sh\left(\frac{x}{2}+\frac{x}{2}\right)=\sh(x)
     \end{align*}
+    \qed\\
     (c)
     \begin{align*}
         \frac{2t}{1+t^2}&=\frac{2\tah(\frac{x}{2})}{1+\tah^2(\frac{x}{2})}=\frac{2\sh(\frac{x}{2})\ch(\frac{x}{2})}{\ch^2(\frac{x}{2})+\sh^2(\frac{x}{2})}\\
@@ -404,4 +408,43 @@
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 3.12}
+\addcontentsline{toc}{section}{Fonctions circulaires réciproques.}
+
+\section*{Exercice 3.13 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Montrer que $\forall{x\in\mathbb{R}_+}$ $x-\frac{x^3}{3}\leq\arctan(x)\leq x$.\\
+    Soit $x\in\mathbb{R}_+$.\\[0.25cm]
+    $\circledcirc$ Montrons que $\arctan(x)\leq x$.\\
+    Posons $f:x\mapsto\arctan{x}-x$. $f$ est dérivable sur $\mathbb{R}^*_+$ de dérivée :
+    \begin{equation*}
+        f':\begin{cases}\mathbb{R}^*_+\rightarrow\mathbb{R}\\x\mapsto-\frac{x^2}{x^2+1}\end{cases}
+    \end{equation*}
+    On a :
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=8]{$x$/0.6,$f'(x)$/0.6,$f$/1.0}{$0$,$+\infty$}
+            \tkzTabLine{d,-,}
+            \tkzTabVar{+/$0$,-/$-\infty$}
+        \end{tikzpicture}
+    \end{center}
+    Donc $\arctan(x)\leq x$.\\[0.25cm]
+    $\circledcirc$ Montrons que $x-\frac{x^3}{3}\leq\arctan(x)$.\\
+    Posons $f:\mapsto x-\frac{x^3}{3}-\arctan(x)$. $f$ est dérivable sur $\mathbb{R}_+$ de dérivée :
+    \begin{equation*}
+        f':\begin{cases}\mathbb{R}^*_+\rightarrow\mathbb{R}\\x\mapsto-\frac{x^4}{x^2+1}\end{cases}
+    \end{equation*}
+    On a :
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=8]{$x$/0.6,$f'(x)$/0.6,$f$/1.0}{$0$,$+\infty$}
+            \tkzTabLine{d,-,}
+            \tkzTabVar{+/$0$,-/$-\infty$}
+        \end{tikzpicture}
+    \end{center}
+    Donc $x-\frac{x^3}{3}\leq \arctan(x)$.\\[0.25cm]
+    Ainsi, $\forall{x\in\mathbb{R}_+}$ $x-\frac{x^3}{3}\leq\arctan(x)\leq x$.\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 3.13}
 \end{document}
