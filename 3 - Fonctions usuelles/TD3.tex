@@ -298,4 +298,32 @@
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 3.8}
+
+\section*{Exercice 3.9 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $x$ un réel. Démontrer que :
+    \begin{equation*}
+        \forall{n\in\mathbb{N}}\hspace{0.25cm} |\sin(nx)|\leq n|\sin x|.
+    \end{equation*}
+    Notons $\mathcal{P}_n$ cette proposition. Montrons que $\mathcal{P}_n$ est vraie pour tout $n\in\mathbb{N}$.\\
+    \emph{Initialisation}.\\
+    On a : $|\sin(0x)|\leq0|\sin x| \iff 0 \leq 0$.\\
+    Ainsi, $\mathcal{P}_0$ est vraie.\\
+    \emph{Hérédité}.\\
+    Soit $n\in\mathbb{N}$ tel que $\mathcal{P}_n$ soit vraie. Montrons $\mathcal{P}_{n+1}$.\\
+    On a :
+    \begin{align*}
+        &|\sin(nx+x)|=|\sin(nx)\cos(x)+\sin(x)\cos(nx)|\\
+        \leq&|\sin(nx)\cos(x)|+|\sin(x)\cos(nx)|\\
+        \leq&|\sin(nx)||\cos(x)|+|\sin(x)||\cos(nx)|\\
+        \leq&|\sin(nx)|+|\sin(x)|\\
+        \leq&n|\sin(x)|+|\sin(x)| \hspace{1cm}\text{(HR)}\\
+        \leq&(n+1)|\sin(x)|
+    \end{align*} 
+    C'est exactement $\mathcal{P}_{n+1}$.\\
+    \emph{Conclusion.}\\
+    Par le principe de récurrence, $\mathcal{P}_n$ est vraie pour tout $n\in\mathbb{N}$.
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 3.9}
 \end{document}
