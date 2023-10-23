@@ -204,9 +204,61 @@
         =&(\sqrt[3]{2}-\sqrt[3]{3})-(\sqrt[3]{3}-\sqrt[3]{4})
     \end{align*}
     Or $f$ est croissante sur $\mathbb{R}_+$, ainsi : $\sqrt[3]{3}-\sqrt[3]{4}>\sqrt[3]{2}-\sqrt[3]{3}$.\\
-    On en conclut que $\sqrt[3]{24}>\sqrt[3]{2}+\sqrt[3]{4}$.
+    On en conclut que $\sqrt[3]{24}>\sqrt[3]{2}+\sqrt[3]{4} $.
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 3.6}
+
+\section*{Exercice 3.7 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    1. Soit $\alpha$ un réel et $x>-1$. Comparer $(1+x)^\alpha$ et $1+\alpha x$ (on discutera selon les valeurs de $\alpha$).\\
+    2. Soit $\alpha\in[0,1]$ et $n\in\mathbb{N}^*$. Montrer que
+    \begin{equation*}
+        \prod_{k=1}^n{\left(1+\frac{\alpha}{k}\right)}\geq(n+1)^\alpha
+    \end{equation*}
+    1. Posons $f:x\mapsto(1+x)^\alpha-1-\alpha x$. $f$ est définie, continue et dérivable sur $]-1,+\infty[$ de dérivée :
+    \begin{equation*}
+        g:\begin{cases}]-1,+\infty[\rightarrow\mathbb{R}\\x\mapsto\alpha((1+x)^{\alpha-1}-1)\end{cases}
+    \end{equation*}
+    Alors :\\
+    $\circledcirc$ Si $\alpha\in]0,1[$:
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=4]{$x$/0.6,$f'(x)$/0.6,$f$/1.4}
+            {$-1$,$0$,$+\infty$}
+            \tkzTabLine{d,+,z,-,}
+            \tkzTabVar{-/$\alpha-1$,+/$0$,-/$-\infty$}
+        \end{tikzpicture}
+    \end{center}
+    $\circledcirc$ Si $\alpha\in]1,+\infty[$:
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=4]{$x$/0.6,$f'(x)$/0.6,$f$/1.4}
+            {$-1$,$0$,$+\infty$}
+            \tkzTabLine{d,-,z,+,}
+            \tkzTabVar{+/$\alpha-1$,-/$0$,+/$+\infty$}
+        \end{tikzpicture}
+    \end{center}
+    $\circledcirc$ Si $\alpha\in]-\infty,0[$:
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=4]{$x$/0.6,$f'(x)$/0.6,$f$/1.4}
+            {$-1$,$0$,$+\infty$}
+            \tkzTabLine{d,-,z,+,}
+            \tkzTabVar{+/$+\infty$,-/$0$,+/$+\infty$}
+        \end{tikzpicture}
+    \end{center}
+    Ainsi, $(1+x)^\alpha > 1+\alpha x$ lorsque $\alpha\notin[0,1]$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    2. D'après l'inégalité précédente, on a :
+    \begin{align*}
+        \prod^n_{k=1}{\left(1+\frac{\alpha}{k}\right)}\geq\prod^n_{k=1}{\left(1+\frac{1}{k}\right)^\alpha}=\prod^n_{k=1}{\frac{(k+1)^\alpha}{k^\alpha}}=(n+1)^\alpha
+    \end{align*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 3.7}
 
 \end{document}
