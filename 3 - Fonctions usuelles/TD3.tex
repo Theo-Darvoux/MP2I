@@ -322,8 +322,48 @@
     \end{align*} 
     C'est exactement $\mathcal{P}_{n+1}$.\\
     \emph{Conclusion.}\\
-    Par le principe de récurrence, $\mathcal{P}_n$ est vraie pour tout $n\in\mathbb{N}$.
+    Par le principe de récurrence, $\mathcal{P}_n$ est vraie pour tout $n\in\mathbb{N}$.\\
+    \qed
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 3.9}
+
+
+\section*{Exercice 3.10 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Pour $n\in\mathbb{N}^*$, on pose
+    \begin{equation*}
+        u_n=\sqrt{2+\sqrt{2+\dots\sqrt{2}}}\hspace{1cm}\text{($n$ fois le symbole $\sqrt{\cdot}$)}
+    \end{equation*}
+    1. Montrer que $\forall{n\in\mathbb{N}^*}$ $u_n=2\cos(\frac{\pi}{2^{n+1}})$.\\
+    2. En déduire $\lim{u_n}$\\[0.25cm]
+    1. Notons $\mathcal{P}_n$ cette proposition. Montrons que $\mathcal{P}_n$ est vraie pour tout $n\in\mathbb{N}^*$.\\
+    \emph{Initialisation.}\\
+    On a : $2\cos(\frac{\pi}{4})=2\frac{\sqrt{2}}{2}=\sqrt{2}$.\\
+    Ainsi, $\mathcal{P}_1$ est vérifiée.\\
+    \emph{Hérédité.}\\
+    Soit $n\in\mathbb{N}^*$ tel que $\mathcal{P}_n$ soit vraie. Montrons $\mathcal{P}_{n+1}$.\\
+    On a :
+    \begin{align*}
+        &u_n=2\cos\left(\frac{\pi}{2^{n+1}}\right)\\
+        \iff&\sqrt{2+u_n}=\sqrt{2+2\cos\left(\frac{\pi}{2^{n+1}}\right)}\\
+        \iff&u_{n+1}=\sqrt{2(1+\cos(\frac{\pi}{2^{n+1}}))}
+    \end{align*}
+    Or $\cos(2\theta)=\cos^2(\theta)-\sin^2(\theta)=2\cos^2(\theta)-1$\\
+    Ainsi, $1+\cos(\frac{\pi}{2^{n+1}})=2\cos^2{\frac{\pi}{2^{n+2}}}$\\
+    Alors :
+    \begin{align*}
+        &u_{n+1}=\sqrt{4\cos^2(\frac{\pi}{2^{n+2}})}=2\cos(\frac{\pi}{2^{n+2}})
+    \end{align*}
+    $\mathcal{P}_{n+1}$ est donc vraie.\\
+    \emph{Conclusion.}\\
+    Par le principe de récurrence, $\mathcal{P}_n$ est vraie pour tout $n\in\mathbb{N}^*$.\\[0.25cm]
+    \qed\\
+    2.
+    \begin{equation*}
+        \lim{u_n}=\lim_{n\rightarrow+\infty}{2\cos(\frac{\pi}{2^{n+1}})}=2\cos(0)=2
+    \end{equation*}
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 3.10}
 \end{document}
