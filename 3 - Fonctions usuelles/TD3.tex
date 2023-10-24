@@ -535,4 +535,24 @@
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 3.16}
+
+\section*{Exercice 3.17 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Pour $a<x<b$, montrer que 
+    \begin{equation*}
+        \arcsin\sqrt{\frac{x-a}{b-a}}=\arctan\sqrt{\frac{x-a}{b-x}}.
+    \end{equation*}
+    On a :
+    \begin{align*}
+        \cos\left(\arcsin\left(\sqrt{\frac{x-a}{b-a}}\right)\right)&=\sqrt{1-\frac{x-a}{b-a}}=\sqrt{\frac{b-x}{b-a}}
+    \end{align*}
+    \begin{align*}
+        \cos\left(\arctan\left(\sqrt{\frac{x-a}{b-x}}\right)\right)&=\frac{1}{\sqrt{1+\frac{x-a}{b-x}}}=\frac{1}{\sqrt{\frac{b-a}{b-x}}}=\sqrt{\frac{b-x}{b-a}}
+    \end{align*}
+    Ainsi, $\cos\arcsin\sqrt{\frac{x-a}{b-a}}=\cos\arctan\sqrt{\frac{x-a}{b-x}}$.\\
+    Or, $\sqrt{\frac{x-a}{b-a}}\in]-1,1[$ et $\sqrt{\frac{x-a}{b-x}}\in]-1,1[$ donc $\arcsin\sqrt{\frac{x-a}{b-a}}=\arctan\sqrt{\frac{x-a}{b-x}}$.\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 3.17}
 \end{document}
