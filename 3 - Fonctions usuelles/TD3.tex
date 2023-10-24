@@ -466,4 +466,27 @@
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 3.14}
+
+\section*{Exercice 3.15 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit l'équation
+    \begin{equation*}
+        \arcsin(x)+\arcsin\left(\frac{x}{2}\right)=\frac{\pi}{4}.
+    \end{equation*}
+    1. Justifier que l'équation admet une unique solution sur $[-1,1]$.\\
+    2. Donner une expression de cette solution.\\[0.25cm]
+    1. $\arctan$ est strictement croissante sur $\mathbb{R}$ et prend ses valeurs dans $]-\frac{\pi}{2},\frac{\pi}{2}[$ donc l'équation admet une unique solution sur $\mathbb{R}$.\\[0.25cm]
+    2. Soit $x\in[-1,1]$\\
+    On a :
+    \begin{align*}
+        &\arcsin(x)+\arcsin(\frac{x}{2})=\frac{\pi}{4}\\
+        \iff&\tan(\arcsin(x)+\arcsin(\frac{x}{2}))=1\\
+        \iff&\frac{3x}{2}\cdot\frac{2}{2-x^2}=1\\
+        \iff&2x^2+6x-4=0\\
+        \iff&x=-\frac{3}{2}+\frac{\sqrt{17}}{2}
+    \end{align*}
+    L'unique solution est donc $\frac{\sqrt{17}}{2}-\frac{3}{2}$.
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 3.15}
 \end{document}
