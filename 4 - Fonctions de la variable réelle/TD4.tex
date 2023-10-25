@@ -60,4 +60,18 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.1}
 
+\section*{Exercice 4.2 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Déterminer toutes les fonctions croissantes $f:\mathbb{R}\rightarrow\mathbb{R}$ telles que
+    \begin{equation*}
+        \forall{x\in\mathbb{R}} \hspace{0.25cm} f(f(x))=x.
+    \end{equation*}
+    Soit $x\in\mathbb{R}$ et $f$ une solution du problème.\\
+    On remarque que $f:x\mapsto x$ est solution du problème.\\
+    Supposons $f(x)>x$, on a : $f(f(x))>f(x)$ par croissance de $f$. Or $f(f(x))=x$ donc $x>f(x)$, ce qui est absurde.\\
+    Supposons $f(x)<x$, on a : $f(f(x))<f(x)$ par croissance de $f$. Or $f(f(x))=x$ donc $x<f(x)$, ce qui est absurde.\\
+    Ainsi, la seule fonction de $\mathbb{R}$ vers $\mathbb{R}$ solution est $f:x\mapsto x$.
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.2}
+
 \end{document}
