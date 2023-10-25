@@ -1,0 +1,63 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[skins]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{tkz-tab}
+
+\def\pagetitle{Fonctions usuelles}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+\date{Septembre 2023}
+\author{DARVOUX Théo}
+
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\tah}{th}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+
+\begin{document}
+\renewcommand*\contentsname{Exercices.}
+\renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\maketitle
+\hrule
+\tableofcontents
+\vspace{0.5cm}
+\hrule
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+\allowdisplaybreaks
+
+\addcontentsline{toc}{section}{Vocabulaire sur les fonctions.}
+
+\section*{Exercice 4.1 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $f:\mathbb{R}\rightarrow\mathbb{R}$ une fonction $2$-périodique et $3$-périodique. Montrer que $f$ est $1$-périodique.\\
+    On a :
+    \begin{align*}
+        \forall{x\in\mathbb{R}}\begin{cases}x-2\in\mathbb{R}\\f(x-2)=f(x)\end{cases} \text{ et } \begin{cases}x+3\in\mathbb{R}\\f(x+3)=f(x)\end{cases}
+    \end{align*}
+    Alors :
+    \begin{align*}
+        \forall{x\in\mathbb{R}}\begin{cases}x-2+3\in\mathbb{R}\\f(x-2+3)=f(x-2)=f(x)\end{cases}
+    \end{align*}
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.1}
+
+\end{document}
