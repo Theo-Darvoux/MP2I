@@ -44,7 +44,6 @@
 \allowdisplaybreaks
 
 \pagebreak
-\addcontentsline{toc}{section}{Vocabulaire sur les fonctions.}
 
 \section*{Exercice 4.1 [$\blacklozenge\lozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
@@ -59,6 +58,8 @@
     \end{align*}
     \qed
 \end{tcolorbox}
+
+\addcontentsline{toc}{section}{Vocabulaire sur les fonctions.}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.1}
 
 \section*{Exercice 4.2 [$\blacklozenge\blacklozenge\blacklozenge$]}
@@ -75,7 +76,6 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.2}
 
-\addcontentsline{toc}{section}{Étude de fonctions.}
 \section*{Exercice 4.3 [$\blacklozenge\lozenge\lozenge$] S'entraîner tout seul à dériver.}
 \begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Pour chacune des fonctions ci-dessous, donner un ou plusieurs intervalles sur lesquels la fonction est dérivable, et préciser sa dérivée.
@@ -92,8 +92,9 @@
         \item $C':\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto-5\sin(5x)\end{cases}$\hspace{1.0cm}• $F':\begin{cases}]1,+\infty[\rightarrow\mathbb{R}\\x\mapsto\frac{\sin(\sqrt{\ln(x)})}{2x\sqrt{\ln(x)}}\end{cases}$
     \end{itemize}
 \end{tcolorbox}
-\addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.3}
 
+\addcontentsline{toc}{section}{Étude de fonctions.}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.3}
 \section*{Exercice 4.4 [$\blacklozenge\lozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Donner le tableau de variations complet de
@@ -265,4 +266,25 @@
     \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.8}
+
+\section*{Exercice 4.9 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    1. Étudier les variations de $f:x\mapsto\frac{x}{1+x}$ sur $[0,+\infty[$.\\
+    2. Prouver que
+    \begin{equation*}
+        \forall{x,y\in\mathbb{R}}, \hspace{1cm} \frac{|x+y|}{1+|x+y|}\leq\frac{|x|}{1+|x|}+\frac{|y|}{1+|y|}.
+    \end{equation*}
+    1. Soit $x\in\lbrack0,+\infty\lbrack$. On a :
+    \begin{equation*}
+        f':x\mapsto\frac{1}{(1+x)^2}
+    \end{equation*}
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=8]{$x$/0.6,$f'(x)$/0.6,$f$/0.9}{$0$,$+\infty$}
+            \tkzTabLine{,+,}
+            \tkzTabVar{-/$0$,+/$1$}
+        \end{tikzpicture}
+    \end{center}
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.9}
 \end{document}
