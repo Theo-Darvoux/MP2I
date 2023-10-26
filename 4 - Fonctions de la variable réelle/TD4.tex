@@ -240,4 +240,29 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.7}
 
+\section*{Exercice 4.8 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Démontrer l'inégalité
+    \begin{equation*}
+        \forall{x\in]0,1[}\hspace{1cm}x^x(1-x)^{1-x}\geq\frac{1}{2}.
+    \end{equation*}
+    Soit $x\in]0,1[$.\\
+    On a :
+    \begin{equation*}
+        x^x(1-x)^{1-x}=e^{x\ln x}e^{(1-x)\ln(1-x)}=e^{x\ln{x}+(1-x)\ln(1-x)}
+    \end{equation*}
+    Posons :
+    \begin{equation*}
+        f:x\mapsto e^{x\ln{x}+(1-x)\ln(1-x)} \hspace{1cm} f':x\mapsto \ln\left(\frac{x}{1-x}\right)e^{x\ln{x}+(1-x)\ln(1-x)}
+    \end{equation*}
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=4]{$x$/0.6,$f'(x)$/0.6,$f$/0.9}{$0$,$0.5$,$1$}
+            \tkzTabLine{d,-,z,+,d}
+            \tkzTabVar{D+/$1$,-/$\frac{1}{2}$,+D/$1$}
+        \end{tikzpicture}
+    \end{center}
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.8}
 \end{document}
