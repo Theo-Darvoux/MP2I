@@ -119,4 +119,58 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.4}
 
+\section*{Exercice 4.5 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    1. Démontrer que
+    \begin{equation*}
+        \forall x\in]-1,+\infty[, \hspace{0.5cm} \frac{x}{1+x}\leq\ln(1+x)\leq x.
+    \end{equation*}
+    2. À l'aide du théorème des gendarmes, calculer $\lim\limits_{x\rightarrow0}{\frac{\ln(1+x)}{x}}$.\\
+    3. Retrouver ce résultat en faisant apparaître un taux d'accroissement.\\[0.25cm]
+    1. Posons :
+    \begin{equation*}
+        f:x\mapsto\frac{x}{1+x}-\ln(1+x) \hspace{2cm} g:x\mapsto\ln(1+x)-x
+    \end{equation*}
+    On a :
+    \begin{equation*}
+        f':x\mapsto-\frac{x}{(1+x)^2} \hspace{2cm} g':x\mapsto-\frac{x}{1+x}
+    \end{equation*}
+    Et :
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=4]{$x$/0.6,$f'(x)$/0.6,$f$/1.4}{$-1$,0,$+\infty$}
+            \tkzTabLine{d,+,z,-}
+            \tkzTabVar{D-/$-\infty$, +/$0$, -/$-\infty$}
+        \end{tikzpicture}
+        \\[0.25cm]
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=4]{$x$/0.6,$g'(x)$/0.6,$g$/1.4}{$-1$,0,$+\infty$}
+            \tkzTabLine{d,+,z,-}
+            \tkzTabVar{D-/$-\infty$, +/$0$, -/$-\infty$}
+        \end{tikzpicture}
+    \end{center}
+    L'inégalité est donc vérifiée car ces fonctions prennent des valeurs négatives.
+\end{tcolorbox}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    2. Soit $x\in]-1,+\infty[$. On a :
+    \begin{equation*}
+        \frac{x}{1+x}\leq\ln(1+x)\leq x
+    \end{equation*}
+    Et :
+    \begin{equation*}
+        \lim_{x\rightarrow0}\frac{1}{1+x}=1 \hspace{1cm} \text{et} \hspace{1cm} \lim_{x\rightarrow0}1=1
+    \end{equation*}
+    Donc, d'après le théorème des gendarmes :
+   \begin{equation*}
+        \lim_{x\rightarrow0}\frac{\ln(1+x)}{x}=1
+   \end{equation*}
+   3.
+   On a :
+   \begin{equation*}
+        \lim_{x\rightarrow0}\frac{\ln(x+1)}{x}=\lim_{x\rightarrow0}\frac{\ln(x+1)-\ln(1)}{x}=\ln'(1)=\frac{1}{1}=1
+   \end{equation*}
+   \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.5}
+
 \end{document}
