@@ -131,11 +131,10 @@
     \begin{equation*}
         f:x\mapsto\frac{x}{1+x}-\ln(1+x) \hspace{2cm} g:x\mapsto\ln(1+x)-x
     \end{equation*}
-    On a :
+    Elles sont dérivables et tout et tout :
     \begin{equation*}
         f':x\mapsto-\frac{x}{(1+x)^2} \hspace{2cm} g':x\mapsto-\frac{x}{1+x}
     \end{equation*}
-    Et :
     \begin{center}
         \begin{tikzpicture}
             \tkzTabInit[espcl=4]{$x$/0.6,$f'(x)$/0.6,$f$/1.4}{$-1$,0,$+\infty$}
@@ -172,5 +171,73 @@
    \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.5}
+
+\section*{Exercice 4.6 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Démontrer l'inégalité
+    \begin{equation*}
+        \forall{x\in\mathbb{R}_+}, \hspace{1cm} 0\leq x-\sin x\leq\frac{x^3}{6}.
+    \end{equation*}
+    Posons :
+    \begin{equation*}
+        f:x\mapsto x-\sin x \hspace{2cm} g:x\mapsto x-\sin x - \frac{x^3}{6}
+    \end{equation*}
+    Ces fonctions sont dérivables sur $\mathbb{R}_+$ :
+    \begin{equation*}
+        f':x\mapsto 1-\cos x \hspace {2cm} g':x\mapsto 1-\cos x - \frac{x^2}{2}
+    \end{equation*}
+    La première inégalité est triviale car $\cos x\leq1$, ainsi $x-\sin x\geq 0$.\\
+    On a :
+    \begin{equation*}
+        g'':x\mapsto\sin x - x
+    \end{equation*}
+    Et donc :
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=8]{$x$/0.6,$g''(x)$/0.6,$g'(x)$/1.4,$g$/1.4}{$0$,$+\infty$}
+            \tkzTabLine{z,-}
+            \tkzTabVar{+/$0$,-/$-\infty$}
+            \tkzTabVar{+/$0$,-/$-\infty$}
+        \end{tikzpicture}
+    \end{center}
+    Ainsi, $g$ prend des valeurs négatives sur $\mathbb{R}_+$, donc : $x-\sin x\leq\frac{x^3}{6}$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.6}
+
+\section*{Exercice 4.7 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Faire une étude complète de la fonction 
+    \begin{equation*}
+        f:x\mapsto\ln\left(\left|\frac{1+x}{1-x}\right|\right)
+    \end{equation*}
+    $\circledcirc$ Soit $x\in]-1,1[$.\\
+    On a :
+    \begin{equation*}
+        f:x\mapsto\ln\left(\frac{1+x}{1-x}\right) \hspace{2cm} f':x\mapsto\frac{2}{1-x^2}
+    \end{equation*}
+    $\circledcirc$ Soit $x\in]-\infty,-1[]1,+\infty[$.\\
+    On a :
+    \begin{equation*}
+        f:x\mapsto\ln\left(-\frac{1+x}{1-x}\right) \hspace{2cm} f':x\mapsto\frac{2}{1-x^2}
+    \end{equation*}
+    Donc :
+    \begin{equation*}
+        \forall{x\in\mathbb{R}\setminus\{-1,1\}}, \hspace{1cm} f':x\mapsto\frac{2}{1-x^2}.
+    \end{equation*}
+    Ainsi,
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=4]{$x$/0.6,$f'(x)$/0.6,$f$/1.4}{$-\infty$,-1,1,$+\infty$}
+            \tkzTabLine{,-,d,+,d,-}
+            \tkzTabVar{+/$0$,-D-/$-\infty$/$-\infty$,+D+/$+\infty$/$+\infty$,-/$0$}
+        \end{tikzpicture}
+    \end{center}
+    \emph{Pour les limites :}
+    \begin{equation*}
+        f:x\mapsto\ln\left(\left|\frac{\frac{1}{x}+1}{\frac{1}{x}-1}\right|\right)
+    \end{equation*}
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.7}
 
 \end{document}
