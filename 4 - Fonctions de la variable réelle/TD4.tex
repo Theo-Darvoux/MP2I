@@ -83,7 +83,40 @@
         $A:x\mapsto x^\pi,\hspace{0.5cm}B:x\mapsto\pi^x,\hspace{0.5cm}C:x\mapsto\cos(5x),\hspace{0.5cm}D:x\mapsto\tah(\ch(x))$,\\
         $E:x\mapsto\ln\left(1+x^3\right)n\hspace{0.5cm}F:x\mapsto\cos\left(\sqrt{\ln(x)}\right),\hspace{0.5cm}G:x\mapsto\frac{1}{\sqrt{3x-1}},\hspace{0.5cm}H:x\mapsto\sin|x+1|$.
     \end{center}
+    
+    $G':x\mapsto-\frac{3}{2}(3x-1)^{3/2}$
+    
+    \begin{itemize}
+        \item $A':\begin{cases}\mathbb{R}^*_+\rightarrow\mathbb{R}\\x\mapsto\pi x^{\pi-1}\end{cases}$\hspace{1.8cm}• $D':\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto\frac{\sh(x)}{\ch^2(\ch(x))}\end{cases}$\hspace{1.6cm}• $H'_-:\begin{cases}]-\infty,-1[\rightarrow\mathbb{R}\\x\mapsto-\cos(-x-1)\end{cases}$
+        \item $B':\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto\ln(\pi)\pi^x\end{cases}$\hspace{1.5cm}• $E':\begin{cases}\mathbb{R}\setminus\{1\}\rightarrow\mathbb{R}\\x\mapsto\frac{3x^2}{1+x^3}\end{cases}$\hspace{1.6cm}• $H'_+:\begin{cases}]1,+\infty[\rightarrow\mathbb{R}\\x\mapsto\cos(x+1)\end{cases}$
+        \item $C':\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto-5\sin(5x)\end{cases}$\hspace{1.0cm}• $F':\begin{cases}]1,+\infty[\rightarrow\mathbb{R}\\x\mapsto\frac{\sin(\sqrt{\ln(x)})}{2x\sqrt{\ln(x)}}\end{cases}$
+    \end{itemize}
 \end{tcolorbox}
-\addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.2}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.3}
+
+\section*{Exercice 4.4 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Donner le tableau de variations complet de
+    \begin{equation*}
+        f:x\mapsto x^{x\ln(x)}.
+    \end{equation*}
+    On a :
+    \begin{equation*}
+        f:x\mapsto e^{x\ln^2(x)}
+    \end{equation*}
+    Donc :
+    \begin{equation*}
+        f':\begin{cases}\mathbb{R}_+^*\rightarrow\mathbb{R}\\x\mapsto\ln(x)(\ln(x)+2)e^{x\ln^2(x)}\end{cases}
+    \end{equation*}
+    Son tableau de variations est donc :
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=3]{$x$/0.6,$f'(x)$/0.6,$f$/1.4}{$0$,$e^{-2}$,$1$,$+\infty$}
+            \tkzTabLine{d,+,z,-,z,+}
+            \tkzTabVar{-/$1$,+/$e^{4/e^{2}}$,-/$1$,+/$+\infty$}
+        \end{tikzpicture}
+    \end{center}
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.4}
 
 \end{document}
