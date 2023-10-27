@@ -1,0 +1,77 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[skins]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{tkz-tab}
+
+\def\pagetitle{Ensembles et applications}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+\date{Octobre 2023}
+\author{DARVOUX Théo}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+
+\begin{document}
+\renewcommand*\contentsname{Exercices.}
+\renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\maketitle
+\hrule
+\tableofcontents
+\vspace{0.5cm}
+\hrule
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+\allowdisplaybreaks
+
+\pagebreak
+
+\section*{Exercice 5.1 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient $A,B$ deux parties d'un ensemble $E$. Établir que
+    \begin{equation*}
+        A \setminus (A \setminus B) = A \cap B \hspace{1cm} \text{ et } \hspace{1cm} A \setminus (A \cap B) = A \setminus B = (A \cup B) \setminus B.
+    \end{equation*}
+    On a :
+    \begin{align*}
+        A \setminus (A \setminus B) &= A \cap \overline{(A\ \cap \overline{B})}\\
+        &=A \cap (\overline{A} \cup B)\\
+        &= (A \cap \overline{A}) \cup(A \cap B)\\
+        &= A \cap B
+    \end{align*}
+    D'autre part :
+    \begin{align*}
+        A \setminus (A \cap B) &= A \cap \overline{(A \cap B)}\\
+        &= A \cap (\overline{A} \cup \overline{B})\\
+        &= (A \cap \overline{A}) \cup (A \cap \overline{B})\\
+        &= A \cap \overline{B}\\
+        &= A \setminus B
+    \end{align*}
+    Et :
+    \begin{align*}
+        (A \cup B) \setminus B &= (A \cup B) \cap \overline{B}\\
+        &= (A \cap \overline{B}) \cup (B \cap \overline{B})\\
+        &= A \cap \overline{B}\\
+        &= A \setminus B
+    \end{align*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 5.1}
+
+\end{document}
