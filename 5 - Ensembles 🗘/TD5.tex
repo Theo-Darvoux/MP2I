@@ -74,4 +74,24 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 5.1}
 
+\section*{Exercice 5.2 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient $A,B,C,D$ quatre parties d'un ensemble $E$, telles que
+    \begin{equation*}
+        E = A \cup B \cup C, \hspace{1cm} A \cap D \subset B, \hspace{1cm} B \cap D \subset C, \hspace{1cm} C \cap D \subset A.
+    \end{equation*}
+    Montrer que $D \subset A \cap B \cap C$.\\
+    Soit $x \in D$, on sait que $x \in E$. Alors $x \in A$ ou $x \in B$ ou $x \in C$.\\
+    $\circledcirc$ Si $x \in A$, alors $x \in A \cap D$, donc $x \in B$.\\
+    $\circledcirc$ Si $x \in B$, alors $x \in B \cap D$, donc $x \in C$.\\
+    $\circledcirc$ Si $x \in C$, alors $x \in C \cap D$, donc $x \in A$.\\
+    On en déduit que $x \in A \cap B \cap C$.\\
+    Ainsi, $D \subset A \cap B \cap C$.\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 5.2}
+
+
+
 \end{document}
