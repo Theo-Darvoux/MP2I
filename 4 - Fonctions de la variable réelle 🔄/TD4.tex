@@ -16,6 +16,7 @@
 \DeclareMathOperator{\ch}{ch}
 \DeclareMathOperator{\sh}{sh}
 \DeclareMathOperator{\tah}{th}
+\DeclareMathOperator{\argth}{argth}
 
 \hypersetup{
     colorlinks=true,
@@ -373,10 +374,11 @@
     2. Expliciter la réciproque de $f$. Peut-on écrire en conclusion que $f^{-1}=f$ ?\\[0.25cm]
     Soit $x\in\rbrack1,+\infty\lbrack$ et $y\in\mathbb{R}^*_+$. On a :
     \begin{align*}
-        y=f(x)&\iff y=\exp(-\frac{1}{\ln(x)})\\
-        &\iff \ln(y)=-\frac{1}{\ln(x)}\\
-        &\iff -\frac{1}{\ln(y)}=\ln(x)\\
-        &\iff x=\exp(-\frac{1}{\ln(y)})
+        &y=f(x)\\
+        \iff& y=\exp(-\frac{1}{\ln(x)})\\
+        \iff& \ln(y)=-\frac{1}{\ln(x)}\\
+        \iff& -\frac{1}{\ln(y)}=\ln(x)\\
+        \iff& x=\exp(-\frac{1}{\ln(y)})
     \end{align*}
     L'équation a une unique solution, $f$ réalise donc une bijection de $\rbrack1,+\infty\lbrack$ vers $\mathbb{R}^*_+$.\\
     2. On a :
@@ -387,4 +389,39 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{Bijections.}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.12}
+
+\section*{Exercice 4.13 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    1. Montrer que $\tah$ est une bijection de $\mathbb{R}$ dans $\rbrack-1,1\lbrack$ et déterminer une expression explicite de sa réciproque, qu'on notera $\argth$.\\
+    2. De deux façons différentes, montrer que $\argth$ est dérivable sur son intervalle de définition et calculer sa dérivée.\\
+    3. Montrer que pour tout $x\in\mathbb{R}$, $\argth\left(\frac{1+3\tah x}{3+\tah x}\right)=x+\ln\sqrt{2}$.\\[0.25cm]
+    1. Soit $x\in\mathbb{R}$ et $y\in\rbrack-1,1\lbrack$. On a :
+    \begin{align*}
+        &y=\tah x\\
+        \iff& y=\frac{e^x-e^{-x}}{e^x+e^{-x}}\\
+        \iff& y=\frac{e^{2x}-1}{e^{2x}+1}\\
+        \iff& e^{2x}(1-y)=y+1\\
+        \iff &e^{2x}=\frac{y+1}{1-y}\\
+        \iff &x=\frac{1}{2}\ln\left(\frac{y+1}{1-y}\right)
+    \end{align*}
+    L'équation a une unique solution, $\tah$ réalise donc une bijection de $\mathbb{R}$ dans $\rbrack-1,1\lbrack$.\\
+    Sa réciproque est $\argth:\begin{cases}\rbrack-1,1\lbrack\rightarrow\mathbb{R}\\x\mapsto\frac{1}{2}\ln\left(\frac{x+1}{1-x}\right)\end{cases}$\\[0.25cm]
+    2. On peut montrer que $\argth$ est dérivable sur $]-1,1[$ par le théorème de dérivée des réciproques ou en dérivant $x\mapsto\frac{1}{2}\ln\left(\frac{x+1}{1-x}\right)$ comme composée de fonctions dérivables.\\
+    On retrouve dans les deux cas:
+    \begin{equation*}
+        \argth':\begin{cases}]-1,1[\rightarrow\mathbb{R}\\x\mapsto\frac{1}{1-x^2}\end{cases}
+    \end{equation*}
+    3. Soit $x\in\mathbb{R}$.
+    \begin{align*}
+        \argth\left(\frac{1+3\tah x}{3+\tah x}\right)&=\frac{1}{2}\ln\left(\frac{\frac{1+3\tah x}{3+\tah x}+1}{1-\frac{1+3\tah x}{3+\tah x}}\right)\\
+        &=\frac{1}{2}\ln\left(\frac{\frac{4+4\tah x}{3+\tah x}}{\frac{2-2\tah x}{3 + \tah x}}\right)\\
+        &=\frac{1}{2}\ln\left(\frac{2+2\tah x}{1-\tah x}\right)\\
+        &=\frac{1}{2}\ln\left(\frac{\ch(x)+\sh(x)}{\ch(x)-\sh(x)}\right)+\frac{1}{2}\ln(2)\\
+        &=\frac{1}{2}\ln\left(e^{2x}\right)+\ln(\sqrt{2})\\
+        &=x+\ln\sqrt{2}
+    \end{align*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.13}
 \end{document}
