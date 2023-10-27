@@ -285,6 +285,17 @@
             \tkzTabVar{-/$0$,+/$1$}
         \end{tikzpicture}
     \end{center}
+    2. Soient $x,y\in\mathbb{R}$. Par inégalité triangulaire, on a :
+    \begin{equation*}
+        |x+y|\leq|x|+|y|
+    \end{equation*}
+    On applique $f$, fonction croissante sur $\mathbb{R}_+$, ce qui ne change pas les inégalités:
+    \begin{align*}
+        \frac{|x+y|}{1+|x+y|}&\leq\frac{|x|+|y|}{1+|x|+|y|}\\
+        &\leq\frac{|x|}{1+|x|+|y|}+\frac{|y|}{1+|x|+|y|}\\
+        &\leq\frac{|x|}{1+|x|}+\frac{|y|}{1+|y|}
+    \end{align*}
+    \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.9}
 \end{document}
