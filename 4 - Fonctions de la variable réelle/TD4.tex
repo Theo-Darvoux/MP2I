@@ -298,4 +298,44 @@
     \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.9}
+
+\section*{Exercice 4.10 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit la fonction $f:x\mapsto\ln\left(\sqrt{x^2+1}-x\right)$.\\
+    1. Donner le domaine de définition de $f$.\\
+    2. Montrer que $f$ est impaire.\\
+    3. Étudier ses variations et donner le tableau correspondant.\\[0.25cm]
+    1. Soit $g:\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto\sqrt{x^2+1}-x\end{cases}$ On a : $g':\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto\frac{x}{\sqrt{x^2+1}}-1\end{cases}$
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=8]{$x$/0.6,$g'(x)$/0.6,$g$/0.9}{$-\infty$,$+\infty$}
+            \tkzTabLine{,-,}
+            \tkzTabVar{+/$+\infty$,-/$0$}
+        \end{tikzpicture}
+    \end{center}
+    $f$ donc définie sur $\mathbb{R}$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    2. Soit $x\in\mathbb{R}$, on a :
+    \begin{align*}
+        -f(x)&=-\ln\left(\sqrt{x^2+1}-x\right)\\
+        &=\ln\left(\frac{1}{\sqrt{x^2+1}-x}\right)\\
+        &=\ln\left(\frac{\sqrt{x^2+1}+x}{x^2+1-x^2}\right)\\
+        &=\ln\left(\sqrt{x^2+1}+x\right)\\
+        &=f(-x)
+    \end{align*}
+    3. On a :
+    \begin{equation*}
+        f':\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto-\frac{1}{\sqrt{x^2+1}}\end{cases}
+    \end{equation*}
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=8]{$x$/0.6,$f'(x)$/0.6,$f$/0.9}{$-\infty$,$+\infty$}
+            \tkzTabLine{,-,}
+            \tkzTabVar{+/$+\infty$,-/$-\infty$}
+        \end{tikzpicture}
+    \end{center}
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.10}
 \end{document}
