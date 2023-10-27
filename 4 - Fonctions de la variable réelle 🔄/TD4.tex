@@ -369,8 +369,21 @@
     \begin{equation*}
         f:\begin{cases}\rbrack1,+\infty\lbrack\rightarrow\mathbb{R}\\x\mapsto\exp(-\frac{1}{\ln(x)})\end{cases}.
     \end{equation*}
-    1. Démontrer que $f$ réalise une bijection de $\lbrack1,+\infty\rbrack$ dans un intervalle que l'on précisera.\\
-    2. Expliciter la réciproque de $f$. Peut-on écrire en conclusion que $f^{-1}=f$ ?
+    1. Démontrer que $f$ réalise une bijection de $\rbrack1,+\infty\lbrack$ dans un intervalle que l'on précisera.\\
+    2. Expliciter la réciproque de $f$. Peut-on écrire en conclusion que $f^{-1}=f$ ?\\[0.25cm]
+    Soit $x\in\rbrack1,+\infty\lbrack$ et $y\in\mathbb{R}^*_+$. On a :
+    \begin{align*}
+        y=f(x)&\iff y=\exp(-\frac{1}{\ln(x)})\\
+        &\iff \ln(y)=-\frac{1}{\ln(x)}\\
+        &\iff -\frac{1}{\ln(y)}=\ln(x)\\
+        &\iff x=\exp(-\frac{1}{\ln(y)})
+    \end{align*}
+    L'équation a une unique solution, $f$ réalise donc une bijection de $\rbrack1,+\infty\lbrack$ vers $\mathbb{R}^*_+$.\\
+    2. On a :
+    \begin{equation*}
+        f^{-1}:\begin{cases}\mathbb{R}^*_+\rightarrow\rbrack1,+\infty\lbrack\\x\mapsto\exp(-\frac{1}{\ln(x)})\end{cases}
+    \end{equation*}
+    $f\neq f^{-1}$ car leurs domaines de définition sont différents.
 \end{tcolorbox}
 \addcontentsline{toc}{section}{Bijections.}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.12}
