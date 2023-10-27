@@ -92,6 +92,24 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 5.2}
 
+\section*{Exercice 5.3 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Démontrer que
+    \begin{equation*}
+        \mathbb{R} = \left\lbrace{x \in \mathbb{R} \hspace{0.1cm} | \hspace{0.1cm} \exists a \in \mathbb{R}^*_+ \hspace{0.1cm} \exists b \in \mathbb{R}^*_- : x = a + b}\right\rbrace.
+    \end{equation*}
+    On note $A$ = $\left\lbrace{x \in \mathbb{R} \hspace{0.1cm} | \hspace{0.1cm} \exists a \in \mathbb{R}^*_+ \hspace{0.1cm} \exists b \in \mathbb{R}^*_- : x = a + b}\right\rbrace$\\
+    $\circledcirc$ Montrons que $\mathbb{R} \subset A$.\\
+    Soit $x \in \mathbb{R}$.\\
+    $\circ$ Si $x \leq 0$, On pose $a=1$ et $b=x-1$, ainsi $x = a + b$ donc $x \in A$.\\
+    $\circ$ Si $x > 0$, On pose $a=x+1$ et $b=-1$, ainsi $x = a + b$ donc $x \in A$.\\
+    Dans tous les cas $x \in A$, on en conclut que $\mathbb{R} \subset A$.\\
+    $\circledcirc$ Montrons que $A \subset \mathbb{R}$.\\
+    Soit $x \in A$, alors il existe $a \in \mathbb{R}^*_+$ et $b \in \mathbb{R}^*_-$ tels que $x = a + b$.\\
+    Or $a + b \in \mathbb{R}$, donc $x \in \mathbb{R}$. On en conclut que $A \subset \mathbb{R}$.\\
+    \qed 
+\end{tcolorbox}
 
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 5.3}
 
 \end{document}
