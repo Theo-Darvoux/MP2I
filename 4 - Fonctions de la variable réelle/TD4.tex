@@ -338,4 +338,28 @@
     \end{center}
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.10}
+
+\section*{Exercice 4.11 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Notons $a$ le nombre
+    \begin{equation*}
+        \sqrt[3]{20+14\sqrt{2}}+\sqrt[3]{20-14\sqrt{2}}.
+    \end{equation*}
+    1. Montrer que $a^3=6a+40$.\\
+    2. En déduire la valeur de $a$.\\[0.25cm]
+    1.
+    \begin{align*}
+        a^3&=40+3\sqrt[3]{(20+14\sqrt{2})^2(20-14\sqrt{2})}+3\sqrt[3]{(20+14\sqrt{2})(20-14\sqrt{2})^2}\\
+        &=40+3\sqrt[3]{(20+14\sqrt{2})(400-392)}+3\sqrt[3]{(20-14\sqrt{2})(400-392)}\\
+        &=40+6\sqrt[3]{20+14\sqrt{2}}+6\sqrt[3]{20-14\sqrt{2}}\\
+        &=6a+40
+    \end{align*}
+    2. On a :
+    \begin{align*}
+        &a^3-6a-40=0\\
+        \iff&(a-4)(a^2+4a+10)=0\\
+        \iff&a=4
+    \end{align*}
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.11}
 \end{document}
