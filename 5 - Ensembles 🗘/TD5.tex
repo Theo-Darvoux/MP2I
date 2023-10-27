@@ -4,7 +4,7 @@
 \usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
 \usepackage[skins]{tcolorbox}
 \usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol}
-\usepackage{amsmath, amssymb, amsthm}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
 \usepackage{tkz-tab}
 
 \def\pagetitle{Ensembles et applications}
@@ -111,5 +111,25 @@
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 5.3}
+
+\section*{Exercice 5.4 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $n \in \mathbb{N}^*$ et $A_1, A_2, \dots, A_n$ $n$ parties de $E$ telles que
+    \begin{equation*}
+        A_n = E \hspace{1cm} \text{et} \hspace{1cm} A_1 \subset A_2 \subset \dots \subset A_n.
+    \end{equation*}
+    On pose $B_1=A_1$ et pour $k \in \llbracket{2, n}\rrbracket$, on pose $B_k = A_k \setminus A_{k-1}$.\\
+    Prouver que $(B_k)_{1 \leq k \leq n}$ est un recouvrement disjoint de $E$.\\[0.25cm]
+    Soit $x \in E$. Alors $x \in A_n$. Il existe alors $k$ le plus petit entier tel que $x \in A_k$. Ainsi, $x \in B_k$ puisque $x \in A_k \wedge x \notin A_{k-1}$ par définition de $k$.\\
+    On en déduit que tout élément de $E$ appartient à au moins un $(B_k)$.\\[0.25cm]
+    Montrons maintenant que tout élément de $E$ appartient aussi au plus à un $B_k$.\\
+    Soit $x \in E$. Supposons qu'il existe $i,j \in \llbracket1,n\rrbracket$ tels que $i < j$ et $x \in B_i$ et $x \in B_j$.\\
+    Or, puisque $x \in B_j$ et $i<j$, $x \notin A_i$. De plus, puisque $x \in B_i$, $x \in A_i$ ce qui est absurde.\\
+    Ainsi, tout élément de $E$ appartient au plus à un $(B_k)$.\\[0.25cm]
+    $(B_k)_{1 \leq k \leq n}$ est donc un recouvrement disjoint de E.\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 5.4}
 
 \end{document}
