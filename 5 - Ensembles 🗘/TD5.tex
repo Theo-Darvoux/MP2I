@@ -132,4 +132,28 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 5.4}
 
+\section*{Exercice 5.5 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $E$ un ensemble et $A,B$ deux parties de $E$. Démontrer que
+    \begin{equation*}
+        B \subset A \iff (\forall X \in \mathcal{P}(E) \hspace{0.5cm} (A \cap X) \cup B = A \cap (X \cup B)).
+    \end{equation*}
+    Supposons $B \subset A$.\\
+    Soit $X \in \mathcal{P}(E)$.\\
+    On a :
+    \begin{align*}
+        (A \cap X) \cup B &= (A \cup B) \cap (X \cup B) = A \cap (X \cup B)
+    \end{align*}
+    Supposons $(\forall X \in \mathcal{P}(E) \hspace{0.5cm} (A \cap X) \cup B = A \cap (X \cup B))$.\\
+    On a $B \in \mathcal{P}(E)$, donc :
+    \begin{align*}
+        (A \cap B) \cup B = A \cap (B \cup B) &\iff (A \cup B) \cap B = A \cap B\\
+        &\iff (A \cup B) = A\\
+        &\iff B \subset A
+    \end{align*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 5.5}
+
 \end{document}
