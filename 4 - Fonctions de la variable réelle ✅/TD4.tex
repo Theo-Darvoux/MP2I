@@ -73,7 +73,7 @@
     On remarque que $f:x\mapsto x$ est solution du problème.\\
     Supposons $f(x)>x$, on a : $f(f(x))>f(x)$ par croissance de $f$. Or $f(f(x))=x$ donc $x>f(x)$, ce qui est absurde.\\
     Supposons $f(x)<x$, on a : $f(f(x))<f(x)$ par croissance de $f$. Or $f(f(x))=x$ donc $x<f(x)$, ce qui est absurde.\\
-    Ainsi, la seule fonction de $\mathbb{R}$ vers $\mathbb{R}$ solution est $f:x\mapsto x$.
+    Ainsi, la seule fonction de $\mathbb{R}$ vers $\mathbb{R}$ solution est $f:x\mapsto x$. \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.2}
 
@@ -84,14 +84,12 @@
         $A:x\mapsto x^\pi,\hspace{0.5cm}B:x\mapsto\pi^x,\hspace{0.5cm}C:x\mapsto\cos(5x),\hspace{0.5cm}D:x\mapsto\tah(\ch(x))$,\\
         $E:x\mapsto\ln\left(1+x^3\right)n\hspace{0.5cm}F:x\mapsto\cos\left(\sqrt{\ln(x)}\right),\hspace{0.5cm}G:x\mapsto\frac{1}{\sqrt{3x-1}},\hspace{0.5cm}H:x\mapsto\sin|x+1|$.
     \end{center}
-    
-    $G':x\mapsto-\frac{3}{2}(3x-1)^{3/2}$
-    
     \begin{itemize}
-        \item $A':\begin{cases}\mathbb{R}^*_+\rightarrow\mathbb{R}\\x\mapsto\pi x^{\pi-1}\end{cases}$\hspace{1.8cm}• $D':\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto\frac{\sh(x)}{\ch^2(\ch(x))}\end{cases}$\hspace{1.6cm}• $H'_-:\begin{cases}]-\infty,-1[\rightarrow\mathbb{R}\\x\mapsto-\cos(-x-1)\end{cases}$
-        \item $B':\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto\ln(\pi)\pi^x\end{cases}$\hspace{1.5cm}• $E':\begin{cases}\mathbb{R}\setminus\{1\}\rightarrow\mathbb{R}\\x\mapsto\frac{3x^2}{1+x^3}\end{cases}$\hspace{1.6cm}• $H'_+:\begin{cases}]1,+\infty[\rightarrow\mathbb{R}\\x\mapsto\cos(x+1)\end{cases}$
-        \item $C':\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto-5\sin(5x)\end{cases}$\hspace{1.0cm}• $F':\begin{cases}]1,+\infty[\rightarrow\mathbb{R}\\x\mapsto\frac{\sin(\sqrt{\ln(x)})}{2x\sqrt{\ln(x)}}\end{cases}$
+        \item $A':\begin{cases}\mathbb{R}^*_+\rightarrow\mathbb{R}\\x\mapsto\pi x^{\pi-1}\end{cases}$\hspace{1.8cm}• $D':\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto\frac{\sh(x)}{\ch^2(\ch(x))}\end{cases}$\hspace{1.6cm}• $G':x\mapsto-\frac{3}{2}(3x-1)^{3/2}$
+        \item $B':\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto\ln(\pi)\pi^x\end{cases}$\hspace{1.5cm}• $E':\begin{cases}\mathbb{R}\setminus\{1\}\rightarrow\mathbb{R}\\x\mapsto\frac{3x^2}{1+x^3}\end{cases}$\hspace{1.6cm}• $H'_-:\begin{cases}]-\infty,-1[\rightarrow\mathbb{R}\\x\mapsto-\cos(-x-1)\end{cases}$
+        \item $C':\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto-5\sin(5x)\end{cases}$\hspace{1.0cm}• $F':\begin{cases}]1,+\infty[\rightarrow\mathbb{R}\\x\mapsto\frac{\sin(\sqrt{\ln(x)})}{2x\sqrt{\ln(x)}}\end{cases}$\hspace{1.6cm}• $H'_+:\begin{cases}]1,+\infty[\rightarrow\mathbb{R}\\x\mapsto\cos(x+1)\end{cases}$
     \end{itemize}
+    \qed
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{Étude de fonctions.}
@@ -99,14 +97,11 @@
 \section*{Exercice 4.4 [$\blacklozenge\lozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Donner le tableau de variations complet de
-    \begin{equation*}
-        f:x\mapsto x^{x\ln(x)}.
-    \end{equation*}
-    On a :
-    \begin{equation*}
-        f:x\mapsto e^{x\ln^2(x)}
-    \end{equation*}
-    Donc :
+    \begin{align*}
+        &f:x\mapsto x^{x\ln(x)}\\
+        (& f:x\mapsto e^{x\ln^2(x)})
+    \end{align*}
+    On a  :
     \begin{equation*}
         f':\begin{cases}\mathbb{R}_+^*\rightarrow\mathbb{R}\\x\mapsto\ln(x)(\ln(x)+2)e^{x\ln^2(x)}\end{cases}
     \end{equation*}
@@ -118,6 +113,7 @@
             \tkzTabVar{-/$1$,+/$e^{4/e^{2}}$,-/$1$,+/$+\infty$}
         \end{tikzpicture}
     \end{center}
+    \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.4}
 
@@ -227,7 +223,6 @@
     \begin{equation*}
         \forall{x\in\mathbb{R}\setminus\{-1,1\}}, \hspace{1cm} f':x\mapsto\frac{2}{1-x^2}.
     \end{equation*}
-    Ainsi,
     \begin{center}
         \begin{tikzpicture}
             \tkzTabInit[espcl=4]{$x$/0.6,$f'(x)$/0.6,$f$/1.4}{$-\infty$,-1,1,$+\infty$}
@@ -239,6 +234,7 @@
     \begin{equation*}
         f:x\mapsto\ln\left(\left|\frac{\frac{1}{x}+1}{\frac{1}{x}-1}\right|\right)
     \end{equation*}
+    \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.7}
 
@@ -337,6 +333,7 @@
             \tkzTabVar{+/$+\infty$,-/$-\infty$}
         \end{tikzpicture}
     \end{center}
+    \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.10}
 
@@ -361,6 +358,7 @@
         \iff&(a-4)(a^2+4a+10)=0\\
         \iff&a=4
     \end{align*}
+    \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.11}
 
@@ -385,7 +383,8 @@
     \begin{equation*}
         f^{-1}:\begin{cases}\mathbb{R}^*_+\rightarrow\rbrack1,+\infty\lbrack\\x\mapsto\exp(-\frac{1}{\ln(x)})\end{cases}
     \end{equation*}
-    $f\neq f^{-1}$ car leurs domaines de définition sont différents.
+    $f\neq f^{-1}$ car leurs domaines de définition sont différents.\\
+    \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{Bijections.}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 4.12}
