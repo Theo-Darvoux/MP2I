@@ -65,22 +65,28 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 6.1}
 
-\section*{Exercice 6.2 [$\blacklozenge\lozenge\lozenge$]}
+\section*{Exercice 6.3 [$\blacklozenge\blacklozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
-    Soient $a$ et $b$ deux nombres complexes non nuls. Montrer que :
+    Soit $z \in \mathbb{C} \setminus \{1\}$, montrer que :
     \begin{equation*}
-        \left|\frac{a}{|a|^2}-\frac{b}{|b|^2}\right|=\frac{|a-b|}{|a||b|}.
+        \frac{1+z}{1-z} \in i\mathbb{R} \iff |z| = 1.
     \end{equation*}
-    On a : 
+    Supposons $\frac{1+z}{1-z} \in i\mathbb{R}$. Montrons $|z|=1$.\\
+    Soit $b\in\mathbb{R}$, on a :
     \begin{align*}
-        \left|\frac{a}{|a|^2}-\frac{b}{|b|^2}\right| &= \left|\frac{a|b|^2-b|a|^2}{|a|^2|b|^2}\right| = \frac{|ab\overline{b}-ba\overline{a}|}{||ab|^2|}\\
-        &=\frac{\left|ab(\overline{b}-\overline{a})\right|}{||ab|^2|} =\frac{|ab||\overline{a}-\overline{b}|}{|ab|^2}\\
-        &=\frac{|a-b|}{|ab|} = \frac{|a-b|}{|a||b|}
+        &\frac{1+z}{1-z}=ib\iff1+z=ib-zib\iff z(1+ib)=ib-1\iff z=\frac{ib-1}{1+ib}
+    \end{align*}
+    Ainsi, $|z|=|\frac{ib-1}{1+ib}|=\frac{\sqrt{1+b^2}}{\sqrt{1+b^2}}=1$.\\
+    Supposons $|z|=1$, montrons $\frac{1+z}{1-z} \in i\mathbb{R}$.\\
+    Soient $(a,b)\in\mathbb{R}$ tels que $z=a+ib$. Par supposition, $a^2+b^2=1$. On a :
+    \begin{align*}
+        \frac{1+z}{1-z}&=\frac{1+a+ib}{1-a-ib}=\frac{(1+a+ib)(1-a+ib)}{(1-a-ib)(1-a+ib)}=\frac{1+2ib-a^2-b^2}{1-2a+a^2+b^2}\\
+        &= \frac{2ib}{2-2a} = \frac{ib}{1-a}=i\frac{b}{1-a}
     \end{align*}
     \qed
 \end{tcolorbox}
 
-\addcontentsline{toc}{section}{\protect\numberline{}Exercice 6.2}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 6.3}
 
 
 \end{document}
