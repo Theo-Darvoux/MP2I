@@ -65,6 +65,23 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 6.1}
 
+\section*{Exercice 6.2 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient $a$ et $b$ deux nombres complexes non nuls. Montrer que :
+    \begin{equation*}
+        \left|\frac{a}{|a|^2}-\frac{b}{|b|^2}\right|=\frac{|a-b|}{|a||b|}.
+    \end{equation*}
+    On a : 
+    \begin{align*}
+        \left|\frac{a}{|a|^2}-\frac{b}{|b|^2}\right| &= \left|\frac{a|b|^2-b|a|^2}{|a|^2|b|^2}\right| = \frac{|ab\overline{b}-ba\overline{a}|}{||ab|^2|}\\
+        &=\frac{\left|ab(\overline{b}-\overline{a})\right|}{||ab|^2|} =\frac{|ab||\overline{a}-\overline{b}|}{|ab|^2}\\
+        &=\frac{|a-b|}{|ab|} = \frac{|a-b|}{|a||b|}
+    \end{align*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 6.2}
+
 \section*{Exercice 6.3 [$\blacklozenge\blacklozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Soit $z \in \mathbb{C} \setminus \{1\}$, montrer que :
@@ -88,5 +105,31 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 6.3}
 
+\section*{Exercice 6.4 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient $z_1,z_2,\dots,z_n$ des nombres complexes non nuls de mêmes module. Démontrer que
+    \begin{equation*}
+        \frac{(z_1 + z_2)(z_2 + z_3)\dots(z_{n-1}+z_n)(z_n + z_1)}{z_1z_2\dots z_n} \in \mathbb{R}.
+    \end{equation*}
+    On a :
+    \begin{align*}
+        &\frac{(z_1 + z_2)(z_2 + z_3)\dots(z_{n-1}+z_n)(z_n + z_1)}{z_1z_2\dots z_n}=(1+\frac{z_2}{z_1})(1+\frac{z_3}{z_2})\dots(1+\frac{z_n}{z_{n-1}})(1+\frac{z_1}{z_n})
+    \end{align*}
+    Son conjugué est :
+    \begin{align*}
+        &\frac{(\overline{z_1} + \overline{z_2})(\overline{z_2} + \overline{z_3})\dots(\overline{z_{n-1}}+\overline{z_n})(\overline{z_n} + \overline{z_1})}{\overline{z_1}\overline{z_2}\dots\overline{z_n}}=(1+\frac{\overline{z_2}}{\overline{z_1}})(1+\frac{\overline{z_3}}{\overline{z_2}})\dots(1+\frac{\overline{z_n}}{\overline{z_{n-1}}})(1+\frac{\overline{z_1}}{\overline{z_n}})
+    \end{align*}
+    Or, puisque tous ces nombres sont de mêmes modules, le quotient de deux d'entre eux est de module 1. Ainsi, $\forall{(i,j)\in\llbracket1,n\rrbracket}$, $\overline{\left(\frac{z_i}{z_j}\right)}=\frac{z_j}{z_i}$ (preuve): $\frac{z_i}{z_j}\cdot\frac{\overline{z_i}}{\overline{z_j}}=|\frac{z_i}{z_j}|^2=1\iff\frac{\overline{z_i}}{\overline{z_j}}=\frac{z_j}{z_i}$.\\
+    Ainsi :
+    \begin{align*}
+        &\frac{(\overline{z_1} + \overline{z_2})(\overline{z_2} + \overline{z_3})\dots(\overline{z_{n-1}}+\overline{z_n})(\overline{z_n} + \overline{z_1})}{\overline{z_1}\overline{z_2}\dots\overline{z_n}}=(1+\frac{z_1}{z_2})\dots(1+\frac{z_n}{z_1})\\
+        =&\frac{z_1+z_2}{z_2}\dots\frac{z_n+z_1}{z_1}=\frac{(z_1+z_2)(z_2+z_3)\dots(z_{n-1}+z_n)(z_n+z_1)}{z_1z_2\dots z_n}
+    \end{align*}
+    Puisque ce nombre est égal à son conjugué, il est réel.
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 6.4}
 
 \end{document}
+ 
