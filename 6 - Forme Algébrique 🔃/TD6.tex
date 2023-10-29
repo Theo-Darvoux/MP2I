@@ -1,0 +1,69 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[skins]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{tkz-tab}
+
+\def\pagetitle{Forme Algébrique}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+\date{Octobre 2023}
+\author{DARVOUX Théo}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+
+\begin{document}
+\renewcommand*\contentsname{Exercices.}
+\renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\maketitle
+\hrule
+\tableofcontents
+\vspace{0.5cm}
+\hrule
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+\allowdisplaybreaks
+
+\pagebreak
+
+\section*{Exercice 6.1 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre $4z^2 + 8|z|^2 - 3 = 0$.\\
+    Soit $z \in \mathbb{C}$ et $(a,b)\in\mathbb{R}^2$ tels que $z=a+ib$. On a :
+    \begin{align*}
+        &4z^2+8|z|^2-3=0\\
+        \iff&4(a+ib)^2+8(a^2+b^2)-3=0\\
+        \iff&4a^2+8aib-4b^2+8a^2+8b^2-3=0\\
+        \iff&(12a^2+4b^2-3)+i(8ab) = 0\\
+        \iff&\begin{cases}12a^2+4b^2-3=0\\8ab=0\end{cases}\\
+        \iff&\begin{cases}12a^2+4b^2-3=0\\a=0\end{cases} \text{ ou } \begin{cases}12a^2+4b^2-3=0\\b=0\end{cases}\\
+        \iff&4b^2-3=0 \text{ ou } 12a^2-3=0\\
+        \iff&b^2=\frac{3}{4} \text{ ou } a^2 = \frac{1}{4}\\
+        \iff&b=\pm\frac{\sqrt{3}}{2} \text{ ou } a=\pm\frac{1}{2}
+    \end{align*}
+    Les solutions sont donc :
+    \begin{equation*}
+        \left\{-\frac{1}{2}, \frac{1}{2}, -i\frac{\sqrt{3}}{2}, i\frac{\sqrt{3}}{2}\right\}
+    \end{equation*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 6.1}
+
+
+\end{document}
