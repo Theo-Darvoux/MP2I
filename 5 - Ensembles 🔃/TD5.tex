@@ -174,4 +174,55 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 5.6}
 
+\section*{Exercice 5.7 [$\blacklozenge\blacklozenge\blacklozenge$] Différence symétrique}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient $E$ un ensemble et $A,B$ deux parties de $E$, on définit 
+    \begin{equation*}
+        A \Delta B = (A \setminus B) \cup (B \setminus A)
+    \end{equation*}
+    1. Montrer que la réunion définissant $A \Delta B$ est disjointe.\\
+    2. Montrer que $A \Delta B = (A \cup B) \setminus (A \cap B)$.\\
+    3. Montrer que $\overline{A} \Delta \overline{B} = A \Delta B$.\\
+    4. Simplifier $A \Delta E$, $A \Delta \varnothing$, $A \Delta A$, $A \Delta \overline{A}$.\\
+    5. (*) Résoudre l'équation $A \Delta X = \varnothing$, d'inconnue $X \in \mathcal{P}(E)$.\\[0.25cm]
+    1. Considérons l'intersection :
+    \begin{align*}
+        (A \setminus B) \cap (B \setminus A) &= (A \cap \overline{B}) \cap (B \cap \overline{A})\\
+        &=A \cap (B \cap \overline{B}) \cap \overline{A}\\
+        &=\varnothing
+    \end{align*}
+    2. On a :
+    \begin{align*}
+        (A \cup B) \setminus (A \cap B) &= (A \cup B) \cap (\overline{A} \cup \overline{B})\\
+        &=\overline{A} \cap (A \cup B) \cup (A \cup B) \cap \overline{B}\\
+        &=(\overline{A} \cap B) \cup (A \cap \overline{B})\\
+        &=(A \setminus B) \cup (B \setminus A)\\
+        &=A \Delta B
+    \end{align*}
+    3. On a :
+    \begin{align*}
+        (\overline{A} \setminus \overline{B}) \cup (\overline{B} \setminus \overline{A}) &= (\overline{A} \cap B) \cup (\overline{B} \cap A)\\
+        &=(B \cap \overline{A}) \cup (A \cap \overline{B})\\
+        &=(B \setminus A) \cup (A \setminus B)\\
+        &=A \Delta B
+    \end{align*}
+    4. On a :
+    \begin{itemize}
+        \item $A \Delta E = (A \cup E) \setminus (A \cap E) = E \setminus A = E \cap \overline{A}$.
+        \item $A \Delta \varnothing = (A \cup \varnothing) \setminus (A \cap \varnothing) = A \setminus \varnothing = A$.
+        \item $A \Delta A = (A \cup A) \setminus (A \cap A) = A \setminus A = \varnothing$.
+        \item $A \Delta \overline{A} = (A \cup \overline{A}) \setminus (A \cap \overline{A}) = E \setminus \varnothing = E$
+    \end{itemize}
+    5. Soit $X \in \mathcal{P}(E)$. On a :
+    \begin{align*}
+        &A \Delta X = \varnothing\\
+        \iff& (A \setminus X) \cup (X \setminus A) = \varnothing\\
+        \iff& X \subseteq A \text{ et } A \subseteq X\\
+        \iff& X = A
+    \end{align*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 5.7}
+
 \end{document}
