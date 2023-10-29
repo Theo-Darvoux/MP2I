@@ -196,7 +196,6 @@
         (A \cup B) \setminus (A \cap B) &= (A \cup B) \cap (\overline{A} \cup \overline{B})\\
         &=\overline{A} \cap (A \cup B) \cup (A \cup B) \cap \overline{B}\\
         &=(\overline{A} \cap B) \cup (A \cap \overline{B})\\
-        &=(A \setminus B) \cup (B \setminus A)\\
         &=A \Delta B
     \end{align*}
     3. On a :
@@ -225,5 +224,28 @@
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 5.7}
+
+\section*{Exercice 5.8 [$\blacklozenge\blacklozenge\blacklozenge$] Paradoxe de Russell}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Supposons qu'il existe un \emph{ensemble de tous les ensembles} et notons le $\mathcal{E}$.\\
+    Considérons alors l'ensemble des ensembles n'appartenant pas à eux-mêmes :
+    \begin{equation*}
+        y=\left\lbrace x \in \mathcal{E} \hspace{0.1cm} | \hspace{0.1cm} x \notin x \right\rbrace.
+    \end{equation*}
+    Démontrer que $y \in y \iff y \notin y$.\\[0.25cm]
+    Supposons que $y \in y$. Montrons que $y \notin y$.\\
+    On a que $y \in y$.
+    Or tout élément de $y$ n'appartient pas à lui-même.\\
+    Ainsi, $y \notin y$.\\[0.25cm]
+    Supposons que $y \notin y$. Montrons que $y \in y$.\\
+    $y$ est un ensemble, donc $y \in \mathcal{E}$. De plus, $y \notin y$ par supposition.\\
+    Ce sont les deux conditions nécessaires pour appartenir à $y$.\\
+    Ainsi, $y \in y$.\\[0.25cm]
+    On a bien montré que $y \in y \iff y \notin y$.\\
+    \qed
+
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 5.8}
 
 \end{document}
