@@ -134,5 +134,39 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 6.4}
 
+
+\section*{Exercice 6.5 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient $a,b$ deux nombres complexes tels que $\overline{a}b\neq1$ et $c=\frac{a-b}{1-\overline{a}b}$. Montrer que
+    \begin{equation*}
+        (|c|=1) \iff (|a| = 1 \text{ ou } |b| = 1).
+    \end{equation*}
+    Supposons $|c|=1$. Montrons que $|a|=1$ ou $|b|=1$.\\
+    On a :
+    \begin{align*}
+        &|c|=1\\
+        \iff&|c|^2=\frac{(a-b)(\overline{a}-\overline{b})}{(1-\overline{a}b)(1-a\overline{b})}=\frac{|a|^2-a\overline{b}-b\overline{a}+|b|^2}{1-a\overline{b}-\overline{a}b+|a|^2|b|^2}=1\\
+        \iff&|a|^2-a\overline{b}-\overline{a}b+|b|^2=1-a\overline{b}-\overline{a}b+|a|^2|b|^2\\
+        \iff&|a|^2+|b|^2-|a|^2|b|^2=1\\
+        \iff&|a|^2(1-|b|^2)=1-|b|^2
+    \end{align*}
+    Si on suppose $|b|\neq1$, on obtient : $|c|=1\iff|a|^2=\frac{1-|b|^2}{1-|b|^2}=1$ donc $|a|=1$.\\
+    Si on suppose $|a|\neq1$, on obtient : $|c|=1\iff|b|^2=\frac{1-|a|^2}{1-|a|^2}=1$ donc $|b|=1$.\\
+    Ainsi $|a|=1$ ou $|b|=1$.\\[0.25cm]
+    Supposons $|a|=1$. 
+    On a :
+    \begin{align*}
+        |c|=\left|\frac{a-b}{1-\overline{a}b}\right|=\left|\frac{a-b}{\overline{a}a-\overline{a}b}\right|=\left|\frac{1}{\overline{a}}\right|\left|\frac{a-b}{a-b}\right|=|a|=1
+    \end{align*}
+    Supposons $|b|=1$. 
+    On a :
+    \begin{align*}
+        |c|=\left|\frac{a-b}{1-\overline{a}b}\right|=\left|\frac{a-b}{\overline{b}b-\overline{a}b}\right|=\left|\frac{1}{b}\right|\left|\frac{a-b}{\overline{b}-\overline{a}}\right|=|b|\frac{|a-b|}{|a-b|}=|b|=1
+    \end{align*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 6.5}
+
 \end{document}
  
