@@ -108,28 +108,86 @@
 \section*{Exercice 6.4 [$\blacklozenge\lozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Soient $z_1,z_2,\dots,z_n$ des nombres complexes non nuls de mêmes module. Démontrer que
-    \begin{equation*}
+    \begin{equation}
         \frac{(z_1 + z_2)(z_2 + z_3)\dots(z_{n-1}+z_n)(z_n + z_1)}{z_1z_2\dots z_n} \in \mathbb{R}.
+    \end{equation}
+    Commençons par énoncer que :
+    \begin{equation*}
+        \forall{(i,j)\in\llbracket1,n\rrbracket^2}, \hspace{1cm} \frac{\overline{z_i}}{\overline{z_j}}=\frac{z_j}{z_i}.
     \end{equation*}
-    On a :
-    \begin{align*}
-        &\frac{(z_1 + z_2)(z_2 + z_3)\dots(z_{n-1}+z_n)(z_n + z_1)}{z_1z_2\dots z_n}=(1+\frac{z_2}{z_1})(1+\frac{z_3}{z_2})\dots(1+\frac{z_n}{z_{n-1}})(1+\frac{z_1}{z_n})
-    \end{align*}
-    Son conjugué est :
+    En effet,
+    \begin{equation*}
+        \frac{z_i}{z_j}\cdot\frac{\overline{z_i}}{\overline{z_j}}=\left|\frac{z_i}{z_j}\right|^2=1 \iff \frac{\overline{z_i}}{\overline{z_j}}=\frac{z_j}{z_i}.
+    \end{equation*}
+    Le conjugué de (1) est :
     \begin{align*}
         &\frac{(\overline{z_1} + \overline{z_2})(\overline{z_2} + \overline{z_3})\dots(\overline{z_{n-1}}+\overline{z_n})(\overline{z_n} + \overline{z_1})}{\overline{z_1}\overline{z_2}\dots\overline{z_n}}=(1+\frac{\overline{z_2}}{\overline{z_1}})(1+\frac{\overline{z_3}}{\overline{z_2}})\dots(1+\frac{\overline{z_n}}{\overline{z_{n-1}}})(1+\frac{\overline{z_1}}{\overline{z_n}})
     \end{align*}
-    Or, puisque tous ces nombres sont de mêmes modules, le quotient de deux d'entre eux est de module 1. Ainsi, $\forall{(i,j)\in\llbracket1,n\rrbracket}$, $\overline{\left(\frac{z_i}{z_j}\right)}=\frac{z_j}{z_i}$ (preuve): $\frac{z_i}{z_j}\cdot\frac{\overline{z_i}}{\overline{z_j}}=|\frac{z_i}{z_j}|^2=1\iff\frac{\overline{z_i}}{\overline{z_j}}=\frac{z_j}{z_i}$.\\
     Ainsi :
     \begin{align*}
         &\frac{(\overline{z_1} + \overline{z_2})(\overline{z_2} + \overline{z_3})\dots(\overline{z_{n-1}}+\overline{z_n})(\overline{z_n} + \overline{z_1})}{\overline{z_1}\overline{z_2}\dots\overline{z_n}}=(1+\frac{z_1}{z_2})\dots(1+\frac{z_n}{z_1})\\
         =&\frac{z_1+z_2}{z_2}\dots\frac{z_n+z_1}{z_1}=\frac{(z_1+z_2)(z_2+z_3)\dots(z_{n-1}+z_n)(z_n+z_1)}{z_1z_2\dots z_n}
     \end{align*}
-    Puisque ce nombre est égal à son conjugué, il est réel.
+    Puisque (1) est égal à son conjugué, $(1) \in \mathbb{R}$.
     \qed
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 6.4}
+
+
+\section*{Exercice 6.5 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient $a,b$ deux nombres complexes tels que $\overline{a}b\neq1$ et $c=\frac{a-b}{1-\overline{a}b}$. Montrer que
+    \begin{equation*}
+        (|c|=1) \iff (|a| = 1 \text{ ou } |b| = 1).
+    \end{equation*}
+    Supposons $|c|=1$. Montrons que $|a|=1$ ou $|b|=1$.\\
+    On a :
+    \begin{align*}
+        &|c|=1\\
+        \iff&|c|^2=\frac{(a-b)(\overline{a}-\overline{b})}{(1-\overline{a}b)(1-a\overline{b})}=\frac{|a|^2-a\overline{b}-b\overline{a}+|b|^2}{1-a\overline{b}-\overline{a}b+|a|^2|b|^2}=1\\
+        \iff&|a|^2-a\overline{b}-\overline{a}b+|b|^2=1-a\overline{b}-\overline{a}b+|a|^2|b|^2\\
+        \iff&|a|^2+|b|^2-|a|^2|b|^2=1\\
+        \iff&|a|^2(1-|b|^2)=1-|b|^2
+    \end{align*}
+    Si on suppose $|b|\neq1$, on obtient : $|c|=1\iff|a|^2=\frac{1-|b|^2}{1-|b|^2}=1$ donc $|a|=1$.\\
+    Si on suppose $|a|\neq1$, on obtient : $|c|=1\iff|b|^2=\frac{1-|a|^2}{1-|a|^2}=1$ donc $|b|=1$.\\
+    Supposons $|a|=1$. 
+    On a :
+    \begin{align*}
+        |c|=\left|\frac{a-b}{1-\overline{a}b}\right|=\left|\frac{a-b}{\overline{a}a-\overline{a}b}\right|=\left|\frac{1}{\overline{a}}\right|\left|\frac{a-b}{a-b}\right|=|a|=1
+    \end{align*}
+    Supposons $|b|=1$. 
+    On a :
+    \begin{align*}
+        |c|=\left|\frac{a-b}{1-\overline{a}b}\right|=\left|\frac{a-b}{\overline{b}b-\overline{a}b}\right|=\left|\frac{1}{b}\right|\left|\frac{a-b}{\overline{b}-\overline{a}}\right|=|b|\frac{|a-b|}{|a-b|}=|b|=1
+    \end{align*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 6.5}
+
+\section*{Exercice 6.6 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Pour $n\in\mathbb{N}^*$, calculer $R^2+S^2$ où
+    \begin{equation*}
+        R = \sum_{0\leq 2k \leq n}{(-1)^k\binom{n}{2k}} \hspace{1cm} \text{et} \hspace{1cm} S = \sum_{0 \leq 2k+1 \leq n}{(-1)^k\binom{n}{2k+1}}.
+    \end{equation*}
+    On a :
+    \begin{equation*}
+        (1+i)^n = \sum_{k=0}^n{\binom{n}{k}i^k}=\sum_{0 \leq 2k \leq n}{\binom{n}{2k}i^{2k}}+\sum_{0\leq 2k+1 \leq n}{\binom{n}{2k+1}i^{2k}\cdot i}=R+iS
+    \end{equation*}
+    Ainsi :
+    \begin{equation*}
+        \begin{cases}
+            R = \text{Re}\left((1+i)^n\right)=2^\frac{n}{2}\cos(\frac{n\pi}{4})\\
+            S = \text{Im}\left((1+i)^n\right)=2^\frac{n}{2}\sin(\frac{n\pi}{4})
+        \end{cases}
+    \end{equation*}
+    Finalement, $R^2 + S^2$ = $2^n(\cos^2(\frac{n\pi}{4})+\sin^2(\frac{n\pi}{4}))=2^n$.\\\qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 6.6}
 
 \end{document}
  
