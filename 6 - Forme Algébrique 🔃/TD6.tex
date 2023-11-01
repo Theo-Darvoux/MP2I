@@ -189,5 +189,32 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 6.6}
 
+\section*{Exercice 6.7 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $ABCD$ un parallélogramme.\\
+    Montrer que $AC^2+BD^2=AB^2+BC^2+CD^2+DA^2$\\
+    Soient $(z,z')\in\mathbb{R}$. Les points $A,B,C,D$ d'affixes $0,z,z+z',z'$ forment un parallélogramme.\\
+    Alors :
+    \begin{equation*}
+        \begin{cases}
+            AC^2 = |z+z'|^2\\
+            BD^2 = |z-z'|^2\\
+            AB^2 = CD^2 = |z|^2\\
+            BC^2 = DA^2 = |z'|^2
+        \end{cases}
+    \end{equation*}
+    On a :
+    \begin{align*}
+        AC^2 + BD^2 &= |z+z'|^2 + |z-z'|^2 = (z+z')(\overline{z}+\overline{z'})+(z-z')(\overline{z}-\overline{z'})\\
+        &=z\overline{z}+z\overline{z'}+z'\overline{z}+z'\overline{z'}+z\overline{z}-z\overline{z'}-z'\overline{z}+z'\overline{z'}\\
+        &=|z|^2+|z'|^2+|z|^2+|z'|^2\\
+        &= AB^2 + BC^2 + CD^2 + DA^2
+    \end{align*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 6.7}
+
+
 \end{document}
  
