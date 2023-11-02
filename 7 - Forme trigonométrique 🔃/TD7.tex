@@ -55,6 +55,31 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 7.1}
 
+\section*{Exercice 7.2 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient trois réels $x,y,z$ tels que $e^{ix} + e^{iy} + e^{iz} = 0$. Montrer que $e^{2ix} + e^{2iy} + e^{2iz}=0$.\\
+    On a :
+    \begin{align*}
+        &e^{ix}+e^{iy}+e^{iz}=0\\
+        \iff&e^{-ix}+e^{-iy}+e^{-iz}=0
+    \end{align*}
+    Et :
+    \begin{align*}
+        &(e^{ix}+e^{iy}+e^{iz})^2 = e^{2ix} + e^{2iy} + e^{2iz} + 2(e^{ixy} + e^{ixz} + e^{iyz})\\
+        \iff&e^{2ix}+e^{2iy}+e^{2iz}=-2(e^{ixy}+e^{ixz}+e^{iyz})
+    \end{align*}
+    Or :
+    \begin{align*}
+        2(e^{ixy}+e^{ixz}+e^{iyz}) = 2e^{i(x+y+z)}(e^{-ix}+e^{-iy}+e^{-iz})=0
+    \end{align*}
+    Ainsi,
+    \begin{equation*}
+        e^{2ix}+e^{2iy}+e^{2iz}=0
+    \end{equation*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 7.2}
 
 \end{document}
  
