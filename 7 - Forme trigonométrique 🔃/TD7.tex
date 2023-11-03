@@ -105,5 +105,27 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 7.3}
 
+\section*{Exercice 7.4 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit un réel $\theta$. Linéariser $(\cos\theta)^5$ et $(\sin\theta)^6$.\\
+    On a :
+    \begin{align*}
+        (\cos\theta)^5&=\left(\frac{e^{i\theta}+e^{-i\theta}}{2}\right)^5\\
+        &=\frac{1}{32}\left(e^{5i\theta}+5e^{3i\theta}+10e^{i\theta}+10e^{-i\theta}+5e^{-3i\theta}+e^{-5i\theta}\right)\\
+        &=\frac{1}{32}\left(2\cos(5\theta)+10\cos(3\theta)+20\cos(\theta)\right)\\
+        &=\frac{1}{16}\left(\cos(5\theta)+5\cos(3\theta)+10\cos(\theta)\right)
+    \end{align*}
+    Et :
+    \begin{align*}
+        (\sin\theta)^6&=\left(\frac{e^{i\theta}-e^{-i\theta}}{2i}\right)^6\\
+        &=-\frac{1}{64}\left(e^{6i\theta}-6e^{4i\theta}+15e^{2i\theta}-20+15e^{-2i\theta}-6e^{-4i\theta}+e^{-6i\theta}\right)\\
+        &=-\frac{1}{64}\left(2\cos(6\theta)-12\cos(4\theta)+30\cos(2\theta)-20\right)\\
+        &=\frac{1}{32}\left(10 + 6\cos(4\theta) - 15\cos(2\theta) - \cos(6\theta)\right)
+    \end{align*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 7.4}
+
 \end{document}
  
