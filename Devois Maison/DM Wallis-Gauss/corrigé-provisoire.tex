@@ -1,0 +1,265 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[skins]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{tkz-tab}
+
+\def\pagetitle{le dm de la toussaint}
+
+\title{\bf{\pagetitle}\\\large{corrigé}}
+\date{toussaint 2k13}
+\author{darvoux theo}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+
+\begin{document}
+\renewcommand*\contentsname{Exercices.}
+\renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\maketitle
+\thispagestyle{fancy}
+\fancyhead[L]{mp2i paul valery}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+\allowdisplaybreaks
+
+\section{exercice}
+
+\subsection*{1.}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $\theta\in]-\pi,\pi]$ et $r\in\mathbb{R}_+^*$ tels que $z=re^{i\theta}$. On a :
+    \begin{align*}
+        &r^3e^{3i\theta}=1\\
+        \iff&\begin{cases}r^3=1\\e^{3i\theta}=1\end{cases}\\
+        \iff&\begin{cases}r=1\\3\theta=0 [2\pi]\end{cases}\\
+        \iff&\begin{cases}r=1\\\theta=\frac{2k\pi}{3}, k\in\mathbb{Z}\end{cases}\\
+    \end{align*}
+    Ainsi, $\theta\in\left\{0, \frac{2\pi}{3}, -\frac{2\pi}{3}\right\}$ et donc $z\in\left\{e^0, e^{i\frac{2\pi}{3}},e^{-i\frac{2\pi}{3}}\right\}$, donc $z\in\left\{1, e^{i\frac{2\pi}{3}},e^{i\frac{4\pi}{3}}\right\}$\\
+    On parle de racine troisième de l'unité car ce sont les nombres complexes qui sont égaux à 1 lorsqu'ils sont mis au carré.
+\end{tcolorbox}
+
+\subsection*{2.}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    On a :
+    \begin{align*}
+        \overline{j}=e^{-i\frac{2\pi}{3}}=e^{-i\frac{2\pi}{3}+2\pi}=e^{i\frac{4\pi}{3}}=j^2.
+    \end{align*}
+    Et :
+    \begin{align*}
+        1 + j + j^2 = 1 + j + \overline{j} = 1 + 2\text{Re}(j)=1+2\cos(\frac{2\pi}{3})=0
+    \end{align*}
+    \begin{align*}
+        1 + j + j^2 &= 1 + e^{i\frac{2\pi}{3}} + e^{i\frac{4\pi}{3}}=1 + e^{i\pi}\left(e^{-i\frac{\pi}{3}} + e^{i\frac{\pi}{3}} \right)\\
+        &= 1 - (\cos\left(\frac{\pi}{3}\right) + \cos\left(\frac{\pi}{3}\right) - \sin\left(\frac{\pi}{3}\right) + \sin\left(\frac{\pi}{3}\right))=0
+    \end{align*}
+\end{tcolorbox}
+
+\subsection*{3.}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    a) sur la feuille\\
+    b) On a :
+    \begin{equation*}
+        \begin{cases}
+            |j-1|=|e^{2i\pi/3}-1|=|e^{i\pi/3}||e^{i\pi/3}-e^{-i\pi/3}|=2\sin(\pi/3)=\sqrt{3}\\
+            |j^2-1|=|e^{4i\pi/3}-1|=|e^{2i\pi/3}||e^{2i\pi/3}-e^{-2i\pi/3}|=2\sin(2\pi/3)=\sqrt{3}\\
+            |j^2-j|=|e^{4i\pi/3}-e^{2i\pi/3}|=|e^{i\pi}||e^{-i\pi/3}-e^{i\pi/3}|=2\sin(\pi/3)=\sqrt{3}
+        \end{cases}
+    \end{equation*}
+    On en conclut que c'est un triangle équilatéral. Son périmètre est de $3\sqrt{3}$.
+\end{tcolorbox}
+
+\subsection*{4.}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    a)
+    \begin{equation*}
+        \begin{cases}
+            2^n = \sum\limits_{k=0}^n{\binom{n}{k}}=\sum\limits_{3k \leq n}{\binom{n}{3k}}+\sum\limits_{3k+1 \leq n}{\binom{n}{3k+1}}+\sum\limits_{3k+2 \leq n}{\binom{n}{3k+2}}=S_0+S_1+S_2\\
+            (1+j)^n = \sum\limits_{k=0}^n{\binom{n}{k}j^k}=\sum\limits_{3k \leq n}{\binom{n}{3k}j^{3k}} + \sum\limits_{3k+1 \leq n}{\binom{n}{3k+1}j^{3k+1}}+\sum\limits_{3k+2 \leq n}{\binom{n}{3k+2}j^{3k+2}}\\
+            \hspace{1.55cm} = \sum\limits_{3k \leq n}{\binom{n}{3k}} + j\sum\limits_{3k+1 \leq n}{\binom{n}{3k+1}}+j^2\sum\limits_{3k+2 \leq n}{\binom{n}{3k}}=S_0 + jS_1 + j^2S_2\\
+            (1+j^2)^n = \sum\limits_{k=0}^n{\binom{n}{k}j^{2k}}  = \sum\limits_{3k \leq n}{\binom{n}{3k}j^{6k}}+\sum\limits_{3k + 1 \leq n}{\binom{n}{3k+1}j^{6k+2}} + \sum\limits_{3k+2 \leq n}{\binom{n}{3k+2}j^{6k+4}}\\
+            \hspace{1.7cm}= \sum\limits_{3k \leq n}{\binom{n}{3k}}+j^2\sum\limits_{3k+1 \leq n}{\binom{n}{3k+1}}+j\sum\limits_{3k+2 \leq n}{\binom{n}{3k+2}} = S_0 + j^2S_1 + jS_2
+        \end{cases}
+    \end{equation*}
+    b) En sommant les égalités, on obtient :
+    \begin{equation*}
+        3S_0 + S_1(1 + j + j^2) + S_2(1 + j + j^2) = 2^n + (1 + j)^n + (1 + j^2)^n
+    \end{equation*}
+    Or, on a :
+    \begin{align*}
+        (1+j)^n+(1+j^2)^n &= (e^{i\pi/3}(2\cos\frac{\pi}{3}))^n + (e^{-i\pi/3}(2\cos-\frac{\pi}{3}))^n\\
+        &= e^{in\pi/3} + e^{-in\pi/3} = 2\cos\frac{n\pi}{3}
+    \end{align*} 
+    Ainsi, 
+    \begin{equation*}
+        S_0 = \frac{1}{3}\left(2^n+(1+j)^n + (1+j^2)^n\right) = \frac{1}{3}\left(2^n + 2\cos\frac{n\pi}{3}\right)
+    \end{equation*}
+\end{tcolorbox}
+
+\pagebreak
+
+\section{probleme}
+\subsection{a. wallis}
+
+\subsection*{1.}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $n\in\mathbb{N}$. On a :
+    \begin{align*}
+        W_{n+2} &= \int_{0}^{\pi/2}{(\cos t)(\cos t)^{n+1}}dt=\left[\sin(t)\cos^{n+1}(t)\right]_0^{\pi/2} - \int_0^{\pi/2}(n+1)(\sin t)(-\sin t)(\cos^nt)dt\\
+        &= (n+1)\int_0^{\pi/2}{\sin^2 t \cos^n t}dt = (n+1)\int_0^{\pi/2}{(1-\cos^2 t)(\cos^n t)dt} = (n+1)(W_n - W_{n+2})
+    \end{align*}
+    Ainsi, $W_{n+2}=(n+1)W_n - (n+1)W_{n+2}$. Donc $(n+2)W_{n+2}=(n+1)W_n$.
+\end{tcolorbox}
+
+\subsection*{2.}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $n\in\mathbb{N}$. On sait que $\cos$ est positive sur $[0, \frac{\pi}{2}]$. Ainsi, $\cos^n$ est aussi positive sur $[0, \frac{\pi}{2}]$.\\
+    Or, l'intégrale d'une fonction positive sur un intervalle est positive, ainsi, $W_n > 0$
+\end{tcolorbox}
+
+\subsection*{3.}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    On a $(n+2)W_{n+2}=(n+1)W_n$ donc $(n+2)W_{n+2}W_{n+1} = (n+1)W_{n+1}W_n$.\\
+    Ainsi, la suite $((n+1)W_{n+1}W_n)_{n\in\mathbb{N}}$ est constante de valeur $W_0W_1=\frac{\pi}{2}$.\\
+    En effet :
+    \begin{equation*}
+        W_0W_1=\int_0^{\pi/2}{1dt}\int_0^{\pi/2}{\cos(t)dt}=\frac{\pi}{2}
+    \end{equation*}
+\end{tcolorbox}
+
+\subsection*{4.}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $n\in\mathbb{N}$ et $x\in[0,\frac{\pi}{2}]$, on a : $\cos^{n+1}(x)-\cos^n(x)=\cos^n(x)(\cos(x)-1)\leq0$.\\
+    Ainsi,
+    \begin{equation*}
+        W_{n+1}-W_n = \int_0^{\pi/2}(\cos^{n+1}(t)-\cos^n(t))dt \leq 0
+    \end{equation*}
+    Donc la suite $(W_n)_{n\in\mathbb{N}}$ est décroissante.\\
+    De plus, on a : 
+    \begin{equation*}
+        (n+2)W_{n+2}W_{n+1}=(n+1)W_{n+1}W_n \iff \frac{n+1}{n+2}=\frac{W_{n+2}}{W_n}
+    \end{equation*}
+    Ainsi, par décroissance de $(W_n)$, on a :
+    \begin{align*}
+        \frac{n+1}{n+2}=\frac{W_{n+2}}{W_n} \leq \frac{W_{n+1}}{W_n} \leq \frac{W_n}{W_n} = 1
+    \end{align*}
+    Enfin, d'après le théorème des gendarmes, $\frac{W_{n+1}}{W_n}\xrightarrow[n\to+\infty]{} 1$.
+\end{tcolorbox}
+
+\subsection*{5.}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    On a $W_{n-1} \xrightarrow[n\to+\infty]{}W_{n}$ et $\frac{\pi}{2}=nW_{n-1}W_n \xrightarrow[n\to+\infty]{}nW_n^2$.\\
+    Alors $W_n^2 \xrightarrow[n\to+\infty]{} \frac{\pi}{2n}$. On en déduit que $\sqrt{n}W_n \xrightarrow[n\to+\infty]{}\sqrt{\frac{\pi}{2}}$.
+\end{tcolorbox}
+
+\subsection*{6.}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $\mathcal{P}_n$ la proposition $W_{2n}=\frac{(2n)!}{2^{2n}(n!)^2}\cdot\frac{\pi}{2}$. Montrons que $\mathcal{P}_n$ est vraie pour tout $n\in\mathbb{N}$.\\
+    \emph{Initialisation.}\\
+    On a $W_0=\frac{\pi}{2}$ et $\frac{0!}{2^00!}\cdot\frac{\pi}{2}=\frac{\pi}{2}$.\\
+    Ainsi, $\mathcal{P}_0$ est vraie.\\
+    \emph{Hérédité.}\\
+    Soit $n\in\mathbb{N}$ fixe tel que $\mathcal{P}_n$ soit vraie. Montrons $\mathcal{P}_{n+1}$.\\
+    On a :
+    \begin{align*}
+        W_{2n+2}&=\frac{2n+1}{2n+2}W_{2n}\\
+        &=\frac{2n+1}{2n+2}\cdot\frac{(2n)!}{2^{2n}(n!)^2}\cdot\frac{\pi}{2}\\
+        &=\frac{(2n+1)!}{2^{2n+1}(n+1)!n!}\cdot\frac{\pi}{2}\\
+        &=\frac{(2n+2)!}{2^{2(n+1)}((n+1)!)^2}\cdot\frac{\pi}{2}
+    \end{align*}
+    C'est exactement $\mathcal{P}_{n+1}$.\\
+    \emph{Conclusion.}\\
+    Ainsi, $\mathcal{P}_n$ est vraie pour tout $n \in \mathbb{N}$.\\[0.25cm]
+    Soit $\mathcal{P}_n$ la proposition $W_{2n+1}=\frac{2^{2n}(n!)^2}{(2n+1)!}$. Montrons que $\mathcal{P}_n$ est vraie pour tout $n\in\mathbb{N}$.\\
+    \emph{Initialisation.}\\
+    On a $W_1=1$ et $\frac{2^0(0!)^2}{1!}=1$.\\
+    Ainsi $\mathcal{P}_0$ est vraie.\\
+    \emph{Hérédité.}\\
+    Soit $n\in\mathbb{N}$ fixe tel que $\mathcal{P}_n$ soit vraie. Montrons $\mathcal{P}_{n+1}$.\\
+    On a :
+    \begin{align*}
+        W_{2n+3}&=\frac{2n+2}{2n+3}W_{2n+1}\\
+        &=\frac{2n+2}{2n+3}\frac{2^{2n}(n!)^2}{(2n+1)!}\\
+        &=\frac{2^{2n+1}(n+1)!n!}{(2n+3)(2n+1)!}\\
+        &=\frac{2^{2(n+1)}((n+1)!)^2}{(2n+3)!}
+    \end{align*}
+    C'esst exactement $\mathcal{P}_{n+1}$.\\
+    \emph{Conclusion.}\\
+    Ainsi, $\mathcal{P}_n$ est vraie pour tout $n\in\mathbb{N}$.
+\end{tcolorbox}
+
+\pagebreak
+
+\subsection{b. gauss}
+\subsection*{1.}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    a) f est une primitive de $t \mapsto e^{-t^2}$, ainsi $f$ est dérivable de dérivée positive sur $\mathbb{R}$, $f$ est donc croissante sur $\mathbb{R}$.\\
+    b) Soit $t \geq 1$. On a $-t^2 \leq -t$ et donc $e^{-t^2}\leq e^{-t}$ par croissance de l'exponentielle.\\
+    Soit $x\in[1,+\infty[$. Par croissance de l'intégrale :
+    \begin{equation*}
+        \int_1^{x}{e^{-t^2}dt} \leq \int_1^{x}{e^{-t}dt}
+    \end{equation*}
+    On a :
+    \begin{equation*}
+        f(x) = \int_0^1{e^{-t^2}dt}+\int_1^x{e^{-t^2}dt}\leq f(1) + \int_1^x{e^{-t}dt}\leq f(1) + e - e^{-x} \leq f(1) + e
+    \end{equation*}
+    Ainsi, $f$ est majorée par $f(1)+e$
+\end{tcolorbox}
+
+\subsection*{2.}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    a) Soit $u \in ]-\infty, 1[$, on a :
+    \begin{equation*}
+        \frac{d}{dx}\left( 1+u-e^u \right) = 1 - e^u > 0 \text{ pour u < 1}
+    \end{equation*}
+    \begin{equation*}
+        \frac{d}{dx}\left( e^u - \frac{1}{1-u} \right) = e^u - \frac{1}{(1-u)^2} < 0 \text{ car } e^u < 1 \text{ et } \frac{1}{(1-u)^2} > 1
+    \end{equation*}
+    b) Soit $n\in\mathbb{N}^*$ et $x\in[0,\sqrt{n}]$. On a :
+    \begin{align*}
+        &1-\frac{x^2}{n} \leq e^{-\frac{x^2}{n}} \leq \frac{1}{1+\frac{x^2}{n}}\\
+        \iff&(1-\frac{x^2}{n})^n \leq e^{-x^2} \leq (\frac{1}{1+\frac{x^2}{n}})^n=\frac{1}{(1+\frac{x^2}{n})^n}
+    \end{align*}
+\end{tcolorbox}
+
+\subsection*{3.}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    a) $x = \sqrt{n}\sin t$, $dx = \sqrt{n}\cos(t) dt$.\\
+    On a :
+    \begin{align*}
+        \int_0^{\sqrt{n}}{\left(1-\frac{x^2}{n}\right)^ndx}&=\int_0^{\pi/2}{\left( 1-\frac{n\sin^2t}{n} \right)^n\sqrt{n}\cos(t)dt}\\
+        &=\sqrt{n}\int_0^{\pi/2}{\cos^{2n+1}(t)dt}=\sqrt{n}W_{2n+1}
+    \end{align*}
+    b) $x = \sqrt{n}\tan t$, $dx = \sqrt{n}(1+\tan^2(t)) dt$.\\
+    On a :
+    \begin{align*}
+        \int_0^{\sqrt{n}}{\frac{dx}{\left( 1 + \frac{x^2}{n} \right)^n}} &= \int_0^{\pi/4}{\frac{\sqrt{n}(1+\tan^2(t))}{(1+\frac{n\tan^2(t)}{n})^n}dt}\\
+        &=\int_0^{\pi/4}{\frac{\sqrt{n}(1+\tan^2(t))}{(1+\tan^2(t))^n}dt}\\
+        &=\sqrt{n}\int_0^{\pi/4}{\frac{1}{(1+\tan^2(t))^{n-1}}dt}\\
+        &=\sqrt{n}\int_0^{\pi/4}{\cos^{2n-2}(t)dt}\\
+        &\leq \sqrt{n}\int_0^{\pi/2}\cos^{2n-2}(t)dt\\
+        &= \sqrt{n}W_{2n-2}
+    \end{align*}
+    c) Par croissance de l'intégrale, $I_n \leq f(\sqrt{n}) \leq J_n$.\\
+    On a :
+    \begin{align*}
+        \sqrt{n}W_{2n+1} \leq f(\sqrt{n}) \leq \sqrt{n}W_{2n-2}
+    \end{align*}
+    Or :
+    \begin{equation*}
+        \lim_{n\to+\infty}{\sqrt{n}W_{2n+1}}=\lim_{n\to+\infty}{\sqrt{n}W_{2n-2}}=\sqrt{\frac{\pi}{4}}
+    \end{equation*}
+    Donc d'après le théorème des gendarmes, $\lim_{n\to+\infty}f(\sqrt{n})=\frac{\sqrt{\pi}}{2}$.
+\end{tcolorbox}
+\end{document}
+ 

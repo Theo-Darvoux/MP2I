@@ -127,5 +127,41 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 7.4}
 
+\section*{Exercice 7.5 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    1. Soit $x$ un réel. Exprimer $\cos(5x)$ comme un polynome en $\cos(x)$.\\
+    2. Montrer que $\cos^2\left(\frac{\pi}{10}\right)$ est racine du trinôme $x \mapsto 16x^2 - 20x + 5$.\\
+    3. En déduire l'égalité $\cos\left(\frac{\pi}{5}\right)=\frac{1+\sqrt{5}}{4}$.\\
+    1. On a :
+    \begin{align*}
+        \cos(5x) &= \text{Re}\left((\cos(x)+i\sin(x))^5\right) \\
+        &= \cos^5(x) - 10\cos^3(x)\sin^2(x) + 5\cos(x)\sin^4(x)\\
+        &= \cos^5(x) - 10\cos^3(x)(1-\cos^2(x)) + 5\cos(x)(1 - 2\cos^2(x) + \cos^4(x))\\
+        &= 16\cos^5(x) - 20\cos^3(x) + 5\cos(x)
+    \end{align*}
+    2. Posons $x = \cos^2\left( \frac{\pi}{10} \right)$ On a :
+    \begin{align*}
+        &\cos\left(5\cdot\frac{\pi}{10}\right)=16\cos^5\left(\frac{\pi}{10}\right)-20\cos^3\left( \frac{\pi}{10} \right) + 5\cos\left( \frac{\pi}{10} \right)\\
+        \iff&16\cos^4\left( \frac{\pi}{10} \right) - 20\cos^2 \left( \frac{\pi}{10} \right) + 5 = 0\\
+        \iff& 16x^2 - 20x + 5 = 0
+    \end{align*}
+    Ainsi $\cos^2\left( \frac{\pi}{10} \right)$ est racine de ce trinôme.
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    3. On a :
+    \begin{align*}
+        \cos^2 \left( \frac{\pi}{10} \right) = \frac{1+\cos(\frac{\pi}{5})}{2}
+    \end{align*}
+    Soit $x\in\mathbb{R}$, on a :
+    \begin{align*}
+        &16x^2-20x+5=0\\
+        \iff& x = \frac{5 \pm \sqrt{5}}{8}
+    \end{align*}
+    Ainsi, $\frac{1+\cos\left(\frac{\pi}{5}\right)}{2}=\frac{5+\sqrt{5}}{8}$ car $\cos(\pi/5) > \cos(\pi/3) = 0.5$. On en déduit que $\cos\left( \frac{\pi}{5} \right)=\frac{1+\sqrt{5}}{4}$.
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 7.5}
+
 \end{document}
  
