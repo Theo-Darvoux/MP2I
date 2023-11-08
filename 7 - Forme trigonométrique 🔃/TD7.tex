@@ -163,5 +163,30 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 7.5}
 
+\section*{Exercice 7.6 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $x\in\mathbb{R}$ et $n\in\mathbb{N}$. Calculer $S=\sum\limits_{k=0}^{n}{\binom{n}{k}\cos(kx)}$\\
+    Notons : $S'=\sum\limits_{k=0}^{n}{\binom{n}{k}\sin(kx)}$
+    On a :
+    \begin{align*}
+        S + iS' &= \sum_{k=0}^{n}{\binom{n}{k}\left(e^{ix}\right)^k}\\
+        &= (1 + e^{ix})^n\\
+        &= \left( e^{\frac{ix}{2}} \right)^n\left( e^{-\frac{ix}{2}} + e^{\frac{ix}{2}}\right)^n\\
+        &= e^{\frac{inx}{2}}2^n\cos^n\left(\frac{x}{2}\right)
+    \end{align*}
+    Donc $S = \Re\left( 2^n\cos^n\left( \frac{x}{2} \right)e^{\frac{inx}{2}} \right) = 2^n\cos^n\left( \frac{x}{2} \right)\Re\left( e^{\frac{inx}{2}} \right)$.\\
+    Or, on a :
+    \begin{equation*}
+        \Re\left( e^{\frac{inx}{2}} \right) = \Re\left( \cos\left(\frac{nx}{2}\right) + i\sin\left(\frac{nx}{2}\right) \right) = \cos\left( \frac{nx}{2} \right)
+    \end{equation*}
+    En conclusion :
+    \begin{equation*}
+        S = 2^n \cos\left( \frac{x}{2} \right)\cos\left(\frac{nx}{2}\right)
+    \end{equation*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 7.6}
+
 \end{document}
  
