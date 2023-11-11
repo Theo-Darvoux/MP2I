@@ -39,6 +39,11 @@
 \fancyhead[R]{2023-2024}
 \allowdisplaybreaks
 
+\begin{center}
+    Pour $z\in\mathbb{C}$,\\
+    $\Re(z)$ est la partie réelle de $z$.\\
+    $\Im(z)$ est la partie imaginaire $z$.
+\end{center}
 \pagebreak
 
 \section*{Exercice 7.1 [$\blacklozenge\lozenge\lozenge$]}
@@ -195,7 +200,30 @@
         D_n(x) = \sum_{k=-n}^{n}{e^{ikx}} \hspace{1.25cm} \text{et} \hspace{1.25cm} F_n(x) = \frac{1}{n}\sum_{k=0}^{n-1}{D_k(x)}.
     \end{equation*}
     1. Montrer que $D_n(x)=\frac{\sin\left( (n+\frac{1}{2})x \right)}{\sin\frac{x}{2}}$.\\
-    2. Montrer que $F_n(x)=\frac{1}{n}\left( \frac{\sin\left( \frac{nx}{2} \right)}{\sin\frac{x}{2}} \right)^2$.
+    2. Montrer que $F_n(x)=\frac{1}{n}\left( \frac{\sin\left( \frac{nx}{2} \right)}{\sin\frac{x}{2}} \right)^2$.\\
+    1. 
+    \begin{align*}
+        \sum_{k=-n}^{n}{e^{ikx}}&=\sum_{k=-n}^{n}{\left(e^{ix}\right)^k}\\
+        &=e^{-nx}\frac{1-e^{ix(2n+1)}}{1-e^{ix}}\\
+        &=\frac{e^{-inx}-e^{ix(n+1)}}{1-e^{ix}}\\
+        &=\frac{e^{ix/2}(e^{-ix(n+1/2)}-e^{ix(n+1/2)})}{e^{ix/2}(e^{-ix/2}-e^{ix/2})}\\
+        &=\frac{-2i\sin(x(n+\frac{1}{2}))}{-2i\sin(\frac{x}{2})}\\
+        &=\frac{\sin((n+\frac{1}{2})x)}{\sin\frac{x}{2}}\\
+    \end{align*}
+    2.
+    \begin{align*}
+        \frac{1}{n}\sum_{k=0}^{n-1}{D_k(x)} &= \frac{1}{n}\sum_{k=0}^{n-1}{\frac{\sin((k+\frac{1}{2})x)}{\sin\frac{x}{2}}}=\frac{1}{n\sin\frac{x}{2}}\sum_{k=0}^{n-1}{\sin((k+\frac{1}{2})x)}
+    \end{align*}
+    Calculons la somme des $\sin((k+1/2)x)$.
+    \begin{align*}
+        \sum^{n-1}_{k=0}{\sin((k+\frac{1}{2})x)}&=\Im\left( \sum_{k=0}^{n-1}{e^{ix(k+\frac{1}{2})}} \right) = \Im\left( e^{ix\frac{1}{2}}\sum_{k=0}^{n-1}{e^{ixk}} \right) = \Im\left( e^{ix\frac{1}{2}}\frac{1-e^{inx}}{1-e^{ix}} \right)\\
+        &= \Im\left( e^{i\frac{x}{2}}\frac{e^{i\frac{nx}{2}}(\sin(\frac{nx}{2}))}{e^{i\frac{x}{2}}(\sin(\frac{x}{2}))} \right) = \Im\left(e^{i\frac{nx}{2}}\frac{\sin(\frac{nx}{2})}{\sin(\frac{x}{2})}\right)=\frac{\sin^2(\frac{nx}{2})}{\sin(\frac{x}{2})}
+    \end{align*}
+    Donc :
+    \begin{align*}
+        F_n(x)=\frac{1}{n\sin\frac{x}{2}}\cdot\frac{\sin^2(\frac{nx}{2})}{\sin\frac{x}{2}}=\frac{\sin^2\frac{nx}{2}}{n\sin^2\frac{x}{2}}=\frac{1}{n}\left(\frac{\sin\frac{nx}{2}}{\sin\frac{x}{2}}\right)^2
+    \end{align*}
+    \qed
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 7.7}
