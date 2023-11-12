@@ -228,5 +228,43 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 7.7}
 
+\section*{Exercice 7.8 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit un quadrilatère $ABCD$ du plan. On construit les points $E, F, G, H$ à l'extérieur du quadrilatère tels que les triangles $EBA$, $FCB$, $GDC$ et $HAD$ soient des triangles directs, isocèles et rectangles en $E, F, G, H$.\\
+    Démontrer que
+    \begin{equation*}
+        \overrightarrow{EG} \perp \overrightarrow{FH} \hspace{1cm} \text{et} \hspace{1cm} EG = FH.
+    \end{equation*}
+    \begin{center}
+        \includegraphics*[scale=0.17]{./goat.png}
+    \end{center}
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 7.8}
+
+\section*{Exercice 7.9 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Trouver les nombres complexes d'affixe $z\in\mathbb{C}$ tels que $1,z^2$ et $z^4$ sont alignés.\\
+    C'est évident lorsque $z\in\{0,1\}$. Supposons $z\notin\{0,1\}$.\\
+    Soit $r\in\mathbb{R_+^*}$ et $\theta\in\mathbb{R}$ tels que $z=re^{i\theta}$.\\ 
+    On a :
+    \begin{align*}
+        &1, z^2, z^4 \text{ alignés } \\
+        \iff&\frac{z^4-1}{z^2-1} \in \mathbb{R}\\
+        \iff&\frac{(z^2-1)(z^2+1)}{z^2-1}\in\mathbb{R}\\
+        \iff&z^2+1 \in \mathbb{R}\\
+        \iff&z^2 \in \mathbb{R}\\
+        \iff&r^2e^{2i\theta} = r^2e^{-2i\theta}\\
+        \iff&e^{2i\theta} = e^{-2i\theta}\\
+        \iff&e^{4i\theta}=1\\
+        \iff&\theta=\frac{n\pi}{2}, n\in\mathbb{N}\\
+    \end{align*}
+
+    Donc $z\in\mathbb{R}\cup i\mathbb{R}$.\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 7.9}
+
 \end{document}
  
