@@ -82,7 +82,7 @@
     \qed
 \end{tcolorbox}
 
-\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.2}
 
 \section*{Exercice 8.3 [$\blacklozenge\lozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
@@ -104,6 +104,68 @@
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.3}
+
+\section*{Exercice 8.4 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Calculer le nombre $\int_1^2{\frac{\ln x}{\sqrt{x}}dx}$.\\
+    1. À l'aide d'une IPP.\\
+    2. À l'aide du changement de variable $x=t^2$.\\
+    1.
+    \begin{align*}
+        \int_1^2{\ln x\cdot x^{-\frac{1}{2}} dx}&=\left[\ln x \cdot 2\sqrt{x}\right]_1^2 - 2\int_1^2{x^{-\frac{1}{2}}dx}=2\sqrt{2}\ln2-2\left[2\sqrt{x}\right]_1^2=2\sqrt{2}(\ln2-2)+4
+    \end{align*}
+    2.
+    \begin{align*}
+        \int_1^2{\frac{\ln x}{\sqrt{x}}dx}=\int_1^{\sqrt{2}}{\frac{\ln t^2}{t}2tdt}=4\int_1^{\sqrt{2}}{\ln(t)dt}=4\left[t\ln t-t\right]_1^{\sqrt{2}}=4+2\sqrt{2}(\ln2-2)
+    \end{align*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.4}
+
+\section*{Exercice 8.5 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Calculer
+    \begin{align*}
+        \int_0^1{\frac{1}{(t+1)\sqrt{t}}dt} \hspace{1cm} \text{en posant }t=u^2.
+    \end{align*}
+    On a :
+    \begin{align*}
+       \int_0^1{\frac{1}{(t+1)\sqrt{t}}dt} = \int_0^1{\frac{1}{(u^2+1)u}2udu} = 2\int_0^1{\frac{1}{u^2+1}du}=2\left[\arctan(u)\right]_0^1 = \frac{\pi}{2}
+    \end{align*}
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.5}
+
+\section*{Exercice 8.6 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Calculer
+    \begin{align*}
+        \int_0^1{\frac{t^9}{t^5+1}dt} \hspace{1cm} \text{en posant } u=t^5.
+    \end{align*}
+    On a :
+    \begin{align*}
+        \int_0^1{\frac{t^9}{t^5+1}dt}=\int_0^1{\frac{\frac{1}{5}t^5}{t^5+1}5t^4dt}=\frac{1}{5}\int^1_0{\frac{u}{u+1}du}=\frac{1}{5}\int^1_0{1-\frac{1}{u+1}du}=\frac{1}{5}\left(1-\ln2\right)
+    \end{align*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.6}
+
+\section*{Exercice 8.7 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    En posant le changement de variable $u=\tan(x)$, calculer l'intégrale
+    \begin{align*}
+        \int_0^{\frac{\pi}{4}}{\frac{1}{1+\cos^2(x)}dx}&=\int_0^1{\frac{1}{1+\cos^2(\arctan(u))}\cdot\frac{1}{1+u^2}du}\\
+        &=\int_0^1{\frac{1+u^2}{(2+u^2)(1+u^2)}du}\\
+        &=\int_0^1{\frac{1}{2+u^2}du}\\
+        &=\left[\frac{1}{\sqrt{2}}\arctan\left(\frac{u}{\sqrt{2}}\right)\right]_0^1\\
+        &=\frac{1}{\sqrt{2}}\arctan\left(\frac{1}{\sqrt{2}}\right)\\
+    \end{align*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.7}
 
 \end{document}
  
