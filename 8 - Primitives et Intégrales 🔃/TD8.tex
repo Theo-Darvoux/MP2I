@@ -49,11 +49,12 @@
         &e:x\mapsto\frac{\ln x}{x}; \hspace{1cm} f:x\mapsto\frac{1}{x\ln x}; \hspace{1cm} g:x\mapsto\sqrt{3x+1}; \hspace{1cm} h:x\mapsto\frac{x+x^2}{1+x^2}.
     \end{align*}
     \begin{align*}
-        &A:\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto e^{\sin x} + c\end{cases}; \hspace{0.3cm} B:\begin{cases}\mathbb{R}\setminus\{k\pi, k\in\mathbb{Z}\}\rightarrow\mathbb{R}\\x\mapsto\ln(\sin x) + c\end{cases}; \hspace{0.3cm} C:x\mapsto\begin{cases}]2k\pi, (2k+1)\pi[, k\in\mathbb{Z}\rightarrow\mathbb{R}\\x\mapsto2\sqrt{\sin x} + c\end{cases}\\
-        &D:\begin{cases}\mathbb{R}\setminus\{-\frac{1}{3}\}\rightarrow\mathbb{R}\\x\mapsto\frac{1}{3}\ln(3x+1) + c\end{cases}; \hspace{0.4cm} E:\begin{cases}\mathbb{R_+^*}\rightarrow\mathbb{R}\\x\mapsto\frac{1}{2}\ln^2x + c\end{cases}; \hspace{0.4cm} F:\begin{cases}\mathbb{R_+^*}\rightarrow\mathbb{R}\\x\mapsto\ln(\ln x) + c\end{cases};\\
+        &A:\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto e^{\sin x} + c\end{cases}; \hspace{0.5cm} B:\begin{cases}\mathbb{R}\setminus\{k\pi, k\in\mathbb{Z}\}\rightarrow\mathbb{R}\\x\mapsto\ln(\sin x) + c\end{cases}; \hspace{0.5cm}\\
+        &C:\begin{cases}]2k\pi, (2k+1)\pi[, k\in\mathbb{Z}\rightarrow\mathbb{R}\\x\mapsto2\sqrt{\sin x} + c\end{cases}; \hspace{0.5cm} D:\begin{cases}\mathbb{R}\setminus\{-\frac{1}{3}\}\rightarrow\mathbb{R}\\x\mapsto\frac{1}{3}\ln(3x+1) + c\end{cases};\\
+        &E:\begin{cases}\mathbb{R_+^*}\rightarrow\mathbb{R}\\x\mapsto\frac{1}{2}\ln^2x + c\end{cases}; \hspace{0.5cm} F:\begin{cases}\mathbb{R_+^*}\rightarrow\mathbb{R}\\x\mapsto\ln(\ln x) + c\end{cases};\\
         &G:\begin{cases}[-\frac{1}{3}, +\infty]\rightarrow\mathbb{R}\\x\mapsto\frac{2}{9}(3x+1)^{\frac{3}{2}} + c\end{cases}; \hspace{0.5cm}H:\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto\frac{1}{2}\ln(1+x^2) + x - \arctan(x) + c\end{cases}.
     \end{align*}
-    Avec $c$ les constantes d'intégration.
+    Avec $c$ les constantes d'intégration.\\
     \qed
 \end{tcolorbox}
 
@@ -70,16 +71,39 @@
     \begin{equation*}
         \int_1^3{7dx}; \hspace{1cm} \int_0^7{3xdx}; \hspace{1cm} \int_{-2}^1{|x|dx}.
     \end{equation*}
-    1. La première est positive car $-2<3$ et la fonction est positive sur $[-2,3]$e.\\
+    1.\\
+    La première est positive car $-2<3$ et la fonction est positive sur $[-2,3]$e.\\
     La seconde est négative car $5>-3$ et la fonction est positive sur $[-3,5]$.\\
     La dernière est positive lorsque $a\geq1$ et négative lorsque $a\leq1$ car $\ln^7$ est positive sur $[1,+\infty[$.\\
-    2. La première vaut $2\times7=14$.\\
+    2.\\
+    La première vaut $2\times7=14$.\\
     La seconde vaut $\frac{7^2\times3}{2}=\frac{147}{2}$.\\
     La dernière vaut $\frac{1}{2}+\frac{2\times2}{2}=2.5$\\
     \qed
 \end{tcolorbox}
 
-\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.2}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.}
+
+\section*{Exercice 8.3 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Calculer les intégrales ci-dessous :
+    \begin{align*}
+        &I_1 = \int_0^1{x\sqrt{x}dx}, \hspace{0.5cm} I_2 = \int_{-1}^1{2^xdx}, \hspace{0.5cm} I_3=\int_1^e{\frac{\ln^3(t)}{t}dt}, \hspace{0.5cm} I_4=\int_0^1{\frac{x}{2x^2+3}dx},\\
+        &I_5=\int_0^1{\frac{1}{2x^2+3}dx}, \hspace{0.5cm} I_6=\int_0^{\frac{\pi}{2}}{\cos^2xdx}, \hspace{0.5cm} I_7=\int_0^\pi{|\cos x|dx}, \hspace{0.5cm} I_8 = \int_0^{\frac{\pi}{2}}{\cos^3xdx}\\
+        &I_9=\int_0^{\frac{\pi}{4}}{\tan^3xdx}.
+    \end{align*}
+    \begin{align*}
+        &I_1 = \left[\frac{2}{5}x^{\frac{5}{2}}\right]_0^1=\frac{2}{5}, \hspace{0.5cm} I_2=\left[\frac{1}{\ln2}e^{x\ln2}\right]_{-1}^1=\frac{3}{\ln4}, \hspace{0.5cm} I_3=\left[\frac{\ln^4t}{4}\right]_1^e=\frac{1}{4},\\
+        &I_4=\left[\frac{1}{4}\ln(2x^2+3)\right]_0^1=\frac{1}{4}\left(\ln\left(\frac{5}{3}\right)\right), \hspace{0.5cm} I_5 = \left[\frac{1}{\sqrt{6}}\arctan\left(\sqrt{\frac{2}{3}}x\right)\right]_0^1=\frac{1}{\sqrt{6}}\arctan\left(\sqrt{\frac{2}{3}}\right),\\
+        &I_6=\frac{1}{2}\int_0^{\frac{\pi}{2}}{\cos2xdx}+\frac{\pi}{4}=\frac{1}{2}\left[-2\sin(2x)\right]_0^\frac{\pi}{2}+\frac{\pi}{4}=\frac{\pi}{4}, I_7=\left[2\sin x\right]_0^\pi=2,\\
+        &I_8=\int_0^{\frac{\pi}{2}}{\cos x-\cos x\sin^2(x)dx}=\left[\sin x\right]_0^{\frac{\pi}{2}}-\left[\frac{1}{3}\sin^3x\right]_0^\frac{\pi}{2}=\frac{2}{3},\\
+        &I_9=\int_0^\frac{\pi}{4}{\tan^3x+\tan x-\tan xdx}=\int_0^\frac{\pi}{4}{\tan x(\tan^2 x + 1)dx} - \frac{\ln2}{2}=\left[\frac{1}{2}\tan^2(x)\right]_0^\frac{\pi}{4}-\frac{\ln2}{2}\\
+        &=\frac{1-\ln2}{2} 
+    \end{align*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.3}
 
 \end{document}
  
