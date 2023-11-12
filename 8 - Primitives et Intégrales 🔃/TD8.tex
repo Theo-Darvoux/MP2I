@@ -20,6 +20,10 @@
     linkcolor=blue
 }
 
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\tah}{th}
+
 \pagestyle{fancy}
 \cfoot{\thepage\ sur \pageref*{LastPage}}
 
@@ -167,5 +171,82 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.7}
 
+\section*{Exercice 8.8 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    On pose
+    \begin{equation*}
+        C=\int_0^{\frac{\pi}{2}}{\frac{\cos x}{\sin x + \cos x}dx} \hspace{0.5cm} \text{et} \hspace{0.5cm} S=\int_0^{\frac{\pi}{2}}{\frac{\sin x}{\sin x + \cos x}dx}
+    \end{equation*}
+    1. À l'aide du changement de variable $u=\frac{\pi}{2}-x$, prouver que $C=S$.\\
+    2. Calculer $C + S$, en déduire la valeur commune de ces deux intégrales.
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.8 (W.I.P)}
+
+\section*{Exercice 8.9 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    On considère les deux intégrales suivantes
+    \begin{equation*}
+        I=\int_0^{\frac{\pi}{2}}{\frac{\cos(t)}{\sqrt{1+\sin(2t)}}dt} \hspace{1cm} J=\int_0^{\frac{\pi}{2}}{\frac{\sin(t)}{\sqrt{1+\sin(2t)}}dt}
+    \end{equation*}
+    1. À l'aide du changement de variable $u=\frac{\pi}{4}-t$ calculer $I+J$.\\
+    2. À l'aide du changement de variable $u=\frac{\pi}{2}-t$ montrer que $I=J$.\\
+    3. En déduire $I$ et $J$.\\[0.1cm]
+    1. On a :
+    \begin{align*}
+        I + J &= \int_0^{\frac{\pi}{2}}{\frac{\cos(t) + \sin(t)}{\sqrt{1+\sin(2t)}}dt}=\int_{-\frac{\pi}{4}}^{\frac{\pi}{4}}{\frac{\cos(\frac{\pi}{4}-u)+\sin(\frac{\pi}{4}-u)}{\sqrt{1+\cos(2u)}}du}\\
+        &=\int_{-\frac{\pi}{4}}^{\frac{\pi}{4}}{\frac{\sqrt{2}\cos(u)}{\sqrt{2\cos^2(u)}}du}=\int_{-\frac{\pi}{4}}^{\frac{\pi}{4}}{\frac{\sqrt{2}\cos(u)}{\sqrt{2}|\cos(u)|}du}=\frac{\pi}{2}.
+    \end{align*}
+    2. On a :
+    \begin{align*}
+        I &= \int_0^{\frac{\pi}{2}}{\frac{\cos(t)}{\sqrt{1+\sin(2t)}}dt}=\int_0^{\frac{\pi}{2}}{\frac{\sin(u)}{\sqrt{1+\sin(\pi-u)}}du}=\int_0^{\frac{\pi}{2}}{\frac{\sin(u)}{\sqrt{1+\sin(u)}}du}=J
+    \end{align*}
+    3. On a $2I = 2J = I+J = \frac{\pi}{2}$. Donc $I = J = \frac{\pi}{4}$.\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.9}
+
+\section*{Exercice 8.10 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Que vaut
+    \begin{equation*}
+        \int_{-666}^{666}{\ln\left(\frac{1+e^{\arctan(x)}}{1+e^{-\arctan(x)}}\right)dx} \text{ ?}
+    \end{equation*}
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.10 (W.I.P)}
+
+\section*{Exercice 8.11 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Le but de cet exercice est de calculer les intégrales
+    \begin{equation*}
+        I = \int_0^1{\sqrt{1+x^2}dx} \hspace{1cm} \text{et} \hspace{1cm} J=\int_0^1{\frac{1}{\sqrt{1+x^2}}dx}.
+    \end{equation*}
+    1. Justifier que l'équation $\sh(x)=1$ possède une unique solution réelle que l'on notera dans la suite $\alpha$.\\
+    Exprimer $\alpha$ à l'aide de la fonction $\ln$.\\
+    2. Calculer $J$ en posant $x=\sh(t)$. On exprimera le résultat en fonction de $\alpha$.\\
+    3. À l'aide d'une intégration par parties, obtenir une équation reliant $I$ et $J$.\\
+    4. En déduire une expression de $I$ en fonction de $\alpha$.
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.11 (W.I.P)}
+
+\section*{Exercice 8.12 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Calculer $\int_0^1{\arctan(x^{1/3})dx}$ en posant d'abord $x=t^3$.\\
+    On a :
+    \begin{align*}
+        \int_0^1{\arctan(x^{\frac{1}{3}})dx}&=\int_0^1{\arctan(t)\cdot3t^2dt}\\
+        &=\left[\arctan(t)\cdot t^3\right]_0^1 - \int_0^1{\frac{t^3}{1+t^2} dt}\\
+        &=\frac{\pi}{4} - \int_0^1{tdt}+\int_0^1{\frac{t}{1+t^2}dt}\\
+        &=\frac{\pi}{4} - \frac{1}{2} + \left[\frac{1}{2}\ln(1+t^2)\right]_0^1\\
+        &=\frac{\pi}{4} - \frac{1}{2} + \frac{1}{2}\ln(2)\\
+        &=\frac{1}{4}\left(\pi - 2 + \ln(4)\right)
+    \end{align*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.12}
 \end{document}
  
