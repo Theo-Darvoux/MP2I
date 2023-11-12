@@ -251,7 +251,15 @@
 
 \section*{Exercice 8.13 [$\blacklozenge\blacklozenge\blacklozenge$]}
 \begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
-    Calculer l'intégrale $I = \int_0^{\frac{\pi}{4}}{\ln(1+\tan x)dx}$ en posant $x=\frac{\pi}{4}-u$.
+    Calculer l'intégrale $I = \int_0^{\frac{\pi}{4}}{\ln(1+\tan x)dx}$ en posant $x=\frac{\pi}{4}-u$.\\
+    On a :
+    \begin{align*}
+        I &= \int_0^{\frac{\pi}{4}}{\ln(1+\tan x)dx} = \int_{0}^{\frac{\pi}{4}}{\ln\left(1+\tan\left(\frac{\pi}{4}-u\right)\right)du}\\
+        &=\int^{\frac{\pi}{4}}_0{\ln\left(1+\frac{1-\tan u}{1+\tan u}\right)du}=\int_0^{\frac{\pi}{4}}{\ln\left(\frac{2}{1+\tan u}\right)du}\\
+        &=\int_0^{\frac{\pi}{4}}{\ln2du}-\int_0^{\frac{\pi}{4}}{\ln(1+\tan u)du} = \frac{\pi}{4}\ln2 - I
+    \end{align*}
+    On en déduit que $2I = \frac{\pi}{4}\ln2$. Ainsi, $I=\frac{\pi}{8}\ln2$\\
+    \qed
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.13}
