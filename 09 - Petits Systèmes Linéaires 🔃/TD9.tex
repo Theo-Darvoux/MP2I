@@ -1,0 +1,94 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[skins]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{tkz-tab}
+\usepackage{systeme}
+
+\def\pagetitle{Petits Systèmes Linéaires}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+\date{Novembre 2023}
+\author{DARVOUX Théo}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+
+\begin{document}
+\renewcommand*\contentsname{Exercices.}
+\renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\maketitle
+
+\hrule
+\tableofcontents
+\vspace{0.5cm}
+\hrule
+
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+\allowdisplaybreaks
+
+\pagebreak
+
+\section*{Exercice 9.1 [$\blacklozenge\lozenge\lozenge$] [Un système de Cramer bête et méchant]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre le système suivant dans $\mathbb{R}^3$.
+    \begin{equation*}
+        \systeme{
+            3x + y- 2z = 10,
+            2x - y+ z = 3,
+            x - y +2z = 2
+        }
+    \end{equation*}
+    Soit $(x,y,z)\in\mathbb{R}^3$.
+    \begin{align*}
+        &(x,y,z) \text{ est solution } \\
+        \iff&
+        \systeme{
+            3x + y -2z = 10,
+            2x - y + z = 3,
+            x - y + 2z = 2
+        }\\ \iff&
+        \systeme{
+            x - y + 2z = 2,
+            2x - y + z = 3,
+            3x + y - 2z = 10
+        }\\ \iff&
+        \systeme{
+            x-y+2z=2,
+            y-3z=-1,
+            4y-8z=4
+        }\\ \iff&
+        \systeme{
+            x-y+2z=2,
+            y-3z=-1,
+            4z=8
+        }\\ \iff&
+        \begin{cases}
+            x=3\\
+            y=5\\
+            z=2
+        \end{cases}
+    \end{align*}
+    L'unique solution de système dans $\mathbb{R}^3$ est donc $(3,5,2)$.\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 9.1}
+
+\end{document}
+ 

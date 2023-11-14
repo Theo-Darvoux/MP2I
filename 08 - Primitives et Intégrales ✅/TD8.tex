@@ -33,7 +33,7 @@
 \renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \maketitle
 \begin{center}
-    \large{MRC AMINE POUR L'EXO 8.8}
+    \large{\color{red}\textbf{MRC AMINE POUR LES EXOS 8.8, 8.10, 8.11 ET 8.14}}
 \end{center}
 
 \hrule
@@ -185,7 +185,7 @@
     \end{equation*}
     1. À l'aide du changement de variable $u=\frac{\pi}{2}-x$, prouver que $C=S$.\\
     2. Calculer $C + S$, en déduire la valeur commune de ces deux intégrales.\\[0.5cm]
-    1. En posant le changement de variable $u = \frac{\pi}{2} - x$, on a : \\
+    1. En posant le changement de variable $u = \frac{\pi}{2} - x$, on a :
     \begin{align*}
     S &= \int_{\frac{\pi}{2}}^{0} \frac{\sin\left(\frac{\pi}{2} - x\right)}{\sin\left(\frac{\pi}{2} - x\right) + \cos\left(\frac{\pi}{2} - x\right)} (-du) \\
     &= \int_{0}^{\frac{\pi}{2}} \frac{\cos(u)}{\cos(u) + \sin(u)} \, du\\
@@ -193,7 +193,7 @@
     Ainsi, $C = S$.\\[0.25cm]
     2. On a :
     \begin{align*}
-        C + S &= \int_{0}^{\frac{\pi}{2}} \frac{\cos(x)}{\sin(x) + \cos(x)} + \int_{0}^{\frac{\pi}{2}} \frac{\sin(x)}{\cos(x) + \sin(x)} \, dx\\
+        C + S &= \int_{0}^{\frac{\pi}{2}} \frac{\cos(x)}{\sin(x) + \cos(x)}dx + \int_{0}^{\frac{\pi}{2}} \frac{\sin(x)}{\cos(x) + \sin(x)} \, dx\\
         &= \int_{0}^{\frac{\pi}{2}} \frac{\cos(x) + \sin(x)}{\cos(x) + \sin(x)} \,dx\\
         &= \int_{0}^{\frac{\pi}{2}} 1 \, dx = \frac{\pi}{2}
     \end{align*}
@@ -436,7 +436,7 @@
         I_n &= \frac{2n}{2n+3}I_{n-1} = \frac{2n}{2n+3}\cdot\frac{2(n-1)}{2n+1}\cdot...\cdot I_1\\
         &= \frac{2^{n+1}n!}{\prod\limits_{k=0}^{n}{2k+3}}
     \end{align*}
-    On peut donc faire une preuve belle, rigoureuse, et $\mathbf{triviale}$ par récurrence mais j'ai la flemme.\\
+    On peut donc faire une preuve belle, rigoureuse, et \textbf{triviale} par récurrence mais j'ai la flemme.\\
     \qed
 \end{tcolorbox}
 
