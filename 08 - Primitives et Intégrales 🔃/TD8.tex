@@ -370,6 +370,46 @@
     \end{align*}
     On en déduit que $2I_n=e^2-nI_{n-1}$.\\
     Ainsi, $J_n = 2I_n + nI_{n-1} = e^2$\\
+    3. Soit $n\in\mathbb{N}$. On a : 
+    \begin{align*}
+        I_{n+1} - I_{n} = \int_1^e{x\ln^{n+1}x\,dx} - \int_1^e{x\ln^{n}x\,dx} = \int_1^e{x\ln^nx(\ln x-1)\,dx}
+    \end{align*}
+    Or, pour $x\in\left[1,e\right]$, $\ln x \in [0,1]$ donc $\ln x - 1 \leq 0$. Ainsi, $x\ln^nx(\ln x-1) \leq 0$.\\
+    On en déduit que $I_{n+1}-I_n\leq0$ et donc que $(I_n)$ est décroissante.\\
+    Montrons que $I_n \leq \frac{e^2}{n+2}$ :
+    \begin{align*}
+        &I_n \leq I_{n-1}\\
+        \iff&nI_n \leq nI_{n-1}\\
+        \iff&(n+2)I_n \leq 2I_n + nI_{n-1}\\
+        \iff&I_n \leq \frac{e^2}{n+2}
+    \end{align*}
+    Montrons que $\frac{e^2}{n+3} \leq I_n$ :
+    \begin{align*}
+        &I_{n+1} \leq I_n\\
+        \iff&(n+1)I_{n+1} \leq (n+1)I_n\\
+        \iff&(n+3)I_{n+1} \leq 2I_{n+1} + (n+1)I_n\\
+        \iff&I_{n+1} \leq \frac{e^2}{n+3} \iff \frac{e^2}{n+3} \leq I_{n+1} \leq I_n
+    \end{align*}
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    4. On a :
+    \begin{equation*}
+        \lim\limits_{n\to+\infty}{\frac{e^2}{n+3}}=0 \hspace{1cm} \text{et} \hspace{1cm} \lim\limits_{n\to+\infty}{\frac{e^2}{n+2}}=0
+    \end{equation*} 
+    Ainsi, d'après le Sandwich Theorem, on a :
+    \begin{equation*}
+        \lim\limits_{n\to+\infty}{I_n}=0
+    \end{equation*}
+    On a: 
+    \begin{equation*}
+        \lim\limits_{n\to+\infty}{\frac{ne^2}{n+3}}=e^2 \hspace{1cm} \text{et} \hspace{1cm} \lim\limits_{n\to+\infty}{\frac{ne^2}{n+2}}=e^2
+    \end{equation*} 
+    Ainsi, d'après le Théorème de l'Étau, on a :
+    \begin{equation*}
+        \lim\limits_{n\to+\infty}{I_n}=e^2
+    \end{equation*}
+    \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.16}
 \end{document}
