@@ -412,5 +412,34 @@
     \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.16}
+
+\section*{Exercice 8.17 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Calculer, pour tout entier naturel $n$, le nombre $I_n=\int_0^1{x^n\sqrt{1-x}dx}$.\\
+    On a :
+    \begin{align*}
+        I_n &= \int_0^1x^n\sqrt{1-x}dx=\left[-\frac{2}{3}x^n(1-x)^{3/2}\right]_0^1-\int_0^1{-\frac{2}{3}nx^{n-1}(1-x)^{3/2}dx}\\
+        &=\frac{2n}{3}\int_0^1{x^{n-1}(1-x)\sqrt{1-x}dx}\\
+        &=\frac{2n}{3}\int_0^1{x^{n-1}\sqrt{1-x} - x^n\sqrt{1-x}dx} = \frac{2n}{3}(I_{n-1} - I_n)
+    \end{align*}
+    On obtient que
+    \begin{equation*}
+        I_n = \frac{2n}{2n+3}I_{n-1}.
+    \end{equation*}
+    Calculons $I_0$ et $I_1$:
+    \begin{align*}
+        &I_0 = \int_0^1{\sqrt{1-x}dx} = \left[-\frac{2}{3}(1-x)^{3/2}\right]_0^1 = \frac{2}{3}.\\
+        &I_1 = \frac{2}{5}I_0 = \frac{2}{5}\cdot\frac{2}{3}
+    \end{align*}
+    On a alors :
+    \begin{align*}
+        I_n &= \frac{2n}{2n+3}I_{n-1} = \frac{2n}{2n+3}\cdot\frac{2(n-1)}{2n+1}\cdot...\cdot I_1\\
+        &= \frac{2^{n+1}n!}{\prod\limits_{k=0}^{n}{2k+3}}
+    \end{align*}
+    On peut donc faire une preuve belle, rigoureuse, et $\mathbf{triviale}$ par récurrence mais j'ai la flemme.\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.17}
 \end{document}
  
