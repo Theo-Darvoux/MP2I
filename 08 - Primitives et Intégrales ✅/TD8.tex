@@ -248,9 +248,37 @@
     2. Calculer $J$ en posant $x=\sh(t)$. On exprimera le résultat en fonction de $\alpha$.\\
     3. À l'aide d'une intégration par parties, obtenir une équation reliant $I$ et $J$.\\
     4. En déduire une expression de $I$ en fonction de $\alpha$.
+    \\
+    1. On a :
+    \begin{equation*}
+        \sh(\alpha) = 1 \iff \left( \frac{e^\alpha - e^{-\alpha}}{2} \right) = 1 \iff e^\alpha - 2e^{-\alpha} = 0 \iff e^{2\alpha} - 2e^\alpha - 1 = 0
+    \end{equation*}
+    Changement de variable : $X = e^\alpha$
+    \begin{align*}
+        &X^2 - 2X - 1 = 0 \\
+        &\Delta = (-2)^2 - 4 \cdot (-1) = 8 \\
+        &\Delta > 0 \text{, donc il y a 2 racines} \\
+        &X_1 = \frac{4 + 2\sqrt{2}}{2} = 2 + \sqrt{2}, \quad X_2 = \frac{4 - 2\sqrt{2}}{2} = 2-\sqrt{2} \\
+        &\alpha = \ln(2 + \sqrt{2}) \quad \text{(Impossible, car } \ln(2 - \sqrt{2}) < 0) \\
+    \end{align*}
+    Ainsi, $\alpha=\ln(2+\sqrt{2})$\\
+    2. On a :
+    \begin{equation*}
+        J = \int_0^1 \frac{1}{\sqrt{1+x^2}} \, dx = \int_0^\alpha \frac{1}{\sqrt{1+\text{sh}^2(t)}} \cdot \text{ch}(t) \, dt = \int_0^\alpha \frac{\text{ch}(t)}{\sqrt{\text{ch}^2(t)}} \, dt = \int_0^\alpha 1 \, dt = \alpha
+    \end{equation*}
+    3. On a :
+    \begin{align*}
+        I &= \int_0^1{\sqrt{1+x^2}dx}=\left[x\sqrt{1+x^2}\right]_0^1 - \int_0^1{\frac{x^2}{\sqrt{1+x^2}}dx}\\
+        &= \sqrt{2} - \int_0^1{\frac{1+x^2}{\sqrt{1+x^2}}-\frac{1}{\sqrt{1+x^2}}dx}\\
+        &=\sqrt{2} - \int_0^1{\sqrt{1+x^2}dx} + \int_0^1{\frac{1}{\sqrt{1+x^2}}dx}\\
+        &=\sqrt{2} - I + J
+    \end{align*}
+    Ainsi, $I = \frac{1}{2}\left(\sqrt{2} + J\right)$.\\
+    4. Il vient immédiatement que $I=\frac{1}{2}\left(\sqrt{2}+\alpha\right)$\\
+    \qed
 \end{tcolorbox}
 
-\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.11 (W.I.P)}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.11}
 
 \section*{Exercice 8.12 [$\blacklozenge\blacklozenge\blacklozenge$]}
 \begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
