@@ -233,9 +233,19 @@
     \begin{equation*}
         \int_{-666}^{666}{\ln\left(\frac{1+e^{\arctan(x)}}{1+e^{-\arctan(x)}}\right)dx} \text{ ?}
     \end{equation*}
+    Soit $x\in[-666,666]$.\\
+    Par imparité de $\arctan$, on a :
+    \begin{align*}
+        \ln\left(\frac{1+e^{\arctan(-x)}}{1+e^{-\arctan(-x)}}\right)=\ln\left(\frac{1+e^{-\arctan(x)}}{1+e^{\arctan(x)}}\right)=-\ln\left(\frac{1+e^{\arctan(x)}}{1+e^{-\arctan(x)}}\right)
+    \end{align*}
+    Ainsi, $\ln\left(\frac{1+e^{\arctan(x)}}{1+e^{-\arctan(x)}}\right)$ est impaire. Donc 
+    \begin{equation*}
+        \int_{-666}^{666}{\ln\left(\frac{1+e^{\arctan(x)}}{1+e^{-\arctan(x)}}\right)dx}=0.
+    \end{equation*}
+    \qed
 \end{tcolorbox}
 
-\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.10 (W.I.P)}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.10}
 
 \section*{Exercice 8.11 [$\blacklozenge\blacklozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
@@ -326,9 +336,13 @@
     \begin{equation*}
         W_{2n}=\frac{(2n)!}{2^{2n}(n!)^2}\cdot\frac{\pi}{2} \hspace{0.5cm} \text{ et } \hspace{0.5cm} W_{2n+1}=\frac{2^{2n}(n!)^2}{(2n+1)!}.
     \end{equation*}
+    \begin{center}
+        \large{\textbf{Allez voir le DM7}}
+    \end{center}
+    \qed
 \end{tcolorbox}
 
-\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.14 (W.I.P)}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 8.14}
 
 \section*{Exercice 8.15 [$\blacklozenge\blacklozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
