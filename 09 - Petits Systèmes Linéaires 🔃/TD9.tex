@@ -30,6 +30,7 @@
 \renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \maketitle
 \begin{center}
+    \large{MRC Ibrahim pour le 9.4}\\
     \large{C'est pas possible d'écrire les $L_1 \leftrightarrow L_3$ sous les $\iff$ (de manière esthétique) en \LaTeX, sadface}
 \end{center}
 \hrule
@@ -195,5 +196,79 @@
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 9.3}
+
+\section*{Exercice 9.4 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $\lambda$ un paramètre réel et le système :
+    \begin{align*}
+        \begin{cases}
+            (2-\lambda)x + y + z = 0\\
+            x + (2-\lambda)y + z = 0\\
+            x + y + (2-\lambda)z = 0
+        \end{cases}
+    \end{align*}
+    Le résoudre, en discutant selon les valeurs de $\lambda$.\\
+    Soit $(x,y,z)\in\mathbb{R}^3$.
+    \begin{align*}
+        &(x,y,z) \text{ est solution}\\
+        &\iff \begin{cases}
+            x + y + (2-\lambda)z = 0\\
+            x + (2-\lambda)y + z = 0\\
+            (2 - \lambda)x + y + z = 0
+        \end{cases}\\
+        &\iff \begin{cases}
+            x+y+(2-\lambda)z =0\\
+            (1-\lambda)y + (\lambda-1)z=0\\
+            (\lambda-1)y + (1-(2-\lambda)^2)z=0
+        \end{cases}\\
+        &\iff \begin{cases}
+            x + y + (2-\lambda)z = 0\\
+            (1-\lambda)y + (\lambda-1)z = 0\\
+            (-\lambda^2 + 5\lambda - 4)z = 0
+        \end{cases}
+    \end{align*}
+    Les racines du polynôme $-\lambda^2+5\lambda-4$ sont $1$ et $4$.\\
+    $\circledcirc$ Premier cas : $\lambda\notin\{1,4\}$.
+    \begin{equation*}
+        (x,y,z) \text{ est solution}
+        \iff\begin{cases}
+            x=0\\
+            y=0\\
+            z=0
+        \end{cases}
+    \end{equation*}
+    L'unique solution est le couple $(0,0,0)$.\\
+    $\circledcirc$ Deuxième cas : $\lambda=1$.
+    \begin{equation*}
+        (x,y,z) \text{ est solution}
+        \iff\begin{cases}
+            x+y+z=0
+        \end{cases}
+    \end{equation*}
+    L'ensemble $S$ des solutions est le plan vectoriel: 
+    \begin{equation*}
+        S=\{(-y-z,y,z)\,|\, (y,z)\in\mathbb{R}^2\}=\{y(-1,1,0) + z(-1,0,1)\,|\,(y,z)\in\mathbb{R}^2\}
+    \end{equation*}
+    $\circledcirc$ Dernier cas : $\lambda=4$
+    \begin{equation*}
+        (x,y,z) \text{ est solution} \iff \begin{cases}
+            x+z-2z=0\\
+            -3y+3z=0\\
+            0=0
+        \end{cases}
+        \iff\begin{cases}
+            x=z\\
+            y=z\\
+            0=0
+        \end{cases}
+    \end{equation*}
+    L'ensemble S des solutions est la droite passant par l'origine:
+    \begin{equation*}
+        S = \{(z,z,z)\,|\,z\in\mathbb{R}\} = \{(0,0,0) + z(1,1,1)\ \,|\, z\in\mathbb{R}\}
+    \end{equation*} 
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 9.4}
 \end{document}
  
