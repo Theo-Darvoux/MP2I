@@ -1,0 +1,86 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[skins]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+
+\def\pagetitle{Équations Algébriques}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+\date{Novembre 2023}
+\author{DARVOUX Théo}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+
+\begin{document}
+\renewcommand*\contentsname{Exercices.}
+\renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\maketitle
+\begin{center}
+    \LARGE{Crédits : Etienne pour les exercices 9.25 et 9.26}\\
+\end{center}
+\hrule
+\tableofcontents
+\vspace{0.5cm}
+\hrule
+
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+\allowdisplaybreaks
+
+\pagebreak
+
+\section*{Exercice 10.17 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    1. Calculer les racines carrées du nombre $-8i$.\\
+    On donnera ces nombres sous forme algébrique et sous forme trigonométrique.\\
+    2. Résoudre dans $\mathbb{C}$ l'équation
+    \begin{equation*}
+        z^2 - 4z + 4 + 2i = 0
+    \end{equation*}
+    Notons $\delta$ une racine de $-8i$ :
+    \begin{equation*}
+        \delta = \sqrt{8}e^{-i\frac{\pi}{4}}= 2\sqrt{2}\left(\cos\left( -\frac{\pi}{4} \right) + i\sin\left( -\frac{\pi}{4} \right)\right) = 2\sqrt{2}\left(\frac{\sqrt{2}}{2}-\frac{\sqrt{2}}{2}i\right)=2-2i
+    \end{equation*}
+    2. Le discriminant $\Delta$ vaut $-8i$. Ses racines carrées sont donc $2 - 2i$ et $-2+2i$.\\
+    L'ensemble des solutions de l'équation est donc : $\left\{3-i, 1 + i\right\}$.\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 10.17}
+
+\section*{Exercice 10.18 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $n\in\mathbb{N}$n $n\geq2$. Calcul de
+    \begin{equation*}
+        \sum_{z\in\mathbb{U}_n}{z} \hspace{0.5cm} \text{et} \hspace{0.5cm} \prod_{z\in\mathbb{U}_n}z
+    \end{equation*}
+    On a :
+    \begin{align*}
+        \sum_{z\in\mathbb{U}_n}{z}&=\sum_{k=0}^{n-1}{e^{i\frac{2k\pi}{n}}}=\frac{1-e^{i2\pi}}{1-e^{i\frac{2\pi}{n}}}=0
+    \end{align*}
+    Et :
+    \begin{align*}
+        \prod_{z\in\mathbb{U}_n}{z}&=\prod_{k=0}^{n-1}{e^{i\frac{2k\pi}{n}}}=\exp\left( \sum_{k=0}^{n-1}{i\frac{2k\pi}{n}} \right) = \exp\left( i\frac{2\pi}{n}\sum_{k=0}^{n-1}{k} \right)=e^{i\pi(n-1)}=(-1)^{n-1}
+    \end{align*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 10.18}
+
+\end{document}
+ 
