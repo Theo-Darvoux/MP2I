@@ -82,5 +82,22 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 10.18}
 
+\section*{Exercice 10.19 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Donner une expression du périmètre du polygone régulier formé par les nombres de $\mathbb{U}_n$.\\
+    Que conjecture-t-on sur la limite lorsque $n\to+\infty$ ? Essayer de prouver votre conjecture.\\[0.2cm]
+    Soit $n\in\mathbb{N}$. Le périmètre du polygone régulier formé par les nombres de $\mathbb{U}_n$ est :
+    \begin{equation*}
+        \sum_{k=0}^{n-1}{|e^{i\frac{2k\pi}{n}} - e^{i\frac{2(k+1)\pi}{n}}|}=\sum_{k=0}^{n-1}{|e^{\frac{(2k+1)\pi}{n}}||e^{-\frac{\pi}{n}} - e^{\frac{\pi}{n}}|}=2n\sin\left( \frac{\pi}{n} \right)
+    \end{equation*}
+    Et, puisque $\lim_{x\to0}{\frac{\sin(x)}{x}}=1$, alors :
+    \begin{equation*}
+        \lim_{n\to+\infty}{2n\sin\left(\frac{\pi}{n}\right)}=\lim_{n\to+\infty}2\pi\frac{\sin\frac{\pi}{n}}{\frac{\pi}{n}}=2\pi
+    \end{equation*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 10.19}
+
 \end{document}
  
