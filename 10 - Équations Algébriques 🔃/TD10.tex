@@ -65,7 +65,7 @@
 
 \section*{Exercice 10.18 [$\blacklozenge\lozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
-    Soit $n\in\mathbb{N}$n $n\geq2$. Calcul de
+    Soit $n\in\mathbb{N}$, $n\geq2$. Calcul de
     \begin{equation*}
         \sum_{z\in\mathbb{U}_n}{z} \hspace{0.5cm} \text{et} \hspace{0.5cm} \prod_{z\in\mathbb{U}_n}z
     \end{equation*}
@@ -98,6 +98,40 @@
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 10.19}
+
+\section*{Exercice 10.20 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $\omega\in\mathbb{U}_7$, une racine 7e de l'unité différente de 1.\\
+    1. Justifier que $1+\omega+\omega^2+\omega^3+\omega^4+\omega^5+\omega^6=0$.\\
+    2. Calculer le nombre $\frac{\omega}{1+\omega^2} + \frac{\omega^2}{1+\omega^4} + \frac{\omega^3}{1+\omega^6}$.\\[0.2cm]
+    1. On a déjà montré que $\forall{n\in\mathbb{N}},n>2,\sum\limits_{z\in\mathbb{U}_n}z=0$ dans le 10.18.\\
+    2. On a :
+    \begin{align*}
+        \frac{\omega}{1+\omega^2} + \frac{\omega^2}{1+\omega^4} + \frac{\omega^3}{1+\omega^6} &=
+        \frac{2+2\omega+2\omega^2+2\omega^3+2\omega^4+2\omega^5}{\omega^6}=-\frac{2\omega^6}{\omega^6}=-2
+    \end{align*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 10.20}
+
+\section*{Exercice 10.21 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    1. Quand dit-on qu'un nombre réel $\theta$ est un argument d'un nombre complexe $z$ ?\\
+    2. Soit $k\in\llbracket0,n-1\rrbracket$. Donner le module et un argument de $e^{\frac{2ik\pi}{n}}-1$.\\
+    3. Établir l'égalité
+    \begin{equation*}
+        \sum_{z\in\mathbb{U}_n}{|z-1|}=\frac{2}{\tan\left( \frac{\pi}{2n} \right)}.
+    \end{equation*}
+    1. $\theta$ est un argument de $z\neq0$ ssi $z=|z|e^{i\theta}$.\\
+    2. On a :
+    \begin{align*}
+        e^{\frac{2ik\pi}{n}}-1=2i\sin\left( \frac{k\pi}{n} \right)e^{\frac{ik\pi}{n}}=2\sin\left( \frac{k\pi}{n} \right)e^{i\frac{\pi(2k+n)}{2n}}
+    \end{align*}
+    Ainsi son module est $2\sin\left( \frac{k\pi}{n} \right)$ et l'un de ses arguments est $\frac{\pi(2k+n)}{2n}$.
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 10.21}
 
 \end{document}
  
