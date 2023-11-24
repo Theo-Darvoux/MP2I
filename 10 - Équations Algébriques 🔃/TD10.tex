@@ -145,5 +145,26 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 10.21}
 
+\section*{Exercice 10.22 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $\theta$ un nombre réel appartenant à $]0,\pi[$. Résoudre l'équation
+    \begin{equation*}
+        z^2 - 2e^{i\theta}z + 2ie^{i\theta}\sin\theta=0.
+    \end{equation*}
+    On écrira les solutions sous forme algébrique \underbar{et} sous forme trigonométrique.
+    \begin{align*}
+        \Delta&=4e^{2i\theta}-8ie^{i\theta}\sin\theta = 4e^{i\theta}\left(\cos\theta + i\sin\theta - 2i\sin\theta \right) \\
+        &= 4e^{i\theta}(\cos\theta-i\sin\theta) = 4e^{i\theta}e^{-i\theta}\\
+        &=4
+    \end{align*}
+    On a alors :
+    \begin{align*}
+        &x_1 = e^{i\theta} + 1 = 2\cos\left( \frac{\theta}{2} \right)e^{\frac{i\theta}{2}}=2\cos\left( \frac{\theta}{2} \right)\left( \cos\left( \frac{\theta}{2} \right) + i\sin\left( \frac{\theta}{2} \right) \right)\\
+        &x_2 = e^{i\theta} - 1 = 2i\sin\left( \frac{\theta}{2} \right)e^{\frac{i\theta}{2}}=2i\sin\left( \frac{\theta}{2} \right)\left( \cos\left( \frac{\theta}{2} \right) + i\sin\left( \frac{\theta}{2} \right) \right)\\
+    \end{align*}
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 10.22}
+
 \end{document}
  
