@@ -205,5 +205,60 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 10.24}
 
+\section*{Exercice 10.25 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre dans $\mathbb{C}$ l'équation $(z+1)^n=z^n$.\\
+    Soit $z\in\mathbb{C}^*$. On a :
+    \begin{align*}
+        z^n=(z+1)^n &\iff \left(1+\frac{1}{z}\right)^n=1\\
+        &\iff(1+\frac{1}{z})\in\mathbb{U}_n\\
+        &\iff\exists k\in\llbracket1,n-1\rrbracket \hspace{0.2cm} | \hspace{0.2cm} 1+\frac{1}{z}=e^{i\frac{2k\pi}{n}}\\
+        &\iff\frac{1}{z}=e^{i\frac{2k\pi}{n}}-1\\
+        &\iff z=\frac{1}{e^{i\frac{2k\pi}{n}}-1}\\
+        &\iff z=\frac{e^{-i\frac{k\pi}{n}}}{2i\sin(\frac{k\pi}{n})}\\
+        &\iff z=\frac{\cos(\frac{k\pi}{n})-i\sin(\frac{k\pi}{n})}{2i\sin(\frac{k\pi}{n})}\\
+        &\iff z=-\frac{1}{2}-\frac{i}{2\tan(\frac{k\pi}{n})}
+    \end{align*}
+    Ainsi, l'ensemble des solutions est : $\{-\frac{1}{2}-\frac{i}{2\tan(\frac{k\pi}{n})} \, | \, k\in\llbracket1,n-1\rrbracket\}$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 10.25}
+
+\section*{Exercice 10.26 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre dans $\mathbb{C}^2$ le système
+    \begin{equation*}
+        \begin{cases}
+            u^2 + v^2 = -1\\
+            uv = 1
+        \end{cases}
+    \end{equation*}
+    Soit $(u,v)\in(\mathbb{C}^*)^2$. Soit $(r,\rho)\in(\mathbb{R}_+^*)^2$ et $(\theta, \pi)\in\mathbb{R}^2$ tels que $u=re^{i\theta}$ et $v=\rho e^{i\varphi}$
+    \begin{align*}
+        (u,v) \text{ est solution } &\iff \begin{cases}
+            u^2 + v^2 = -1\\
+            uv = 1
+        \end{cases}\\
+        &\iff u^2 \text{ et } v^2 \text{ racines de } X^2 + X + 1\\
+        &\iff(u^2, v^2)\in\left\{\frac{-1-i\sqrt{3}}{2}, \frac{-1+i\sqrt{3}}{2}\right\}\\
+        &\iff\begin{cases}
+            u^2 = e^{i\frac{4\pi}{3}}\\
+            v^2 = e^{i\frac{2\pi}{3}}
+        \end{cases}\\
+        &\iff\begin{cases}
+            r = 1\\
+            \theta = \frac{2\pi}{3}[\pi]\\
+            \rho = 1\\
+            \varphi = \frac{\pi}{3}[\pi]
+        \end{cases}
+    \end{align*}
+    L'ensemble des solutions est donc :
+    \begin{equation*}
+        \left\{(e^{i\frac{2\pi}{3}}, e^{i\frac{4\pi}{3}}), (e^{i\frac{5\pi}{3}}, e^{i\frac{\pi}{3}}), (e^{i\frac{\pi}{3}}, e^{i\frac{5\pi}{3}}), (e^{i\frac{4\pi}{3}}, e^{i\frac{2\pi}{3}})\right\}
+    \end{equation*}
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 10.26}
+
 \end{document}
  
