@@ -166,5 +166,27 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 10.22}
 
+\section*{Exercice 10.23 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $n\in\mathbb{N}^*$.\\
+    1. Résoudre dans $\mathbb{C}$ l'équation $z^2 - 2\cos(\theta)z + 1 = 0$.\\
+    2. Résoudre dans $\mathbb{C}$ l'équation $z^{2n} - 2\cos(\theta)z^n + 1 = 0$.\\
+    1. $\Delta = 4\cos^2(\theta)-4=4(\cos^2(\theta)-1)=-4\sin^2(\theta) \leq 0$.
+    \begin{align*}
+        &x_1 = \frac{2\cos(\theta)+i\sqrt{4\sin^2(\theta)}}{2}=\cos(\theta)+i\sin(\theta)=e^{i\theta}\\
+        &x_2 = \cos(\theta) - i\sin(\theta) = e^{-i\theta}
+    \end{align*}
+    2. Posons $z' = z^n$.\\
+    On sait que $z'$ est solution de $z'^2-2\cos(\theta)z'+1=0$.\\
+    Ainsi, $z'_1 = e^{i\theta}$ et $z'_2=e^{-i\theta}$.\\
+    On en déduit :
+    \begin{align*}
+        &z_1 = {z'_1}^{\frac{1}{n}}=e^{\frac{i\theta}{n}}\\
+        &z_2={z'_2}^{\frac{1}{n}}=e^{-\frac{i\theta}{n}}
+    \end{align*}
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 10.23}
+
 \end{document}
  
