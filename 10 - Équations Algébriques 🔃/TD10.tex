@@ -128,7 +128,19 @@
     \begin{align*}
         e^{\frac{2ik\pi}{n}}-1=2i\sin\left( \frac{k\pi}{n} \right)e^{\frac{ik\pi}{n}}=2\sin\left( \frac{k\pi}{n} \right)e^{i\frac{\pi(2k+n)}{2n}}
     \end{align*}
-    Ainsi son module est $2\sin\left( \frac{k\pi}{n} \right)$ et l'un de ses arguments est $\frac{\pi(2k+n)}{2n}$.
+    Ainsi son module est $2\sin\left( \frac{k\pi}{n} \right)$ et l'un de ses arguments est $\frac{\pi(2k+n)}{2n}$.\\
+    3. Soit $n\in\mathbb{N}$. On a :
+    \begin{align*}
+        \sum_{z\in\mathbb{U}_n}{|z-1|}&=\sum_{k=0}^{n-1}{|e^{\frac{2ik\pi}{n}}-1|} = \sum_{k=0}^{n-1}{|e^{\frac{ik\pi}{n}}\left( e^{\frac{ik\pi}{n}} - e^{-\frac{ik\pi}{n}} \right)|}\\
+        &=\sum_{k=0}^{n-1}{\left|2i\sin\left( \frac{k\pi}{n} \right)\right|} = 2\sum_{k=0}^{n-1}{\left|\sin\left( \frac{k\pi}{n} \right)\right|}
+    \end{align*}
+    Or, $\forall{k\in\llbracket0,n-1\rrbracket}, \sin\left( \frac{k\pi}{n} \right) \geq 0$. Ainsi (formule du cours) :
+    \begin{align*}
+        \sum_{z\in\mathbb{U}_n}{|z-1|} &= 2\sum_{k=0}^{n-1}{\sin\left( \frac{k\pi}{n} \right)} = 2 \cdot \frac{ \sin \left( \frac{(n+1) \frac{\pi}{n}}{2} \right)}{\sin \left( \frac{\pi}{2n} \right)}\\
+        &= 2 \cdot \frac{\sin\left( \frac{\pi}{2n} + \frac{\pi}{2} \right)}{\sin \left( \frac{\pi}{2n} \right)} = 2 \cdot \frac{\cos\left( \frac{\pi}{2n} \right)}{\sin\left( \frac{\pi}{2n} \right)}\\
+        &= \frac{2}{\tan\left( \frac{\pi}{2n} \right)}
+    \end{align*}
+    \qed
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 10.21}
