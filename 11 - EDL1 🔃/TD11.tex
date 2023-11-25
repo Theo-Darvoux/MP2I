@@ -1,0 +1,79 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[skins]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{tkz-tab}
+\usepackage{systeme}
+
+\def\pagetitle{Équations Différentielles Linéaires d'ordre 1}
+\setlength{\headheight}{13pt}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+\date{Novembre 2023}
+\author{DARVOUX Théo}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+
+\begin{document}
+\renewcommand*\contentsname{Exercices.}
+\renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\maketitle
+\begin{center}
+    \LARGE{Crédits : Ibrahim pour tout (j'aime pas les EDL)}\\
+\end{center}
+\hrule
+\tableofcontents
+\vspace{0.5cm}
+\hrule
+
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+\allowdisplaybreaks
+
+\pagebreak
+
+\section*{Exercice 11.1 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre les équations différentielles ci-dessous
+    \begin{center}
+        1. $y' - 2y = 2$ sur $\mathbb{R}$ \hspace{0.5cm} 2. $(x^2+1)y'+xy=x$ \hspace{0.5cm} 3. $y' + \tan(x)y = \sin(2x)$ sur $]-\frac{\pi}{2}, \frac{\pi}{2}[$\\
+        4. $y'-\ln(x)y = x^x$ sur $\mathbb{R}_+^*$ \hspace{1cm} 5. $(1-x)y' - y = \frac{1}{1-x}$ sur $]-\infty, 1[$
+    \end{center}
+    1. Solutions de l'équation homogène : $S_0=\{x\mapsto\lambda e^{2x} \, | \, \lambda\in\mathbb{R}\}$\\
+    Solution particulière, avec $y$ constante : $S_p : x\mapsto -1$.\\
+    Ensemble de solutions : $S = \{\lambda e^{2x} - 1 ~ | ~ \lambda\in\mathbb{R}\}$.\\[0.2cm]
+    2. L'équation se réecrit comme $y' + \frac{x}{x^2+1}y=\frac{x}{x^2+1}$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto\frac{\lambda}{\sqrt{x^2+1}} ~ | ~ \lambda \in \mathbb{R}\}$\\
+    Solution particulière : $S_p:x\mapsto1$ est solution évidente.\\
+    Ensemble de solutions : $S = \{x\mapsto\frac{\lambda}{\sqrt{x^2+1}}+1 ~ | ~ \lambda\in\mathbb{R}\}$.\\[0.2cm]
+    3.Soit $I = ~ ]-\frac{\pi}{2}, \frac{\pi}{2}[$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto \lambda \cos x ~ | ~ \lambda \in \mathbb{R}\}$.\\
+    Solution particulière : Soit $u\in S_0$ et $\lambda:I\rightarrow\mathbb{K}$ dérivable sur $I$. On cherche $z=\lambda'u$.
+    \begin{align*}
+        z \text{ est solution } &\iff \forall{x\in I}, ~ \lambda'(x)\cos(x) = \sin(2x)\\
+        &\iff \forall{x}\in I, ~ \lambda'(x) = \frac{\sin(2x)}{\cos(x)}=2\sin(x)\\
+        &\iff \lambda =-2\cos
+    \end{align*}
+    Ainsi, $z=-2\cos^2$.\\
+    Ensemble de solutions : $S = \{x\mapsto \lambda\cos x - 2\cos^2x\ ~ | ~ \lambda \in \mathbb{R}\}$.
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 11.1}
+
+\end{document}
+ 
