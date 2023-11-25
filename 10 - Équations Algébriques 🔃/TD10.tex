@@ -7,6 +7,7 @@
 \usepackage{amsmath, amssymb, amsthm, stmaryrd}
 
 \def\pagetitle{Équations Algébriques}
+\setlength{\headheight}{13pt}
 
 \title{\bf{\pagetitle}\\\large{Corrigé}}
 \date{Novembre 2023}
@@ -41,6 +42,12 @@
 \fancyhead[C]{\pagetitle}
 \fancyhead[R]{2023-2024}
 \allowdisplaybreaks
+
+\begin{center}
+    \LARGE{Soit $z\in\mathbb{C}$}.\\
+    \LARGE{$\Re(z)$ est la partie réelle de $z$}.\\
+    \LARGE{$\Im(z)$ est la partie imaginaire de $z$}.
+\end{center}
 
 \pagebreak
 
@@ -233,6 +240,7 @@
             uv = 1
         \end{cases}
     \end{equation*}
+    On peut prendre un couple dans $(C^*)^2$ car le système impose que les membres soient non nuls.\\
     Soit $(u,v)\in(\mathbb{C}^*)^2$. Soit $(r,\rho)\in(\mathbb{R}_+^*)^2$ et $(\theta, \pi)\in\mathbb{R}^2$ tels que $u=re^{i\theta}$ et $v=\rho e^{i\varphi}$
     \begin{align*}
         (u,v) \text{ est solution } &\iff \begin{cases}
@@ -259,6 +267,34 @@
     \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 10.26}
+
+\section*{Exercice 10.27 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient $n\in\mathbb{N}^*$ et $z\in\mathbb{C}$ tels que $z^n=(1+z)^n=1$.\\
+    Montrer que $n$ est un multiple de $6$ et que $z^3=1$.\\[0.25cm]
+    \emph{Analyse.}\\[0.1cm]
+    On a $z^n = (1+z)^n = 1$. Ainsi, $|z|=|1+z|=1$ et $z\in\mathbb{U}$.\\[0.1cm]
+    Puisque $|z|=|1+z|$ et que $\Im(z) = \Im(1+z)$, on a :
+    \begin{align*}
+        &\sqrt{\Re(z)^2 + \Im(z)^2} = \sqrt{\Re(z+1)^2 + \Im(z+1)^2}\\
+        \Longrightarrow&\Re(z)^2=\Re(z+1)^2\\
+        \Longrightarrow&\Re(z)^2=(1 + \Re(z))^2\\
+        \Longrightarrow&\Re(z)=-\frac{1}{2}
+    \end{align*}
+    Ainsi, $\exists\theta\in\mathbb{R} \, | \, z=e^{i\theta}$, et : $\Re\left(e^{i\theta}\right)=-\frac{1}{2}$, donc $\cos(\theta)=-\frac{1}{2}$.\\[0.1cm]
+    On obtient que $\theta\in\{\frac{2\pi}{3} + 2k\pi, \frac{4\pi}{3} + 2k\pi \, | \, k\in\mathbb{Z}\}$.\\[0.1cm]
+    Ainsi, $z\in\{e^{i\frac{2\pi}{3}}, e^{i\frac{4\pi}{3}}\}$ et $z^3 = 1$.\\[0.1cm]
+    On a $z^n\in\{e^{i\frac{2n\pi}{3}}, e^{i\frac{4n\pi}{3}}\}$, or $z^n=1$ donc $\frac{2n\pi}{3}\equiv0[2\pi]$ et $\frac{4n\pi}{3}\equiv0[2\pi]$.\\[0.1cm]
+    Ainsi, $n \equiv 0[3]$ et $2n \equiv 0[3]$. $n$ est donc multiple de 6.\\[0.2cm]
+    \emph{Synthèse}.\\[0.1cm]
+    On a $z\in\{e^{i\frac{2\pi}{3}}, e^{i\frac{4\pi}{3}}\}$ et $k\in\mathbb{N}$ tel que $n=6k$.\\[0.1cm]
+    On a que $z^3=1$.\\[0.1cm]
+    De plus, $z^n\in\{e^{i4k\pi}, e^{i8k\pi}\}$, or $e^{i4k\pi} = e^{i8k\pi} = 1$. Ainsi, $z^n = 1$.\\[0.1cm]
+    Enfin, $(1+e^{i\frac{2\pi}{3}})^n = (2e^{i\frac{\pi}{3}}\cos(\frac{\pi}{3}))^{6k}=(64e^{2i\pi}\frac{1}{64})^k=1$.\\[0.1cm]
+    Et : $(1+e^{i\frac{4\pi}{3}})^n=(2e^{i\frac{2\pi}{3}}\cos(\frac{2\pi}{3}))^{6k}=(64e^{4i\pi}\frac{1}{64})^k=1$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 10.27}
 
 \end{document}
  
