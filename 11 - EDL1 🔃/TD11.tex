@@ -1,7 +1,7 @@
 \documentclass[10pt]{article}
 
 \usepackage[T1]{fontenc}
-\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm, paperheight=29cm]{geometry}
 \usepackage[skins]{tcolorbox}
 \usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol}
 \usepackage{amsmath, amssymb, amsthm, stmaryrd}
@@ -54,7 +54,7 @@
         1. $y' - 2y = 2$ sur $\mathbb{R}$ \hspace{0.5cm} 2. $(x^2+1)y'+xy=x$ \hspace{0.5cm} 3. $y' + \tan(x)y = \sin(2x)$ sur $]-\frac{\pi}{2}, \frac{\pi}{2}[$\\
         4. $y'-\ln(x)y = x^x$ sur $\mathbb{R}_+^*$ \hspace{1cm} 5. $(1-x)y' - y = \frac{1}{1-x}$ sur $]-\infty, 1[$
     \end{center}
-    1. Solutions de l'équation homogène : $S_0=\{x\mapsto\lambda e^{2x} \, | \, \lambda\in\mathbb{R}\}$\\
+    1. Solutions de l'équation homogène : $S_0=\{x\mapsto\lambda e^{2x} ~ | ~ \lambda\in\mathbb{R}\}$\\
     Solution particulière, avec $y$ constante : $S_p : x\mapsto -1$.\\
     Ensemble de solutions : $S = \{\lambda e^{2x} - 1 ~ | ~ \lambda\in\mathbb{R}\}$.\\[0.2cm]
     2. L'équation se réecrit comme $y' + \frac{x}{x^2+1}y=\frac{x}{x^2+1}$.\\
@@ -70,7 +70,28 @@
         &\iff \lambda =-2\cos
     \end{align*}
     Ainsi, $z=-2\cos^2$.\\
-    Ensemble de solutions : $S = \{x\mapsto \lambda\cos x - 2\cos^2x\ ~ | ~ \lambda \in \mathbb{R}\}$.
+    Ensemble de solutions : $S = \{x\mapsto \lambda\cos x - 2\cos^2x\ ~ | ~ \lambda \in \mathbb{R}\}$.\\
+    4. Soit $I=\mathbb{R}^*_+$.\\
+    Solutions de l'équation homogène : $S_0=\{x\mapsto\lambda \frac{x^x}{e^x} ~ | ~ \lambda \in\mathbb{R}\}$\\
+    Solution particulière : Soit $u\in S_0$ et $\lambda : I \rightarrow \mathbb{K}$ dérivable sur $I$. On cherche $z=\lambda'u$.
+    \begin{align*}
+        z \text{ est solution} &\iff \forall{x\in I}, ~ \lambda'(x)\frac{x^x}{e^x} = x^x\\
+        &\iff \forall{x \in I}, ~ \lambda'(x) = e^x\\
+        &\iff \lambda = e^\cdot
+    \end{align*}
+    Ainsi, $z:x \mapsto x^x$\\
+    Ensemble de solutions : $S = \{x\mapsto \lambda\frac{x^x}{e^x} + x^x ~ | ~ \lambda \in \mathbb{R}\}$\\
+    5. Soit $I=]-\infty,1[$. L'équation se réecrit comme $y' - \frac{1}{1-x}y = \frac{1}{(1-x)^2}$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto\frac{\lambda}{1-x} ~ | ~ \lambda\in\mathbb{R}\}$.\\
+    Solution particulière : Soit $u\in S_0$ et $\lambda:I\rightarrow\mathbb{K}$ dérivable sur $I$. On cherche $z=\lambda'u$.
+    \begin{align*}
+        z \text{ est solution} &\iff \forall{x\in I}, ~ \frac{\lambda'(x)}{1-x} = \frac{1}{(1-x)^2}\\
+        &\iff \forall{x\in I}, ~ \lambda'(x) = \frac{1}{1-x}\\
+        &\iff \forall{x\in I}, ~ \lambda(x) = -\ln(1-x) 
+    \end{align*} 
+    Ainsi, $z:x\mapsto -\frac{\ln(1-x)}{1-x}$.\\
+    Ensemble de solutions : $S = \{x \mapsto \frac{\lambda}{1-x} - \frac{\ln(1-x)}{1-x} ~ | ~ \lambda \in \mathbb{R}\}$\\
+    \qed
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 11.1}
