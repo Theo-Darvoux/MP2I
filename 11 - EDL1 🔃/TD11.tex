@@ -96,5 +96,28 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 11.1}
 
+\section*{Exercice 11.2 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre sur $R_+^*$ le problème de Cauchy $\begin{cases} y' - \frac{2}{x}y = x^2\cos x\\ y(\pi)=0 \end{cases}$.\\
+    Solution homogène : $S_0 = \{x \mapsto \lambda x^2 ~ | ~ \lambda \in\mathbb{R}\}$.\\
+    Solution particulière : Soit $u\in S_0$ et $\lambda : I \rightarrow \mathbb{K}$ dérivable sur $I$. On cherche $z = \lambda'u$.
+    \begin{align*}
+        z \text{ est solution} &\iff \forall{x\in I} ~ \lambda'(x)x^2 = x^2\cos x\\
+        &\iff \forall{x\in I} ~ \lambda'(x) = \cos x\\
+        &\iff \lambda = \sin
+    \end{align*}
+    Ainsi, $z:x\mapsto x^2\sin x$.\\
+    Ensemble de solutions : $S=\{x\mapsto\lambda x^2 + x^2\sin x ~ | ~ \lambda \in \mathbb{R}\}$\\
+    Conditions initiales : Soit $y \in S$. On a :
+    \begin{align*}
+        y(\pi) = 0 &\iff \exists{\lambda\in\mathbb{R}} ~ | ~ \lambda\pi^2 + \pi^2\sin(\pi) = 0\\
+        &\iff \lambda\pi^2 = 0\\
+        &\iff \lambda = 0
+    \end{align*}
+    L'unique solution de ce problème de Cauchy est donc : $y:x\mapsto x^2\sin x$.\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 11.2}
 \end{document}
  
