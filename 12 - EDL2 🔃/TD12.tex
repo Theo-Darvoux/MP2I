@@ -15,6 +15,8 @@
 \date{Novembre 2023}
 \author{DARVOUX Théo}
 
+\DeclareMathOperator{\ch}{ch}
+
 \hypersetup{
     colorlinks=true,
     citecolor=black,
@@ -65,6 +67,31 @@
     \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.1}
+
+\section*{Exercice 12.2 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre :
+    \begin{equation*}
+        y'' - y' - 2y = 2\ch(x)
+    \end{equation*}
+    On réecrit d'abord cette équation comme : $y'' - y' - 2y = e^{x} + e^{-x}$.\\
+    Polynome caractéristique : $r^2 - r - 2$. $\Delta = 9$. $r_1 = -1$ et $r_2 = 2$.\\
+    Solutions de l'équation homogène : $S_0 = \{x \mapsto \lambda e^{-x} + \mu e^{2x} ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$.\\
+    Équation auxiliaire 1 : $y'' - y' - 2y = e^x$. Solution particulière : $S_{p,1} : x\mapsto Be^{x} ~ | ~ B\in\mathbb{R}$.\\
+    Soit $x\in\mathbb{R}$, $B\in\mathbb{R}$ et $y:x\mapsto Be^x$.\\
+    On a $y''(x) - y'(x) - 2y(x) = e^x \iff -2Be^x = e^x \iff B = -\frac{1}{2}$.\\
+    Ainsi, $S_{p,1}:x\mapsto -\frac{1}{2}e^x$.\\
+    Équation auxiliaire 2 : $y'' - y' - 2y = e^{-x}$. Solution particulière : $S_{p,2} : x\mapsto Cxe^{-x} ~ | ~ C\in\mathbb{R}$.\\
+    Soit $x\in\mathbb{R}$, $C\in\mathbb{R}$ et $y:x\mapsto Cxe^{-x}$.\\
+    On a $y''(x) - y'(x) - 2y(x) = e^{-x} \iff -3Ce^{-x} = e^{-x} \iff C = -\frac{1}{3}$.\\
+    Ainsi, $S_{p,2}: x\mapsto -\frac{1}{3}xe^{-x}$.\\
+    Par superposition, l'ensemble des solutions est :
+    \begin{equation*}
+        \{x\mapsto \lambda e^{-x} + \mu e^{2x} - \frac{1}{2}e^x - \frac{1}{3}xe^{-x} ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}
+    \end{equation*}
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.2}
 
 \end{document}
  
