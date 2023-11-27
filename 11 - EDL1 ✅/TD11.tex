@@ -31,7 +31,7 @@
 \renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \maketitle
 \begin{center}
-    \LARGE{Crédits : Ibrahim pour tout (j'aime pas les EDL)}\\
+    \LARGE{Crédits : Ibrahim pour 11.1, 11.2, 11.3}\\
 \end{center}
 \hrule
 \tableofcontents
@@ -39,7 +39,7 @@
 \hrule
 
 \begin{center}
-    \LARGE{Je rédige pas la variation de la constante parce que trop long $\blacklozenge\blacklozenge\blacklozenge$}
+    \LARGE{Je rédige pas la variation de la constante parce que c'est trop long et toujours la même chose allez lire votre cours}
 \end{center}
 
 
@@ -157,7 +157,35 @@
 \begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Soit l'équation différentielle $x^2y' - y = 0$.\\
     1. Résoudre sur $\mathbb{R}^*_+$ et sur $\mathbb{R}^*_-$.\\
-    2. Trouver toutes les solutions définies sur $\mathbb{R}$
+    2. Trouver toutes les solutions définies sur $\mathbb{R}$\\[0.1cm]
+    1. On se ramène à l'équation : $y' - \frac{1}{x^2}y = 0$.\\
+    Pour $x\in\mathbb{R}^*_+$, l'ensemble de solutions $S_+ = \{x\mapsto \lambda e^{-\frac{1}{x}} ~ | ~ \lambda \in \mathbb{R}\}$.\\
+    Pour $x\in\mathbb{R}^*_-$, l'ensemble de solutions $S_- = \{x\mapsto \mu e^{-\frac{1}{x}} ~ | ~ \mu \in \mathbb{R}\}$.\\
+    2. Une solution de $y$ sur $\mathbb{R}$ est solution sur $\mathbb{R}^*_-$ et $\mathbb{R}^*_+$. Ainsi, $\exists(\lambda, \mu)\in\mathbb{R}^2$ tels que
+    \begin{equation*}
+        \forall{x\in\mathbb{R}}, y(x) = \begin{cases} \lambda e^{-\frac{1}{x}} \text{ si } x>0\\ \mu e^{-\frac{1}{x}} \text{ si } x<0\end{cases}
+    \end{equation*}
+    On a :
+    \begin{align*}
+        \mu e^{-\frac{1}{x}} \xrightarrow[x\to0^-]{}+\infty ~ \text{ et } ~ \lambda e^{-\frac{1}{x}} \xrightarrow[x\to0^+]{} 0
+    \end{align*}
+    Donc $y$ est prolongeable en $0$ si et seulement si $\mu=0$. On a alors $y(0)=0$.\\
+    On a :
+    \begin{align*}
+        &\text {x > 0 : } \frac{y(x) - y(0)}{x - 0} = \frac{\lambda e^{-\frac{1}{x}}}{x}=-\lambda\left(-\frac{1}{x}\right)e^{-\frac{1}{x}} \xrightarrow[x\to0^+]{}0 ~ \text{\emph{c.c.}}\\
+        &\text {x < 0 : } \frac{y(x) - y(0)}{x - 0} = 0 \xrightarrow[x\to0^-]{} 0
+    \end{align*}
+    Donc $y$ est dérivable en $0$ et $y'(0)=0$.\\
+    La fonction est alors continue et dérivable sur $\mathbb{R}$ et on a $0^2y'(0)-y(0)=0$, l'équation est donc satisfaite en $0$.\\
+    Les solutions sont donc les fonctions : 
+    \begin{equation*}
+        y(x) = \begin{cases}
+            \lambda e^{-\frac{1}{x}} \text{ si } x>0\\
+            0 \text{ si } x\leq0
+        \end{cases}
+        (\lambda \in \mathbb{R})
+    \end{equation*}
+    \qed
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 11.4}
