@@ -38,6 +38,10 @@
 \vspace{0.5cm}
 \hrule
 
+\begin{center}
+    \LARGE{Je rédige pas la variation de la constante parce que trop long $\blacklozenge\blacklozenge\blacklozenge$}
+\end{center}
+
 
 \thispagestyle{fancy}
 \fancyhead[L]{MP2I Paul Valéry}
@@ -119,5 +123,43 @@
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 11.2}
+
+\section*{Exercice 11.3 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Trouver toutes les fonctions $f$ dérivables sur $\mathbb{R}$ telles que
+    \begin{equation*}
+        \forall{x \in \mathbb{R}} ~ f'(x) + f(x) = \int_0^1{f(t)dt}
+    \end{equation*}
+    \emph{Analyse.}\\[0.1cm]
+    On suppose qu'il existe $y$ dérivable sur $\mathbb{R}$ solution de cette équation.\\[0.1cm]
+    Soit $x\in\mathbb{R}$.\\
+    En dérivant l'égalité, on obtient : $y''(x) + y'(x) = 0$. On pose $g(x)=y'(x)$.\\
+    On a : $g'(x) + g(x) = 0$.\\
+    Solution générale : $S = \{x\mapsto \lambda e^{-x} ~ | ~ x\in\mathbb{R}\}$.\\
+    Ainsi, $g \in S$ et $\exists (\lambda, \mu) \in \mathbb{R}^2 ~ | ~ y(x) = -\lambda e^{-x} + \mu$.\\
+    On a :
+    \begin{align*}
+        y'(x) + y(x) = \int_0^1y(t)dt &\iff \lambda e^{-x} - \lambda e^{-x} + \mu = \left[\lambda e^{-t} + \mu t\right]_0^1\\
+        &\iff \mu = \lambda e^{-1} + \mu - \lambda\\
+        &\iff \lambda(e^{-1} -1) = 0\\
+        &\iff \lambda = 0
+    \end{align*}
+    Ainsi, l'ensemble des solutions est : $\{x\mapsto\mu ~ | ~ \mu \in \mathbb{R}\}$.\\
+    \emph{Synthèse}.\\
+    Soit $x\in\mathbb{R}$ et $\mu\in\mathbb{R} ~ | ~ y(x)=\mu$. On a $y'(x) + y(x) = \mu$ et $\int_0^1y(t)dt=\int_0^1\mu dt=\mu$\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 11.3}
+
+
+\section*{Exercice 11.4 [$\blacklozenge\blacklozenge\blacklozenge$] <<Recollement>>}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit l'équation différentielle $x^2y' - y = 0$.\\
+    1. Résoudre sur $\mathbb{R}^*_+$ et sur $\mathbb{R}^*_-$.\\
+    2. Trouver toutes les solutions définies sur $\mathbb{R}$
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 11.4}
 \end{document}
  
