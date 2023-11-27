@@ -1,0 +1,70 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm, paperheight=29cm]{geometry}
+\usepackage[skins]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{tkz-tab}
+\usepackage{systeme}
+
+\def\pagetitle{Équations Différentielles Linéaires d'ordre 2}
+\setlength{\headheight}{13pt}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+\date{Novembre 2023}
+\author{DARVOUX Théo}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+
+\begin{document}
+\renewcommand*\contentsname{Exercices.}
+\renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\maketitle
+\hrule
+\tableofcontents
+\vspace{0.5cm}
+\hrule
+
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+\allowdisplaybreaks
+
+\pagebreak
+
+\section*{Exercice 12.1 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre le problème de Cauchy ci-dessous :
+    \begin{equation*}
+        \begin{cases}
+            y'' + 2y' + 10y = 5\\
+            y(0) = 1 \quad y'(0) = 0
+        \end{cases}
+    \end{equation*}
+    Polynome caractéristique : $r^2 + 2r + 10$. $\Delta = -36$. $r_{\pm}=-1\pm3i$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto e^{-x}\left(\alpha\cos(3x) + \beta\sin(3x)\right) ~ | ~ (\alpha, \beta)\in\mathbb{R}^2\}$\\
+    Solution particulière : $S_p : x\mapsto\frac{1}{2}$.\\
+    Solution générale : $S = \{x\mapsto\frac{1}{2} + e^{-x}\left( \alpha\cos(3x) + \beta\sin(3x) \right) ~ | ~ (\alpha, \beta) \in \mathbb{R}^2\}$.\\
+    Conditions initiales.\\
+    Soit $(\alpha, \beta)\in\mathbb{R}^2 ~ | ~ \forall{x\in\mathbb{R}, ~ y(x)=\frac{1}{2} + e^{-x}\left( \alpha\cos(3x) + \beta\sin(3x) \right)}$.\\
+    On a $y(0)=1 \iff \frac{1}{2} + \alpha = 1 \iff \alpha = \frac{1}{2}$.\\
+    On a $y'(0)=0 \iff -\frac{1}{2}+3\beta = 0 \iff \beta = \frac{1}{6}$.\\
+    L'unique solution de ce problème de Cauchy est : $x\mapsto\frac{1}{2} + e^{-x}\left( \frac{1}{2}\cos(3x) + \frac{1}{6}\sin(3x) \right)$\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.1}
+
+\end{document}
+ 
