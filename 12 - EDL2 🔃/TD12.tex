@@ -3,7 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm, paperheight=31cm]{geometry}
 \usepackage[skins]{tcolorbox}
-\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol, changepage}
 \usepackage{amsmath, amssymb, amsthm, stmaryrd}
 \usepackage{tkz-tab}
 \usepackage{systeme}
@@ -136,5 +136,36 @@
     \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.4}
+
+\section*{Exercice 12.5 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $\alpha\in\mathbb{R}$. Résoudre l'équation différentielle
+    \begin{equation*}
+        2y'' + \alpha y' + \alpha y = 0.
+    \end{equation*}
+    On discutera selon les valeurs de $\alpha$.\\[0.1cm]
+    On se ramène à l'équation différentielle : $y'' + \frac{\alpha}{2}y' + \frac{\alpha}{2}y = 0$.\\
+    Polynome caractéristique : $r^2 + \frac{\alpha}{2}r + \frac{\alpha}{2}$. $\Delta=\alpha(\frac{\alpha}{4}-2)$\\
+    On a alors trois cas...\\
+    $\circledcirc$ Cas $\alpha\in\{0, 8\}$.
+    \begin{adjustwidth}{1cm}{}
+        Alors $\Delta=0$ et $r=-\frac{\alpha}{4}$.\\
+        Solution générale : $S = \{x\mapsto \lambda x e^{-\frac{\alpha}{4}x} + \mu e^{-\frac{\alpha}{4}x} ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$.
+    \end{adjustwidth}
+    $\circledcirc$ Cas $\alpha\in]0,8[$.
+    \begin{adjustwidth}{1cm}{}
+        Alors $\Delta<0$ et $r_\pm = -\frac{\alpha}{4} \pm i\sqrt{-\Delta}$.\\
+        Solution générale : $S = \{x\mapsto e^{-\frac{\alpha}{4}x} \left( \lambda \cos(\sqrt{-\Delta}x) + \mu\sin(\sqrt{-\Delta}x) \right) ~ | ~  (\lambda,\mu)\in\mathbb{R}^2\}$
+    \end{adjustwidth}
+    $\circledcirc$ Cas $\alpha\notin[0,8]$.
+    \begin{adjustwidth}{1cm}{}
+        Alors $\Delta>0$ et $r_1 = -\frac{\alpha}{4} + \sqrt{\Delta}$, $r_2 = -\frac{\alpha}{4} - \sqrt{\Delta}$.\\
+        Solution générale : $S=\{x\mapsto \lambda e^{r_1x} + \mu e^{r_2x} ~ | ~ (\lambda,\mu)\in\mathbb{R}^2\}$.
+    \end{adjustwidth}
+    Trop la flemme de remplacer les $\Delta$ et $r_\pm$, ça sert à rien.\\
+    On a vu les cas pour toutes les valeurs possibles de $\alpha$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.5}
 \end{document}
  
