@@ -167,5 +167,31 @@
     \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.5}
+
+\section*{Exercice 12.6 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $a\in\mathbb{R}$. En discutant selon la valeur de $a$, résoudre
+    \begin{equation*}
+        y'' - 2ay' + (1+a^2)y = \sin x.
+    \end{equation*}
+    $\circledcirc$ On suppose $a\neq0$.\\
+    Polynome caractéristique : $r^2 - 2ar + (1 + a^2)$. $\Delta = -4$. $r_1 = 1 + i$, $r_2 = 1 - i$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto e^{x}\left( \lambda \cos(x) + \mu \sin(x) \right) ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$.\\
+    Équation auxiliaire : $y'' - 2ay' + (1+a^2)y = e^{ix}$. Solution particulière : $x\mapsto Be^{ix}$.\\
+    Soit $x,B \in \mathbb{R}$ et $y:x\mapsto Be^{ix}$.\\
+    On a : $-Be^{ix} - 2aiBe^{ix} + (1 + a^2)Be^{ix} = e^{ix} \iff B = \frac{1}{a^2-2ai} = \frac{a+2i}{a^3+4a}$.\\
+    Passage à la partie imaginaire : $\Im(y(x))=\Im\left( \frac{a+2i}{a^3+4a}(\cos(x)+i\sin(x)) \right)=\frac{a}{a^3+4a}\sin(x) + 2\cos(x)$.\\
+    Solution générale : $S=\{x\mapsto e^x(\lambda\cos(x) + \mu\sin(x)) + \frac{a}{a^3+4a}\sin(x) + 2\cos(x) ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$.\\[0.2cm]
+    $\circledcirc$ On suppose $a=0$.
+    Polynome caractéristique : $r^2 + r$. $\Delta = -4$. $r_1 = i$ et $r_2 = -i$.\\
+    Solutions de l'équation homogène : $\{x\mapsto \lambda\cos(x) + \mu\sin(x) ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$.\\
+    Équation auxiliaire : $y'' + y = e^{ix}$. Solution particulière : $x\mapsto Bxe^{ix}$.\\
+    Soit $x,B\in\mathbb{R}$ et $y:x\mapsto Bxe^{ix}$.\\
+    On a : $y''(x) + y(x) = e^{ix} \iff 2iBe^{ix} = e^{ix} \iff B = \frac{1}{2i} = -\frac{i}{2}$.\\
+    Passage à la partie imaginaire : $\Im(y(x)) = \Im(-\frac{ix}{2}(\cos(x)+i\sin(x)))=-\frac{x}{2}\cos(x)$\\
+    Solution générale : $S=\{x\mapsto \lambda\cos(x) + \mu\sin(x) - \frac{x}{2}\cos(x) ~ | ~ (\lambda, \mu)\in\mathbb{R}\}$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.6}
 \end{document}
  
