@@ -1,7 +1,7 @@
 \documentclass[10pt]{article}
 
 \usepackage[T1]{fontenc}
-\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm, paperheight=30.5cm]{geometry}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm, paperheight=31cm]{geometry}
 \usepackage[skins]{tcolorbox}
 \usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol}
 \usepackage{amsmath, amssymb, amsthm, stmaryrd}
@@ -110,5 +110,31 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.3}
 
+\section*{Exercice 12.4 [$\blacklozenge\blacklozenge\lozenge$] Résonance... ou pas}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    1. \underbar{Excitation à une pulsation quelconque}. Résoudre
+    \begin{equation*}
+        y'' + 4y = \cos t
+    \end{equation*}
+    2. \underbar{Excitation à la pulsation propre : résonance}. Résoudre
+    \begin{equation*}
+        y'' + 4y = \cos(2t)
+    \end{equation*}
+    1. Polynome caractéristique : $r^2 + 4$. $\Delta=-16$. $r_1 = 2i$, $r_2=-2i$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto \lambda\cos(2x) + \mu\sin(2x) ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$.\\
+    Équation auxiliaire : $y'' + 4y = e^{it}$. Solution particulière : $S_{p,aux}:x\mapsto Be^{ix}$ avec $B\in\mathbb{R}$.\\
+    Soit $x,B\in\mathbb{R}$, et $y:x\mapsto Be^{ix}$.\\
+    On a : $y''(x) + 4y(x) = e^{ix} \iff 3Be^{ix} = e^{ix} \iff B = \frac{1}{3}$.\\
+    Passage à la partie réelle : $\Re(y(x)) = \frac{1}{3}\cos(x)$.\\
+    Solution générale : $S = \{x\mapsto \lambda \cos(2x) + \mu \sin(2x) + \frac{1}{3}\cos(x) ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$\\[0.2cm]
+    2. L'ensemble des solutions de l'équation homogène est encore $S_0$.\\
+    Équation auxiliaire : $y'' + 4y + e^{2it}$. Solution particulière : $S_{p,aux}:x\mapsto Bxe^{2ix}$ avec $B\in\mathbb{R}$.\\
+    Soit $x,B\in\mathbb{R}$ et $y:x\mapsto Bxe^{2ix}$.\\
+    On a : $y''(x) + 4y(x) = e^{2ix} \iff Be^{2ix}(4i-4x) + 4Bxe^{2ix} = e^{2ix} \iff B=\frac{1}{4i}=-\frac{i}{4}$\\
+    Passage à la partie réelle : $\Re(y(x)) = \Re\left( -\frac{i}{4}x(\cos(2x) + i\sin(2x)) \right)=\frac{1}{4}x\sin(2x)$.\\
+    Solution générale : $S=\{x\mapsto \lambda\cos(2x) + \mu\cos(2x) + \frac{1}{4}x\sin(2x) ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.4}
 \end{document}
  
