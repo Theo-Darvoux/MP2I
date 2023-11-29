@@ -222,5 +222,37 @@
     \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.7}
+
+\section*{Exercice 12.8 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7.5in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Trouver toutes les fonctions $f$ dérivables sur $\mathbb{R}$ et telles que
+    \begin{equation*}
+        \forall x \in \mathbb{R}, ~ f'(x) = f(\pi - x).
+    \end{equation*}
+    \emph{Analyse.}\\
+    Supposons qu'il existe $f$ dérivable sur $\mathbb{R}$ telle que $\forall x \in \mathbb{R}, ~ f'(x) = f(\pi-x)$.\\
+    Soit $x\in\mathbb{R}$.\\
+    Alors, $f''(x) = -f'(\pi-x) = -f(\pi - \pi + x) = -f(x)$.\\
+    Ainsi, $f''(x) + f(x) = 0$\\
+    Polynome caractéristique : $r^2 + 1$. $\Delta = -4$, $r_1=i$ et $r_2=-i$.\\
+    Solution générale : $S = \{x\mapsto \lambda \cos(x) + \mu \sin(x) ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$.\\
+    \emph{Synthèse.}\\
+    Soit $x,\lambda,\mu\in\mathbb{R}$ et $y:x\mapsto\lambda\cos(x) + \mu\sin(x)$ dérivable comme somme et produit.\\
+    On a : $y'(x) = -\lambda\sin(x) + \mu\cos(x)$.\\
+    Et : 
+    \begin{align*}
+        y'(x) = y(\pi - x) &\iff -\lambda\sin(x) + \mu\cos(x) = \lambda\cos(\pi - x) + \mu\sin(\pi - x)\\
+        &\iff -\lambda\sin(x) + \mu\cos(x) = -\lambda\cos(x) + \mu\sin(x)\\
+        &\iff (\lambda + \mu)(\cos(x) - \sin(x)) = 0
+    \end{align*}
+    Conditions initiales : pour $x=0$.
+    \begin{align*}
+        &(\lambda + \mu) = 0\\
+        \iff& \lambda = -\mu
+    \end{align*}
+    Ainsi, les solutions sont : $\{x\mapsto \lambda(\cos(x) - \sin(x)) ~ | ~ \lambda \in \mathbb{R}\}$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.8}
 \end{document}
  
