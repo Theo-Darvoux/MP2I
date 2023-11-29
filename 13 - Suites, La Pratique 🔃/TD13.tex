@@ -1,0 +1,71 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm, paperheight=31cm]{geometry}
+\usepackage[skins]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol, changepage}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{tkz-tab}
+\usepackage{systeme}
+
+\def\pagetitle{Suites, La Pratique}
+\setlength{\headheight}{13pt}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+\date{Novembre 2023}
+\author{DARVOUX Théo}
+
+\DeclareMathOperator{\ch}{ch}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+
+\begin{document}
+\renewcommand*\contentsname{Exercices.}
+\renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\maketitle
+
+\hrule
+\tableofcontents
+\vspace{0.5cm}
+\hrule
+
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+\allowdisplaybreaks
+
+\pagebreak
+
+
+\section*{Exercice 13.1 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.5in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Une suite croissante est une fonction croissante sur $\mathbb{N}$.\\
+    Démontrer que le titre de l'exercice dit vraie, c'est à dire, pour une suite réelle $(u_n)_{n\in\mathbb{N}}$ l'équivalence entre\\
+    1. $\forall{n\in\mathbb{N}} ~ u_{n+1} \geq u_n$.\\
+    2. $\forall{(n,p)\in\mathbb{N}^2} ~ n \leq p \Longrightarrow u_n \leq u_p$.\\[0.1cm]
+    Supposons 2, montrons 1.\\
+    Soit $n\in\mathbb{N}$\\
+    On a $n\leq n+1$. D'après 2, $u_n \leq u_{n+1}$. ez\\[0.1cm]
+    Supposons 1, montrons 2.\\
+    Soit $(n, p)\in\mathbb{N}^2$ tels que $n \leq p$. On sait que $u_{n+1} \geq u_n$, $u_{n+2} \geq u_{n+1}$, $u_{n+3} \geq u_{n+2}$, etc...\\
+    Par récurrence triviale et par transitivité, pour tout entier $q\geq n$, $u_q \geq u_n$.\\
+    En particulier, $u_p \geq u_n$\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{Avant de parler de convergence.}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.1}
+
+
+\end{document}
+ 
