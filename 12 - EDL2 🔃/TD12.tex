@@ -47,7 +47,7 @@
 \pagebreak
 
 \section*{Exercice 12.1 [$\blacklozenge\lozenge\lozenge$]}
-\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+\begin{tcolorbox}[enhanced, width=7.5in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Résoudre le problème de Cauchy ci-dessous :
     \begin{equation*}
         \begin{cases}
@@ -69,7 +69,7 @@
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.1}
 
 \section*{Exercice 12.2 [$\blacklozenge\lozenge\lozenge$]}
-\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+\begin{tcolorbox}[enhanced, width=7.5in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Résoudre :
     \begin{equation*}
         y'' - y' - 2y = 2\ch(x)
@@ -94,7 +94,7 @@
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.2}
 
 \section*{Exercice 12.3 [$\blacklozenge\lozenge\lozenge$]}
-\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+\begin{tcolorbox}[enhanced, width=7.5in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Résoudre :
     \begin{equation*}
         y'' + 2y' + y = \cos(2t) \quad (E).
@@ -111,7 +111,7 @@
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.3}
 
 \section*{Exercice 12.4 [$\blacklozenge\blacklozenge\lozenge$] Résonance... ou pas}
-\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+\begin{tcolorbox}[enhanced, width=7.5in, center, size=fbox, fontupper=\large, drop shadow southwest]
     1. \underbar{Excitation à une pulsation quelconque}. Résoudre
     \begin{equation*}
         y'' + 4y = \cos t
@@ -138,7 +138,7 @@
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.4}
 
 \section*{Exercice 12.5 [$\blacklozenge\blacklozenge\lozenge$]}
-\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+\begin{tcolorbox}[enhanced, width=7.5in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Soit $\alpha\in\mathbb{R}$. Résoudre l'équation différentielle
     \begin{equation*}
         2y'' + \alpha y' + \alpha y = 0.
@@ -169,7 +169,7 @@
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.5}
 
 \section*{Exercice 12.6 [$\blacklozenge\blacklozenge\lozenge$]}
-\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+\begin{tcolorbox}[enhanced, width=7.5in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Soit $a\in\mathbb{R}$. En discutant selon la valeur de $a$, résoudre
     \begin{equation*}
         y'' - 2ay' + (1+a^2)y = \sin x.
@@ -193,5 +193,34 @@
     \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.6}
+
+\section*{Exercice 12.7 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.5in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    On considère l'équation différentielle à coefficients \emph{non constants} ci-dessous :
+    \begin{equation*}
+        (E) \qquad t^2y'' + 4ty' + (2 + t^2)y = 1 ~ \text{sur }\mathbb{R}^*_+.
+    \end{equation*}
+    Soient $y$ une fonction définie sur $\mathbb{R}^*_+$ et $z:t\mapsto t^2y(t)$.
+    \begin{adjustwidth}{0.2cm}{}
+        1. Justifier que $y$ est deux fois dérivable sur $\mathbb{R}^*_+$ si et seulement si $z$ est deux fois dérivable sur $\mathbb{R}^*_+$.\\
+        2. Démontrer que $y$ est solution de l'équation si est seulement si $z$ est solution d'une équation différentielle très simple que l'on précisera.\\
+        3. Donner l'ensemble des solutions de $(E)$.
+    \end{adjustwidth}
+    1. Soit $t\in\mathbb{R}^*_+$.\\ 
+    Supposons $z$ deux fois dérivable.\\
+    Alors $z'(t) = 2ty(t) + t^2y'(t)$ et $z''(t) = 2y(t) + 4ty'(t) + t^2y''(t)$.\\
+    Ainsi, $y$ est deux fois dérivable.\\[0.1cm]
+    Supposons $y$ deux fois dérivable.\\
+    $z$ est dérivable une fois comme produit de fonctions dérivable et une deuxième fois comme somme et produit de fonctions dérivables.\\[0.2cm]
+    2. Supposons $y$ solution de $(E)$, $y$ est alors deux fois dérivable, $z$ aussi. On a $t^2y'' + 4ty' + 2y+t^2y=1$.\\
+    Par identification, $z'' + z = 1$ $(E')$\\[0.2cm]
+    3. Polynome caractéristique : $r^2 + 1$. $\Delta = -4$. $r_1 = i$ et $r_2 = -i$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto \lambda\cos(x) + \mu\sin(x) ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$.\\
+    Solution particulière : $S_p : x\mapsto 1$.\\
+    Solution générale : $S = \{x\mapsto \lambda \cos(x) + \mu \sin(x) + 1 ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$.\\
+    Ainsi, les solution de $(E)$ sur $\mathbb{R}^*_+$ sont : $S_E = \{x\mapsto \frac{\lambda}{x^2}\cos(x) + \frac{\mu}{x^2}\sin(x) + \frac{1}{x^2} ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.7}
 \end{document}
  
