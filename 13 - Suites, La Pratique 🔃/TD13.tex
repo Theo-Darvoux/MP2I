@@ -73,10 +73,33 @@
     $(u_n)$ est strictement positive sur $\mathbb{N}$.\\
     Soit $n \in \mathbb{N}$.\\
     On peut donc écrire : $\frac{u_{n+1}}{u_n}=\frac{a}{n+1}$.\\
-    Ainsi, $(u_n)$ est croissante ($a\geq n+1$) puis décroissante ($a\leq n+1$), ce qui implique qu'un maximum existe.\\ 
+    Ainsi, $(u_n)$ est croissante ($a\geq n+1$) puis décroissante ($a\leq n+1$), ce qui implique qu'un maximum existe.\\
+    Ce maximum est atteint lorsque $a=n+1$ c'est à dire quand $n=\lfloor a \rfloor$.\\
+    Ainsi, le maximum de la suite $u$ est : $\frac{a^{\lfloor a \rfloor}}{\lfloor a \rfloor!}$\\
+    \qed
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.2}
+
+\section*{Exercice 13.3 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Pour $n\in\mathbb{N}$, on pose
+    \begin{equation*}
+        u_n = \sum_{k=n+1}^{2n}\frac{k\sin k}{k^2+1}.
+    \end{equation*}
+    Prouver que la suite $(u_n)$ est bornée.\\
+    Soit $n\in\mathbb{N}$, on a : $-1 \leq \sin n \leq 1$. Donc :
+    \begin{align*}
+        \left|\sum_{k=n+1}^{2n}\frac{k\sin k}{k^2+1}\right| &\leq \sum_{k=n+1}^{2n}\frac{k}{k^2+1}\\
+        &\leq \sum_{k=n+1}^{2n}\frac{n+1}{(n+1)^2+1}\\
+        &\leq \frac{n^2 + n}{n^2 + 2n + 2}\\
+        &\leq 1
+    \end{align*}
+    Majorér en valeur absolue c'est borner\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.3}
 
 \end{document}
  
