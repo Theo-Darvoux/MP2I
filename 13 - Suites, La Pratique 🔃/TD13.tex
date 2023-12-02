@@ -143,6 +143,35 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.5}
 
+\section*{Exercice 13.6 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $(u_n)$, définie par récurrence par $\begin{cases}u_0=1\\\forall n \geq 0, ~ u_{n+1} = 3u_n + 2^n\end{cases}$.\\
+    1. Prouver qu'il existe une suite $(a_n)$ géométrique de raison 2 qui satisfait la relation de récurrence.\\
+    2. Donner le terme général de $(u_n)$.\\[0.1cm]
+    1. Soit $n\in\mathbb{N}$ et soit $(a_n)$ une suite géométrique de raison 2. On a :
+    \begin{equation*}
+        \forall n\in\mathbb{N}, ~ a_n = a_02^{n}
+    \end{equation*}
+    On cherche $(a_n)$ telle que $a_{n+1} = 3a_n + 2^n = 3a_02^n+2^n = 2^n(3a_0+1)$.\\
+    Posons $a_0 = -1$. On a $a_{n+1} = 2^n(-2) = -2^{n+1} = a_02^{n+1}$.\\
+    Ainsi, la suite géométrique $(a_n)$ de raison 2 et de premier terme $-1$ satisfait la relation de récurrence.\\
+    2. On a $u_{n+1} - 2a_n = 3u_n + 2^n - 2a_n \iff u_{n+1} - a_{n+1} = 3(u_n - a_n)$.\\
+    On pose $v_n := u_n - a_n$. Alors $v_0 = u_0 - a_0 = 2$ et $v_n = 2\cdot3^n$.\\
+    On en déduit que $u_n = v_n + a_n = 2\cdot3^n - 2^n = 2(3^n - 2^{n-1})$\\
+    On a $u_{n+1} = 2(3^{n+1} - \cdot2^{n})$ \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.6}
+
+\section*{Exercice 13.7 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Étudier la suite $(u_n)$, définie par récurrence par $\begin{cases}
+        u_0 > 0; u_1 > 0\\
+        \forall n \geq 0 ~ u_{n+2} = \sqrt{u_{n+1}u_n}
+    \end{cases}$.
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.7}
 
 \end{document}
  
