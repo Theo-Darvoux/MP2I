@@ -95,11 +95,42 @@
         &\leq \frac{n^2 + n}{n^2 + 2n + 2}\\
         &\leq 1
     \end{align*}
-    Majorér en valeur absolue c'est borner\\
+    Majorer en valeur absolue c'est borner\\
     \qed
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.3}
+
+\section*{Exercice 13.4 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $\alpha\in]0,1[$ et $(u_n)$ la suite définie par $\begin{cases}
+        u_0 = \alpha(1-\alpha)\\
+        \forall n \geq 0 ~ u_{n+1}=(1-\alpha)u_n + \alpha(1-\alpha)
+    \end{cases}$\\
+    1. Exprimer le terme général de la suite en fonction de $\alpha$ et $n$.\\
+    2. Donner $\lim u_n$.\\[0.1cm]
+    1. Soit $n\in\mathbb{N}$.\\
+    On pose l'équation au point fixe : $x = (1-\alpha)x + \alpha(1-\alpha)$.\\
+    Sa solution est : $x=1-\alpha$.\\
+    On a : $u_{n+1} - (1 - \alpha) = (1-\alpha)u_n + \alpha(1-\alpha) - (1 - \alpha)$.\\
+    Ainsi, $u_{n+1} + \alpha - 1 = (1-\alpha)(u_n + \alpha - 1)$.\\
+    On pose $v_n := u_n + \alpha - 1$. Par définition, $v$ est géométrique, de raison $1-\alpha$.\\
+    Son terme général est : $v_n=v_0(1-\alpha)^n$.\\
+    Or $v_0=u_0 + \alpha - 1 = \alpha(1-\alpha) + \alpha - 1 = (\alpha-1)(1-\alpha)$.\\
+    On en déduit que $v_n = (\alpha-1)(1-\alpha)^{n+1}$.\\
+    Finalement, $u_n=(\alpha-1)(1-\alpha)^{n+1}-\alpha+1$.\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.4}
+
+\section*{Exercice 13.5 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.5}
+
 
 \end{document}
  
