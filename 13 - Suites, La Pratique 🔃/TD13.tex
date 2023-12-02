@@ -126,7 +126,19 @@
 
 \section*{Exercice 13.5 [$\blacklozenge\lozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
-    
+    Soit $\theta\in\mathbb{R}$.\\
+    1. Donner la forme du terme général d'une suite $(u_n)_{n\in\mathbb{N}}$ de $\mathbb{R}^\mathbb{N}$ telle que
+    \begin{equation*}
+        \forall n \in \mathbb{N} ~ u_{n+2} - 2\cos(\theta)u_{n+1} + u_n = 0.
+    \end{equation*}
+    2. Supposons dans cette question que $\theta \notin \pi\mathbb{Z}$. Donner sous forme factorisée le terme général de l'unique suite $(u_n)$ satisfaisant la relation ci-dessus et telle que $u_0=u_1=1$.\\[0.1cm]
+    Polynome caractéristique : $r^2 - 2\cos(\theta)r + 1$. $\Delta = -4\sin^2(\theta)$. $r_1 = \cos(\theta) + i\sin(\theta)$ et $r_2 = \cos(\theta) - i\sin(\theta)$.\\
+    Lorsque $\theta\in\pi\mathbb{Z}$: $\exists!(\lambda,\mu)\in\mathbb{R}^2 ~ \forall n\in\mathbb{N}, ~ u_n = \lambda n \cos^n(\theta) + \mu \cos^n(\theta)$.\\
+    Lorsque $\theta\notin\pi\mathbb{Z}$: $\exists!(\lambda,\mu)\in\mathbb{R}^2 ~ \forall n\in\mathbb{N}, ~ u_n = \lambda \cos(n\theta) + \mu\sin(n\theta)$.\\
+    2. Soient $\lambda,\mu\in\mathbb{R}$ tels que $\forall n\in\mathbb{N}, ~ u_n = \lambda\cos(n\theta)+\mu\sin(n\theta)$.\\
+    On a $u_0 = \lambda = 1$ et $u_1 = \cos(\theta) + \mu\sin(\theta) = 1$ donc $\mu = \frac{1-\cos(\theta)}{\sin(\theta)}$.\\
+    Ainsi, $\forall n\in\mathbb{N}n, ~ u_n = \cos(n\theta) + \frac{1-\cos(\theta)}{\sin(\theta)}\sin(n\theta)$\\
+    \emph{Comment tu factorises ça wtf}\qed
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.5}
