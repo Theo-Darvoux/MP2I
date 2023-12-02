@@ -189,8 +189,23 @@
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.7}
 
+\section*{Exercice 13.8 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $a>1$. Pour $n\geq1$, on définit $u_n=(\lfloor a^n \rfloor)^{1/n}$.\\
+    Montrer que $(u_n)$ est convergente et donner sa limite.\\
+    On a :
+    \begin{align*}
+        a^n - 1 < \lfloor a^n \rfloor \leq a^n &\iff (a^n - 1)^{\frac{1}{n}} < \lfloor a^n \rfloor ^ \frac{1}{n} \leq a
+    \end{align*}
+    On peut appliquer la fonction $x\mapsto \frac{1}{n}$ : elle est croissante sur $\mathbb{R}_+$ et $a>1$.\\
+    D'une part, $(a^n - 1)^{\frac{1}{n}} = (a^n(1 - \frac{1}{a^n}))^{\frac{1}{n}} = a(1-\frac{1}{a^n})^\frac{1}{n} \to a$.\\
+    D'autre part, $a \to a$ (\emph{big brain})\\
+    Ainsi, d'après le théorème des gendarmes : $\lfloor a^n \rfloor ^ \frac{1}{n} \to a$.\\
+    \qed
+\end{tcolorbox}
 
 
 \addcontentsline{toc}{section}{Monotonie.}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.8}
 \end{document}
  
