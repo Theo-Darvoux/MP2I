@@ -168,10 +168,29 @@
     Étudier la suite $(u_n)$, définie par récurrence par $\begin{cases}
         u_0 > 0; u_1 > 0\\
         \forall n \geq 0 ~ u_{n+2} = \sqrt{u_{n+1}u_n}
-    \end{cases}$.
+    \end{cases}$.\\
+    Soit $n\in\mathbb{N}$.\\
+    On a :
+    \begin{align*}
+        u_{n+2} = \sqrt{u_{n+1}u_n} &\iff \ln(u_{n+2}) = \ln(\sqrt{u_{n+1}u_n})\\
+        &\iff \ln(u_{n+2}) = \frac{1}{2}(\ln(u_{n+1}) + \ln(u_n))
+    \end{align*}
+    On pose $v_n := \ln(u_n)$.\\
+    On obtient : $v_{n+2} = \frac{1}{2}v_{n+1} + \frac{1}{2}v_n$.\\
+    C'est une suite récurrente linéaire d'ordre 2 !\\
+    Polynome caractéristique : $r^2 - \frac{1}{2}r - \frac{1}{2}$. $\Delta = \frac{9}{4}$. $r_1 = 1$ et $r_2 = -\frac{1}{2}$.\\
+    Ainsi, $v_n = \lambda + \frac{\mu(-1)^n}{2^n} ~ | ~ (\lambda, \mu)\in\mathbb{R}^2$.\\
+    Soient $(\lambda,\mu)\in\mathbb{R}^2$ et $v_n$ une telle suite.\\
+    Alors $v_0 = \lambda + \mu$ et $v_1 = \lambda - \frac{\mu}{2}$.\\
+    On a $v_0 + 2v_1 = 3\lambda = \ln(u_0u_1^2)$. Donc $\lambda = \ln(\sqrt[3]{u_0u_1^2})$.\\
+    On a $u_n = e^\lambda \cdot e^{\frac{\mu(-1)^n}{2^n}} \to e^{\lambda}$. Ainsi, $u_n \to \sqrt[3]{u_0u_1^2}$.\\
+    \qed
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.7}
 
+
+
+\addcontentsline{toc}{section}{Monotonie.}
 \end{document}
  
