@@ -51,7 +51,7 @@
 \section*{Exercice 13.1 [$\blacklozenge\lozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Une suite croissante est une fonction croissante sur $\mathbb{N}$.\\
-    Démontrer que le titre de l'exercice dit vraie, c'est à dire, pour une suite réelle $(u_n)_{n\in\mathbb{N}}$ l'équivalence entre\\
+    Démontrer que le titre de l'exercice dit vrai, c'est-à-dire, pour une suite réelle $(u_n)_{n\in\mathbb{N}}$ l'équivalence entre\\
     1. $\forall{n\in\mathbb{N}} ~ u_{n+1} \geq u_n$.\\
     2. $\forall{(n,p)\in\mathbb{N}^2} ~ n \leq p \Longrightarrow u_n \leq u_p$.\\[0.1cm]
     Supposons 2, montrons 1.\\
@@ -246,9 +246,37 @@
 
 \section*{Exercice 13.11 [$\blacklozenge\lozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, drop shadow southwest]
-    
+    Pour $n\in\mathbb{N}$, on pose $I_n = \int_0^{\frac{\pi}{4}}(\arctan(x))^ndx$. Justifier que $(I_n)$ est convergente.\\
+    Soit $n\in\mathbb{N}$.\\
+    Pour $x\in[0, \frac{\pi}{4}]$, on a $\arctan(x)^n \in [0,1]$ donc $\arctan^{n+1}(x) \leq \arctan^n(x)$.\\
+    Alors :
+    \begin{align*}
+        I_{n+1} - I_n = \int_0^{\frac{\pi}{4}}\left( \arctan^{n+1}(x) - \arctan^n(x) \right)dx \leq 0.
+    \end{align*}
+    Ainsi, $I_n$ est décroissante et minorée par 0 : $I_n$ est convergente d'apres le TLM.\\
+    \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{Monotonie.}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.11}
+
+\section*{Exercice 13.12 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, drop shadow southwest]
+    Soit $\alpha$ un réel de $]0,1[$. Pour tout $n\in\mathbb{N}^*$, on pose $u_n=\prod_{k=1}^n(1+\alpha^k)$.\\
+    1. Justifier brièvement que $\forall x \in \mathbb{R} ~ 1 + x \leq e^x$.\\
+    2. Démontrer que $(u_n)$ est une suite convergente, et que $\lim u_n \leq \exp(\frac{\alpha}{1-\alpha})$.\\[0.1cm]
+    1. Soit $x\in\mathbb{R}$, par convexité de l'exponentielle, elle est supérieure à toutes ses tangentes, en particulier $x+1$.\\
+    2. Puisque $\forall x\in\mathbb{R}, ~ 1 + x \leq e^x$, on a $\forall k\in\mathbb{N}, ~ 1 + \alpha^k \leq e^{\alpha^k}$.\\
+    Ainsi :
+    \begin{align*}
+        \prod_{k=1}^n(1+\alpha^k) \leq \prod_{k=1}^ne^{\alpha^k}=\exp(\sum_{k=1}^n{\alpha^k})=\exp(\frac{\alpha-\alpha^{n+1}}{1-\alpha})\leq\exp\left( \frac{\alpha}{1-\alpha} \right)
+    \end{align*}
+    On a $u_n>0$ donc on peut écrire :
+    \begin{align*}
+        \frac{u_{n+1}}{u_n} = 1+\alpha^{n+1} > 1
+    \end{align*}
+    Donc $(u_n)$ est croissante et majorée, ainsi elle converge vers un réel $l \leq \exp(\frac{\alpha}{1-\alpha})$\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.12}
 \end{document}
  
