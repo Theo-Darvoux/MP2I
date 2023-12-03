@@ -205,7 +205,24 @@
 \end{tcolorbox}
 
 
-\addcontentsline{toc}{section}{Monotonie.}
+\addcontentsline{toc}{section}{Encadrement.}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.8}
+\section*{Exercice 13.9 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, drop shadow southwest]
+    Pour tout $n\in\mathbb{N}^*$, on note $u_n=\prod\limits_{k=1}^{n}\left( 1 + \frac{k}{n^2} \right)$.\\
+    1. Montrer que pour tout $x\geq0$, $x-\frac{x^2}{2} \leq \ln(1+x) \leq x$.\\
+    2. Montrer que $u$ converge et déterminer sa limite.\\[0.1cm]
+    Soit $x\in\mathbb{R}_+$.\\
+    1. On pose $f:x\mapsto\ln(1+x) - x$. $f$ est dérivable comme somme et $f':x\mapsto-\frac{x}{1+x}$. $f$ décroissante sur $\mathbb{R}_+$.\\
+    Or $f(0)=0$ donc $f(x)\leq0$. Ainsi, $\ln(1+x) \leq x$.\\[0.1cm]
+    On pose $g:x\mapsto x-\frac{x^2}{2} - \ln(1+x)$. $g$ est dérivable comme somme, $g':x\mapsto -\frac{x^2}{1+x}$. $g$ décroissante sur $\mathbb{R}_+$.\\
+    Or $g(0)=0$ donc $g(x)\leq0$. Ainsi, $x - \frac{x^2}{2} \leq \ln(1+x)$.\\[0.1cm]
+    2. Posons $v_n := \ln(u_n)$. Alors $v_n = \sum\limits_{k=1}^n\ln\left( 1+\frac{k}{n^2} \right)$.\\
+    Alors $\sum\limits_{k=1}^n(\frac{k}{n^2}-\frac{k^2}{2n^4}) \leq v_n \leq \sum\limits_{k=1}^n\frac{k}{n^2}$ : $\frac{n+1}{2n} - \frac{(n+1)(2n+1)}{12n^3}\leq v_n \leq \frac{n+1}{2n}$.\\
+    Par théorème des gendarmes, $v_n \to \frac{1}{2}$. Ainsi, $u_n \to \sqrt{e}$.\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.9}
 \end{document}
  
