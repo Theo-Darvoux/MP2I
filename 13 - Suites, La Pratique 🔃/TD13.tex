@@ -324,5 +324,40 @@
     \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.14}
+
+\section*{Exercice 13.15 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Pour $n\in\mathbb{N}^*$
+    \begin{equation*}
+        u_n = \sum_{k=1}^{n}\frac{1}{k} \quad \text{et} \quad v_n = \sum_{k=1}^{n}\frac{1}{k^2}
+    \end{equation*}
+    1. Pour chacune des deux suites $u$ et $v$, faire un pronostic : convergente ou divergente ?\\
+    2. Justifier que pour tout entier $k$ supérieur à 2, on a $\frac{1}{k^2} \leq \frac{1}{k(k-1)} = \frac{1}{k-1} - \frac{1}{k}$.\\
+    En déduire que la suite $(v_n)$ est majorée puis qu'elle converge vers une limite finie.\\
+    3. (a) Montrer que pour tout $n\in\mathbb{N}^*$, $u_{2n} - u_n \geq 1/2$.\\
+    (b) Démontrer par l'absurde que $(u_n)$ tend vers $+\infty$.\\
+    1. Conjecture : $u$ diverge et $v$ converge.\\
+    2. Soit $k\in\mathbb{N} ~ | ~ k \geq 2$ et $n\in\mathbb{N}^*$. On a $k^2 \geq k^2 - k \iff \frac{1}{k^2} \leq \frac{1}{k(k-1)}$.\\
+    On a :
+    \begin{equation*}
+        1 + \sum_{k=2}^{n}\frac{1}{k^2} \leq 1 + \sum_{k=1}^{n}\frac{1}{k} - \sum_{k=2}^n\frac{1}{k} \leq 1 + \frac{1}{n}
+    \end{equation*}
+    Et :
+    \begin{equation*}
+        v_{n+1} - v_n = \frac{1}{(n+1)^2} \geq 0
+    \end{equation*}
+    $v$ est croissante et majorée : elle converge vers une limite finie.\\
+    3. (a) Soit $n\in\mathbb{N}^*$.
+    \begin{equation*}
+        u_{2n} - u_n = \sum_{k=n+1}^{2n}\frac{1}{k}\geq\sum_{k=n+1}^{2n}{\frac{1}{2n}}=\frac{1}{2}.
+    \end{equation*}
+    (b) Soit $n\in\mathbb{N}^*$.\\
+    Grâce au TLM, on sait que $u_n$ tend soit vers $+\infty$, soit vers un réel.\\
+    Supposons que $u$ tende vers une limite réelle, notée $l$.\\
+    On a alors, en passant à la limite que : $u_{2n} - u_n = \frac{1}{2} \Longrightarrow l-l = \frac{1}{2}$.\\
+    C'est absurde, donc $u_n \longrightarrow +\infty$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.15}
 \end{document}
  
