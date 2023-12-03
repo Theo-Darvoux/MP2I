@@ -226,7 +226,7 @@
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.9}
 
 \section*{Exercice 13.10 [$\blacklozenge\blacklozenge\blacklozenge$]}
-\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, drop shadow southwest]
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Étudier la convergence de la suite de terme général $\frac{1! + 2! + ... + n!}{n!}$.\\
     Soit $(u_n)$ une suite de terme général : $\frac{1}{n!}\sum_{k=1}^nk!$.\\
     Soit $n\in\mathbb{N}$.\\
@@ -245,7 +245,7 @@
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.10}
 
 \section*{Exercice 13.11 [$\blacklozenge\lozenge\lozenge$]}
-\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, drop shadow southwest]
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Pour $n\in\mathbb{N}$, on pose $I_n = \int_0^{\frac{\pi}{4}}(\arctan(x))^ndx$. Justifier que $(I_n)$ est convergente.\\
     Soit $n\in\mathbb{N}$.\\
     Pour $x\in[0, \frac{\pi}{4}]$, on a $\arctan(x)^n \in [0,1]$ donc $\arctan^{n+1}(x) \leq \arctan^n(x)$.\\
@@ -260,7 +260,7 @@
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.11}
 
 \section*{Exercice 13.12 [$\blacklozenge\lozenge\lozenge$]}
-\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, drop shadow southwest]
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Soit $\alpha$ un réel de $]0,1[$. Pour tout $n\in\mathbb{N}^*$, on pose $u_n=\prod_{k=1}^n(1+\alpha^k)$.\\
     1. Justifier brièvement que $\forall x \in \mathbb{R} ~ 1 + x \leq e^x$.\\
     2. Démontrer que $(u_n)$ est une suite convergente, et que $\lim u_n \leq \exp(\frac{\alpha}{1-\alpha})$.\\[0.1cm]
@@ -278,5 +278,51 @@
     \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.12}
+
+\section*{Exercice 13.13 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient $(u_n)$ et $(v_n)$ deux suites définies par
+    \begin{equation*}
+        \forall n \in \mathbb{N}^* \quad u_n = \sum_{k=n+1}^{2n}\frac{1}{k} ~ et ~ v_n = u_n + \frac{1}{n}.
+    \end{equation*}
+    Démontrer que $(u_n)$ et $(v_n)$ convergent vers une même limite.\\
+    Soit $n\in\mathbb{N}$.\\
+    On a :
+    \begin{align*}
+        &u_{n+1} - u_n = \sum_{k=n+2}^{2n+2}\frac{1}{k} - \sum_{k=n+1}^{2n}\frac{1}{k}=\frac{1}{2n+2} + \frac{1}{2n+1} - \frac{1}{n+1} = \frac{1}{4n^2 + 6n + 2} > 0\\
+        &v_{n+1} - v_n = u_{n+1} + \frac{1}{n+1} - u_{n} - \frac{1}{n} = \frac{1}{2n+2} + \frac{1}{2n+1} - \frac{1}{n} = -\frac{3n+2}{2n(n+1)(2n+1)}<0
+    \end{align*}
+    Alors $(u_n)$ et $(v_n)$ sont monotones de monotonies contraires.\\
+    On a :
+    \begin{align*}
+        u_n - v_n = -\frac{1}{n} \longrightarrow 0
+    \end{align*}
+    Ainsi, $(u_n)$ et $(v_n)$ sont adjacentes : elles convergent vers la même limite.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.13}
+
+\section*{Exercice 13.14 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient $(u_n)$ et $(v_n)$ deux suites définies par $u_0 > v_0 > 0$ et
+    \begin{equation*}
+        u_{n+1} = \frac{u_n + v_n}{2}; ~ v_{n+1} = \frac{2u_nv_n}{u_n + v_n}.
+    \end{equation*}
+    Montrer que ces deux suites convergent vers une limite commune. En examinant la suite $(u_nv_n)$, exprimer cette limite en fonction de $u_0$ et $v_0$.\\
+    Soit $n\in\mathbb{N}$. On a $u_{n+1} - u_n = \frac{v_n - u_n}{2}$. Montrons $\mathcal{P}_n$ : <<$v_n-u_n \leq 0$>>.\\
+    $\mathcal{P}_0$ est évident. On suppose $\mathcal{P}_n$ pour un $n$ fixé. Montrons $\mathcal{P}_{n+1}$.\\
+    On a $v_{n+1} - u_{n+1} = \frac{2u_nv_n}{u_n+v_n} - \frac{u_n+v_n}{2} = \frac{2u_nv_n - u_n^2 - v_n^2}{2(u_n + v_n)}=-\frac{(u_n - v_n)^2}{2(u_n + v_n)}\leq0$.\\
+    $\mathcal{P}_{n+1}$ est vrai. Par récurrence, $\mathcal{P}_n$ est vrai pour tout $n\in\mathbb{N}$.\\
+    On a $v_{n+1} - v_n = \frac{2u_nv_n}{u_n+v_n} - \frac{v_n(u_n + v_n)}{u_n + v_n}=\frac{v_n(u_n - v_n)}{u_n + v_n}\geq0$.\\
+    Ainsi, $u$ est décroissante, $v$ est croissante.\\
+    $u$ est minorée par $0$ : elle converge vers une limite $l\in\mathbb{R}$.\\
+    Puisque $u_{n+1}v_{n+1} = \frac{u_n+v_n}{2}\cdot\frac{2u_nv_n}{u_n+v_n}=u_nv_n$, $(u_nv_n)$ est constante et $u_nv_n = u_0v_0$.\\
+    On obtient que $v_n$ converge aussi vers une limite $m\in\mathbb{R}$.\\
+    On a : $u_{n+1} = \frac{u_n + v_n}{2} \longrightarrow \frac{l + m}{2}$.\\
+    Ainsi, $l = \frac{l + m}{2}$ donc $l = m$. Les deux suites convergent vers la même limite.\\
+    Puisque $u_nv_n = u_0v_0$, $lm = u_0v_0$ donc $l = m = \sqrt{u_0v_0}$\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.14}
 \end{document}
  
