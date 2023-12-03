@@ -224,5 +224,31 @@
 \end{tcolorbox}
 
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.9}
+
+\section*{Exercice 13.10 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, drop shadow southwest]
+    Étudier la convergence de la suite de terme général $\frac{1! + 2! + ... + n!}{n!}$.\\
+    Soit $(u_n)$ une suite de terme général : $\frac{1}{n!}\sum_{k=1}^nk!$.\\
+    Soit $n\in\mathbb{N}$.\\
+    On sait d'avance que $u_n \geq 1$, puisque $\sum_{k=1}^nk! \geq n!$.\\
+    De plus,
+    \begin{align*}
+        \frac{1}{n!}\sum_{k=1}^nk! &= \frac{n!}{n!} + \frac{(n-1)!}{n!} + \frac{1}{n!}\sum_{k=1}^{n-2}k!\\
+        &\leq 1 + \frac{1}{n} + \frac{(n-2)(n-2)!}{n!}\\
+        &= 1 + \frac{1}{n} + \frac{n-2}{n(n-1)}\\
+        &\longrightarrow 1 
+    \end{align*}
+    D'après le théorème des gendarmes (AQAB), $u_n \to 1$.\\
+    \qed 
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.10}
+
+\section*{Exercice 13.11 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, drop shadow southwest]
+    
+\end{tcolorbox}
+\addcontentsline{toc}{section}{Monotonie.}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.11}
 \end{document}
  
