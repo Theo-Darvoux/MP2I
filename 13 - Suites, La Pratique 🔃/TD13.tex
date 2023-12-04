@@ -359,5 +359,27 @@
     \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.15}
+
+\section*{Exercice 13.16 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit la suite $(u_n)$ définie par
+    \begin{equation*}
+        \forall n\in\mathbb{N}^* ~ u_n = \sqrt{a_1 + \sqrt{a_2 + ... + \sqrt{a_n}}}
+    \end{equation*}
+    où $a_n$ est la $n$ème décimale de $\pi$. Étudier la convergence de $(u_n)$.\\
+    On pose $v_n := \sqrt{9 + \sqrt{9 + ... + \sqrt{9}}}$, ainsi $v_{n+1} = \sqrt{9 + v_n}$ et $v_0 = 3$\\
+    Soit $\mathcal{P}_n$ la proposition : <<$v_n \leq 9$>>. Montrons $\mathcal{P}_n$ pour tout $n\in\mathbb{N}$.\\
+    $\mathcal{P}_0$ est immédiat. Supposons $\mathcal{P}_n$ pour un $n$ fixé. Montrons $\mathcal{P}_{n+1}$.
+    \begin{equation*}
+        v_n \leq 9 \iff v_n + 9 \leq 18 \iff v_{n+1} \leq \sqrt{18} \leq 9.
+    \end{equation*}
+    Ainsi, $v$ est majorée par $9$.\\
+    On a $u_1 = \sqrt{3}$, $u_2 = \sqrt{3 + \sqrt{1}}$, $u_3 = \sqrt{3 + \sqrt{1 + \sqrt{4}}}...$\\
+    Or $\sqrt{\cdot}$ est croissante et $3 \leq 3 + \sqrt{1} \leq 3 + \sqrt{1 + \sqrt{4}} \leq ...$ car $\forall{n\in\mathbb{N}^*} ~ a_n \geq 0$.\\
+    Alors $(u_n)$ est croissante et majorée par $9$.\\
+    D'après le théorème de la limite monotone, $(u_n)$ converge vers $l\leq9$.\\
+    \qed 
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.16}
 \end{document}
  
