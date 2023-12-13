@@ -1,0 +1,100 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm, paperheight=31cm]{geometry}
+\usepackage[skins]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol, changepage}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{tkz-tab}
+\usepackage{systeme}
+
+\def\pagetitle{Applications}
+\setlength{\headheight}{13pt}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+\date{Décembre 2023}
+\author{DARVOUX Théo}
+
+\DeclareMathOperator{\ch}{ch}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+\begin{document}
+\renewcommand*\contentsname{Exercices.}
+\renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\maketitle
+
+\hrule
+\tableofcontents
+\vspace{0.5cm}
+\hrule
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+\allowdisplaybreaks
+
+\pagebreak
+
+
+\section*{Exercice 15.1 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $f:E\to F$ une application. Soient deux parties $A \subset E$ et $B \subset F$. Montrer l'égalité
+    \begin{equation*}
+        f(A) \cap B = f(A \cap f^{-1}(B)).
+    \end{equation*}
+    Procédons par double inclusion.\\
+    $\circledcirc$ Soit $y\in f(A) \cap B$. Montrons que $y\in f(A \cap f^{-1}(B))$.\\
+    On a $y\in f(A)$ et $y\in B$.\\
+    $\exists x\in A ~ | ~ y = f(x)$ donc $x\in A$ et $x\in f^{-1}(B)$ car $y\in B$.\\
+    Ainsi $x\in A\cap f^{-1}(B)$ et $f(x) = y \in f(A \cap f^{-1}(B))$\\[0.15cm]
+    $\circledcirc$ Soit $y\in f(A \cap f^{-1}(B))$ Montrons que $y\in f(A) \cap B$.\\
+    $\exists x \in A \cap f^{-1}(B) ~ | ~ y = f(x)$ donc $x\in A$ et $x \in f^{-1}(B)$.\\
+    Ainsi, $f(x) = y \in f(A)$ et $f(x) = y \in B$ : $y\in f(A)\cap B$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{Images directes, images réciproques.}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.1}
+
+\section*{Exercice 15.2 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $f:E\to F$ une application. Soit $A$ une partie de $E$ et $B$ une partie de $F$.\\
+    1. (a) Montrer que $A \subset f^{-1}(f(A))$.\\
+    (b) Montrer que si $f$ est injective, la réciproque est vraie.\\
+    2. (a) Montrer que $f(f^{-1}(B)) \subset B$.\\
+    (b) Démontrer que si $f$ est surjective, la réciproque est vraie.\\
+    3. Montrer que $f(f^{-1}(f(A))) = f(A)$.\\
+    4. Montrer que $f^{-1}(f(f^{-1}(B)))=f^{-1}(B)$.\\[0.15cm]
+    1.\\
+    a) Soit $x\in A$. Montrons que $x\in f^{-1}(f(A))$.\\
+    On a $x\in A$ alors $f(x) \in f(A)$ et $x\in f^{-1}(f(A))$.\\
+    b) On suppose $f$ injective, soit $x \in f^{-1}(f(A))$.\\
+    On applique $f$ : $f(x) \in f(A)$. Par injectivité de $f$, $x \in A$.\\
+    2.\\
+    a) Soit $y \in f(f^{-1}(B))$.\\
+    On a $\exists x \in f^{-1}(B) ~ | ~ y = f(x)$. Ainsi, $f(x)\in B$ : $y\in B$.\\
+    b) Supposons $f$ surjective, soit $y\in B$.\\
+    On a $\exists x \in f^{-1}(B) ~ | ~ y = f(x)$ et $f(x) = y \in f(f^{-1}(B))$.\\
+    3) Soit $y\in f(f^{-1}(f(A)))$. Montrons que $y\in f(A)$.\\
+    On a $\exists x \in f^{-1}(f(A)) ~ | ~ y = f(x)$ et $f(x) \in f(A)$ donc $y \in f(A)$.\\
+    Soit $y\in f(A)$. Montrons que $y\in f(f^{-1}(f(A)))$.\\
+    On a $\exists x \in A ~ | ~ y = f(x)$ alors $f(x) \in f(A)$ et $x\in f^{-1}(f(A))$. Donc $f(x) = y \in f(f^{-1}(f(A)))$.\\
+    4) Soit $y \in f^{-1}(f(f^{-1}(B)))$. Montrons que $y \in f^{-1}(B)$.\\
+    On a $f(y) \in f(f^{-1}(B))$ alors $y \in f^{-1}(B)$.\\
+    Soit $y\in f^{-1}(B)$. Montrons que $y\in f^{-1}(f(f^{-1}(B)))$.\\
+    On a $f(y) \in f(f^{-1}(B))$ donc $y \in f^{-1}(f(f^{-1}(B)))$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.2}
+
+\end{document}
+ 
