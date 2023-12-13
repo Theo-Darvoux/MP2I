@@ -423,5 +423,33 @@
 
 \addcontentsline{toc}{section}{Modes de définition particulier d'une suite}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 13.17}
+
+\section*{Exercice 13.18 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Prouver que pour tout $n\in\mathbb{N}^*$, il existe un unique $x_n>0$ tel que $x^n_n + x_n = 3$. Prouver que $(x_n)$ converge et déterminer sa limite.\\
+    Soit $n\in\mathbb{N}^*$ et soit $f_n : x\mapsto x^n + x$. $f_n$ est dérivable et $f'_n: x \mapsto nx^{n-1} + 1$ on a :
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=10]{$x$/0.6,$f_n'(x)$/0.6,$f_n$/1.4}{0,$+\infty$}
+            \tkzTabLine{d,+}
+            \tkzTabVar{D-/$0$, +/$+\infty$}
+        \end{tikzpicture}
+    \end{center}
+    On a que $f_n$ est continue et strictement croissante sur $]0, +\infty[$, de plus $f_n$ prend ses valeurs dans $]0, +\infty[$. D'après le TVI, il existe une unique solution à l'équation $x_n^n +x_n = 3$. La suite $(x_n)$ est donc bien définie.\\
+    De plus, puisque $f_n(1)=2<f_n(x_n)$, on a que $x_n>1$ pour tout $n\in\mathbb{N}$.\\
+    De plus, il est évident que $x_n<3$ pour tout $n\in\mathbb{N}$.\\
+    Montrons que $(x_n)$ est décroissante. Soit $n\in\mathbb{N}^*$. On a :
+    \begin{equation*}
+        3 = x^{n+1}_{n+1}+x_{n+1} = x_{n+1}f_n(x_{n+1}) - x_{n+1}^2 + x_{n+1}
+    \end{equation*}
+    Ainsi, $f_n(x_{n+1})=\frac{3 +x_{n+1}^2  - x_{n+1}}{x_{n+1}}=x_{n+1} - 1 + \frac{3}{x_{n+1}}<3$ car $x_n\in[1,3]$.\\
+    Alors $f_n(x_{n+1})<3=f_n(x_n)$. On a bien montré que $(x_n)$ est décroissante.\\
+    La suite $(x_n)$ est décroissante et minorée par 1, d'après le TLM, elle converge vers une limite $l\geq1$.\\
+    Supposons que $l>1$.\\
+    Alors : $x_n^n = e^{x_n\ln(x_n)} \to +\infty$ car $x_n \to l$.\\
+    Donc $x_n^n + x_n \to +\infty$, ce qui est absurde : $\forall n \in \mathbb{N}^*, ~ x_n^n + x_n = 3 \to 3$.
+    Ainsi, $(x_n)$ converge vers 1.\\
+    \qed
+\end{tcolorbox}
 \end{document}
  
