@@ -183,6 +183,47 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.8}
 
+\section*{Exercice 15.9 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $E$ un ensemble non vide et $f:E\to E$ une application telle que $f \circ f \circ f = f$.\\
+    Montrer que
+    \begin{equation*}
+        f \text{ est surjective} \iff f \text{ est injective}
+    \end{equation*}
+    $\circledcirc$ Supposons $f$ injective, montrons que $f$ est surjective.\\
+    Soit $y \in E$. Par définition de $f$ : $f \circ f \circ f(y) = f(y)$.\\
+    Par injectivité de $f$ : $f\circ f(y) = y$.\\
+    Donc $f(y)$ est antécédent de $y$ : $f$ est surjective.\\[0.1cm]
+    $\circledcirc$ Supposons $f$ surjective, montrons $f$ injective.\\
+    Soient $y, y' \in E$ tels que $f(y) = f(y')$. Montrons que $y=y'$.\\
+    Par surjectivité de $f$, $\exists x,x' \in E ~ | ~ f(x) = y ~ \wedge ~ f(x') = y'$.\\
+    Ainsi, $f\circ f(x) = f \circ f (x')$.\\
+    Appliquons $f$ : $f \circ f \circ f(x) = f \circ f \circ f(x')$.\\
+    Alors : $f(x) = f(x')$ et donc $y = y'$.\\
+    On a bien prouvé l'injectivité de $f$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.9}
+
+\section*{Exercice 15.10 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $f:\begin{cases}\mathbb{N} \to \mathbb{N} \\ n \mapsto n + (-1)^n\end{cases}$.\\
+    Démontrer que $f$ est une bijection de $\mathbb{N}$ dans lui-même et donner sa réciproque.\\[0.2cm]
+    Montrons que $f$ est un inverse à gauche et à droite d'elle-même.\\
+    Soit $n\in\mathbb{N}$. On a :
+    \begin{align*}
+        f \circ f (n) = f(n + (-1)^n) &= n + (-1)^n + (-1)^{n + (-1)^n} \\
+        &= n + (-1)^n(1+(-1)^{(-1)^n})
+    \end{align*}
+    Or $(-1)^n$ est toujours impair : $(-1)^{(-1)^n} = -1$. Ainsi :
+    \begin{equation*}
+        f\circ f(n) = n + (-1)^n(1-1) = n
+    \end{equation*}
+    On a bien que $f$ est un inverse à gauche et à droite d'elle même : $f$ est bijective et est sa propre réciproque.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.10}
+
 \section*{Exercice 15.13 [$\blacklozenge\blacklozenge\blacklozenge$] Théorème de Cantor}
 \begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Soit $f\in\mathcal{F}(E, \mathcal{P}(E))$. Montrer que $f$ n'est pas surjective.\\
