@@ -170,6 +170,33 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.5}
 
+\section*{Exercice 15.6 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit l'application $f:\mathbb{R} \to \mathbb{R}$ définie par $f(x)=\begin{cases}x^2 ~ \text{si x $\geq$ 0} \\ 2x^2 ~ \text{si x < 0}\end{cases}$\\
+    1. Montrer que $f$ n'est pas injective.\\
+    2. Montrer que $f_{|\mathbb{Q}}$ est injective.\\[0.2cm]
+    1. On a $f(2) = 4$ et $f(-\sqrt{2}) = 4$ : $f$ n'est pas injective.\\
+    2. Soient $x,x'\in\mathbb{Q}$ tels que $f_{|\mathbb{Q}}(x)=f_{|\mathbb{Q}}(\widetilde{x})$. Montrons que $x=\widetilde{x}$.\\
+    \underline{Cas n°1 : $x$ et $\widetilde{x}$ positifs} :
+    \begin{align*}
+        f_{|\mathbb{Q}}(x) = f_{|\mathbb{Q}}(\widetilde{x}) &\iff x^2 = \widetilde{x}^2 \iff x = \widetilde{x}
+    \end{align*}
+    \underline{Cas n°2 : $x$ et $\widetilde{x}$ strictement négatifs} :
+    \begin{align*}
+        f_{|\mathbb{Q}}(x) = f_{|\mathbb{Q}}(\widetilde{x}) &\iff 2x^2 = 2\widetilde{x}^2 \iff x^2 = \widetilde{x}^2 \iff x = \widetilde{x} ~ \text{ car $x,\widetilde{x}\in\mathbb{R}^*_-$}
+    \end{align*}
+    \underline{Cas n°3 : $x\geq0$ et $\widetilde{x}<0$} :
+    \begin{align*}
+        f_{|\mathbb{Q}}(x) = f_{|\mathbb{Q}}(\widetilde{x}) &\iff x^2 = 2\widetilde{x}^2 \iff x = -\sqrt{2}\widetilde{x} \iff -\frac{x}{\widetilde{x}}=\sqrt{2}
+    \end{align*}
+    Cela est impossible par stabilité de $\mathbb{Q}$ par la division. Donc $f_{|\mathbb{Q}}(x) \neq f_{|\mathbb{Q}}(\widetilde{x})$.\\
+    Le cas où $x < 0$ et $\widetilde{x}\geq0$ est symétrique.\\
+    On a prouvé que $f_{|\mathbb{Q}}$ est injective.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.6}
+
+
 \section*{Exercice 15.8 [$\blacklozenge\blacklozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Soit $E$ un ensemble et $f:E\to E$ une application.\\
@@ -205,7 +232,7 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.9}
 
-\section*{Exercice 15.10 [$\blacklozenge\blacklozenge\lozenge$]}
+\section*{Exercice 15.10 [$\blacklozenge\lozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Soit $f:\begin{cases}\mathbb{N} \to \mathbb{N} \\ n \mapsto n + (-1)^n\end{cases}$.\\
     Démontrer que $f$ est une bijection de $\mathbb{N}$ dans lui-même et donner sa réciproque.\\[0.2cm]

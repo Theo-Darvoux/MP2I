@@ -1,0 +1,12 @@
+\contentsline {section}{Images directes, images réciproques.}{2}{section*.1}%
+\contentsline {section}{\numberline {}Exercice 15.1}{2}{section*.1}%
+\contentsline {section}{\numberline {}Exercice 15.2}{2}{section*.2}%
+\contentsline {section}{\numberline {}Exercice 15.3}{3}{section*.3}%
+\contentsline {section}{Applications injectives, surjectives.}{3}{section*.4}%
+\contentsline {section}{\numberline {}Exercice 15.4}{3}{section*.4}%
+\contentsline {section}{\numberline {}Exercice 15.5}{4}{section*.5}%
+\contentsline {section}{\numberline {}Exercice 15.6}{4}{section*.6}%
+\contentsline {section}{\numberline {}Exercice 15.8}{5}{section*.7}%
+\contentsline {section}{\numberline {}Exercice 15.9}{5}{section*.8}%
+\contentsline {section}{\numberline {}Exercice 15.10}{5}{section*.9}%
+\contentsline {section}{\numberline {}Exercice 15.13}{6}{section*.10}%
