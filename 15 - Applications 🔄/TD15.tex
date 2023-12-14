@@ -170,6 +170,19 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.5}
 
+\section*{Exercice 15.8 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $E$ un ensemble et $f:E\to E$ une application.\\
+    On suppose que $f\circ f = f$ et que $f$ est injective ou surjective. Montrer que $f = \text{id}_E$.\\[0.2cm]
+    $\circledcirc$ Supposons $f$ injective. Soit $x \in E$.\\
+    On a $f \circ f (x) = f(x)$. Par injectivité de $f$, $f(x) = x$ donc $f = \text{id}_E$.\\[0.15cm]
+    $\circledcirc$ Supposons $f$ surjective. Soit $y \in E$.\\
+    On a $f \circ f (y) = f(y)$ et $\exists x \in E ~ | ~ f(x) = y$ par surjectivité de $f$.\\
+    Donc $f \circ f \circ f (x) = f \circ f (x)$. Alors $f \circ f (x) = f(x)$ et $f(y) = y$ : $f = \text{id}_E$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.8}
+
 \section*{Exercice 15.13 [$\blacklozenge\blacklozenge\blacklozenge$] Théorème de Cantor}
 \begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Soit $f\in\mathcal{F}(E, \mathcal{P}(E))$. Montrer que $f$ n'est pas surjective.\\
