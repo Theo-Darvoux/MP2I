@@ -96,5 +96,30 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.2}
 
+\section*{Exercice 15.3 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $f:E\to F$ une application. Montrer que
+    \begin{equation*}
+        f \text{ est injective } \iff [\forall A,B \in \mathcal{P}(E) ~ f(A \cap B) = f(A) \cap f(B)]
+    \end{equation*}
+    $\circledcirc$ Supposons $f$ injective. Soient $A,B \in \mathcal{P}(E)$.\\
+    On sait déjà que $f(A \cap B) \subset f(A) \cap f(B)$.\\
+    Montrons alors que $f(A) \cap f(B) \subset f(A \cap B)$.\\
+    Soit $y \in f(A) \cap f(B)$. On a que $y \in f(A) \wedge y \in f(B)$.\\
+    Ainsi, $\exists x_A \in A ~ | ~ y = f(x_A)$ et $\exists x_B \in B ~ | ~ y = f(x_B)$.\\
+    Or $f$ est injective : $x_A = x_B$, ainsi $x_A \in A \cap B$.\\
+    On a enfin que $f(x_A) \in f(A \cap B)$, alors $y \in f(A \cap B)$.\\[0.2cm]
+    $\circledcirc$ Supposons $[\forall A,B \in \mathcal{P}(E) ~ f(A \cap B) = f(A) \cap f(B)]$. Montrons que $f$ est injective.\\
+    Soient $A,B \in \mathcal{P}(E)$.\\
+    Soient $x,x' \in E$. On suppose que $f(x) = f(x')$. Montrons que $x = x'$.\\
+    On a que $\{x\}$ et $\{x'\} \in \mathcal{P}(E)$.\\
+    Ainsi : $f(\{x\} \cap \{x'\}) = f(\{x\}) \cap f(\{x'\})$.\\
+    Supposons que $x \neq x'$. On a alors : $f(\varnothing) = f(\{x\}) \cap f(\{x'\})$ : $\varnothing = \{f(x)\} \cap \{f(x')\}$.\\
+    Or $f(x) = f(x')$ donc $\{f(x)\} \cap \{f(x')\} \neq \varnothing$. C'est absurde : $x = x'$.\\
+    On a bien montré que $f$ est injective.\\
+    \qed 
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.3}
+
 \end{document}
  
