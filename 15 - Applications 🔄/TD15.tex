@@ -150,6 +150,25 @@
 \addcontentsline{toc}{section}{Applications injectives, surjectives.}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.4}
 
+\section*{Exercice 15.5 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Dans cet exercice, on admet que $\pi$ est irrationnel.\\
+    Démontrer que $\cos_{|\mathbb{Q}}$ n'est pas injective et que $\sin_{|\mathbb{Q}}$ l'est.\\[0.2cm]
+    On sait que $\cos$ est paire : $\cos_{|\mathbb{Q}}$ l'est aussi.\\
+    Alors $\cos_{|\mathbb{Q}}(\frac{1}{2}) = \cos_{|\mathbb{Q}}(-\frac{1}{2})$. Or $\frac{1}{2} \neq -\frac{1}{2}$ : $\cos_{|\mathbb{Q}}$ n'est pas injective.\\[0.2cm]
+    Soient $x,x'\in\mathbb{Q}^2$. Supposons que $\sin_{|\mathbb{Q}}(x) = \sin_{|\mathbb{Q}}(x')$. Montrons que $x=x'$.\\
+    On a :
+    \begin{align*}
+        \sin_{|\mathbb{Q}}(x) = \sin_{|\mathbb{Q}}(x') &\iff x \equiv x' [2\pi] ~ (2\pi\text{-périodicité}) \\
+        &\iff x = x' + 2k\pi ~ (k\in\mathbb{Z})\\
+    \end{align*}
+    Or, $\forall{k\in\mathbb{Z}^*}, ~ x' + 2k\pi \notin \mathbb{Q}$. On a alors que $k=0$ :
+    \begin{equation*}
+        \sin_{|\mathbb{Q}}(x) = \sin_{|\mathbb{Q}}(x') \iff x = x' + 2\cdot0\pi \iff x = x'
+    \end{equation*}
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.5}
 
 \end{document}
  
