@@ -121,5 +121,35 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.3}
 
+\section*{Exercice 15.4 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient
+    \begin{equation*}
+        f : \begin{cases}\mathbb{N}^2 \to \mathbb{Z} \\ (n,p) \mapsto (-1)^np \end{cases} \hspace{1.25cm} \text{et} \hspace{1.25cm} g : \begin{cases}\mathbb{R} \to \mathbb{C} \\ x\mapsto \frac{1+ix}{1-ix} \end{cases}
+    \end{equation*}
+    Ces fonctions sont-elles injectives ? Surjectives ?\\[0.2cm]
+    On a que $f$ n'est pas injective : $f(0,1) = f(2,1) = 1$.\\
+    Montrons que $f$ est surjective.\\
+    Soit $y\in\mathbb{Z}$. Montrons que $\exists (n,p)\in\mathbb{N}^2 ~ | ~ f(n,p) = y$.\\
+    Si $y \geq 0$, on prend $n = 0$ et $p = |y|$.\\
+    Si $y \leq 0$, on prend $n = 1$ et $p = |y|$.\\[0.2cm]
+    On a que $g$ n'est pas surjective : $0$ n'a aucun antécédent par $g$.\\
+    Montrons que $g$ est injective.\\
+    Soient $x,x' \in \mathbb{R}$, supposons $g(x) = g(x')$. Montrons que $x=x'$.\\
+    On a :
+    \begin{align*}
+        g(x) = g(x') &\iff \frac{1+ix}{1-ix} = \frac{1+ix'}{1-ix'}\\
+        &\iff (1+ix)(1-ix') = (1+ix')(1-ix)\\
+        &\iff 1 - ix' + ix + xx' = 1 - ix + ix' + xx'\\
+        &\iff 2ix = 2ix'\\
+        &\iff x = x' 
+    \end{align*}
+    On a bien que $g$ est injective.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{Applications injectives, surjectives.}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.4}
+
+
 \end{document}
  
