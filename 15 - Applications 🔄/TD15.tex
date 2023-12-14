@@ -170,5 +170,21 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.5}
 
+\section*{Exercice 15.13 [$\blacklozenge\blacklozenge\blacklozenge$] Théorème de Cantor}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $f\in\mathcal{F}(E, \mathcal{P}(E))$. Montrer que $f$ n'est pas surjective.\\
+    Indication : on pourra considérer $A = \{x \in E ~ | ~ x \notin f(x)\}$.\\[0.2cm]
+    Montrons que $A$ n'a pas d'antécédent par $f$.\\
+    Supposons qu'il en ait un.\\
+    Alors $\exists \alpha \in E ~ | ~ A = f(\alpha)$.\\
+    $\circledcirc$ Supposons que $\alpha \in A$. Alors $\alpha \in \{x \in E ~ | ~ x \notin f(x)\}$.\\
+    Donc $\alpha \notin f(\alpha)$ donc $\alpha \notin A$. Absurde.\\[0.15cm]
+    $\circledcirc$ Supposons que $\alpha \notin A$. Alors $\alpha \notin \{x \in E ~ | ~ x \notin f(x)\}$.\\
+    Donc $\alpha \in A$. Absurde.\\[0.15cm]
+    $\alpha$ n'existe pas : $A$ n'a pas d'antécédent par $f$ et $f$ n'est pas surjective.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.13}
+
 \end{document}
  
