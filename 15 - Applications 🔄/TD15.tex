@@ -263,6 +263,44 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.10}
 
+\section*{Exercice 15.11 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient $E$ un ensemble et $(A,B)\in\mathcal{P}(E)^2$. On définit
+    \begin{equation*}
+        \varPhi : \begin{cases}\mathcal{P}(E) \to \mathcal{P}(A) \times \mathcal{P}(B)\\X \mapsto (X \cap A, X \cap B)\end{cases}
+    \end{equation*}
+    1. Calculer $\varPhi(\varnothing)$ et $\varPhi(E \setminus (A \cup B))$. Que dire de $A$ et $B$ si $(A, \varnothing)$ admet un antécédent par $\varPhi$ ?\\
+    2. Montrer que $\varPhi$ injective $\iff A \cup B = E$.\\
+    3. Montrer que $\varPhi$ surjective $\iff A \cap B = \varnothing$.\\[0.2cm]
+    1. On a $\varPhi(\varnothing) = (\varnothing, \varnothing)$ et $\varPhi(E \setminus (A \cup B)) = ((\overline{A} \cap \overline{B}) \cap A, (\overline{A} \cap \overline{B}) \cap B) = (\varnothing, \varnothing)$.\\
+    Si $(A, \varnothing)$ admet un antécéddent par $\varPhi$ alors $A$ et $B$ sont disjoints : $A \cap B = \varnothing$.\\[0.15cm]
+    2.\\
+    $\circledcirc$ Supposons $\varPhi$ injective. Montrons $A \cup B = E$.\\
+    On a que $\varPhi(E) = (A,B)$ et $\varPhi(A \cup B)=(A,B)$. Par injectivité de $\varPhi$, $E = A \cup B$.\\[0.1cm]
+    $\circledcirc$ Supposons $A \cup B = E$. Montrons que $\varPhi$ est injective.\\
+    Soient $X,Y \in \mathcal{P}(E)$ telles que $\varPhi(X) = \varPhi(Y)$. Montrons que $X = Y$.\\
+    On a
+    \begin{align*}
+        &(X \cap A, X \cap B) = (Y \cap A, Y \cap B)\\
+        \Longrightarrow&X\cap A = Y \cap A ~ \wedge ~ X \cap B = Y \cap B\\
+        \Longrightarrow& (X \cap A) \cup (X \cap B) = (Y \cap A) \cup (Y \cap B)\\
+        \Longrightarrow& X \cap (A \cup B) = Y \cap (A \cup B)\\
+        \Longrightarrow& X = Y ~ \text{car } A \cup B = E 
+    \end{align*}
+    2.\\
+    $\circledcirc$ Supposons $\varPhi$ surjective. Montrons $A \cap B = \varnothing$.\\
+    On a que $\exists X \in \mathcal{P}(E) ~ | ~ \varPhi(X) = (A, \varnothing)$ puisque $(A, \varnothing) \in \mathcal{P}(a) \times \mathcal{P}(B)$ et que $\varPhi$ est surjective.\\
+    Or, puisque $X$ existe, on a que $A$ et $B$ sont disjoints:  $A \cap B = \varnothing$.\\[0.1cm]
+    $\circledcirc$ Supposons $A \cap B = \varnothing$. Montrons que $\varPhi$ est surjective.\\
+    Soit $Y \in \mathcal{P}(A)$ et $Z \in \mathcal{P}(B)$. Montrons que $\exists X \in \mathcal{P}(E) ~ | ~ \varPhi(X) = (Y, Z)$.\\
+    On choisit $X = Y \cup Z$. On a $\varPhi(X)=((Y \cup Z) \cap A, (Y \cup Z) \cap B)$.\\
+    Or $A \cap B = \varnothing$. En particulier, $Y \cap B = \varnothing$ et $Z\cap A = \varnothing$ car $Y\in\mathcal{P}(A)$ et $Z \in \mathcal{P}(B)$.\\
+    Alors, $\varPhi(X)=(Y \cap A, Z \cap B)=(Y,Z)$.\\
+    On a bien que $X$ est un antécédent de $(Y,Z)$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.10}
+
 \section*{Exercice 15.13 [$\blacklozenge\blacklozenge\blacklozenge$] Théorème de Cantor}
 \begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Soit $f\in\mathcal{F}(E, \mathcal{P}(E))$. Montrer que $f$ n'est pas surjective.\\
