@@ -312,8 +312,27 @@
     2. Démontrer que $f$ est surjective si et seulement si elle est inversible à \underline{droite}.\\
     Plus précisément, prouver l'assertion
     \begin{equation*}
-        f \text{ est injective} \iff \exists g \in \mathcal{F}(F,E) ~ f \circ g = \text{id}_F 
+        f \text{ est \underline{surjective}} \iff \exists g \in \mathcal{F}(F,E) ~ f \circ g = \text{id}_F 
     \end{equation*}
+    1.\\
+    $\circledcirc$ Supposons $f$ injective et soit $g:F\to E$.\\
+    Soit $y \in F$.\\
+    Si $y\in f(E)$, on a $\exists!x\in E ~ | ~ f(x) = y$, alors on pose $g(y)=x$.\\
+    Si $y\notin f(E)$, on prend un élément $x\in F$ quelconque et on pose $g(y)=x$.\\
+    On a que $g$ est bien définie sur $F$ et $\forall x \in E, ~ g(f(x))=x$ par définition.\\[0.15cm]
+    $\circledcirc$ Supposons que $\exists g \in \mathcal{F}(F, E) ~ g \circ f = \text{id}_E$. Montrons que $f$ est injective.\\
+    Soient $x,x'\in E$ tels que $f(x)=f(x')$.\\
+    On a $f(x)=f(x') \iff g(f(x))=g(f(x')) \iff \text{id}_E(x) = \text{id}_E(x') \iff x = x'$.\\[0.2cm]
+    2.\\
+    $\circledcirc$ Supposons $f$ surjective et soit $g:F\to E$.\\
+    Soit $y \in F$ : $\exists x \in E ~ | ~ y = f(x)$.\\
+    Or il peut exister plusieurs $x$ différents dont $y$ est l'image, on fait le choix de n'en garder qu'un particulier.\\
+    Alors on pose $g(y) = x$.\\
+    Ainsi, on a $f(g(y)) = f(x)$, c'est-à-dire $f(g(y))=y$ : $f\circ g = \text{id}_F$.\\[0.15cm]
+    $\circledcirc$ Supposons que $\exists g \in \mathcal{F}(F, E) ~ f \circ g = \text{id}_F$. Montrons que $f$ est surjective.\\
+    Soit $y \in F$. On a que $f\circ g(y) = y$ car $f \circ g = \text{id}_F$.\\
+    Ainsi, $y$ est l'image de $f\circ g(y)$ : $f$ est surjective.\\
+    \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 15.12}
 
