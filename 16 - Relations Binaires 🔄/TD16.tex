@@ -77,6 +77,24 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 16.1}
 
+\section*{Exercice 16.2 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    On considère la relation $\mathcal{R}$ définie sur $\mathbb{N}^*$ par
+    \begin{equation*}
+        p ~ \mathcal{R} ~ q \iff \exists n \in \mathbb{N}^* ~ : ~ p^n = q.
+    \end{equation*}
+    Montrer que $\mathcal{R}$ est une relation d'ordre partiel sur $\mathbb{N}^*$.\\[0.15cm]
+    Réfléxivité : Soit $p \in \mathbb{N}^*$. On a $p^1=p$, donc $p ~ \mathcal{R} ~ p$.\\[0.1cm]
+    Antisymétrie : Soient $p,q\in\mathbb{N}^*$ tels que $\exists n \in \mathbb{N}^* ~ | ~ p^n = q$ et $\exists m \in \mathbb{N}^* ~ | ~ q^m = p$. Montrons que $p=q$.\\
+    On a $p^n = q$ donc $p^{nm} = q^m = p$. De plus, $q^m = p$, donc $q^{nm} = p^n = q$.\\
+    Ainsi, $p = p^{nm}$ et $q=q^{nm}$. Alors, soit $p = q = 1$, soit $n=m=1$ et alors $p=q$.\\[0.1cm]
+    Transitivité : Soient $p,q,r \in \mathbb{N}^*$ tels que $\exists n \in \mathbb{N}^* ~ | ~ p^n = q$ et $\exists m \in \mathbb{N}^* ~ | ~ q^m = r$. Montrons que $p ~ \mathcal{R} ~ r$.\\
+    On a que $p^{n} = q$ donc $p^{nm}=q^m=r$. Or $nm \in \mathbb{N}^*$, donc $p ~ \mathcal{R} ~ r$.\\[0.2cm]
+    $\mathcal{R}$ est bien une relation d'ordre sur $\mathbb{N}^*$.\\
+    Ce n'est pas un ordre total : il n'existe pas d'entier $n$ tel que $2^n=3$, par exemple.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 16.2}
 
 \end{document}
  
