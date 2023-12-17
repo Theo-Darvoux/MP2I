@@ -144,5 +144,30 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 16.4}
 
+\section*{Exercice 16.5 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Sur $\mathbb{R}$, on définit la relation $\mathcal{R}$ par
+    \begin{equation*}
+        x~\mathcal{R}~y \iff x^2 + 2y = y^2 + 2x.
+    \end{equation*}
+    1. Montrer que $\mathcal{R}$ est une relation d'équivalence sur $\mathcal{R}$.\\
+    2. Déterminer la classe d'équivalence d'un réel a.\\[0.15cm]
+    1. Réflexivité : On a bien que $x^2 + 2x = x^2 + 2x$.\\
+    Symétrie : Soient $x,y\in\mathbb{R}$ tels que $x~\mathcal{R}~y$, par symétrie de l'égalité, on a $y~\mathcal{R}~x$.\\
+    Transitivité : Soient $x,y,z\in\mathbb{R}$ tels que $x~\mathcal{R}~y$ et $y~\mathcal{R}~z$. Par transitivité de l'égalité, $x~\mathcal{R}~z$.\\[0.15cm]
+    2. Soit $x\in\mathbb{R}$. On a :
+    \begin{align*}
+        &x^2 + 2a = a^2 + 2x\\
+        \iff&x^2 - a^2 = 2(x-a)\\
+        \iff&(x-a)(x+a)=2(x-a)\\
+        \iff&(x-a)(x+a-2)=0
+    \end{align*}
+    Ainsi, soit $x=a$, soit $x=2-a$.\\
+    La classe d'équivalence de $a$ est alors : $[a]=\{2-a,a\}$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 16.5}
+
+
 \end{document}
  
