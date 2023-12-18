@@ -64,6 +64,7 @@
     2. Soient $x,y\in\mathbb{R}$.\\
     On a $x ~ \mathcal{R} ~ y \iff xe^y = ye^x \frac{x}{e^x} = \frac{y}{e^y}$.\\
     On pose $f:x\mapsto \frac{x}{e^x}$. La classe d'équivalence de $x$ est alors $\{y\in\mathbb{R} ~ | ~ f(x) = f(y)\}$.\\
+    La question revient à chercher le nombre d'éléments dans $\mathbb{R}$ qui ont la même image par $f$.\\
     On a que $f$ est dérivable et $f':x\mapsto \frac{1-x}{e^{x}}$. Alors :
     \begin{center}
         \begin{tikzpicture}
@@ -109,7 +110,8 @@
     Antisymétrie : Soient $x,y\in\mathbb{R}^n$. Supposons que $x \preceq y$ et $y \preceq x$. Montrons que $x=y$.\\
     On a que $\forall k \in \llbracket 1, n \rrbracket, ~ \sum_{i=1}^kx_i \leq \sum_{i=1}^ky_i ~ \wedge \sum_{i=1}^ky_i \leq \sum_{i=1}^kx_i$.\\
     Par antisymétrie de $\leq$, $\forall k \in \llbracket 1, n \rrbracket ~ \sum_{i=1}^kx_i = \sum_{i=1}^k y_i$.\\
-    Par récurrence triviale sur $k$, on peut montrer que tous les éléments sont égaux 1 à 1.\\[0.15cm]
+    Par récurrence triviale sur $k$, on peut montrer que tous les éléments sont égaux 1 à 1.\\
+    i.e. On initialise avec $k=1$ pour obtenir $x_1=y_1$, on suppose $x_k = y_k$ et on a $\sum_{i=1}^{k-1}x_i + x_k  $
     Transitivité : Soient $x,y,z \in \mathbb{R}^n$ tels que $x \preceq y$ et $y \preceq z$. Montrons que $x \preceq z$.\\
     On a que $\forall k \in \llbracket 1, n \rrbracket, \sum_{i=1}^kx_i \leq \sum_{i=1}^ky_i\leq\sum_{i=1}^kz_i$. Par transitivité de $\leq$, $x \preceq z$.\\[0.2cm]
     2. Soient $x=(0,2)$ et $y=(1,0)$.\\
