@@ -85,7 +85,7 @@
         p ~ \mathcal{R} ~ q \iff \exists n \in \mathbb{N}^* ~ : ~ p^n = q.
     \end{equation*}
     Montrer que $\mathcal{R}$ est une relation d'ordre partiel sur $\mathbb{N}^*$.\\[0.15cm]
-    Réfléxivité : Soit $p \in \mathbb{N}^*$. On a $p^1=p$, donc $p ~ \mathcal{R} ~ p$.\\[0.1cm]
+    Réflexivité : Soit $p \in \mathbb{N}^*$. On a $p^1=p$, donc $p ~ \mathcal{R} ~ p$.\\[0.1cm]
     Antisymétrie : Soient $p,q\in\mathbb{N}^*$ tels que $\exists n \in \mathbb{N}^* ~ | ~ p^n = q$ et $\exists m \in \mathbb{N}^* ~ | ~ q^m = p$. Montrons que $p=q$.\\
     On a $p^n = q$ donc $p^{nm} = q^m = p$. De plus, $q^m = p$, donc $q^{nm} = p^n = q$.\\
     Ainsi, $p = p^{nm}$ et $q=q^{nm}$. Alors, soit $p = q = 1$, soit $n=m=1$ et alors $p=q$ dans tous les cas.\\[0.1cm]
@@ -106,7 +106,7 @@
     \end{equation*}
     1. Montrer que $\preceq$ est une relation d'ordre sur $\mathbb{R}^n$.\\
     2. Si $n \geq 2$, montrer qu'il s'agit d'un ordre partiel.\\[0.2cm]
-    1. Réfléxivité : Soit $x\in\mathbb{R}^n$. On a bien que $\forall k \in \llbracket 1,n \rrbracket ~\sum_{i=1}^kx_i \leq \sum_{i=1}^kx_i$.\\[0.1cm]
+    1. Réflexivité : Soit $x\in\mathbb{R}^n$. On a bien que $\forall k \in \llbracket 1,n \rrbracket ~\sum_{i=1}^kx_i \leq \sum_{i=1}^kx_i$.\\[0.1cm]
     Antisymétrie : Soient $x,y\in\mathbb{R}^n$. Supposons que $x \preceq y$ et $y \preceq x$. Montrons que $x=y$.\\
     On a que $\forall k \in \llbracket 1, n \rrbracket, ~ \sum_{i=1}^kx_i \leq \sum_{i=1}^ky_i ~ \wedge \sum_{i=1}^ky_i \leq \sum_{i=1}^kx_i$.\\
     Par antisymétrie de $\leq$, $\forall k \in \llbracket 1, n \rrbracket ~ \sum_{i=1}^kx_i = \sum_{i=1}^k y_i$.\\
@@ -173,12 +173,36 @@
 \section*{Exercice 16.6 [$\blacklozenge\blacklozenge\lozenge$]}
 \begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
     Soit $\mathcal{R}$ une relation sur un ensemble $E$.\\
-    Pour $x,y\in E$, on note $x \sim y$ s'il existe $n\in\mathbb{N}^*$ et $x_0,...x_n$ tels que
+    Pour $x,y\in E$, on note $x \sim y$ s'il existe $n\in\mathbb{N}^*$ et $x_0,...x_n \in E$ tels que
     \begin{equation*}
-        x_0 = x, ~ x_0 ~ \mathcal{R} ~ xx_1, ~ x_1 ~ \mathcal{R} ~ x_2, ~ ..., ~ x_{n-1} ~ \mathcal{R} ~ x_n, ~ x_n = y.
+        x_0 = x, ~ x_0 ~ \mathcal{R} ~ x_1, ~ x_1 ~ \mathcal{R} ~ x_2, ~ ..., ~ x_{n-1} ~ \mathcal{R} ~ x_n, ~ x_n = y.
     \end{equation*}
     1. Montrer que $\sim$ est une relation transitive sur $E$.\\
-    2. On suppose $\mathcal{R}$ transitive et symétrique. Montrer que $\sim$ est une relation d'équivalence sur $E$.
+    2. On suppose $\mathcal{R}$ réflexive et symétrique. Montrer que $\sim$ est une relation d'équivalence sur $E$.\\[0.2cm]
+    1. Soient $x,y,z\in E$ tels que $x \sim y$ et $y \sim z$. Montrons $x \sim z$.\\
+    Alors il existe $n \in \mathbb{N}^*$ et $_0,...,x_n\in E$, $m \in \mathbb{N}^*$ et $y_0,...,y_m\in E$ tels que
+    \begin{equation*}
+        x_0 = x, ~ x_0 ~ \mathcal{R} ~ x_1, ~..., x_{n-1} ~ \mathcal{R} ~ x_n = y_0 ~ \mathcal{R} ~ y_1, ~...,~y_{n-1} ~ \mathcal{R} ~y_n=z
+    \end{equation*}
+    Alors on a $m+n$ éléments de $E$ tels que
+    \begin{equation*}
+        x_0 = x, ~ x_0 ~ \mathcal{R} ~ x_1, ~ ..., ~ x_{m+n-1} ~ \mathcal{R} ~x_{m+n}, ~ x_{m+n} = z. 
+    \end{equation*}
+    On en conclut que $x \sim z$ : $\sim$ est transitive sur $E$.\\[0.15cm]
+    2. Réflexivité : Soit $x \in E$. On pose $x_0 = x$ et $x_1 = x$. Par réflexivité de $\mathcal{R}$, on a $x_0 ~ \mathcal{R} ~ x_1$.\\
+    Alors on a que $x_0 = x, ~ x_0 ~ \mathcal{R} ~ x_1, ~ x_1 = x$. C'est exactement $x \sim x$.\\[0.15cm]
+    Symétrie : Soient $x,y\in E$ tels que $x \sim y$. Il existe $n\in\mathbb{N}^*$ et $x_0,...,x_n$ tels que [la relation].\\
+    Par symétrie de $\mathcal{R}$, on obtient :
+    \begin{equation*}
+        x_n = y, ~ x_{n} ~ \mathcal{R} ~ x_{n-1}, ~ ..., ~ x_1 ~ \mathcal{R} ~ x_0, ~ x_0 = x 
+    \end{equation*}
+    On pose alors $(y_0, y_1, ..., y_n) = (x_n, x_{n-1}, ... x_0)$ et on obtient que
+    \begin{equation*}
+        y_0 = y, ~ y_0 ~ \mathcal{R} ~ y_{1}, ~ ..., ~ y_{n-1} ~ \mathcal{R} ~ y_n, ~ y_n = x
+    \end{equation*}
+    Alors $y \sim x$ et on en conclut que $\sim$ est réflexive.\\
+    On a déjà montré la transitivité de $\sim$ : c'est une relation d'équivalence sur $E$.\\
+    \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 16.6}
 
