@@ -62,7 +62,7 @@
     On divise par $e^y$ : $xe^{z-x}=z$. On multiplie par $e^x$ : $xe^z = ze^x$.\\
     On a bien $x ~ \mathcal{R} ~ z$.\\[0.2cm]
     2. Soient $x,y\in\mathbb{R}$.\\
-    On a $x ~ \mathcal{R} ~ y \iff \frac{x}{e^x} = \frac{y}{e^y}$.\\
+    On a $x ~ \mathcal{R} ~ y \iff xe^y = ye^x \frac{x}{e^x} = \frac{y}{e^y}$.\\
     On pose $f:x\mapsto \frac{x}{e^x}$. La classe d'équivalence de $x$ est alors $\{y\in\mathbb{R} ~ | ~ f(x) = f(y)\}$.\\
     On a que $f$ est dérivable et $f':x\mapsto \frac{1-x}{e^{x}}$. Alors :
     \begin{center}
@@ -91,7 +91,7 @@
     Transitivité : Soient $p,q,r \in \mathbb{N}^*$ tels que $\exists n \in \mathbb{N}^* ~ | ~ p^n = q$ et $\exists m \in \mathbb{N}^* ~ | ~ q^m = r$. Montrons que $p ~ \mathcal{R} ~ r$.\\
     On a que $p^{n} = q$ donc $p^{nm}=q^m=r$. Or $nm \in \mathbb{N}^*$, donc $p ~ \mathcal{R} ~ r$.\\[0.2cm]
     $\mathcal{R}$ est bien une relation d'ordre sur $\mathbb{N}^*$.\\
-    Ce n'est pas un ordre total : il n'existe pas d'entier $n$ tel que $2^n=3$, par exemple.\\
+    Ce n'est pas un ordre total : il n'existe pas d'entier $n$ tel que $2^n=3$ ou $3^n=2$, par exemple.\\
     \qed
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 16.2}
@@ -109,7 +109,7 @@
     Antisymétrie : Soient $x,y\in\mathbb{R}^n$. Supposons que $x \preceq y$ et $y \preceq x$. Montrons que $x=y$.\\
     On a que $\forall k \in \llbracket 1, n \rrbracket, ~ \sum_{i=1}^kx_i \leq \sum_{i=1}^ky_i ~ \wedge \sum_{i=1}^ky_i \leq \sum_{i=1}^kx_i$.\\
     Par antisymétrie de $\leq$, $\forall k \in \llbracket 1, n \rrbracket ~ \sum_{i=1}^kx_i = \sum_{i=1}^k y_i$.\\
-    Par récurrence triviale, on peut montrer que tous les éléments sont égaux 1 à 1.\\[0.15cm]
+    Par récurrence triviale sur $k$, on peut montrer que tous les éléments sont égaux 1 à 1.\\[0.15cm]
     Transitivité : Soient $x,y,z \in \mathbb{R}^n$ tels que $x \preceq y$ et $y \preceq z$. Montrons que $x \preceq z$.\\
     On a que $\forall k \in \llbracket 1, n \rrbracket, \sum_{i=1}^kx_i \leq \sum_{i=1}^ky_i\leq\sum_{i=1}^kz_i$. Par transitivité de $\leq$, $x \preceq z$.\\[0.2cm]
     2. Soient $x=(0,2)$ et $y=(1,0)$.\\
@@ -168,6 +168,17 @@
 \end{tcolorbox}
 \addcontentsline{toc}{section}{\protect\numberline{}Exercice 16.5}
 
+\section*{Exercice 16.6 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $\mathcal{R}$ une relation sur un ensemble $E$.\\
+    Pour $x,y\in E$, on note $x \sim y$ s'il existe $n\in\mathbb{N}^*$ et $x_0,...x_n$ tels que
+    \begin{equation*}
+        x_0 = x, ~ x_0 ~ \mathcal{R} ~ xx_1, ~ x_1 ~ \mathcal{R} ~ x_2, ~ ..., ~ x_{n-1} ~ \mathcal{R} ~ x_n, ~ x_n = y.
+    \end{equation*}
+    1. Montrer que $\sim$ est une relation transitive sur $E$.\\
+    2. On suppose $\mathcal{R}$ transitive et symétrique. Montrer que $\sim$ est une relation d'équivalence sur $E$.
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 16.6}
 
 \end{document}
  
