@@ -1,7 +1,7 @@
 \documentclass[10pt]{article}
 
 \usepackage[T1]{fontenc}
-\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm, paperheight=31cm]{geometry}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm, paperheight=32cm]{geometry}
 \usepackage[skins]{tcolorbox}
 \usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol, changepage}
 \usepackage{amsmath, amssymb, amsthm, stmaryrd}
@@ -119,6 +119,7 @@
     Or $v_0=u_0 + \alpha - 1 = \alpha(1-\alpha) + \alpha - 1 = (\alpha-1)(1-\alpha)$.\\
     On en déduit que $v_n = (\alpha-1)(1-\alpha)^{n+1}$.\\
     Finalement, $u_n=(\alpha-1)(1-\alpha)^{n+1}-\alpha+1$.\\
+    2. Puisque $\alpha \in ]0,1[$, $(1 - \alpha)^{n+1}\to0$ et alors $\lim u_n = -\alpha + 1$.\\
     \qed
 \end{tcolorbox}
 
