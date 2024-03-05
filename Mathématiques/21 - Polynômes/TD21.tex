@@ -1,0 +1,96 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm, paperheight=31cm]{geometry}
+\usepackage[skins]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol, changepage}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd, calrsfs}
+\usepackage{tkz-tab}
+\usepackage{systeme}
+
+\def\pagetitle{Polynômes}
+\setlength{\headheight}{13pt}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+\date{Mars 2023}
+\author{DARVOUX Théo}
+
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\degg}{deg}
+\renewcommand{\deg}{\degg}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+\begin{document}
+\renewcommand*\contentsname{Exercices.}
+\renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\maketitle
+
+\hrule
+\tableofcontents
+\vspace{0.5cm}
+\hrule
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+\allowdisplaybreaks
+
+\pagebreak
+
+
+\section*{Exercice 21.1 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    On note $I=]-\frac{\pi}{2},\frac{\pi}{2}[$.\\
+    1. Montrer que pour tout $n\in\mathbb{N}$, il existe un polynôme $P_n\in\mathbb{R}[X]$ tel que
+    \begin{equation*}
+        \forall x \in I, ~ \tan^{(n)}(x)=P_n(\tan(x)).
+    \end{equation*}
+    2. Montrer qu'un tel polynôme $P_n$ est unique.\\
+    3. Donner pour tout entier $n$ le degré et le coefficient dominant de $P_n$.\\
+    4. Démontrer que pour tout entier naturel $n$, les coefficients de $P_n$ sont des entiers.\\[0.3cm]
+    1. Pour $n\in\mathbb{N}$, on note l'énoncé $H_n$. Montrons le par récurrence.\\
+    C'est vrai pour $n=0$ : $\forall x\in I, ~ \tan(x)=X(\tan(x))$.\\
+    Soit $n\in\mathbb{N}$ tel que $H_n$.\\
+    On a $\tan^{(n+1)}(x)=(1+\tan^2(x))P_n'(\tan(x))$ donc $P_{n+1}=(1+X^2)P_n'$\\
+    Alors $H_{n+1}$ est vraie et $\forall n\in\mathbb{N}, H_n$ par récurrence.\\[0.2cm]
+    2. Supposons qu'il en existe un autre, $Q_n$, on a $\forall x\in I, P_n(\tan x) - Q_n(\tan x) = 0$ : rigidité des polynômes.\\[0.2cm]
+    3. Pour $n\in\mathbb{N}$, on note $H_n$: <<deg$(P_n)=n+1$, cd$(P_n)=n!$>>.\\
+    C'est vrai pour $n=0$.\\
+    Soit $n\in\mathbb{N}$ tel que $H_n$.\\
+    On a $P_{n+1}=(1+X^2)P_n'$ donc deg$(P_{n+1})=$deg$(P_n)-1+2=n+1$ car deg$(P_n)\geq0$.\\
+    On a cd$(P_{n+1})=$cd$(P_n')$=$(n+1)\cdot$cd$(P_n)=(n+1)!$\\
+    Alors $H_{n+1}$ est vraie et $\forall n \in \mathbb{N}, H_n$ par récurrence.\\[0.2cm]
+    4. Pour $n\in\mathbb{N}$, on note l'énoncé $H_n$.\\
+    C'est vrai pour $n=0$.\\
+    Soit $n\in\mathbb{N}$ tel que $H_n$. On note $(\alpha_k)_{k\in\mathbb{N}}$ les coefficients de $P_n$, entiers.\\
+    On a $P_{n+1}=(1+X^2)P_n'=(1+X^2)\sum\limits_{k=0}^{n}(k+1)\alpha_{k+1}X^{k}=\sum\limits_{k=0}^n(k+1)\alpha_{k+1}X^k+\sum\limits_{k=2}^{n+2}(k-1)\alpha_{k-1}X^{k}$.\\
+    Les coefficients de $P_{n+1}$ sont donc des sommes et produits d'entiers, donc sont des entiers.\\
+    Par récurrence, $\forall{n\in\mathbb{N}}, ~ H_n$ est vrai.
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 21.1}
+
+\section*{Exercice 21.3 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.6in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Trouver tous les polynômes $P$ de $\mathbb{R}[X]$ tels que $4P=(P')^2$.\\[0.2cm]
+    Soit $P$ un tel polynôme on suppose $P$ non constant.\\
+    On a $\deg(P)=2\cdot(\deg(P)-1)$ donc $\deg(P)=2\deg(P)-2$ donc $\deg(P)=2$.\\
+    Alors $\exists (a,b,c)\in\mathbb{R}^*\times\mathbb{R}^2 ~ | ~ P = aX^2 + bX + c$.\\
+    Donc $4a^2X^2 + 4abX + b^2 = 4aX^2 + 4bX + 4c$ donc $4a^2=4a$, $ab = b$ et $b^2=4c$.\\
+    Alors $a=1$, $b\in\mathbb{R}$ et $c=\frac{b^2}{4}$.\\
+    Les solutions sont donc dans $\{0\}\cup\{X^2+bX+\frac{b^2}{4} ~ | ~ b\in\mathbb{R}\}$.
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 21.3}
+
+
+\end{document}
+ 
