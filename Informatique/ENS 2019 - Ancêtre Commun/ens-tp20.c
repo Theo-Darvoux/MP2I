@@ -208,5 +208,5 @@ void main(void) {
     free(l5a); free(l5b); free(l5c);
 
     printf("QUESTION 6\n");
-    printf("%ld\n", CRMQ(H(16, 4, lookup2), 16, 4, 7, lookup2), CRMQ(H(100, 1000)));
+    printf("%ld\n", CRMQ(H(16, 4, lookup2), 16, 4, 7, lookup2));
 }
