@@ -4,6 +4,6 @@ Polycopiés de cours et quelques corrections des exercices de maths 2023-2024 en
 
 ## Liens utiles
 
-[ScholarVox Sorbonne (légal)](https://univ.scholarvox.com/)\
+[ScholarVox Sorbonne (légal)](https://univ-scholarvox-com.accesdistant.sorbonne-universite.fr/)\
 [Pleins de livres (illégal 🤑)](https://fr.annas-archive.org/)
 
