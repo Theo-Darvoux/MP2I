@@ -1,5 +1,9 @@
-<font size="10"> **ABONNEZ-VOUS !** </font> <br>
-Crédits à Xan Duhalde évidemment<br>
-Vous avez le site ScholarVox avec la Sorbonne pour avoir des livres gratuitement : https://univ.scholarvox.com/ <br><br>
-🍕 sur 🍕 ça fait 1 ??<br>
-cos(π/7) est <b>cure-dent-constructible</b><br>
+
+# MP2I à Paul Valéry (2023-2024)
+Polycopiés de cours et quelques corrections des exercices de maths 2023-2024 en MP2I option info.
+
+## Liens utiles
+
+[ScholarVox Sorbonne (légal)](https://univ.scholarvox.com/)\
+[Pleins de livres (illégal 🤑)](https://fr.annas-archive.org/)
+
