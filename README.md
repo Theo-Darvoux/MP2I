@@ -9,7 +9,8 @@ Allez dans les répertoires et ouvrez les fichiers .pdf seulement, les .tex serv
 ## Liens utiles
 
 [Présentation de la filière](https://mp2i.cpge-pv.fr/)\
-[Cahier de Prépa](https://cahier-de-prepa.fr/mp2i-pv/)
+[Cahier de Prépa](https://cahier-de-prepa.fr/mp2i-pv/)\
+[Anthony Lick, cours d'informatique](https://anthonylick.com/)
 
 [ScholarVox Sorbonne (légal)](https://univ-scholarvox-com.accesdistant.sorbonne-universite.fr/)\
 [Plein de livres (illégal 🤑)](https://fr.annas-archive.org/)
