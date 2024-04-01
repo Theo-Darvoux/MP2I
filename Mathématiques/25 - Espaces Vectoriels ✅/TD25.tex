@@ -1,0 +1,348 @@
+\documentclass[11pt]{article}
+
+\usepackage[paperheight=63in, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, changepage}
+\usepackage{enumitem}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+
+\def\pagetitle{Espaces Vectoriels}
+\setlength{\headheight}{14pt}
+\newcommand*{\F}{\mathcal{F}}
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\C}{\mathbb{C}}
+\newcommand*{\K}{\mathbb{K}}
+\newcommand*{\N}{\mathbb{N}}
+
+\renewcommand*{\phi}{\varphi}
+\renewcommand*{\ker}{\textrm{Ker}}
+
+\DeclareMathOperator*{\vect}{Vect}
+\DeclareMathOperator*{\tr}{Tr}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+
+\newtcbtheorem{exercise}{Exercice}
+{
+    enhanced,frame empty,interior empty,
+    colframe=blue,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green!25!blue},
+    borderline south={1pt}{0pt}{green!25!blue},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Solution :}}
+}{exercise}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+\begin{document}
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+
+\hrule
+\begin{center}
+    \LARGE{\textbf{Chapitre 25}}\\
+    \large{Espaces Vectoriels}\\
+    \small{Marathon du dimanche de paques}
+    \rule{0.8\textwidth}{0.5pt}
+\end{center}
+
+
+\vspace{0.5cm}
+
+\begin{exercise}{$\blacklozenge\lozenge\lozenge$}{}
+    Soit $F$ l'ensemble des suites bornées et $G$ l'ensemble des suites qui tendent vers 0.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9ex]
+        \item Démontrer que $G$ est un sous-espace vectoriel de $\R^\N$.
+        \item Démontrer que $F$ est un sous-espace vectoriel de $\R^\N$.
+        \item Pourquoi peut-on dire que $G$ est un sous-espace vectoriel de $F$ ?
+    \end{enumerate}
+    \tcblower\\[0.2cm]
+    \boxed{1.} La suite nulle tend vers 0 donc $0_{\R^\N} \in G$.\\
+    Soient $\lambda, \mu \in \R$ et $u, v \in G$, c'est-à-dire $u \to 0$ et $v \to 0$.\\
+    On a $\lambda u + \mu v \to 0$ par produit et somme de limites donc $\lambda u + \mu v \in G$.\\
+    Ainsi, $G$ est un sous-espace vectoriel de $\R^\N$.\\[0.3cm]
+    \boxed{2.}  La suite nulle est bornée donc $0_{\R^\N} \in F$.\\
+    Soient $\lambda, \mu \in \R$ et $u, v \in F$, c'est-à-dire $u$ et $v$ sont bornées.\\
+    Alors $\exists M_u, M_v \in \R ~ | ~ \forall n \in \N, ~ |u_n| \leq M_u ~ \wedge ~  |v_n| \leq M_v$.\\
+    Ainsi, $\forall n \in \N, ~ \lambda u_n + \mu v_n \leq \lambda M_u + \mu M_v$ donc $\lambda u + \mu v$ est bornée et appartient à $F$.\\
+    Ainsi, $F$ est un sous-espace vectoriel de $\R^\N$.\\[0.3cm]
+    \boxed{3.} $G$ est un sous-espace vectoriel de $F$ car $G \subset F$ et $G$ est un sous-espace vectoriel de $\R^\N$.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\lozenge\lozenge$}{}
+    Dans chacun des cas suivants, justifier que $F_i$ est un s.e.v. de $E_i$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9ex]
+        \item $E_1 = \R^3$ et $F_1 = \{(x, y, x + y), ~ x,y \in \R\}$. 
+        \item $E_2 = M_n(\R)$ et $F_2 = \{M \in E_2 : \tr(M) = 0\}$.
+        \item $E_3 = M_n(\R)$ et $F_3 = \{M \in M_n(\R) : AM = MA\}$ pour $A \in M_n(\R)$ fixée.
+    \end{enumerate}
+    \tcblower\\[0.2cm]
+    \boxed{1.} On a $F_1 = \{x(1, 0, 1) + y(0, 1, 1) ~ | ~ x,y \in \R\} = \vect((1, 0, 1), (0, 1, 1))$ c'est bien un s.e.v. de $\R^3$.\\[0.2cm]
+    \boxed{2.} On a $F_2 = \ker(\tr)$, or $\tr$ est linéaire donc $F_2$ est un s.e.v. de $E_2$.\\[0.2cm]
+    \boxed{3.} La matrice nulle commute avec toutes les matrices donc $0_{M_n(\R)} \in F_3$.\\
+    Soient $\lambda, \mu \in \R$ et $M, N \in F_3$, c'est-à-dire $AM = MA$ et $AN = NA$.\\
+    On a $A(\lambda M + \mu N) = \lambda AM + \mu AN = \lambda MA + \mu NA = (\lambda M + \mu N)A$ donc $\lambda M + \mu N \in F_3$.\\
+    Ainsi, $F_3$ est un s.e.v. de $E_3$.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $U$ l'ensemble des fonctions croissantes sur $I$.\\
+    Soit $V = \{f - g ~ | ~ f,g \in U\}$. Montrer que $V$ est un s.e.v. de $\F(I, \R)$.
+    \tcblower\\[0.2cm]
+    La fonction nulle, notée $0$ est croissante sur $I$ et $0 = 0 - 0$ donc $0 \in V$.\\ 
+    Soient $\lambda,\mu\in\R$ et $\phi, \psi \in V : \exists f_\phi,g_\phi \in U ~ | ~ \phi = f_\phi - g_\phi$ et $\exists f_\psi,g_\psi \in U ~ | ~ \psi = f_\psi - g_\psi$.\\
+    Alors $\lambda\phi + \mu\psi = \lambda(f_\phi - g_\phi) + \mu(f_\psi - g_\psi) = (\lambda f_\phi + \mu f_\psi) - (\lambda g_\phi + \mu g_\psi)$.\\
+    Or $\lambda f_\phi + \mu f_\psi$ et $\lambda g_\phi + \mu g_\psi$ sont croissantes car sommes de fonctions croissantes donc $\lambda\phi + \mu\psi \in V$.\\
+    Ainsi, $V$ est un s.e.v. de $\F(I, \R)$.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $j = e^{\frac{2i\pi}{3}}$, $u=(1,j,j^2)$, $v=(1,j^2,j)$ et $w=(j,j^2,1)$.\\
+    Montrer que $\vect(u,v,w)=\{(x,y,z) \in \C^3 ~ | ~ x + y + z = 0\}$.
+    \tcblower
+    \begin{align*}
+        \vect(u,v,w) &= \left\{x(1,j,j^2) + y(1,j^2,j) + z(j,j^2,1) ~ | ~ x,y,z \in \C\right\}\\
+        &= \left\{(x + y + zj, xj + yj^2 + zj^2, xj^2 + yj + z) ~ | ~ x,y,z \in \C\right\}\\
+        &= \left\{(x, y ,z) \in \C^3~ | ~ x + y + z = 0\right\}
+    \end{align*}
+    En effet, $\forall x, y, z \in \C, x + y + zj + xj + yj^2 + zj^2 + xj^2 + yj + z = (x + y + z)(1 + j + j^2) = 0$.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\blacklozenge\blacklozenge$}{}
+    Soit $E$ un $\K$-ev et $F,G$ deux s.e.v. de $E$. Montrer :
+    \begin{equation*} F \cup G \text{ est un s.e.v. de } E \iff F \subset G \text{ ou } G \subset F\end{equation*}
+    \tcblower\\[0.2cm]
+    \fbox{$\Rightarrow$} Supposons que $F \cup G$ est un s.e.v. de $E$.\\
+    Par l'absurde, supposons que $F \not\subset G$ et $G \not\subset F$.\\
+    Soient $x \in F \setminus G$ et $y \in G \setminus F$. 
+    On a $x + y \in F \cup G$, puisque c'est un s.e.v.\\
+    Ainsi, $x+y\in F$, ce qui est absurde car $y \notin F$, ou $x + y \in G$, ce qui est absurde car $x \notin G$.\\
+    Donc $F \subset G$ ou $G \subset F$.\\[0.3cm]
+    \fbox{$\Leftarrow$} Supposons que $F \subset G$ SPDG.\\
+    Alors $F \cup G = G$, qui est un s.e.v. de $E$.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $P$ l'ensemble des fonctions paires sur $\R$ et $I$ l'ensemble des fonctions impaires sur $\R$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9ex]
+        \item Justifier que $P$ et $I$ sont deux sous-espaces vectoriels de $\R^\R$.
+        \item Démontrer que $\R^\R = P \oplus I$.
+    \end{enumerate}
+    \tcblower\\[0.2cm]
+    \boxed{1.} La fonction nulle est paire et impaire donc $0_{\R^\R} \in P \cap I$.\\
+    Soient $\lambda, \mu \in \R$ et $f, g \in P$, c'est-à-dire $f(-x) = f(x)$ et $g(-x) = g(x)$. On prend $x\in\R$.\\
+    Alors $(\lambda f + \mu g)(-x) = \lambda f(-x) + \mu g(-x) = \lambda f(x) + \mu g(x) = (\lambda f + \mu g)(x)$.\\
+    Ainsi, $\lambda f + \mu g \in P$. Même raisonnement pour $I$.\\
+    Ainsi, $P$ et $I$ sont des s.e.v. de $\R^\R$.\\[0.3cm]
+    \boxed{2.} On a $P \cap I = \{0_{\R^\R}\}$ car $\forall x \in \R, ~  f(-x) = -f(x) \Rightarrow f(x) = 0$.\\
+    Soit $f \in \R^\R$ et $x\in\R$. \\
+    \textbf{Analyse.} Supposons qu'il existe $g \in P$ et $h \in I$ tels que $f = g + h$.\\
+    Alors $f(x) = g(x) + h(x)$ et $f(-x)=g(x)-h(x)$.\\
+    En sommant, on a $2g(x) = f(x) + f(-x)$ et $2h(x) = f(x) - f(-x)$.\\
+    Ainsi, $g(x) = \frac{f(x) + f(-x)}{2}$ et $h(x) = \frac{f(x) - f(-x)}{2}$.\\[0.1cm]
+    \textbf{Synthèse.} On pose $g : x \mapsto \frac{f(x) + f(-x)}{2}$ et $h : x \mapsto \frac{f(x) - f(-x)}{2}$.\\
+    On a bien que $f = g + h$, $g \in P$ et $h \in I$.\\
+    Ainsi, $\R^\R = P \oplus I$.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $E$ l'ensemble des suites réelles convergentes et $F$ l'ensemble des suites réelles de limite nulle.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9ex]
+        \item Démontrer que $E$ est un s.e.v. de $\R^\N$. On admettra que $F$ l'est aussi.
+        \item Soit $c$ la suite constante égale à 1. Montrer que $E = F \oplus \vect(c)$.
+    \end{enumerate}
+    \tcblower\\[0.2cm]
+    \boxed{1.} La suite nulle converge et $0_{\R^\N} \in E$.\\
+    Soient $\lambda, \mu \in \R$ et $u, v \in E$, c'est-à-dire $u$ et $v$ convergent.\\
+    Alors $\lambda u + \mu v$ converge par produit et somme de limites donc $\lambda u + \mu v \in E$.\\
+    Ainsi, $E$ est un s.e.v. de $\R^\N$.\\[0.3cm]
+    \boxed{2.} On a $F \cap \vect(c) = \{0_{\R^\N}\}$ car les suites constantes, sauf $0_{\R^\N}$, n'ont pas de limite nulle.\\
+    Soit $u \in E$, alors $\exists l \in \R ~ | ~ u_n \to l$.\\
+    Soit $v\in\R^\N ~ | ~ \forall n \in \N, ~ v_n = u_n - l$.\\
+    Alors $\forall n \in \N, ~ u_n = v_n + l \cdot c_n$. Or $v \in F$ et $l \cdot c \in \vect(c)$.\\
+    Ainsi, $E = F \oplus \vect(c)$.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $P\in\K[X]$ de degré $n\in\N$. On note $P\K[X]$ l'ensemble des poynômes de $\K[X]$ divisibles par $P$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9ex]
+        \item Justifier que $P\K[X]$ est un s.e.v. de $E$.
+        \item Démontrer que $\K[X] = \K_{n-1}[X] \oplus P\K[X]$.
+    \end{enumerate}
+    \tcblower\\[0.2cm]
+    \boxed{1.} Le polynôme nul est divisible par tout polynôme donc $0_{\K[X]} \in P\K[X]$.\\
+    Soient $\lambda, \mu \in \K$ et $Q, R \in P\K[X]$.\\
+    Alors $P$ divise $\lambda Q + \mu R$ car $P$ divise $\lambda Q$ et $\mu R$.\\
+    Ainsi, $\lambda Q + \mu R \in P\K[X]$ donc $P\K[X]$ est un s.e.v. de $E$.\\[0.3cm]
+    \boxed{2.} On a $P\K[X] \cap \K_{n-1}[X] = \{0_{\K[X]}\}$ car si $A \in P\K[X] \cap \K_{n-1}[X]$, alors $P$ divise $A$ et $A$ est de degré strictement inférieur à $n$, ce qui n'est possible que pour $0_{\K[X]}$.\\
+    Soit $A \in \K[X]$, alors $\exists! (Q, R) \in \K_{n-1}[X] \times P\K[X] ~ | ~ A = PQ + R$.\\
+    Or $\deg(R) < \deg(P) = n$ donc $R \in \K_{n-1}[X]$ et $PQ \in P\K[X]$.\\
+    Ainsi, $\K[X] = \K_{n-1}[X] \oplus P\K[X]$.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\blacklozenge\blacklozenge$}{}
+    Soit $E$ un $\K$-ev et $F,G,H$ trois s.e.v. de $E$ tels que :
+    \begin{equation*}
+        \begin{cases}
+            F + G = F + H = F + (G \cap H)\\
+            F \cap G = F \cap H
+        \end{cases}
+    \end{equation*}
+    Montrer que $G = H$.
+    \tcblower\\[0.2cm] 
+    \fbox{$\subset$} Soit $x \in G$.\\
+    Alors $\exists (x_F, x_{G\cap H}) \in F \times G \cap H ~ | ~ x = x_F + x_{G\cap H}$.\\
+    Ainsi, $x_F = x - x_{G\cap H} \in G$ comme somme d'éléments de $G$.\\
+    On obtient $x_F \in F \cap G = F \cap H$.\\
+    Ainsi, $x_F \in H$ et $x = x_F + x_{G \cap H} \in H$ comme somme d'éléments de $H$.\\
+    Donc $G \subset H$.\\[0.3cm]
+    \fbox{$\supset$} Raisonnement identique, $H \subset G$.\\
+    Ainsi, $G = H$ par double inclusion.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\lozenge\lozenge$}{}
+    Montrer que les vecteurs $(1, 0, 1, 0), (0, 1, 0, 1)$ et $(1, 2, 3, 4)$ forment une famille libre de $\R^4$.
+    \tcblower\\[0.2cm]
+    Soient $\lambda, \mu, \nu \in \R$ tels que $\lambda(1, 0, 1, 0) + \mu(0, 1, 0, 1) + \nu(1, 2, 3, 4) = (0, 0, 0, 0)$.\\
+    Système trivial, on trouve $\lambda = \mu = \nu = 0$.\\
+    Ainsi, la famille est libre.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\lozenge\lozenge$}{}
+    Montrer que les suites $u=(1)_{n\in\N}, v=(n)_{n\in\N}$ et $w=(2^n)_{n\in\N}$ forment une famille libre de $\R^\N$.
+    \tcblower\\[0.2cm]
+    Soient $\lambda, \mu, \nu \in \R$ tels que $\lambda(1)_{n\in\N} + \mu(n)_{n\in\N} + \nu(2^n)_{n\in\N} = (0)_{n\in\N}$.\\
+    On a $\lambda + \mu n + \nu 2^n = 0$ pour tout $n \in \N$.\\
+    En particulier, pour $n = 0$, on a $\lambda + \nu = 0$.\\
+    Pour $n = 1$, on a $\lambda + \mu + 2\nu = \mu + \nu = 0$ en simplifiant les $\lambda + \nu$.\\
+    Pour $n = 2$, on a $\lambda + 2\mu + 4\nu = \nu = 0$ en simplifiant les $\lambda + \nu$ et $\mu + \nu$.\\
+    Ainsi, $\lambda = \mu = \nu = 0$ et la famille est libre.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $p\in\N^*$ et $q_1<q_2<...<q_p$ $p$ réels strictement positifs.\\
+    Pour $k \in \llbracket 1, p \rrbracket$, on note $a^{(k)}$ la suite géométrique de raison $q_k$ et de premier terme 1.\\
+    Montrer que $(a^{(1)}, ..., a^{(p)})$ est libre.
+    \tcblower\\[0.2cm]
+    Par récurrence sur $p$ :\\
+    \textbf{Initialisation.} Pour $p = 1$, la famille est réduite à un seul vecteur donc elle est libre.\\
+    \textbf{Hérédité.} Supposons que la famille est libre pour $p-1 \in \N$.\\
+    Soient $\lambda_1, ..., \lambda_{p} \in \R$ tels que pour $n\in\N$ $\lambda_1q_1^n + ... + \lambda_{p}q_{p}^n = 0$.\\
+    Alors $\lambda_1\left(\frac{q_1}{q_{p}}\right)^n + ... + \lambda_p = 0$, on fait tendre vers l'infini : $\lambda_p = 0$.\\
+    On obtient $\lambda_1q_1^n + ... + \lambda_{p-1}q_{p-1}^n = 0$ pour tout $n\in\N$.\\
+    Par hypothèse de récurrence, on a $\lambda_1 = ... = \lambda_{p-1} = 0$.\\
+    \textbf{Conclusions.} Par principe de récurrence, la famille est libre pour tout $p\in\N^*$.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Pour tout $k \in \llbracket 0, n \rrbracket$, on pose $P_k = X^k(1-X)^{n-k}$.\\
+    Démontrer que $(P_0, ..., P_n)$ est une famille libre de $\K_n[X]$.
+    \tcblower\\[0.2cm]
+    Soient $\lambda_0, ..., \lambda_n \in \K$ tels que $\lambda_0P_0 + ... + \lambda_nP_n = 0$.\\ 
+    Alors $\lambda_0(1-X)^n + ... + \lambda_nX^n = 0$.\\
+    Pour $X = 1$, on a $\lambda_n = 0$.\\
+    On obtient $\lambda_0(1-X)^n + ... + \lambda_{n-1}X^{n-1}(1-X) = 0$.\\
+    Donc $(1-X)\left(\lambda_0(1-X)^{n-1} + ... + \lambda_{n-1}X^{n-1}\right) = 0$.\\
+    Donc $\lambda_0(1-X)^{n-1} + ... + \lambda_{n-1}X^{n-1} = 0$ car $1-X \neq 0$.\\
+    On itère le raisonnement pour obtenir $\lambda_0 = ... = \lambda_{n} = 0$.\\
+    Ainsi, la famille est libre.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\blacklozenge\blacklozenge$}{}
+    Déterminer les fonctions $f\in\R^\R$ telles que :
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9ex]
+        \item $f$ est dérivable et $(f,f')$ est une famille liée.
+        \item $f$ est deux fois dérivable et $(f, f', f'')$ est une famille liée.
+    \end{enumerate}
+    \tcblower\\[0.2cm]
+    \boxed{1.} Soit $f\in\R^\R$ dérivable telle que $(f, f')$ est liée.\\
+    Puisque $(f,f')$ est liée, $\exists \lambda \in \R ~ | ~ f' = \lambda f$.\\
+    Alors $f' = \lambda f$, une EDL1.\\
+    Ainsi, $f \in \{x \mapsto \alpha e^{\lambda x} ~ | ~ \alpha, \lambda \in \R\}$.\\[0.3cm]
+    \boxed{2.} Soit $f\in\R^\R$ deux fois dérivable telle que $(f, f', f'')$ est liée.\\
+    Puisque $(f, f', f'')$ est liée, $\exists (\lambda, \mu) \in \R^2 ~ | ~ f'' = \lambda f + \mu f'$.\\
+    Alors $f'' = \lambda f + \mu f'$, une EDL2.\\
+    Ainsi, $f \in \{ x \mapsto \alpha e^{\lambda x} + \beta e^{\mu x} ~ | ~ \alpha, \beta, \lambda, \mu \in \R\}$.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $u:E\to F$ linéaire et $(e_i)_{i\in I} \in E^I$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9ex]
+        \item Montrer que si $u$ est injective et si $(e_i)_{i\in I}$ est libre, alors $(u(e_i))_{i\in I}$ est libre.
+        \item Montrer que si $u$ est surjective et si $(e_i)_{i\in I}$ engendre $E$, alors $(u(e_i))_{i\in I}$ engendre $F$.
+    \end{enumerate}
+    \tcblower\\[0.2cm]
+    \boxed{1.} Supposons $u$ injective et $(e_i)_{i\in I}$ libre.\\
+    Soit $J$ une partie finie de $I$ et $(\lambda_j)_{j\in J}$ telle que $\sum_{j\in J} \lambda_ju(e_j) = 0$.\\
+    Alors $u\left(\sum_{j\in J} \lambda_je_j\right) = 0$ par linéaritéde $u$ puis $\sum_{j\in J}\lambda_j e_j = 0$ par linéarité et injectivité de $u$.\\
+    Or $(e_i)_{i\in I}$ est libre donc $\lambda_j = 0$ pour tout $j\in J$.\\
+    Ainsi, $(u(e_i))_{i\in I}$ est libre.\\[0.3cm]
+    \boxed{2.} Supposons $u$ surjective et $(e_i)_{i\in I}$ génératrice de $E$.\\
+    Soit $y\in F$, alors $\exists x\in E ~ | ~ y = u(x)$ par surjectivité de $u$.\\
+    Puisque $(e_i)_{i\in I}$ engendre $E$, $\exists (\lambda_i)_{i\in I} ~ | ~ x = \sum_{i\in I}\lambda_ie_i$.\\
+    Ainsi, $y = u\left(\sum_{i\in I}\lambda_ie_i\right) = \sum_{i\in I}\lambda_iu(e_i)$ par linéarité de $u$.\\
+    Ainsi, $(u(e_i))_{i\in I}$ engendre $F$.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\lozenge\lozenge$}{}
+    Pour chacun de ces ensembles, prouver qu'il s'agit d'un espace vectoriel et en donner une base.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9ex]
+        \item $F = \{\alpha X^3 + \beta X + \alpha + \beta, ~ (\alpha, \beta) \in \R^2\}$.
+        \item $G = \{(x,y,z,t) \in \R^4 : x + 2y + z - t = 0 ~ \text{et} ~ 2x + 4y + z + 3t = 0\}$.
+    \end{enumerate}
+    \tcblower\\[0.2cm]
+    \boxed{1.} Montrons que $F$ est un s.e.v. de $\R_3[X]$.\\
+    On a $0_{\R_3[X]} \in F$.\\
+    Soient $\lambda, \mu \in \R$ et $P, Q \in F$.
+    Alors $\exists (\alpha, \beta), (\gamma, \delta) \in \R^2 \, | \,  P = \alpha X^3 + \beta X + \alpha + \beta$ et $Q = \gamma X^3 + \delta X + \gamma + \delta$.\\
+    Ainsi, $\lambda P + \mu Q = (\lambda\alpha + \mu\gamma)X^3 + (\lambda\beta + \mu\delta)X + (\lambda\alpha + \mu\gamma) + (\lambda\beta + \mu\delta) \in F$.\\
+    Ainsi, $F$ est un s.e.v. de $\R_3[X]$.\\
+    La famille $(X^3, X, 1)$ est une base de $F$.\\[0.3cm]
+    \boxed{2.} On a $G = \{(x, \frac{t-x}{2} - 1, 4 - 5t, t) ~ | ~ x,t\in\R\} = \vect((1, -\frac{1}{2}, 4, 0), (0, \frac{1}{2}, -5, 1))$.\\
+    La famille $(1, -\frac{1}{2}, 4, 0), (0, \frac{1}{2}, -5, 1)$ est une base de $G$.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\lozenge\lozenge$}{}
+    Soit $n \in \N$. On définit pour tout $k\in\llbracket 0, n \rrbracket, P_k = \sum\limits_{i=0}^k X^i$.\\
+    Démontrer que $(P_k)_{0\leq k\leq n}$ est une base de $\R_n[X]$.\\
+    Quelles sont les coordonnées de $1_{\R[X]}$ dans cette base ? et celles de $X^n$ ?
+    \tcblower\\[0.2cm]
+    On sait que $(P_k)_{0\leq k\leq n}$ est libre comme famille de polynomes de degrés échelonnés.\\
+    Montrons que c'est une famille génératrice de $\R_n[X]$.\\
+    Soit $P\in\R_n[X]$, alors $\exists (a_0, ..., a_n) \in \R^{n+1} ~ | ~ P = \sum_{k=0}^n a_kX^k$.\\
+    Alors $P = a_n P_n + (a_{n-1} - a_n) P_{n-1} + ... + (a_0 - ... - a_n) P_0$. Donc $(P_k)_{0\leq k\leq n}$ est génératrice.\\
+    Ainsi, $(P_k)_{0\leq k\leq n}$ est une base de $\R_n[X]$.\\
+    Les coordonnées de $1_{\R[X]}$ dans cette base sont $(1, 0, ..., 0)$ et celles de $X^n$ sont $(0, ..., -1, 1)$.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $(x_1, ..., x_n)$ un n-uplet de réels deux-à-deux distincts et $(L_1,...L_n)$ leurs polynômes de Lagrange.\\
+    Montrer que $(L_1, ..., L_n)$ est une base de $\R_{n-1}[X]$.\\
+    Donner les coordonnées d'un polynôme $P$ dans cette base.
+    \tcblower\\[0.2cm]
+    On sait que $(L_1, ..., L_n)$ est une famille libre de $\R_{n-1}[X]$ car leurs degrés sont échelonnés.\\
+    C'est une famille libre de taille $n$ dans un espace de dimension $n$ donc c'est une base.\\
+    Soit $P\in\R_{n-1}[X]$, alors $\exists (a_1, ..., a_n) \in \R^n ~ | ~ P = \sum_{k=1}^n a_kL_k$.\\
+    Alors $P = \sum_{k=1}^n a_kL_k = \sum_{k=1}^n a_k\left(\prod_{\substack{j=1\\j\neq k}}^n \frac{X-x_j}{x_k-x_j}\right)$.\\
+    Ainsi, les coordonnées de $P$ dans la base $(L_1, ..., L_n)$ sont $(a_1, ..., a_n)$.
+\end{exercise}
+
+\end{document}
+ 
