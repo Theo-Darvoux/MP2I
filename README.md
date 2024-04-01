@@ -14,3 +14,7 @@ Allez dans les répertoires et ouvrez les fichiers .pdf seulement, les .tex serv
 
 [ScholarVox Sorbonne (légal)](https://univ-scholarvox-com.accesdistant.sorbonne-universite.fr/)\
 [Plein de livres (illégal 🤑)](https://fr.annas-archive.org/)
+
+## Emploi du temps
+
+![Emploi du temps](EDT.jpg)
