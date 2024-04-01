@@ -6,7 +6,7 @@
 \usepackage{enumitem}
 \usepackage{amsmath, amssymb, amsthm, stmaryrd}
 
-\def\pagetitle{Espaces Vectoriels}
+\def\pagetitle{Espaces Vectoriels en dimension finie}
 \setlength{\headheight}{14pt}
 \newcommand*{\F}{\mathcal{F}}
 \newcommand*{\R}{\mathbb{R}}
@@ -20,6 +20,7 @@
 
 \DeclareMathOperator*{\vect}{Vect}
 \DeclareMathOperator*{\tr}{Tr}
+\DeclareMathOperator*{\rg}{rg}
 
 \title{\bf{\pagetitle}\\\large{Corrigé}}
 
@@ -60,6 +61,7 @@
 \begin{center}
     \LARGE{\textbf{Chapitre 26}}\\
     \large{Espaces de dimension finie}\\
+    \small{Marathon du lundi de paques}
     \rule{0.8\textwidth}{0.5pt}
 \end{center}
 
@@ -217,7 +219,49 @@
     \tcblower\\[0.2cm]
     On a $\dim S_n(\R) = \frac{n(n+1)}{2}$ car c'est le nombre de coefficients au dessus/dessous de la diagonale.\\
     On a $M_n(\R) = S_n(\R) \oplus A_n(\R)$ donc $\dim A_n(\R) = \dim M_n(\R) - \dim S_n(\R) = n^2 - \frac{n(n+1)}{2} = \frac{n(n-1)}{2}$.
-    
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $F = \{P \in \R_3[X] : P(1) = P(2)\}$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item Prouver que $F$ est un sous-espace vectoriel de $\R_3[X]$ et justifier que $\dim F \leq 3$.
+        \item Trouver une base de $F$.
+    \end{enumerate}
+    \tcblower\\[0.2cm]
+    \boxed{1.} On a $F = \{P \in \R_3[X] : P(1) - P(2) = 0\} = \ker(\phi)$ avec $\phi : P \mapsto P(1) - P(2)$.\\
+    Or $\phi$ est une forme linéaire sur $\R_3[X]$, donc $F = \ker(\phi)$ est un s.e.v. de $\R_3[X]$.\\
+    D'après le théorème du rang, on a $\dim(\R_3[X]) = \rg(\phi) + \dim(\ker(\phi))$.\\
+    Donc $\dim F = 4 - 1 = 3$.\\[0.2cm]
+    \boxed{2.} On peut prendre $P_1 = 1$, $P_2 = X^2 - 3X + 2$ et $P_3 = X^3 - 3X^2 + 2X$.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $P \in \R_{n+1}[X]$. Montrer que $\R_{n+1}[X] = \R_n[X] \oplus \vect(P)$.
+    \tcblower\\[0.2cm]
+    On a que $\R_n[X]$ est un hyperplan de $\R_{n+1}[X]$ et $\vect(P)$ est une droite vectorielle de $\R_{n+1}[X]$.\\
+    D'après le chapitre suivant, $\R_{n+1}[X] = \R_n[X] \oplus \vect(P)$.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Quelle est la condition nécessaire et suffisante sur $\lambda$ pour que $D = \vect((\lambda, \lambda, 1))$ et $P = \vect((1, \lambda, 1), (2, 1, 1))$ soient supplémentaires dans $\R^3$ ?
+    \tcblower\\[0.2cm]
+    On a que $D$ est une droite vectorielle de $\R^3$ et $P$ est un hyperplan de $\R^3$.\\
+    La condition nécessaire et suffisante pour que $D$ et $P$ soient supplémentaires est que $D \cap P = \{0\}$.
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\blacklozenge\blacklozenge$}{}
+    Soient $F,G$ deux s.e.v. d'un espace vectoriel $E$ de dimension finie.\\
+    Montrer que $(\dim F + G)^2 + (\dim F \cap G)^2 \geq (\dim F)^2 + (\dim G)^2$.
+    \tcblower\\[0.2cm]
+    On a $\dim F+G = \dim F + \dim G - \dim F \cap G$.\\
+    Donc $\dim F+G + \dim F \cap G = \dim F + \dim G$.\\
+    Donc $(\dim F+G)^2 + (\dim F \cap G)^2 + 2\dim F + G \dim F \cap G = (\dim F)^2 + (\dim G)^2 + 2\dim F \dim G$.\\
+    Montrons que $\dim(F+G)\dim(F \cap G) \geq \dim F \dim G$.\\
+    Si $F$ et $G$ sont confondus, il y a égalité.\\
+    SPDG, supposons que $\dim F \geq \dim G$.\\
+    Alors $\dim(F + G) \geq \dim F + 1$ et $\dim F \cap G \geq \dim G - 1$.\\
+    Donc $\dim(F + G)\dim(F \cap G) \geq \dim F \dim G - \dim F + \dim G - 1 \geq \dim F \dim G$.\\
+    En remplaçant dans l'égalité, on obtient l'inégalité.
 \end{exercise}
 
 \end{document}
