@@ -152,5 +152,23 @@
     Or, c'est une famille de $n+1$ vecteurs dans un espace de dimension $n+1$, donc c'est une base.
 \end{exercise}
 
+\begin{exercise}{$\blacklozenge\blacklozenge\lozenge$}{}
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item Pour $a \in \R$, on note $f_a : x \mapsto e^{ax}$. Montrer que $(f_a)_{a\in\R}$ est libre dans $\R^\R$.
+        \item Déduire que $\R^\R$ n'est pas de dimension finie.
+    \end{enumerate}
+    \tcblower\\[0.2cm]
+    \boxed{1.} Soit $n \in \N^*$ et $a_1 < ... < a_n \in \R$.\\
+    Soient $(\lambda_1, ... \lambda_n) \in \R ~ | ~ \sum_{k=1}^n\lambda_k f_{a_k} = 0$.\\
+    Alors $\sum_{k=1}^{n-1}\lambda_k f_{a_k} = - \lambda_n f_{a_n}$ et $\sum_{k=1}^{n-1}\lambda_k f_{a_k - a_n} = - \lambda_n$.\\
+    Or $\sum_{k=1}^{n-1}\lambda_k f_{a_k - a_n}(x) \xrightarrow[x\to+\infty]{} 0$ donc $\lambda_n = 0$.\\
+    En itérant, on obtient que $\lambda_1 = ... = \lambda_n = 0$.\\
+    Donc $(f_a)_{a\in\R}$ est une famille libre de $\R^\R$.\\[0.2cm]
+    \boxed{2.} Supposons que $\R^\R$ est de dimension finie.\\
+    Alors, toute famille libre de $\R^\R$ est de cardinal inférieur ou égal à la dimension de $\R^\R$.\\
+    Or, on a montré que $(f_a)_{a\in\R}$ est une famille libre de $\R^\R$ de cardinal infini.\\
+    Donc $\R^\R$ n'est pas de dimension finie.
+\end{exercise}
+
 \end{document}
  
