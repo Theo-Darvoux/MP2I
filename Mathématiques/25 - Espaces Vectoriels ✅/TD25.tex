@@ -279,7 +279,7 @@
     \boxed{2.} Soit $f\in\R^\R$ deux fois dérivable telle que $(f, f', f'')$ est liée.\\
     Puisque $(f, f', f'')$ est liée, $\exists (\lambda, \mu) \in \R^2 ~ | ~ f'' = \lambda f + \mu f'$.\\
     Alors $f'' = \lambda f + \mu f'$, une EDL2.\\
-    Ainsi, $f \in \{ x \mapsto \alpha e^{\lambda x} + \beta e^{\mu x} ~ | ~ \alpha, \beta, \lambda, \mu \in \R\}$.
+    Les fonctions sont donc les solutions de cette EDL2.
 \end{exercise}
 
 \begin{exercise}{$\blacklozenge\blacklozenge\lozenge$}{}
@@ -324,7 +324,7 @@
     Démontrer que $(P_k)_{0\leq k\leq n}$ est une base de $\R_n[X]$.\\
     Quelles sont les coordonnées de $1_{\R[X]}$ dans cette base ? et celles de $X^n$ ?
     \tcblower\\[0.2cm]
-    On sait que $(P_k)_{0\leq k\leq n}$ est libre comme famille de polynomes de degrés échelonnés.\\
+    On sait que $(P_k)_{0\leq k\leq n}$ est libre comme famille de polynomes de degrés deux-à-deux distincts.\\
     Montrons que c'est une famille génératrice de $\R_n[X]$.\\
     Soit $P\in\R_n[X]$, alors $\exists (a_0, ..., a_n) \in \R^{n+1} ~ | ~ P = \sum_{k=0}^n a_kX^k$.\\
     Alors $P = a_n P_n + (a_{n-1} - a_n) P_{n-1} + ... + (a_0 - ... - a_n) P_0$. Donc $(P_k)_{0\leq k\leq n}$ est génératrice.\\
@@ -337,11 +337,10 @@
     Montrer que $(L_1, ..., L_n)$ est une base de $\R_{n-1}[X]$.\\
     Donner les coordonnées d'un polynôme $P$ dans cette base.
     \tcblower\\[0.2cm]
-    On sait que $(L_1, ..., L_n)$ est une famille libre de $\R_{n-1}[X]$ car leurs degrés sont échelonnés.\\
-    C'est une famille libre de taille $n$ dans un espace de dimension $n$ donc c'est une base.\\
-    Soit $P\in\R_{n-1}[X]$, alors $\exists (a_1, ..., a_n) \in \R^n ~ | ~ P = \sum_{k=1}^n a_kL_k$.\\
-    Alors $P = \sum_{k=1}^n a_kL_k = \sum_{k=1}^n a_k\left(\prod_{\substack{j=1\\j\neq k}}^n \frac{X-x_j}{x_k-x_j}\right)$.\\
-    Ainsi, les coordonnées de $P$ dans la base $(L_1, ..., L_n)$ sont $(a_1, ..., a_n)$.
+    Soient $\lambda_1, ..., \lambda_n \in \R$ tels que $\sum_{k=1}^n\lambda_kL_k = 0$.\\
+    Alors $\forall k \in \llbracket 1, n \rrbracket, \sum_{i=1}^n\lambda_iL_i(x_k) = \lambda_k = 0$.\\
+    Ainsi, $(L_1, ..., L_n)$ est libre.\\
+    C'est une famille libre de $n$ vecteurs donc c'est une base de $\R_{n-1}[X]$.
 \end{exercise}
 
 \end{document}
