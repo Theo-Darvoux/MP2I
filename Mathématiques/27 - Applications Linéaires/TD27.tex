@@ -1,0 +1,93 @@
+\documentclass[11pt]{article}
+
+\usepackage[paperheight=45in, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, changepage}
+\usepackage{enumitem}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+
+\def\pagetitle{Applications linéaires}
+\setlength{\headheight}{14pt}
+\newcommand*{\F}{\mathcal{F}}
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\C}{\mathbb{C}}
+\newcommand*{\K}{\mathbb{K}}
+\newcommand*{\N}{\mathbb{N}}
+\newcommand*{\m}{\mathcal}
+\newcommand*{\Id}{\textrm{Id}}
+\newcommand*{\ra}{\Rightarrow}
+
+\renewcommand*{\phi}{\varphi}
+\renewcommand*{\ker}{\textrm{Ker}}
+\renewcommand{\Im}{\textrm{Im}}
+
+\DeclareMathOperator*{\vect}{Vect}
+\DeclareMathOperator*{\tr}{Tr}
+\DeclareMathOperator*{\rg}{rg}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+
+\newtcbtheorem{exercise}{Exercice}
+{
+    enhanced,frame empty,interior empty,
+    colframe=blue,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green!25!blue},
+    borderline south={1pt}{0pt}{green!25!blue},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Solution :}}
+}{exercise}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+\begin{document}
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+
+\hrule
+\begin{center}
+    \LARGE{\textbf{Chapitre 27}}\\
+    \large{Applications linéaires}\\
+    \rule{0.8\textwidth}{0.5pt}
+\end{center}
+
+
+\vspace{0.5cm}
+
+\begin{exercise}{$\blacklozenge\blacklozenge\blacklozenge$}{}
+    Soit $E$ un $\K$-espace vectoriel et $p,q$ deux projecteurs.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item Montrer que $p+q$ est un projecteur ssi $p \circ q = q \circ p = 0$.
+        \item Supposons que $p+q$ est projecteur. Montrer que
+    \end{enumerate}
+    \begin{equation*}
+        \Im(p+q)=\Im(p)\oplus\Im(q) \quad \text{et} \quad \ker(p+q)=\ker(p)\cap\ker(q).
+    \end{equation*}
+    \tcblower\\[0.2cm]
+    \boxed{1.}\\
+    \fbox{$\Leftarrow$} Supposons que $p\circ q = q \circ p = 0$.\\
+    On a $(p+q)^2=p^2 + pq + qp + q^2 = p^2 + q^2 = p + q$ donc $p+q$ est un projecteur.\\
+    \fbox{$\Rightarrow$} Supposons que $p+q$ est un projecteur.\\
+    Alors $(p+q)^2 = p + pq + qp + q = p + q$ donc $pq + qp = 0$.\\
+    Alors $pq = qp \ra pq = p^2q = -pqp = qp = -qp^2 = qp^2 = qp$.\\
+    Donc $pq = qp$, mais aussi $pq = -qp$ donc $pq = qp = 0$.
+\end{exercise}
+
+\end{document}
+ 
