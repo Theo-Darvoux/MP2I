@@ -69,6 +69,91 @@
 
 
 \vspace{0.5cm}
+\begin{exercise}{$\blacklozenge\lozenge\lozenge$}{}
+    Soit $u$ un endomorphisme d'un espace vectoriel $E$. Montrer
+    \begin{equation*}
+        \ker{(u)} = \ker{(u^{2})} \iff \ker{(u)} \cap \Im{(u)} = \{ 0_{E} \}
+    \end{equation*}
+    \tcblower\\[0.2cm]
+    \fbox{$\Leftarrow$} Supposons que $\ker{(u)} \cap \Im{(u)} = \{ 0_{E} \}$.\\
+    On a assez facile que : $\ker{(u)} \subset \ker{(u^{2})}$\\
+    Montrons que : $\ker{(u^{2})} \subset \ker{(u)}$\\
+    Soit $x \in \ker{(u^{2})}$\\
+    Posons $y = u{(x)}$\\
+    $u^{2}{(x)} = 0$\\
+    $u \circ u{(x)} = 0$\\
+    $u{(y)} = 0$\\
+    $y = 0$ ($y \in \ker{(u)} \cap \Im{(u)}$)\\
+    $u{(x)} = 0$\\
+    Ainsi on obtient : $x \in \ker{(u)}$\\\\
+    \fbox{$\Rightarrow$} Supposons que $\ker{(u)} = \ker{(u^{2})}$.\\
+    Soit $y \in \ker{(u)} \cap \Im{(u)}$\\
+    $\exists x \in E ~|~ y = u{(x)}$\\
+    Posons $x ~|~ y = u{(x)}$\\
+    $u{(y)} = 0$ ($y \in \ker{(u)}$)\\
+    $u \circ u{(x)} = 0$\\
+    $u^{2}{(x)} = 0$\\
+    $u{(x)} = 0$ ($\ker{(u)} = \ker{(u^{2})}$)\\
+    Ainsi on obtient : $y = 0_{E}$
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\lozenge\lozenge$}{}
+    Soit $u$ un endomorphisme d'un espace vectoriel $E$. Montrer
+    \begin{equation*}
+        \Im{(u)} = \Im{(u^{2})} \iff E = \ker{(u)} + \Im{(u)}
+    \end{equation*}
+    \tcblower\\[0.2cm]
+    \fbox{$\Leftarrow$} Supposons que $E = \ker{(u)} + \Im{(u)}$.\\
+    On a assez facile que : $\Im{(u^{2})} \subset \Im{(u)}$\\
+    Montrons que : $\Im{(u)} \subset \Im{(u^{2})}$\\
+    Soit $y \in \Im{(u)}$\\
+    $\exists x \in E ~|~ y = u{(x)}$ ($y \in \Im{(u)}$)\\
+    Posons $x ~|~ y = u{(x)}$\\
+    $\exists (x', \widetilde{x}) \in \ker{(u)} \times E ~|~ x = x' + u{(\widetilde{x})}$ ($E = \ker{(u)} + \Im{(u)}$)\\
+    Posons $(x', \widetilde{x}) \in \ker{u} \times E ~|~ x = x' + u{(\widetilde{x})}$\\
+    $y = u{(x' + u{(\widetilde{x})})}$\\
+    $y = u{(x')} + u \circ u{(\widetilde{x})}$\\
+    $y = u^{2}{(\widetilde{x})}$ ($x' \in \ker{(u)}$)\\
+    Ainsi on obtient que : $y \in \Im{(u^{2})}$\\\\
+    \fbox{$\Rightarrow$} Supposons que $\Im{(u)} = \Im{(u^{2})}$.\\
+    On a assez facile que : $\ker{(u)} + \Im{(u)} \subset E$\\
+    Montrons que : $E = \ker{(u)} + \Im{(u)}$\\
+    Soit $x \in E$
+    Posons $y ~|~ y = u{(x)}$\\
+    $\exists \widetilde{x} \in E ~|~ y = u^{2}{(\widetilde{x})}$ ($\Im{(u)} = \Im{(u^{2})}$)\\
+    Posons $\widetilde{x} ~|~ y = u^{2}{(\widetilde{x})}$\\
+    $x = x - u{(\widetilde{x})} + u{(\widetilde{x})}$\\
+    $u{(x - u{(\widetilde{x})})} = u{(x)} - u^{2}{(\widetilde{x})} = 0$\\
+    $u{(\widetilde{x})} \in \Im{(u)}$ et $x - u{(\widetilde{x})} \in \ker{(u)}$\\
+    Ainsi on obtient que : $x \in \ker{(u)} + \Im{(u)}$
+\end{exercise}
+
+\begin{exercise}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $u \in \mathcal{L}(E)$, où $E$ est un espace vectoriel.
+     \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item Montrer que pour tout $k \geq 0$, on a $\ker{(u^{k})} \subset \ker{(u^{k+1})}$.
+        \item Montrer que
+        \begin{equation*}
+            \forall k \in \N ~~ \ker{(u^{k})} = \ker{(u^{k+1})} \Rightarrow \ker{(u^{k+1})} = \ker{(u^{k+2})}
+        \end{equation*}
+    \end{enumerate}
+    \tcblower\\[0.2cm]
+    \boxed{1.}\\
+    Soient $k \in \N, x \in \ker{(u^{k})}$\\
+    $u^{k+1}{(x)} = u \circ u^{k}{(x)}$\\
+    $u^{k+1}{(x)} = u{(0)}$ ($x \in \ker{(u^{k})}$)\\
+    $u^{k+1}{(x)} = 0$\\
+    Ainsi on obtient que $x \in \ker{(u^{k+1})}$\\\\
+    \boxed{2.}\\
+    \fbox{$\Rightarrow$} Supposons que $\ker{(u^{k})} = \ker{(u^{k+1})}$.\\
+    On obtient avec Q1 : $\ker{(u^{k+1})} \subset \ker{(u^{k+2})}$
+    Montrons que : $\ker{(u^{k+2})} \subset \ker{(u^{k+1})}$\\
+    Soit $x \in \ker{(u^{k+2})}$\\
+    $u^{k+2}{(x)} = u^{k+1} \circ u{(x)} = 0$\\
+    $u^{k} \circ u{(x)} = 0$ ($\ker{(u^{k})} = \ker{(u^{k+1})}$)\\
+    $u^{k+1}{(x)} = 0$\\
+    Ainsi on obtient que : $x \in \ker{(u^{k+1})}$
+\end{exercise}
 
 \begin{exercise}{$\blacklozenge\blacklozenge\blacklozenge$}{}
     Soit $E$ un $\K$-espace vectoriel et $p,q$ deux projecteurs.
@@ -90,4 +175,3 @@
 \end{exercise}
 
 \end{document}
- 
