@@ -1,0 +1,276 @@
+\documentclass[11pt]{article}
+
+\usepackage[paperheight=45in, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, changepage}
+\usepackage{enumitem}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd, cancel}
+
+\def\pagetitle{Groupe Symétrique}
+\setlength{\headheight}{14pt}
+\newcommand*{\F}{\mathcal{F}}
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\C}{\mathbb{C}}
+\newcommand*{\Z}{\mathbb{Z}}
+\newcommand*{\K}{\mathbb{K}}
+\newcommand*{\N}{\mathbb{N}}
+\newcommand*{\m}{\mathcal}
+\newcommand*{\lb}{\llbracket}
+\newcommand*{\rb}{\rrbracket}
+\newcommand*{\id}{\text{id}}
+\newcommand*{\n}{\\[0.2cm]}
+\renewcommand*{\t}{\tau}
+\newcommand{\0}{\varnothing}
+
+\renewcommand*{\phi}{\varphi}
+\newcommand*{\e}{\varepsilon}
+\newcommand*{\g}{\gamma}
+\newcommand*{\s}{\sigma}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+
+\newcommand{\providetcbcountername}[1]{%
+  \@ifundefined{c@tcb@cnt@#1}{%
+    --undefined--%
+  }{%
+    tcb@cnt@#1%
+  }
+}
+
+\newcommand{\settcbcounter}[2]{%
+  \@ifundefined{c@tcb@cnt@#1}{%
+    \GenericError{Error}{counter name #1 is no tcb counter }{}{}%
+  }{%
+    \setcounter{tcb@cnt@#1}{#2}%
+   }%
+}%
+
+\newcommand{\displaytcbcounter}[1]{% Wrapper for \the...
+  \@ifundefined{thetcb@cnt@#1}{%
+    \GenericError{Error}{counter name #1 is no tcb counter }{}{}%
+  }{%
+    \csname thetcb@cnt@#1\endcsname% 
+  }%
+}
+
+\newtcbtheorem{thm}{Théorème}
+{
+    enhanced,frame empty,interior empty,
+    colframe=red,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green!25!red},
+    borderline south={1pt}{0pt}{green!25!red},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Preuve :}\n}
+}{thm}
+
+\newtcbtheorem[use counter from = thm]{defi}{Définition}
+{
+    enhanced,frame empty,interior empty,
+    colframe=green,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green},
+    borderline south={1pt}{0pt}{green},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Preuve :}\n}
+}{defi}
+
+\newtcbtheorem[use counter from = thm]{prop}{Proposition}
+{
+    enhanced,frame empty,interior empty,
+    colframe=blue,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green!25!blue},
+    borderline south={1pt}{0pt}{green!25!blue},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Preuve :}\n}
+}{prop}
+
+\newtcbtheorem[use counter from = thm]{ex}{Exemple}
+{
+    enhanced,frame empty,interior empty,
+    colframe=orange,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green!25!orange},
+    borderline south={1pt}{0pt}{green!25!orange},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Preuve :}\n}
+}{ex}
+
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+\begin{document}
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+
+\hrule
+\begin{center}
+    \LARGE{\textbf{Chapitre 33}}\\
+    \large{\pagetitle}\\
+    \rule{0.8\textwidth}{0.5pt}
+\end{center}
+
+
+\vspace{0.5cm}
+
+\begin{def}{}{}
+    Soit $p$ un entier supérieur à 2.\\
+    Une permutation $\g$ est appellée un $p$\textbf{-cycle} s'il existe $p$ éléments distincts $a_1,...,a_p$ de $\lb1,n\rb$ tels que 
+\end{def}
+
+
+\begin{ex}{}{}
+    Soit $\g=(a_1,...,a_p)$ un $p$-cycle et $\s\in S_n$. Montrer que
+    \begin{equation*}
+        \s\g\s^{-1}=(\s(a_1)~\s(a_2)~...~\s(a_p)).
+    \end{equation*}
+    \tcblower
+    Soit $b\in\lb1,n\rb\setminus\{\s(a_1),...,\s(a_p)\}$.\\
+    Alors $\s\g\s^{-1}(b)=\s\g(\s^{-1}(b))=\s\s^{-1}(b)=b$ car $b\notin\{\s(a_1),...,\s(a_p)\}$ donc $\s^{-1}(b)\notin\{a_1,..,a_p\}$ donc c'est un point fixe de $\g$.\\[0.2cm]
+    Soit $j\in\lb1,p\rb$.\\
+    Alors $\s\g\s^{-1}(\s(a_j))=\s\g(a_j)=\s(a_{j+1})$ avec $a_{p+1}:=a_1$.\\
+    On a bien que $\s\g\s^{-1}$ et $(\s(a_1)...\s(a_p))$ sont égaux en tout point.\\[0.2cm]
+    \textbf{Remarque:} Ceci démontre que tous les $p$-cycles sont conjugués.\\
+    Soient $\g=(a_1~...~a_p)$ et $\g'=(b_1~...~b_p)$ deux $p$-cycles.\\
+    Posons $\s\in S_n$ telle que :
+    \begin{itemize}
+        \item $\forall j \in \lb 1, p \rb ~ \s(a_j) = b_j$.
+        \item Notons $\lb 1, n \rb \setminus \{a_1, ..., a_p\} := \{a_1', ..., a_{n-p}'\}$ et $\lb 1, n \rb \setminus \{b_1, ... b_p\} := \{b_1', ... , b_{n-p}'\}$.
+    \end{itemize}
+    On pose alors $\forall i\in\lb1,n-p\rb ~ \s(a_i')=b_i'$.\\
+    Alors $\s$ est bien une bijection de $\lb1,n\rb$ dans lui-même car injective et de même cardinal.\\
+    On a donc $\g'=(b_1~...~b_p) = (\s(a_1)~...~\s(a_p))=\s\g\s^{-1}$ donc $\g$ et $\g'$ sont conjugués.
+\end{ex}
+
+\begin{ex}{}{}
+    Soit $\g=(a_1~...~a_p)$. Déterminer $\g^{-1}$ et $\g^p$.
+    \tcblower
+    \textbf{La réciproque $\g^{-1}$ :}\\
+    Si $\g(b)=b$ alors $\g^{-1}(b)=b$ car c'est un point fixe.\\
+    Soit $j\in\lb1,p-1\rb$, $\g(a_j)=a_{j+1}$ donc $a_j=\g^{-1}(a_{j+1})$.\\
+    Alors $\forall k \in \lb2,p\rb$, $\g^{-1}(a_k)=a_{k-1}$, et $\g^{-1}(a_1)=a_p$.\\
+    Ainsi, $\g^{-1}=(a_p ~ a_{p-1} ~ ... ~ a_2 ~ a_1)$.\\[0.2cm]
+    \textbf{La puissance $\g^p$ :}\\
+    On a $\g=(a, \g(a), ..., \g^{p-1}(a))$ pour un $a\in\lb1,n\rb$.\\
+    $\circledcirc$ $\g^p(a)=\g(\g^{p-1}(a))=a$.\\
+    $\circledcirc$ Soit $j\in\lb1,p-1\rb$, $\g^p(\g^j(a))=\g^j(\g^p(a))=\g^j(a)$.\\
+    $\circledcirc$ Soit $b\in\lb1,n\rb\setminus\{a,\g(a),...,\g^{p-1}(a)\}$, alors $\g^p(b)=b$ car point fixe.\\
+    Ainsi, $\forall x \in \lb1,n\rb, ~ \g^p(x)=x$ donc $\g^p=\id$.\n
+    \textbf{Remarque:} On pourrait aussi prouver que $p=\min\{j\in\N^*~|~\g^j=\id\}$.
+\end{ex}
+\section*{3. Transpositions}
+\begin{defi}{}{}
+    Une permutation $\t$ qui est un $2$-cycle est appelé une \textbf{transposition}.\\
+    Une transposition est donc une permutation de la forme $(a,b)$ où $\{a,b\}$ est une paire de $\lb1,n\rb$.
+\end{defi}
+
+\begin{prop}{}{}
+    Si $\t$ est une transposition, alors 
+    \begin{equation*}
+        \t^2=\id \quad \text{et} \quad \t^{-1}=\t
+    \end{equation*}
+    \tcblower
+    C'est un $2$-cycle donc $\t^2=\id$.\\
+    On en déduit que $\t^{-1}=\t$.
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $\g=(a_1~...~a_p)$. Alors
+    \begin{equation*}
+        \g=(a_1~a_2)(a_2~a_3)...(a_{p-1}~a_p) \qquad \text{ou} \qquad \g=(a_1~a_p)(a_1~a_{p-1})...(a_1~a_2)
+    \end{equation*}
+    \tcblower
+    Notons $\pi=(a_1~a_2)(a_2~a_3)...(a_{p-1}~a_p)$. Montrons que $\g=\pi$.\\
+    $\circledcirc$ Soit $b\in\lb1,n\rb\setminus\{a_1,...,a_p\}$ : $\g(b)=b$ et $\forall j \in \lb1,p-1\rb, ~ (a_j~a_{j+1})(b)=b$ car $b\notin\{a_j,a_{j+1}\}$.\\
+    Alors $\gamma(b)=\pi(b)=b$.\\
+    $\circledcirc$ Soit $j\in\lb1,p-1\rb$. Alors $\pi(a_j)=\left[...(a_{j-1}~a_j)(a_j~a_{j+1})...\right](a_j)=\left[...(a_{j-1}~a_j)\right](a_{j+1})=a_{j+1}$.\\
+    $\circledcirc$ $\pi(a_p)=[(a_1~a_2)...(a_{p-1}~a_p)](a_p)=[(a_1~a_2)...(a_{p-2}~a_{p-1})](a_{p-1})=...=a_1$\\
+    Donc $\forall x \in \lb1,n\rb ~ \g(x)=\pi(x)$\n
+    \textbf{Remarque:} On retrouve que $(1~2)(2~3)=(1~2~3)$ et $(2~3)(1~2) = (3~2)(2~1)=(3~2~1)=(1~3~2)$\\
+    On a $(1~2)(2~3)\neq(2~3)(1~2)$.
+\end{prop}
+
+\begin{thm}{}{}
+    Soit $\s\in S_n$. Il existe $\g_1,...,\g_r$ $r$ cycles à supports disjoints tels que
+    \begin{equation*}
+        \s=\g_1\g_2...\g_r.
+    \end{equation*}
+    Les $\g_i$ commutent et cette décomposition est unique à l'ordre près.
+    \tcblower
+    Soit $\s\in S_n$.\\
+    \textbf{Une relation d'équivalence sur $\lb1,n\rb$}.\\
+    Pour $i,j\in\lb1,n\rb$, on note $i\sim j$ si $\exists k \in \Z ~ | ~ j = \s^k(i)$.\\
+    $\circledcirc$ Soit $i\in\lb1,n\rb$. $i=\s^0(i)$ donc $i \sim i$.\\
+    $\circledcirc$ Soient $i,j\in\lb1,n\rb ~ | ~ i \sim j$. Alors $\exists k \in \Z ~ | ~ j = \s^k(i) ~ : ~ i = \s^{-k}(j)$ et $j \sim i$.\\
+    $\circledcirc$ Soient $h,i,j\in\lb1,n\rb ~ | ~ h \sim i$ et $i \sim j : \exists k,l \in \Z ~ | ~ i = \s^k(h)$ et $j=\s^l(i)$ donc $j=\s^{l+k}(h)$ et $j \sim h$.
+    Il existe alors une partition de $\lb1,n\rb$ en classes d'équivalences.\n
+    On fixe $x\in\lb1,n\rb$.\\
+    Prouvons qu'il existe $p\in\N^*$ tel que $[x]=\{x,\s(x),...,\s^{p-1}(x)\}$.\\
+    On pose $p=\min\{k\in\N^* ~ | ~ \s^k(x)=x\}$. Cet ensemble est minoré. Il est non-vide car :
+    \begin{equation*}
+        S : \begin{cases}
+            \Z \to \lb1,n\rb\\
+            k\mapsto \s^k(x)
+        \end{cases}
+        \text{n'est pas injective.}
+    \end{equation*}
+    Ainsi, $\exists k,k' \in \Z ~ | ~ k < k' ~ \text{et} ~ \s^k(x)=\s^{k'}(x)$ donc $\s^{k'-k}(x)=x$.\\
+    Or $k'-k\in\N^*$, donc $\{k\in\N^* ~ | ~ \s^k(x)=x\}\neq\0$.\\
+    Il faut montrer que $[x]=\{x,\s(x),...,\s^{p-1}(x)\}$.\\
+    \fbox{$\supset$} est trivial.\\
+    \fbox{$\subset$} Soit $y\in[x]$ : $\exists k \in \Z ~ | ~ y = \s^k(x)$.\\
+    Par division euclidienne : $\exists!(q,r)\in\Z^2 ~ | ~ k = qp + r ~ \text{et} ~ 0 \leq r \leq p-1$.\\
+    Donc $y = \s^k(x) = \s^{pq+r}(x) = \s^r(\s^{pq}(x))=\s^r(x)$ : $y\in\{x,\s(x),...,\s^{p-1}(x)\}$.\n
+    Notons $A_1,...,A_r$ les classes d'équivalences non triviales de $\sim$. On a prouvé que :
+    \begin{equation*}
+        \forall j \in \lb1,r\rb ~ \exists x_j \in \lb 1, n \rb ~ \exists p_j \in \N^* ~ | ~ A_j = \{x_j, \s(x_j), ..., \s^{p_j-1}(x_j)\}.
+    \end{equation*}
+    On pose alors $\g_j=(x_j~\s(x_j)~...~\s^{p_j-1}(x_j))$, il est clair que $\s=\g_1\g_2...\g_r$.
+\end{thm}
+
+\begin{ex}{}{}
+    Soit $\s=\begin{pmatrix}1&2&3&4&5&6&7&8\\5&4&1&7&8&6&2&3\end{pmatrix}$.\\
+    1. Décomposer $\s$ en produit de cycles à supports disjoints.\\
+    2. Déterminer $\s^4$, $\s^{12}$ et $\s^{666}$.
+    \tcblower
+    \boxed{1.} $\s=(1~5~8~3)(2~4~7)$\\
+    \boxed{2.}\\
+    $\circledcirc ~ \s^4=(\g_1\g_2)^4\underset{\text{comm}}{=}\g_1^4\g_2^4=\g_2$ car $\g_1^4=\id$ et $\g_2^4=\g_2^3\g_2=\g_2$.\\
+    $\circledcirc ~ \s^{12}=(\gamma_1^{4})^3(\g_2^3)^4=\id$\\
+    $\circledcirc ~ \s^{666}=(1~8)(3~5)$ car $\s^{666}=\cancel{\s^{12\times55}}\s^6$.
+\end{ex}
+
+\end{document}
+ 
