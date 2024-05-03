@@ -1,6 +1,6 @@
 \documentclass[11pt]{article}
 
-\usepackage[paperheight=45in, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[paperheight=15in, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
 \usepackage[most]{tcolorbox}
 \usepackage{hyperref, fancyhdr, lastpage, tocloft, changepage}
 \usepackage{enumitem}
@@ -145,13 +145,97 @@
 
 \vspace{0.5cm}
 
-\begin{def}{}{}
-    Soit $p$ un entier supérieur à 2.\\
-    Une permutation $\g$ est appellée un $p$\textbf{-cycle} s'il existe $p$ éléments distincts $a_1,...,a_p$ de $\lb1,n\rb$ tels que 
-\end{def}
+\section{Permutations}
 
+\begin{defi}{}{}
+    Une bijection de $\lb1,n\rb$ dans lui-même est appelée une \textbf{permutation} de $\lb1,n\rb$.\\
+    L'ensemble des permutations de $\lb1,n\rb$ sera noté $S_n$.
+\end{defi}
 
 \begin{ex}{}{}
+    Soient
+    \begin{equation*}
+        \s=\begin{pmatrix}
+            1&2&3&4&5\\
+            2&5&4&3&1
+        \end{pmatrix} \quad \text{ et } \quad
+        \s'=\begin{pmatrix}
+            1&2&3&4&5\\
+            2&3&4&1&5
+        \end{pmatrix}
+    \end{equation*}
+    Calculer $\s\s'$, $\s'\s$, $\s^2$ et $\s^{-1}$.
+    \tcblower
+    On a :
+    \begin{align*}
+        \s\s' &= \begin{pmatrix}
+            1&2&3&4&5\\
+            5&4&3&2&1
+        \end{pmatrix}
+        &\s'\s = \begin{pmatrix}
+            1&2&3&4&5\\
+            3&5&1&4&2
+        \end{pmatrix}\\
+        \s^2 &= \begin{pmatrix}
+            1&2&3&4&5\\
+            5&1&3&4&2
+        \end{pmatrix}
+        &\s^{-1} = \begin{pmatrix}
+            1&2&3&4&5\\
+            5&1&4&3&2
+        \end{pmatrix}
+    \end{align*}
+\end{ex}
+
+\begin{prop}{}{}
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $(S_n, \circ)$ est une groupe, appelé \textbf{groupe symétrique}.
+        \item $S_n$ est fini et son cardinal vaut $n!$.
+        \item Ce groupe n'est pas abélien dès que $n\geq3$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Cours sur les structures algébriques.\\
+    \boxed{2.} On pose $\Phi:\begin{cases}S_n\to\m{A}(\lb1,n\rb)\\\s\mapsto(\s(1),...,\s(n))\end{cases}$ bijective et $|\m{A}(\lb1,n\rb)|=n!$.\\
+    \boxed{3.} $S_3$ n'est pas abélien car $\t:=...$ et $\t'=...$ ne commutent pas.\\
+    Soient $\s,\s'\in S_n ~ | ~ \s_{|\{1,2,3\}}=\t$ et $\s'_{|\{1,2,3\}}=\t'$, fixes sur $\lb4,n\rb$, alors $\s\s'\neq\s'\s$.
+\end{prop}
+
+\begin{defi}{Vocabulaire}{}
+    Soit $\s\in S_n$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item Si $x\in\lb1,n\rb$, l'ensemble $\{\s^k(x),k\in\Z\}$ est appelé \textbf{orbite} de $x$.
+        \item On dit que $x$ est un \textbf{point fixe} de $\s$ si $\s(x)=x$. 
+        \item On appelle \textbf{support} de $\s$ l'ensemble des éléments de $\lb1,n\rb$ qui ne sont pas des points fixes.
+        \item Deux permutations $\s$ et $\s'$ sont dites \textbf{conjuguées} s'il existe $\alpha\in S_n$ tel que $\s'=\alpha\s\alpha^{-1}$.
+    \end{enumerate}
+
+\end{defi}
+
+\begin{prop}{}{}
+    Deux permutations dont les supports sont disjoints commutent.
+    \tcblower
+    Soient $\s,\s'\in S_n$. On note $S(\s)=\{x \in \lb1,n\rb ~ | ~ \s(x)\neq x\}$.\\
+    Supposons $S(\s)\cap S(\s') = \0$.\\
+    Soit $x\in\lb1,n\rb$.\\
+    $\circledcirc$ Si $x\in S(\s)$ : $x\notin S(\s')$ donc $\s\s'(x)=\s(x)\in S(\s)$ par bijectivité de $\s$.\\
+    $\circledcirc$ Si $x\notin S(\s)$ : Soit $x\in S(\s')$ et on se ramène au 1er cas, soit $x\notin S(\s')$ et $\s\s'(x)=x=\s'\s(x)$.\\
+    Dans tous les cas, $\s\s'(x)=\s'\s(x)$
+\end{prop}
+
+\section{Cycles.}
+
+\begin{defi}{}{}
+    Soit $p$ un entier supérieur à 2.\\
+    Une permutation $\g$ est appellée un $p$\textbf{-cycle} s'il existe $p$ éléments distincts $a_1,...,a_p$ de $\lb1,n\rb$ tels que
+    \begin{align*}
+        &a_1\overset{\g}{\mapsto}a_2\overset{\g}{\mapsto}...\overset{\g}{\mapsto}a_p\overset{\g}{\mapsto}a_1.\\
+        \text{et} \quad &\forall b \in \lb1,n\rb\setminus\{a_1,...,a_p\} ~ \g(b)=b.
+    \end{align*}
+    On note alors $\g=(a_1~a_2~...~a_p)$.
+\end{defi}
+
+
+\begin{ex}{Conjugué d'un cycle}{}
     Soit $\g=(a_1,...,a_p)$ un $p$-cycle et $\s\in S_n$. Montrer que
     \begin{equation*}
         \s\g\s^{-1}=(\s(a_1)~\s(a_2)~...~\s(a_p)).
@@ -174,7 +258,7 @@
     On a donc $\g'=(b_1~...~b_p) = (\s(a_1)~...~\s(a_p))=\s\g\s^{-1}$ donc $\g$ et $\g'$ sont conjugués.
 \end{ex}
 
-\begin{ex}{}{}
+\begin{ex}{Calculs sur un cycle}{}
     Soit $\g=(a_1~...~a_p)$. Déterminer $\g^{-1}$ et $\g^p$.
     \tcblower
     \textbf{La réciproque $\g^{-1}$ :}\\
@@ -190,13 +274,15 @@
     Ainsi, $\forall x \in \lb1,n\rb, ~ \g^p(x)=x$ donc $\g^p=\id$.\n
     \textbf{Remarque:} On pourrait aussi prouver que $p=\min\{j\in\N^*~|~\g^j=\id\}$.
 \end{ex}
-\section*{3. Transpositions}
+
+\section{Transpositions}
+
 \begin{defi}{}{}
     Une permutation $\t$ qui est un $2$-cycle est appelé une \textbf{transposition}.\\
     Une transposition est donc une permutation de la forme $(a,b)$ où $\{a,b\}$ est une paire de $\lb1,n\rb$.
 \end{defi}
 
-\begin{prop}{}{}
+\begin{prop}{Involutivité}{}
     Si $\t$ est une transposition, alors 
     \begin{equation*}
         \t^2=\id \quad \text{et} \quad \t^{-1}=\t
@@ -206,7 +292,7 @@
     On en déduit que $\t^{-1}=\t$.
 \end{prop}
 
-\begin{prop}{}{}
+\begin{prop}{Décomposition d'un cycle en produit de transpositions}{}
     Soit $\g=(a_1~...~a_p)$. Alors
     \begin{equation*}
         \g=(a_1~a_2)(a_2~a_3)...(a_{p-1}~a_p) \qquad \text{ou} \qquad \g=(a_1~a_p)(a_1~a_{p-1})...(a_1~a_2)
@@ -222,7 +308,9 @@
     On a $(1~2)(2~3)\neq(2~3)(1~2)$.
 \end{prop}
 
-\begin{thm}{}{}
+\section{Théorème de décomposition.}
+
+\begin{thm}{Décomposition en produit de cycles à supports disjoints}{}
     Soit $\s\in S_n$. Il existe $\g_1,...,\g_r$ $r$ cycles à supports disjoints tels que
     \begin{equation*}
         \s=\g_1\g_2...\g_r.
@@ -260,7 +348,7 @@
     On pose alors $\g_j=(x_j~\s(x_j)~...~\s^{p_j-1}(x_j))$, il est clair que $\s=\g_1\g_2...\g_r$.
 \end{thm}
 
-\begin{ex}{}{}
+\begin{ex}{Une décomposition}{}
     Soit $\s=\begin{pmatrix}1&2&3&4&5&6&7&8\\5&4&1&7&8&6&2&3\end{pmatrix}$.\\
     1. Décomposer $\s$ en produit de cycles à supports disjoints.\\
     2. Déterminer $\s^4$, $\s^{12}$ et $\s^{666}$.
