@@ -14,13 +14,15 @@
 \newcommand*{\K}{\mathbb{K}}
 \newcommand*{\N}{\mathbb{N}}
 \newcommand*{\m}{\mathcal}
+\newcommand{\rg}[1]{\textrm{rg}(#1)}
+\newcommand{\dim}[1]{\textrm{dim}~#1}
 
 \renewcommand*{\phi}{\varphi}
-\renewcommand*{\ker}{\textrm{Ker}}
+\renewcommand*{\ker}[1]{\textrm{Ker}(#1)}
+\renewcommand{\Im}[1]{\textrm{Im}(#1)}
 
 \DeclareMathOperator*{\vect}{Vect}
 \DeclareMathOperator*{\tr}{Tr}
-\DeclareMathOperator*{\rg}{rg}
 
 \title{\bf{\pagetitle}\\\large{Corrigé}}
 
@@ -68,8 +70,51 @@
 \vspace{0.5cm}
 
 \begin{exercise}{$\blacklozenge\lozenge\lozenge$}{}
-    Rien
+    Soit $u \in \mathcal{L}(\R^{3})$, tel que $u^{2} = 0$ et $u \neq 0$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item Comparer $\ker{u}$ et $\Im{u}$ puis donner leurs dimensions.
+        \item Montrer qu'il existe une base de $\R^{3}$ dans laquelle la matrice de u est 
+        $\begin{pmatrix}
+            0 & 0 & 1 \\
+            0 & 0 & 0 \\
+            0 & 0 & 0
+        \end{pmatrix}$
+    \end{enumerate}
+    \tcblower\\[0.2cm]
+    \boxed{1} On sait que $u \neq 0$ donc $\rg{u} \geq 1$ \\
+    D'autres part, on a : $\Im{u} \subset \ker{u}$ ($u^{2} = 0$) \\
+    Ainsi on obtient : $\rg{u} \leq \dim{\ker{u}}$ \\
+    D'après le théorème du rang, on obtient : $\rg{u} \leq \dim{\R^{3}} -\rg{u}$ \\\\
+    $2\rg{u} \leq 3$\\
+    $\rg{u} \leq \frac{3}{2}$\\
+    Ainsi on a $1 \leq \rg{u} \leq \frac{3}{2}$ et $\rg{u} \in \N$\\
+    On en deduis que $\rg{u} = 1$ et avec le théorème du rang que : $\dim{\ker{u}} = 2$\\\\
+    \boxed{2} On note ($e_{1}$) une base de $\Im{u}$\\
+    On l'a complete en ($e_{1}$, $e_{2}$) afin d'obtenir une base de $\ker{u}$ ($e_{1} \in \ker{u}$ car $\Im{u} \subset \ker{u}$)\\
+    Posons $e_{3}$ tq $e_{1} = u{(e_{3})}$ ($e_{1} \in \Im{u}$)\\
+    Montrons que ($e_{1}$, $e_{2}$, $e_{3}$) une famille libre de $\R^{3}$ : \\\\
+    Soit ($\lambda$, $\beta$, $\gamma$) $\in \R^{3}$\\
+    Supposons $\lambda e_{1} + \beta e_{2} + \gamma e_{3} = 0$\\
+    $u{(\lambda e_{1} + \beta e_{2} + \gamma e_{3})} = 0$ \\
+    $\lambda u{(e_{1})} + \beta u{(e_{2})} + \gamma u{(e_{3})} = 0$ \\
+    $\gamma e_{1} = 0$ or $e_{1} \neq 0$ donc $\gamma = 0$\\\\
+    Ainsi on a : $\lambda e_{1} + \beta e_{2} = 0$ or il s'agit d'une base de $\ker{u}$\\
+    En particulier d'une famille libre de $\ker{u}$ donc aussi d'une famille libre de $\R^{3}$\\\\
+    On en deduis que : $\lambda = 0$, $\beta = 0$, $\gamma = 0$\\\\
+    $\left\{
+        \begin{array}{ll}
+            (e_{1}, e_{2}, e_{3})~est~une~famille~libre~de~\R^{3} \\
+            \dim{\R^{3}} = 3
+        \end{array}
+    \right.$\\\\
+    Par caractérisation des bases en dimensions finis :\\
+    ($e_{1}$, $e_{2}$, $e_{3}$) est une base de $\R^{3}$\\\\
+    Ainsi pour finir : $Mat_{(e_{1}, e_{2}, e_{3})}(u) = $ 
+    $\begin{pmatrix}
+            0 & 0 & 1 \\
+            0 & 0 & 0 \\
+            \underset{u{(e_{1})}}{0} & \underset{u{(e_{2})}}{0} & \underset{u{(e_{3})}}{0}
+    \end{pmatrix}$\\
 \end{exercise}
 
 \end{document}
- 
