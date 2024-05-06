@@ -4,7 +4,7 @@
 \usepackage[most]{tcolorbox}
 \usepackage{hyperref, fancyhdr, lastpage, tocloft, changepage}
 \usepackage{enumitem}
-\usepackage{amsmath, amssymb, amsthm, stmaryrd, cancel}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd, cancel, pifont, dsfont}
 
 \def\pagetitle{Groupe Symétrique}
 \setlength{\headheight}{14pt}
@@ -19,6 +19,8 @@
 \newcommand*{\rb}{\rrbracket}
 \newcommand*{\id}{\text{id}}
 \newcommand*{\n}{\\[0.2cm]}
+\newcommand*{\cmark}{\ding{51}}
+\newcommand*{\xmark}{\ding{55}}
 \renewcommand*{\t}{\tau}
 \newcommand{\0}{\varnothing}
 
@@ -100,6 +102,38 @@
     boxed title style={boxrule=.4pt,sharp corners},
     before lower = {\textbf{Preuve :}\n}
 }{prop}
+
+\newtcbtheorem[use counter from = thm]{corr}{Corrolaire}
+{
+    enhanced,frame empty,interior empty,
+    colframe=blue,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green!25!blue},
+    borderline south={1pt}{0pt}{green!25!blue},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Preuve :}\n}
+}{corr}
+
+\newtcbtheorem[use counter from = thm]{lem}{Lemme}
+{
+    enhanced,frame empty,interior empty,
+    colframe=blue,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green!25!blue},
+    borderline south={1pt}{0pt}{green!25!blue},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Preuve :}\n}
+}{lem}
 
 \newtcbtheorem[use counter from = thm]{ex}{Exemple}
 {
@@ -292,7 +326,7 @@
     On en déduit que $\t^{-1}=\t$.
 \end{prop}
 
-\begin{prop}{Décomposition d'un cycle en produit de transpositions}{}
+\begin{lem}{Décomposition d'un cycle en produit de transpositions}{}
     Soit $\g=(a_1~...~a_p)$. Alors
     \begin{equation*}
         \g=(a_1~a_2)(a_2~a_3)...(a_{p-1}~a_p) \qquad \text{ou} \qquad \g=(a_1~a_p)(a_1~a_{p-1})...(a_1~a_2)
@@ -306,7 +340,7 @@
     Donc $\forall x \in \lb1,n\rb ~ \g(x)=\pi(x)$\n
     \textbf{Remarque:} On retrouve que $(1~2)(2~3)=(1~2~3)$ et $(2~3)(1~2) = (3~2)(2~1)=(3~2~1)=(1~3~2)$\\
     On a $(1~2)(2~3)\neq(2~3)(1~2)$.
-\end{prop}
+\end{lem}
 
 \section{Théorème de décomposition.}
 
@@ -360,5 +394,137 @@
     $\circledcirc ~ \s^{666}=(1~8)(3~5)$ car $\s^{666}=\cancel{\s^{12\times55}}\s^6$.
 \end{ex}
 
+\begin{corr}{}{}
+    Toute permutation est un produit de transpositions.\n
+    La décomposition n'est pas unique et les transpositions ne commutent pas nécéssairement.
+    \tcblower
+    Soit $\s \in S_{n}$, \n 
+    Le théorème (12) nous dit que : $\s$ s'écrit comme un produit de cycles. (à supports disjoints)\n
+    Or tout cycle s'écrit comme un produit de transpositions.\n
+    \textbf{En effet} si \n
+    $\g = (a_{1} a_{2}  ...  a_{p})$\n
+    Alors $\g = (a_{1} a_{2})(a_{3} a_{4}) ... (a_{p-1} a_{p})$\n
+    $\s$ s'écrit donc comme un produit de produit de transpositions.
+\end{corr}
+
+\begin{ex}{}{}
+    Décomposer en produit de transpositions la permutation \n
+    \begin{equation*}
+        \s = \begin{pmatrix}
+            1 & 2 & 3 & 4 & 5 & 6 & 7 \n
+            7 & 5 & 1 & 2 & 4 & 6 & 3
+        \end{pmatrix}
+    \end{equation*}
+    \tcblower
+    $\s = (1 7 3) (2 5 4)$ (produit de cycles)\n
+    $\s = (1 7)(7 3)(2 5)(5 4)$
+\end{ex}
+
+\section{Signature}
+
+\begin{defi}{}{}
+    Soit $\s \in S_{n}$
+    \begin{enumerate}
+        \item Une paire $\{ i, j \}$ de $\lb 1, n \rb$ est une \textbf{inversion} pour $\s$ si $i - j$ et $\s(i) - \s(j)$ sont de signe opposé.
+        \item Le nombre d'inversion de $\s$ est noté $Inv(\s)$
+        \item On appelle \textbf{signature} de $\s$ le nombre $\e(\s) = (-1)^{Inv(\s)}$
+    \end{enumerate}
+\end{defi}
+
+\begin{ex}{}{}
+    Après avoir calculé son nombre d'inversions, donner la signature de \n
+    \begin{equation*}
+        \s = \begin{pmatrix}
+            1 & 2 & 3 & 4 & 5 \n
+            4 & 1 & 2 & 5 & 3
+        \end{pmatrix}
+    \end{equation*}
+    \tcblower
+    On va calculer $\e(\s)$ en comptant le nombre d'inversions.\n
+    Il y a $\binom{5}{2}$ paires dans $\lb 1, 5 \rb$\n
+    \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c}
+        paire & \{1, 2\} & \{1, 3\} & \{1, 4\} & \{1, 5\} & \{2, 3\} & \{2, 4\} & \{2, 5\} & \{3, 4\} & \{3, 5\} & \{4, 5\} \\
+         inversion & \cmark & \cmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark
+    \end{tabular}\n
+    Ainsi on a $Inv(\s) = 4$ donc $\e(\s) = (-1)^{4} = 1$
+\end{ex}
+
+\begin{prop}{TODO PRUVE PROPRE}{}
+    \begin{enumerate}
+        \item L'identité a pour signature $1$.
+        \item Les transpositions ont pour signature $-1$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1} Il est clair (?) \n
+    que $Inv(id_{\lb 1, n \rb}) = 0$ donc $\e(\s)=1^{0} = 1$.\n
+    \boxed{2} Soit $\{\i,j\}$ une paire de $\lb1,n\rb$, \n
+    $\tau\in S_n$ : $\exists(a,b)\in\lb1,n\rb~|~\tau=(a~b)$ où $a\leq b$.
+    \begin{itemize}
+        \item Cas $\{i,j\}\cap\{a,b\}=\0:~\tau(i)=i$ et $\tau(j)=j$ donc $i-j$ est de même signe.
+        \item Cas $i=a$ et $j\neq b$ : $\tau(a)=b$ et $\tau(j)=j ~ : ~ |\lb a+1,b-1\rb$.
+        \item Cas $i\neq a, j=b$ : $\tau(i)=i$ et $\tau(b)=a$ : $|\lb a+1,b-1 \rb$.
+        \item  Cas $\{i,j\}=\{a,b\}$\\
+    Alors $\tau(a)=b$ et $\tau(b)=a$, c'est une inversion.
+    \end{itemize}
+    Bilan : $Inv(\tau)=2|\lb a+1,b-1\rb|+1=2(b-a)-1$, impair.\n
+    Donc $\e(\tau)=-1$.
+\end{prop}
+
+\begin{prop}{La signature comme un produit}{}
+    \begin{equation*}
+        \forall  \s \in S_{n} ~ \e(\s) = \prod_{\{i, j\}} \frac{\s(i) - \s(j) }{i - j}
+    \end{equation*}
+    \tcblower
+    Fixons $\{i, j \} \in \mathcal{P}_{2}(\lb 1, n \rb)$ (ensembles des paires)\n
+    On a $\frac{\s(i) - \s(j) }{i - j} = (-1)^{x_{\{i, j \}}} |\frac{\s(i) - \s(j) }{i - j}|$\n
+    où $x_{\{i, j \}} = $ 
+    $\left\{ \begin{array}{ll}
+        0 & \mbox{si {i, j} n'est pas une inversion} \\
+        1 & \mbox{sinon.}
+    \end{array} \right.$\n
+    $\prod_{\{i, j\}} \frac{\s(i) - \s(j) }{i - j} = \prod_{\{i, j\}} (-1)^{x_{\{i, j \}}} |\frac{\s(i) - \s(j) }{i - j}| = (-1)^{\sum_{\{i, j \}} x_{\{i, j \}}} \times \prod_{\{i, j\}} |\frac{\s(i) - \s(j) }{i - j}|$\n\n
+    Or $\sum_{\{i, j \}} x_{\{i, j \}} = Inv(\s)$ donc $(-1)^{\sum_{\{i, j \}}} = \e(\s)$\n\n
+    Reste à prouver $\prod_{\{i, j\}} |\frac{\s(i) - \s(j) }{i - j}| = 1$\n\n
+    Le produit vaut 1 car\n
+    $\phi : \left\{ \begin{array}{ll}
+        \mathcal{P}_{2}(\lb 1, n \rb) \to \mathcal{P}_{2}(\lb 1, n \rb) \\
+        \{ i, j \} \mapsto \{ \s(i), \s(j) \}
+    \end{array} \right.$ est une bijection. \n
+    On pose alors le changement d'indice $\{ u, v \} = \{ \s(i), \s(j) \}$\n\n
+    $\prod_{\{i, j\}} |\s(i) - \s(j)| = \prod_{\{u, v\}} |u - v| = \prod_{\{i, j\}} |i - j|$
+\end{prop}
+
+\begin{thm}{TODO PREUVE PROPRE}{}
+    La signature est l'unique application $\e : S_{n} \to \{ -1, 1 \}$ telle que
+    \begin{enumerate}
+        \item $\forall \s, \s^{'} \in S_{n} ~~ \e(\s \s^{'}) = \e(\s) \e(\s^{'})$
+        \item Pour toute transposition $\tau \in S_{n}, ~ \e(\tau) = -1$
+    \end{enumerate}
+    \tcblower
+    \underline{Unicité} : Soit $\delta : S_{n} \to \{ -1, 1 \}$ une fonction qui vérifie 1. et 2.\n
+    Montrons que $\g = \e$ ($\e$ la signature)\n
+    Soit $\s \in S_{n}$, $\exists r \in \N^{*}$ $\exists \tau_{1}, \tau_{2}, ..., \tau_{r}$ transpositions : $\s = \tau_{1} \tau_{2} ... \tau_{r}$
+\end{thm}
+
+\begin{corr}{TODO PREUVE PROPRE}{}
+    La signature est l'unique morphisme de groupes non trivial de $(S_{n}, \circ)$ dans $(\C^{*}, \times)$
+    \tcblower
+    \begin{itemize}
+        \item La fonction constante \n
+        $\mathds{1} : \left\{ \begin{array}{ll}
+             S_{n} \to \C^{*}  \\
+             \s \mapsto 1
+        \end{array}\right.$ est un \underline{morphisme de groupes} dit morphisme \underline{trivial}
+        \item La signature $\e$ est un morphisme de groupes de $S_{n}$ dans $\C^{*}$. Il est non trivial car si $\tau$ est une transposition $\e(\tau) = -1$
+        \item \underline{Unicité} Soit $f : S_{n} \to \C^{*}$ un morphisme de groupes.\n
+        Soit $\tau$ transpositions fixée. $\tau^{2} = id$\n
+        Appliquons $f$ :\n
+        $f(\tau^{2}) = f(id) = 1$
+
+        \item 2ème cas $f(\tau) = -1$\n
+        Par conjugaison, $\forall \tau^{'}$ transpositions $f(\tau^{'}) = -1$\n
+        $f$ est un morphisme de groupe envoyant sur $-1$.
+    \end{itemize}
+\end{corr}
+
 \end{document}
- 
