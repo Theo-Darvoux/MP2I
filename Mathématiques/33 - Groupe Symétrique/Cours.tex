@@ -501,12 +501,20 @@
         \item Pour toute transposition $\tau \in S_{n}, ~ \e(\tau) = -1$
     \end{enumerate}
     \tcblower
+    \boxed{1}\n
+    \boxed{2} On le sait déjà (proposition 18)\n
     \underline{Unicité} : Soit $\delta : S_{n} \to \{ -1, 1 \}$ une fonction qui vérifie 1. et 2.\n
     Montrons que $\g = \e$ ($\e$ la signature)\n
-    Soit $\s \in S_{n}$, $\exists r \in \N^{*}$ $\exists \tau_{1}, \tau_{2}, ..., \tau_{r}$ transpositions : $\s = \tau_{1} \tau_{2} ... \tau_{r}$
+    Soit $\s \in S_{n}$, $\exists r \in \N^{*}$ $\exists \tau_{1}, \tau_{2}, ..., \tau_{r}$ transpositions : $\s = \tau_{1} \tau_{2} ... \tau_{r}$.\n
+    Alors \begin{align*}
+        \delta(s) &= \prod_{i=1}^{r}{(-1)} \n
+    &= \e(\tau_{1})  \e(\tau_{2}) ... \e(\tau_{r})\n
+    &= \e(\tau_{1} \tau_{2} ... \tau_{r}) (1)\n
+    &= \e(\s)
+    \end{align*}
 \end{thm}
 
-\begin{corr}{TODO PREUVE PROPRE}{}
+\begin{corr}{}{}
     La signature est l'unique morphisme de groupes non trivial de $(S_{n}, \circ)$ dans $(\C^{*}, \times)$
     \tcblower
     \begin{itemize}
@@ -519,8 +527,12 @@
         \item \underline{Unicité} Soit $f : S_{n} \to \C^{*}$ un morphisme de groupes.\n
         Soit $\tau$ transpositions fixée. $\tau^{2} = id$\n
         Appliquons $f$ :\n
-        $f(\tau^{2}) = f(id) = 1$
-
+        $f(\tau^{2}) = f(id) = 1 \rightarrow f(\tau)^{2} = -1$ ou $1$
+        \item $1^{er}$ cas : $f(\tau) = 1$\n
+        Soit $\tau^{'}$, conjuguée à $\tau$\n 
+        $\exists \alpha \in S_{n}$, $\tau^{'} = \alpha \tau \alpha^{-1}$ (on a prouvé plutôt que 2 p-cycles sont conjugués)\n
+        $f(\tau^{'}) = f(\alpha \tau \alpha^{-1}) = f(\alpha) \cancel{f(\tau)} f(\alpha)^{-1} = 1$\n
+        or toute permutation est produit de transpositions $\rightarrow ~ \forall \s \in S_{n} f(\s) = 1$.
         \item 2ème cas $f(\tau) = -1$\n
         Par conjugaison, $\forall \tau^{'}$ transpositions $f(\tau^{'}) = -1$\n
         $f$ est un morphisme de groupe envoyant sur $-1$.
