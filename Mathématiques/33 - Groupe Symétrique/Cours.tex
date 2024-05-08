@@ -1,156 +1,11 @@
 \documentclass[11pt]{article}
 
-\usepackage[paperheight=15in, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
-\usepackage[most]{tcolorbox}
-\usepackage{hyperref, fancyhdr, lastpage, tocloft, changepage}
-\usepackage{enumitem}
-\usepackage{amsmath, amssymb, amsthm, stmaryrd, cancel, pifont, dsfont}
+\input{../../Latex/packages}
 
 \def\pagetitle{Groupe Symétrique}
 \setlength{\headheight}{14pt}
-\newcommand*{\F}{\mathcal{F}}
-\newcommand*{\R}{\mathbb{R}}
-\newcommand*{\C}{\mathbb{C}}
-\newcommand*{\Z}{\mathbb{Z}}
-\newcommand*{\K}{\mathbb{K}}
-\newcommand*{\N}{\mathbb{N}}
-\newcommand*{\m}{\mathcal}
-\newcommand*{\lb}{\llbracket}
-\newcommand*{\rb}{\rrbracket}
-\newcommand*{\id}{\text{id}}
-\newcommand*{\n}{\\[0.2cm]}
-\newcommand*{\cmark}{\ding{51}}
-\newcommand*{\xmark}{\ding{55}}
-\renewcommand*{\t}{\tau}
-\newcommand{\0}{\varnothing}
 
-\renewcommand*{\phi}{\varphi}
-\newcommand*{\e}{\varepsilon}
-\newcommand*{\g}{\gamma}
-\newcommand*{\s}{\sigma}
-
-\title{\bf{\pagetitle}\\\large{Corrigé}}
-
-\newcommand{\providetcbcountername}[1]{%
-  \@ifundefined{c@tcb@cnt@#1}{%
-    --undefined--%
-  }{%
-    tcb@cnt@#1%
-  }
-}
-
-\newcommand{\settcbcounter}[2]{%
-  \@ifundefined{c@tcb@cnt@#1}{%
-    \GenericError{Error}{counter name #1 is no tcb counter }{}{}%
-  }{%
-    \setcounter{tcb@cnt@#1}{#2}%
-   }%
-}%
-
-\newcommand{\displaytcbcounter}[1]{% Wrapper for \the...
-  \@ifundefined{thetcb@cnt@#1}{%
-    \GenericError{Error}{counter name #1 is no tcb counter }{}{}%
-  }{%
-    \csname thetcb@cnt@#1\endcsname% 
-  }%
-}
-
-\newtcbtheorem{thm}{Théorème}
-{
-    enhanced,frame empty,interior empty,
-    colframe=red,
-    after skip = 1cm,
-    borderline west={1pt}{0pt}{green!25!red},
-    borderline south={1pt}{0pt}{green!25!red},
-    left=0.2cm,
-    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colbacktitle=white,
-    boxed title style={boxrule=.4pt,sharp corners},
-    before lower = {\textbf{Preuve :}\n}
-}{thm}
-
-\newtcbtheorem[use counter from = thm]{defi}{Définition}
-{
-    enhanced,frame empty,interior empty,
-    colframe=green,
-    after skip = 1cm,
-    borderline west={1pt}{0pt}{green},
-    borderline south={1pt}{0pt}{green},
-    left=0.2cm,
-    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colbacktitle=white,
-    boxed title style={boxrule=.4pt,sharp corners},
-    before lower = {\textbf{Preuve :}\n}
-}{defi}
-
-\newtcbtheorem[use counter from = thm]{prop}{Proposition}
-{
-    enhanced,frame empty,interior empty,
-    colframe=blue,
-    after skip = 1cm,
-    borderline west={1pt}{0pt}{green!25!blue},
-    borderline south={1pt}{0pt}{green!25!blue},
-    left=0.2cm,
-    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colbacktitle=white,
-    boxed title style={boxrule=.4pt,sharp corners},
-    before lower = {\textbf{Preuve :}\n}
-}{prop}
-
-\newtcbtheorem[use counter from = thm]{corr}{Corrolaire}
-{
-    enhanced,frame empty,interior empty,
-    colframe=blue,
-    after skip = 1cm,
-    borderline west={1pt}{0pt}{green!25!blue},
-    borderline south={1pt}{0pt}{green!25!blue},
-    left=0.2cm,
-    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colbacktitle=white,
-    boxed title style={boxrule=.4pt,sharp corners},
-    before lower = {\textbf{Preuve :}\n}
-}{corr}
-
-\newtcbtheorem[use counter from = thm]{lem}{Lemme}
-{
-    enhanced,frame empty,interior empty,
-    colframe=blue,
-    after skip = 1cm,
-    borderline west={1pt}{0pt}{green!25!blue},
-    borderline south={1pt}{0pt}{green!25!blue},
-    left=0.2cm,
-    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colbacktitle=white,
-    boxed title style={boxrule=.4pt,sharp corners},
-    before lower = {\textbf{Preuve :}\n}
-}{lem}
-
-\newtcbtheorem[use counter from = thm]{ex}{Exemple}
-{
-    enhanced,frame empty,interior empty,
-    colframe=orange,
-    after skip = 1cm,
-    borderline west={1pt}{0pt}{green!25!orange},
-    borderline south={1pt}{0pt}{green!25!orange},
-    left=0.2cm,
-    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colbacktitle=white,
-    boxed title style={boxrule=.4pt,sharp corners},
-    before lower = {\textbf{Preuve :}\n}
-}{ex}
-
+\title{\bf{\pagetitle}\n\large{Corrigé}}
 
 \hypersetup{
     colorlinks=true,
@@ -164,6 +19,9 @@
 
 \begin{document}
 
+\include{../../Latex/page}
+\include{../../Latex/command}
+
 \thispagestyle{fancy}
 \fancyhead[L]{MP2I Paul Valéry}
 \fancyhead[C]{\pagetitle}
@@ -171,8 +29,8 @@
 
 \hrule
 \begin{center}
-    \LARGE{\textbf{Chapitre 33}}\\
-    \large{\pagetitle}\\
+    \LARGE{\textbf{Chapitre 33}}\n
+    \large{\pagetitle}\n
     \rule{0.8\textwidth}{0.5pt}
 \end{center}
 
@@ -182,19 +40,19 @@
 \section{Permutations}
 
 \begin{defi}{}{}
-    Une bijection de $\lb1,n\rb$ dans lui-même est appelée une \textbf{permutation} de $\lb1,n\rb$.\\
-    L'ensemble des permutations de $\lb1,n\rb$ sera noté $S_n$.
+    Une bijection de $\lb 1,n \rb$ dans lui-même est appelée une \textbf{permutation} de $\lb 1,n \rb$.\n
+    L'ensemble des permutations de $\lb 1,n \rb$ sera noté $S_n$.
 \end{defi}
 
 \begin{ex}{}{}
     Soient
     \begin{equation*}
         \s=\begin{pmatrix}
-            1&2&3&4&5\\
+            1&2&3&4&5\n
             2&5&4&3&1
         \end{pmatrix} \quad \text{ et } \quad
         \s'=\begin{pmatrix}
-            1&2&3&4&5\\
+            1&2&3&4&5\n
             2&3&4&1&5
         \end{pmatrix}
     \end{equation*}
@@ -203,19 +61,19 @@
     On a :
     \begin{align*}
         \s\s' &= \begin{pmatrix}
-            1&2&3&4&5\\
-            5&4&3&2&1
+            1 & 2 & 3 & 4 & 5 \n
+            5 & 4 & 3 & 2 & 1
         \end{pmatrix}
         &\s'\s = \begin{pmatrix}
-            1&2&3&4&5\\
-            3&5&1&4&2
-        \end{pmatrix}\\
+            1 & 2 & 3 & 4 & 5 \n
+            3 & 5 & 1 & 4 & 2
+        \end{pmatrix}\n
         \s^2 &= \begin{pmatrix}
-            1&2&3&4&5\\
+            1&2&3&4&5\n
             5&1&3&4&2
         \end{pmatrix}
         &\s^{-1} = \begin{pmatrix}
-            1&2&3&4&5\\
+            1&2&3&4&5\n
             5&1&4&3&2
         \end{pmatrix}
     \end{align*}
@@ -228,9 +86,9 @@
         \item Ce groupe n'est pas abélien dès que $n\geq3$.
     \end{enumerate}
     \tcblower
-    \boxed{1.} Cours sur les structures algébriques.\\
-    \boxed{2.} On pose $\Phi:\begin{cases}S_n\to\m{A}(\lb1,n\rb)\\\s\mapsto(\s(1),...,\s(n))\end{cases}$ bijective et $|\m{A}(\lb1,n\rb)|=n!$.\\
-    \boxed{3.} $S_3$ n'est pas abélien car $\t:=...$ et $\t'=...$ ne commutent pas.\\
+    \boxed{1} Cours sur les structures algébriques.\n
+    \boxed{2} On pose $\Phi:\begin{cases}S_n \to \mathcal{A}(\lb1,n\rb)\n\s\mapsto(\s(1),...,\s(n))\end{cases}$ bijective et $|\mathcal{A}(\lb1,n\rb)|=n!$.\n
+    \boxed{3} $S_3$ n'est pas abélien car $\t:=...$ et $\t'=...$ ne commutent pas.\n
     Soient $\s,\s'\in S_n ~ | ~ \s_{|\{1,2,3\}}=\t$ et $\s'_{|\{1,2,3\}}=\t'$, fixes sur $\lb4,n\rb$, alors $\s\s'\neq\s'\s$.
 \end{prop}
 
@@ -248,21 +106,23 @@
 \begin{prop}{}{}
     Deux permutations dont les supports sont disjoints commutent.
     \tcblower
-    Soient $\s,\s'\in S_n$. On note $S(\s)=\{x \in \lb1,n\rb ~ | ~ \s(x)\neq x\}$.\\
-    Supposons $S(\s)\cap S(\s') = \0$.\\
-    Soit $x\in\lb1,n\rb$.\\
-    $\circledcirc$ Si $x\in S(\s)$ : $x\notin S(\s')$ donc $\s\s'(x)=\s(x)\in S(\s)$ par bijectivité de $\s$.\\
-    $\circledcirc$ Si $x\notin S(\s)$ : Soit $x\in S(\s')$ et on se ramène au 1er cas, soit $x\notin S(\s')$ et $\s\s'(x)=x=\s'\s(x)$.\\
+    Soient $\s,\s'\in S_n$. On note $S(\s)=\{x \in \lb1,n\rb ~ | ~ \s(x)\neq x\}$.\n
+    Supposons $S(\s)\cap S(\s') = \0$.\n
+    Soit $x\in\lb1,n\rb$.\n
+    \begin{itemize}
+        \item Si $x\in S(\s)$ : $x\notin S(\s')$ donc $\s\s'(x)=\s(x)\in S(\s)$ par bijectivité de $\s$.
+        \item Si $x\notin S(\s)$ : Soit $x\in S(\s')$ et on se ramène au 1er cas, soit $x\notin S(\s')$ et $\s\s'(x)=x=\s'\s(x)$.
+    \end{itemize}
     Dans tous les cas, $\s\s'(x)=\s'\s(x)$
 \end{prop}
 
 \section{Cycles.}
 
 \begin{defi}{}{}
-    Soit $p$ un entier supérieur à 2.\\
+    Soit $p$ un entier supérieur à 2.\n
     Une permutation $\g$ est appellée un $p$\textbf{-cycle} s'il existe $p$ éléments distincts $a_1,...,a_p$ de $\lb1,n\rb$ tels que
     \begin{align*}
-        &a_1\overset{\g}{\mapsto}a_2\overset{\g}{\mapsto}...\overset{\g}{\mapsto}a_p\overset{\g}{\mapsto}a_1.\\
+        &a_1\overset{\g}{\mapsto}a_2\overset{\g}{\mapsto}...\overset{\g}{\mapsto}a_p\overset{\g}{\mapsto}a_1.\n
         \text{et} \quad &\forall b \in \lb1,n\rb\setminus\{a_1,...,a_p\} ~ \g(b)=b.
     \end{align*}
     On note alors $\g=(a_1~a_2~...~a_p)$.
@@ -275,54 +135,56 @@
         \s\g\s^{-1}=(\s(a_1)~\s(a_2)~...~\s(a_p)).
     \end{equation*}
     \tcblower
-    Soit $b\in\lb1,n\rb\setminus\{\s(a_1),...,\s(a_p)\}$.\\
-    Alors $\s\g\s^{-1}(b)=\s\g(\s^{-1}(b))=\s\s^{-1}(b)=b$ car $b\notin\{\s(a_1),...,\s(a_p)\}$ donc $\s^{-1}(b)\notin\{a_1,..,a_p\}$ donc c'est un point fixe de $\g$.\\[0.2cm]
-    Soit $j\in\lb1,p\rb$.\\
-    Alors $\s\g\s^{-1}(\s(a_j))=\s\g(a_j)=\s(a_{j+1})$ avec $a_{p+1}:=a_1$.\\
-    On a bien que $\s\g\s^{-1}$ et $(\s(a_1)...\s(a_p))$ sont égaux en tout point.\\[0.2cm]
-    \textbf{Remarque:} Ceci démontre que tous les $p$-cycles sont conjugués.\\
-    Soient $\g=(a_1~...~a_p)$ et $\g'=(b_1~...~b_p)$ deux $p$-cycles.\\
+    Soit $b\in\lb1,n\rb\setminus\{\s(a_1),...,\s(a_p)\}$.\n
+    Alors $\s\g\s^{-1}(b)=\s\g(\s^{-1}(b))=\s\s^{-1}(b)=b$ car $b\notin\{\s(a_1),...,\s(a_p)\}$ donc $\s^{-1}(b)\notin\{a_1,..,a_p\}$ donc c'est un point fixe de $\g$.\n
+    Soit $j\in\lb1,p\rb$.\n
+    Alors $\s\g\s^{-1}(\s(a_j))=\s\g(a_j)=\s(a_{j+1})$ avec $a_{p+1}:=a_1$.\n
+    On a bien que $\s\g\s^{-1}$ et $(\s(a_1)...\s(a_p))$ sont égaux en tout point.\n[0.2cm]
+    \textbf{Remarque:} Ceci démontre que tous les $p$-cycles sont conjugués.\n
+    Soient $\g=(a_1~...~a_p)$ et $\g'=(b_1~...~b_p)$ deux $p$-cycles.\n
     Posons $\s\in S_n$ telle que :
     \begin{itemize}
         \item $\forall j \in \lb 1, p \rb ~ \s(a_j) = b_j$.
         \item Notons $\lb 1, n \rb \setminus \{a_1, ..., a_p\} := \{a_1', ..., a_{n-p}'\}$ et $\lb 1, n \rb \setminus \{b_1, ... b_p\} := \{b_1', ... , b_{n-p}'\}$.
     \end{itemize}
-    On pose alors $\forall i\in\lb1,n-p\rb ~ \s(a_i')=b_i'$.\\
-    Alors $\s$ est bien une bijection de $\lb1,n\rb$ dans lui-même car injective et de même cardinal.\\
+    On pose alors $\forall i\in\lb1,n-p\rb ~ \s(a_i')=b_i'$.\n
+    Alors $\s$ est bien une bijection de $\lb1,n\rb$ dans lui-même car injective et de même cardinal.\n
     On a donc $\g'=(b_1~...~b_p) = (\s(a_1)~...~\s(a_p))=\s\g\s^{-1}$ donc $\g$ et $\g'$ sont conjugués.
 \end{ex}
 
 \begin{ex}{Calculs sur un cycle}{}
     Soit $\g=(a_1~...~a_p)$. Déterminer $\g^{-1}$ et $\g^p$.
     \tcblower
-    \textbf{La réciproque $\g^{-1}$ :}\\
-    Si $\g(b)=b$ alors $\g^{-1}(b)=b$ car c'est un point fixe.\\
-    Soit $j\in\lb1,p-1\rb$, $\g(a_j)=a_{j+1}$ donc $a_j=\g^{-1}(a_{j+1})$.\\
-    Alors $\forall k \in \lb2,p\rb$, $\g^{-1}(a_k)=a_{k-1}$, et $\g^{-1}(a_1)=a_p$.\\
-    Ainsi, $\g^{-1}=(a_p ~ a_{p-1} ~ ... ~ a_2 ~ a_1)$.\\[0.2cm]
-    \textbf{La puissance $\g^p$ :}\\
-    On a $\g=(a, \g(a), ..., \g^{p-1}(a))$ pour un $a\in\lb1,n\rb$.\\
-    $\circledcirc$ $\g^p(a)=\g(\g^{p-1}(a))=a$.\\
-    $\circledcirc$ Soit $j\in\lb1,p-1\rb$, $\g^p(\g^j(a))=\g^j(\g^p(a))=\g^j(a)$.\\
-    $\circledcirc$ Soit $b\in\lb1,n\rb\setminus\{a,\g(a),...,\g^{p-1}(a)\}$, alors $\g^p(b)=b$ car point fixe.\\
-    Ainsi, $\forall x \in \lb1,n\rb, ~ \g^p(x)=x$ donc $\g^p=\id$.\n
-    \textbf{Remarque:} On pourrait aussi prouver que $p=\min\{j\in\N^*~|~\g^j=\id\}$.
+    \textbf{La réciproque $\g^{-1}$ :}\n
+    Si $\g(b)=b$ alors $\g^{-1}(b)=b$ car c'est un point fixe.\n
+    Soit $j\in\lb1,p-1\rb$, $\g(a_j)=a_{j+1}$ donc $a_j=\g^{-1}(a_{j+1})$.\n
+    Alors $\forall k \in \lb2,p\rb$, $\g^{-1}(a_k)=a_{k-1}$, et $\g^{-1}(a_1)=a_p$.\n
+    Ainsi, $\g^{-1}=(a_p ~ a_{p-1} ~ ... ~ a_2 ~ a_1)$.\n[0.2cm]
+    \textbf{La puissance $\g^p$ :}\n
+    On a $\g=(a, \g(a), ..., \g^{p-1}(a))$ pour un $a\in\lb1,n\rb$.\n
+    \begin{itemize}
+        \item $\g^p(a)=\g(\g^{p-1}(a))=a$.
+        \item Soit $j\in\lb1,p-1\rb$, $\g^p(\g^j(a))=\g^j(\g^p(a))=\g^j(a)$.
+        \item Soit $b\in\lb1,n\rb\setminus\{a,\g(a),...,\g^{p-1}(a)\}$, alors $\g^p(b)=b$ car point fixe.
+    \end{itemize}
+    Ainsi, $\forall x \in \lb1,n\rb, ~ \g^p(x)=x$ donc $\g^p=id$.\n
+    \textbf{Remarque:} On pourrait aussi prouver que $p=\min\{j\in\N^*~|~\g^j=id\}$.
 \end{ex}
 
 \section{Transpositions}
 
 \begin{defi}{}{}
-    Une permutation $\t$ qui est un $2$-cycle est appelé une \textbf{transposition}.\\
+    Une permutation $\t$ qui est un $2$-cycle est appelé une \textbf{transposition}.\n
     Une transposition est donc une permutation de la forme $(a,b)$ où $\{a,b\}$ est une paire de $\lb1,n\rb$.
 \end{defi}
 
 \begin{prop}{Involutivité}{}
     Si $\t$ est une transposition, alors 
     \begin{equation*}
-        \t^2=\id \quad \text{et} \quad \t^{-1}=\t
+        \t^2=id \quad \text{et} \quad \t^{-1}=\t
     \end{equation*}
     \tcblower
-    C'est un $2$-cycle donc $\t^2=\id$.\\
+    C'est un $2$-cycle donc $\t^2=id$.\n
     On en déduit que $\t^{-1}=\t$.
 \end{prop}
 
@@ -332,13 +194,15 @@
         \g=(a_1~a_2)(a_2~a_3)...(a_{p-1}~a_p) \qquad \text{ou} \qquad \g=(a_1~a_p)(a_1~a_{p-1})...(a_1~a_2)
     \end{equation*}
     \tcblower
-    Notons $\pi=(a_1~a_2)(a_2~a_3)...(a_{p-1}~a_p)$. Montrons que $\g=\pi$.\\
-    $\circledcirc$ Soit $b\in\lb1,n\rb\setminus\{a_1,...,a_p\}$ : $\g(b)=b$ et $\forall j \in \lb1,p-1\rb, ~ (a_j~a_{j+1})(b)=b$ car $b\notin\{a_j,a_{j+1}\}$.\\
-    Alors $\gamma(b)=\pi(b)=b$.\\
-    $\circledcirc$ Soit $j\in\lb1,p-1\rb$. Alors $\pi(a_j)=\left[...(a_{j-1}~a_j)(a_j~a_{j+1})...\right](a_j)=\left[...(a_{j-1}~a_j)\right](a_{j+1})=a_{j+1}$.\\
-    $\circledcirc$ $\pi(a_p)=[(a_1~a_2)...(a_{p-1}~a_p)](a_p)=[(a_1~a_2)...(a_{p-2}~a_{p-1})](a_{p-1})=...=a_1$\\
+    Notons $\pi=(a_1~a_2)(a_2~a_3)...(a_{p-1}~a_p)$. Montrons que $\g=\pi$.\n
+    \begin{itemize}
+        \item Soit $b\in\lb1,n\rb\setminus\{a_1,...,a_p\}$ : $\g(b)=b$ et $\forall j \in \lb1,p-1\rb, ~ (a_j~a_{j+1})(b)=b$ car $b\notin\{a_j,a_{j+1}\}$.\n
+        Alors $\gamma(b)=\pi(b)=b$.
+        \item Soit $j\in\lb1,p-1\rb$. Alors $\pi(a_j)=\left[...(a_{j-1}~a_j)(a_j~a_{j+1})...\right](a_j)=\left[...(a_{j-1}~a_j)\right](a_{j+1})=a_{j+1}$.
+        \item $\pi(a_p)=[(a_1~a_2)...(a_{p-1}~a_p)](a_p)=[(a_1~a_2)...(a_{p-2}~a_{p-1})](a_{p-1})=...=a_1$
+    \end{itemize}
     Donc $\forall x \in \lb1,n\rb ~ \g(x)=\pi(x)$\n
-    \textbf{Remarque:} On retrouve que $(1~2)(2~3)=(1~2~3)$ et $(2~3)(1~2) = (3~2)(2~1)=(3~2~1)=(1~3~2)$\\
+    \textbf{Remarque:} On retrouve que $(1~2)(2~3)=(1~2~3)$ et $(2~3)(1~2) = (3~2)(2~1)=(3~2~1)=(1~3~2)$\n
     On a $(1~2)(2~3)\neq(2~3)(1~2)$.
 \end{lem}
 
@@ -351,29 +215,31 @@
     \end{equation*}
     Les $\g_i$ commutent et cette décomposition est unique à l'ordre près.
     \tcblower
-    Soit $\s\in S_n$.\\
-    \textbf{Une relation d'équivalence sur $\lb1,n\rb$}.\\
-    Pour $i,j\in\lb1,n\rb$, on note $i\sim j$ si $\exists k \in \Z ~ | ~ j = \s^k(i)$.\\
-    $\circledcirc$ Soit $i\in\lb1,n\rb$. $i=\s^0(i)$ donc $i \sim i$.\\
-    $\circledcirc$ Soient $i,j\in\lb1,n\rb ~ | ~ i \sim j$. Alors $\exists k \in \Z ~ | ~ j = \s^k(i) ~ : ~ i = \s^{-k}(j)$ et $j \sim i$.\\
-    $\circledcirc$ Soient $h,i,j\in\lb1,n\rb ~ | ~ h \sim i$ et $i \sim j : \exists k,l \in \Z ~ | ~ i = \s^k(h)$ et $j=\s^l(i)$ donc $j=\s^{l+k}(h)$ et $j \sim h$.
+    Soit $\s\in S_n$.\n
+    \textbf{Une relation d'équivalence sur $\lb1,n\rb$}.\n
+    Pour $i,j\in\lb1,n\rb$, on note $i\sim j$ si $\exists k \in \Z ~ | ~ j = \s^k(i)$.\n
+    \begin{itemize}
+        \item Soit $i\in\lb1,n\rb$. $i=\s^0(i)$ donc $i \sim i$.
+        \item Soient $i,j\in\lb1,n\rb ~ | ~ i \sim j$. Alors $\exists k \in \Z ~ | ~ j = \s^k(i) ~ : ~ i = \s^{-k}(j)$ et $j \sim i$.
+        \item Soient $h,i,j\in\lb1,n\rb ~ | ~ h \sim i$ et $i \sim j : \exists k,l \in \Z ~ | ~ i = \s^k(h)$ et $j=\s^l(i)$ donc $j=\s^{l+k}(h)$ et $j \sim h$.
+    \end{itemize}
     Il existe alors une partition de $\lb1,n\rb$ en classes d'équivalences.\n
-    On fixe $x\in\lb1,n\rb$.\\
-    Prouvons qu'il existe $p\in\N^*$ tel que $[x]=\{x,\s(x),...,\s^{p-1}(x)\}$.\\
+    On fixe $x\in\lb1,n\rb$.\n
+    Prouvons qu'il existe $p\in\N^*$ tel que $[x]=\{x,\s(x),...,\s^{p-1}(x)\}$.\n
     On pose $p=\min\{k\in\N^* ~ | ~ \s^k(x)=x\}$. Cet ensemble est minoré. Il est non-vide car :
     \begin{equation*}
         S : \begin{cases}
-            \Z \to \lb1,n\rb\\
+            \Z \to \lb1,n\rb\n
             k\mapsto \s^k(x)
         \end{cases}
         \text{n'est pas injective.}
     \end{equation*}
-    Ainsi, $\exists k,k' \in \Z ~ | ~ k < k' ~ \text{et} ~ \s^k(x)=\s^{k'}(x)$ donc $\s^{k'-k}(x)=x$.\\
-    Or $k'-k\in\N^*$, donc $\{k\in\N^* ~ | ~ \s^k(x)=x\}\neq\0$.\\
-    Il faut montrer que $[x]=\{x,\s(x),...,\s^{p-1}(x)\}$.\\
-    \fbox{$\supset$} est trivial.\\
-    \fbox{$\subset$} Soit $y\in[x]$ : $\exists k \in \Z ~ | ~ y = \s^k(x)$.\\
-    Par division euclidienne : $\exists!(q,r)\in\Z^2 ~ | ~ k = qp + r ~ \text{et} ~ 0 \leq r \leq p-1$.\\
+    Ainsi, $\exists k,k' \in \Z ~ | ~ k < k' ~ \text{et} ~ \s^k(x)=\s^{k'}(x)$ donc $\s^{k'-k}(x)=x$.\n
+    Or $k'-k\in\N^*$, donc $\{k\in\N^* ~ | ~ \s^k(x)=x\}\neq\0$.\n
+    Il faut montrer que $[x]=\{x,\s(x),...,\s^{p-1}(x)\}$.\n
+    \fbox{$\supset$} est trivial.\n
+    \fbox{$\subset$} Soit $y\in[x]$ : $\exists k \in \Z ~ | ~ y = \s^k(x)$.\n
+    Par division euclidienne : $\exists!(q,r)\in\Z^2 ~ | ~ k = qp + r ~ \text{et} ~ 0 \leq r \leq p-1$.\n
     Donc $y = \s^k(x) = \s^{pq+r}(x) = \s^r(\s^{pq}(x))=\s^r(x)$ : $y\in\{x,\s(x),...,\s^{p-1}(x)\}$.\n
     Notons $A_1,...,A_r$ les classes d'équivalences non triviales de $\sim$. On a prouvé que :
     \begin{equation*}
@@ -383,15 +249,18 @@
 \end{thm}
 
 \begin{ex}{Une décomposition}{}
-    Soit $\s=\begin{pmatrix}1&2&3&4&5&6&7&8\\5&4&1&7&8&6&2&3\end{pmatrix}$.\\
-    1. Décomposer $\s$ en produit de cycles à supports disjoints.\\
-    2. Déterminer $\s^4$, $\s^{12}$ et $\s^{666}$.
+    Soit $\s=\begin{pmatrix}1&2&3&4&5&6&7&8\n5&4&1&7&8&6&2&3\end{pmatrix}$.\n
+    \begin{enumerate}
+        \item Décomposer $\s$ en produit de cycles à supports disjoints.
+        \item Déterminer $\s^4$, $\s^{12}$ et $\s^{666}$.
+    \end{enumerate}
     \tcblower
-    \boxed{1.} $\s=(1~5~8~3)(2~4~7)$\\
-    \boxed{2.}\\
-    $\circledcirc ~ \s^4=(\g_1\g_2)^4\underset{\text{comm}}{=}\g_1^4\g_2^4=\g_2$ car $\g_1^4=\id$ et $\g_2^4=\g_2^3\g_2=\g_2$.\\
-    $\circledcirc ~ \s^{12}=(\gamma_1^{4})^3(\g_2^3)^4=\id$\\
-    $\circledcirc ~ \s^{666}=(1~8)(3~5)$ car $\s^{666}=\cancel{\s^{12\times55}}\s^6$.
+    \boxed{1} $\s=(1~5~8~3)(2~4~7)$\n
+    \boxed{2} \begin{itemize}
+        \item $\s^4=(\g_1\g_2)^4\underset{\text{comm}}{=}\g_1^4\g_2^4=\g_2$ car $\g_1^4=id$ et $\g_2^4=\g_2^3\g_2=\g_2$.
+        \item $\s^{12}=(\gamma_1^{4})^3(\g_2^3)^4=id$
+        \item $\s^{666}=(1~8)(3~5)$ car $\s^{666}=\cancel{\s^{12\times55}}\s^6$.
+    \end{itemize}
 \end{ex}
 
 \begin{corr}{}{}
@@ -443,7 +312,7 @@
     On va calculer $\e(\s)$ en comptant le nombre d'inversions.\n
     Il y a $\binom{5}{2}$ paires dans $\lb 1, 5 \rb$\n
     \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c}
-        paire & \{1, 2\} & \{1, 3\} & \{1, 4\} & \{1, 5\} & \{2, 3\} & \{2, 4\} & \{2, 5\} & \{3, 4\} & \{3, 5\} & \{4, 5\} \\
+        paire & \{1, 2\} & \{1, 3\} & \{1, 4\} & \{1, 5\} & \{2, 3\} & \{2, 4\} & \{2, 5\} & \{3, 4\} & \{3, 5\} & \{4, 5\} \n
          inversion & \cmark & \cmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark
     \end{tabular}\n
     Ainsi on a $Inv(\s) = 4$ donc $\e(\s) = (-1)^{4} = 1$
@@ -463,7 +332,7 @@
         \item Cas $\{i,j\}\cap\{a,b\}=\0:~\tau(i)=i$ et $\tau(j)=j$ donc $i-j$ est de même signe.
         \item Cas $i=a$ et $j\neq b$ : $\tau(a)=b$ et $\tau(j)=j ~ : ~ |\lb a+1,b-1\rb$.
         \item Cas $i\neq a, j=b$ : $\tau(i)=i$ et $\tau(b)=a$ : $|\lb a+1,b-1 \rb$.
-        \item  Cas $\{i,j\}=\{a,b\}$\\
+        \item  Cas $\{i,j\}=\{a,b\}$\n
     Alors $\tau(a)=b$ et $\tau(b)=a$, c'est une inversion.
     \end{itemize}
     Bilan : $Inv(\tau)=2|\lb a+1,b-1\rb|+1=2(b-a)-1$, impair.\n
@@ -479,7 +348,7 @@
     On a $\frac{\s(i) - \s(j) }{i - j} = (-1)^{x_{\{i, j \}}} |\frac{\s(i) - \s(j) }{i - j}|$\n
     où $x_{\{i, j \}} = $ 
     $\left\{ \begin{array}{ll}
-        0 & \mbox{si {i, j} n'est pas une inversion} \\
+        0 & \mbox{si {i, j} n'est pas une inversion} \n
         1 & \mbox{sinon.}
     \end{array} \right.$\n
     $\prod_{\{i, j\}} \frac{\s(i) - \s(j) }{i - j} = \prod_{\{i, j\}} (-1)^{x_{\{i, j \}}} |\frac{\s(i) - \s(j) }{i - j}| = (-1)^{\sum_{\{i, j \}} x_{\{i, j \}}} \times \prod_{\{i, j\}} |\frac{\s(i) - \s(j) }{i - j}|$\n\n
@@ -487,7 +356,7 @@
     Reste à prouver $\prod_{\{i, j\}} |\frac{\s(i) - \s(j) }{i - j}| = 1$\n\n
     Le produit vaut 1 car\n
     $\phi : \left\{ \begin{array}{ll}
-        \mathcal{P}_{2}(\lb 1, n \rb) \to \mathcal{P}_{2}(\lb 1, n \rb) \\
+        \mathcal{P}_{2}(\lb 1, n \rb) \to \mathcal{P}_{2}(\lb 1, n \rb) \n
         \{ i, j \} \mapsto \{ \s(i), \s(j) \}
     \end{array} \right.$ est une bijection. \n
     On pose alors le changement d'indice $\{ u, v \} = \{ \s(i), \s(j) \}$\n\n
@@ -501,7 +370,7 @@
         \item Pour toute transposition $\tau \in S_{n}, ~ \e(\tau) = -1$
     \end{enumerate}
     \tcblower
-    \boxed{1}\n
+    \boxed{1} TODO\n
     \boxed{2} On le sait déjà (proposition 18)\n
     \underline{Unicité} : Soit $\delta : S_{n} \to \{ -1, 1 \}$ une fonction qui vérifie 1. et 2.\n
     Montrons que $\g = \e$ ($\e$ la signature)\n
@@ -520,7 +389,7 @@
     \begin{itemize}
         \item La fonction constante \n
         $\mathds{1} : \left\{ \begin{array}{ll}
-             S_{n} \to \C^{*}  \\
+             S_{n} \to \C^{*}  \n
              \s \mapsto 1
         \end{array}\right.$ est un \underline{morphisme de groupes} dit morphisme \underline{trivial}
         \item La signature $\e$ est un morphisme de groupes de $S_{n}$ dans $\C^{*}$. Il est non trivial car si $\tau$ est une transposition $\e(\tau) = -1$

@@ -1,47 +1,11 @@
 \documentclass[11pt]{article}
 
-\usepackage[paperheight=45in, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
-\usepackage[most]{tcolorbox}
-\usepackage{hyperref, fancyhdr, lastpage, tocloft, changepage}
-\usepackage{enumitem}
-\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\input{../../Latex/packages}
 
 \def\pagetitle{Applications linéaires}
 \setlength{\headheight}{14pt}
-\newcommand*{\F}{\mathcal{F}}
-\newcommand*{\R}{\mathbb{R}}
-\newcommand*{\C}{\mathbb{C}}
-\newcommand*{\K}{\mathbb{K}}
-\newcommand*{\N}{\mathbb{N}}
-\newcommand*{\m}{\mathcal}
-\newcommand*{\Id}{\textrm{Id}}
-\newcommand*{\ra}{\Rightarrow}
-
-\renewcommand*{\phi}{\varphi}
-\renewcommand*{\ker}{\textrm{Ker}}
-\renewcommand{\Im}{\textrm{Im}}
-
-\DeclareMathOperator*{\vect}{Vect}
-\DeclareMathOperator*{\tr}{Tr}
-\DeclareMathOperator*{\rg}{rg}
 
 \title{\bf{\pagetitle}\\\large{Corrigé}}
-
-\newtcbtheorem{exercise}{Exercice}
-{
-    enhanced,frame empty,interior empty,
-    colframe=blue,
-    after skip = 1cm,
-    borderline west={1pt}{0pt}{green!25!blue},
-    borderline south={1pt}{0pt}{green!25!blue},
-    left=0.2cm,
-    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colbacktitle=white,
-    boxed title style={boxrule=.4pt,sharp corners},
-    before lower = {\textbf{Solution :}}
-}{exercise}
 
 \hypersetup{
     colorlinks=true,
@@ -54,6 +18,9 @@
 \cfoot{\thepage\ sur \pageref*{LastPage}}
 
 \begin{document}
+
+\include{../../Latex/page}
+\include{../../Latex/command}
 
 \thispagestyle{fancy}
 \fancyhead[L]{MP2I Paul Valéry}
