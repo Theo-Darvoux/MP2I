@@ -1,6 +1,6 @@
 \documentclass[11pt]{article}
 
-\input{../../Latex/packages}
+\input{Latex/packages}
 
 \def\pagetitle{Cinématique}
 \setlength{\headheight}{14pt}
@@ -19,8 +19,8 @@
 
 \begin{document}
 
-\include{../../Latex/page}
-\include{../../Latex/command}
+\include{Latex/page}
+\include{Latex/command}
 
 \thispagestyle{fancy}
 \fancyhead[L]{MP2I Paul Valéry}
@@ -34,10 +34,9 @@
     \rule{0.8\textwidth}{0.5pt}
 \end{center}
 
-
 \vspace{0.5cm}
 
-\begin{application}{}{}
+\begin{app}{}{}
     On considère un point $M$ dont les coordonnées cartésiennes dépendent du temps, avec \n
     $x(t) = 2t^{2}$, $y(t) = 4t + 7$ et $z(t) = t(2-t)$
     \begin{enumerate}
@@ -46,7 +45,7 @@
         \item Calculer les coordonnées du vecteur accélération $\Vec{a}$, ainsi que sa norme.
         \item Calculer l’angle que fait le vecteur vitesse avec l’axe ($Ox$) à l’instant $t = 1$.
     \end{enumerate}
-    \tcblower\n
+    \tcblower
     \boxed{1} Dans la base cartésienne, le vecteur $\Vec{v}$ s'exprime $\Vec{v} = \Dot{x} \base{x} + \Dot{y} \base{y} + \Dot{z} \base{z}$ avec ($\base{x}$, $\base{y}$, $\base{z}$) les vecteurs de la base.\n
     $\Dot{x} = 4t$, $\Dot{y} = 4$ et $\Dot{z} = -2t + 2$\n
     Ainsi on obtient $\Vec{v} = 4t \base{x} + 4 \base{y} + (-2t + 2) \base{z}$\n
@@ -72,13 +71,13 @@
     $~~~~~~~ = cos^{-1}(\frac{2}{4\sqrt{2}})$\n
     $~~~~~~~ = cos^{-1}(\frac{\sqrt{2}}{4})$\n
     $~~~~~~~ \approx 69.3^{\circ}$\n
-\end{application}
+\end{app}
 
-\begin{application}{Changement de coordonnées}{}
+\begin{app}{Changement de coordonnées}{}
     \begin{enumerate}
         \item Sur un schéma, représenter les vecteurs $\base{x}$ et $\base{y}$
     \end{enumerate}
-    \tcblower\n
+    \tcblower
     \boxed{1} TODO 
-\end{application}
+\end{app}
 \end{document}

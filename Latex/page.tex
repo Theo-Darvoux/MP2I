@@ -135,7 +135,38 @@
     before lower = {\textbf{Preuve :}\n}
 }{meth}
 
+\newtcbtheorem[use counter from = thm]{exercice}{Exercice}
+{
+    enhanced,frame empty,interior empty,
+    colframe=blue,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green!25!blue},
+    borderline south={1pt}{0pt}{green!25!blue},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Preuve :}\n}
+}{exercice}
+
 % PHYSIQUE %
+\newtcbtheorem[use counter from = thm]{qc}{Question de Cours}
+{
+    enhanced,frame empty,interior empty,
+    colframe=red,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green!25!red},
+    borderline south={1pt}{0pt}{green!25!red},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Preuve :}\n}
+}{qc}
 \newtcbtheorem[use counter from = thm]{app}{Application}
 {
     enhanced,frame empty,interior empty,
