@@ -2,7 +2,7 @@
 
 \input{../../Latex/packages}
 
-\def\pagetitle{Groupe Symétrique}
+\def\pagetitle{Cinématique}
 \setlength{\headheight}{14pt}
 
 \title{\bf{\pagetitle}\n\large{Corrigé}}
@@ -29,7 +29,7 @@
 
 \hrule
 \begin{center}
-    \LARGE{\textbf{Chapitre 33}}\n
+    \LARGE{\textbf{Chapitre M1}}\n
     \large{\pagetitle}\n
     \rule{0.8\textwidth}{0.5pt}
 \end{center}
@@ -37,72 +37,48 @@
 
 \vspace{0.5cm}
 
-\begin{exercise}{$\blacklozenge\lozenge\lozenge$}{}
-    Écrire explicitement $s_{1}$, $s_{2}$ et $s_{3}$.
-    \tcblower
-    $s_{1} = \{ id_{1} \}$, $s_{2} = \{ id_{\llbracket 1, 2 \rrbracket}; 
-    \begin{pmatrix}
-        1 & 2 \n
-        2 & 1 
-    \end{pmatrix}
-    \}$ \n
-    $s_{3} = \{ id_{\llbracket 1, 3 \rrbracket}; 
-    \begin{pmatrix}
-        1 & 2 & 3\n
-        2 & 1 & 3
-    \end{pmatrix};
-    \begin{pmatrix}
-        1 & 2 & 3\n
-        1 & 3 & 2
-    \end{pmatrix};
-    \begin{pmatrix}
-        1 & 2 & 3\n
-        3 & 2 & 1
-    \end{pmatrix};
-    \begin{pmatrix}
-        1 & 2 & 3\n
-        2 & 3 & 1
-    \end{pmatrix};
-    \begin{pmatrix}
-        1 & 2 & 3\n
-        3 & 1 & 2
-    \end{pmatrix}
-    \}$ 
-\end{exercise}
-
-\begin{exercise}{$\blacklozenge\lozenge\lozenge$}{}
-    Soit $n$ et $p$ deux entiers naturels supérieurs à 2 tels que $p \leq n$\n
-    Combien $S_{n}$ contient-il de $p$-cycles ?
-    \tcblower\n[0.2cm]
-    Choisir un $p$-cycles, c'est choisir un $p$-uplet d'éléments distinct deux à deux, on a donc une bijection entre l'ensemble des $p$-cycles et $A_{p}(\llbracket 1, n \rrbracket)$\n
-    Or $|A_{p}(\llbracket 1, n \rrbracket)|$ = $\frac{n!}{(n-p)!}$\n\n
-    Ainsi on a exactement $\frac{n!}{(n-p)!}$, $p$-cycles distincts.
-\end{exercise}
-
-\begin{exercise}{$\blacklozenge\blacklozenge\blacklozenge$}{}
-    Centre de $S_{n}$\n
-    On note $Z(S_{n})$ le centre de $S_{n}$, c'est-à-dire l'ensemble des permutations qui commutent avec toutes les autres.\n
+\begin{application}{}{}
+    On considère un point $M$ dont les coordonnées cartésiennes dépendent du temps, avec \n
+    $x(t) = 2t^{2}$, $y(t) = 4t + 7$ et $z(t) = t(2-t)$
     \begin{enumerate}
-        \item Que vaut $Z(S_{2})$ ?
-        \item Montrer que $Z(S_{n})$ est trivial dès que $n \geq 3$.
+        \item Calculer les coordonnées du vecteur vitesse $\Vec{v}$, ainsi que sa norme.
+        \item En déduire l’expression du vecteur déplacement élémentaire $d \Vec{OM}$
+        \item Calculer les coordonnées du vecteur accélération $\Vec{a}$, ainsi que sa norme.
+        \item Calculer l’angle que fait le vecteur vitesse avec l’axe ($Ox$) à l’instant $t = 1$.
     \end{enumerate}
-    \tcblower\n[0.2cm]
-    \boxed{1} $S_{2}$ est un groupe abélien donc on a $Z(S_{2}) = S_{2}$\n\n
-    \boxed{2} Soit $n \in \N_{\geq 3}$, $id_{\llbracket 1, n \rrbracket} \in Z(S_{n})$ étant donné que $id_{\llbracket 1, n \rrbracket}$ est le neutre du groupe $S_{n}$\n\n
-    Supposons qu'il en existe au moins un autre, on le notera $\gamma$\n
-    $\gamma \neq id_{\llbracket 1, n \rrbracket}$ donc $\exists k \in \llbracket 1, n \rrbracket ~|~ \gamma(k) \neq k$\n
-    Notons $z \in (\llbracket 1, n \rrbracket - \{\gamma^{2}(k)\})$ (possible $n \geq 3$) \n\n
-    $\gamma = \begin{pmatrix}
-        k & \gamma(k) & ... & ... \n
-        \gamma(k) & \gamma^{2}(k) & ... & ...
-    \end{pmatrix}$\n\n
-    Posons $\beta = \begin{pmatrix}
-        k & \gamma(k) & ... & ... \n
-        \gamma(k) & z & ... & ...
-    \end{pmatrix}$\n\n
-    $\beta \circ \gamma(k) = z$ et $\gamma \circ \beta(k) = \gamma \circ \gamma(k) = \gamma^{2}(k)$\n
-    Donc $\beta \circ \gamma(k) \neq \gamma \circ \beta(k)$ (voir ensemble de définition de $z$)\n\n
-    Ainsi on a $\beta \circ \gamma \neq \gamma \circ \beta$\n\n
-    On en deduis que $\forall n \in \N_{\geq 3}$, $Z(S_{n}) = \{ id_{\llbracket 1, n \rrbracket} \}$
-\end{exercise}
+    \tcblower\n
+    \boxed{1} Dans la base cartésienne, le vecteur $\Vec{v}$ s'exprime $\Vec{v} = \Dot{x} \base{x} + \Dot{y} \base{y} + \Dot{z} \base{z}$ avec ($\base{x}$, $\base{y}$, $\base{z}$) les vecteurs de la base.\n
+    $\Dot{x} = 4t$, $\Dot{y} = 4$ et $\Dot{z} = -2t + 2$\n
+    Ainsi on obtient $\Vec{v} = 4t \base{x} + 4 \base{y} + (-2t + 2) \base{z}$\n
+    $||\Vec{v}|| = \sqrt{\Dot{x}^{2} + \Dot{y}^{2} + \Dot{z}^{2}}$\n
+    $~~~~~~~~ = \sqrt{(4t)^{2} + 4^{2} + (-2t + 2)^{2}}$\n
+    $~~~~~~~~ = \sqrt{16t^{2} + 16 + 4t^{2} - 8t + 4}$\n
+    $~~~~~~~~ = \sqrt{20t^{2} - 8t + 20}$\\\\
+    \boxed{2} On a la relation suivant : $\Vec{v} = \frac{d \Vec{OM}}{dt}$\n
+    $d \Vec{OM} = \Vec{v} dt$\n
+    $~~~~~~~~ = (\Dot{x} \base{x} + \Dot{y} \base{y} + \Dot{z} \base{z}) dt$\n
+    $~~~~~~~~ = (\frac{dx}{dt} \base{x} + \frac{dy}{dt} \base{y} + \frac{dz}{dt} \base{z}) dt$\n
+    $~~~~~~~~ = dx \base{x} + dy \base{y} + dz \base{z}$\\\\
+    \boxed{3} Dans la base cartésienne, le vecteur $\Vec{a}$ s'exprime $\Vec{a} = \Ddot{x} \base{x} + \Ddot{y} \base{y} + \Ddot{z} \base{z}$ avec ($\base{x}$, $\base{y}$, $\base{z}$) les vecteurs de la base.\n
+    $\Ddot{x} = 4$, $\Ddot{y} = 0$ et $\Ddot{z} = -2$\n
+    Ainsi on obtient $\Vec{a} = 4 \base{x} -2 \base{z}$\n
+    $||\Vec{a}|| = \sqrt{\Ddot{x}^{2} + \Ddot{y}^{2} + \Ddot{z}^{2}}$\n
+    $~~~~~~~~ = \sqrt{4^{2} (-2)^{2}}$\n
+    $~~~~~~~~ = \sqrt{20} = 2\sqrt{5}$\\\\
+    \boxed{4} En passant dans une base cylindrinque, on obtient que $x(t) = r\cos{\theta}$ avec $r = ||\Vec{v}||$\n
+    $\theta = cos^{-1}(\frac{x(t)}{||\Vec{v}||})$\n
+    A l'instant $t = 1$ : $\theta(1) = cos^{-1}(\frac{x(1)}{||\Vec{v}(1)||})$\n
+    $\theta(1) = cos^{-1}(\frac{2}{\sqrt{32}})$\n
+    $~~~~~~~ = cos^{-1}(\frac{2}{4\sqrt{2}})$\n
+    $~~~~~~~ = cos^{-1}(\frac{\sqrt{2}}{4})$\n
+    $~~~~~~~ \approx 69.3^{\circ}$\n
+\end{application}
+
+\begin{application}{Changement de coordonnées}{}
+    \begin{enumerate}
+        \item Sur un schéma, représenter les vecteurs $\base{x}$ et $\base{y}$
+    \end{enumerate}
+    \tcblower\n
+    \boxed{1} TODO 
+\end{application}
 \end{document}
