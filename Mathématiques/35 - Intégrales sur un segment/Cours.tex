@@ -1,0 +1,359 @@
+\documentclass[11pt]{article}
+\usepackage[paperheight=15in, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[most]{tcolorbox}
+\usepackage{amsmath, amssymb, amsthm, enumitem, stmaryrd, cancel, pifont, dsfont, hyperref, fancyhdr, lastpage, tocloft, changepage}
+
+\newcommand*{\K}{\mathbb{K}}
+\newcommand*{\C}{\mathbb{C}}
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\Q}{\mathbb{Q}}
+\newcommand*{\Z}{\mathbb{Z}}
+\newcommand*{\N}{\mathbb{N}}
+\newcommand*{\F}{\mathcal{F}}
+\newcommand*{\CM}{\mathcal{CM}}
+
+\newcommand{\0}{\varnothing}
+\newcommand*{\e}{\varepsilon}
+\newcommand*{\g}{\gamma}
+\newcommand*{\s}{\sigma}
+\renewcommand*{\l}{\lambda}
+\renewcommand*{\t}{\tau}
+
+\newcommand*{\ra}{\Longrightarrow}
+\newcommand*{\la}{\Longleftarrow}
+\newcommand*{\rla}{\Longleftrightarrow}
+\newcommand*{\lb}{\llbracket}
+\newcommand*{\rb}{\rrbracket}
+\newcommand*{\n}{\\[0.2cm]}
+
+\newcommand*{\cmark}{\ding{51}}
+\newcommand*{\xmark}{\ding{55}}
+
+\newcommand{\dx}{\textrm{d}x}
+\newcommand{\dt}{\textrm{d}t}
+\newcommand{\rg}[1]{\textrm{rg}(#1)}
+\newcommand{\vect}[1]{\textrm{Vect}(#1)}
+\newcommand{\tr}[1]{\textrm{Tr}(#1)}
+
+\renewcommand*{\Re}{\textrm{Re}}
+\renewcommand{\dim}[1]{\textrm{dim}~#1}
+\renewcommand*{\ker}[1]{\textrm{Ker}(#1)}
+\renewcommand{\Im}{\textrm{Im}}
+
+\newcommand{\providetcbcountername}[1]{%
+  \@ifundefined{c@tcb@cnt@#1}{%
+    --undefined--%
+  }{%
+    tcb@cnt@#1%
+  }
+}
+
+\newcommand{\settcbcounter}[2]{%
+  \@ifundefined{c@tcb@cnt@#1}{%
+    \GenericError{Error}{counter name #1 is no tcb counter }{}{}%
+  }{%
+    \setcounter{tcb@cnt@#1}{#2}%
+   }%
+}%
+
+\newcommand{\displaytcbcounter}[1]{% Wrapper for \the...
+  \@ifundefined{thetcb@cnt@#1}{%
+    \GenericError{Error}{counter name #1 is no tcb counter }{}{}%
+  }{%
+    \csname thetcb@cnt@#1\endcsname% 
+  }%
+}
+
+% MATHS %
+\newtcbtheorem{thm}{Théorème}
+{
+    enhanced,frame empty,interior empty,
+    colframe=red,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green!25!red},
+    borderline south={1pt}{0pt}{green!25!red},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Preuve :}\n}
+}{thm}
+
+\newtcbtheorem[use counter from = thm]{defi}{Définition}
+{
+    enhanced,frame empty,interior empty,
+    colframe=green,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green},
+    borderline south={1pt}{0pt}{green},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Preuve :}\n}
+}{defi}
+
+\newtcbtheorem[use counter from = thm]{prop}{Proposition}
+{
+    enhanced,frame empty,interior empty,
+    colframe=blue,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green!25!blue},
+    borderline south={1pt}{0pt}{green!25!blue},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Preuve :}\n}
+}{prop}
+
+\newtcbtheorem[use counter from = thm]{corr}{Corrolaire}
+{
+    enhanced,frame empty,interior empty,
+    colframe=blue,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green!25!blue},
+    borderline south={1pt}{0pt}{green!25!blue},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Preuve :}\n}
+}{corr}
+
+\newtcbtheorem[use counter from = thm]{lem}{Lemme}
+{
+    enhanced,frame empty,interior empty,
+    colframe=blue,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green!25!blue},
+    borderline south={1pt}{0pt}{green!25!blue},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Preuve :}\n}
+}{lem}
+
+\newtcbtheorem[use counter from = thm]{ex}{Exemple}
+{
+    enhanced,frame empty,interior empty,
+    colframe=orange,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green!25!orange},
+    borderline south={1pt}{0pt}{green!25!orange},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Preuve :}\n}
+}{ex}
+
+\newtcbtheorem[use counter from = thm]{meth}{Méthode}
+{
+    enhanced,frame empty,interior empty,
+    colframe=purple,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{purple},
+    borderline south={1pt}{0pt}{purple},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Preuve :}\n}
+}{meth}
+
+\newtcbtheorem[use counter from = thm]{exercice}{Exercice}
+{
+    enhanced,frame empty,interior empty,
+    colframe=blue,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green!25!blue},
+    borderline south={1pt}{0pt}{green!25!blue},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Preuve :}\n}
+}{exercice}
+
+% PHYSIQUE %
+\newtcbtheorem[use counter from = thm]{qc}{Question de Cours}
+{
+    enhanced,frame empty,interior empty,
+    colframe=red,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green!25!red},
+    borderline south={1pt}{0pt}{green!25!red},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Preuve :}\n}
+}{qc}
+\newtcbtheorem[use counter from = thm]{app}{Application}
+{
+    enhanced,frame empty,interior empty,
+    colframe=blue,
+    after skip = 1cm,
+    borderline west={1pt}{0pt}{green!25!blue},
+    borderline south={1pt}{0pt}{green!25!blue},
+    left=0.2cm,
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colbacktitle=white,
+    boxed title style={boxrule=.4pt,sharp corners},
+    before lower = {\textbf{Preuve :}\n}
+}{app}
+
+\def\pagetitle{Intégrales sur un segment}
+\setlength{\headheight}{14pt}
+
+\title{\bf{\pagetitle}\n\large{Corrigé}}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+\begin{document}
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+
+\hrule
+\begin{center}
+    \LARGE{\textbf{Chapitre 35}}\n
+    \large{\pagetitle}\n
+    \rule{0.8\textwidth}{0.5pt}
+\end{center}
+
+
+\vspace{0.5cm}
+
+\section{Intégrale d'une fonction continue sur un segment}
+\subsection{Ensemble $\CM(I,\K)$}
+
+\begin{defi}{Fonction continue par morceaux sur un intervalle.}{}
+    Soit $I$ un intervalle et $f:I\to\K$. On dit que $f$ est \textbf{continue par morceaux} sur $I$ si pour tout segment $[a,b]\subset I$, $f_{|[a,b]}$ est continue par morceaux sur $[a,b]$.\\
+    On note $\CM(I,\K)$ l'ensemble des fonctions continues par morceaux sur $I$.
+\end{defi}
+
+\begin{ex}{$x\mapsto\lfloor\frac{1}{x}\rfloor$}{}
+La fonction $x\mapsto\lfloor\frac{1}{x}\rfloor$ est continue par morceaux sur $\R^*_+$. Expliquer.
+\tcblower
+Soit $[a,b]\subset\R^*_+$. Notons $S=\{\frac{1}{n}\mid n\in\N^*\}\cap]a,b[$.\\
+Cet ensemble est finito : pour $n\in\N^*$, $a<\frac{1}{n}<b\iff\frac{1}{b}<n<\frac{1}{a}\iff\lfloor\frac{1}{b}\rfloor+1 \leq n \leq \lfloor\frac{1}{a}\rfloor$.\\
+$S$ contient donc au plus $\lfloor\frac{1}{a}\rfloor-\lfloor\frac{1}{b}\rfloor$ points.\\
+Notons $n=|S|$ puis $S=\{a_1,...,a_n\}$, avec $a_1<a_2<...<a_n$.\\
+Posons $\s=(a_0,a_1,...,a_n,a_{n+1})$ avec $a_0 := a$ et $a_{n+1} := b$.\\
+Soit $i\in\lb0,\rb$, $f_{|]a_i,a_{i+1}[}$ est constante, elle y est donc continue et prolongeable par continuité aux bords.
+Ainsi, $f\in\CM(\R^*_+,\R)$.\\
+\textbf{Remarque:} En posant $f(0):=0$, ça ne marche plus car $f_{|[0,b]}$ n'est pas cpm sur $[0,b]$.
+\end{ex}
+
+\subsection{Intégrale d'une fonction continue par morceaux entre deux bornes}
+\begin{defi}{}{}
+    Soit $f\in\CM(I,\R)$ et $a,b\in I$. On note $\int_a^bf(x)\dx$, ou plus simplement $\int_a^bf$ le réel défini par :
+    \begin{equation*}
+        \int_a^bf(x)\dx:=\int_[a,b]f ~ \text{si} ~ a<b, \quad \int_a^af(x)\dx:=0,\quad \text{et}\quad\int_a^bf(x)\dx:=-\int_{[b,a]}f~\text{si } a>b.
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $f\in\CM(I,\C)$.\\
+    Les fonctions $x\mapsto\Re(f(x))$ et $x\mapsto\Im(f(x))$ sont continues par morceaux sur $I$.\\
+    Pour $a,b\in I$, on pose :
+    \begin{equation*}
+        \int_a^bf(x)\dx:=\int_a^b\Re(f(x))\dx+i\int_a^b\Im(f(x))\dx.
+    \end{equation*}
+    Ainsi, la partie réelle de l'intégrale est l'intégrale de la partie réelle, idem pour la partie imaginaire.
+    \tcblower
+    Pour prouver la continuité par morceaux de $\Re(f)$ et $\Im(f)$ à partir de celle de $f$, on introduit une subdivision adaptée à $f$ $\s=(a_0,...,a_n)$ et on prouve qu'elle est adaptée à sa partie réelle et à sa partie imaginaire. On peut utiliser :
+    \begin{equation*}
+        \forall x\in I ~ \Re(f(x)) = \frac{1}{2}(f(x)+\overline{f(x)}) ~ \text{et} ~ \Im(f(x))=\frac{1}{2i}(f(x)-\overline{f(x)}).
+    \end{equation*}
+    En effet, ces relations donnent que pour $i\in\lb0,n-1\rb$, les restrictions de $\Re(f)$ et $\Im(f)$ à $]a_i,a_{i+1}[$ y sont continues, et prolongeables par continuité sur les bords.
+\end{prop}
+
+\pagebreak
+\subsection{Relation de Chasles.}
+\begin{prop}{Relation de Chasles}{}
+    Soient $f\in\CM(I,\K)$ et $a,b,c\in I$.
+    \begin{equation*}
+        \int_a^bf=\int_a^cf+\int_c^bf.
+    \end{equation*}
+    \tcblower
+    La relation a été établie dans le cours de construction pour une fonction à valeurs réelles dans le cas où $a<c<b$.\\
+    $\bullet$ cas $a<b<c$ :
+    \begin{equation*}
+        \int_a^cf+\int_c^bf=\int_{[a,c]}f-\int_{[b,c]}f=\int_{[a,b]}f+\int_{[b,c]}f-\int_{[b,c]}f=\int_{[a,b]}f=\int_a^bf.
+    \end{equation*}
+    $\bullet$ cas $b=c<a$ :\\
+    D'une part $\int_a^bf=-\int_{[b,a]}f$, d'autre part : $\int_a^cf+\int_c^bf=-\int_c^af=-\int_[b,a]f$.\n
+    Les autres cas sont similaires.
+\end{prop}
+
+\subsection{Linéarité.}
+
+\begin{prop}{Linéarité de l'intégrale.}{}
+    Soient $f,g\in\CM(I,\K)$, et $a,b\in I$. Pour tous scalaires $\l,\mu\in\K$,
+    \begin{equation*}
+        \int_a^b(\l f+\mu g) = \l\int_{a}^bf+\mu\int_a^bg.
+    \end{equation*}
+    \tcblower
+    On l'a prouvé pour $a<b$ et $f,g$ à valeurs réelles. Il faut le vérifier dans les autres cas.
+\end{prop}
+
+\subsection{Intégrales et inégalités.}
+\begin{prop}{Positivité}{}
+    Soit $f\in\CM([a,b],\R)$ où le segment $[a,b]$ est tel que \fbox{$a\leq b$}.\\
+    Si $f$ est positive sur $[a,b]$, alors l'intégrale $\int_a^bf(x)\dx$ est un nombre positif.\\
+    Si $f$ est négative sur $[a,b]$, alors cette intégrale est un nombre négatif.
+    \tcblower
+    On l'a déjà prouvé.
+\end{prop}
+
+\begin{prop}{Intégrale nulle d'une fonction positive et continue}{}
+    Soit $f:[a,b]\to\R$, avec \fbox{$a<b$}, continue et positive sur $[a,b]$.\\
+    Si $\int_a^bf(x)\dx=0$, alors $f$ est nulle sur $[a,b]$.\\
+    Par contraposée, si $\exists c \in [a,b] ~ f(c)>0$, alors $\int_a^bf>0$.
+    \tcblower
+    Il y a aussi la preuve suivante dans \textbf{L'Exercice 79} de la banque CCINP :\\
+    On suppose $f$ continue et positive sur $[a,b]$ et $\int_a^bf=0$.\\
+    Posons $F:x\mapsto\int_a^xf(t)\dt$ définie sur $[a,b]$, $f$ étant continue sur $[a,b]$, $F$ est une primitive de $f$ sur $[a,b]$ d'après le TFA (prouvé plus loin).\\
+    Donc $\forall x \in [a,b], ~ F'(x)=f(x)\geq0$, ainsi $F$ est croissante sur $[a,b]$.\\
+    Or, $F(b)=\int_a^bf=0$, de plus, $F(a)=\int_a^af=0$.\\
+    Par croissance, $\forall x \in [a,b], ~ F(a) \leq F(x)\leq F(b)$ donc $F(x)=0$.\\
+    Donc $F$ est constante sur $[a,b]$, on a $a<b$ donc $\forall x\in[a,b], ~ F'(x)=f(x)=0$.
+    \n\textbf{Remarque:} Pourquoi continue et pas continue par morceaux ?\\
+    Soit $f:\begin{cases}[0,1]\to\R\\x\mapsto\begin{cases}0 \text{ si } x\neq\frac{1}{2}\\1 \text{ si } x=\frac{1}{2}\end{cases}\end{cases}$, son intégrale est nulle, mais $f$ ne l'est pas.
+\end{prop}
+
+\end{document}
