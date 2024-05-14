@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage[paperheight=15in, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
 \usepackage[most]{tcolorbox}
-\usepackage{amsmath, amssymb, amsthm, enumitem, stmaryrd, cancel, pifont, dsfont, hyperref, fancyhdr, lastpage, tocloft, changepage}
+\usepackage{amsmath, amssymb, amsthm, enumitem, stmaryrd, cancel, pifont, dsfont, hyperref, fancyhdr, lastpage, tocloft, changepage, media9}
 
 \newcommand*{\K}{\mathbb{K}}
 \newcommand*{\C}{\mathbb{C}}
@@ -11,6 +11,7 @@
 \newcommand*{\N}{\mathbb{N}}
 \newcommand*{\F}{\mathcal{F}}
 \newcommand*{\CM}{\mathcal{CM}}
+\newcommand*{\m}{\mathcal}
 
 \newcommand{\0}{\varnothing}
 \newcommand*{\e}{\varepsilon}
@@ -150,8 +151,8 @@
     enhanced,frame empty,interior empty,
     colframe=orange,
     after skip = 1cm,
-    borderline west={1pt}{0pt}{green!25!orange},
-    borderline south={1pt}{0pt}{green!25!orange},
+    borderline west={1pt}{0pt}{orange},
+    borderline south={1pt}{0pt}{orange},
     left=0.2cm,
     attach boxed title to top left={yshift=-2mm,xshift=-2mm},
     coltitle=black,
@@ -176,22 +177,6 @@
     boxed title style={boxrule=.4pt,sharp corners},
     before lower = {\textbf{Preuve :}\n}
 }{meth}
-
-\newtcbtheorem[use counter from = thm]{exercice}{Exercice}
-{
-    enhanced,frame empty,interior empty,
-    colframe=blue,
-    after skip = 1cm,
-    borderline west={1pt}{0pt}{green!25!blue},
-    borderline south={1pt}{0pt}{green!25!blue},
-    left=0.2cm,
-    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colbacktitle=white,
-    boxed title style={boxrule=.4pt,sharp corners},
-    before lower = {\textbf{Preuve :}\n}
-}{exercice}
 
 % PHYSIQUE %
 \newtcbtheorem[use counter from = thm]{qc}{Question de Cours}
@@ -282,7 +267,7 @@ Ainsi, $f\in\CM(\R^*_+,\R)$.\\
 \begin{defi}{}{}
     Soit $f\in\CM(I,\R)$ et $a,b\in I$. On note $\int_a^bf(x)\dx$, ou plus simplement $\int_a^bf$ le réel défini par :
     \begin{equation*}
-        \int_a^bf(x)\dx:=\int_[a,b]f ~ \text{si} ~ a<b, \quad \int_a^af(x)\dx:=0,\quad \text{et}\quad\int_a^bf(x)\dx:=-\int_{[b,a]}f~\text{si } a>b.
+        \int_a^bf(x)\dx:=\int_{[a,b]}f ~ \text{si} ~ a<b, \quad \int_a^af(x)\dx:=0,\quad \text{et}\quad\int_a^bf(x)\dx:=-\int_{[b,a]}f~\text{si } a>b.
     \end{equation*}
 \end{defi}
 
@@ -355,5 +340,138 @@ Ainsi, $f\in\CM(\R^*_+,\R)$.\\
     \n\textbf{Remarque:} Pourquoi continue et pas continue par morceaux ?\\
     Soit $f:\begin{cases}[0,1]\to\R\\x\mapsto\begin{cases}0 \text{ si } x\neq\frac{1}{2}\\1 \text{ si } x=\frac{1}{2}\end{cases}\end{cases}$, son intégrale est nulle, mais $f$ ne l'est pas.
 \end{prop}
+
+\begin{prop}{Croissance}{}
+    Soient $f,g\in\CM([a,b],\R)$ avec \fbox{$a\leq b$}.
+    \begin{equation*}
+        f \leq g ~ \Longrightarrow ~ \int_a^bf(x)\dx \leq \int_a^b g(x)\dx
+    \end{equation*}
+    \tcblower
+    On a :
+    \begin{equation*}
+        \int_a^b g - \int_a^b f = \int_a^b(g-f)
+    \end{equation*}
+    Comme $g-f$ est continue par morceaux et positive, on a $\int_a^b(g-f)\geq0$ donc $\int_a^bf\leq\int_a^bg$.
+\end{prop}
+
+\begin{prop}{Inégalité de la moyenne}{}
+    Soit $f\in\CM([a,b], \R)$ avec \fbox{$a\leq b$}.\\
+    Si $f$ est minorée par un réel $m$ et majorée par $M$ sur $[a,b]$, alors :
+    \begin{equation*}
+        m(b-a) \leq \int_a^bf(x)\dx \leq M(b-a),~\text{Lorsque }a<b, \text{ on a } m\leq\frac{1}{b-a}\int_a^bf(x)\dx\leq M.
+    \end{equation*}
+    \tcblower
+    On a $\forall x\in[a,b], ~ m \leq f(x) \leq M$.\\
+    La fonction $f$, $x\mapsto m$, $x\mapsto M$ sont continues par morceaux.\\
+    Par croissance :
+    \begin{equation*}
+        \int_a^bm\dt\leq \int_a^bf(t)\dt\leq\int_a^bM\dt
+    \end{equation*}
+    Donc
+    \begin{equation*}
+        m(b-a) \leq \int_a^bf(t)\dt\leq M(b-a)
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{Inégalité triangulaire}{}
+    Soit $f\in\CM([a,b], \K)$, avec \fbox{$a\leq b$}.
+    \begin{equation*}
+        \left|\int_a^bf(x)\dx\right|\leq\int_a^b|f(x)|\dx
+    \end{equation*}
+    \tcblower
+    $\circledcirc$ \textbf{Cas réel:} Soit $f\in\CM([a,b], \R)$.\\
+    On a $f\leq|f|$ et $-f\leq|f|$, or $f, -f$ et $|f|$ sont cpm sur $[a,b]$.\\
+    Par croissance de l'intégrale ($a\leq b$) : $\int_a^b f \leq \int_a^b|f|$ et $-\int_a^bf \leq\int_a^b|f|$.\\
+    Donc $\max(\int_a^b f, -\int_a^b f) \leq \int_a^b|f|$ et alors $\left|\int_a^b f\right|\leq\int_a^b|f|$.\\
+    $\circledcirc$ \textbf{Cas complexe:} admis.
+\end{prop}
+
+\subsection{Quelques exercices de cours.}
+
+\begin{ex}{}{}
+    Pour $a\in\R^*_+$, on pose $I_a=\int_a^{a^2}\ln^3(x)\dx$. Existence et signe de $I_a$.
+    \tcblower
+    \textbf{Existence:} $\ln^3$ est continue (par morceaux) sur $\R^*_+$.\\
+    \textbf{1er cas:} Supposons $a\geq1$, alors $a\leq a^2$ et $\forall x \in [a,a^2] ~ \ln^3(x) \geq 0$, par positivité, $\int_a^{a^2}\ln^3\geq0$.\\
+    \textbf{2eme cas:} Supposons $a\in]0,1[$, alors $a^2\leq a$ et $\forall x \in [a^2, a] ~ \ln^3(x)\leq0$, par positivité, $\int_{a^2}^a\ln^3\leq0$ donc $\int_a^{a^2}\ln^3\geq0$.\\
+    Ainsi, $\forall a\in\R^*_+, ~ I_a\geq0$
+\end{ex}
+
+\begin{ex}{}{}
+    Soit $f:[a,b]\to\R$ avec $a<b$ continue telle que $\int_a^bf(t)\dt=0$.\\
+    Justifier que $f$ s'annule au moins une fois sur $[a,b]$.
+    \tcblower
+    \textbf{1er cas:} Supposons que $f$ change de signe sur $[a,b]$, alors d'après le TVI, $f$ s'annule sur $[a,b]$ puisque $f$ est continue.\\
+    \textbf{2eme cas:} Supposons que $f$ ne change pas de signe sur $[a,b]$. On a que $a<b$, que $f$ est continue et monotone sur $[a,b]$, et d'intégrale nulle. Par théorème, $\forall x \in [a,b], ~ f(x)=0$.
+\end{ex}
+
+\begin{ex}{Un exercice : suite définie par une intégrale.}{}
+    Soit, pour $n\in\N, I_n := \int_1^e(\ln(x))^n\dx$.\\
+    \-\ ~1. Prouver que $(I_n)$ est convergente.\\
+    \-\ ~2. Prouver que la limite vaut 0 à l'aide d'une IPP.\\
+    \-\ ~3. Donner un équivalent de $I_n$.
+    \tcblower
+    \boxed{1.} \textbf{Monotonie:} Soit $n\in\N$.
+    \begin{equation*}
+        I_{n+1} - I_n = \int_1^e\underbrace{(\ln(x))^n}_{\geq0}\underbrace{(\ln(x)-1)}_{\leq0}\dx
+    \end{equation*}
+    La fonction $x\mapsto (\ln(x))^n(\ln(x)-1)$ est continue sur $[1,e]$ on a $1\leq e$ et la fonction est négative.\\
+    Par positivité de l'intégrale, $I_{n+1}-I_n\leq0$ et donc $(I_n)$ est décroissante.\\
+    \textbf{Convergence:} Par positivité, on a $\forall n \in \N, ~ I_n \geq 0$, donc $I_n$ est décroissante et minorée par $0$ donc elle converge d'après le TLM.\\
+    \boxed{2.} Une IPP pour trouver une relation de récurrence. Pour $n\in \N^*$ :
+    \begin{align*}
+        I_n &= \int_1^e(\ln(x))^n\dx\\&=\left[ x(\ln(x))^n \right]_1^e - \int_1^e\cancel{x}n\cancel{\frac{1}{x}}(\ln(x))^{n-1}\dx\\&=e-nI_{n-1}
+    \end{align*}
+    On a $\forall n \in \N^* ~ I_{n} = \frac{1}{n+1}(e-I_{n+1})$. Notons $l=\lim I_n$, qui existe d'après \boxed{1.}.\\
+    Alors $I_n = \frac{1}{n+1}(e-I_{n+1})\to0$ car $e-I_{n+1}\to e - l$.\\
+    \boxed{3.} On a $nI_n = \frac{n}{n+1}(e-I_{n+1})\to e$ donc $I_n \sim \frac{e}{n}$.
+\end{ex}
+
+\begin{ex}{Lemme de Riemann-Lebesgue}{}
+    Soit $f\in\m{C}^1([a,b],\C)$. Montrer que
+    \begin{equation*}
+        \int_a^bf(t)e^{int}\dt\to0.
+    \end{equation*}
+    \textbf{Remarque:} Le lemme est vrai pour $f$ continue sur $[a,b]$, mais difficile à démontrer.
+    \tcblower
+    Idée : IPP. Soit $n\in\N$. $f$ et $\frac{1}{in}e^{int}$ sont de classe $\m{C}^1$ sur $[a,b]$ donc :
+    \begin{equation*}
+        \int_a^bf(t)e^{int}\dt=\left[ f(t)\cdot\frac{1}{in}e^{int} \right]_a^b - \int_a^b f'(t)\cdot\frac{1}{in}e^{int}\dt
+    \end{equation*}
+    Alors
+    \begin{align*}
+        |I_n|=\Big|...\Big|\leq \Big|[...]_a^b\Big| + \Big|\int_a^b...\Big|
+    \end{align*}
+    D'une part : $\Big|\left[ f(t)\frac{1}{in} e^{int}\right]_a^b\Big|=\frac{1}{n}\Big|f(b)e^{inb}-f(a)e^{ina}\Big|\leq\frac{1}{n}(|f(b)|+|f(a)|)$.\\
+    D'autre part : $\Big|\int_a^bf'(t)\frac{1}{in}e^{int}\dt\Big|\leq\frac{1}{n}\int_a^b\Big|f'(t)\Big|\dt$.\\
+    Par majoration, $|I_n|=O(\frac{1}{n})$ donc $I_n\to0$.
+\end{ex}
+
+\begin{thm}{Théorème fondamental de l'analyse}{}
+    Soit $I$ un intervalle et $f:I\to\K$ une fonction continue sur $I$. Soit $a\in I$. La fonction
+    \begin{equation*}
+        E: \begin{cases}
+           I~\to~\K\\
+           x~\mapsto~F(x) = \int_a^xf(t)\dt 
+        \end{cases}
+    \end{equation*}
+    est de classe $\m{C}^1$ sur $I$ et de dérivée $F'=f$.
+    \tcblower
+    Soit $x_0\in I$. Montrons que $\frac{F(x)-F(x_0)}{x-x_0}\to f(x_0)$\\
+    Soit $x\in I\setminus\{x_0\}$.
+    \begin{align*}
+        \left|\frac{F(x)-F(x_0)}{x-x_0}-f(x_0)\right|&=\left|\frac{1}{x-x_0}\left(\int_a^xf(t)\dt-\int_a^{x_0}f(t)\dt\right)-f(x_0)\right|\\
+        &=\left|\frac{1}{x-x_0}\int_{x_0}^xf(t)\dt-\frac{1}{x-x_0}\int_{x_0}^xf(x_0)\dt\right|\\
+        &=\frac{1}{|x-x_0|}\left|\int_{x_0}^x(f(t)-f(x_0))\dt\right|\\
+        &\leq\frac{1}{|x-x_0|}\int_{\min(x_0,x)}^{\max(x_0,x)}\left|f(t)-f(x_0)\right|\dt
+    \end{align*}
+    Soit $\e>0$. Par continuité de $f$ en $x_0$, $\exists \eta>0 \forall x \in I\cap]x_0-\eta,x_0+\eta[~|f(t)-f(x_0)|\leq\e$.\\
+    Supposons que $|x-x_0|\leq\eta$. Alors $[\min(x_0,x), \max(x_0,x)]\subset I\cap]x_0-\eta,x_0+\eta[$.\\
+    Par croissance :
+    \begin{equation*}
+        \int_{\min}^{\max}\Big|f(t)-f(x_0)\Big|\dt\leq\int_{\min}^{\max}\e\dt = \e(\max - \min) = \e|x-x_0|.
+    \end{equation*}
+    Ainsi, $\Big|\frac{F(x)-F(x_0)}{x-x_0}-f(x_0)\Big|\leq\frac{1}{|x-x_0|}\e|x-x_0|=\e$
+\end{thm}
 
 \end{document}
