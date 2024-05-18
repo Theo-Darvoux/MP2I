@@ -108,7 +108,7 @@
     \tcblower
     Soient $\s,\s'\in S_n$. On note $S(\s)=\{x \in \lb1,n\rb ~ | ~ \s(x)\neq x\}$.\n
     Supposons $S(\s)\cap S(\s') = \0$.\n
-    Soit $x\in\lb1,n\rb$.\n
+    Soit $x\in\lb1,n\rb$.
     \begin{itemize}
         \item Si $x\in S(\s)$ : $x\notin S(\s')$ donc $\s\s'(x)=\s(x)\in S(\s)$ par bijectivité de $\s$.
         \item Si $x\notin S(\s)$ : Soit $x\in S(\s')$ et on se ramène au 1er cas, soit $x\notin S(\s')$ et $\s\s'(x)=x=\s'\s(x)$.
@@ -139,7 +139,7 @@
     Alors $\s\g\s^{-1}(b)=\s\g(\s^{-1}(b))=\s\s^{-1}(b)=b$ car $b\notin\{\s(a_1),...,\s(a_p)\}$ donc $\s^{-1}(b)\notin\{a_1,..,a_p\}$ donc c'est un point fixe de $\g$.\n
     Soit $j\in\lb1,p\rb$.\n
     Alors $\s\g\s^{-1}(\s(a_j))=\s\g(a_j)=\s(a_{j+1})$ avec $a_{p+1}:=a_1$.\n
-    On a bien que $\s\g\s^{-1}$ et $(\s(a_1)...\s(a_p))$ sont égaux en tout point.\n[0.2cm]
+    On a bien que $\s\g\s^{-1}$ et $(\s(a_1)...\s(a_p))$ sont égaux en tout point.\n
     \textbf{Remarque:} Ceci démontre que tous les $p$-cycles sont conjugués.\n
     Soient $\g=(a_1~...~a_p)$ et $\g'=(b_1~...~b_p)$ deux $p$-cycles.\n
     Posons $\s\in S_n$ telle que :
@@ -159,9 +159,9 @@
     Si $\g(b)=b$ alors $\g^{-1}(b)=b$ car c'est un point fixe.\n
     Soit $j\in\lb1,p-1\rb$, $\g(a_j)=a_{j+1}$ donc $a_j=\g^{-1}(a_{j+1})$.\n
     Alors $\forall k \in \lb2,p\rb$, $\g^{-1}(a_k)=a_{k-1}$, et $\g^{-1}(a_1)=a_p$.\n
-    Ainsi, $\g^{-1}=(a_p ~ a_{p-1} ~ ... ~ a_2 ~ a_1)$.\n[0.2cm]
+    Ainsi, $\g^{-1}=(a_p ~ a_{p-1} ~ ... ~ a_2 ~ a_1)$.\n
     \textbf{La puissance $\g^p$ :}\n
-    On a $\g=(a, \g(a), ..., \g^{p-1}(a))$ pour un $a\in\lb1,n\rb$.\n
+    On a $\g=(a, \g(a), ..., \g^{p-1}(a))$ pour un $a\in\lb1,n\rb$.
     \begin{itemize}
         \item $\g^p(a)=\g(\g^{p-1}(a))=a$.
         \item Soit $j\in\lb1,p-1\rb$, $\g^p(\g^j(a))=\g^j(\g^p(a))=\g^j(a)$.
@@ -194,7 +194,7 @@
         \g=(a_1~a_2)(a_2~a_3)...(a_{p-1}~a_p) \qquad \text{ou} \qquad \g=(a_1~a_p)(a_1~a_{p-1})...(a_1~a_2)
     \end{equation*}
     \tcblower
-    Notons $\pi=(a_1~a_2)(a_2~a_3)...(a_{p-1}~a_p)$. Montrons que $\g=\pi$.\n
+    Notons $\pi=(a_1~a_2)(a_2~a_3)...(a_{p-1}~a_p)$. Montrons que $\g=\pi$.
     \begin{itemize}
         \item Soit $b\in\lb1,n\rb\setminus\{a_1,...,a_p\}$ : $\g(b)=b$ et $\forall j \in \lb1,p-1\rb, ~ (a_j~a_{j+1})(b)=b$ car $b\notin\{a_j,a_{j+1}\}$.\n
         Alors $\gamma(b)=\pi(b)=b$.
@@ -217,7 +217,7 @@
     \tcblower
     Soit $\s\in S_n$.\n
     \textbf{Une relation d'équivalence sur $\lb1,n\rb$}.\n
-    Pour $i,j\in\lb1,n\rb$, on note $i\sim j$ si $\exists k \in \Z ~ | ~ j = \s^k(i)$.\n
+    Pour $i,j\in\lb1,n\rb$, on note $i\sim j$ si $\exists k \in \Z ~ | ~ j = \s^k(i)$.
     \begin{itemize}
         \item Soit $i\in\lb1,n\rb$. $i=\s^0(i)$ donc $i \sim i$.
         \item Soient $i,j\in\lb1,n\rb ~ | ~ i \sim j$. Alors $\exists k \in \Z ~ | ~ j = \s^k(i) ~ : ~ i = \s^{-k}(j)$ et $j \sim i$.
@@ -249,7 +249,7 @@
 \end{thm}
 
 \begin{ex}{Une décomposition}{}
-    Soit $\s=\begin{pmatrix}1&2&3&4&5&6&7&8\n5&4&1&7&8&6&2&3\end{pmatrix}$.\n
+    Soit $\s=\begin{pmatrix}1&2&3&4&5&6&7&8\n5&4&1&7&8&6&2&3\end{pmatrix}$.
     \begin{enumerate}
         \item Décomposer $\s$ en produit de cycles à supports disjoints.
         \item Déterminer $\s^4$, $\s^{12}$ et $\s^{666}$.
@@ -259,7 +259,7 @@
     \boxed{2} \begin{itemize}
         \item $\s^4=(\g_1\g_2)^4\underset{\text{comm}}{=}\g_1^4\g_2^4=\g_2$ car $\g_1^4=id$ et $\g_2^4=\g_2^3\g_2=\g_2$.
         \item $\s^{12}=(\gamma_1^{4})^3(\g_2^3)^4=id$
-        \item $\s^{666}=(1~8)(3~5)$ car $\s^{666}=\cancel{\s^{12\times55}}\s^6$.
+        \item $\s^{666}=(1~8)(3~5)$ car $\s^{666}=\underset{id^{55}}{\cancel{\s^{12\times55}}}\s^6$.
     \end{itemize}
 \end{ex}
 
@@ -313,18 +313,19 @@
     Il y a $\binom{5}{2}$ paires dans $\lb 1, 5 \rb$\n
     \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c}
         paire & \{1, 2\} & \{1, 3\} & \{1, 4\} & \{1, 5\} & \{2, 3\} & \{2, 4\} & \{2, 5\} & \{3, 4\} & \{3, 5\} & \{4, 5\} \n
+        \hline
          inversion & \cmark & \cmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark
     \end{tabular}\n
     Ainsi on a $Inv(\s) = 4$ donc $\e(\s) = (-1)^{4} = 1$
 \end{ex}
 
-\begin{prop}{TODO PRUVE PROPRE}{}
+\begin{prop}{TODO PREUVE PROPRE}{}
     \begin{enumerate}
         \item L'identité a pour signature $1$.
         \item Les transpositions ont pour signature $-1$.
     \end{enumerate}
     \tcblower
-    \boxed{1} Il est clair (?) \n
+    \boxed{1} Il est clair ( Non ?) \n
     que $Inv(id_{\lb 1, n \rb}) = 0$ donc $\e(\s)=1^{0} = 1$.\n
     \boxed{2} Soit $\{\i,j\}$ une paire de $\lb1,n\rb$, \n
     $\tau\in S_n$ : $\exists(a,b)\in\lb1,n\rb~|~\tau=(a~b)$ où $a\leq b$.
@@ -386,6 +387,7 @@
 \begin{corr}{}{}
     La signature est l'unique morphisme de groupes non trivial de $(S_{n}, \circ)$ dans $(\C^{*}, \times)$
     \tcblower
+    Montrons l'existence dans un premier point puis l'unicité.
     \begin{itemize}
         \item La fonction constante \n
         $\mathds{1} : \left\{ \begin{array}{ll}
@@ -397,14 +399,16 @@
         Soit $\tau$ transpositions fixée. $\tau^{2} = id$\n
         Appliquons $f$ :\n
         $f(\tau^{2}) = f(id) = 1 \ra f(\tau)^{2} = -1$ ou $1$
-        \item $1^{er}$ cas : $f(\tau) = 1$\n
-        Soit $\tau^{'}$, conjuguée à $\tau$\n 
-        $\exists \alpha \in S_{n}$, $\tau^{'} = \alpha \tau \alpha^{-1}$ (on a prouvé plutôt que 2 p-cycles sont conjugués)\n
-        $f(\tau^{'}) = f(\alpha \tau \alpha^{-1}) = f(\alpha) \cancel{f(\tau)} f(\alpha)^{-1} = 1$\n
-        or toute permutation est produit de transpositions $\ra ~ \forall \s \in S_{n} f(\s) = 1$.
-        \item 2ème cas $f(\tau) = -1$\n
-        Par conjugaison, $\forall \tau^{'}$ transpositions $f(\tau^{'}) = -1$\n
-        $f$ est un morphisme de groupe envoyant sur $-1$.
+        \begin{enumerate}
+            \item $f(\tau) = 1$\n
+            Soit $\tau^{'}$, conjuguée à $\tau$\n 
+            $\exists \alpha \in S_{n}$, $\tau^{'} = \alpha \tau \alpha^{-1}$ (on a prouvé plutôt que 2 p-cycles sont conjugués)\n
+            $f(\tau^{'}) = f(\alpha \tau \alpha^{-1}) = f(\alpha) \cancel{f(\tau)} f(\alpha)^{-1} = 1$\n
+            or toute permutation est produit de transpositions $\ra ~ \forall \s \in S_{n}$, $f(\s) = 1$.
+            \item $f(\tau) = -1$\n
+            Par conjugaison, $\forall \tau^{'}$ transpositions $f(\tau^{'}) = -1$\n
+            $f$ est un morphisme de groupe envoyant sur $-1$.
+        \end{enumerate}
     \end{itemize}
 \end{corr}
 
