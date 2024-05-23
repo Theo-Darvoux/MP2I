@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage[paperheight=15in, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
 \usepackage[most]{tcolorbox}
-\usepackage{amsmath, amssymb, amsthm, enumitem, stmaryrd, cancel, pifont, dsfont, hyperref, fancyhdr, lastpage, tocloft, changepage, media9}
+\usepackage{amsmath, amssymb, amsthm, enumitem, stmaryrd, cancel, pifont, dsfont, hyperref, fancyhdr, lastpage, tocloft, changepage, tkz-tab, tikz-among-us}
 
 \newcommand*{\K}{\mathbb{K}}
 \newcommand*{\C}{\mathbb{C}}
@@ -40,6 +40,7 @@
 \renewcommand{\dim}[1]{\textrm{dim}~#1}
 \renewcommand*{\ker}[1]{\textrm{Ker}(#1)}
 \renewcommand{\Im}{\textrm{Im}}
+\renewcommand*{\phi}{\varphi}
 
 \newcommand{\providetcbcountername}[1]{%
   \@ifundefined{c@tcb@cnt@#1}{%
@@ -402,7 +403,8 @@ Ainsi, $f\in\CM(\R^*_+,\R)$.\\
     Justifier que $f$ s'annule au moins une fois sur $[a,b]$.
     \tcblower
     \textbf{1er cas:} Supposons que $f$ change de signe sur $[a,b]$, alors d'après le TVI, $f$ s'annule sur $[a,b]$ puisque $f$ est continue.\\
-    \textbf{2eme cas:} Supposons que $f$ ne change pas de signe sur $[a,b]$. On a que $a<b$, que $f$ est continue et monotone sur $[a,b]$, et d'intégrale nulle. Par théorème, $\forall x \in [a,b], ~ f(x)=0$.
+    \textbf{2eme cas:} Supposons que $f$ ne change pas de signe sur $[a,b]$. On a que $a<b$, que $f$ est continue et monotone sur $[a,b]$, et d'intégrale nulle. Par théorème, $\forall x \in [a,b], ~ f(x)=0$.\n
+    On peut aussi le prouver avec le TFA + Rolle.
 \end{ex}
 
 \begin{ex}{Un exercice : suite définie par une intégrale.}{}
@@ -474,4 +476,390 @@ Ainsi, $f\in\CM(\R^*_+,\R)$.\\
     Ainsi, $\Big|\frac{F(x)-F(x_0)}{x-x_0}-f(x_0)\Big|\leq\frac{1}{|x-x_0|}\e|x-x_0|=\e$
 \end{thm}
 
+\begin{corr}{}{}
+    Toute fonction continue sur un intervalle y admet des primitives.\\
+    Sur un intervalle, deux primitives d'une même fonction diffèrent d'une constante.
+    \tcblower
+    Le TFA donne bien une primitive sous ces hypothèses.\\
+    Soit $f\in\m{C}(I,\K)$, $F$ et $G$ deux primitives de $f$.\\
+    Alors $F-G$ est dérivable sur $I$ et $(F-G)'=f-f=0$ donc $F-G$ est constante sur $I$ d'après AF.
+\end{corr}
+
+\begin{prop}{}{}
+    Soit $f\in\m{C}(I,\K)$ et $F$ une primitive de $f$ sur $I$. Alors, pour tous $a,b\in I$,
+    \begin{equation*}
+        \int_a^bf(t)\dt=F(b)-F(a)
+    \end{equation*}
+    \tcblower
+    On a $f$ continue sur $[a,b]$. Le TFA donne $\tilde{F}:x\mapsto\int_a^xf(t)\dt$ primitive de $f$ sur $[a,b]$.\\
+    La fonction $F$ en est une autre, sur le même intervalle : $\exists C\in\K ~ \forall x \in [a,b] ~ \tilde{F}(x)=F(x)+C$.\\
+    Alors :
+    \begin{equation*}
+        \int_a^bf(t)\dt=\tilde{F}(b))\tilde{F}(b)-\tilde{F}(a)=F(b)+C-F(a)-C=F(b)-F(a).
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $f\in\m{C}^1(I,\K)$. Alors pour tous $a,b\in I$,
+    \begin{equation*}
+        \int_a^bf'(t)\dt=f(b)-f(a)
+    \end{equation*}
+    \tcblower
+    Découle du résultat précédent car $f$ est une primitive de $f'$ sur $[a,b]$ sous ces hypothèses.
+\end{prop}
+
+\begin{ex}{}{}
+    Soit la fonction
+    \begin{equation*}
+        F:x\mapsto\int_x^{x^2}\frac{1}{\ln(t)}\dt.
+    \end{equation*}
+    \-\ ~1. Donner le domaine de définition de $F$.\\
+    \-\ ~2. Montrer que $F$ est dérivable sur $D$ et calculer sa dérivée. Donner les variations de $F$.\\
+    \-\ ~3. (*) Calculer les limites intéressantes.
+    \tcblower
+    \boxed{1.} $f:=\frac{1}{\ln}$ est définie sur $]0,1[\cup]1,+\infty[$ et non prolongeable.\\
+    Pour $x\in]0,1[$, $0<x^2<x<1$ donc $[x^2,x]\subset]0,1[$ donc $f$ est continue sur $[x^2,x]$.\\
+    Pour $x\in]1,+\infty[$, $x^2>x$ donc $[x,x^2]\subset]1,+\infty[$ donc $f$ est continue sur $[x,x^2]$.\\
+    Ainsi, $D=]0,1[\cup]1,+\infty[$\n
+    \boxed{2.} $\circledcirc$ Sur $]0,1[$. Notons $L$ une primitive de $f$ sur $]0,1[$, elle existe par TFA et continuité de $f$.\\
+    Alors $F(x)=\int_x^{x^2}f=L(x^2)-L(x)$ et $F$ et dérivable comme composée et différence.\\
+    Donc $\forall x \in ]0,1[, ~ F'(x)=2xf(x^2) - f(x)=\frac{1}{\ln(x)}(x-1)>0$.\\
+    $\circledcirc$ Sur $]1,+\infty[$, on a $F'(x)=\frac{x-1}{\ln(x)}>0$.
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=3]{$x$/0.6,$F'(x)$/0.6,$F$/1.4}{$0$,$1$,$+\infty$}
+            \tkzTabLine{d,+,d,+}
+            \tkzTabVar{D-/,+D-/,+/}
+        \end{tikzpicture}
+    \end{center}
+    \boxed{3.} \textbf{Limite en $+\infty$:} Soit $x>1$. $\forall t\in[x,x^2] ~ \frac{1}{\ln(t)}\geq\frac{1}{\ln(x^2)}$ alors par croissance de l'intégrale ($x<x^2$):
+    \begin{equation*}
+        \int_x^{x^2}\frac{1}{\ln t}\dt\geq\int_x^{x^2}\frac{1}{\ln x^2}\dt \text{ donc } F(x)\geq\frac{x(x-1)}{2\ln(x)}\to+\infty
+    \end{equation*}
+    Par minoration, $F(x)\to+\infty$ en $+\infty$.\n
+    \textbf{Limite en $0_+$:} On encadre pour $x\in]0,1[$ : $\frac{1}{\ln(x)}\leq\frac{1}{\ln(t)}\leq\frac{1}{\ln(x^2)}$ alors ($x^2<x$):
+    \begin{equation*}
+        \int_x^{x^2}\frac{1}{\ln(x)}\dt\geq\int_x^{x^2}\frac{1}{\ln t}\dt\geq\int_x^{x^2}\frac{1}{\ln(x^2)}\dt
+    \end{equation*}
+    Donc $\frac{x(x-1)}{2\ln(x)} \leq F(x)\leq \frac{x(x-1)}{\ln(x)}$ Par encadrement, $F(x)\to0$ en $0_+$.\n
+    \textbf{Limite en $1_+$:}Pour $x>1$, $F(x)=L(x^2)-L(x)$ et $L'(x)=\frac{1}{\ln(x)}\sim_1\frac{1}{x-1}$ donc $L'(x)=_1\frac{1}{x-1}+o(\frac{1}{x-1})$.\\
+    Posons $R(x)=L'(x)-\frac{1}{x-1}$ continue sur $]1,+\infty[$.\\
+    On a :
+    \begin{align*}
+        F(x)&=\int_x^{x^2}L(t)\dt=\int_x^{x^2}\left(\frac{1}{t-1}+R(t)\right)\dt=\int_x^{x^2}\frac{1}{t-1}\dt+\int_x^{x^2}R(t)\dt\\
+        \int_x^{x^2}\frac{1}{t-1}\dt&=\ln(x^2-1)-\ln(x-1)=\ln(x+1)\xrightarrow[x\to1_+]{}\ln(2)
+    \end{align*}
+    Montrons que $\int_x^{x^2}R(t)\dt\to0$.\\
+    On a $(t-1)R(t)\to0$ quand $t\to1_+$.\\
+    Soit $\e>0, \exists\eta>0~\forall t\in]1,1+\eta[ ~ -\e\leq(t-1)R(t)\leq\e$ donc $-\frac{\e}{t-1}\leq R(t) \leq \frac{\e}{t-1}$.\\
+    Supposons $x\in]1,\sqrt{1+\eta}[$ alors $[x,x^2]\subset]1,1+\eta[$.\\
+    Alors $\forall t \in [x,x^2], ~ -\frac{\e}{t-1}\leq R(t) \leq \frac{\e}{t-1}$.\\
+    On intégre :
+    \begin{equation*}
+        -\e\leq-\e\ln(x+1) \leq \int_x^{x^2}R(t)\dt\leq \e\ln(x+1)\leq\e
+    \end{equation*}
+    On a donc bien $\int_x^{x^2}R(t)\dt=_1o(1)$.\\
+    On a donc prouvé que $F(x)=_1\ln(x+1)+o(1)$ donc $F(x)\xrightarrow[x\to1_+]{}\ln2$\n
+    \textbf{Limite en $1_-$:} Soit $x\in]0,1[$. On a $F(x)=\int_x^{x^2}t\frac{1}{t\ln t}\dt$. On a $0<x^2<x<1$. Soit $t\in[x^2,x]$.\\
+    On a $\frac{x}{t\ln t}\leq t\frac{1}{t\ln t}\leq \frac{x^2}{t\ln t}$. On intégre : $\int_x^{x^2}\frac{x^2}{t\ln t}\dt\leq\int_x^{x^2}\frac{1}{\ln t}\dt \leq \int_x^{x^2}\frac{x}{t\ln t}\dt$.\\
+    Or, $\int_x^{x^2}\frac{1}{t\ln t}\dt = \left[ \ln | \ln t | \right]_x^{x^2}=\ln|\ln(x^2)|-\ln|\ln(x)|=\ln(-2\ln(x))-\ln(\ln(-x))=\ln(2)$.\\
+    Finalement, $x^2\ln(2)\leq F(x) \leq x\ln(2)$ et par théorème des gendarmes, $F(x)\xrightarrow[x\to1_-]{}\ln(2)$.
+\end{ex}
+
+\subsection{Outils de calcul intégral.}
+
+\begin{thm}{Intégration par parties.}{}
+    Soient $u,v\in\m{C}^1(I,\K)$ et $a,b\in I$. Alors,
+    \begin{equation*}
+        \int_a^bu'v=[uv]_a^b-\int_a^buv'.
+    \end{equation*}
+    \tcblower
+    On a $uv$ dérivable comme produit de fonctions dérivables sur $I$.\\
+    Alors $(uv)'=u'v + uv'$. Or $u,v$ étant de classe $\m{C}^1$, $u'v$ et $uv'$ sont continues sur $I$.
+    \begin{align*}
+        \int_a^b(uv)'(t)\dt&=\int_a^b(u'(t)v(t)+u(t)v'(t))\dt\\
+        [uv]_a^b &= \int_a^bu'v+\int_a^buv'
+    \end{align*}
+\end{thm}
+
+\begin{ex}{Suites dont le terme général est une intégrale.}{}
+    Soit $(f_n)_{n\in\N}$ une suite de fonctions continues sur $[a,b]$ et $(I_n)_{n\in\N}$:
+    \begin{equation*}
+        \forall n\in\N ~ I_n := \int_a^bf_n(x)\dx 
+    \end{equation*}
+    On peut obtenir une relation de récurrence sur la suite $(I_n)$ avec une IPP dans certains cas.
+\end{ex}
+
+\begin{thm}{Formule du changement de variable}{}
+    Soit $\phi\in\m{DM}^1(I,J)$, $f\in\m{CM}(J,\K)$ et $a,b\in I$. Alors,
+    \begin{equation*}
+        \int_{\phi(a)}^{\phi(b)}f(t)\dt=\int_a^bf(\phi(x))\phi'(x)\dx
+    \end{equation*}
+\end{thm}
+
+\begin{ex}{}{}
+    En posant $t=\tan\frac{x}{2}$, montrer que: \begin{equation*}\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\frac{\dx}{4+\sin x}=\frac{\pi}{\sqrt{15}}\end{equation*} 
+    \tcblower
+    On pose le changement de variable :
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline
+            $t$ & $\dt$ & $\frac{2}{1+t^2}\dt$ & $t=-1$ & $t=1$\\
+            \hline
+            $\tan\frac{x}{2}$ & $\frac{1}{2}(1+\tan^2(\frac{x}{2}))\dx$ & $\dx$ & $x=-\frac{\pi}{2}$ & $x=\frac{\pi}{2}$\\
+            \hline
+        \end{tabular}
+    \end{center}
+    Alors :
+    \begin{align*}
+        \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\frac{\dx}{4+\sin x}&=\int_{-1}^1\frac{1}{4+\frac{2t}{1+t^2}}\cdot\frac{2}{1+t^2}\dt\\
+        &=\int_{-1}^1\frac{2}{4t^2+2t+4}\dt
+        =\int_{-1}^1\frac{1}{2t^2+t+2}\dt
+    \end{align*}
+    Pas de racine réelles. On a $2t^2+t+2=2(t^2+\frac{1}{2}+1)=2((t+\frac{1}{4})^2-(\frac{\sqrt{15}}{4})^2)$.\\
+    Cours : $\frac{1}{x^2+a^2}=\frac{d}{\dx}(\frac{1}{a}\arctan(\frac{1}{a}))$.\\
+    Donc :
+    \begin{align*}
+        \frac{1}{2}\int_{-1}^1\frac{1}{(t+\frac{1}{4})^2+(\frac{\sqrt{15}}{4})^2}\dt &= \frac{4}{2\sqrt{15}}\left[ \arctan(\frac{4}{\sqrt{15}(t+\frac{1}{4})})\right]_{-1}^1 = \frac{2}{\sqrt{15}}\left[ \arctan(\frac{5}{\sqrt{15}}) + \arctan(\frac{3}{\sqrt{15}}) \right]
+    \end{align*}
+    Or $\frac{5}{\sqrt{15}}\cdot\frac{3}{\sqrt{15}}=\frac{15}{\sqrt{15}^2}=1$ et $\arctan(x)+\arctan(\frac{1}{x})=\begin{cases}\frac{\pi}{2} ~ (x>0)\\-\frac{\pi}{2} ~ (x<0) \end{cases}$\\
+    Alors $\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\frac{1}{4+\sin x}\dx=\frac{2}{\sqrt{15}}\frac{\pi}{2}=\frac{\pi}{\sqrt{15}}$
+\end{ex}
+
+\begin{corr}{Intégrale d'une fonction paire/impaire.}{}
+    Soit $f\in\CM([-a,a],\\K)$.\\
+    Si $f$ est paire : $\int_{-a}^af(t)\dt=2\int_0^af(t)\dt$.\\
+    Si $f$ est impaire : $\int_{-a}^af(t)\dt=0$.
+\end{corr}
+
+\begin{corr}{}{}
+    Soit $f\in\CM(\R,\K)$ une fonction $T$-périodique avec $T\in\R^*_+$.
+    \begin{equation*}
+        \forall a\in\R, ~ \int_a^{a+T}f(t)\dt=\int_0^Tf(t)\dt.
+    \end{equation*}
+\end{corr}
+
+\begin{thm}{Formule de Taylor avec reste intégral}{}
+    Soit $f\in\m{C}^{n+1}([a,b],\K)$ et $x\in[a,b]$. Alors,
+    \begin{equation*}
+        f(x)=\sum_{k=0}^n\frac{f^{(k)}(a)}{k!}(x-a)^k+\int_a^b\frac{(x-t)^n}{n!}f^{(n+1)}(t)\dt
+    \end{equation*}
+    \tcblower
+    Par récurrence :\\
+    \textbf{Cas de base:} Soit $f\in\m{C}^1(I,\K)$ et $a,x\in I$. Alors :
+    \begin{equation*}
+        f(x)-\sum_{k=0}^0\frac{f^{(k)}(a)}{k!}(x-a)^k=f(x)-f(a)
+    \end{equation*}
+    Et
+    \begin{equation*}
+        \int_a^x\frac{(x-t)^0}{0!}f'(t)\dt=\int_a^xf'(t)\dt=f(x)-f(a)
+    \end{equation*}
+    Le résultat est vrai.\\
+    $\textbf{Hérédité:}$ Soit $n\in\N$. Supposons le résultat vrai pour cet entier. Soit $f\in\m{C}^{n+2}(I,\K)$ et $x,a\in I$.\\
+    Or $\m{C}^{n+2}(I,\K)\subset\m{C}^{n+1}(I,\K)$, par hypothèse : $f(x)=\sum_{k=0}^n\frac{f^{(k)}(a)}{k!}(x-a)^k+R_n(x)$.\\
+    Avec IPP, fonctions de classes $\m{C}^1$, $f^{n+1}$ et $-\frac{(x-t)^{n+1}}{(n+1)!}$ :
+    \begin{align*}
+        R_n(x)&= \int_a^x\frac{(x-a)^n}{n!}f^{(n+1)}(t)\dt = \left[ -\frac{(x-t)^{n+1}}{(n+1)!}f^{n+1}(t) \right]_a^x - \int_a^x-\frac{(x-t)^{n+1}}{(n+1)!}f^{n+2}(t)\dt\\
+        &=--\frac{(x-a)^{n+1}}{(n+1)!}f^{n+1}(a)+\int_a^x\frac{(x-t)^{n+1}}{(n+1)!}f^{n+2}(t)\dt
+    \end{align*}
+    Bilan : $f(x)=\sum_{k=0}^{n+1}\frac{f^{(k)}(a)}{k!}(x-a)^k+\int_a^x\frac{(x-t)^{n+1}}{(n+1)!}f^{(n+2)}(t)\dt$\\
+    L'identité est vraie au rang $n+1$ donc vraie pour tout $n$ par récurrence.
+\end{thm}
+
+\begin{ex}{Comparer une fonction et son polynôme de Taylor}{}
+    Montrer l'inégalité :
+    \begin{equation*}
+        \forall x \in \left[ 0,\frac{\pi}{2} \right], \quad \cos x \geq 1 - \frac{x^2}{2!}.
+    \end{equation*}
+    \tcblower
+    On a $\cos$ de classe $\m{C}^{\infty}$ donc $\m{C}^3$ sur $[0, \frac{\pi}{2}]$ donc d'après Taylor avec Reste intégral :
+    \begin{equation*}
+        \cos(x) = x - \frac{x^2}{2!} + \int_0^x\frac{(x-t)^2}{2!}\cos^{(3)}(t)\dt
+    \end{equation*}
+    Donc $\cos(x) - x + \frac{x^2}{2!} = \int_0^x\frac{(x-t)^2}{2!}\sin(t)\dt$. Cette intégrale est positive car continue, positive et $0\leq x$.\\
+    On en déduit bien l'inégalité.
+\end{ex}
+
+\begin{prop}{Inégalité de Taylor-Lagrange}{}
+    Soit $I$ un intervalle, $a\in I$, $n\in \N$ et $f\in\m{C}^{n+1}(I,\K)$.\\
+    On suppose que la fonction $|f^{(n+1)}|$ est majorée par une constante $M_{n+1}$ sur $I$. Alors
+    \begin{equation*}
+        \forall x \in I, ~ \Big|f(x)-\sum_{k=0}^n\frac{f^{(k)}(a)}{k!}(x-a)^k\Big|\leq M_{n+1}\frac{|x-a|^{n+1}}{(n+1)!}
+    \end{equation*}
+    \tcblower
+    D'après Taylor avec reste intégral, $\min:=\min(a,x)$ et $\max:=\max(a,x)$ :
+    \begin{equation*}
+        \Big|f(x)-\sum_{k=0}^n\frac{f^{(k)}(a)}{k!}(x-a)^k\Big|=\Big|\int_a^x\frac{(x-t)^n}{n!}f^{(n+1)}(t)\dt\Big|\leq\int_{\min}^{\max}\frac{|x-t|^n}{n!}|f^{n+1}(t)|\dt
+    \end{equation*}
+    Par croissance de l'intégrale, $\int_{\min}^{\max}\frac{|x-t|^n}{n!}|f^{n+1}(t)|\dt\leq\int_{\min}^{\max}\frac{|x-t|^n}{n!}M_{n+1}\dt=\frac{M_{n+1}}{(n+1)!}|x-a|^{n+1}$
+\end{prop}
+
+\begin{ex}{}{}
+    Prouver que 
+    \begin{equation*}
+        \forall x \in [0,1], ~ \lim_{n\to+\infty}\sum_{k=1}^n\frac{(-1)^{k-1}}{k}x^k=\ln(1+x).
+    \end{equation*}
+    \tcblower
+    Soit $x\in[0,1]$ et $\forall k\in\N^*, ~ u_k = \frac{x^k}{k}$ décroissante vers 0.\\
+    La série $\sum(-1)^ku_k$ converge (thm des séries alternées.).\\
+    Notons $f:x\mapsto\ln(1+x)$. Posons $n\in\N^*$ et $T_n$ son polynome de Taylor à l'ordre $n$ en 0.
+    \begin{equation*}
+        T_n = \sum_{k=1}^n\frac{f^{(k)}(0)}{k!}X^k=\sum_{k=1}^n\frac{(-1)^k}{k}X^k
+    \end{equation*}
+    On majore $|f-T_n|$ avec Taylor-Lagrange. On a $f^{(n+1)}(x)=\frac{(-1)^n(n)!}{(1+x)^{n+1}}$ majorée par $n!$ sur $[0,1]$.\\
+    Donc l'inégalité donne :
+    \begin{equation*}
+        |f(x)-T_n(x)|\leq n!\frac{|x|^{n+1}}{(n+1!)}\leq\frac{1}{n+1}
+    \end{equation*}
+    Par encadrement, $T_n(x)\xrightarrow[n\to+\infty]{} f(x)$.
+\end{ex}
+
+\section{Sommes de Riemann}
+\subsection{Convergence des sommes de Riemann}
+
+\begin{defi}{}{}
+    Soit un segment $[a,b]$ avec $a<b$. Pour $n\in\N^*$ et $k\in\lb0,n\rb$, on note $a_k=a+k\frac{b-a}{n}$.\\
+    La famille $(a_0,...,a_n)$ est appelée subdivision régulière de $[a,b]$ à $n$ segments. Chaque segment de la subdivision est de longueur $\frac{b-a}{n}$, et ce nombre est appelé pas de la subdivision.\\
+    Soit $f\in\CM([a,b], \K)$. On appelle $n$ème somme de Riemann de $f$ le nombre
+    \begin{equation*}
+        R_n(f)=\frac{b-a}{n}\sum_{k=0}^{n-1}f(a_k)
+    \end{equation*}
+\end{defi}
+
+\begin{thm}{Convergence des sommes de Riemann}{}
+    Soit $f\in\CM([a,b], \K)$.\\
+    Pour $n\in\N^*$ et $k\in\lb0,n\rb$, on note $a_k=a+k\frac{b-a}{n}$ et $R_n(f)=\frac{b-a}{n}\sum_{k=0}^{n-1}f(a_k)$. Alors,
+    \begin{equation*}
+        R_n(f)\xrightarrow[n\to+\infty]{}\int_a^bf(t)\dt
+    \end{equation*}
+    \tcblower
+    \textbf{Remarque:} on écrira la preuve dans le cas $f$ lipschitzienne.
+\end{thm}
+
+\begin{corr}{Cas particulier important}{}
+    Soit $f\in\CM([0,1], \K)$.
+    \begin{equation*}
+        \frac{1}{n}\sum_{k=0}^{n-1}f\left(\frac{k}{n}\right)\xrightarrow[n\to+\infty]{}\int_0^1f(t)\dt
+    \end{equation*}
+    \tcblower
+    C'est le théorème avec $a=0$ et $b=1$.
+\end{corr}
+
+\begin{ex}{}{}
+    Calculer :
+    \begin{equation*}
+        \lim\frac{1}{n}\sum_{k=1}^n\frac{\sqrt{k}}{\sqrt{n}} \quad \text{et}  \quad \lim\sum_{k=0}^{n-1}\frac{1}{n+k}
+    \end{equation*}
+    \tcblower
+    Posons $f:x\mapsto\sqrt{x}$, on a $\frac{1}{n}\sum_{k=1}^n\frac{\sqrt{k}}{\sqrt{n}}$.\\
+    On a $f$ continue, c'est une somme de Riemann, par convergence des sommes de Riemann:
+    \begin{equation*}
+        \frac{1}{n}\sum_{k=1}^n\frac{\sqrt{k}}{\sqrt{n}}\to\int_0^1\sqrt{t}\dt=\left[ \frac{2}{3}x^{3/2} \right]_0^1=\frac{2}{3}.
+    \end{equation*}
+    Posons $g:x\mapsto\frac{1}{1+x}$. On a $g$ continue, c'est une somme de Riemann, par converge :
+    \begin{equation*}
+        \sum_{k=0}^{n-1}\frac{1}{n+k}\to\int_0^1\frac{1}{1+t}\dt=\left[ \ln|1+t| \right]_0^1=\ln2
+    \end{equation*}
+\end{ex}
+
+\begin{ex}{Inégalité de Jensen pour les intégrales}{}
+    \textcolor{red}{\textbf{CENTRALE 2024}}\\
+    Soit $f:[a,b]\to\R$ une fonction CPM à valeurs dans $I$ et $\phi$ une fonction convexe et continue sur $I$.\\
+    Démontrer l'inégalité de Jensen pour les intégrales :
+    \begin{equation*}
+        \phi\left(\frac{1}{b-a}\int_a^bf(t)\dt\right) \leq \frac{1}{b-a}\int_a^b\phi(f(t))\dt
+    \end{equation*}
+    \tcblower
+    On sait (CV des sommes de Riemann) :
+    \begin{equation*}
+        \frac{1}{b-a}\int_a^bf(t)\dt=\lim_{n\to+\infty}\frac{1}{n}\sum_{k=0}^{n-1}f(a_k)
+    \end{equation*}
+    On a $\phi$ convexe sur $I$, on pose $\l_i=\frac{1}{n}$ et $x_i=f(a_i)$ pour $i\in\lb1,n\rb$.\\
+    D'après l'inégalité de Jensen :
+    \begin{equation*}
+        \phi\left(\frac{1}{n}\sum_{i=1}^nf(a_i)\right)\leq\frac{1}{n}\sum_{i=1}^n\phi(f(a_i))
+    \end{equation*}
+    Donc, puisque $\phi$ est $\CM$ sur $[a,b]$
+    \begin{equation*}
+        \frac{1}{n}\sum_{i=1}^n\phi\circ f(a_i) \xrightarrow[n\to+\infty]{}\frac{1}{b-1}\int_a^b\phi\circ f(t)\dt
+    \end{equation*}
+    D'après le théorème sur les sommes de $\R$.\\
+    De même, $\frac{1}{n}\sum_{i=1}^nf(a_i)\xrightarrow[n\to+\infty]{}\frac{1}{b-a}\int_a^bf(t)\dt$.\\
+    On a bien $\phi\left(\frac{1}{n}\sum_{i=1}^nf(a_i)\right)\to\phi\left(\frac{1}{b-a}\int_a^bf(t)\dt\right)$ lorsque $I=\R$.\\
+    Par stabilité des inégalités larges :
+    \begin{equation*}
+        \phi\left(\frac{1}{b-a}\int_a^bf(t)\dt\right)\leq\frac{1}{b-a}\int_a^b\phi\circ f(t)\dt
+    \end{equation*}
+\end{ex}
+
+\pagebreak
+
+\subsection{Comparaison de la méthode des rectangle avec celle des trapèzes.}
+
+\begin{prop}{Erreur d'approximation avec la méthode des rectangles}{}
+    Soit $f:[a,b]\to\K$ une fonction $M$-lipschitzienne, avec $M\in\R^*_+$.\\
+    Notons $R_n(f)=\frac{b-a}{n}\sum_{k=0}^{n-1}f(a+k\frac{b-a}{k})$, pour tout $n\in\N^*$.\\
+    Ce nombre est une valeur approchée de l'intégrale de $f$ entre $a$ et $b$.\\
+    Voici une majoration de l'erreur : $\Big|R_n(f)-\int_a^bf(t)\dt\Big|\leq\frac{M(b-a)^2}{2n}$.\\
+    On a donc $\Big|R_n(f)-\int_a^bf(t)\dt\Big|=O(\frac{1}{n})$.
+    \tcblower
+    On a :
+    \begin{align*}
+        \Big|R_n(f)-\int_a^bf\Big| &= \Big|\frac{b-a}{n}\sum_{k=0}^{n-1}f(a_k)-\sum^{n-1}_{k=0}\int_{a_k}^{a_{k+1}}f\Big|\\
+        &= \Big|\sum_{k=0}^{n-1}\left( \frac{b-a}{n}f(a_k) - \int_{a_k}^{a_{k+1}}f(t)\dt \right)\Big|\\
+        &=\Big|\sum_{k=0}^{n-1}\left(\int_{a_k}^{a_{k+1}}f(a_k)\dt-\int_{a_k}^{a_{k+1}}f(t)\dt\right)\Big|\\
+        &=\Big|\sum_{k=0}^{n-1}\int_{a_k}^{a_{k+1}}\left(f(a_k)-f(t)\right)\dt\Big|\\
+        &\leq \sum_{k=0}^{n-1}\int_{a_k}^{a_{k+1}}\Big|f(a_k)-f(t)\Big|\dt
+    \end{align*}
+    Pour $k$ fixé, $\forall t \in [a_k,a_{k+1}], ~ |f(a_k)-f(t)|\leq M(b-a_k)$.\\
+    Par croissance de l'intégrale :
+    \begin{equation*}
+        \int_{a_k}^{a_{k+1}}\Big|f(a_k)-f(t)\Big|\dt\leq M\int_{a_k}^{a_{k+1}}(t-a_k)\dt\leq \frac{1}{2}M(a_{k+1}-a_k)^2\leq\frac{M}{2}(\frac{b-a}{2})^2
+    \end{equation*}
+    On somme :
+    \begin{equation*}
+        \Big| R_n(f) - \int_a^bf\Big| \leq \sum_{k=0}^{n-1}\frac{M}{2}\frac{(b-a)^2}{n^2}\leq \frac{M(b-a)^2}{2n}=O(\frac{1}{n})
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{Erreur d'approximation avec la méthode des trapèzes}{}
+   Soit $f\in\m{C}^2([a,b],\K)$. Pour $n\in\N^*$, on définit $T_n(f)$ comme :
+   \begin{equation*}
+        T_n(f):=R_n(f)+\frac{b-a}{n}\cdot\frac{f(b)-f(a)}{2}
+   \end{equation*}
+   Alors :
+   \begin{equation*}
+    \Big|T_n(f)-\int_a^bf(t)\dt\Big|=O\left(\frac{1}{n^2}\right)
+   \end{equation*}
+\end{prop}
+
+\subsection{Complément : continuité uniforme d'une fonction.}
+
+\begin{defi}{Uniforme continuité}{}
+    Soit une fonction $f:I\to\K$. On dit que $f$ est uniformément continue sur $I$ si:
+    \begin{equation*}
+        \forall \e>0, ~ \exists \eta > 0 ~ \forall (x,y) \in I^2, ~ |x-y|\leq\eta \Longrightarrow |f(x)-f(y)|\leq\e.
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{}{}
+    Toute fonction lipschitzienne sur un intervalle $I$ y est uniformément continue.
+    \tcblower
+    Soit $f:I\to\K$ on suppose qu'il existe $K>0$ telle que $\forall x,y\in I^2, ~ |f(x)-f(y)|\leq K|x-y|$.\\
+    Soit $\e>0$, on pose $\eta=\frac{\e}{K}$. Soit $(x,y)\in I^2 ~ | ~ |x-y|\leq\eta$ alors $f|(x)-f(y)|\leq K|x-y| \leq K\eta = \e$.
+\end{prop}
+
+\begin{thm}{de Heine}{}
+    Toute fonction continue sur un segment y est uniformément continue.
+    \tcblower
+    Par l'absurde, soit $f:I\to\K$ continue sur $[a,b]$ mais non uniformément continue.
+    \begin{equation*}
+        \exists \e > 0, ~ \forall \eta > 0 ~ \exists (x,y)\in I^2, ~ |x-y|\leq\eta \text{ et } |f(x)-f(y)|>\e 
+    \end{equation*}
+    Soit un tel $\e$. Pour $n\in\N^*, ~ \exists(x_n,y_n)\in I^2 ~ |x_n-y_n| \leq \frac{1}{n}$ et $|f(x)-f(y)|>\e$.\\
+    D'après le théorème de Bolzano-Weierstrass, puisque $(x_n)$ et $(y_n)$ sont bornées, on peut extraire deux suites convergentes : $\exists \phi:\N\to\N \text{ strictement croissante} \mid x_{\phi(n)}$ converge vers $l\in\R$.\\
+    Pour $n\in\N$, $|y_{\phi(n)}-l|=|y_{\phi(n)}-x_{\phi(n)}+x_{\phi(n)}-l|\leq|y_{\phi(n)}-x_{\phi(n)}|+|x_{\phi(n)}-l|$ donc $y_{\phi(n)}\to l$.\\
+    On a $\forall n\in\N^*, ~ |f(x_{\phi(n)})-f(y_{\phi(n)}))|>\e$ et $f$ continue en $l\in[a,b]$ donc $f(x_{\phi(n)})\to f(l)$.\\
+    De même pour $f(y_{\phi(n)})\to f(l)$. Par passage à la limite, $|f(l)-f(l)|\geq\e$ et $\e\leq0$, absurde.
+\end{thm}
 \end{document}
