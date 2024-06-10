@@ -74,6 +74,8 @@
     \end{enumerate}
 \end{defi}
 
+\pagebreak
+
 \begin{prop}{}{}
     Deux permutations dont les supports sont disjoints commutent.
     \tcblower
@@ -131,7 +133,7 @@
     Ainsi, $\g^{-1}=(a_p ~ a_{p-1} ~ ... ~ a_2 ~ a_1)$.\n
     \textbf{La puissance $\g^p$ :}\n
     On a $\g=(a, \g(a), ..., \g^{p-1}(a))$ pour un $a\in\lb1,n\rb$.
-    \begin{itemize}
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
         \item $\g^p(a)=\g(\g^{p-1}(a))=a$.
         \item Soit $j\in\lb1,p-1\rb$, $\g^p(\g^j(a))=\g^j(\g^p(a))=\g^j(a)$.
         \item Soit $b\in\lb1,n\rb\setminus\{a,\g(a),...,\g^{p-1}(a)\}$, alors $\g^p(b)=b$ car point fixe.
@@ -164,7 +166,7 @@
     \end{equation*}
     \tcblower
     Notons $\pi=(a_1~a_2)(a_2~a_3)...(a_{p-1}~a_p)$. Montrons que $\g=\pi$.
-    \begin{itemize}
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
         \item Soit $b\in\lb1,n\rb\setminus\{a_1,...,a_p\}$ : $\g(b)=b$ et $\forall j \in \lb1,p-1\rb, ~ (a_j~a_{j+1})(b)=b$ car $b\notin\{a_j,a_{j+1}\}$.\n
         Alors $\gamma(b)=\pi(b)=b$.
         \item Soit $j\in\lb1,p-1\rb$. Alors $\pi(a_j)=\left[...(a_{j-1}~a_j)(a_j~a_{j+1})...\right](a_j)=\left[...(a_{j-1}~a_j)\right](a_{j+1})=a_{j+1}$.
@@ -305,6 +307,8 @@
     Donc $\e(\tau)=-1$.
 \end{prop}
 
+\pagebreak
+
 \begin{prop}{La signature comme un produit}{}
     \begin{equation*}
         \forall  \s \in S_{n} ~ \e(\s) = \prod_{\{i, j\}} \frac{\s(i) - \s(j) }{i - j}
@@ -367,7 +371,7 @@
     Montrons l'existence dans un premier point puis l'unicité.
     \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
         \item La fonction constante
-        $\mathds{1} : \left\{ \begin{array}{ll}
+        $\1 : \left\{ \begin{array}{ll}
              S_{n} \to \C^{*}  \n
              \s \mapsto 1
         \end{array}\right.$ est un \underline{morphisme de groupes} dit morphisme \underline{trivial}.
