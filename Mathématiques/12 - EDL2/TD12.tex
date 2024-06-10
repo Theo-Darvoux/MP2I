@@ -1,0 +1,261 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm, paperheight=31cm]{geometry}
+\usepackage[skins]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol, changepage}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{tkz-tab}
+\usepackage{systeme}
+
+\def\pagetitle{Équations Différentielles Linéaires d'ordre 2}
+\setlength{\headheight}{13pt}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+\date{Novembre 2023}
+\author{DARVOUX Théo}
+
+\DeclareMathOperator{\ch}{ch}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+
+\begin{document}
+\renewcommand*\contentsname{Exercices.}
+\renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\maketitle
+
+\begin{center}\Large{MRC Ibrahim POUR AIDE SUR PRESQUE tOUT}\end{center}
+
+\hrule
+\tableofcontents
+\vspace{0.5cm}
+\hrule
+
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+\allowdisplaybreaks
+
+\pagebreak
+
+\section*{Exercice 12.1 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.5in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre le problème de Cauchy ci-dessous :
+    \begin{equation*}
+        \begin{cases}
+            y'' + 2y' + 10y = 5\\
+            y(0) = 1 \quad y'(0) = 0
+        \end{cases}
+    \end{equation*}
+    Polynome caractéristique : $r^2 + 2r + 10$. $\Delta = -36$. $r_{\pm}=-1\pm3i$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto e^{-x}\left(\alpha\cos(3x) + \beta\sin(3x)\right) ~ | ~ (\alpha, \beta)\in\mathbb{R}^2\}$\\
+    Solution particulière : $S_p : x\mapsto\frac{1}{2}$.\\
+    Solution générale : $S = \{x\mapsto\frac{1}{2} + e^{-x}\left( \alpha\cos(3x) + \beta\sin(3x) \right) ~ | ~ (\alpha, \beta) \in \mathbb{R}^2\}$.\\
+    Conditions initiales.\\
+    Soit $(\alpha, \beta)\in\mathbb{R}^2 ~ | ~ \forall{x\in\mathbb{R}, ~ y(x)=\frac{1}{2} + e^{-x}\left( \alpha\cos(3x) + \beta\sin(3x) \right)}$.\\
+    On a $y(0)=1 \iff \frac{1}{2} + \alpha = 1 \iff \alpha = \frac{1}{2}$.\\
+    On a $y'(0)=0 \iff -\frac{1}{2}+3\beta = 0 \iff \beta = \frac{1}{6}$.\\
+    L'unique solution de ce problème de Cauchy est : $x\mapsto\frac{1}{2} + e^{-x}\left( \frac{1}{2}\cos(3x) + \frac{1}{6}\sin(3x) \right)$\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.1}
+
+\section*{Exercice 12.2 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.5in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre :
+    \begin{equation*}
+        y'' - y' - 2y = 2\ch(x)
+    \end{equation*}
+    On réecrit d'abord cette équation comme : $y'' - y' - 2y = e^{x} + e^{-x}$.\\
+    Polynome caractéristique : $r^2 - r - 2$. $\Delta = 9$. $r_1 = -1$ et $r_2 = 2$.\\
+    Solutions de l'équation homogène : $S_0 = \{x \mapsto \lambda e^{-x} + \mu e^{2x} ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$.\\
+    Équation auxiliaire 1 : $y'' - y' - 2y = e^x$. Solution particulière : $S_{p,1} : x\mapsto Be^{x} ~ | ~ B\in\mathbb{R}$.\\
+    Soit $x\in\mathbb{R}$, $B\in\mathbb{R}$ et $y:x\mapsto Be^x$.\\
+    On a $y''(x) - y'(x) - 2y(x) = e^x \iff -2Be^x = e^x \iff B = -\frac{1}{2}$.\\
+    Ainsi, $S_{p,1}:x\mapsto -\frac{1}{2}e^x$.\\
+    Équation auxiliaire 2 : $y'' - y' - 2y = e^{-x}$. Solution particulière : $S_{p,2} : x\mapsto Cxe^{-x} ~ | ~ C\in\mathbb{R}$.\\
+    Soit $x\in\mathbb{R}$, $C\in\mathbb{R}$ et $y:x\mapsto Cxe^{-x}$.\\
+    On a $y''(x) - y'(x) - 2y(x) = e^{-x} \iff -3Ce^{-x} = e^{-x} \iff C = -\frac{1}{3}$.\\
+    Ainsi, $S_{p,2}: x\mapsto -\frac{1}{3}xe^{-x}$.\\
+    Par superposition, l'ensemble des solutions est :
+    \begin{equation*}
+        \{x\mapsto \lambda e^{-x} + \mu e^{2x} - \frac{1}{2}e^x - \frac{1}{3}xe^{-x} ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}
+    \end{equation*}
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.2}
+
+\section*{Exercice 12.3 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.5in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre :
+    \begin{equation*}
+        y'' + 2y' + y = \cos(2t) \quad (E).
+    \end{equation*}
+    Polynome caractéristique : $r^2 + 2r + 1$. $\Delta = 0$. $r = -1$.\\
+    Solutions de l'équation homogène : $S_0 = \{x \mapsto \lambda x e^{-x} + \mu e ^{-x} ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$.\\
+    Équation auxiliaire : $y'' + 2y' + y = e^{2ix}$. Solution particulière : $S_{p,aux} : x\mapsto Be^{2ix}$ avec $B\in\mathbb{R}$.\\
+    Soit $x\in\mathbb{R}$, $B\in\mathbb{R}$ et $y:x\mapsto Be^{2ix}$.\\
+    On a : $y''(x) + 2y'(x) + y(x) = e^{2ix} \iff Be^{2ix}(-3+4i)= e^{2ix} \iff B = \frac{1}{-3+4i} = \frac{-3-4i}{25}$.\\
+    Passage à la partie réelle : $\Re(y(x)) = \Re\left( -\frac{3+4i}{25}\left( \cos(2x) + i\sin(2x) \right) \right) = -\frac{3}{25}\cos(2x) + \frac{4}{25}\sin(2x)$.\\
+    Solution générale : $S = \{x \mapsto \lambda x e^{-x} + \mu e^{-x} - \frac{3}{25}\cos(2x) + \frac{4}{25}\sin(2x) ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.3}
+
+\section*{Exercice 12.4 [$\blacklozenge\blacklozenge\lozenge$] Résonance... ou pas}
+\begin{tcolorbox}[enhanced, width=7.5in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    1. \underbar{Excitation à une pulsation quelconque}. Résoudre
+    \begin{equation*}
+        y'' + 4y = \cos t
+    \end{equation*}
+    2. \underbar{Excitation à la pulsation propre : résonance}. Résoudre
+    \begin{equation*}
+        y'' + 4y = \cos(2t)
+    \end{equation*}
+    1. Polynome caractéristique : $r^2 + 4$. $\Delta=-16$. $r_1 = 2i$, $r_2=-2i$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto \lambda\cos(2x) + \mu\sin(2x) ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$.\\
+    Équation auxiliaire : $y'' + 4y = e^{it}$. Solution particulière : $S_{p,aux}:x\mapsto Be^{ix}$ avec $B\in\mathbb{R}$.\\
+    Soit $x,B\in\mathbb{R}$, et $y:x\mapsto Be^{ix}$.\\
+    On a : $y''(x) + 4y(x) = e^{ix} \iff 3Be^{ix} = e^{ix} \iff B = \frac{1}{3}$.\\
+    Passage à la partie réelle : $\Re(y(x)) = \frac{1}{3}\cos(x)$.\\
+    Solution générale : $S = \{x\mapsto \lambda \cos(2x) + \mu \sin(2x) + \frac{1}{3}\cos(x) ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$\\[0.2cm]
+    2. L'ensemble des solutions de l'équation homogène est encore $S_0$.\\
+    Équation auxiliaire : $y'' + 4y + e^{2it}$. Solution particulière : $S_{p,aux}:x\mapsto Bxe^{2ix}$ avec $B\in\mathbb{R}$.\\
+    Soit $x,B\in\mathbb{R}$ et $y:x\mapsto Bxe^{2ix}$.\\
+    On a : $y''(x) + 4y(x) = e^{2ix} \iff Be^{2ix}(4i-4x) + 4Bxe^{2ix} = e^{2ix} \iff B=\frac{1}{4i}=-\frac{i}{4}$\\
+    Passage à la partie réelle : $\Re(y(x)) = \Re\left( -\frac{i}{4}x(\cos(2x) + i\sin(2x)) \right)=\frac{1}{4}x\sin(2x)$.\\
+    Solution générale : $S=\{x\mapsto \lambda\cos(2x) + \mu\cos(2x) + \frac{1}{4}x\sin(2x) ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.4}
+
+\section*{Exercice 12.5 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.5in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $\alpha\in\mathbb{R}$. Résoudre l'équation différentielle
+    \begin{equation*}
+        2y'' + \alpha y' + \alpha y = 0.
+    \end{equation*}
+    On discutera selon les valeurs de $\alpha$.\\[0.1cm]
+    On se ramène à l'équation différentielle : $y'' + \frac{\alpha}{2}y' + \frac{\alpha}{2}y = 0$.\\
+    Polynome caractéristique : $r^2 + \frac{\alpha}{2}r + \frac{\alpha}{2}$. $\Delta=\alpha(\frac{\alpha}{4}-2)$\\
+    On a alors trois cas...\\
+    $\circledcirc$ Cas $\alpha\in\{0, 8\}$.
+    \begin{adjustwidth}{1cm}{}
+        Alors $\Delta=0$ et $r=-\frac{\alpha}{4}$.\\
+        Solution générale : $S = \{x\mapsto \lambda x e^{-\frac{\alpha}{4}x} + \mu e^{-\frac{\alpha}{4}x} ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$.
+    \end{adjustwidth}
+    $\circledcirc$ Cas $\alpha\in]0,8[$.
+    \begin{adjustwidth}{1cm}{}
+        Alors $\Delta<0$ et $r_\pm = -\frac{\alpha}{4} \pm i\sqrt{-\Delta}$.\\
+        Solution générale : $S = \{x\mapsto e^{-\frac{\alpha}{4}x} \left( \lambda \cos(\sqrt{-\Delta}x) + \mu\sin(\sqrt{-\Delta}x) \right) ~ | ~  (\lambda,\mu)\in\mathbb{R}^2\}$
+    \end{adjustwidth}
+    $\circledcirc$ Cas $\alpha\notin[0,8]$.
+    \begin{adjustwidth}{1cm}{}
+        Alors $\Delta>0$ et $r_1 = -\frac{\alpha}{4} + \sqrt{\Delta}$, $r_2 = -\frac{\alpha}{4} - \sqrt{\Delta}$.\\
+        Solution générale : $S=\{x\mapsto \lambda e^{r_1x} + \mu e^{r_2x} ~ | ~ (\lambda,\mu)\in\mathbb{R}^2\}$.
+    \end{adjustwidth}
+    Trop la flemme de remplacer les $\Delta$ et $r_\pm$, ça sert à rien.\\
+    On a vu les cas pour toutes les valeurs possibles de $\alpha$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.5}
+
+\section*{Exercice 12.6 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.5in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $a\in\mathbb{R}$. En discutant selon la valeur de $a$, résoudre
+    \begin{equation*}
+        y'' - 2ay' + (1+a^2)y = \sin x.
+    \end{equation*}
+    $\circledcirc$ On suppose $a\neq0$.\\
+    Polynome caractéristique : $r^2 - 2ar + (1 + a^2)$. $\Delta = -4$. $r_1 = 1 + i$, $r_2 = 1 - i$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto e^{x}\left( \lambda \cos(x) + \mu \sin(x) \right) ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$.\\
+    Équation auxiliaire : $y'' - 2ay' + (1+a^2)y = e^{ix}$. Solution particulière : $x\mapsto Be^{ix}$.\\
+    Soit $x,B \in \mathbb{R}$ et $y:x\mapsto Be^{ix}$.\\
+    On a : $-Be^{ix} - 2aiBe^{ix} + (1 + a^2)Be^{ix} = e^{ix} \iff B = \frac{1}{a^2-2ai} = \frac{a+2i}{a^3+4a}$.\\
+    Passage à la partie imaginaire : $\Im(y(x))=\Im\left( \frac{a+2i}{a^3+4a}(\cos(x)+i\sin(x)) \right)=\frac{a}{a^3+4a}\sin(x) + 2\cos(x)$.\\
+    Solution générale : $S=\{x\mapsto e^x(\lambda\cos(x) + \mu\sin(x)) + \frac{a}{a^3+4a}\sin(x) + 2\cos(x) ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$.\\[0.2cm]
+    $\circledcirc$ On suppose $a=0$.
+    Polynome caractéristique : $r^2 + r$. $\Delta = -4$. $r_1 = i$ et $r_2 = -i$.\\
+    Solutions de l'équation homogène : $\{x\mapsto \lambda\cos(x) + \mu\sin(x) ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$.\\
+    Équation auxiliaire : $y'' + y = e^{ix}$. Solution particulière : $x\mapsto Bxe^{ix}$.\\
+    Soit $x,B\in\mathbb{R}$ et $y:x\mapsto Bxe^{ix}$.\\
+    On a : $y''(x) + y(x) = e^{ix} \iff 2iBe^{ix} = e^{ix} \iff B = \frac{1}{2i} = -\frac{i}{2}$.\\
+    Passage à la partie imaginaire : $\Im(y(x)) = \Im(-\frac{ix}{2}(\cos(x)+i\sin(x)))=-\frac{x}{2}\cos(x)$\\
+    Solution générale : $S=\{x\mapsto \lambda\cos(x) + \mu\sin(x) - \frac{x}{2}\cos(x) ~ | ~ (\lambda, \mu)\in\mathbb{R}\}$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.6}
+
+\section*{Exercice 12.7 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7.5in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    On considère l'équation différentielle à coefficients \emph{non constants} ci-dessous :
+    \begin{equation*}
+        (E) \qquad t^2y'' + 4ty' + (2 + t^2)y = 1 ~ \text{sur }\mathbb{R}^*_+.
+    \end{equation*}
+    Soient $y$ une fonction définie sur $\mathbb{R}^*_+$ et $z:t\mapsto t^2y(t)$.
+    \begin{adjustwidth}{0.2cm}{}
+        1. Justifier que $y$ est deux fois dérivable sur $\mathbb{R}^*_+$ si et seulement si $z$ est deux fois dérivable sur $\mathbb{R}^*_+$.\\
+        2. Démontrer que $y$ est solution de l'équation si est seulement si $z$ est solution d'une équation différentielle très simple que l'on précisera.\\
+        3. Donner l'ensemble des solutions de $(E)$.
+    \end{adjustwidth}
+    1. Soit $t\in\mathbb{R}^*_+$.\\ 
+    Supposons $z$ deux fois dérivable.\\
+    Alors $z'(t) = 2ty(t) + t^2y'(t)$ et $z''(t) = 2y(t) + 4ty'(t) + t^2y''(t)$.\\
+    Ainsi, $y$ est deux fois dérivable.\\[0.1cm]
+    Supposons $y$ deux fois dérivable.\\
+    $z$ est dérivable une fois comme produit de fonctions dérivable et une deuxième fois comme somme et produit de fonctions dérivables.\\[0.2cm]
+    2. Supposons $y$ solution de $(E)$, $y$ est alors deux fois dérivable, $z$ aussi. On a $t^2y'' + 4ty' + 2y+t^2y=1$.\\
+    Par identification, $z'' + z = 1$ $(E')$\\[0.2cm]
+    3. Polynome caractéristique : $r^2 + 1$. $\Delta = -4$. $r_1 = i$ et $r_2 = -i$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto \lambda\cos(x) + \mu\sin(x) ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$.\\
+    Solution particulière : $S_p : x\mapsto 1$.\\
+    Solution générale : $S = \{x\mapsto \lambda \cos(x) + \mu \sin(x) + 1 ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$.\\
+    Ainsi, les solution de $(E)$ sur $\mathbb{R}^*_+$ sont : $S_E = \{x\mapsto \frac{\lambda}{x^2}\cos(x) + \frac{\mu}{x^2}\sin(x) + \frac{1}{x^2} ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.7}
+
+\section*{Exercice 12.8 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7.5in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Trouver toutes les fonctions $f$ dérivables sur $\mathbb{R}$ et telles que
+    \begin{equation*}
+        \forall x \in \mathbb{R}, ~ f'(x) = f(\pi - x).
+    \end{equation*}
+    \emph{Analyse.}\\
+    Supposons qu'il existe $f$ dérivable sur $\mathbb{R}$ telle que $\forall x \in \mathbb{R}, ~ f'(x) = f(\pi-x)$.\\
+    Soit $x\in\mathbb{R}$.\\
+    Alors, $f''(x) = -f'(\pi-x) = -f(\pi - \pi + x) = -f(x)$.\\
+    Ainsi, $f''(x) + f(x) = 0$\\
+    Polynome caractéristique : $r^2 + 1$. $\Delta = -4$, $r_1=i$ et $r_2=-i$.\\
+    Solution générale : $S = \{x\mapsto \lambda \cos(x) + \mu \sin(x) ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$.\\
+    \emph{Synthèse.}\\
+    Soit $x,\lambda,\mu\in\mathbb{R}$ et $y:x\mapsto\lambda\cos(x) + \mu\sin(x)$ dérivable comme somme et produit.\\
+    On a : $y'(x) = -\lambda\sin(x) + \mu\cos(x)$.\\
+    Et : 
+    \begin{align*}
+        y'(x) = y(\pi - x) &\iff -\lambda\sin(x) + \mu\cos(x) = \lambda\cos(\pi - x) + \mu\sin(\pi - x)\\
+        &\iff -\lambda\sin(x) + \mu\cos(x) = -\lambda\cos(x) + \mu\sin(x)\\
+        &\iff (\lambda + \mu)(\cos(x) - \sin(x)) = 0
+    \end{align*}
+    Conditions initiales : pour $x=0$.
+    \begin{align*}
+        &(\lambda + \mu) = 0\\
+        \iff& \lambda = -\mu
+    \end{align*}
+    Ainsi, les solutions sont : $\{x\mapsto \lambda(\cos(x) - \sin(x)) ~ | ~ \lambda \in \mathbb{R}\}$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 12.8}
+\end{document}
+ 

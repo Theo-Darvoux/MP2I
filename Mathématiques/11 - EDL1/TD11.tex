@@ -1,0 +1,193 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm, paperheight=29cm]{geometry}
+\usepackage[skins]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{tkz-tab}
+\usepackage{systeme}
+
+\def\pagetitle{Équations Différentielles Linéaires d'ordre 1}
+\setlength{\headheight}{13pt}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+\date{Novembre 2023}
+\author{DARVOUX Théo}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+
+\begin{document}
+\renewcommand*\contentsname{Exercices.}
+\renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\maketitle
+\begin{center}
+    \LARGE{Crédits : Ibrahim pour 11.1, 11.2, 11.3}\\
+\end{center}
+\hrule
+\tableofcontents
+\vspace{0.5cm}
+\hrule
+
+\begin{center}
+    \LARGE{Je rédige pas la variation de la constante parce que c'est trop long et toujours la même chose allez lire votre cours}
+\end{center}
+
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+\allowdisplaybreaks
+
+\pagebreak
+
+\section*{Exercice 11.1 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre les équations différentielles ci-dessous
+    \begin{center}
+        1. $y' - 2y = 2$ sur $\mathbb{R}$ \hspace{0.5cm} 2. $(x^2+1)y'+xy=x$ \hspace{0.5cm} 3. $y' + \tan(x)y = \sin(2x)$ sur $]-\frac{\pi}{2}, \frac{\pi}{2}[$\\
+        4. $y'-\ln(x)y = x^x$ sur $\mathbb{R}_+^*$ \hspace{1cm} 5. $(1-x)y' - y = \frac{1}{1-x}$ sur $]-\infty, 1[$
+    \end{center}
+    1. Solutions de l'équation homogène : $S_0=\{x\mapsto\lambda e^{2x} ~ | ~ \lambda\in\mathbb{R}\}$\\
+    Solution particulière, avec $y$ constante : $S_p : x\mapsto -1$.\\
+    Ensemble de solutions : $S = \{\lambda e^{2x} - 1 ~ | ~ \lambda\in\mathbb{R}\}$.\\[0.2cm]
+    2. L'équation se réecrit comme $y' + \frac{x}{x^2+1}y=\frac{x}{x^2+1}$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto\frac{\lambda}{\sqrt{x^2+1}} ~ | ~ \lambda \in \mathbb{R}\}$\\
+    Solution particulière : $S_p:x\mapsto1$ est solution évidente.\\
+    Ensemble de solutions : $S = \{x\mapsto\frac{\lambda}{\sqrt{x^2+1}}+1 ~ | ~ \lambda\in\mathbb{R}\}$.\\[0.2cm]
+    3.Soit $I = ~ ]-\frac{\pi}{2}, \frac{\pi}{2}[$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto \lambda \cos x ~ | ~ \lambda \in \mathbb{R}\}$.\\
+    Solution particulière : Soit $u\in S_0$ et $\lambda:I\rightarrow\mathbb{K}$ dérivable sur $I$. On cherche $z=\lambda'u$.
+    \begin{align*}
+        z \text{ est solution } &\iff \forall{x\in I}, ~ \lambda'(x)\cos(x) = \sin(2x)\\
+        &\iff \forall{x}\in I, ~ \lambda'(x) = \frac{\sin(2x)}{\cos(x)}=2\sin(x)\\
+        &\iff \lambda =-2\cos
+    \end{align*}
+    Ainsi, $z=-2\cos^2$.\\
+    Ensemble de solutions : $S = \{x\mapsto \lambda\cos x - 2\cos^2x\ ~ | ~ \lambda \in \mathbb{R}\}$.\\
+    4. Soit $I=\mathbb{R}^*_+$.\\
+    Solutions de l'équation homogène : $S_0=\{x\mapsto\lambda \frac{x^x}{e^x} ~ | ~ \lambda \in\mathbb{R}\}$\\
+    Solution particulière : Soit $u\in S_0$ et $\lambda : I \rightarrow \mathbb{K}$ dérivable sur $I$. On cherche $z=\lambda'u$.
+    \begin{align*}
+        z \text{ est solution} &\iff \forall{x\in I}, ~ \lambda'(x)\frac{x^x}{e^x} = x^x\\
+        &\iff \forall{x \in I}, ~ \lambda'(x) = e^x\\
+        &\iff \lambda = e^\cdot
+    \end{align*}
+    Ainsi, $z:x \mapsto x^x$\\
+    Ensemble de solutions : $S = \{x\mapsto \lambda\frac{x^x}{e^x} + x^x ~ | ~ \lambda \in \mathbb{R}\}$\\
+    5. Soit $I=]-\infty,1[$. L'équation se réecrit comme $y' - \frac{1}{1-x}y = \frac{1}{(1-x)^2}$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto\frac{\lambda}{1-x} ~ | ~ \lambda\in\mathbb{R}\}$.\\
+    Solution particulière : Soit $u\in S_0$ et $\lambda:I\rightarrow\mathbb{K}$ dérivable sur $I$. On cherche $z=\lambda'u$.
+    \begin{align*}
+        z \text{ est solution} &\iff \forall{x\in I}, ~ \frac{\lambda'(x)}{1-x} = \frac{1}{(1-x)^2}\\
+        &\iff \forall{x\in I}, ~ \lambda'(x) = \frac{1}{1-x}\\
+        &\iff \forall{x\in I}, ~ \lambda(x) = -\ln(1-x) 
+    \end{align*} 
+    Ainsi, $z:x\mapsto -\frac{\ln(1-x)}{1-x}$.\\
+    Ensemble de solutions : $S = \{x \mapsto \frac{\lambda}{1-x} - \frac{\ln(1-x)}{1-x} ~ | ~ \lambda \in \mathbb{R}\}$\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 11.1}
+
+\section*{Exercice 11.2 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre sur $R_+^*$ le problème de Cauchy $\begin{cases} y' - \frac{2}{x}y = x^2\cos x\\ y(\pi)=0 \end{cases}$.\\
+    Solution homogène : $S_0 = \{x \mapsto \lambda x^2 ~ | ~ \lambda \in\mathbb{R}\}$.\\
+    Solution particulière : Soit $u\in S_0$ et $\lambda : I \rightarrow \mathbb{K}$ dérivable sur $I$. On cherche $z = \lambda'u$.
+    \begin{align*}
+        z \text{ est solution} &\iff \forall{x\in I} ~ \lambda'(x)x^2 = x^2\cos x\\
+        &\iff \forall{x\in I} ~ \lambda'(x) = \cos x\\
+        &\iff \lambda = \sin
+    \end{align*}
+    Ainsi, $z:x\mapsto x^2\sin x$.\\
+    Ensemble de solutions : $S=\{x\mapsto\lambda x^2 + x^2\sin x ~ | ~ \lambda \in \mathbb{R}\}$\\
+    Conditions initiales : Soit $y \in S$. On a :
+    \begin{align*}
+        y(\pi) = 0 &\iff \exists{\lambda\in\mathbb{R}} ~ | ~ \lambda\pi^2 + \pi^2\sin(\pi) = 0\\
+        &\iff \lambda\pi^2 = 0\\
+        &\iff \lambda = 0
+    \end{align*}
+    L'unique solution de ce problème de Cauchy est donc : $y:x\mapsto x^2\sin x$.\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 11.2}
+
+\section*{Exercice 11.3 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Trouver toutes les fonctions $f$ dérivables sur $\mathbb{R}$ telles que
+    \begin{equation*}
+        \forall{x \in \mathbb{R}} ~ f'(x) + f(x) = \int_0^1{f(t)dt}
+    \end{equation*}
+    \emph{Analyse.}\\[0.1cm]
+    On suppose qu'il existe $y$ dérivable sur $\mathbb{R}$ solution de cette équation.\\[0.1cm]
+    Soit $x\in\mathbb{R}$.\\
+    En dérivant l'égalité, on obtient : $y''(x) + y'(x) = 0$. On pose $g(x)=y'(x)$.\\
+    On a : $g'(x) + g(x) = 0$.\\
+    Solution générale : $S = \{x\mapsto \lambda e^{-x} ~ | ~ x\in\mathbb{R}\}$.\\
+    Ainsi, $g \in S$ et $\exists (\lambda, \mu) \in \mathbb{R}^2 ~ | ~ y(x) = -\lambda e^{-x} + \mu$.\\
+    On a :
+    \begin{align*}
+        y'(x) + y(x) = \int_0^1y(t)dt &\iff \lambda e^{-x} - \lambda e^{-x} + \mu = \left[\lambda e^{-t} + \mu t\right]_0^1\\
+        &\iff \mu = \lambda e^{-1} + \mu - \lambda\\
+        &\iff \lambda(e^{-1} -1) = 0\\
+        &\iff \lambda = 0
+    \end{align*}
+    Ainsi, l'ensemble des solutions est : $\{x\mapsto\mu ~ | ~ \mu \in \mathbb{R}\}$.\\
+    \emph{Synthèse}.\\
+    Soit $x\in\mathbb{R}$ et $\mu\in\mathbb{R} ~ | ~ y(x)=\mu$. On a $y'(x) + y(x) = \mu$ et $\int_0^1y(t)dt=\int_0^1\mu dt=\mu$\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 11.3}
+
+
+\section*{Exercice 11.4 [$\blacklozenge\blacklozenge\blacklozenge$] <<Recollement>>}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit l'équation différentielle $x^2y' - y = 0$.\\
+    1. Résoudre sur $\mathbb{R}^*_+$ et sur $\mathbb{R}^*_-$.\\
+    2. Trouver toutes les solutions définies sur $\mathbb{R}$\\[0.1cm]
+    1. On se ramène à l'équation : $y' - \frac{1}{x^2}y = 0$.\\
+    Pour $x\in\mathbb{R}^*_+$, l'ensemble de solutions $S_+ = \{x\mapsto \lambda e^{-\frac{1}{x}} ~ | ~ \lambda \in \mathbb{R}\}$.\\
+    Pour $x\in\mathbb{R}^*_-$, l'ensemble de solutions $S_- = \{x\mapsto \mu e^{-\frac{1}{x}} ~ | ~ \mu \in \mathbb{R}\}$.\\
+    2. Une solution de $y$ sur $\mathbb{R}$ est solution sur $\mathbb{R}^*_-$ et $\mathbb{R}^*_+$. Ainsi, $\exists(\lambda, \mu)\in\mathbb{R}^2$ tels que
+    \begin{equation*}
+        \forall{x\in\mathbb{R}}, y(x) = \begin{cases} \lambda e^{-\frac{1}{x}} \text{ si } x>0\\ \mu e^{-\frac{1}{x}} \text{ si } x<0\end{cases}
+    \end{equation*}
+    On a :
+    \begin{align*}
+        \mu e^{-\frac{1}{x}} \xrightarrow[x\to0^-]{}+\infty ~ \text{ et } ~ \lambda e^{-\frac{1}{x}} \xrightarrow[x\to0^+]{} 0
+    \end{align*}
+    Donc $y$ est prolongeable en $0$ si et seulement si $\mu=0$. On a alors $y(0)=0$.\\
+    On a :
+    \begin{align*}
+        &\text {x > 0 : } \frac{y(x) - y(0)}{x - 0} = \frac{\lambda e^{-\frac{1}{x}}}{x}=-\lambda\left(-\frac{1}{x}\right)e^{-\frac{1}{x}} \xrightarrow[x\to0^+]{}0 ~ \text{\emph{c.c.}}\\
+        &\text {x < 0 : } \frac{y(x) - y(0)}{x - 0} = 0 \xrightarrow[x\to0^-]{} 0
+    \end{align*}
+    Donc $y$ est dérivable en $0$ et $y'(0)=0$.\\
+    La fonction est alors continue et dérivable sur $\mathbb{R}$ et on a $0^2y'(0)-y(0)=0$, l'équation est donc satisfaite en $0$.\\
+    Les solutions sont donc les fonctions : 
+    \begin{equation*}
+        y(x) = \begin{cases}
+            \lambda e^{-\frac{1}{x}} \text{ si } x>0\\
+            0 \text{ si } x\leq0
+        \end{cases}
+        (\lambda \in \mathbb{R})
+    \end{equation*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 11.4}
+\end{document}
+ 

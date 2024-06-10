@@ -1,0 +1,273 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[skins]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e, multicol}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{tkz-tab}
+\usepackage{systeme}
+
+\def\pagetitle{Petits Systèmes Linéaires}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+\date{Novembre 2023}
+\author{DARVOUX Théo}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+
+\begin{document}
+\renewcommand*\contentsname{Exercices.}
+\renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\maketitle
+\begin{center}
+    \LARGE{Crédits : Ibrahim pour l'exercice 9.4}\\
+    \large{C'est très difficile d'écrire les $L_1 \leftrightarrow L_3$ sous les $\iff$ (de manière esthétique) en \LaTeX,\\bonne chance pour comprendre les étapes}
+\end{center}
+\hrule
+\tableofcontents
+\vspace{0.5cm}
+\hrule
+
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+\allowdisplaybreaks
+
+\pagebreak
+
+\section*{Exercice 9.1 [$\blacklozenge\lozenge\lozenge$] [Un système de Cramer bête et méchant]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre le système suivant dans $\mathbb{R}^3$.
+    \begin{equation*}
+        \systeme{
+            3x + y- 2z = 10,
+            2x - y+ z = 3,
+            x - y +2z = 2
+        }
+    \end{equation*}
+    Soit $(x,y,z)\in\mathbb{R}^3$.
+    \begin{align*}
+        &(x,y,z) \text{ est solution } \\
+        \iff&
+        \systeme{
+            3x + y -2z = 10,
+            2x - y + z = 3,
+            x - y + 2z = 2
+        }\\ \iff&
+        \systeme{
+            x - y + 2z = 2,
+            2x - y + z = 3,
+            3x + y - 2z = 10
+        }\\ \iff&
+        \systeme{
+            x-y+2z=2,
+            y-3z=-1,
+            4y-8z=4
+        }\\ \iff&
+        \systeme{
+            x-y+2z=2,
+            y-3z=-1,
+            4z=8
+        }\\ \iff&
+        \begin{cases}
+            x=3\\
+            y=5\\
+            z=2
+        \end{cases}
+    \end{align*}
+    L'unique solution de système dans $\mathbb{R}^3$ est donc $(3,5,2)$.\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 9.1}
+
+\section*{Exercice 9.2 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre le système suivant dans $\mathbb{R}^3$.
+    \begin{equation*}
+        \systeme{
+            x+2y-z=2,
+            x-2y+3z=-2,
+            3x-2y+5z=-2
+        }
+    \end{equation*}
+    Soit $(x,y,z)\in\mathbb{R}^3$.
+    \begin{align*}
+        &(x,y,z) \text{ est solution}\\
+        \iff&
+        \systeme{
+            x+2y-z=2,
+            x-2y+3z=-2,
+            3x-2y+5z=-2
+        }\\ \iff&
+        \systeme{
+            x+2y-z=2,
+            -4y+4z=-4,
+            -8y+8z=-8
+        }\\ \iff&
+        \systeme{
+            x+2y-z=2,
+            y - z = 1,
+            z = y - 1
+        }\\ \iff&
+        \begin{cases}
+            y=1-x\\
+            z=-x
+        \end{cases}\\
+    \end{align*}
+    L'ensemble $S$ des solutions est alors 
+    \begin{equation*}
+        S = \left\{(x, 1-x, -x) \hspace{0.2cm} | \hspace{0.2cm} x \in \mathbb{R}\right\} = \left\{(0, 1, 0) + x(1,-1,-1) \hspace{0.2cm} | \hspace{0.2cm} x\in\mathbb{R}\right\}
+    \end{equation*}
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 9.2}
+
+\section*{Exercice 9.3 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $(a,b,c)\in\mathbb{R}^3$, $a \neq b$, $a \neq c$, $b \neq c$. Résoudre :
+    \begin{equation*}
+        \begin{cases}
+            x+ay+a^2z=a^3\\
+            x+by+b^2z=b^3\\
+            x+cy+c^2z=c^3
+        \end{cases}
+    \end{equation*}
+    Soit $(x,y,z)\in\mathbb{R}^3$.
+    \begin{align*}
+        &(x,y,z) \text{ est solution}\\ \iff&
+        \begin{cases}
+            x+ay+a^2z=a^3\\
+            x+by+b^2z=b^3\\
+            x+cy+c^2z=c^3
+        \end{cases}
+        \\\iff &
+        \begin{cases}
+            x+ay+a^2z=a^3\\
+            (b-a)y+(b^2-a^2)z=b^3-a^3\\
+            (c-a)y+(c^2-a^2)z=c^3-a^3
+        \end{cases}
+        \\\iff &
+        \begin{cases}
+            x+ay+a^2z=a^3\\
+            (b-a)y+(b-a)(b+a)z=(b-a)(a^2+ab+b^2)\\
+            (c-a)y+(c-a)(c+a)z=(c-a)(a^2+ac+c^2)
+        \end{cases}
+        \\\iff &
+        \begin{cases}
+            x+ay+a^2z=a^3\\
+            y+(b+a)z=a^2+ab+b^2\\
+            y+(c+a)z=a^2+ac+b^2
+        \end{cases}
+        \\\iff &
+        \begin{cases}
+            x+ay+a^2z=a^3\\
+            y+(b+a)z=a^2+ab+b^2\\
+            z =a + b + c
+        \end{cases}
+        \\\iff &
+        \begin{cases}
+            x+ay+a^2z=a^3\\
+            y=-bc - ab - ac\\
+            z = a + b + c
+        \end{cases}
+        \\\iff &
+        \begin{cases}
+            x=abc\\
+            y=-(ab + bc + ca)\\
+            z = a + b + c
+        \end{cases}
+    \end{align*}
+    L'unique solution est donc $(abc, -(ab + bc + ca), a+b+c)$.\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 9.3}
+
+\section*{Exercice 9.4 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit $\lambda$ un paramètre réel et le système :
+    \begin{align*}
+        \begin{cases}
+            (2-\lambda)x + y + z = 0\\
+            x + (2-\lambda)y + z = 0\\
+            x + y + (2-\lambda)z = 0
+        \end{cases}
+    \end{align*}
+    Le résoudre, en discutant selon les valeurs de $\lambda$.\\
+    Soit $(x,y,z)\in\mathbb{R}^3$.
+    \begin{align*}
+        &(x,y,z) \text{ est solution}\\
+        &\iff \begin{cases}
+            x + y + (2-\lambda)z = 0\\
+            x + (2-\lambda)y + z = 0\\
+            (2 - \lambda)x + y + z = 0
+        \end{cases}\\
+        &\iff \begin{cases}
+            x+y+(2-\lambda)z =0\\
+            (1-\lambda)y + (\lambda-1)z=0\\
+            (\lambda-1)y + (1-(2-\lambda)^2)z=0
+        \end{cases}\\
+        &\iff \begin{cases}
+            x + y + (2-\lambda)z = 0\\
+            (1-\lambda)y + (\lambda-1)z = 0\\
+            (-\lambda^2 + 5\lambda - 4)z = 0
+        \end{cases}
+    \end{align*}
+    Les racines (évidentes) du polynôme $-\lambda^2+5\lambda-4$ sont $1$ et $4$.\\
+    $\circledcirc$ Premier cas : $\lambda\notin\{1,4\}$.
+    \begin{equation*}
+        (x,y,z) \text{ est solution}
+        \iff\begin{cases}
+            x=0\\
+            y=0\\
+            z=0
+        \end{cases}
+    \end{equation*}
+    L'unique solution est le couple $(0,0,0)$.\\
+    $\circledcirc$ Deuxième cas : $\lambda=1$.
+    \begin{equation*}
+        (x,y,z) \text{ est solution}
+        \iff\begin{cases}
+            x+y+z=0
+        \end{cases}
+    \end{equation*}
+    L'ensemble $S$ des solutions est le plan vectoriel: 
+    \begin{equation*}
+        S=\{(-y-z,y,z)\,|\, (y,z)\in\mathbb{R}^2\}=\{y(-1,1,0) + z(-1,0,1)\,|\,(y,z)\in\mathbb{R}^2\}
+    \end{equation*}
+    $\circledcirc$ Dernier cas : $\lambda=4$
+    \begin{equation*}
+        (x,y,z) \text{ est solution} \iff \begin{cases}
+            x+z-2z=0\\
+            -3y+3z=0\\
+            0=0
+        \end{cases}
+        \iff\begin{cases}
+            x=z\\
+            y=z\\
+            0=0
+        \end{cases}
+    \end{equation*}
+    L'ensemble S des solutions est la droite passant par l'origine:\\
+    $. \hspace{4.5cm} S = \{(z,z,z)\,|\,z\in\mathbb{R}\} = \{(0,0,0) + z(1,1,1)\ \,|\, z\in\mathbb{R}\}$\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 9.4}
+
+\end{document}
+ 

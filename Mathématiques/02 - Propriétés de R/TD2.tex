@@ -1,0 +1,388 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[skins]{tcolorbox}
+\usepackage{hyperref, fancyhdr, lastpage, tocloft, ragged2e}
+\usepackage{amsmath, amssymb, amsthm}
+
+\def\pagetitle{Propriétés de $\mathbb{R}$}
+
+\title{\bf{\pagetitle}\\\large{Corrigé}}
+\date{Septembre 2023}
+\author{DARVOUX Théo}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linktoc=all,
+    linkcolor=blue
+}
+
+\pagestyle{fancy}
+\cfoot{\thepage\ sur \pageref*{LastPage}}
+
+
+\begin{document}
+\renewcommand*\contentsname{Exercices.}
+\renewcommand*{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\maketitle
+\hrule
+\tableofcontents
+\vspace{0.5cm}
+\hrule
+
+\thispagestyle{fancy}
+\fancyhead[L]{MP2I Paul Valéry}
+\fancyhead[C]{\pagetitle}
+\fancyhead[R]{2023-2024}
+
+
+\section*{Exercice 2.1 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient $a$ et $b$ deux nombres réels strictement positifs. Démontrer l'inégalité
+    \begin{equation*}
+        \frac{a^2}{b}+\frac{b^2}{a} \geq a + b
+    \end{equation*}
+    On a :
+    \begin{align*}
+        &\hspace{1.2cm}\frac{a^2}{b}+\frac{b^2}{a} \geq a+b\\
+        &\iff\frac{a^3-a^2b+b^3-ab^2}{ab}\geq0\\
+        &\iff\frac{a^2(a-b)+b^2(b-a)}{ab}\geq0\\
+        &\iff\frac{(a-b)(a^2-b^2)}{ab}\geq0\\
+        &\iff\frac{(a-b)^2(a+b)}{ab}\geq0
+    \end{align*}
+    Or $(a-b)^2\geq0$, $(a+b)\geq0$ et $ab\geq0$.\\
+    Ainsi, cette inégalité est vraie pour tout $(a,b)\in\mathbb{R}^*_+$.\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{Inégalités.}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.1}
+
+\section*{Exercice 2.2 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    1. Montrer que $\forall(a,b)\in(\mathbb{R}_+)^2$ $\sqrt{a+b}\leq\sqrt{a}+\sqrt{b}$.\\
+    Soit $(a,b)\in(\mathbb{R}_+)^2$.
+    \begin{align*}
+        &\sqrt{a+b}\leq\sqrt{a}+\sqrt{b}\\
+        \iff&a+b\leq a + 2\sqrt{ab} + b\\
+        \iff&2\sqrt{ab} \geq 0\\
+        \iff&\sqrt{ab} \geq 0\\
+        \iff&ab \geq 0
+    \end{align*}
+    Ainsi, $\forall(a,b)\in(\mathbb{R}_+)^2$ $\sqrt{a+b}\leq\sqrt{a}+\sqrt{b}$.\\
+    \qed\\
+    2. Montrer que $\forall(a,b)\in(\mathbb{R}_+)^2$ $|\sqrt{a}-\sqrt{b}|\leq\sqrt{|a-b|}$.\\
+    Soit $(a,b)\in(\mathbb{R}_+)^2$.\\
+    Considérons $a\geq b$, alors $|a-b| = a-b$.
+    \begin{align*}
+        &|\sqrt{a}-\sqrt{b}|\leq\sqrt{a-b}\\
+        \iff& a - 2\sqrt{ab} + b \leq a-b\\
+        \iff& 2b \leq 2\sqrt{ab}\\
+        \iff& b^2 \leq ab\\
+        \iff&b \leq a
+    \end{align*}
+    Le raisonnement est symétrique lorsque $b\geq a$.\\
+    Ainsi, $\forall(a,b)\in(\mathbb{R}_+)^2$ $|\sqrt{a}-\sqrt{b}|\leq\sqrt{|a-b|}$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.2}
+
+\section*{Exercice 2.3 [$\blacklozenge\lozenge\lozenge$] \emph{Manipuler la notion de distance}}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    En utilisant la notion de distance sur $\mathbb{R}$, écrire comme réunion d'intervalles l'ensemble
+    \begin{equation*}
+        E=\{x\in\mathbb{R} \hspace{0.25cm} | \hspace{0.25cm} |x+3| \leq 6 \text{ et } |x^2-1| > 3\}
+    \end{equation*}
+    On a :
+    \begin{equation*}
+        x\in[-9,3] \text{ et } x\in]-\infty, -2[\cup]2,+\infty[
+    \end{equation*}
+    Donc :
+    \begin{equation*}
+        x\in[-9,-2]\cup[2,3]
+    \end{equation*}
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.3}
+
+\section*{Exercice 2.4 [$\blacklozenge\blacklozenge\lozenge$] \emph{Plusieurs façons de définir une moyenne}}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient $a$ et $b$ deux réels tels que $0 < a \leq b$. On définit les nombres $m,g,h$ par
+    \begin{equation*}
+        m=\frac{a+b}{2}, \hspace{1.5cm} g=\sqrt{ab}, \hspace{1.5cm} \frac{1}{h}=\frac{1}{2}\left(\frac{1}{a}+\frac{1}{b}\right).
+    \end{equation*}
+    Et on les appelle respectivement moyenne arithmétique, géométrique et harmonique de $a$ et $b$.\\
+    Démontrer l'encadrement
+    \begin{equation*}
+        a \leq h \leq g \leq m \leq b
+    \end{equation*}
+    Montrons les inégalités une par une :
+    \begin{itemize}
+        \item $m \leq b \iff \frac{a+b}{2}-b\leq 0 \iff \frac{a-b}{2} \leq 0 \iff a - b \leq 0 \iff a \leq b$.
+        \item $g \leq m \iff \sqrt{ab} \leq \frac{a+b}{2} \iff \frac{a - 2\sqrt{ab} + b}{2} \geq 0 \iff \frac{(\sqrt{a}-\sqrt{b})^2}{2} \geq 0$.
+        \item $h \leq g \iff \frac{1}{h} \geq \frac{1}{g} \iff \frac{1}{2a}+\frac{1}{2b}-\frac{1}{\sqrt{ab}} \geq 0 \iff \frac{a-2\sqrt{ab}+b}{2ab} \geq 0 \iff \frac{(\sqrt{a}-\sqrt{b})^2}{2ab}\geq0$.
+        \item $a \leq h \iff \frac{1}{a} \geq \frac{1}{h} \iff \frac{1}{a}-\frac{1}{2a}-\frac{1}{2b}\geq 0 \iff \frac{b-a}{2ab}\geq0 \iff b-a\geq 0 \iff a \leq b$
+    \end{itemize}
+    Ainsi, $a\leq h \leq g \leq m \leq b$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.4}
+
+\section*{Exercice 2.5 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre l'équation
+    \begin{equation*}
+        \ln|x|+\ln|x+1|=0
+    \end{equation*}
+    Soit $x\in\mathbb{R}\setminus\{-1,0\}$.
+    \begin{align*}
+        &\ln|x|+\ln|x+1|=0\\
+        \iff&\ln\left(|x(x+1|\right)=0\\
+        \iff&|x(x+1)|=1\\
+    \end{align*}
+    Supposons $x\in]-\infty,-1[\cup]0,+\infty[$.\\
+    On a :
+    \begin{align*}
+        &|x(x+1)|=1\\
+        \iff&x(x+1)=1\\
+        \iff&x^2+x-1=0\\
+        \iff&x=\frac{1\pm\sqrt{5}}{2}
+    \end{align*}
+    Supposons $x\in]-1,0[$.
+    \begin{align*}
+        &|x(x+1)|=1\\
+        \iff&-x^2-x-1=0
+    \end{align*}
+    Il n'y a donc pas de solutions dans $]-1,0[$.\\
+    L'ensemble des solutions de l'équation est : $\{\frac{1-\sqrt{5}}{2},\frac{1+\sqrt{5}}{2}\}$ \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{Valeurs absolues.}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.5}
+
+\section*{Exercice 2.6 [$\blacklozenge\lozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Résoudre l'équation
+    \begin{equation*}
+        |x-2|=6-2x
+    \end{equation*}
+    Soit $x\in\mathbb{R}$.\\
+    Considérons $x\geq2$
+    \begin{align*}
+        &|x-2|=6-2x\\
+        \iff&x-2=6-2x\\
+        \iff&x=\frac{8}{3}
+    \end{align*}
+    Considérons $x\leq2$
+    \begin{align*}
+        &|x-2|=6-2x\\
+        \iff&2-x=6-2x\\
+        \iff&x=4
+    \end{align*}
+    Seul la solution $x=\frac{8}{3}$ convient.
+    Ainsi, l'unique solution à l'équation est $\frac{8}{3}$. \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.6}
+
+
+\section*{Exercice 2.7 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Démontrer l'égalité $\lfloor\frac{\lfloor{nx}\rfloor}{n}\rfloor=\lfloor{x}\rfloor$ pour tout entier $n\in\mathbb{N}^*$ et tout réel $x$.\\[0.2cm]
+    Soient $(x,n)\in\mathbb{R}\times\mathbb{N}^*$.\\[0.2cm]
+    Notons $r$ la partie fractionnaire de $x$, ainsi $x=\lfloor{x}\rfloor+r$.\\[0.2cm]
+    On a alors $nx=n\lfloor{x}\rfloor+nr$ et $\lfloor{nx}\rfloor=\lfloor{n\lfloor{x}\rfloor+nr}\rfloor=n\lfloor{x}\rfloor+\lfloor{nr}\rfloor$.\\[0.2cm]
+    Conséquemment, $\frac{\lfloor{nx}\rfloor}{n}=\lfloor{x}\rfloor+\frac{\lfloor{nr}\rfloor}{n}$.\\[0.2cm]
+    Or, $0\leq\frac{\lfloor{nr}\rfloor}{n}<1$ car $0\leq r<1$, donc $\lfloor{x}\rfloor\leq\lfloor{x}\rfloor+\frac{\lfloor{nr}\rfloor}{n}<\lfloor{x}\rfloor+1$.\\[0.2cm]
+    Ainsi, $\lfloor{x}\rfloor\leq\lfloor\frac{\lfloor{nx}\rfloor}{n}\rfloor<\lfloor{x}+1\rfloor$.\\[0.2cm]
+    Par conséquent, $\lfloor\frac{\lfloor{nx}\rfloor}{n}\rfloor = \lfloor{x}\rfloor$.\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{Entiers, rationnels.}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.7}
+
+\section*{Exercice 2.8 [$\blacklozenge\blacklozenge\lozenge$] mal de crane tier}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    1. Démontrer : 
+    \begin{equation*}
+        \forall{x\in\mathbb{R}^*_+}\hspace{0.5cm}\frac{1}{2\sqrt{x+1}}<\sqrt{x+1}-\sqrt{x}<\frac{1}{2\sqrt{x}}.
+    \end{equation*}
+    Soit $x\in\mathbb{R}^*_+$.\\
+    On a :
+    \begin{align*}
+        &\sqrt{x+1}-\sqrt{x}<\frac{1}{2\sqrt{x}}\\
+        \iff&2\sqrt{x(x+1)}-2x<1\\
+        \iff&(2\sqrt{x(x+1)})^2<(1+2x)^2\\
+        \iff&4x(x+1)<4x^2+4x+1\\
+        \iff&4x^2+4x-4x^2-4x<1\\
+        \iff&0<1
+    \end{align*}
+    Et :
+    \begin{align*}
+        &\frac{1}{2\sqrt{x+1}}<\sqrt{x+1}-\sqrt{x}\\
+        \iff&1<2\sqrt{(x+1)^2}-2\sqrt{x(x+1)}\\
+        \iff&1<2|x+1|-2\sqrt{x(x+1)}\\
+        \iff&(2x+1)^2>(2\sqrt{x(x+1)})^2\\
+        \iff&4x^2+4x+1>4x^2+4x\\
+        \iff&1>0
+    \end{align*}
+    \qed
+\end{tcolorbox}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    2. Soit $p$ un entier supérieur à $2$. Que vaut la partie entière de
+    \begin{equation*}
+        \sum_{k=1}^{p^2-1}{\frac{1}{\sqrt{k}}}
+    \end{equation*}
+    Soit $x\in\mathbb{R}^*_+$\\
+    On a :
+    \begin{equation*}
+        \frac{1}{2\sqrt{x+1}}<\sqrt{x+1}-\sqrt{x}<\frac{1}{2\sqrt{x}}
+    \end{equation*}
+    Donc, en remplaçant $x$ par $x-1$ :
+    \begin{equation*}
+        \frac{1}{2\sqrt{x}}<\sqrt{x}-\sqrt{x-1}<\frac{1}{2\sqrt{x-1}}
+    \end{equation*}
+    Ainsi,
+    \begin{equation*}
+        \sqrt{x+1}-\sqrt{x}<\frac{1}{2\sqrt{x}}<\sqrt{x}-\sqrt{x-1}
+    \end{equation*}
+    $\mathbb{MAIS}$ $\mathbb{ALORS}$ :
+    \begin{align*}
+        &\sum^{p^2-1}_{k=1}{\left(\sqrt{k+1}-\sqrt{k}\right)}<\sum^{p^2-1}_{k=1}{\frac{1}{2\sqrt{k}}}<\sum^{p^2-1}_{k=1}{\left(\sqrt{k}-\sqrt{k-1}\right)}\\
+        \iff&\sqrt{p^2}-\sqrt{1}<\frac{1}{2}\sum^{p^2-1}_{k=1}{\frac{1}{\sqrt{k}}}<\sqrt{p^2-1}-\sqrt{0}\\
+        \iff&2p-2<\sum^{p^2-1}_{k=1}{\frac{1}{\sqrt{k}}}<2\sqrt{p^2-1}\\
+        \iff&2p-2<\sum^{p^2-1}_{k=1}{\frac{1}{\sqrt{k}}}<\lfloor{2\sqrt{p^2-1}}\rfloor
+    \end{align*}
+    Or $2p-2<2\sqrt{p^2-1}<2p$ donc $\lfloor{2\sqrt{p^2-2}}\rfloor=2p-2$\\
+    On en conclut : 
+    \begin{equation*}
+        \lfloor{\sum^{p^2-1}_{k=1}{\frac{1}{\sqrt{k}}}}\rfloor = 2p-2
+    \end{equation*}
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.8}
+
+\section*{Exercice 2.9 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Prouver que $\frac{\ln(2)}{\ln(3)}$ est un nombre irrationnel.\\
+    Supposons que $\frac{\ln{2}}{\ln{3}}\in\mathbb{Q}$. Alors il existe $p\in\mathbb{N}$ et $q\in\mathbb{N}^*$ premiers entre eux tels que :
+    \begin{equation*}
+        \frac{\ln{2}}{\ln{3}}=\frac{p}{q}
+    \end{equation*}
+    Alors :
+    \begin{align*}
+        &p\ln{3}=q\ln{2}\\
+        \iff&\ln(3^p)=\ln(2^q)\\
+        \iff&e^{\ln(3^p)}=e^{\ln{2^q}}\\
+        \iff&3^p=2^q
+    \end{align*}
+    Or $3^p$ est toujours impair et $2^q$ est toujours pair, donc cela est absurde.\\
+    Ainsi, $\frac{\ln2}{\ln3}$ est irrationnel.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.9}
+
+\section*{Exercice 2.10 [$\blacklozenge\blacklozenge\blacklozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soient $x$ et $y$ deux rationnels positifs tels que \\$\sqrt{x}$ et $\sqrt{y}$ soient irrationnels.\\
+    Montrer que $\sqrt{x} + \sqrt{y}$ est irrationnel.
+    Supposons $\sqrt{x}+\sqrt{y}\in\mathbb{Q}$.\\
+    On a :
+    \begin{align*}
+        &(\sqrt{x}+\sqrt{y})(\sqrt{x}-\sqrt{y})=x-y\\
+        \iff&\sqrt{x}-\sqrt{y}=\frac{x-y}{\sqrt{x}+\sqrt{y}}
+    \end{align*}
+    Or $x-y\in\mathbb{Q}$ et $\sqrt{x}+\sqrt{y}\in\mathbb{Q}$ par hypothèse. Donc $\sqrt{x}-\sqrt{y}\in\mathbb{Q}$.\\
+    D'autre part,
+    \begin{align*}
+        &\sqrt{x}+\sqrt{y}+\sqrt{x}-\sqrt{y}=2\sqrt{x}\\
+    \end{align*}
+    $\sqrt{x}$ est donc la somme de deux rationnels, et est donc rationnel.\\
+    C'est absurde. On en conclut que $\sqrt{x}+\sqrt{y}$ est irrationnel.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.10}
+
+\section*{Exercice 2.11 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    Soit l'ensemble 
+    \begin{equation*}
+        A = \left\{\frac{ n-\frac{1}{n} }{ n+\frac{1}{n}}, n\in\mathbb{N}^* \right\}
+    \end{equation*}
+    Cette partie de $\mathbb{R}$ est-elle bornée ? Possède-t-elle un maximum ? Un minimum ?\\
+    Soit $(u_n)$ une suite telle que $\forall{n\in\mathbb{N}^*}, u_n=\frac{n-\frac{1}{n}}{n+\frac{1}{n}}$.\\
+    Soit $n\in\mathbb{N}^*$.\\
+    On a :
+    \begin{align*}
+        u_n 
+        &= \frac{n-\frac{1}{n}}{n+\frac{1}{n}} = \frac{n^2-1}{n} \cdot \frac{n}{n^2+1}\\
+        &= \frac{n^3-n}{n^3+n} = \frac{n^3+n}{n^3+n}-\frac{2n}{n^3+n}\\
+        &= 1 - \frac{2}{n^2+1}
+    \end{align*}
+    Étudions le signe de $u_{n+1}-u_n$.
+    \begin{align*}
+        u_{n+1}-u_n
+        &= 1 - \frac{2}{(n+1)^2+1}-1+\frac{2}{n^2+1}\\
+        &= \frac{2}{n^2+1} - \frac{2}{n^2+2n+2}\\
+        &= \frac{4n+2}{(n^2)(n^2+2n+2)}
+    \end{align*}
+    C'est toujours positif : on en déduit que, $(u_n)$ est croissante sur $\mathbb{N}^*$.\\
+    Elle admet donc un minimum en $1$, qui est $0$.\\
+    Elle admet aussi un majorant lorsque $n$ tend vers l'infini :
+    \begin{align*}
+        \lim_{n\rightarrow+\infty}u_n=1
+    \end{align*}
+    Ainsi, $A$ admet $0$ comme minimum, n'a pas de maximum et est majorée par $1$.\\
+    \qed
+\end{tcolorbox}
+
+\addcontentsline{toc}{section}{Parties bornées}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.11}
+
+\section*{Exercice 2.12 [$\blacklozenge\blacklozenge\lozenge$]}
+\begin{tcolorbox}[enhanced, width=7in, center, size=fbox, fontupper=\large, drop shadow southwest]
+    1. Montrer que
+    \begin{equation*}
+        \forall(a,b)\in(\mathbb{R}^*_+)^2\hspace{0.5cm}:\hspace{0.5cm}\frac{a^2}{a+b}\geq\frac{3a-b}{4}.
+    \end{equation*}
+    Étudier le cas d'égalité.\\
+    2. En déduire que l'ensemble
+    \begin{equation*}
+        E=\left\{\frac{a^2}{a+b}+\frac{b^2}{b+c}+\frac{c^2}{c+a} \text{ | } (a,b,c)\in(\mathbb{R^*_+})^3 \text{ et } a+b+c\geq2 \right\}
+    \end{equation*}
+    admet un minimum et le calculer.\\[0.5cm]
+    1. Soit $(a,b)\in(\mathbb{R}^*_+)^2$\\
+    On a :
+    \begin{align*}
+        &\frac{a^2}{a+b}-\frac{3a-b}{4}\geq0\\
+        \iff&\frac{a^2-2ab+b^2}{4(a+b)}\geq0\\
+        \iff&(a-b)^2\geq0\\
+    \end{align*}
+    D'autre part,
+    \begin{align*}
+        &\frac{a^2}{a+b}=\frac{3a-b}{4}\\
+        \iff&(a-b)^2=0\\
+        \iff&a=b
+    \end{align*}
+    2. Soient $(a,b,c)\in\mathbb{R^*_+}^3$ tels que $a+b+c\geq2$.\\
+    On a :
+    \begin{align*}
+        \frac{a^2}{a+b}+\frac{b^2}{b+c}+\frac{c^2}{c+a}
+        &\geq\frac{3a-b}{4}+\frac{3b-c}{4}+\frac{3c-a}{4}\\
+        &\geq\frac{2a+2b+2c}{4}\\
+        &\geq\frac{a+b+c}{2}\\
+        &\geq1
+    \end{align*}
+    Or, lorsque $a=b=c=\frac{2}{3}$, on a $a+b+c\geq2$ et:
+    \begin{align*}
+        \frac{a^2}{a+b}+\frac{b^2}{b+c}+\frac{c^2}{c+a}
+        &=3\frac{a}{2}=3\cdot\frac{2}{3}\cdot\frac{1}{2}=1
+    \end{align*}
+    Ainsi, $1\in E$ et $\forall{x\in E}$, $x\geq1$ donc $1$ est minimum de $E$.\\
+    \qed
+\end{tcolorbox}
+\addcontentsline{toc}{section}{\protect\numberline{}Exercice 2.12}
+
+\begin{center}\LARGE{FIN DU TD 2 VU QU'ON A PAS FAIT LES BORNES INF ET SUP}\end{center}
+\end{document}

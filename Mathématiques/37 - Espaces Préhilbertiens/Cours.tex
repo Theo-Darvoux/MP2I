@@ -1,0 +1,801 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{37}
+\def\pagetitle{Espaces préhilbertiens.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\renewcommand*{\C}{\mathcal{C}}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+Dans ce chapitre, $E$ désignera un $\R$-espace vectoriel, les scalaires sont \bf{réels}.
+
+\section{Produits scalaires.}
+
+\begin{defi}{Produit scalaire.}{}
+    On appelle \bf{produit scalaire} sur $E$ toute application
+    \begin{equation*}
+        \langle .,. \rangle ~ : ~ \begin{cases} E\times E &\to \quad \R \\ (x,y) &\mapsto \quad \langle x, y \rangle\end{cases}
+    \end{equation*},
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item bilinéaire : $\forall(x,x',y,y')\in E^4, ~ \forall(\l,\mu)\in\R^2, ~ \begin{cases}\Lg\l x + \mu x', y\Rg &= \quad \l\Lg x,y \Rg + \mu\Lg x', y \Rg\\\Lg x, \l y + \mu y' \Rg &= \quad \l\Lg x, y \Rg + \mu \Lg x, y' \Rg\end{cases}$
+        \item symétrique : $\forall x,y\in E, ~ \Lg x, y \Rg = \Lg y, x \Rg$.
+        \item définie : $\forall x \in E, ~ \Lg x, x \Rg = 0 \ra x = 0_E$.
+        \item positive : $\forall x \in E, ~ \Lg x, x \Rg \geq 0$.
+    \end{itemize}
+    Pour $x,y$ deux vecteurs de $E$, $\Lg x, y\Rg$ est une nombre réel, appelé produit scalaire de $x$ et $y$.
+\end{defi}
+
+\begin{defi}{Espaces préhilbertiens, euclidiens.}{}
+    Si $\Lg .,.\Rg$ est un produit scalaire sur $E$, le couple $(E,\Lg.,.\Rg)$ est appelé \bf{espace préhilbertien}.\\
+    Un espace préhilbertien de dimension finie est appelé \bf{espace euclidien}.
+\end{defi}
+
+\begin{prop}{}{}
+    L'application $\Lg.,.\Rg$ qui à $x=(x_1,...,x_n)$ et $y=(y_1,...,y_n)$ associe
+    \begin{equation*}
+        \Lg x,y\Rg := \sum_{i=1}^nx_iy_i,
+    \end{equation*}
+    est un produit scalaire sur $\R^n$, dit \bf{produit scalaire canonique.}\n
+    Quitte à identifier $\R^n$ et $M_{n,1}(\R)$ (on écrit les $n$-uplets comme des matrices colonnes), on peut calculer le produit scalaire canonique à l'aide d'un produit matriciel :
+    \begin{equation*}
+        \forall X = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \quad \forall Y = \begin{pmatrix} y_1 \\ \vdots \\ y_n \end{pmatrix}, \quad \boxed{\Lg X, Y \Rg = X^\top Y}.
+    \end{equation*}
+    \tcblower
+    \bf{Symétrie:} $\Lg x, y \Rg = \sum_{i=1}^nx_iy_i=\sum_{i=1}^ny_ix_i=\Lg y, x\Rg$.\\
+    \bf{Bilinéarité:} Par symétrie, la linéarité à gauche suffit.\\
+    Soient $X,X',Y\in M_{n,1}(\R)$, $\l,\mu\in\R$.
+    \begin{equation*}
+        \Lg \l X + \mu X', Y \Rg = (\Lg X + \mu X')^{\top}Y=\l X^{\top}Y + \mu X'^{\top}Y=\l\Lg X,Y \Rg + \mu \Lg X', Y \Rg
+    \end{equation*}
+    \bf{Positive:}
+    \begin{equation*}
+        \Lg x, x \Rg = \sum_{i=1}^nx_i^2\geq0.
+    \end{equation*}
+    \bf{Définie:}
+    Supposons $\Lg x,x \Rg=0$, alors $\sum_{i=1}^nx_i^2=0$, nombres positifs qui somment à 0, tous les $x_i$ sont nuls.
+\end{prop}
+
+\begin{prop}{}{}
+    L'application $\Lg ., . \Rg$ qui à deux matrices $A=(a_{i,j})$ et $B=(b_{i,j})$ de matrices de $M_{n,p}(\R)$ associe
+    \begin{equation*}
+        \Lg A, B \Rg = \sum_{i=1}^n\sum_{j=1}^pa_{i,j}b_{i,j}.
+    \end{equation*}
+    est un produit scalaire sur $M_{n,p}(\R)$, dit \bf{produit scalaire canonique.}\n
+    On peut exprimer le produit scalaire de $A$ et $B$ ainsi :
+    \begin{equation*}
+        \boxed{\Lg A, B \Rg = \tr(A^\top B)}
+    \end{equation*}
+    \tcblower
+    On a :
+    \begin{equation*}
+        \tr(A^\top B) = \sum_{j=1}^p\left[ A^\top B \right]_{j,j} = \sum_{j=1}^p\sum_{i=1}^n\left[ A^T \right]_{j,i}\left[ B \right]_{i,j} = \sum_{i=1}^n\sum_{j=1}^pa_{i,j}b_{i,j}
+    \end{equation*}
+    \bf{Symétrie:} Claire.\\
+    \bf{Bilinéarité:} Suffisante à droite.\\
+    Soient $A,B,B'\in M_{n,p}(\R)$ et $\l,\mu\in\R^2$.
+    \begin{align*}
+        \Lg A, \l B + \mu B' \Rg &= \tr(A^\top(\l B + \mu B')) = \tr(\l A^\top B + \mu A^\top B')\\
+        &= \l\tr(A^\top B) + \mu\tr(A^\top B')=\l\Lg(A,B)+\mu\Lg(A,B').
+    \end{align*}
+    \bf{Positivité:}
+    \begin{equation*}
+        \Lg A, A \Rg = \sum_{i,j}a_{i,j}^2\geq0
+    \end{equation*}
+    \bf{Définie:} Supposons $\Lg A,A \Rg = 0$, somme de termes positifs est nulle : les termes sont nuls.
+\end{prop}
+
+\begin{prop}{}{cinq}
+    Soient $a,b\in\R$ tels que $a<b$.\\
+    L'application $\Lg.,.\Rg$ qui à $(f,g)\in\C([a,b],\R)^2$ associe
+    \begin{equation*}
+        \Lg f,g \Rg = \int_a^bf(t)g(t)\dt,
+    \end{equation*}
+    est un produit scalaire sur $\C([a,b],\R)$.
+    \tcblower
+    \bf{Symétrie:} Soient $f,g\in\C([a,b],\R)$.
+    \begin{equation*}
+        \Lg f,g \Rg = \int_a^bf(t)g(t)\dt=\int_a^bg(t)f(t)\dt=\Lg f,g \Rg.
+    \end{equation*}
+    \bf{Bilinéarité:} La linéarité  à gauche suffit.\\
+    Soient $f,\tilde{f},g\in\C([a,b],\R)$ et $\l,\mu\in\R$.
+    \begin{align*}
+        \Lg \l f + \mu \tilde{f}, g \Rg &= \int_a^b(\l f(t) + \mu \tilde{f}(t))g(t)\dt\\
+        &= \l\int_a^bf(t)g(t)\dt+\mu\int_a^b\tilde{f}(t)g(t)\dt\\
+        &= \l\Lg f, g \Rg + \mu \Lg \tilde{f}, g \Rg
+    \end{align*}
+    \bf{Positivité:} Soit $f\in\C([a,b],\R)$.
+    \begin{equation*}
+        \Lg f, f \Rg = \int_a^bf^2(t)\dt \geq 0. \quad \nt{car $f^2$ positive, cpm et $a<b$}.
+    \end{equation*}
+    \bf{Définie:} Soit $f\in\C([a,b],\R)$ telle que $\Lg f, f \Rg=0$.
+    \begin{equation*}
+        \int_a^b f^2(t)\dt = 0 \ra \forall t \in [a,b], ~ f^2(t)=0 \quad \nt{car $f^2$ positive, continue et $a<b$}.
+    \end{equation*}
+    Donc $\forall t \in [a,b], ~ f(t)=0$.
+\end{prop}
+
+\begin{ex}{Un produit scalaire intégral sur l'espace des polynômes.}{}
+    Pour $P$ et $Q$ deux polynômes de $\R[X]$, on note
+    \begin{equation*}
+        \Lg P, Q \Rg = \int_0^1P(t)Q(t)\dt.
+    \end{equation*}
+    Vérifier que l'application $\Lg.,.\Rg$ est un produit scalaire sur $\R[X]$.
+    \tcblower
+    \bf{Symétrie:} Évidente.\\
+    \bf{Bilinéarité:} Pareil que sur $\C([a,b],\R)$.\\
+    \bf{Positivité:} Pareil.\\
+    \bf{Définie:} Soit $P\in\R[X]$ tel que $\Lg P,P \Rg=0$.
+    \begin{equation*}
+        \int_0^1P^2(t)\dt=0 \ra \forall t \in [0,1], ~ P^2(t)=0 \quad \nt{car $P^2>0$, continue et $0<1$}.
+    \end{equation*}
+    Donc $\forall t \in [0,1], ~ P(t) = 0$, alors $P$ a une infinité de racines, il est \bf{nul}.
+\end{ex}
+
+\section{Norme associée à un produit scalaire.}
+
+\begin{defi}{}{}
+    On appelle \bf{norme associée au produit scalaire} $\Lg.,.\Rg$ l'application
+    \begin{equation*}
+        \|\cdot\|:\begin{cases}E&\to\quad\R_+\\x&\mapsto\quad\|x\|:=\sqrt{\Lg x,x\Rg}\end{cases}
+    \end{equation*}
+    \bf{Remarque:} Bien définie car $\Lg x,x \Rg$ est positif pour tout $x\in E$.
+\end{defi}
+
+\begin{ex}{}{}
+    Pour tout $x=(x_1,...x_n)\in\R^n$, la norme de $x$ vaut
+    \begin{equation*}
+        \|x\|=\sqrt{\sum_{i=1}^nx_i^2}.
+    \end{equation*}
+    Cette norme est souvent écrite en physique dans les cas $n=2$ et $n=3$:
+    \begin{center}
+        Pour $\v{u}(x,y), \quad \|\v{u}\|=\sqrt{x^2+y^2}\quad$ et pour $\v{v}(x,y,z), \quad \|\v{v}\|=\sqrt{x^2+y^2+z^2}$.
+    \end{center}
+\end{ex}
+
+\begin{prop}{Faits élémentaires.}{}
+    Soit $\|\cdot\|$ la norme associée au produit scalaire $\Lg.,.\Rg$ sur $E$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item Le vecteur nul est le seul vecteur de norme 0.
+        \item Pour tout $x\in E$, pour tout réel $\l$, on a $\|\l x\| = |\l|\cdot\|x\|$.
+        \item Si $x$ est non nul, $\frac{x}{\|x\|}$ est de norme 1.
+    \end{enumerate}
+    \tcblower
+    Soit $(E,\Lg.,.\Rg)$ préhilbertien.\\
+    \boxed{1.} $\bullet$ On a $\|0_E\|^2=\Lg0_\R0_E,0_E\Rg=0_\R\Lg0_E,0_E\Rg=0_{\R}$, donc $\|0_E\|=0$.\\
+    $\bullet$ Soit $x\in E$ tel que $\| x,x\|=0$, alors $\Lg x,x \Rg = 0$ et $x=0$ par définition.\\
+    On a bien $\forall x \in E, ~ \|x\|=0 \iff x=0$.\n
+    \boxed{2.} Soit $x\in E, ~ \l \in \R$
+    \begin{equation*}
+        \|\l x\|^2 = \Lg \l x, \l x \Rg = \l^2\Lg x, x\Rg \quad \nt{donc} \quad \|\l x\| = |\l|\cdot\|\Lg x,x \|
+    \end{equation*}
+    Donc $\forall x \in E, ~ \forall \l \in \R, ~ \|\l x\|=|\l|\cdot\|x\|$.\n
+    \boxed{3.} Soit $x\in E\setminus\{0_E\}$, sa norme est non nulle.
+    \begin{equation*}
+        \left\|\frac{x}{\|x\|}\right\|=\frac{1}{\|x\|}\|x\|=\frac{\|x\|}{\|x\|}=1.
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{Identités remarquables.}{}
+    Soit $\|\cdot\|$ la norme associée à $\Lg.,.\Rg$ sur $E$. Soient $x,y\in E$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $\|x+y\|^2=\|x\|^2+2\Lg x,y \Rg + \|y\|^2 \quad$ et $\quad \|x-y\|^2=\|x\|^2-2\Lg x,y \Rg + \|y\|^2$.
+        \item $\|x+y\|^2+\|x-y\|^2=2(\|x\|^2+\|y\|^2)$.
+        \item $\Lg x,y \Rg=\frac{1}{4}(\|x+y\|^2-\|x-y\|^2)$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} \begin{align*}
+        \|x+y\|^2 &= \Lg x+y, x+y \Rg = \Lg x, x+y\Rg + \Lg y, x+y\Rg\\
+        &=\Lg x,x\Rg + \Lg x, y \Rg + \Lg y, x \Rg + \Lg y, y\Rg\\
+        &=\|x^2\| + 2\Lg x,y\Rg + \|y\|^2
+    \end{align*}
+    Donc :
+    \begin{equation*}
+        \|x-y\|^2 = \|x+(-y)\|^2 = \|x\|^2 + 2\Lg x, -y \Rg + \|-y\|^2 = \|x\|^2 - 2\Lg x,y\Rg+\|y\|^2
+    \end{equation*}
+    \boxed{2.} On somme les deux : \begin{equation*}
+        \|x+y\|^2+\|x-y\|^2=2(\|x\|^2 + \|y\|^2).
+    \end{equation*}
+    \boxed{3.} On différencie les deux : \begin{equation*}
+        \|x+y\|^2-\|x-y\|^2=4\Lg x,y\Rg \ra \Lg x, y \Rg = \frac{1}{4}\left( \|x+y\|^2-\|x-y\|^2 \right)
+    \end{equation*}
+\end{prop}
+
+\begin{ex}{Avec $n$ vecteurs.}{}
+    Développer $\left\|\sum\limits_{k=1}^nx_k\right\|^2$, pour $n$ vecteurs $x_1,...,x_n$ de $(E,\Lg.,.\Rg)$.
+    \tcblower
+    On a:
+    \begin{align*}
+        \left\|\sum_{i=1}^nx_i\right\|^2&=\left\Lg\sum_{i=1}^nx_i,\sum_{j=1}^nx_j\right\Rg = \sum_{i=1}^n\left\Lg x_i, \sum_{j=1}^nx_j\right\Rg = \sum_{i=1}^n\sum_{j=1}^n\left\Lg x_i, x_j \right\Rg\\
+        &= \sum_{i=1}^n\Lg x_i, x_i\Rg + \sum_{i<j}\Lg x_i, x_j \Rg + \sum_{i>j}\Lg x_i, x_j\Rg\\
+    \end{align*}
+    Or, $\sum_{i>j}\Lg x_i, x_j \Rg = \sum_{j<i}\Lg x_j, x_i\Rg=\sum_{i<j}\Lg x_i, x_j \Rg$. Conclusion :
+    \begin{align*}
+        \left\|\sum_{i=1}^nx_i\right\|^2=\sum_{i=1}^n\|x_i\|^2+2\sum_{i<j}\Lg x_i, x_j\Rg.
+    \end{align*}
+\end{ex}
+
+\begin{thm}{Inégalité de Cauchy-Schwarz.}{}
+    Soit $\|\cdot\|$ la norme associée au produit scalaire $\Lg.,.\Rg$ sur $E$, alors :
+    \begin{equation*}
+        \forall (x,y)\in E^2 \quad |\Lg x, y \Rg|\leq \|x\|\cdot\|y\|.
+    \end{equation*}
+    Cette inégalité est une égalité ssi $(x,y)$ est liée ssi $y=0_E$ ou $\exists\alpha\in\R:x=\alpha y$.
+    \tcblower
+    Soient $x,y\in E^2$.\\
+    \bf{Cas $(x,y)$ liée}.\\
+    $\bullet$ Supposons $x=0_E$.\\
+    D'une part, $|\Lg x,y\Rg|=|\Lg0_E,y\Rg|=0$.\\
+    D'autre part, $\|x\|\|y\|=\|0_E\|\|y\|=0$.\\
+    Il y a égalité dans ce sous-cas.\n
+    $\bullet$ Supposons $\exists \alpha\in\R \mid y = \alpha x$.\\
+    D'une part, $|\Lg x,y\Rg|=|\Lg x, \alpha x \Rg|=|\alpha|\|x\|^2$.\\
+    D'autre part, $\|x\|\|y\|=\|x\|\|\alpha x\|=|\alpha|\|x\|^2$.\\
+    Il y a égalité dans ce sous-cas.\n
+    \bf{Bilan:} dans le cas $(x,y)$ liée, l'égalité est vraie.\n
+    \bf{Cas $(x,y)$ libre}.\\
+    On introduit $f:\l\mapsto\|x+\l y\|^2$, c'est un polynôme de degré 2.\\
+    En effet, pour $\l\in\R$, $f(\l)=\|x+\l y\|^2=\|y\|^2\l^2+2\Lg x, y \Rg\l + \|x\|^2$.\\
+    De plus, puisque $y\neq0$, par séparation, $\|y\|\neq0$ et $f$ est vraiment de degré 2.\\
+    On remarque de surcroît que $f$ prend des valeurs strictement positives.\\
+    En effet, on a clairement que $\forall \l\in\R, ~ \|x+\l y\|^2\geq0$.\\
+    De plus, $\|x+\l y\|\neq0$ car sinon, on aurait que le vecteur est nul, ce qui est impossible puisque $(x,y)$ est libre.\\
+    Alors, le discriminant de $f$ est strictement négatif.\\
+    Notons $\Delta=\left( 2\Lg x,y\Rg \right)^2-4\|y\|^2\|x\|^2=4\left( \Lg x, y \Rg^2 - \|x\|^2\|y\|^2 \right)<0$.\\
+    Ainsi, $\Lg x, y \Rg^2 < \|x\|^2\|y\|^2$, puis en appliquant la racine strictement croissante :\\
+    \bf{On a $\Lg x, y \Rg < \|x\|\|y\|$.}
+\end{thm}
+
+\begin{ex}{Des inégalités de Cauchy-Schwarzenigger écrites au carré.}{}
+    $\bullet$ Soient $(a_1,...,a_n)\in\R^n$ et $(b_1,...,b_n)\in\R^n$. En utilisant le produit scalaire canonique :
+    \begin{equation*}
+        \left( \sum_{i=1}^na_ib_i \right)^2 \leq \left( \sum_{i=1}^na_i^2 \right)\left( \sum_{i=1}^nb_i^2 \right).
+    \end{equation*}
+    $\bullet$ Soient $f$ et $g$ dans $\C([a,b],\R)$. En utilisant le produit scalaire \ref{prop:cinq}.
+    \begin{equation*}
+        \left( \int_a^bf(t)g(t)\dt \right)^2\leq\left( \int_a^bf(t)^2\dt \right)\left( \int_a^bg(t)^2\dt \right)
+    \end{equation*}
+\end{ex}
+
+\begin{prop}{Inégalité triangulaire.}{}
+    Soit $\|\cdot\|$ la norme associée au produit scalaire $\Lg.,.\Rg$ sur $E$. Alors,
+    \begin{equation*}
+        \forall(x,y)\in E^2, \quad \|x+y\|\leq\|x\|+\|y\|.
+    \end{equation*}
+    Il s'agit d'une égalité ssi $x$ et $y$ sont positivement liés; ssi $y=0_E$ ou $\exists \alpha\in\R_+:x=\alpha y$.
+    \tcblower
+    Soit $x,y\in E^2$. Différence des carrés :
+    \begin{align*}
+        \left( \|x\|+\|y\| \right)^2 - \|x+y\|^2 &= \|x\|^2+2\|x\|\|y\|+\|y\|^2-\|x\|^2-2\Lg x,y\Rg - \|y\|^2\\
+        &= 2\left( \|x\|\|y\| - \Lg x, y \Rg \right) \geq 0 \quad \nt{d'après Cauchy-Schwarz.}
+    \end{align*}
+    Alors :
+    \begin{equation*}
+        \|x+y\|^2\leq(\|x\|+\|y\|)^2 \quad \nt{donc} \quad \|x+y\|\leq\|x\|+\|y\|
+    \end{equation*}
+    Supposons que $\|x+y\|=\|x\|+\|y\|$. Alors $\Lg x, y\Rg=\|x\|\|y\|$, puis, d'après l'égalité dans Cauchy-Schwarz :
+    \begin{equation*}
+        \begin{cases}
+            \Lg x,y \Rg \geq 0\\
+            |\Lg x, y \Rg|=\|x\|\|y\|.
+        \end{cases}
+    \end{equation*}
+    Alors $(x,y)$ est liée.\\
+    \bf{1er cas:} $x=0_e$.\\
+    \bf{2eme cas:} $\exists \alpha \in \R \mid y = \alpha x$.\\
+    Alors $\Lg x, \alpha x\Rg\geq 0$ et $\alpha \|x^2\|\geq 0$ puisque $\|x\|^2>0$, on a $\alpha \in \R_+$.\n
+    Supposons que $x,y$ sont positivement liés.\\
+    \bf{Sous-cas 1:} $x=0_E$, alors $\|x+y\|=\|y\|=\|x\|+\|y\|$.\\
+    \bf{Sous-cas 2:} $\exists \alpha \in \R_+ \mid y = \alpha x$, alors $\|x+y\|=\|(1+\alpha)x\|=|\underbrace{1+\alpha}_{>0}|\cdot\|x\|=\|x\|+\|\alpha x\|=\|x\|+\|y\|$.
+\end{prop}
+
+\begin{corr}{}{}
+    \begin{equation*}
+        \forall (x,y)\in E^2 \quad |\|x\|-\|y\||\leq\|x-y\|.
+    \end{equation*}
+    \bf{Remarque:} La fonction norme est 1-lipschitzienne.
+\end{corr}
+
+\begin{defi}{Distance euclidienne.}{}
+    Soit $\|\cdot\|$ la norme associée au produit scalaire $\Lg.,.,\Rg$ sur $E$.\\
+    On appelle \bf{distance euclidienne} entre deux vecteurs $x$ et $y$ de $E$ le nombre positif :
+    \begin{equation*}
+        d(x,y)=\|x-y\|.f
+    \end{equation*}
+\end{defi}
+
+\section{Orthogonalité.}
+\subsection{Vecteurs orthogonaux, familles orthogonales.}
+
+\begin{defi}{Vecteurs orthogonaux.}{}
+    Deux vecteurs d'un espace préhilbertien sont dits \bf{orthogonaux} si leur produit scalaire est nul.
+\end{defi}
+
+\begin{ex}{}{}
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item Couples de vecteurs orthogonaux de $\R^2$ pour le produit scalaire canonique.
+        \item Dans l'espace ($\C(0,2\pi),\R$) muni du produit scalaire de \ref{prop:cinq}, les vecteurs $\cos$ et $\sin$ sont orthogonaux.
+        \item Diagonales d'un losange, dans un espace quelconque : si $x$ et $y$ ont même norme, alors $x+y$ et $x-y$ sont orthogonaux.
+    \end{itemize}
+\end{ex}
+
+\begin{prop}{}{}
+    Le vecteur nul est l'unique vecteur orthogonal à tous les vecteurs d'un espace préhilbertien.
+    \tcblower
+    $\bullet$ Soit $x\in E$. $\Lg 0_E, x \Rg = 0$ car $y\mapsto \Lg y, x \Rg$ est une forme linéaire.\\
+    $\bullet$ Soit $x\in E \mid \forall y \in E, ~ \Lg x, y \Rg = 0$. En particulier, $\Lg x, x \Rg = 0$ : par définition, $x=0_E$.
+\end{prop}
+
+\begin{defi}{}{}
+    Soit $(x_1,...,x_n)\in E^n$ une famille de vecteurs de $E$.\n
+    On dit que c'est une \bf{famille orthogonale} si ses vecteurs sont orthogonaux deux-à-deux :
+    \begin{equation*}
+        \forall 1 \leq i,j \leq n ~ i \neq j \ra \Lg x_i, x_j \Rg = 0.
+    \end{equation*} 
+    On parle de famille \bf{orthonormée} si de plus, tous ses vecteurs sont de norme 1 :
+    \begin{equation*}
+        \forall 1 \leq i \leq n ~ \|x_i\|=1.
+    \end{equation*} 
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $(x_1,...,x_n)\in E^n$.
+    \begin{center}
+        $(x_1,...,x_n)$ est orthonormée $\iff$ $\forall i,j\in\lb1,n\rb ~ \Lg x_i, x_j \Rg = \d_{i,j}$.
+    \end{center}
+    \tcblower
+    $(x_1,...,x_n)$ orthonormée $\iff \forall i,j \in \lb 1,n \rb, ~ \Lg x_i, x_j \Rg = \begin{cases}0 &\nt{ si } i \neq j\\\|x_i\|^2 &\nt{sinon}\end{cases}$ 
+\end{prop}
+
+Dans $M_{n}(\R)$ muni du produit scalaire $(A,B)\mapsto\tr(A^\top B)$ la base canonique est orthonormée :\\
+Pour $i,j,k,l\in\lb1,n\rb$ : $\Lg E_{i,j}, E_{k,l} \Rg = \tr(E_{i,j}^\top E_{k,l})=\tr(E_{j,i}E_{k,l})=\d_{i,k}\tr(E_{j,l})=\d_{i,k}\d_{j,l}=\d_{(i,j),(k,l)}$. Bien orthonormée.
+\vspace{0.2cm}
+
+\begin{prop}{Renormalisation.}{}
+    Si $(x_i,...,x_n)$ est une famille orthogonale de $E$, constituée de vecteurs non nuls, on peut poser
+    \begin{equation*}
+        \forall i \in \lb1,n\rb ~ e_i := \frac{x_i}{\|x_i\|}.
+    \end{equation*}
+    Alors la famille $(e_1,...,e_n)$ est orthonormée.
+    \tcblower
+    Tous les $e_i$ sont de norme 1 (évident).\\
+    Montrons qu'ils sont orthogonaux : soient $i,j\in\lb1,n\rb$ avec $i\neq j$.
+    \begin{equation*}
+        \Lg e_i, e_j \Rg = \left\Lg \frac{x_i}{\|x_i\|}, \frac{x_j}{\|x_j\|}\right\Rg  = \frac{1}{\|x_i\|\cdot\|x_j\|}\cdot\Lg x_i, x_j \Rg = 0.
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{}{}
+    Une famille orthogonale formée de vecteurs non nuls est libre.\n
+    Notamment, les familles orthonormées sont libres.
+    \tcblower
+    Soit $(x_1,...,x_n)$ une famille orthogonale de vecteurs non nuls de $E$.\\
+    Soient $\l_1,...,\l_n\in\R$ tels que $\sum_{i=1}^n\l_i x_i=0_E$.\\
+    Soit $k\in\lb1,n\rb$ fixé, alors :
+    \begin{equation*}
+        \left\Lg \sum_{i=1}^n\lambda_ix_i, ~ x_k\right\Rg = \sum_{i=1}^n\l_i\Lg x_i, x_k\Rg = \l_k\|x_k\|^2 = 0.
+    \end{equation*}
+    En effet, $\left\Lg \sum_{i=1}^n\l_ix_i, ~ x_k \right\Rg = \Lg 0_E, ~ x_i \Rg = 0_E$.\\
+    Donc $\l_k=0$ car $x_k\neq0_E$ : $\|x_k\|^2\neq0$.
+\end{prop}
+
+\begin{prop}{Théorème de Pythagore.}{}
+    Soit $(x_1,...,x_n)$ une famille orthogonale d'un espace préhilbertien pour lequel on note $\|\cdot\|$ la norme associée au produit scalaire. Alors :
+    \begin{equation*}
+        \left\|\sum_{i=1}^nx_i\right\|^2=\sum_{i=1}^n\|x_i\|^2.
+    \end{equation*}
+    \tcblower
+    On a :
+    \begin{align*}
+        \left\|\sum_{i=1}^nx_i\right\|^2 &= \left\Lg \sum_{i=1}^nx_i, \sum_{j=1}^nx_j \right\Rg = \sum_{i=1}^n \left\Lg x_i, \sum_{j=1}^nx_j  \right\Rg\\
+        &= \sum_{i=1}^n\sum_{j=1}^n\left\Lg x_i, x_j \right\Rg = \sum_{i=1}^n\Lg x_i, x_i \Rg + \sum_{i\neq j}\underbrace{\Lg x_i, x_j\Rg}_{=~0} \\
+        &= \sum_{i=1}^n\|x_i\|^2.
+    \end{align*}
+\end{prop}
+
+\subsection{Orthogonal d'une partie.}
+
+\begin{defi}{}{}
+    Soit $X$ une partie de $E$. On appelle \bf{orthogonal} de $X$ et on note $X^\bot$ l'ensemble des vecteurs orthogonaux à tous les éléments de $X$, c'est-à-dire
+    \begin{equation*}
+        X^\bot = \{y\in E: \quad \forall x \in X, \quad \Lg x, y \Rg = 0\}.
+    \end{equation*}
+\end{defi}
+
+\begin{ex}{Conséquences immédiates de la définition.}{}
+    Si $X$ et $Y$ sont deux parties de $E$,
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $X \subset Y \ra Y^\bot \subset X^\bot$.
+        \item $X \subset (X^\bot)^\bot$
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Supposons $X\subset Y$ et $z\in Y^\bot$, alors pour $x\in X$, $\Lg x, z \Rg = 0$ car $x\in X \subset Y$ et $z \in Y^\bot$. Donc $z\in X^\bot$.\\
+    \boxed{2.} Soit $x\in X$, pour $y\in X^\bot$, $\Lg x, y \Rg = 0$ donc $x\in (X^\bot)^\bot$.
+\end{ex}
+
+\begin{ex}{Se ramener à un sous-espace vectoriel.}{}
+    \begin{equation*}
+        \forall X \in \P(E), \quad X^\bot = (\Vect(X))^\bot
+    \end{equation*}
+    \tcblower
+    Soit $X\in\P(E)$.\\ 
+    On a $X\subset\Vect(X)$, par décroissance de l'orthogonal, on a $(\Vect(X))^\bot\subset X^\bot$.\\
+    Soit $y\in X^\bot$, et $x\in\Vect(x)$ : $\exists n \in \N^* ~ \exists (x_1,...,x_n)\in X^n ~ \exists (\l_1,...,\l_n) \in \R ^n \mid x = \sum_{i=1}^n\l_ix_i$.\\
+    Alors $\Lg x, y \Rg = \sum_{i=1}^n\l_i\Lg x_i, y \Rg = 0$ car $y\in X^\bot$. Donc $y\in(\Vect(X))^\bot$.
+\end{ex}
+
+\begin{prop}{}{}
+    Si $X$ est une partie de $(E,\Lg.,.\Rg)$, alors $X^\bot$ est un sous-espace vectoriel de $E$.\\
+    Si $F$ est un sous-espace vectoriel de $E$, alors $F^\bot$ est un sous-espace vectoriel de $E$ en somme directe avec $F$.
+    \tcblower
+    \boxed{1.} Avec la caractérisation :\\
+    On a $0_E\in X^\bot$. En effet, $0_E$ est orthogonal à tout vecteur (de $X$).\\
+    Soient $(\l, \mu)\in \R^2$ et $u,v\in (X^\bot)^2$. Montrons que $\l u + \mu v \in X^\bot$.\\
+    Pour $x\in X$, on a $\Lg \l u + \mu v, x \Rg = \l \Lg u, x \Rg + \mu \Lg v, x \Rg = \l\cdot0 + \mu\cdot0 = 0$. Donc $\l u + \mu v \in X^\bot$.\n
+    \boxed{1.} Autre preuve :\\
+    On a $X^\bot = \{y \in E ~ \forall x \in X, ~ \Lg x, y \Rg = 0\}$. On pose $\phi_x : y\mapsto \Lg y , x \Rg$ pour $x\in X$ donné.\\
+    Alors $X^\bot=\{y\in E \mid \forall x \in X, ~ \phi_x(y)=0\}=\{y \in E \mid \forall x \in X, ~ y \in \Ker(\phi_x)\}=\bigcap_{x\in X}\Ker(\phi_x)$.\\
+    C'est un sev comme intersection de sev puisque $\phi_x$ est une forme linéaire non nulle si $x\neq0$.\\
+    Si $x=0_E$, $\Ker\phi_x$ est un hyperplan et $\Ker \phi_0=E.$\n
+    \boxed{2.} Soit $F$ un sev de $E$.\\
+    Soit $x\in X\cap X^\bot$, alors $\Lg x, x \Rg = 0$ donc $x=0_E$.
+\end{prop}
+
+\begin{ex}{Reconnaître un <<vecteur normal>> à un hyperplan.}{}
+    $\bullet$ Soit $(a,b,c)\neq(0,0,0)$. On considère le plan :
+    \begin{equation*}
+        F=\{(x,y,z)\in\R^3 \mid ax + by + cz = 0\}.
+    \end{equation*}
+    Écrire $F$ sous la forme $\Vect(u)^\bot$ où $u$ est un vecteur de $\R^3$ à expliciter.\\
+    Sait-on prouver que $F^\bot=\Vect(u)$?\n
+    $\bullet$ On considère le sev :
+    \begin{equation*}
+        G=\{M\in M_n(\R) ~ \tr(M)=0\}.
+    \end{equation*}
+    Écrire $G$ sous la forme $\Vect(U)^\bot$ où $U$ est une matrice de $M_n(\R)$ à expliciter.\\
+    Sait-on prouver que $G^\bot=\Vect(U)$.
+    \tcblower
+    On a :
+    \begin{equation*}
+        F=\{\v{u}\in\R^3 \mid \Lg (a,b,c), \v{u} \Rg = 0\} = \Vect(a,b,c)^\bot.
+    \end{equation*}
+    On a :
+    \begin{equation*}
+        G=\{M\in M_n(\R) \mid \tr(I_n^\bot M)=0\}=\{M\in M_n(\R) \mid \Lg I_n, M \Rg = 0\}=\Vect(I_n)^\bot
+    \end{equation*}
+\end{ex}
+
+\subsection{Bases orthonormées d'un espace euclidien.}
+
+\begin{thm}{}{}
+    Dans un espace euclidien de dimension non nulle, il existe des bases orthonormées.
+    \tcblower
+    Par récurrence sur la dimension de l'espace :\\
+    \bf{Initialisation:} Soit $E$ un espace euclidien de dimension 1.\\
+    Soit $x\in E\setminus\{0_E\}$. Alors $\left(\frac{x}{\|x\|}\right)$ est libre car non nul, c'est une base car $\dim E=1$, orthonormée par construction.\\
+    \bf{Hérédité:} Soit $n\in\N^*$ tel que le théorème soit vrai, soit $E$ euclidien de dimension $n+1$.\\
+    Soit $x\in E\setminus\{0_E\}$, $H=\{y\in E\mid \Lg y,x \Rg = 0\}$, c'est un hyperplan de $E$ comme noyau d'une forme linéaire.\\
+    On munit $H$ du produit scalaire induit par $E$, c'est donc un espace euclidien de dimension $n$.\\
+    Par hypothèse, il a une b.o.n., qu'on complète par $\frac{x}{\|x\|}$ pour obtenir une b.o.n. de $E$.\\
+    En effet, elle est orthonormée car la base de $H$ est orthonormée et $\frac{x}{\|x\|}$ est de norme 1.\\
+    C'est une base car elle est libre (orthogonaux deux-à-deux et avec $\frac{x}{\|x\|}\in H^\bot$) et de cardinal $n+1$.\\
+    \bf{Conclusion:} Par récurrence, le théorème est vrai pour tout $n\in\N^*$.
+\end{thm}
+
+\begin{prop}{}{}
+    Si $E$ est de dimension finie et que $(e_1,...,e_n)$ en est une base orthonormée, alors
+    \begin{equation*}
+        \forall x \in E \quad x= \sum_{i=1}^n\Lg x, e_i \Rg e_i.
+    \end{equation*}
+    \tcblower
+    Soit $x\in E$, il existe donc $(\l_1,...,\l_n)\in\R^n \mid x=\sum_{i=1}^n\l_ie_i$.\\
+    Pour $j\in\lb1,n\rb$ :
+    \begin{equation*}
+        \Lg x, e_j \Rg = \left\Lg, \sum_{i=1}^n\l_ie_i , e_j \right\Rg = \sum_{i=1}^n\l_i\Lg e_i, e_j \Rg = \l_j.
+    \end{equation*}
+\end{prop}
+
+\begin{corr}{}{}
+    Si $E$ est de dimension finie et que $(e_1,...,e_n)$ en est une base orthonormée, alors pour $(x,y)\in E^2$ :
+    \begin{equation*}
+        \Lg x,y \Rg = \sum_{i=1}^n\Lg x, e_i\Rg \Lg y, e_i \Rg \quad \nt{et} \quad \|x\|^2=\sum_{i=1}^n\Lg x, e_i \Rg^2
+    \end{equation*}
+    \tcblower
+    On a :
+    \begin{equation*}
+        \Lg x, y \Rg = \left\Lg \sum_{i=1}^n\Lg x, e_i \Rg e_i, \sum_{j=1}^n\Lg y, e_j\Rg e_j\right\Rg=\sum_{i=1}^n\sum_{j=1}^n\Lg x, e_i \Rg\Lg y, e_j \Rg\Lg e_i, e_j\Rg = \sum_{i=1}^n\Lg x, e_i\Rg\Lg y, e_i\Rg
+    \end{equation*}
+    \begin{equation*}
+        \|x\|^2=\Lg x, x \Rg = \sum_{i=1}^n\Lg x, e_i \Rg^2
+    \end{equation*}
+\end{corr}
+
+\begin{ex}{}{}
+\end{ex}
+
+\section{Projection orthogonale sur un sous-espace de dimension finie.}
+\subsection{Projeté orthogonal.}
+\begin{defi}{}{}
+    Soit $(E, \Lg.,.\Rg)$ un espace préhilbertien et $F$ un sev de dimension finie.\\
+    Alors $F^\bot$ est un supplémentaire de $F$ dans $E$ :
+    \begin{equation*}
+        \boxed{E=F\oplus F^\bot}.
+    \end{equation*}
+    La projection sur $F$ parallèlement à $F^\bot$ est notée ici $p_F$ et appelé \bf{projecteur orthogonal} de $F$.
+    \begin{center}
+        Si $(e_1,...,e_p)$ est une base orthonormée de $F$, alors $\quad p_F(x)=\sum\limits_{i=1}^p\Lg x, e_i\Rg e_i$
+    \end{center}
+    \tcblower
+    Par analyse-synthèse, supposons que $x$ se décompose sur $F+F^\bot$: $\exists y,z \in F\times F^\bot ~ x = y + z$.\\
+    $F$ est de dimension finie, il admet une b.o.n. $(e_1,...,e_p)$, et $y=\sum_{i=1}^p\Lg y, e_i \Rg e_i$.\\
+    On sait que $x-y\in F^\bot$ : $\Lg x - y, e_i \Rg = 0 $ donc $\Lg x, e_i \Rg - \Lg y, e_i \Rg = 0$ donc $\Lg x, e_i \Rg = \Lg y, e_i \Rg$.\\
+    Donc $y=\sum_{i=1}^p\Lg x, e_i \Rg, e_i$, évidemment, $z=x-y$.\\
+    On a bien l'unicité.\\
+    Synthèse : on pose $y=\sum_{i=1}^p\Lg x, e_i \Rg e_i$, $z=x-y$.\\
+    On a bien $y\in F$ et $y+z=x$.\\
+    Montrons que $x-y\in F^\bot$. Soit $f\in F$, $f=\sum_{i=1}^p\Lg f, e_i\Rg e_i$.
+    \begin{equation*}
+        \Lg x - y, f \Rg = \left\Lg x - y, \sum_{i=1}^p\Lg f, e_i \Rg e_i \right\Rg = \sum_{i=1}^p\Lg f, e_i \Rg(\Lg x, e_i \Rg - \Lg y, e_i \Rg) = 0.
+    \end{equation*}
+    Car $\Lg y, e_i \Rg$ est la coordonnée de $y$ sur $e_i$ : $\Lg x, e_i \Rg$ par définition.\\
+    Conclusion : tout $x\in E$ se décompose de manière unique sur $F+F^\bot$.
+\end{defi}
+
+\begin{corr}{Inégalité de Bessel.}{}
+    Soit $(E,\Lg.,.\Rg)$ un espace préhilbertien et $F$ un sous-espace vectoriel de dimension finie. Alors,
+    \begin{equation*}
+        \forall x \in E \quad \|p_F(x)\| \leq \|x\|.
+    \end{equation*}
+    \tcblower
+    Soit $x\in E$, alors $x=p_F(x) + (x - p_F(x))$.\\
+    On a donc $\|x\|^2=\|p_F(x)\|^2+\|x-p_F(x)\|^2$ et $\|x\|^2-\|p_F(x)\|^2=\|x-p_F(x)\|\geq0$.\\
+    Par passage à la racine, $\|p_F(x)\|\leq\|x\|$.
+\end{corr}
+
+\begin{corr}{}{}
+    Soit $E$ un espace euclidien et $F$ un sev de $E$. Alors
+    \begin{equation*}
+        \dim\left(F^\bot\right) = \dim(E) - \dim(F).
+    \end{equation*}
+    \tcblower
+    On sait que $E=F\oplus F^\bot$ car $F$ de dimension finie.\\
+    Donc $\dim(E) = \dim(F) + \dim\left(F^\bot\right)$ donc $\dim\left(F^\bot\right)=\dim(E)-\dim(F)$.
+\end{corr}
+
+\begin{prop}{La question du bi-orthogonal (Hors-programme).}{}
+    Soit $(E,\Lg.,.\Rg)$ un espace préhilbertien et $F$ un sous-espace vectoriel de $E$ tel que $F\oplus F^\bot=E$.\\
+    On a
+    \begin{equation*}
+        (F^\bot)^\bot = F.
+    \end{equation*}
+    Le projecteur orthogonal sur $F^\bot$ est le projecteur sur $F^\bot$ parallèlement à $F$, de sorte que
+    \begin{equation*}
+        \forall x \in E, ~ X = p_F(x)+p_{F^\bot}(x).
+    \end{equation*} 
+    Tout ceci est vrai en particulier lorsque $F$ est de dimension finie, et donc dans le cas où $E$ est euclidien.
+    \tcblower
+    On a déja prouvé que $F\subset (F^\bot)^\bot$.\\
+    Montrons l'inclusion réciproque sous l'hypothèse $E=F\oplus F^\bot$.\\
+    Soit $x\in (F^\bot)^\bot$. $\exists!(x_F,x_{F^\bot})\in F\times F^\bot \mid x=x_F+x_{F^\bot}$.\\
+    D'une part $\Lg x, x_{F^\bot}\Rg=0$ car $x\in(F^\bot)^\bot$ et $x_F\in F^\bot$.\\
+    D'autre part, $\Lg x, x_{F^\bot}\Rg=\Lg x_F + x_{F^\bot}, x_{F^\bot}\Rg = \cancel{\Lg x_F, x_{F^\bot} \Rg} + \Lg x_{F^\bot}, x_{F^\bot} \Rg=\|x_{F^\bot}\|^2$.\\
+    On obtient $\|x_{F^\bot}\|^2=0$ donc $x_{F^\bot}=0_E$ donc $x=x_F\in F$.\\
+    On a bien $(F^\bot)^\bot \subset F$, par double inclusion, $(F^\bot)^\bot=F$.
+\end{prop}
+
+\subsection{Distance à un sous-espace de dimension finie.}
+
+\begin{defi}{}{}
+    Soit $(E,\Lg.,.\Rg)$ un espace préhilbertien, $F$ un sous-espace de $E$ et $x\in E$ un vecteur.\\
+    On appelle \bf{distance} de $x$ à $F$, que l'on pourra noter $d(x,F)$ le réel positif
+    \begin{equation*}
+        d(x,F)=\inf_{y\in F}\|x-y\|.
+    \end{equation*}
+    \bf{Remarque:} La borne a un sens car $\{\|x-y\|, y\in F\}$ est non vide $\|x-0_F\|$ et minoré par $0$.
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $(E,\Lg.,.\Rg)$ un espace préhilbertien. Soit $F$ un sous-espace de dimension finie. On a
+    \begin{equation*}
+        \boxed{d(x,F)=\|x-p_F(x)\|}.
+    \end{equation*}
+    La distance au sous-espace est donc atteinte : $\|x-p_F(x)\|=\min_{y\in F}\|x-y\|$, et le projeté orthogonal $p_F(x)$ est l'unique vecteur de $F$ qui réalise le minimum.
+    \tcblower
+    Notons $y_0=p_F(x)$ (existe car $F$ est de dimension finie) et considérons $y\in F$. Puisque $x-y_0$ appartient à $F^\bot$ et que $y-y_0$ appartient à $F$, le théorème de Pythagore donne
+    \begin{equation*}
+        \|x-y\|^2=\|x-y_0+y_0-y\|^2=\|x-y_0\|^2+\|y_0-y\|^2\geq\|x-y_0\|^2.
+    \end{equation*} 
+    Avec égalité ssi $\|y_0-y\|=0$.\\
+    On a donc bien prouvé que $\|x-y\|\geq\|x-y_0\|$ avec égalité ssi $y=y_0$.
+\end{prop}
+
+\begin{corr}{Distance à un sous-espace, dans un espace de dimension finie.}{}
+    Soit $(E,\Lg.,.\Rg)$ un espace euclidien et $F$ un sous-espace vectoriel de $E$.\\
+    Pour tout vecteur $x$ de $E$, on a
+    \begin{equation*}
+        d(x,F)=\|p_{F^\bot}(x)\|.
+    \end{equation*}
+    \tcblower
+    Pour $x\in E$, $d(x,F)=\|x-p_F(x)\|=\|p_{F^\bot}(x)\|$.
+\end{corr}
+
+\subsection{Constuction de b.o.n. : algorithme d'orthonormalisation de Gram-Schmidt.}
+
+\begin{ex}{Comprendre d'abord pour deux vecteurs.}{}
+    On orthonormalise une famille libre $(u_1, u_2)$, en illustrant.
+    \tcblower
+    On pose $e_1:=\frac{u_1}{\|u_1\|}$ a un sens car $u_1\neq0$ (famille libre).\\
+    Notons $F=\Vect(u_1)$, alors $e_2:=\frac{u_2-p_F(u_2)}{\|u_2-p_F(u_2)\|}$. 
+\end{ex}
+
+
+\begin{prop}{Algorithme d'orthonormalisation de Gram-Schmidt.}{}
+    Soit $E$ un espace préhilbertien. Soit $(u_1,...,u_n)$ une famille libre de vecteurs de $E$ ($n\geq2$).\\
+    Il est possible de définir des vecteurs $e_1,...,e_n$ tels que
+    \begin{equation*}
+        \forall k \in \lb1,n\rg, ~ (e_1,...,e_k) \nt{ est une b.o.n de } \Vect(u_1,...,u_k):=F_k.
+    \end{equation*}
+    Le procédé de construction est le suivant : on commence par poser
+    \begin{equation*}
+        e_1 := \frac{u_1}{\|u_1\|}.
+    \end{equation*}
+    Pour $k\in\lb1,n-1\rb$, si $e_1,...,e_k$ sont construits, on pose $e_{k+1}=\frac{v_{k+1}}{\|v_{k+1}\|}$, où
+    \begin{equation*}
+        v_{k+1}:=u_{k+1}-p_{F_k}(u_{k+1})=u_{k+1}-\sum_{i=1}^k\Lg u_{k+1},e_i\Rg e_i.
+    \end{equation*}
+    Le procédé mis en oeuvre pour passer de $(u_1,...,e_n)$ à $(e_1,...,e_n)$ est appelé \bf{algorithme d'orthonormalisation de Gram-Schmidt} et on dit que l'on a orthonormalisé la famille $(u_1,...,u_n)$
+    \tcblower
+    Pour $k=1$, on a déjà $e_1=\frac{u_1}{\|u_1\|}$ bien défini et $\Vect(e_1)=\Vect(u_1)$.\\
+    Soit $k\geq1$, supposons $e_1,...,e_k$ bien construits.\\
+    Alors par définition : $v_{k+1}=u_{k+1}-p_{F_k}(u_{k+1})$ avec $F_k=\Vect(u_1,...,u_k)$.\\
+    Par définition du projeté orthogonal, $v_{k+1}\in F_k^\bot$. En particulier, $\forall i \in \lb1,k\rb ~ \Lg v_{k+1}, e_i\Rg = 0$.\\
+    Supposons que $v_{k+1}=0$, alors $u_{k+1}=p_{F_k}(u_{k+1})\in\Vect(u_1,...,u_k)$, absurde car famille libre.\\
+    On a bien $v_{k+1}\neq0$, on pose $e_{k+1}=\frac{v_{k+1}}{\|v_{k+1}\|}$.\\
+    On sait déjà que $(e_1,...,e_k)$ est orthonormée.\\
+    De plus, $\|e_{k+1}\|=\1$ et pour $i\in\lb1,k\rb, ~\Lg e_{k+1} e_i \Rg = \Lg\frac{v_{k+1}}{\|v_{k+1}\|}=0 \Rg$.\\
+    C'est bien orthonormé.\\
+    Alors $(e_1,...,e_{k+1})$ est libre, or $F_{k+1}=\Vect(u_1,...,u_{k+1})$ donc $\dim F_{k+1}=k+1$, c'est une b.o.n.
+\end{prop}
+
+\begin{ex}{}{}
+    Orthonormaliser la famille $(u_1,u_2,u_3)$ où $u_1=(2,-1,1)$, $u_2=(-1,1,1)$, $u_3=(1,1,1)$.\\
+    Solution : l'algorithme donne $(e_1,e_2,e_3)$ tels que :
+    \begin{equation*}
+        e_1=\frac{1}{\sqrt{6}}(2,-1,1), \quad e_2=\frac{1}{\sqrt{21}}(-1,2,4), \quad e_3=\frac{1}{\sqrt{14}}(2,3,-1).
+    \end{equation*}
+\end{ex}
+
+\begin{ex}{Matrice de passage.}{}
+    Soit $(u_1,...,u_n)$ une base d'un espace euclidien et $(e_1,...,e_n)$ la b.o.n. obtenue en appliquant l'algorithme de Gram-Schmidt. Expliquer pourquoi la matrice de passage de la première à la seconde est triangulaire supérieure.
+    \tcblower
+    Avec $e_k\in\Vect(u_1,...,u_k)$.
+    \begin{equation*}
+        P_{B,B'}=\begin{pmatrix}
+            ... &a_{1,k} &...\\
+            ... &\vdots &...\\
+            ... &a_{k,k} &...\\
+            ... &0 &...\\
+            ... &\vdots &...\\
+            ... &0 &... 
+        \end{pmatrix}
+    \end{equation*}
+\end{ex}
+
+\begin{prop}{Théorème de la b.o.n. incomplète.}{}
+    Dans un espace euclidien, toute famille orthonormée peut être complétée en une b.o.n.
+\end{prop}
+
+\subsection{Projeté orthogonal et calcul de distance : la pratique.}
+
+\begin{meth}{Projeter un vecteur sur $F$ avec une b.o.n.}{}
+    Soit $F$ un sous-espace vectoriel de dimension finie d'un espace préhilbertien $E$ et $x\in E$.\\
+    Pour calculer $p_F(x)$, projeté orthogonal de $x$ sur $F$, on peut
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9ex]
+        \item Se donner une b.o.n. $(e_1,...,e_p)$ de $F$.
+        \item Utiliser la formule $p_F(x)=\sum_{i=1}^p\Lg x, e_i\Rg e_i$.
+    \end{enumerate}
+\end{meth}
+
+\begin{meth}{Projeter un vecteur sur $F$ lorsqu'on a une base quelconque de $F$.}{}
+    Soit $F$ un sous-espace vectoriel de dimension finie d'un espace préhilbertien $E$ et $x\in E$.\\
+    Pour calculer $p_F(x)$, projeté orthogonal de $x$ sur $F$, on peut
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9ex]
+        \item Se donner une base $(u_1,...,u_p)$ de $F$.
+        \item Introduire $(\l_1,...,\l_p)$, $p$-uplet des coordonnées de $p_F(x)$ sur $(u_1,...,u_p)$.
+        \item Écrire le système des $\forall i\in\lb1,p\rb ~ \Lg x-p_F(x), u_i \Rg = 0$.
+        \item Résoudre le système linéaire.
+    \end{enumerate}
+\end{meth}
+
+\begin{ex}{Distance à un hyperplan en dimension finie.}{}
+    Soit $u$ un vecteur non nul d'un espace euclidien $E$ et $x$ un vecteur de $E$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.5ex]
+        \item Justifier que $\Vect(u)^\bot$ est un hyperplan. Quel nom peut-on donner à $u$ ?
+        \item Notons $H=\Vect(u)^\bot$ et $D=\Vect(u)$.\\
+        Lequel de $p_H(x)$ ou de $p_D(x)$ est le plus facile à calculer en premier ?
+        \item Justifier que la distance de $x$ à $H$ est $d(x,H)=\frac{|\Lg x, u \Rg|}{\|u\|}$. 
+        \item Application : montrer que la distance d'un vecteur $x=(x_0,y_0,z_0)\in\R^3$ à un plan vectoriel $P$ d'équation $ax+by+cz=0$ $(a,b,c)\neq(0,0,0)$ vaut
+        \begin{equation*}
+            d(x,P)=\frac{|ax_0+by_0+cz_0|}{\sqrt{a^2+b^2+c^2}}.
+        \end{equation*}
+    \end{enumerate}
+    \tcblower
+    1. $\Vect(u)$ est une droite car $u\neq 0$, $\Vect(u)^\bot$ est un supplémentaire de $\Vect(u)$ car de dimension finie, c'est un hyperplan.\\
+    2. $p_D(x)$ est plus facile à calculer en premier car $D$ est de dimension 1.\\
+    3. On a $d(x,H)=\|x-p_H(x)\|=\|p_D(x)\|$.\\
+    Une b.o.n. de $D$ est $(\frac{u}{\|u\|})$. Alors $p_D(x)=\Lg x, \frac{u}{\|u\|}\Rg \frac{u}{\|u\|} = \frac{\Lg x, u \Rg}{\|u\|^2}u$.\\
+    Finalement, $d(x,H)=\|p_D(x)\|=\frac{|\Lg x, u \Rg|}{\|u\|}$.\\
+    4. On a $P=\{x\in\R^3 \mid \Lg x, (a,b,c) \Rg = 0\}=\Vect(a,b,c)^\bot$.\\
+    $P$ est un hyperplan de $R^3$. On a $d(x,P)=\frac{|\Lg x, (a,b,c)\Rg|}{\|(a,b,c)\|}=\frac{ax_0+by_0+cz_0}{\sqrt{a^2+b^2+c^2}}$.
+\end{ex}
+
+\begin{ex}{}{}
+    Calculer le nombre
+    \begin{equation*}
+        \inf_{(a,b)\in \R^2}\int_0^1(e^x-ax-b)^2\dx
+    \end{equation*}
+    \tcblower
+    Pour $(a,b)\in\R^2$, on note $f_{a,b}:x\mapsto ax + b$.
+    \begin{equation*}
+        \int_0^1(e^x-ax+b)^2\dx=\int_0^1(\exp - f_{a,b})^2=\|\exp - f_{a,b}\|^2.
+    \end{equation*}    
+    C'est la norme associée au produit scalaire intégral sur $\C([0,1])$ (\ref{prop:cinq}).\\
+    Il s'agit donc de calculer $d(\exp, F)$ où $F=\{f_{a,b}:x\mapsto ax+b, ~ (a,b)\in\R^2\}$.\\
+    On a $F=\Vect(\id_\R, \1)$, c'est un plan de base $(\id,\1)$.\\
+    Soient $\l,\mu\in\R\mid p_F(\exp)=\l \id + \mu\1$. On pose le système :
+    \begin{equation*}
+        \begin{cases}
+            \Lg \exp-p_F(\exp), \id\Rg &= 0\\
+            \Lg \exp-p_F(\exp), \1\Rg &= 0
+        \end{cases}
+    \end{equation*}
+    D'une part, $\Lg \exp - p_F(\exp), \id\Rg = \int_0^1xe^x\dx - \l\int_0^1x^2\dx - \mu \int_0^1 x\dx= I - \frac{\l}{3}-\frac{\mu}{2}$ où $I=\int_0^1xe^x\dx$.\\
+    D'autre part, $\Lg \exp - p_F(\exp),\1\Rg = J - \frac{\l}{2}-\mu$.
+    \begin{equation*}
+        \begin{cases}
+            \frac{1}{3}\l + \frac{1}{2}\mu = I\\
+            \frac{1}{2}\l + \mu = J
+        \end{cases}
+        \iff 
+        \begin{cases}
+            2\l + 3\mu = 6I\\
+            3\l + 6\mu = 6J
+        \end{cases}
+        \iff
+        \begin{cases}
+            \l = 12I - 6J\\
+            \mu = 4J - 6I
+        \end{cases}
+    \end{equation*}
+    Reste à calculer $I,J$ et $\int_0^1(\exp-\l\id - \mu)^2$.
+\end{ex}
+
+\section{Exercices.}
+
+\begin{exercice}{37.6}{}
+    Montrer que pour tout $(x_1,...,x_n)\in\R^n,~\left( \sum_{i=1}^nx_i \right)^2\leq n\sum_{i=1}^nx_i^2$.\\
+    Pour quels $n$-uplets a-t-on égalité ?
+    \tcblower
+    Soit $x=(x_1,...,x_n)\in\R^n$ et $y=(1,...,1)$. On applique Cauchy-Schwarz pour le produit scalaire canonique :
+    \begin{equation*}
+        \left( \sum_{i=1}^nx_i\cdot1 \right)^2 \leq \left(\sum_{i=1}^nx_i^2\right)\left(\sum_{i=1}^n1^2\right)
+    \end{equation*}
+    ça marche.\n
+    On a égalité ssi $(x,y)$ est liée ssi $y=0$ ou $\exists\l\in\R\mid x=\l y$ ssi les $x_i$ sont égaux.
+\end{exercice}
+
+\begin{exercice}{37.7}{}
+    Soient $x_1,...,x_n\in\R_+^*$ tels que $\sum_{i=1}^nx_i=1$. Montrer que $\sum_{i=1}^n\frac{1}{x_i}\geq n^2$. Étudier l'égalité.
+    \tcblower
+    On a $\sum_{i=1}^n\frac{1}{x_i}=\sum_{i=1}^n\left( \frac{1}{\sqrt{x_i}} \right)^2=\|u\|^2$ où $u:=(\frac{1}{\sqrt{x_1}},...,\frac{1}{\sqrt{x_n}})$.\n
+    Posons $v:=(\sqrt{x_1},...,\sqrt{x_n})$ de norme $\|v\|^2=\sum_{i=1}^n(\sqrt{x_i})^2=1$ par hypothèse.\n
+    Donc $\Lg u,v \Rg = \sum_{i=1}^n\frac{1}{\sqrt{x_i}}\sqrt{x_i}=n$.\n
+    Donc $(\Lg u,v\Rg)^2\leq\|u\|^2\|v\|$ donc $n^2\leq\sum_{i=1}^n\frac{1}{x_i}$ d'après Cauchy-Schwarz.\n
+    \bf{Cas d'égalité:} ssi $(x,y)$ est liée, ssi $\exists \alpha \in \R \mid y = \alpha x$.\\
+    Avec la condition $\sum_{i=1}^nx_i=1$, on trouvera un unique vecteur pour le cas d'égalité : $(\frac{1}{n},...,\frac{1}{n})$.
+\end{exercice}
+
+\end{document}

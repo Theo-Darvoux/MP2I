@@ -1,41 +1,13 @@
 \documentclass[11pt]{article}
 
-\input{Latex/packages}
+\def\chapitre{33}
+\def\pagetitle{Groupe symétrique}
 
-\def\pagetitle{Groupe Symétrique}
-\setlength{\headheight}{14pt}
-
-\title{\bf{\pagetitle}\n\large{Corrigé}}
-
-\hypersetup{
-    colorlinks=true,
-    citecolor=black,
-    linktoc=all,
-    linkcolor=blue
-}
-
-\pagestyle{fancy}
-\cfoot{\thepage\ sur \pageref*{LastPage}}
+\input{/home/theo/MP2I/setup.tex}
 
 \begin{document}
 
-\include{Latex/page}
-\include{Latex/command}
-
-\thispagestyle{fancy}
-\fancyhead[L]{MP2I Paul Valéry}
-\fancyhead[C]{\pagetitle}
-\fancyhead[R]{2023-2024}
-
-\hrule
-\begin{center}
-    \LARGE{\textbf{Chapitre 33}}\n
-    \large{\pagetitle}\n
-    \rule{0.8\textwidth}{0.5pt}
-\end{center}
-
-
-\vspace{0.5cm}
+\input{/home/theo/MP2I/title.tex}
 
 \section{Permutations}
 
@@ -86,9 +58,9 @@
         \item Ce groupe n'est pas abélien dès que $n\geq3$.
     \end{enumerate}
     \tcblower
-    \boxed{1} Cours sur les structures algébriques.\n
-    \boxed{2} On pose $\Phi:\begin{cases}S_n \to \mathcal{A}(\lb1,n\rb)\n\s\mapsto(\s(1),...,\s(n))\end{cases}$ bijective et $|\mathcal{A}(\lb1,n\rb)|=n!$.\n
-    \boxed{3} $S_3$ n'est pas abélien car $\t:=...$ et $\t'=...$ ne commutent pas.\n
+    \boxed{1} Cours sur les structures algébriques.\\
+    \boxed{2} On pose $\Phi:\begin{cases}S_n \to \mathcal{A}(\lb1,n\rb)\n\s\mapsto(\s(1),...,\s(n))\end{cases}$ bijective et $|\mathcal{A}(\lb1,n\rb)|=n!$.\\
+    \boxed{3} $S_3$ n'est pas abélien car $\t:=...$ et $\t'=...$ ne commutent pas.\\
     Soient $\s,\s'\in S_n ~ | ~ \s_{|\{1,2,3\}}=\t$ et $\s'_{|\{1,2,3\}}=\t'$, fixes sur $\lb4,n\rb$, alors $\s\s'\neq\s'\s$.
 \end{prop}
 
@@ -100,16 +72,15 @@
         \item On appelle \textbf{support} de $\s$ l'ensemble des éléments de $\lb1,n\rb$ qui ne sont pas des points fixes.
         \item Deux permutations $\s$ et $\s'$ sont dites \textbf{conjuguées} s'il existe $\alpha\in S_n$ tel que $\s'=\alpha\s\alpha^{-1}$.
     \end{enumerate}
-
 \end{defi}
 
 \begin{prop}{}{}
     Deux permutations dont les supports sont disjoints commutent.
     \tcblower
-    Soient $\s,\s'\in S_n$. On note $S(\s)=\{x \in \lb1,n\rb ~ | ~ \s(x)\neq x\}$.\n
-    Supposons $S(\s)\cap S(\s') = \0$.\n
+    Soient $\s,\s'\in S_n$. On note $S(\s)=\{x \in \lb1,n\rb ~ | ~ \s(x)\neq x\}$.\\
+    Supposons $S(\s)\cap S(\s') = \0$.\\
     Soit $x\in\lb1,n\rb$.
-    \begin{itemize}
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
         \item Si $x\in S(\s)$ : $x\notin S(\s')$ donc $\s\s'(x)=\s(x)\in S(\s)$ par bijectivité de $\s$.
         \item Si $x\notin S(\s)$ : Soit $x\in S(\s')$ et on se ramène au 1er cas, soit $x\notin S(\s')$ et $\s\s'(x)=x=\s'\s(x)$.
     \end{itemize}
@@ -118,13 +89,12 @@
 
 \section{Cycles.}
 
-\begin{defi}{}{}
-    Soit $p$ un entier supérieur à 2.\n
+\begin{defi}{$p$-cycles}{}
+    Soit $p$ un entier supérieur à 2.\\
     Une permutation $\g$ est appellée un $p$\textbf{-cycle} s'il existe $p$ éléments distincts $a_1,...,a_p$ de $\lb1,n\rb$ tels que
-    \begin{align*}
-        &a_1\overset{\g}{\mapsto}a_2\overset{\g}{\mapsto}...\overset{\g}{\mapsto}a_p\overset{\g}{\mapsto}a_1.\n
-        \text{et} \quad &\forall b \in \lb1,n\rb\setminus\{a_1,...,a_p\} ~ \g(b)=b.
-    \end{align*}
+    \begin{equation*}
+        a_1\overset{\g}{\mapsto}a_2\overset{\g}{\mapsto}...\overset{\g}{\mapsto}a_p\overset{\g}{\mapsto}a_1 \quad \text{et} \quad \forall b \in \lb1,n\rb\setminus\{a_1,...,a_p\} ~ \g(b)=b.
+    \end{equation*}
     On note alors $\g=(a_1~a_2~...~a_p)$.
 \end{defi}
 
@@ -135,20 +105,19 @@
         \s\g\s^{-1}=(\s(a_1)~\s(a_2)~...~\s(a_p)).
     \end{equation*}
     \tcblower
-    Soit $b\in\lb1,n\rb\setminus\{\s(a_1),...,\s(a_p)\}$.\n
-    Alors $\s\g\s^{-1}(b)=\s\g(\s^{-1}(b))=\s\s^{-1}(b)=b$ car $b\notin\{\s(a_1),...,\s(a_p)\}$ donc $\s^{-1}(b)\notin\{a_1,..,a_p\}$ donc c'est un point fixe de $\g$.\n
-    Soit $j\in\lb1,p\rb$.\n
-    Alors $\s\g\s^{-1}(\s(a_j))=\s\g(a_j)=\s(a_{j+1})$ avec $a_{p+1}:=a_1$.\n
-    On a bien que $\s\g\s^{-1}$ et $(\s(a_1)...\s(a_p))$ sont égaux en tout point.\n
-    \textbf{Remarque:} Ceci démontre que tous les $p$-cycles sont conjugués.\n
-    Soient $\g=(a_1~...~a_p)$ et $\g'=(b_1~...~b_p)$ deux $p$-cycles.\n
+    Soit $b\in\lb1,n\rb\setminus\{\s(a_1),...,\s(a_p)\}$.\\
+    Alors $\s\g\s^{-1}(b)=\s\g(\s^{-1}(b))=\s\s^{-1}(b)=b$ car $b\notin\{\s(a_1),...,\s(a_p)\}$ donc $\s^{-1}(b)\notin\{a_1,..,a_p\}$ donc c'est un point fixe de $\g$.\\
+    Soit $j\in\lb1,p\rb$, on a $\s\g\s^{-1}(\s(a_j))=\s\g(a_j)=\s(a_{j+1})$ avec $a_{p+1}:=a_1$.\\
+    On a bien que $\s\g\s^{-1}$ et $(\s(a_1)...\s(a_p))$ sont égaux en tout point.\\
+    \textbf{Remarque:} Ceci démontre que tous les $p$-cycles sont conjugués.\\
+    Soient $\g=(a_1~...~a_p)$ et $\g'=(b_1~...~b_p)$ deux $p$-cycles.\\
     Posons $\s\in S_n$ telle que :
-    \begin{itemize}
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
         \item $\forall j \in \lb 1, p \rb ~ \s(a_j) = b_j$.
         \item Notons $\lb 1, n \rb \setminus \{a_1, ..., a_p\} := \{a_1', ..., a_{n-p}'\}$ et $\lb 1, n \rb \setminus \{b_1, ... b_p\} := \{b_1', ... , b_{n-p}'\}$.
     \end{itemize}
-    On pose alors $\forall i\in\lb1,n-p\rb ~ \s(a_i')=b_i'$.\n
-    Alors $\s$ est bien une bijection de $\lb1,n\rb$ dans lui-même car injective et de même cardinal.\n
+    On pose alors $\forall i\in\lb1,n-p\rb ~ \s(a_i')=b_i'$.\\
+    Alors $\s$ est bien une bijection de $\lb1,n\rb$ dans lui-même car injective et de même cardinal.\\
     On a donc $\g'=(b_1~...~b_p) = (\s(a_1)~...~\s(a_p))=\s\g\s^{-1}$ donc $\g$ et $\g'$ sont conjugués.
 \end{ex}
 
@@ -188,7 +157,7 @@
     On en déduit que $\t^{-1}=\t$.
 \end{prop}
 
-\begin{lem}{Décomposition d'un cycle en produit de transpositions}{}
+\begin{lemme}{Décomposition d'un cycle en produit de transpositions}{}
     Soit $\g=(a_1~...~a_p)$. Alors
     \begin{equation*}
         \g=(a_1~a_2)(a_2~a_3)...(a_{p-1}~a_p) \qquad \text{ou} \qquad \g=(a_1~a_p)(a_1~a_{p-1})...(a_1~a_2)
@@ -204,7 +173,7 @@
     Donc $\forall x \in \lb1,n\rb ~ \g(x)=\pi(x)$\n
     \textbf{Remarque:} On retrouve que $(1~2)(2~3)=(1~2~3)$ et $(2~3)(1~2) = (3~2)(2~1)=(3~2~1)=(1~3~2)$\n
     On a $(1~2)(2~3)\neq(2~3)(1~2)$.
-\end{lem}
+\end{lemme}
 
 \section{Théorème de décomposition.}
 
@@ -215,32 +184,31 @@
     \end{equation*}
     Les $\g_i$ commutent et cette décomposition est unique à l'ordre près.
     \tcblower
-    Soit $\s\in S_n$.\n
-    \textbf{Une relation d'équivalence sur $\lb1,n\rb$}.\n
+    Soit $\s\in S_n$.\\
+    \textbf{Une relation d'équivalence sur $\lb1,n\rb$}.\\
     Pour $i,j\in\lb1,n\rb$, on note $i\sim j$ si $\exists k \in \Z ~ | ~ j = \s^k(i)$.
-    \begin{itemize}
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
         \item Soit $i\in\lb1,n\rb$. $i=\s^0(i)$ donc $i \sim i$.
         \item Soient $i,j\in\lb1,n\rb ~ | ~ i \sim j$. Alors $\exists k \in \Z ~ | ~ j = \s^k(i) ~ : ~ i = \s^{-k}(j)$ et $j \sim i$.
         \item Soient $h,i,j\in\lb1,n\rb ~ | ~ h \sim i$ et $i \sim j : \exists k,l \in \Z ~ | ~ i = \s^k(h)$ et $j=\s^l(i)$ donc $j=\s^{l+k}(h)$ et $j \sim h$.
     \end{itemize}
-    Il existe alors une partition de $\lb1,n\rb$ en classes d'équivalences.\n
-    On fixe $x\in\lb1,n\rb$.\n
-    Prouvons qu'il existe $p\in\N^*$ tel que $[x]=\{x,\s(x),...,\s^{p-1}(x)\}$.\n
-    On pose $p=\min\{k\in\N^* ~ | ~ \s^k(x)=x\}$. Cet ensemble est minoré. Il est non-vide car :
+    Il existe alors une partition de $\lb1,n\rb$ en classes d'équivalences.\\
+    On fixe $x\in\lb1,n\rb$, prouvons qu'il existe $p\in\N^*$ tel que $[x]=\{x,\s(x),...,\s^{p-1}(x)\}$.\\
+    On pose $p=\min\{k\in\N^* ~ | ~ \s^k(x)=x\}$. Cet ensemble est minoré et non-vide car :
     \begin{equation*}
         S : \begin{cases}
-            \Z \to \lb1,n\rb\n
+            \Z \to \lb1,n\rb\\
             k\mapsto \s^k(x)
         \end{cases}
         \text{n'est pas injective.}
     \end{equation*}
-    Ainsi, $\exists k,k' \in \Z ~ | ~ k < k' ~ \text{et} ~ \s^k(x)=\s^{k'}(x)$ donc $\s^{k'-k}(x)=x$.\n
-    Or $k'-k\in\N^*$, donc $\{k\in\N^* ~ | ~ \s^k(x)=x\}\neq\0$.\n
-    Il faut montrer que $[x]=\{x,\s(x),...,\s^{p-1}(x)\}$.\n
-    \fbox{$\supset$} est trivial.\n
-    \fbox{$\subset$} Soit $y\in[x]$ : $\exists k \in \Z ~ | ~ y = \s^k(x)$.\n
-    Par division euclidienne : $\exists!(q,r)\in\Z^2 ~ | ~ k = qp + r ~ \text{et} ~ 0 \leq r \leq p-1$.\n
-    Donc $y = \s^k(x) = \s^{pq+r}(x) = \s^r(\s^{pq}(x))=\s^r(x)$ : $y\in\{x,\s(x),...,\s^{p-1}(x)\}$.\n
+    Ainsi, $\exists k,k' \in \Z ~ | ~ k < k' ~ \text{et} ~ \s^k(x)=\s^{k'}(x)$ donc $\s^{k'-k}(x)=x$.\\
+    Or $k'-k\in\N^*$, donc $\{k\in\N^* ~ | ~ \s^k(x)=x\}\neq\0$.\\
+    Il faut montrer que $[x]=\{x,\s(x),...,\s^{p-1}(x)\}$.\\
+    \fbox{$\supset$} est trivial.\\
+    \fbox{$\subset$} Soit $y\in[x]$ : $\exists k \in \Z ~ | ~ y = \s^k(x)$.\\
+    Par division euclidienne : $\exists!(q,r)\in\Z^2 ~ | ~ k = qp + r ~ \text{et} ~ 0 \leq r \leq p-1$.\\
+    Donc $y = \s^k(x) = \s^{pq+r}(x) = \s^r(\s^{pq}(x))=\s^r(x)$ : $y\in\{x,\s(x),...,\s^{p-1}(x)\}$.\\
     Notons $A_1,...,A_r$ les classes d'équivalences non triviales de $\sim$. On a prouvé que :
     \begin{equation*}
         \forall j \in \lb1,r\rb ~ \exists x_j \in \lb 1, n \rb ~ \exists p_j \in \N^* ~ | ~ A_j = \{x_j, \s(x_j), ..., \s^{p_j-1}(x_j)\}.
@@ -250,13 +218,14 @@
 
 \begin{ex}{Une décomposition}{}
     Soit $\s=\begin{pmatrix}1&2&3&4&5&6&7&8\n5&4&1&7&8&6&2&3\end{pmatrix}$.
-    \begin{enumerate}
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
         \item Décomposer $\s$ en produit de cycles à supports disjoints.
         \item Déterminer $\s^4$, $\s^{12}$ et $\s^{666}$.
     \end{enumerate}
     \tcblower
-    \boxed{1} $\s=(1~5~8~3)(2~4~7)$\n
-    \boxed{2} \begin{itemize}
+    \boxed{1} $\s=(1~5~8~3)(2~4~7)$\\
+    \boxed{2} On a:
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
         \item $\s^4=(\g_1\g_2)^4\underset{\text{comm}}{=}\g_1^4\g_2^4=\g_2$ car $\g_1^4=id$ et $\g_2^4=\g_2^3\g_2=\g_2$.
         \item $\s^{12}=(\gamma_1^{4})^3(\g_2^3)^4=id$
         \item $\s^{666}=(1~8)(3~5)$ car $\s^{666}=\underset{id^{55}}{\cancel{\s^{12\times55}}}\s^6$.
@@ -264,28 +233,25 @@
 \end{ex}
 
 \begin{corr}{}{}
-    Toute permutation est un produit de transpositions.\n
+    Toute permutation est un produit de transpositions.\\
     La décomposition n'est pas unique et les transpositions ne commutent pas nécéssairement.
     \tcblower
-    Soit $\s \in S_{n}$, \n 
-    Le théorème (12) nous dit que : $\s$ s'écrit comme un produit de cycles. (à supports disjoints)\n
-    Or tout cycle s'écrit comme un produit de transpositions.\n
-    \textbf{En effet} si \n
-    $\g = (a_{1} a_{2}  ...  a_{p})$\n
-    Alors $\g = (a_{1} a_{2})(a_{3} a_{4}) ... (a_{p-1} a_{p})$\n
-    $\s$ s'écrit donc comme un produit de produit de transpositions.
+    Soit $\s \in S_{n}$.\\
+    Le théorème 12 nous dit que : $\s$ s'écrit comme un produit de cycles. (à supports disjoints)\\
+    Or tout cycle s'écrit comme un produit de transpositions.\\
+    Donc, si $\g = (a_{1} a_{2}...a_{p})$, alors $\g = (a_{1} a_{2})...(a_{p-1} a_{p})$ et $\s$ s'écrit comme produit de produit de transpositions.
 \end{corr}
 
 \begin{ex}{}{}
-    Décomposer en produit de transpositions la permutation \n
+    Décomposer en produit de transpositions la permutation :
     \begin{equation*}
         \s = \begin{pmatrix}
-            1 & 2 & 3 & 4 & 5 & 6 & 7 \n
+            1 & 2 & 3 & 4 & 5 & 6 & 7 \\
             7 & 5 & 1 & 2 & 4 & 6 & 3
         \end{pmatrix}
     \end{equation*}
     \tcblower
-    $\s = (1 7 3) (2 5 4)$ (produit de cycles)\n
+    $\s = (1 7 3) (2 5 4)$ (produit de cycles)\\
     $\s = (1 7)(7 3)(2 5)(5 4)$
 \end{ex}
 
@@ -293,7 +259,7 @@
 
 \begin{defi}{}{}
     Soit $\s \in S_{n}$
-    \begin{enumerate}
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
         \item Une paire $\{ i, j \}$ de $\lb 1, n \rb$ est une \textbf{inversion} pour $\s$ si $i - j$ et $\s(i) - \s(j)$ sont de signe opposé.
         \item Le nombre d'inversion de $\s$ est noté $Inv(\s)$
         \item On appelle \textbf{signature} de $\s$ le nombre $\e(\s) = (-1)^{Inv(\s)}$
@@ -301,42 +267,41 @@
 \end{defi}
 
 \begin{ex}{}{}
-    Après avoir calculé son nombre d'inversions, donner la signature de \n
+    Après avoir calculé son nombre d'inversions, donner la signature de
     \begin{equation*}
         \s = \begin{pmatrix}
-            1 & 2 & 3 & 4 & 5 \n
+            1 & 2 & 3 & 4 & 5 \\
             4 & 1 & 2 & 5 & 3
         \end{pmatrix}
     \end{equation*}
     \tcblower
-    On va calculer $\e(\s)$ en comptant le nombre d'inversions.\n
-    Il y a $\binom{5}{2}$ paires dans $\lb 1, 5 \rb$\n
-    \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c}
-        paire & \{1, 2\} & \{1, 3\} & \{1, 4\} & \{1, 5\} & \{2, 3\} & \{2, 4\} & \{2, 5\} & \{3, 4\} & \{3, 5\} & \{4, 5\} \n
-        \hline
-         inversion & \cmark & \cmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark
-    \end{tabular}\n
+    On va calculer $\e(\s)$ en comptant le nombre d'inversions.\\
+    Il y a $\binom{5}{2}$ paires dans $\lb 1, 5 \rb$.
+    \begin{center}
+        \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c}
+            paire & \{1, 2\} & \{1, 3\} & \{1, 4\} & \{1, 5\} & \{2, 3\} & \{2, 4\} & \{2, 5\} & \{3, 4\} & \{3, 5\} & \{4, 5\} \\
+            \hline
+            inversion & \cmark & \cmark & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark
+        \end{tabular}
+    \end{center}
     Ainsi on a $Inv(\s) = 4$ donc $\e(\s) = (-1)^{4} = 1$
 \end{ex}
 
-\begin{prop}{TODO PREUVE PROPRE}{}
-    \begin{enumerate}
+\begin{prop}{}{}
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
         \item L'identité a pour signature $1$.
         \item Les transpositions ont pour signature $-1$.
     \end{enumerate}
     \tcblower
-    \boxed{1} Il est clair ( Non ?) \n
-    que $Inv(id_{\lb 1, n \rb}) = 0$ donc $\e(\s)=1^{0} = 1$.\n
-    \boxed{2} Soit $\{i,j\}$ une paire de $\lb1,n\rb$, \n
-    $\tau\in S_n$ : $\exists(a,b)\in\lb1,n\rb~|~\tau=(a~b)$ où $a\leq b$.
-    \begin{itemize}
+    \boxed{1} Il est clair que $\text{Inv}(\id_{\lb 1, n \rb}) = 0$ donc $\e(\s)=1^{0} = 1$.\\
+    \boxed{2} Soit $\{i,j\}$ une paire de $\lb1,n\rb$, $\tau\in S_n$ : $\exists(a,b)\in\lb1,n\rb~|~\tau=(a~b)$ où $a\leq b$.
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
         \item Cas $\{i,j\}\cap\{a,b\}=\0:~\tau(i)=i$ et $\tau(j)=j$ donc $i-j$ est de même signe.
         \item Cas $i=a$ et $j\neq b$ : $\tau(a)=b$ et $\tau(j)=j ~ : ~ |\lb a+1,b-1\rb$.
         \item Cas $i\neq a, j=b$ : $\tau(i)=i$ et $\tau(b)=a$ : $|\lb a+1,b-1 \rb$.
-        \item  Cas $\{i,j\}=\{a,b\}$\n
-    Alors $\tau(a)=b$ et $\tau(b)=a$, c'est une inversion.
+        \item Cas $\{i,j\}=\{a,b\}$ : $\tau(a)=b$ et $\tau(b)=a$, c'est une inversion.
     \end{itemize}
-    Bilan : $Inv(\tau)=2|\lb a+1,b-1\rb|+1=2(b-a)-1$, impair.\n
+    Bilan : $\text{Inv}(\tau)=2|\lb a+1,b-1\rb|+1=2(b-a)-1$, impair.\\
     Donc $\e(\tau)=-1$.
 \end{prop}
 
@@ -345,69 +310,75 @@
         \forall  \s \in S_{n} ~ \e(\s) = \prod_{\{i, j\}} \frac{\s(i) - \s(j) }{i - j}
     \end{equation*}
     \tcblower
-    Fixons $\{i, j \} \in \mathcal{P}_{2}(\lb 1, n \rb)$ (ensembles des paires)\n
-    On a $\frac{\s(i) - \s(j) }{i - j} = (-1)^{x_{\{i, j \}}} |\frac{\s(i) - \s(j) }{i - j}|$\n
-    où $x_{\{i, j \}} = $ 
-    $\left\{ \begin{array}{ll}
-        0 & \mbox{si {i, j} n'est pas une inversion} \n
-        1 & \mbox{sinon.}
-    \end{array} \right.$\n
-    $\prod_{\{i, j\}} \frac{\s(i) - \s(j) }{i - j} = \prod_{\{i, j\}} (-1)^{x_{\{i, j \}}} |\frac{\s(i) - \s(j) }{i - j}| = (-1)^{\sum_{\{i, j \}} x_{\{i, j \}}} \times \prod_{\{i, j\}} |\frac{\s(i) - \s(j) }{i - j}|$\n\n
-    Or $\sum_{\{i, j \}} x_{\{i, j \}} = Inv(\s)$ donc $(-1)^{\sum_{\{i, j \}}} = \e(\s)$\n\n
-    Reste à prouver $\prod_{\{i, j\}} |\frac{\s(i) - \s(j) }{i - j}| = 1$\n\n
-    Le produit vaut 1 car\n
-    $\phi : \left\{ \begin{array}{ll}
-        \mathcal{P}_{2}(\lb 1, n \rb) \to \mathcal{P}_{2}(\lb 1, n \rb) \n
+    Fixons $\{i, j \} \in \mathcal{P}_{2}(\lb 1, n \rb)$ (ensembles des paires)\\
+    On a 
+    \begin{equation*}
+        \frac{\s(i) - \s(j) }{i - j} = (-1)^{x_{\{i, j \}}} \Big|\frac{\s(i) - \s(j) }{i - j}\Big| \quad \text{où} \quad x_{\{i, j \}} = 
+        \begin{cases}
+            0 & \mbox{si {i, j} n'est pas une inversion.} \\
+            1 & \mbox{sinon.}
+        \end{cases}.
+    \end{equation*}
+    Alors :
+    \begin{equation*}
+        \prod_{\{i, j\}} \frac{\s(i) - \s(j) }{i - j} = \prod_{\{i, j\}} (-1)^{x_{\{i, j \}}} \Big|\frac{\s(i) - \s(j) }{i - j}\Big| = (-1)^{\sum_{\{i, j \}} x_{\{i, j \}}} \times \prod_{\{i, j\}} \Big|\frac{\s(i) - \s(j) }{i - j}\Big|
+    \end{equation*}
+    Or :
+    \begin{equation*}
+        \sum_{\{i, j \}} x_{\{i, j \}} = \text{Inv}(\s) \quad \text{donc} \quad (-1)^{\sum_{\{i, j \}}} = \e(\s)
+    \end{equation*}
+    Le produit vaut 1 car :
+    $\phi : \begin{cases}
+        \mathcal{P}_{2}(\lb 1, n \rb) \to \mathcal{P}_{2}(\lb 1, n \rb) \\
         \{ i, j \} \mapsto \{ \s(i), \s(j) \}
-    \end{array} \right.$ est une bijection. \n
-    On pose alors le changement d'indice $\{ u, v \} = \{ \s(i), \s(j) \}$\n\n
-    $\prod_{\{i, j\}} |\s(i) - \s(j)| = \prod_{\{u, v\}} |u - v| = \prod_{\{i, j\}} |i - j|$
+    \end{cases}$ est une bijection.\\
+    On pose alors le changement d'indice $\{ u, v \} = \{ \s(i), \s(j) \}$ :
+    \begin{equation*}
+        \prod_{\{i, j\}} |\s(i) - \s(j)| = \prod_{\{u, v\}} |u - v| = \prod_{\{i, j\}} |i - j|
+    \end{equation*}
+    Donc le produit vaut bien 1.
 \end{prop}
 
-\begin{thm}{TODO PREUVE PROPRE}{}
+\begin{thm}{}{}
     La signature est l'unique application $\e : S_{n} \to \{ -1, 1 \}$ telle que
-    \begin{enumerate}
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
         \item $\forall \s, \s^{'} \in S_{n} ~~ \e(\s \s^{'}) = \e(\s) \e(\s^{'})$
         \item Pour toute transposition $\tau \in S_{n}, ~ \e(\tau) = -1$
     \end{enumerate}
     \tcblower
-    \boxed{1} TODO\n
-    \boxed{2} On le sait déjà (proposition 18)\n
-    \underline{Unicité} : Soit $\delta : S_{n} \to \{ -1, 1 \}$ une fonction qui vérifie 1. et 2.\n
-    Montrons que $\g = \e$ ($\e$ la signature)\n
-    Soit $\s \in S_{n}$, $\exists r \in \N^{*}$ $\exists \tau_{1}, \tau_{2}, ..., \tau_{r}$ transpositions : $\s = \tau_{1} \tau_{2} ... \tau_{r}$.\n
-    Alors \begin{align*}
-        \delta(s) &= \prod_{i=1}^{r}{(-1)} \n
-    &= \e(\tau_{1})  \e(\tau_{2}) ... \e(\tau_{r})\n
-    &= \e(\tau_{1} \tau_{2} ... \tau_{r}) (1)\n
-    &= \e(\s)
-    \end{align*}
+    \textbf{Unicité} : Soit $\d:S_n\to\{-1,1\} ~ | 1. \text{ et } 2.$\\
+    Soit $\s\in S_n, \exists r\in\N^* ~ \exists \t_1,...,\t_r$ transpositions : $\s=\t_1...\t_r$.\\
+    Alors $\d(\s)=\d(\t_1)...\d(\t_r)=\prod_{i=1}^m(-1)=\e(\t_1)...\e(\t_r)=\e(\t_1,...,\t_r)=\e(\s)$.\n
+    \boxed{1} Soient $\s,\s'\in S_n$.
+    \begin{equation*}
+        \e(\s\s')=\prod_{\{i,j\}}\frac{\s\s'(i)-\s\s'(j)}{i-j}=\prod_{\{i,j\}}\frac{\s\s'(i)-\s\s'(j)}{\s'(i)-\s'(j)}\cdot\prod_{\{i,j\}}\frac{\s'(i)-\s'(j)}{i-j}
+    \end{equation*}
+    Or, 
+    \begin{equation*}
+        \prod_{\{i,j\}}\frac{\s(\s'(i))=\s(\s'(j))}{\s'(i)-\s'(j)}=\prod_{\{i,j\}}\frac{\s(i)-\s(j)}{i-j}=\e(\s) \quad \text{car bijection } \{i,j\}\mapsto\{\s(i),\s(j)\}.
+    \end{equation*}
+    Donc $\e(\s\s')=\e(\s)\e(\s')$.\n
+    \boxed{2} On le sait déjà (proposition 18).
 \end{thm}
 
 \begin{corr}{}{}
     La signature est l'unique morphisme de groupes non trivial de $(S_{n}, \circ)$ dans $(\C^{*}, \times)$
     \tcblower
     Montrons l'existence dans un premier point puis l'unicité.
-    \begin{itemize}
-        \item La fonction constante \n
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item La fonction constante
         $\mathds{1} : \left\{ \begin{array}{ll}
              S_{n} \to \C^{*}  \n
              \s \mapsto 1
-        \end{array}\right.$ est un \underline{morphisme de groupes} dit morphisme \underline{trivial}
-        \item La signature $\e$ est un morphisme de groupes de $S_{n}$ dans $\C^{*}$. Il est non trivial car si $\tau$ est une transposition $\e(\tau) = -1$
-        \item \underline{Unicité} Soit $f : S_{n} \to \C^{*}$ un morphisme de groupes.\n
-        Soit $\tau$ transpositions fixée. $\tau^{2} = id$\n
-        Appliquons $f$ :\n
-        $f(\tau^{2}) = f(id) = 1 \ra f(\tau)^{2} = -1$ ou $1$
-        \begin{enumerate}
-            \item $f(\tau) = 1$\n
-            Soit $\tau^{'}$, conjuguée à $\tau$\n 
-            $\exists \alpha \in S_{n}$, $\tau^{'} = \alpha \tau \alpha^{-1}$ (on a prouvé plutôt que 2 p-cycles sont conjugués)\n
-            $f(\tau^{'}) = f(\alpha \tau \alpha^{-1}) = f(\alpha) \cancel{f(\tau)} f(\alpha)^{-1} = 1$\n
-            or toute permutation est produit de transpositions $\ra ~ \forall \s \in S_{n}$, $f(\s) = 1$.
-            \item $f(\tau) = -1$\n
-            Par conjugaison, $\forall \tau^{'}$ transpositions $f(\tau^{'}) = -1$\n
-            $f$ est un morphisme de groupe envoyant sur $-1$.
+        \end{array}\right.$ est un \underline{morphisme de groupes} dit morphisme \underline{trivial}.
+        \item La signature $\e$ est un morphisme de groupes de $S_{n}$ dans $\C^{*}$. Il est non trivial car $\e(\tau) = -1$.
+        \item \textbf{Unicité} Soit $f : S_{n} \to \C^{*}$ un morphisme de groupes, soit $\t$ transpositions fixée. $\t^2 = \id$.\\
+        Appliquons $f$ : $f(\t^2) = f(\id) = 1 \ra f(\tau)^{2} = -1$ ou $1$.
+        \begin{enumerate}[topsep=0pt,itemsep=-0.7 ex]
+            \item $f(\tau) = 1$. Soit $\tau'$, conjuguée à $\tau$ : $\exists \alpha \in S_{n}$, $\tau' = \alpha \tau \alpha^{-1}$
+            $f(\tau') = f(\alpha \tau \alpha^{-1}) = f(\alpha) \cancel{f(\tau)} f(\alpha)^{-1} = 1$.\\
+            Or toute permutation est produit de transpositions $\ra ~ \forall \s \in S_{n}$, $f(\s) = 1$.
+            \item $f(\tau) = -1$. Par conjugaison, pour toute transposition $\t'$, $f(\t') = -1$ donc $f$ est un morphisme de groupe envoyant sur $-1$.
         \end{enumerate}
     \end{itemize}
 \end{corr}

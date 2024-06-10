@@ -1,0 +1,249 @@
+\documentclass[french, 11pt]{article}
+
+\newcommand*{\nnF}{\text{nnF}}
+\newcommand*{\cnF}{\text{cnF}}
+\newcommand*{\dnF}{\text{dnF}}
+\newcommand*{\W}{\mathbb{W}}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\def\chapitre{25}
+\def\pagetitle{Logique propositionnelle}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\section{Formules propositionnelles.}
+\subsection{Syntaxe.}
+
+\begin{defi}{Logique propositionnelle.}{}
+    Soit $\V$ un ensemble fini (ou dénombrable) de symboles appelés variables propositionnelles.\\
+    On définit inductivement l'ensemble des formules propositionnelles sur $\V$ :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item $\bot$ et $\top$ sont des expressions logiques, \bf{Faux} et \bf{Vrai} respectivement.
+        \item $p$ est une variable propositionnelle de $\V$.
+        \item À partir de $\phi$ et $\psi$ deux formules, on peut construire : 
+        \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+            \item $(\phi \land \psi)$ (conjonction).
+            \item $(\phi \lor \psi)$ (disjonction).
+            \item $(\lnot\phi)$ (négation).
+        \end{itemize}
+    \end{itemize}
+    Ici, $\phi$ et $\psi$ désigneront toujours des formules.\\
+    Toute formule propositionnelle peut être représentée par un arbre : avec les variables propositionnelles en tant que feuilles, et les constructeurs en tant que noeuds internes.
+\end{defi}
+
+\subsection{Sémantique.}
+
+\begin{defi}{Valuation.}{}
+    Une \bf{valuation} sur $\V$ est une application $v:\V\to\{0,1\}$.\\
+    On étend cette application aux formules propositionnelles :\\
+    Soient $\phi,\psi$ des formules propositionnelles. On définit inductivement $v(\phi)$ tel que :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item $v(\bot)=0$.
+        \item $v(\top)=1$.
+        \item $v(\phi)=v(\phi)$ si $\phi\in\V$.
+        \item $v(\phi\land\psi)=v(\phi)\times v(\psi)$.
+        \item $v(\phi\lor\psi)=v(\phi) + v(\psi) - v(\phi)\times v(\psi)$.
+        \item $v(\lnot\phi)=1-v(\phi)$.
+    \end{itemize}
+    Ici, $v$ désignera toujours une valuation.
+\end{defi}
+
+\begin{defi}{Équivalence logique. $\star$}{}
+    Deux formules $\phi$ et $\psi$ sont \bf{sémantiquement équivalentes} si pour toute valuation $v$ sur $\V$, $v(\phi)=v(\psi)$.\\
+    On note alors $\phi\equiv\psi$. Ainsi, $\equiv$ est une relation d'équivalence sur les formules.\n
+    \bf{Remarque:} Dans la pratique, on compare les tables de vérité de $\phi$ et $\psi$.
+\end{defi}
+
+\begin{defi}{Autres constructeurs.}{}
+    Il existe des liens logiques qui s'expriment à partir de ceux de base :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item L'implication $\phi \rightarrow \psi ~ \equiv ~ \lnot\phi\lor\psi$.
+        \item L'équivalence $\phi \leftrightarrow \psi ~ \equiv ~ \phi\rightarrow\psi\land\psi\rightarrow\phi$.
+        \item Vrai : $\top ~ \equiv ~ \phi\lor\lnot\phi$.
+        \item Faux : $\bot ~ \equiv ~ \phi\land\lnot\phi$.
+    \end{itemize}
+\end{defi}
+
+\begin{prop}{Lois de De Morgan. $\star$}{}
+    Soient $\phi$ et $\psi$ deux formules logiques. Alors :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item $\lnot(\phi\land\psi) ~ \equiv ~ \lnot\phi\lor\lnot\psi$.
+        \item $\lnot(\phi\lor\psi) ~ \equiv ~ \lnot\phi\land\lnot\psi$.
+    \end{itemize}
+    \tcblower
+    On le montre facilement en comparant les tables de vérités.
+\end{prop}
+
+\subsection{Satisfiabilité.}
+
+\begin{defi}{Modèles.}{}
+    Soit $\phi$ une formule sur $\V$. Une valuation $v:\V\to\B$ est un \bf{modèle} de $\phi$ si $v(\phi)=1$.\\
+    On note alors $v\models\phi$.\\
+    On dit alors qu'une formule est \bf{satisfiable} si elle admet un modèle.\n
+    Une formule $\phi$ pour laquelle toute valuation est un modèle est une tautologie, on note $\models\phi$.\\
+    Si aucune valuation n'en est un modèle, $\phi$ est une antilogie, on note $\nmodels\phi$.
+\end{defi}
+
+\begin{defi}{Conséquence logique.}{}
+    Soient $\phi,\psi$ deux formules.\\
+    On dit que $\phi$ est en \bf{conséquence logique} de $\psi$, et on note $\psi\models\phi$ si tout modèle de $\psi$ est modèle de $\phi$.\\
+    On étend cette notation à un ensemble $\Gamma$ de formules, dans ce cas, on dit que $\phi$ est une \bf{conséquence logique} de $\Gamma$ si $\phi$ est en \bf{conséquence logique} de toute formule de $\Gamma$.
+\end{defi}
+
+\begin{defi}{Équisatisfiabilité}{}
+    Deux formules $\phi$ et $\psi$ sont \bf{équisatisfiables} si $\phi$ est satisfiable si et seulement si $\psi$ l'est.
+\end{defi}
+
+\section{Formes normales.}
+\subsection{Formes normales négatives.}
+
+\begin{defi}{Littéral.}{}
+    On appelle $\bf{littéral}$ une variable propositionnelle ou sa négation.
+\end{defi}
+
+\begin{defi}{Construction. $\star$}{}
+    Une formule est dite en \bf{forme normale négative (FNN)} si ses négations ne s'appliquent qu'aux variables.\\
+    Pour une formule $\phi$, on construit sa forme normale négative $\nnF(\phi)$ inductivement de la manière suivante :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item $\nnF(\phi)=\phi$ si c'est un littéral.
+        \item $\nnF(\lnot\lnot\phi)=\nnF(\phi)$
+        \item $\nnF(\phi\land\psi)=\nnF(\phi)\land\nnF(\psi)$
+        \item $\nnF(\phi\lor\psi)=\nnF(\phi)\lor\nnF(\psi)$
+        \item $\nnF(\lnot(\phi\lor\psi))=\nnF(\lnot\phi)\land\nnF(\lnot\psi)$
+        \item $\nnF(\lnot(\phi\land\psi))=\nnF(\lnot\phi)\lor\nnF(\lnot\psi)$
+    \end{itemize}
+\end{defi}
+
+\begin{prop}{Existence.}{}
+    Pour toute formule $\phi$, $\nnF(\phi)$ est sous forme normale négative et $\nnF(\phi)\equiv\phi$.
+    \tcblower
+    Par induction sur les formules propositionnelles.\\
+    \textbf{Cas de base.} Soit $\phi$ un littéral. $\nnF(\phi)=\phi$ sous FNN et $\nnF(\phi)\equiv\phi$.\\
+    \bf{Hérédité:} Soient $\phi,\psi$ telles que la propriété soit vraie sur elles-mêmes et leurs négations.\\
+    Soit $v$ une valuation de $\phi$ et $\psi$.\\
+    On a $\nnF(\phi\land\psi)=\nnF(\phi)\land\nnF(\psi)$ donc c'est bien sous forme normale négative par hypothèse.\\
+    De plus, $v\vDash\nnF(\phi \land \psi)=\iff v\vDash\nnF(\phi)\land\nnF(\psi)\iff v\vDash\phi$ et $v\vDash\psi\iff v\vDash\phi\land\psi$.\n
+    On a $\nnF(\lnot(\phi\land\psi))=\nnF(\lnot\phi)\lor\nnF(\lnot\psi)$ donc c'est bien sous forme normale négative par hypothèse.\\
+    De plus, $v\vDash\nnF(\lnot(\phi \land \psi)) \Leftrightarrow v\vDash\nnF(\lnot\phi)\lor\nnF(\lnot\psi)\Leftrightarrow v\vDash\lnot\phi$ ou $v\vDash\lnot\psi\Leftrightarrow v\vDash\lnot\phi\lor\lnot\psi\Leftrightarrow v\vDash\lnot(\phi \land \psi)$.\\
+    Même raisonnement pour la disjonction.\\
+    Par théorème d'induction, c'est vrai pour toute formule $\phi$.
+\end{prop}
+
+\subsection{Formes normales conjonctives.}
+
+\begin{defi}{Problème SAT.}{}
+    Le problème SAT prend une formule en entrée et répond à la question : "Cette formule est-elle satisfiable ?".
+\end{defi}
+
+\begin{defi}{Clause.}{}
+    Une \bf{clause} est une disjonction de littéraux.
+\end{defi}
+
+\begin{defi}{Forme normale conjonctive. $\star$}{}
+    Une formule est en \bf{forme normale conjonctive (FNC)} si elle est une conjonction de clauses.\\
+    On définit inductivement la mise sous FNC de $\phi$ en $\cnF(\phi)$ par :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item $\cnF(\phi)=\phi$ si $\phi$ littéral.
+        \item $\cnF(\phi\lor\psi)=\phi\lor\psi$ si $\phi,\psi$ littéraux.
+        \item $\cnF(\phi\land\psi)=\cnF(\phi)\land\cnF(\psi)$.
+        \item $\cnF(\phi\lor(\psi\land\psi'))=\cnF(\phi\lor\psi)\land\cnF(\phi\land\psi')$.
+        \item $\cnF(\phi\lor(\psi\lor\psi'))=\cnF(\phi\lor\cnF(\psi\lor\psi'))$.
+    \end{itemize}
+\end{defi}
+
+\begin{prop}{}{}
+    Si $\phi$ est une formule sous FNN, $\cnF(\phi)$ est sous FNC et $\cnF(\phi)\equiv\phi$.
+\end{prop}
+
+\begin{prop}{}{}
+    Si $\phi$ est sous FNN, on peut construire une FNC équisatisfiable à $\phi$ en temps linéaire.
+\end{prop}
+
+\subsection{Algorithme de Quine}
+
+\begin{defi}{Substitution.}{}
+    Soit $\phi$ une formule sur un esemble $\{p_1,,...,p_n\}$ et soient $\{\phi_1,...,\phi_n\}$ des formules.\\
+    La substitution des $\phi_i$ aux $p_i$ est la formule obtenue en remplaçant simultanément chaque $p_i$ par $\phi_i$.\\
+    On la note $\phi[\phi_1/p_i,...,\phi_n/p_n]$.\n
+    La substitution se définit inductivement :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item $\phi[\phi_i/p_i]=\phi_i$ si $\phi=p_i$.
+        \item $\phi[\phi_1/p_1,...,\phi_n/p_n]=\lnot\phi'[...]$ si $\phi=\lnot\phi'$.
+        \item $\phi[...]=\phi_1[...]\land\phi_2[...]$ si $\phi=\phi_1\land\phi_2$.
+        \item $\phi[...]=\phi_1[...]\lor\phi_2[...]$ si $\phi=\phi_1\lor\phi_2$.
+    \end{itemize}
+\end{defi}
+
+\begin{prop}{}{}
+    Une substitution dans une tautologie donne une tautologie.
+    \tcblower
+    Soit $\phi$ sur $\{p_1,...,p_n\}$ et $\{\phi_1,...,\phi_n\}$ des formules sur $\V$.\\
+    Soit $v$ une valuation sur $\V$ et $\w$ sur $\{p_1,...,p_n\}$ : $\w(p_i)=v(\phi_i)$.\\
+    Montrons que $\w(\phi)=v(\phi[...])$.\\
+    \bf{Cas de base.} Trivial si $\phi=\top$ ou $\phi=\bot$.\\
+    Si $\phi=p_i$, alors $\phi[...]=\phi_i$ et $\w(\phi)=\w(p_i)=v(\phi_i)$.\\
+    \bf{Hérédité.}\\
+    Si $\phi=\lnot\phi'$, $\w(\phi)=\w(\lnot\phi')=\lnot\w(\phi')=\lnot v(\phi'[...])=v(\lnot\phi'[...])=v(\phi[...])$.\\
+    Si $\phi=\phi_1\lor\phi_2$, $\w(\phi)=\w(\phi_1\lor\phi_2)=\w(\phi_1)\lor\w(\phi_2)=v(\phi_1[...])\lor v(\phi_2[...])=v(\phi_1[...]\lor\phi_2[...])=v(\phi)$.\\
+    De même pour la conjonction, avec $\phi_1, \phi_2$ vérifiant l'hypothèse.\\
+    Par principe d'induction structurelle, la propriété est vérifiée.\n
+    Supposons $\phi$ une tautologie. Soit $v$ une valuation de la formule substituée., il existe $\w$ telle que $\w(\phi)=v(\phi[...])$.\\
+    Comme $\phi$ est tautologie, $w(\phi)=1$ donc $v(\phi[...])=1$ donc $v\models\phi[...]$, c'est une tautologie.
+\end{prop}
+
+\begin{defi}{Algorithme de Quine.}{}
+    \bf{Entrée:} $\phi$ sous FNC.\\
+    \bf{Sortie:} 1 si $\phi$ est satisfiable, 0 sinon.\\
+    1. Simplifier les clauses.\\
+    2. Si $\phi$ est une conjonction sur $\0$, renvoyer 1.\\
+    3. Si $\phi$ contient $\bot$, renvoyer 0.\\
+    4. Choisir la prochaine variable $p$ dans l'une des clauses :\\
+    \hspace*{2em}$\bullet$ Si Quine($\phi[\bot/p]$), renvoyer 1, sinon renvoyer Quine($\phi[\top/p]$).\n
+    \bf{Étape 1:}\\
+    \hspace*{1em}$\bullet$ Si la clause est $\top$, la supprimer.\\
+    \hspace*{1em}$\bullet$ Tiers-exclu : les clauses contenant des littéraux opposés sont supprimées.\\
+    \hspace*{1em}$\bullet$ Fusion : supprimer les doublons de littéraux.\\
+    \hspace*{1em}$\bullet$ Si une clause en contient une autre, on la supprime.\\
+    \hspace*{1em}$\bullet$ Si une clause contient $\bot$, le supprimer.\n
+    \bf{Terminaison:} Toutes les opérations s'effectuent en temps fini.\\
+    Il y a un nombre fini d'appels récursifs  : variant d'appel donnée par le nombre de variables apparaissant dans la formule.\n
+    \bf{Correction:} assurée par le tiers-exclu.
+\end{defi}
+
+\subsection{Forme normale disjonctive.}
+
+\begin{defi}{Conjonction élémentaire.}{}
+    Une \bf{conjonction élémentaire} est une formule sans disjonctions.
+\end{defi}
+
+\begin{defi}{Forme normale disjonctive. $\star$}{}
+    Une formule est une \bf{forme normale disjonctive (FND)} si c'est une disjonction de conjonctions élémentaires.\\
+    Pour passer de $\phi$ sous FNN à $\dnF(\phi)$ sous FND, on procède par induction :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item $\dnF(\phi)=\phi$ si $\phi$ est littéral.
+        \item $\dnF(\phi)=\phi$ si $\phi=l\land l'$ avec $l,l'$ littéraux.
+        \item $\dnF(\phi\lor\psi)=\dnF(\phi)\lor\dnF(\psi)$.
+        \item $\dnF(\phi\land(\psi\lor\psi'))=\dnF(\phi\land\psi)\lor\dnF(\phi\land\psi')$.
+        \item $\dnF(\phi\land(\psi\land\psi'))=\dnF(\phi\land\dnF(\psi\land\psi'))$.
+    \end{itemize}  
+\end{defi}
+
+\begin{prop}{}{}
+    Si $\phi$ est sous FNN, $\dnF(\phi)$ est sous FND et $\dnF(\phi)\equiv\phi$.
+    \tcblower
+    Pour tout modèle $v$ de $\phi$, on construit :
+    \begin{equation*}
+        \phi_v = \bigwedge_{p\in\V}l_p \quad \nt{où} \quad l_p=\begin{cases}p & \nt{si } v(p)=1\\ \lnot p &\nt{sinon}\end{cases}.
+    \end{equation*}
+    On pose alors $\psi$ la disjonction des $\phi_v$ pour tout modèle $v$ de $\phi$.\\
+    On obtient alors $\psi$ sous FND et $\psi\equiv\phi$.
+\end{prop}
+
+\begin{defi}{}{}
+    Une FND est complète si chaque variable est représentée une unique fois dans chaque conjonction élémentaire.
+\end{defi}
+
+\end{document}

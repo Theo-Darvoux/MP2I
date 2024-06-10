@@ -1,0 +1,925 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{36}
+\def\pagetitle{Espaces probabilisés et variables aléatoires}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\section{Univers fini et variables aléatoires.}
+\subsection{Univers et événements.}
+
+\begin{nota}{}{}
+    On appelle \textbf{univers} un ensemble non vide.\\
+    On appelle \textbf{événement} toute partie $A$ d'un univers $\Omega$.
+\end{nota}
+
+\begin{ex}{}{}
+    1. On jette une fois un dé.\\
+    \indent Proposer un univers modélisant cette expérience.\\
+    \indent Donner alors l'évènement $A$: <<le résultat obtenu est pair>>.\\
+    2. On lance deux fois de suite une pièce de monnaie.\\
+    \indent Proposer un univers modélisant cette expérience.\\
+    \indent Donner alors l'événement $B$: <<on obtient deux fois la même chose.>>. 
+\end{ex}
+
+\begin{nota}{}{}
+    Soit $\O$ un univers et deux événements $A,B\in\P(\O)$.
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item Le complémentaire de $A$, note $\overline{A}$ est appelé événement contraire de $A$.
+        \item L'intersection $A\cap B$ est parfois notée <<$A$ et $B$>>.
+        \item La réunion $A\cup B$ est parfois notée <<$A$ ou $B$>>.
+        \item Si $A$ et $B$ sont disjoints ($A\cap B = \0$), ils sont dits incompatibles.
+    \end{itemize}
+\end{nota}
+
+\begin{ex}{}{}
+    Soit $n\in\N^*$. On joue $n$ parties d'un jeu auquel on peut gagner ou perdre. On suppose la situation correctement modélisée par un univers qu'on ne cherchera pas à déterminer.
+    \begin{center}
+        Notons, pour $i\in\lb1,n\rb~A_i$ l'événement <<on gagne la partie $i$>>.
+    \end{center}
+    Écrire à l'aide des $A_i$ les événements suivants :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item[B] : <<on gagne toutes les parties>>
+        \item[C] : <<on perd toutes les parties>>
+        \item[D] : <<on gagne au moins une partie>>
+        \item[E] : <<on gagne exactement une partie>>
+    \end{itemize}
+    \tcblower
+    On a :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item[B] = $\bigcap_iA_i$
+        \item[C] = $\bigcap_i\ov{A_i}$
+        \item[D] = $\bigcup_iA_i$
+        \item[E] = $\bigcup_iA_i\bigcap_{j\neq i}\ov{A_j}$
+    \end{itemize}
+\end{ex}
+
+\begin{defi}{}{}
+    En probabilités, un recouvrement disjoint de l'univers est appelé \textbf{système complet d'événements}.\\
+    Plus précisément, si $\O$ est un univers, un s.c.e est une famille d'événements $(A_i)_{i\in\lb1,n\rb}$ deux à deux incompatibles, et donc la réunion vaut $\O$ :
+    \begin{equation*}
+        \forall i,j\in\lb1,n\rb~i\neq j\ra A_i\cap A_j = \0 \quad \text{et} \quad \bigcup_{i=1}^nA_i=\O
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{}{}
+    Si $A$ est un événement de $\O$, alors $(A,\ov{A})$ est s.c.e.
+    \tcblower
+    On a :
+    \begin{equation*}
+        A\cup\ov{A}=\O \quad \text{et} \quad A\cap\ov{A}=\0.
+    \end{equation*}
+\end{prop}
+
+\begin{ex}{}{}
+    Dessiner un univers et un système complet d'événements
+\end{ex}
+
+\subsection{Variables aléatoires.}
+
+\begin{nota}{}{}
+    Soit un univers $\O$ et un ensemble $E$. On appelle \textbf{variable aléatoire} à valeurs dans $E$ une application de $\O$ vers $E$. Plutôt que $f$, la lettre utilisée en probabilités est $X$.
+\end{nota}
+
+\begin{defi}{}{}
+    Soit $X:\O\to E$ une variable aléatoire sur un univers fini $\O$.\\
+    1. On note $X(\O)$ l'image de $\O$ par $X$ : $\{X(\w), ~ \w\in\O\}\subset E$.\\
+    2. Soit $A$ une partie de $E$, on note $\{X\in A\}$ ou $(X\in A)$ l'image réciproque de $A$ par $X$ :
+    \begin{equation*}
+        \{X\in A\} = \{\w\in\O~:~X(\w)\in A\}.
+    \end{equation*}
+    Cet ensemble, noté $X^{-1}(A)$ dans un contexte non probabiliste, est une partie de $\O$, c'est un événement.
+\end{defi}
+
+\begin{ex}{}{}
+    Représenter une variable aléatoire $X$ entre deux ensembles $\O$ et $E$, une partie $A$ de $E$, et enfin représenter l'événement $(X\in A)$.
+\end{ex}
+
+\begin{prop}{}{}
+    Si $X$ est une variable aléatoire définie sur un univers fini $\O$, alors :
+    \begin{equation*}
+        (X=x)_{x\in X(\O)}
+    \end{equation*}
+    est un système complet d'événements.
+    \tcblower
+    On a :
+    \begin{equation*}
+        \bigcup_{x\in X(\O)}(X=x)=X^{-1}\left(\bigcup_{x\in X(\O)}\{x\}\right)=X^{-1}(X(\O))=\O.
+    \end{equation*}
+    Soit $x,y\in X(\O) ~ x\neq y$. Alors $(X=x)\cap(X=y)=X^{-1}(\{x\})\cap X^{-1}(\{y\})=X^{-1}(\{x\}\cap\{y\})=\varnothing$.
+\end{prop}
+
+\section{Probabilités sur un univers fini.}
+\subsection{Définition et propriétés additives.}
+
+\begin{defi}{}{}
+    On appelle \textbf{probabilité} sur un univers fini $\O$ une application $P:\begin{cases}\P(\O)\to\R\\A\mapsto P(A)\end{cases}$ telle que
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item $\forall A\in\P(\O) \quad P(A)\in[0,1]$,
+        \item $P(\O)=1$,
+        \item $\forall A,B\in\P(\O), \quad A\cap B=\0 \ra P(A\cup B)=P(A)+P(B)$.
+    \end{itemize}
+    Le couple $(\O,P)$ est alors appelé \textbf{espace probabilisé} fini.
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $(\O,P)$ un espace probabilisé et $A,B$ deux événements. On a :
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $P(A\setminus B)=P(A)-P(A\cap B)$. En particulier, $P(\ov{A})=1-P(A)$ et $P(\0)=0$.
+        \item Si $A\subset B$ alors $P(A)\leq P(B)$ (croissance).
+        \item $P(A\cup B)=P(A) + P(B) - P(A\cap B)$ (probabilité d'une union quelconque).
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} $A=(A\setminus B)\cup(A \cap B)$ donc $P(A)=P(A\setminus B) + P(A\cap B)$ donc $P(A\setminus B)=P(A)-P(A\cap B)$.\\
+    Alors $P(\ov{A})=P(\O\setminus A)=P(\O)-P(\O\cap A)=1-P(A)$.\\
+    \boxed{2.} Si $A\subset B$, $B=A\cup B\setminus A$ donc $P(B)=P(A)+P(B\setminus A)$ donc $P(B)-P(A)=P(B\setminus A)\geq0$.\\
+    \boxed{3.} $P(A\cup B)=P(A)+P(B\setminus A)=P(A)+P(B)-P(A\cap B)$.
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $(\O,P)$ un espace probabilisé et $A_1,...,A_n$ $n$ événements \textbf{deux à deux incompatibles}. Alors,
+    \begin{equation*}
+        P\left( \bigcup_{i=1}^nA_i \right)=\sum_{i=1}^nP(A_i).
+    \end{equation*}
+    En particulier, si $(A_1,...,A_n)$ un système complet d'événements, alors $\sum\limits_{i=1}^nP(A_i)=1$.
+    \tcblower
+    Le cas $n=1$ est trivial.\\
+    Supposons la proposition pour $n\in\N^*$, soit $(A_i)_{i\in\lb1,n+1\rb}$ une famille de $n+1$ événements deux à deux disjoints.
+    \begin{equation*}
+        P\left( \bigcup_{i=1}^{n+1}A_i \right) = P\left( \bigcup_{i=1}^nA_i\cup A_{n+1} \right) = P\left( \bigcup_{i=1}^nA_i \right) + P(A_{n+1}).
+    \end{equation*}
+    En effet, 
+    \begin{equation*}
+        A_{n+1}\cap\left(\bigcup_{i=1}^nA_i\right) = \bigcup_{i=1}^n(A_{n+1}\cap A_i) = \0.
+    \end{equation*}
+    Or les $A_i~(1\leq i \leq n)$ sont deux-à-deux incompatibles, donc la propriété de récurrence s'applique :
+    \begin{equation*}
+        P\left( \bigcup_{i=1}^nA_i \right)=\sum_{i=1}^nP(A_i) ~ \text{donc} ~ P\left( \bigcup_{i=1}^{n+1}A_i \right) = \sum_{i=1}^{n+1}P(A_i).
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $(\O,P)$ un espace probabilisé et $A_1,...,A_n$ $n$ événements. Alors,
+    \begin{equation*}
+        P\left( \bigcup_{i=1}^nA_i \right) \leq \sum_{i=1}^nP(A_i)
+    \end{equation*}
+    \tcblower
+    Récurrence.
+    \begin{equation*}
+        P\left( \bigcup_{i=1}^{n+1} A_i \right) = P\left( \bigcup_{i=1}^nA_i \cup A_{n+1} \right)=P\left( \bigcup_{i=1}^nA_i \right) + P(A_{n+1}) - P(\bigcup_{i=1}^nA_i\cap A_{n+1})\leq P\left( \bigcup_{i=1}^nA_i \right) + P(A_{n+1}).
+    \end{equation*}
+    Par hypothèse de récurrence : $\leq \sum_{i=1}^nP(A_i)+P(A_{n+1})$.
+\end{prop}
+
+\begin{prop}{Équiprobabilité}{}
+    Soit $\O$ un univers fini non vide. L'application
+    \begin{equation*}
+        P:\begin{cases}\P(\O)\to\R\\A\mapsto\frac{|A|}{|\O|}\end{cases}.
+    \end{equation*}
+    est une probabilité sur $\O$. On l'appelle \textbf{équiprobabilité} sur $\O$.
+    \tcblower
+    Soit $A\in\P(\O)$. On a $A\subset\O$ donc $0\leq|A|\leq|\O|$ donc $P(A)\in[0,1]$.\\
+    De plus, $P(\O)=1$.\\
+    Enfin, pour $A,B\in\P(\O)$ incompatibles, $P(A\cup B)=\frac{|A\cup B|}{|\O|}=\frac{|A|+|B|}{|\O|}=P(A)+P(B)$.
+\end{prop}
+
+\subsection{Distribution de probabilités sur un ensemble fini.}
+
+\begin{defi}{}{}
+    Soit $E$ un ensemble non vide. Une famille de nombre $(p_x,x\in E)$ est appelée \textbf{distribution de probabilités} sur $E$ si elle est constituée de réels positifs tels que $\sum\limits_{x\in E}p_x=1$.
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $\O$ un univers fini et $(p_\w,\w\in\O)$ une distribution de probabilités sur $\O$.\\
+    Il existe une unique probabilité $P$ sur $\O$ telle que $\forall \w\in\O,~P(\{\w\})=p_\w$; elle vérifie
+    \begin{equation*}
+        \forall A\in\P(\O), ~ P(A)=\sum_{\w\in A}p_\w
+    \end{equation*}
+\end{prop}
+
+\begin{ex}{}{}
+    Si $\O$ est un univers de cardinal $n\in\N^*$, la famille $(p_\w,\w\in\O)$ où tous les $p_\w$ valent $\frac{1}{n}$ est une distribution de probabilités sur $\O$. L'unique probabilité qu'elle définit est l'équiprobabilité sur $\O$.
+\end{ex}
+
+\begin{ex}{}{}
+    On lance un dé équilibré. On se donne l'univers $\O=\lb1,6\rb$.\\
+    Proposer deux espaces probabilisés $(\O,P)$ et $(\O,\tilde{P})$ modélisant l'expérience.\\
+    On souhaite que $(\O,P)$ soit \emph{bon} et $(\O,\tilde{P})$ \emph{mauvais} du point de vue du statisticien.
+    \tcblower
+    Posons $P$ l'équiprobabilité sur $\O$, $\forall k\in\lb1,6\rb,~P(k)=1/6$.\\
+    Posons $\tilde{P}$ via sa distribution de probabilités : $\tilde{p}_1=\tilde{p}_2=1/3$, $\tilde{p}_3=\tilde{p}_4=\tilde{p}_5=\tilde{p}_6=1/12$.
+\end{ex}
+
+\section{Loi d'une variable aléatoire.}
+\subsection{Loi d'une variable aléatoire.}
+\begin{prop}{Définition théorique. $\star$}{}
+    Soit $(\O,P)$ un espace probabilisé fini et $X$ une variable aléatoire définie sur $\O$. L'application
+    \begin{equation*}
+        P_X:\begin{cases}
+            \P(X(\O))\to\R\\
+            A\mapsto P(X\in A)
+        \end{cases}
+    \end{equation*}
+    est une probabilité sur l'univers fini $X(\O)$. On l'appelle \textbf{loi} de la variable aléatoire $X$.
+    \tcblower
+    Par hypothèse, $P$ est une probabilité sur $\O$.\\
+    $\circledcirc$ Soit $A\subset X(\O)$. $P_X(A)=P(X\in A)\in[0,1]$ car $P$ est une probabilité.\\
+    $\circledcirc$ On a $P_X(X(\O))=P(X\in X(\O))=P(\O)=1$ car $P$ est une probabilité.\\
+    $\circledcirc$ Soient $A,B\in\P(X(\O))$ incompatibles, $(X\in A)\cap(X\in B)=(X\in A\cap B)=\0$.\\
+    Alors $P_X(A\cup B)=P(X\in A\cup B)=P((X\in A)\cup(X\in B))=P(X\in A) + P(X\in B) = P_X(A)+P_X(B)$.
+\end{prop}
+
+\begin{meth}{}{}
+    Soit $(\O,P)$ un espace probabilisé et $X$ une variable aléatoire définie sur $\O$. La loi de $X$ est entièrement déterminée par la distribution de probabilités $(P(X=x))_{x\in X(\O)}$.\\
+    Pour décrire la loi de $X$, on va donc
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item Préciser $X(\O)$, l'ensemble des valeurs que peut prendre $X$.
+        \item Pour chaque valeur $x\in X(\O)$, calculer $P(X=x)$. On peut éventuellement rassembler ces nombres dans un tableau:
+        \begin{equation*}
+            \begin{array}{|c|}
+                \hline
+                x\\
+                \hline
+                P(X=x)\\
+                \hline
+            \end{array}
+        \end{equation*}
+        Possible aussi : un diagramme en bâtons : le bâton centré sur $x$ est de hauteur $P(X=x)$.
+    \end{enumerate}
+\end{meth}
+
+\begin{ex}{}{}
+    On jette un dé équilibré. Si le résultat est 1,2 ou 3, on ne gagne rien. Si le résultat est 4 ou 5, on gagne dix euros. Si le résultat est 6, on empoche 100 euros.\\
+    On note $X$ le gain à ce jeu. Proposer un espace probabilisé sur lequel $X$ est une variable aléatoire. Donner alors la loi de $X$.
+    \tcblower
+    On pose $\O=\lb1,6\rb$ et $P$ l'équiprobabilité sur $\O$. Alors $X:\w\mapsto\begin{cases}0 \nt{ si } \w\in\{1,2,3\}\\10\nt{ si } \w\in\{4,5\}\\100\nt{ si } \w=6\end{cases}$.\\
+    Loi de $X$:
+    \begin{eqnarray*}
+        \begin{array}{|c|c|c|c|}
+            \hline
+            x & 0 & 10 & 100\\
+            \hline
+            P(X=x) & 1/2 & 1/3 & 1/6\\
+            \hline
+        \end{array}
+    \end{eqnarray*}
+\end{ex}
+
+\begin{nota}{}{}
+    Soient deux variables aléatoires $X$ et $Y$, à valeurs dans un même ensemble $E$. Si elles ont même loi, on écrira $X\sim Y$.
+\end{nota}
+
+\subsection{Lois usuelles.}
+
+\begin{defi}{}{}
+    Soit $E$ un ensemble fini non vide. On dit que $X$ suit la loi \bf{uniforme} sur $E$ si la loi de $X$ est l'équiprobabilité sur $E$; on note alors $X\sim\cursive{U}$.
+    \begin{equation*}
+        X(\O)=E \quad \nt{et} \quad \forall x\in E, ~ P(X=x) = \frac{1}{|E|}
+    \end{equation*}
+    Interprétation : une variable $X$ uniforme sur $E$ modélise le tirage "au hasard" d'un élément de $E$ avec, pour tous les éléments de $E$ une même chance d'être choisi.
+\end{defi}
+
+\begin{defi}{}{}
+    Soit $p\in[0,1]$. On dit que $X$ suit la loi de \bf{Bernoulli} de paramètre $p$ (on peut noter $X\sim\cursive{B}(p)$) si sa loi est associée à la distribution donnée par
+    \begin{equation*}
+        X(\O)=\{0,1\} \quad \nt{et} \quad P(X=1)=p, ~ P(X=0)=1-p.
+    \end{equation*} 
+    Interprétation : on appelle expérience de Bernoulli une épreuve aléatoire dont l'issue est un succès ou un échec. Si $X$ est une v.a. qui vaut $1$ lorsque l'expérience est un succès et 0 sinon, alors $X\sim\cursive{B}(p)$.
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $(\O,P)$ un espace probabilisé et $A\in\P(\O)$.\\
+    La fonction indicatrice de $A$, notée $\1_A$, suit la loi de Bernoulli $\cursive{B}(p)$, où $p=P(A)$.
+    \tcblower
+    On a $\1_A(\O)\subset\{0,1\}$ et $(\1_A=1)=A$ donc $P(\1_A=1)=P(A)$.\\
+    \bf{Remarque:} $\cursive{B}(1/2)\sim\cursive{U}(\{0,1\})$.
+\end{prop}
+
+\begin{defi}{}{}
+    Soit $n\in\N^*$ et $p\in[0,1]$ on dit que $X$ suit la loi \bf{binomiale} de paramètre $(n,p)$ si sa loi est associée à la distribution ($X\sim\cursive{B}(n,p)$):
+    \begin{equation*}
+        X(\O)=\lb0,n\rb \quad \nt{et} \quad \forall k \in \lb0,n\rb, ~ P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}.
+    \end{equation*}
+    Interprétation : on réalise $n$ expériences de Bernoulli aléatoires indépendantes. L'issue de chacune est donc un succès (avec probabilité $p$) ou un échec (avec probabilité $1-p$). Alors si $X$ est le nombre total du succès, $X\sim\cursive{B}(n,p)$.
+\end{defi}
+
+\begin{ex}{}{}
+    Mes voisins ont cinq enfants, quelle est la probabilité qu'ils aient exactement trois filles ?
+    \tcblower
+    On suppose chaque naissance comme une expérience de Bernoulli indépendante. Le succès est d'avoir une fille, sa probabilité est $1/2$. On note $X$ le nombre de filles. Alors $X\sim\cursive{B}(5,1/2)$.\\
+    Ainsi, $P(X=3)=\binom{5}{3}\cdot\frac{1}{2^3}\cdot\frac{1}{2^4}=\frac{5}{16}$.
+\end{ex}
+
+\subsection{Loi de l'image.}
+
+\indent Si $X$ est une variable aléatoire sur $\O$ à valeurs dans $E$, et $f:E\to F$ une application, alors :
+\begin{equation*}
+    f(X):\begin{cases}\O\to F\\\w\mapsto f(X(\w))\end{cases}
+\end{equation*}
+
+\begin{ex}{Exemple avant le résultat général.}{}
+    Soit $X$ une variable aléatoire à valeurs dans $\{-1,0,1,2\}$ de loi
+    \begin{eqnarray*}
+        \begin{array}{|c|c|c|c|c|}
+        \hline
+        x&-1&0&1&2\\
+        \hline
+        P(X=x)&1/4&1/6&1/4&1/3\\
+        \hline
+        \end{array}
+    \end{eqnarray*}
+    Donner la loi de $Y=X^2$.
+    \tcblower
+    La loi de $Y=X^2$ :
+    \begin{eqnarray*}
+        \begin{array}{|c|c|c|c|c|}
+            \hline
+            y&0&1&4\\
+            \hline
+            P(Y=y)&1/6&1/2&1/3\\
+            \hline
+        \end{array}
+    \end{eqnarray*}
+\end{ex}
+
+\begin{prop}{Loi de l'image d'une v.a.}{}
+    Soit $(\O,P)$ un espace probabilisé fini.\\
+    Soit $X:\O\to E$ une variable aléatoire et $f: E\to F$. On note $Y=f(X)$.
+    \begin{equation*}
+        Y(\O)=\{f(x),x\in X(\O)\} \quad \nt{et} \quad \forall y\in Y(\O), ~ P(Y=y)=\sum_{x\in f^{-1}(\{y\})}P(X=x).
+    \end{equation*}
+    \tcblower
+    On a $Y(\O)=f(X(\O))$ (double inclusion).\\
+    Soit $y\in Y(\O)$, $(Y=y)=\bigcup_{x\in f^{-1}(\{y\})}(X=x)$ (double inclusion).\\
+    On applique alors $P$ sur cette union disjointe.
+\end{prop}
+
+\begin{ex}{}{}
+    Soit $n\in\N^*$ et $X$ une variable aléatoire suivant la loi uniforme sur $\lb1,2n\rb$. Soit $Y=\frac{1+(-1)^X}{2}$. Quelle est la loi de $Y$ ?
+    \tcblower
+    On a $X(\O)=\lb1,2n\rb$ et $\forall k\in\lb1,2n\rb,~P(X=k)=\frac{1}{2n}$.\\
+    On a $Y(\O)=\{0,1\}$ donc $(Y=1)=\bigcup_{k=1}^n(X=2k)$ donc $P(Y=1)=\sum_{k=1}^nP(X=2k)=\frac{1}{2}$.\\
+    Donc $Y$ suit la loi de Bernoulli de paramètre $1/2$.
+\end{ex}
+
+\begin{prop}{}{}
+    Soient $(\O,P), (\O',P')$ deux espaces probabilisés et deux ensembles $E,F$.\\
+    Soient $X:\O\to E$ et $X':\O'\to E$ et $f:E\to F$.\\
+    Si $X$ et $X'$ ont même loi, alors $f(X)$ et $f(X')$ aussi. Ce qui s'écrit
+    \begin{equation*}
+        X \sim X' ~ \ra ~ f(X) \sim f(X')
+    \end{equation*}
+    \tcblower
+    La loi de $f(X)$ ne mobilise que la loi de $X$
+\end{prop}
+
+\section{Conditionnement.}
+\subsection{Probabilités conditionnelles.}
+
+\begin{defi}{Probabilité conditionnelle.}{}
+    Soit $(\O,P)$ un espace probabilisé, et un événement $B$ tel que $P(B)>0$. L'application
+    \begin{equation*}
+        P_B:\begin{cases}\P(\O)\to\R\\A\mapsto\frac{P(A\cap B)}{P(B)}\end{cases}
+    \end{equation*}
+    est une probabilité sur $\O$.\\
+    Pour $A$ un événement, $P_B(A)$ est appelé \bf{probabilité conditionnelle de A sachant B}.\\
+    Ce nombre peut aussi être noté $P(A\mid B)$.
+    \tcblower
+    Hypothèse : $P$ est une probabilité et $B\in\P(\O)$ fixé tel que $P(B)>0$.\\
+    $\circledcirc$ Soit $A\in\P(\O)$, $A\cap B\subset B$ donc $P(A\cap B)\leq P(B)$ donc $0\leq P_B(A)\leq1$.\\
+    $\circledcirc$ $P_B(\O)=\frac{P(\O\cap B)}{P(B)}=\frac{P(B)}{P(B)}=1$.\\
+    $\circledcirc$ Soient $A,C\in\P(\O)$ incompatibles, $(A\cap B)\cap(C\cap B)=\0$.\\
+    Alors $P_B(A\cup C)=\frac{P((A\cup C)\cap B)}{P(B)}=\frac{P((A\cap B)\cup(C\cap B))}{P(B)}=\frac{P(A\cap B)+P(C\cap B)}{P(B)}=\frac{P(A\cap B)}{P(B)}+\frac{P(C\cap B)}{P(B)}=P_B(A)+P_B(C)$.
+\end{defi}
+
+\begin{defi}{Loi conditionnelle.}{}
+    Soit $(\O,P)$ un espace probabilisé et $B$ un événement tel que $P(B)>0$. Soit $X$ une variable aléatoire sur $\O$ et à valeurs dans $E$. La distribution
+    \begin{equation*}
+        (P_B(X=x))_{x\in X(\O)}
+    \end{equation*}
+    définit une unique probabilité sur $X(\O)$ appelée \bf{loi de $X$ conditionnellement à B}.
+\end{defi}
+
+\subsection{Trois formules de décomposition.}
+\hrule\vspace{0.2cm}
+\bf{Convention.} Dans les formules suivantes interviennent des quantités de la forme $P(B)P_B(A)$. Cette écriture n'a de sens, normalement que si $P(B)>0$. Pour ne pas avoir à discuter d ece point, on conviendra que
+\begin{equation*}
+    P(B)P_B(A)=0 \nt{ lorsque } P(B)=0.
+\end{equation*}
+\hrule\vspace{0.2cm}
+
+\begin{prop}{Formule des probabilités composées.}{}
+    Soit $(\O,P)$ un espace probabilisé et $A_1,...,A_n\in\P(\O)$. Alors,
+    \begin{equation*}
+        P(A_1\cap...\cap A_n)=P(A_1)P_{A_1}(A_2)P_{A_1\cap A_2}(A_3)...P_{A_1\cap...\cap A_{n-1}}(A_n)
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{equation*}
+        P(A_1)\times\prod_{k=2}^nP_{A_1\cap...\cap A_{k-1}}P(A_k)=P(A_1)\times\prod_{k=2}^n\frac{P(A_1\cap...\cap A_k)}{P(A_1\cap...\cap A_{k-1})}=\cancel{P(A_1)}\times\frac{P(A_1\cap...\cap A_n)}{\cancel{P(A_1)}}
+    \end{equation*}
+    par téléscopage.
+\end{prop}
+
+\begin{ex}{Tirages sans remise.}{}
+    Une urne contient $n$ boules noires et $n$ boules blanches. On tire successivement, et sans remise $n$ boules dans l'urne. Calculer la probabilité de ne tirer que des boules blanches :
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item à l'aide de la formule des probabilités composées,
+        \item en modélisant rigoureusement la situation.
+    \end{enumerate}
+    \tcblower
+    On suppose l'existence de $(\O,P)$.\\
+    Soit $A$: <<on tire $n$ boules blanches>>.\\
+    \boxed{1.} Pour $i\in\lb1,n\rb$, notons $A_i$ : <<on tire blanc au $i$ème tirage>>. Alors $A=\bigcap_{i=1}^n A_i$. Donc :
+    \begin{equation*}
+        P(A)=P(A_1)P_{A_1}(A_2)P_{A_1\cap A_2}(A_3)...P_{A_1\cap...\cap A_{n-1}}(A_n)=\frac{n}{2n}\times\frac{n-1}{2n-1}\times\frac{n-2}{2n-2}\times...\times\frac{1}{n+1}=\frac{(n!)^2}{(2n)!}=\frac{1}{\binom{n}{2n}}
+    \end{equation*}
+    Mais ça c'est du flan...\\
+    \boxed{2.} Posons $\O=\P_n(\m{B})$ l'ensemble des parties à $n$ éléments de l'ensemble des boules.\\
+    Posons $P$ l'équiprobabilité sur $\O$. Alors $A=\{\{b_1,...b_n\}\}$ où $b_1,...,b_n$ sont les $n$ boules blanches.\\
+    Alors $P(A)=\frac{|A|}{|\O|}=\frac{1}{\binom{2n}{n}}$.
+\end{ex}
+
+\begin{prop}{Formule des probabilités totales. $\star$}{}
+    Soit $(\O,P)$ un espace probabilisé et $(A_i)_{i\in\lb1,n\rb}$ un système complet d'événements.\\
+    Pour tout $B\in\P(\O)$,
+    \begin{equation*}
+        P(B)=\sum_{i=1}^nP(B\cap A_i) \quad \nt{ ou encore} \quad P(B)=\sum_{i=1}^nP_{A_i}(B)P(A_i).
+    \end{equation*}
+    \tcblower
+    Puisque $(A_i)_{i\in\lb1,n\rb}$ est une s.c.e. :
+    \begin{equation*}
+        P(B)=P(B\cap\O)=P\left(B\cap\left(\bigcup_{i=1}^nA_i\right)\right)=P\left(\bigcup_{i=1}^nB\cap A_i\right)=\sum_{i=1}^nP(B\cap A_i).
+    \end{equation*}
+    En effet, pour $i,j\in\lb1,n\rb \mid i\neq j$, $(B\cap A_i)\cap(B\cap A_j)=B\cap(A_i\cap A_j)=\0$.
+\end{prop}
+
+\begin{corr}{Cas particulier.}{}
+    Soit $(\O,P)$ un espace probabilisé et $A$ un événement. Pour tout $B\in\P(\O)$,
+    \begin{equation*}
+        P(B)=P(B\cap A)+P(B\cap\ov{A})=P_A(B)P(A)+P_{\ov{A}}(B)P(\ov{A}).
+    \end{equation*}
+    \tcblower
+    On a $(A,\ov{A})$ un s.c.e. donc 
+    \begin{equation*}P(B)=P((B\cap A)\cup (B\cap\ov{A}))=P(B\cap A)+P(B\cap\ov{A})=P(A)P_A(B)+P(\ov{A})P_{\ov{A}}(B)\end{equation*}
+\end{corr}
+
+\begin{ex}{Urne de Polya.}{}
+    On considère une urne contenant initialement une boule blanche et une boule noire.\\
+    On répète l'expérience suivante : on tire une boule dans l'urne et on rement cette boule dans l'urne en ajoutant aussi une boule de la même couleur.\\
+    Notons, pour $n\geq1$, $X_n$ le nombre de boules blanches dans l'urne après $n$ tirages.\\
+    Montrer que pour tout $n\in\N^*$, $X_n$ suit la loi uniforme sur $\{1,...,n+1\}$.
+    \tcblower
+    Par récurrence.\\
+    \bf{Cas de base:} $X_1(\O)=\{1,2\}$ $P(X_1=2)=1/2$.\\
+    \bf{Hérédité:} Soit $n\geq1$. Supposons $X_n\sim\cursive{U}(\lb1,n+1\rb)$.\\
+    Soit $k\in\lb1,n+2\rb$. Alors $(X_n=j)_{j\in\lb1,n+1\rb}$ est un s.c.e. donc d'après les probabilités totales:
+    \begin{equation*}
+        P(X_{n+1}=k)=\sum_{j=1}^{n+1}P((X_{n+1}=k) \cap (X_n = j))=P((X_{n+1}=k)\cap(X_n)=k) + P((X_{n+1}=k)\cap(X_n=k-1))
+    \end{equation*}
+    En effet, $P((X_{n+1}=k)\cap(X_n=j))=0$ quand $j\notin\{k-1,k\}$ car on ajoute 0 ou 1 boule blanche.\\
+    Alors $P((X_{n+1}=k)\cap(X_n=k))=P(X_n=k)\times P_{(X_n=k)}(X_{n+1}=k)=\frac{1}{n+1}\times\frac{n+2-k}{n+2}$.\\
+    Et $P((X_{n+1}=k)\cap(X_n=k-1))=\frac{1}{n+1}\times\frac{k-1}{n+2}$.\\
+    Donc $P(X_{n+1}=k)=\frac{1}{n+1}\times\frac{n+2-k}{n+2}+\frac{1}{n+1}\times\frac{k-1}{n+2}=\frac{1}{n+2}$
+\end{ex}
+
+\begin{prop}{Formule de Bayes}{}
+    Soit $(\O,P)$ un espace probabilisé. Si $A$ et $B$ sont deux événements non négligeables, alors
+    \begin{equation*}
+        P_B(A)=\frac{P_A(B)P(A)}{P(B)}.
+    \end{equation*}
+    \tcblower
+    On a $P_B(A)=\frac{P(A\cap B)}{P(B)}$ et $P_A(B)=\frac{P(A\cap B)}{P(A)}$. Il suffit de remplacer $P(A\cap B)$ par $P_A(B)P(A)$.
+\end{prop}
+
+\begin{ex}{Covid}{}
+    Un virus est porté par une personne sur mille dans la population. Un test permet de le dépister. Fiable à 99\% sur les personnes porteuses du virus, il rend un faux positif dans 0,2\% des cas. On choisit une personne au hasard dans la population et on lui fait faire un test, qui s'avère positif. Quelle est la probabilité que cette personne soit effectivement porteuse du virus ?
+    \tcblower
+    On suppose la situation correctement modélisée par un espace $(\O,P)$.\\
+    On note $T_+$ : <<Le test est positif>> et $V$ : <<La personne est infectée>>. On veut $P_{T_+}(V)$.\\
+    Hypothèses: $P_V(T_+)=0.99$, $P(V)=0.001$, $P_{\ov{V}}(T_+)=0.02$.\\
+    On a:
+    \begin{equation*}
+        P_{T_+}(V)=\frac{P_{V}(T_+)P(V)}{P(T_+)} \quad \nt{et} \quad P(T_+) = P_{V}(T_+)P(V) + P_{\ov{V}}(T_+)P(\ov{V})
+    \end{equation*}
+    Donc:
+    \begin{equation*}
+        P_{T_+}(V)=\frac{P_V(T_+)P(V)}{P_V(T_+)P(V)+P_{\ov{V}}(T_+)P(\ov{V})}\simeq 1/3
+    \end{equation*}
+\end{ex}
+
+\section{Indépendance.}
+\subsection{Événements indépendants.}
+
+\begin{defi}{Indépendance d'événements.}{}
+    Soit $(\O,P)$ un espace probabilisé. On dit que deux événements $A$ et $B$ sont \bf{indépendants} si
+    \begin{equation*}
+        P(A\cap B)=P(A)P(B)
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{Triviale.}{}
+    Soit $(\O,P)$ un espace probabilisé et $(A,B)$ deux événements avec $B$ non négligable.
+    \begin{center}
+        $A$ et $B$ sont indépendants   si et seulement si   $P_B(A)=P(A)$.
+    \end{center}
+    \tcblower
+    $A,B \nt{ indépendants } \iff P(A\cap B)=P(A)P(B) \iff \frac{P(A\cap B)}{P(B)}=P(A)\iff P_B(A)=P(A)$.
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $(\O,P)$ un espace probabilisé et deux événements $A$ et $B$ indépendants. Alors
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $A$ et $\ov{B}$ sont indépendants.
+        \item $\ov{A}$ et $B$ sont indépendants.
+        \item $\ov{A}$ et $\ov{B}$ sont indépendants.
+    \end{enumerate}
+    \tcblower
+    On a:
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $P(A\cap\ov{B})=P(A)-P(A\cap B)=P(A)-P(A)P(B)=P(A)(1-P(B))=P(A)P(\ov{B})$.
+        \item $P(\ov{A}\cap B)=P(B)-P(A\cap B)=P(B)-P(A)P(B)=P(B)(1-P(A))=P(B)P(\ov{A})$.
+        \item D'après 1. et 2., $A$ et $\ov{B}$ indépendants donc $\ov{A}$ et $\ov{B}$ indépendants.
+    \end{enumerate}
+\end{prop}
+
+\begin{ex}{Explicite}{}
+    Lançons deux dés équilibrés (un rouge, un vert). Modéliser à l'aide d'un espace probabilisé $(\O,P)$.\\
+    On considère les événements
+    \begin{align*}
+        \nt{A : <<Le résultat rouge est pair.>>}, \quad &\nt{B : <<Le résultat vert est pair>>},\\
+        \nt{C : <<La somme des deux résultats est impaire.>>},\quad &\nt{D : <<La somme des deux résultats vaut 8.>>}.
+    \end{align*}
+    Vérifier que $A$ et $B$ sont indépendants.\\
+    Vérifier que $A$ et $C$ sont indépendants.\\
+    Vérifier que $A$ et $D$ ne sont pas indépendants.
+    \tcblower
+    On pose $\O=\lb1,6\rb\times\lb1,6\rb$ et $P$ l'équiprobabilité sur $\O$.\\
+    On a $A=\{2,4,6\}\times\lb1,6\rb$, $B=\lb1,6\rb\times\{2,4,6\}$ donc $A\cap B=\{2,4,6\}^2$.\\
+    Alors $P(A)=\frac{|A|}{|\O|}=\frac{1}{2}$, $P(B)=...=\frac{1}{2}$, $P(A\cap B)=\frac{|A\cap B|}{|\O|}=\frac{1}{4}=P(A)P(B)$.\n
+    On a $C=\{2,4,6\}\times\{1,3,5\}\cup\{1,3,5\}\times\{2,4,6\}$ donc $A\cap C=\{2,4,6\}\times\{1,3,5\}$.\\
+    Alors $P(C)=\frac{3^2+3^2}{6^2}=\frac{1}{2}$ et $P(A\cap C)=\frac{3^2}{6^2}=\frac{1}{4}=P(A)P(C)$.\n
+    On a $D=\{(2,6),(3,5),(4,4),(5,3),(6,2)\}$ donc $A\cap D=\{(2,6),(4,4),(6,2)\}$.\\
+    Alors $P(D)=\frac{5}{36}$ et $P(A\cap D)=\frac{3}{36}$, or $P_A(D)=\frac{P(A\cap D)}{P(A)}=\frac{6}{36}>P(D)$.
+\end{ex}
+
+\begin{defi}{}{}
+    Soit $(\O,P)$ un espace probabilisé et $(A_i)_{i\in I}$ une famille finie d'événements.\\
+    Les événements de cette famille sont dits \bf{indépendants} si
+    \begin{equation*}
+        \forall J \in \P(I)\setminus\{\0\} \quad P\left( \bigcap_{i\in J}A_j \right)=\prod_{j\in J}P(A_j).
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{}{}
+    Si des événements sont indépendants, ils le sont deux à deux.\\
+    La réciproque est fausse : l'indépendance deux à deux n'implique pas l'indépendance.
+    \tcblower  
+    L'implication directe est simple.\\
+    Un contre-exemple vient de l'exemple 41 : $P(A\cap B\cap C=\0)=0$ et $P(A)P(B)P(C)=\frac{1}{8}$.\\
+    Donc $(A,B,C)$ n'est pas indépendante et $A,B,C$ sont indépendants deux-à-deux. 
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $(\O, P)$ un espace probabilisé. On considère $(A_i)_{i\in\lb1,n\rb}$ et $(B_i)_{i\in\lb1,n\rb}$ deux familles d'événements telles que
+    \begin{equation*}
+        \forall i\in\lb1,n\rb, ~ B_i \in \{A_i, \ov{A_i}\}.
+    \end{equation*}
+    Si les événements de la famille $(A_i)_{i\in\lb1,n\rb}$ sont indépendants, alors ceux de la famille $(B_i)_{i\in\lb1,n\rb}$ le sont aussi.\\
+    En particulier, $\ov{A_1},...,\ov{A_n}$ sont indépendants.
+    \tcblower
+    Il faudrait prouver par le calcul que l'indépendance est préservée lorsque l'un seulement est remplacé par son complémentaire.
+\end{prop}
+
+\subsection{Variables aléatoires indépendantes.}
+
+\begin{defi}{}{}
+    Soit $(\O,P)$ un espace probabilisé et $X$, $Y$ deux variables aléatoires définies sur $\O$. On dit que les variables $X$ et $Y$ sont \bf{indépendantes}, on note $X \ind Y$ si
+    \begin{equation*}
+        \forall A \in \P(X(\O)) ~ \forall B \in \P(Y(\O)) ~ (X\in A) \nt{ et } (Y\in B) \nt{ sont indépendants.}
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $(\O,P)$ un espace probabilisé et $X,Y$ deux variables aléatoires sur $\O$.\\
+    Elles sont indépendantes si et seulement si :
+    \begin{equation*}
+        \forall x \in X(\O) ~ \forall y \in Y(\O) \quad P((X=x)\cap(Y=y))=P(X=x)P(Y=y)
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{Images de v.a. indépendantes.}{imageva}
+    Soit $(\O,P)$ un espace probabilisé et quatre ensembles $E,\tilde{E},F$ et $\tilde{F}$.\\
+    Soient $X:\O\to E$ et $Y:\O\to\tilde{E}$ deux variables aléatoires et $f:E\to F$ et $g:\tilde{E}\to\tilde{F}$ deux applications.
+    \begin{center}
+        Si $X$ et $Y$ sont indépendantes, alors $f(X)$ et $g(Y)$ le sont aussi.
+    \end{center}
+    \tcblower
+    Supposons $X \ind Y$.\\
+    Soient $A\in\P(f(X)(\O))$ et $B\in\P(g(Y)(\O))$.\\
+    Il faut vérifier l'indépendance de $(f(X)\in A)$ et $(g(Y)\in B)$.\\
+    Or $(f(X)\in A) = (X\in f^{-1}(A))$ et $(g(Y)\in A)=(Y\in g^{-1}(B))$.\\
+    Ils sont indépendants car $X\ind Y$. 
+\end{prop}
+
+\begin{defi}{extension à $n$ variables.}{}
+    Soit $(\O,P)$ un espace probabilisé et $X_1,...,X_n$ des variables aléatoires sur $\O$. Elles sont dites \bf{indépendantes} si pour toute famille d'ensembles $(A_i)_{i\in\lb1,n\rb}\in\prod_{i=1}^n\P(X_i(\O))$, les événements $(X_i\in A_i)_{i\in\lb1,n\rb}$ sont indépendants.
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $(\O,P)$ un espace probabilisé et $X_1,...,X_n$ des variables aléatoires toutes définies sur $\O$. Elles sont indépendantes si et seulement si
+    \begin{equation*}
+        \forall (x_i)_{i\in\lb1,n\rb}\in\prod_{i=1}^nX_i(\O) \quad P\left( \bigcap_{i=1}^n(X_i=x_i) \right)=\prod_{i=1}^nP(X_i=x_i)
+    \end{equation*}
+    \tcblower
+    \fbox{$\ra$} Supposons l'indépendance de $X_1,...,X_n$.\\
+    Soit $(x_1,...,x_n)\in\prod_{i=1}^nX_i(\O)$. On a $\forall i\in\lb1,n\rb, ~ B_i := (X_i=x_i) = (X_i\in\{x_i\})$.\\
+    Par définition, $B_1,...,B_n$ sont indépendants. Alors, en particulier :
+    \begin{equation*}
+        P\left( \bigcap_{i=1}^nB_i \right)=\prod_{i=1}^nP(B_i)
+    \end{equation*}
+    On a bien $P\left( \bigcap_{i=1}^n(X_i=x_i) \right)=\prod_{i=1}^nP(X_i=x_i)$.\n
+    \fbox{$\la$} Supposons que $\forall (x_i)_{i\in\lb1,n\rb}$...\\
+    Soient $(A_1,...,A_n)\in\prod_{i=1}^n\P(X_i(\O))$. Montrons que $(X_1\in A_1),...,(X_n\in A_n)$ sont indépendants.\\
+    Soit $J\subset \lb1,n\rb$ non vide.
+    \begin{equation*}
+        \bigcap_{j\in J}(X_j\in A_j) = \bigcap_{i=1}^n(X_i\in\tilde{A_i}) \quad \nt{où} \quad \tilde{A_i}=\begin{cases}A_i \nt{ si } i\in J\\X_i(\O) \nt{ si } i\notin J\end{cases}
+    \end{equation*}
+    En effet, si $i\neq j$, alors $(X_i\in \tilde{A_i})=(X_i\in X_i(\O))=\O$.\\
+    Alors :
+    \begin{equation*}
+        \bigcap_{j\in J}(X_j\in A_j)=\bigcap_{i=1}^n(X_i\in\tilde{A_i})=\bigcap_{i=1}^n\bigcup_{x\in\tilde{A_i}}(X_i=x_i)=\bigcup_{x_1\in \tilde{A_1}}\bigcup_{x_2\in\tilde{A_2}}...\bigcup_{x_n\in\tilde{A_n}}\bigcap_{i=1}^n(X_i=x_i)
+    \end{equation*}
+    Alors :
+    \begin{align*}
+        P\left( \bigcap_{j\in J} X_j \in A_j \right) &= P\left( \bigcup_{x_1\in\tilde{A_1}} ... \bigcup_{x_n\in\tilde{A_n}}\bigcap_{i=1}^n(X_i=x_i) \right)\\
+        &=\sum_{x_1\in\tilde{A_1}}...\sum_{x_n\in\tilde{A_n}}P\left( \bigcap_{i=1}n(X_i=x_i) \right) \quad \nt{(union disjointe.)}\\
+        &=\sum_{x_1\in\tilde{A_1}}...\sum_{x_n\in\tilde{A_n}}\prod_{i=1}^nP\left( X_i = x_i \right) \quad \nt{(hypothèse.)}\\
+        &=\left( \sum_{x_1\in\tilde{A_1}} P(X_1=x_1)  \right)...\left( \sum_{x_n\in\tilde{A_n}}P(X_n=x_n) \right).
+    \end{align*}
+    Or, pour $i\in\lb1,n\rb$.
+    \begin{equation*}
+        \sum_{x_i\in\tilde{A_i}}P(X_i=x_i)=P(X_i\in \tilde{A_i})=\begin{cases}P(X_i\in A_i) \nt{ si } i\in J\\1\nt{ si } i\notin J\end{cases}.
+    \end{equation*}
+    Enfin, 
+    \begin{equation*}
+        P\left( \bigcap_{j\in J}(X_j\in A_j) \right) = \prod_{i=1}^nP(X_i\in\tilde{A_i})=\prod_{i\in J}P(X_i\in\tilde{A_i})\times\underbrace{\prod_{i\notin J}P(X_i\in\tilde{A_i})}_{=1}=\prod_{i\in J}P(X_i\in A_i).
+    \end{equation*}
+\end{prop}
+
+\begin{ex}{}{}
+    Soit $(\O,P)$ un espace probabilisé et $X,Y$ deux variables aléatoires indépendantes, toutes deux suivant la loi $\cursive{B}(1/2)$. On pose $Z=|X-Y|$. Loi de $Z$ ?\\
+    Démontrer qu'elles sont indépendantes deux-à-deux mais pas indépendantes.
+    \tcblower
+    $\circledcirc$ Loi de $Z$.\\
+    On a $Z(\O)\subset\{0,1\}$.\\
+    On a $(Z=0)=(|X-Y|=0)=(X=Y)=((X=0)\cap(Y=0))\cup((X=1)\cap(Y=1))$.\\
+    Donc $P(Z=0)=P((X=0)\cap(Y=0))+P((X=1)\cap(Y=1))=P(X=0)P(Y=0)+P(X=1)P(Y=1)=1/2$
+    \begin{eqnarray*}
+        \begin{array}{|c|c|c|}
+            \hline
+            k&0&1\\
+            \hline
+            P(z=k)&1/2&1/2\\
+            \hline
+        \end{array}
+    \end{eqnarray*}
+    $\circledcirc$ Indépendance deux à deux.\\
+    $\bullet$ $X\ind Y$ par hypothèse.\\
+    $\bullet$ $X$ et $Z$ ?\\
+    On a $(X=1)\cap(Z=1)=(X=1)\cap(|X-Y|=1)=(X=1)\cap(Y=0)$.\\
+    Donc $P((X=1)\cap(Z=1))=P(X=1)P(Y=0)=P(X=1)P(Z=1)$.\\
+    Pareil pour les trois autres cas. Donc $X \ind Z$.\\
+    $\bullet$ Pareil, $Y \ind Z$ (rôles symétriques).\\
+    Donc $X,Y$ et $Z$ sont indépendantes deux-à-deux.\n
+    $\circledcirc$ Pas d'indépendance.\\
+    Il suffit de trouver un cas où la probabilité de l'intersection est différente du produit des probabilités.\\
+    On a $(X=1)\cap(Y=1)\cap(Z=1)=\0$ car $X=Y\ra Z=0$ donc sa probabilité est nulle.\\
+    Or, $P(X=1)P(Y=1)P(Z=1)=1/8\neq0$.\\
+    Donc $X,Y,Z$ sont non indépendantes. 
+\end{ex}
+
+\begin{thm}{Existence de $n$ variables aléatoires indépendantes, de lois prescrites.}{}
+    Soient $n\in\N^*$ et $(\O_1,P_1),...,(\O_n,P_n)$ des espaces probabilisés finis. Alors, il existe un espace probabolisé fini $(\O,P)$ et $X_1,...,X_n$ des variables aléatoires sur $\O$ telles que
+    \begin{center}
+        $X_1,...,X_n$ sont indépendantes \hspace{0.25cm} et \hspace{0.25cm} pour tout $i\in\lb1,n\rb, ~ X_i$ est de loi $P_i$.
+    \end{center}
+\end{thm}
+
+\begin{prop}{Lemme des coalitions.}{coal}
+    Soit $(\O,P)$ un espace probabilisé et $X_1,...,X_n$ des variables aléatoires définies sur $\O$ et respectivement à valeurs dans des ensembles $E_1,...,E_n$. Soit $m\in\lb1,n\rb$.\\
+    Soient deux applications $f_1$, définie sur $E_1\times...\times E_m$, et $f_2$, définie sur $E_{m+1}\times...\times E_n$. On pose
+    \begin{equation*}
+        Y_1=f_1(X_1,...,X_m) \quad \nt{ et } \quad Y_2 = f_2(X_{m+1},...,X_n).
+    \end{equation*}
+    \begin{center}
+        \fbox{Si les $n$ variables $X_1,...,X_n$ sont indépendantes, alors les deux variables $Y_1$ et $Y_2$ le sont aussi.}
+    \end{center}
+    \tcblower
+    D'après \ref{prop:imageva}, il suffit de se convaincre que $Y_1':=(X_1,...,X_m)$ et $Y_2':=(X_{m+1},...X_n)$ sont indépendantes.\\
+    \bf{Remarque:} $Y_1'$ et $Y_2'$ sont bien des v.a. : $Y_1:\O\to X_1(\O)\times...\times X_m(\O)$, $Y_2:\O\to...$\\
+    Montrons que $Y_1' \ind Y_2$.\\
+    Soit $(x_1,...,x_m)\in X_1(\O)\times...\times X_m(\O)$ et $(x_{m+1},...,x_n)\in X_{m+1}(\O)\times...\times X_n(\O)$.\\
+    Alors :
+    \begin{align*}
+        &P((Y_1'=(x_1,...,x_m))\cap(Y_2=(x_{m+1},...,x_n))) = P\left( \bigcap_{i=1}^n(X_i=x_i) \right)\\
+        =&\prod_{i=1}^nP(X_i=x_i) \quad (\ind) = \prod_{i=1}^mP(X_i=x_i)\times\prod_{i=m+1}^n P(X_i=x_i)\\
+        =&P\left( \bigcap_{i=1}^m(X_i=x_i) \right)P\left( \bigcap_{i=1}^n(X_i=x_i) \right)\\
+        =&P(Y_1'=(x_1,...,x_m))P(Y_2'=(x_{m+1},...,x_n))
+    \end{align*}
+    Donc $Y_1 \ind Y_2$.
+\end{prop}
+
+\begin{prop}{extension à $p$ coalitions.}
+    Soit $(\O,P)$ un espace probabilisé et $(X_i)_{i\in I}$ une famille de variables aléatoires indexée par un ensemble fini non vide $I$. Soit $p\in\N^*$ et $(J_k)_{k\in\lb1,p\rb}$ une partition de l'ensemble $I$. On pose
+    \begin{equation*}
+        \forall k\in\lb1,p\rb ~ Y_k=f_k((X_j)_{j\in J_k}),
+    \end{equation*}
+    où les $p$ fonctions $f_k$ sont définies telles que les composées aient un sens.
+    \begin{center}
+        Si les $n$ variables $X_1,...,X_n$ sont indépendantes, alors les $p$ variables $Y_1,...,Y_p$ le sont aussi.
+    \end{center}
+\end{prop}
+
+\begin{prop}{Somme de variables de Bernoulli indépendantes $\star$.}{}
+    Soient $n\in\N^*$ et $p\in[0,1]$.\\
+    Si $X_1,...,X_n$ sont des variables aléatoires indépendantes, toutes de loi $\cursive{B}(p)$, alors la variable $Y:=X_1+...+X_n$ suit la loi binomiale $\cursive{B}(n,p)$.
+    \tcblower
+    Soit $k\in\lb0,n\rb$. On montre que $P(Y=k)=\binom{n}{k}p^k(1-p)^{n-k}$.\\
+    On va décomposer l'événement :
+    \begin{equation*}
+        (Y=k)=\bigcup_{A\in\P_k(\lb1,n\rb)}\left(\bigcap_{j\in A}(X_j=1)\bigcap_{j\in\ov{A}}(X_j=0)\right)
+    \end{equation*}
+    On applique $P$:
+    \begin{align*}
+        P(Y=k)&=P\left( \bigcup_{A\in\P_k(\lb1,n\rb)}\left( \bigcap_{j\in A}(X_j=1)\bigcap_{j\in\ov{A}}(X_j=0) \right) \right) \\
+        &= \sum_{A\in\P_k(\lb1,n\rb)}P\left( \bigcap_{j\in A}(X_j=1)\bigcap_{j\in\ov{A}}(X_j=0) \right)\\
+        &= \sum_{A\in\P_k(\lb1,n\rb)}\prod_{j\in A}P(X=1)\times\prod_{j\in\ov{A}}P(X=0)\\
+        &=\sum_{A\in\P_k(\lb1,n\rb)}p^{|A|}(1-p)^{|\ov{A}|}\\
+        &=\sum_{A\in\P_k(\lb1,n\rb)}p^k(1-p)^{n-k}\\
+        &=p^k(1-p)^{n-k}\sum_{A\in\P_k(\lb1,n\rb)}1\\
+        &=p^k(1-p)^{n-k}|\P_k(\lb1,n\rb)|=\binom{n}{k}p^k(1-p)^{n-k}
+    \end{align*}
+\end{prop}
+
+\section{Familles de variables aléatoires.}
+\subsection{Couples de variabels aléatoires.}
+
+Considérons $X:\O\to E$ et $Y:\O\to F$ deux variables aléatoires sur $\O$.\\
+Le couple de variables aléatoires $(X,Y)$ peut être vu comme une variable aléatoire
+\begin{equation*}
+    (X,Y):\begin{cases}
+        \O\to E\times F\\
+        \w \mapsto (X(\w), Y(\w))
+    \end{cases}.
+\end{equation*}
+
+\begin{nota}{}{}
+    Si $(X,Y)$ est un couple de variable aléatoires défini sur $(\O,P)$, alors pour tout $x\in X(\O)$ et $y\in Y(\O)$,
+    \begin{equation*}
+        P(X=x, Y=y) \quad \nt{plutôt que} \quad P((X,Y)=(x,y)).
+    \end{equation*}
+\end{nota}
+
+\begin{defi}{}{}
+    Soit $(\O,P)$ un espace probabilisé fini et $(X,Y):\O\to E\times F$ un couple de variables aléatoires.\\
+    On appelle \bf{loi conjointe} de $X$ et $Y$ la loi du couple $(X,Y)$. Cette loi est déterminée par la distribution de probabilités
+    \begin{equation*}
+        (P(X=x,Y=y))_{(x,y)\in X(\O)\times Y(\O)}.
+    \end{equation*}
+    Les lois de $X$ et $Y$ sont dans ce contexte appelées \bf{lois marginales}.
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $(X,Y)$ un couple de variables aléatoires défini sur $(\O,P)$. La loi de $X$, première loi marginale, est donnée par
+    \begin{equation*}
+        \forall x \in X(\O) ~ P(X=x)=\sum_{y\in Y(\O)}P(X=x, Y=y).
+    \end{equation*}
+    \bf{Remarque:} Avec la loi conjointe, on peut reconstituer les lois marginales.
+    \tcblower
+    On va démontrer que la réciproque est fausse par un contre-exemple.\\
+    Soient $X,Y$ indépendantes de loi $\cursive{B}(1/2)$. $(X,Y)$ et $(X,X)$ ont les mêmes lois marginales.\\
+    Or, elles n'ont pas les mêmes lois conjointes. Loi de $(X,Y)$ puis $(X,X)$:
+    \begin{eqnarray*}
+        \begin{array}{|c|c|c|}
+            \hline
+            x \setminus y & 0 & 1\\
+            \hline
+            0 & 1/4 & 1/4\\
+            \hline
+            1 & 1/4 & 1/4\\
+            \hline
+        \end{array}
+        \hspace{2cm}
+        \begin{array}{|c|c|c|}
+            \hline
+            x \setminus x' & 0 & 1\\
+            \hline
+            0 & 1/2 & 0\\
+            \hline
+            1 & 0 & 1/2\\
+            \hline
+        \end{array}
+    \end{eqnarray*}
+\end{prop}
+
+\begin{prop}{Loi d'une somme}{}
+    Soit $(X,Y)$ un couple de variables aléatoires à valeurs réelles défini sur $(\O,P)$.
+    \begin{equation*}
+        \forall z \in (X+Y)(\O) ~ P(X+Y)(z) = \sum_{x\in X(\O)}P(X=x,Y=z-x).
+    \end{equation*}
+\end{prop}
+
+\subsection{\texorpdfstring{$n$}{Lg}-uplets de variables aléatoires.}
+
+\begin{defi}{}{}
+    Soit $(\O,P)$ un espace probabilisé, soit $n\in\N^*$ et $X_1,...,X_n$ des variables aléatoires définies sur $\O$ et à valeurs respectivement dans des ensembles $E_1,...,E_n$.\\
+    Le $n$-uplet $(X_1,...,X_n)$ est une variable aléatoire définie sur $\O$ et à valeurs dans le produit cartésien $E_1\times...\times E_n$. Sa loi est appelé \bf{loi conjointe} du $n$-uplet. Elle est déterminée par la distribution de probabilités
+    \begin{equation*}
+        (P(X_1=x_1,...,X_n=x_n)), ~ x_1\in X_1(\O),...,x_n\in X_n(\O).
+    \end{equation*}
+\end{defi}
+
+\section{Exercices \texorpdfstring{$\star$}{Lg}.}
+
+\begin{exercice}{Paradoxe de l'anniversaire $\star$.}{}
+    Il y a 40 élèves dans une classe. Quelle est la chance qu'au moins deux élèves aient la même date d'anniversaire ?
+    \tcblower
+    On pose $\O=\lb1,365\rb^{40}$, et $P$ l'équiprobabilité. On note $A$ l'événement <<au moins deux élèves ont la même date d'anniversaire>>.\\
+    Alors $A$ : <<Les anniversaires sont deux-à-deux distincts>>, $\ov{A}=\cursive{A}_{40}(\lb1,365\rb)$, l'ensemble des 40-arrangements de $\lb1,365\rb$. Alors :
+    \begin{align*}
+        P(\ov{A})&=\frac{|\ov{A}|}{|\O|}=\frac{365\times...\times326}{365^{40}}\\&=\prod_{i=0}^{39}\frac{365-i}{365}=\prod_{i=0}^{39}\left( 1-\frac{i}{365}\right)\\&\sim\prod_{i=0}^{39}e^{-i/365}=\exp\left( -\frac{1}{365}\sum_{i=0}^{39}i \right)\\
+        &=\exp\left( -\frac{1}{365}\times\frac{40\times39}{2} \right)\sim e^{-2}.
+    \end{align*}
+    Donc $P(A)\sim1-e^{-2}\sim0.9$.
+\end{exercice}
+
+\begin{exercice}{Somme de Bernoulli indépendantes $\{X_k\neq X_{k+1}\}$. $\star$}{}
+    Soit $X_1,...,X_n$ $n$ variables aléatoires indépendantes de loi $\cursive{B}(1/2)$.\\
+    Pour $k\in\lb1,n-1\rb$, on note $A_k=\{X_k\neq X_{k+1}\}$.\\
+    Montrer que les $A_k$ sont indépendants deux-à-deux.
+    \tcblower
+    Soit $(k,k')\in\lb1,n-1\rb^2 \mid k < k'$.\\
+    $\bullet$ Si $k'-k>1$, alors $A_k$ et $A_{k'}$ sont indépendants (coalitions \ref{prop:coal})\\
+    $\bullet$ Si $k'=k+1$, alors :
+    \begin{align*}
+        P(A_k\cap A_{k+1})&=P((X_k\neq X_{k+1})\cap(X_{k+1}\neq X_{k+2}))\\
+        &=P(X_k=1,X_{k+1}=0,X_{k+2}=1)+P(X_k=0,X_{k+1}=1,X_{k+2}=0)\\
+        &=\frac{1}{2^3}+\frac{1}{2^3}=\frac{1}{4}.
+    \end{align*}
+    C'est aussi $P(A_k)P(A_{k+1})$.
+\end{exercice}
+
+\begin{exercice}{Loi de $\lf \sqrt{X} \rf$ $\star$.}{}
+    Soit $X$ une variable aléatoire de loi uniforme sur $\lb0,20\rb$. Donner la loi de $\lf\sqrt{X}\rf$.
+    \tcblower
+    Hypothèses : $X(\O)=\lb0,20\rb$ et $\forall k \in \lb0,20\rb,~P(X=k)=1/21$.\\
+    Notons $Y=\lf\sqrt{X}\rf$. Alors $Y(\O)\subset\lb0,4\rb$.\\
+    On a :\\
+    $\bullet$ $(Y=0)=(\lf\sqrt{X}\rf=0)=(0\leq\sqrt{X}<1)=(0\leq X<1)=(X=0)$ : $P(Y=0)=1/21$.\\
+    $\bullet$ $(Y=1)=(\lf\sqrt{X}\rf=1)=(1\leq\sqrt{X}<2)=(1\leq X<4)=\bigcup\limits_{i=1}^3(X=i)$ : $P(Y=1)=3/21$.\\
+    $\bullet$ $(Y=2)=(\lf\sqrt{X}\rf=2)=(2\leq\sqrt{X}<3)=(4\leq X<9)=\bigcup\limits_{i=4}^8(X=i)$ : $P(Y=2)=5/21$.\\
+    $\bullet$ $(Y=3)=(\lf\sqrt{X}\rf=3)=(3\leq\sqrt{X}<4)=(9\leq X<16)=\bigcup\limits_{i=9}^{15}(X=i)$ : $P(Y=3)=7/21$.\\
+    $\bullet$ $(Y=4)=(\lf\sqrt{X}\rf=4)=(4\leq\sqrt{X}<5)=(16 \leq X < 25)=\bigcup\limits_{i=16}^{20}(X=i)$ : $P(Y=4)=5/21$.
+    \begin{eqnarray*}
+        \begin{array}{|c|c|c|c|c|c|}
+            \hline
+            k & 0 & 1 & 2 & 3 & 4\\
+            \hline
+            P(Y=k) & 1/21 & 3/21 & 5/21 & 7/21 & 5/21\\
+            \hline
+        \end{array}
+    \end{eqnarray*}
+\end{exercice}
+
+\begin{exercice}{Somme de binomiales indépendantes}{}
+    Soient $n,n'\in\N^*$ et $p\in[0,1]$.\\
+    On considère $X$ et $Y$ deux variables aléatoires définies sur un espace probabilisé $(\O,P)$ telles que $X\sim\cursive{B}(n,p)$, que $Y\sim\cursive{B}(n',p)$ et que $X$ et $Y$ sont indépendantes. Montrer que $X+Y\sim\cursive{B}(n+n',p)$.
+    \tcblower
+    \bf{Solution 1:} Le calcul.\\
+    Cours : $X(\O)\subset\lb0,n\rb$ et $\forall k\in X(\O), ~ P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}$.\\
+    Notons $Z=X+Y$, on a $Z(\O)\subset\lb0,n+n'\rb$.\\
+    Soit $k\in\lb0,n+n'\rb$, alors :
+    \begin{align*}
+        P(Z=k)&=P(X+Y=k)=P\left(\bigcup_{j=0}^n(X=j,Y=k-j)\right)\\
+        &=\sum_{j=0}^nP(X=j,Y=k-j) \quad \nt{(incompatibles.)}\\
+        &=\sum_{j=0}^nP(X=j)P(Y=k-j) \quad \nt{(indépendance.)}\\
+        &=\sum_{j=0}^k\binom{n}{j}\cancel{p^{j}}(1-p)^{n\cancel{-j}}\binom{n'}{k-j}p^{k\cancel{-j}}(1-p)^{n'-k\cancel{+j}}\\
+        &=p^k(1-p)^{n+n'-k}\sum_{j=0}^k\binom{n}{j}\binom{n'}{k-j}\\
+        &=\binom{n+n'}{k}p^k(1-p)^{n+n'-k} \quad \nt{(Vandermonde.)}
+    \end{align*}
+    \bf{Solution 2:} Par <<couplage>>. On va travailler sur une <<copie>> de $(X,Y)$.\\
+    Soient $X_1,...,X_n,Y_1,...,Y_{n'}$ des variables aléatoires de loi $\cursive{B}(p)$ indépendantes.\\
+    On pose $\tilde{X}=\sum_{i=1}^nX_i$ et $\tilde{Y}=\sum_{i=1}^nY_i$.\\
+    $\bullet$ $\tilde{X}$ et $\tilde{Y}$ sont indépendantes par coalitions. En effet, $\tilde{X}$ est fonction de $(X_1,...,X_n)$, $\tilde{Y}$ de $(Y_1,...,Y_{n'})$.\\
+    $\bullet$ $\tilde{X}\sim\cursive{B}(n,p)$ (somme de Bernoulli indépendantes) et $\tilde{Y}\sim\cursive{B}(n',p)$ $\hdots$\\
+    Donc $(X,Y)$ et $(\tilde{X}, \tilde{Y})$ ont la même loi (conjointe) car mêmes lois marginales et indépendance.\\
+    Ainsi, $X+Y\sim\tilde{X}+\tilde{Y}$. Or, $\tilde{X}+\tilde{Y}$ est une somme de $n+n'$ variables de lois $\cursive{B}(p)$ indépendantes.\\
+    Nous savons donc que $\tilde{X}+\tilde{Y}\sim\cursive{B}(n+n',p)$, donc $X+Y\sim\cursive{B}(n+n',p)$. 
+\end{exercice}
+
+\end{document}

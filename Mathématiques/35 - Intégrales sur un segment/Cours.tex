@@ -1,250 +1,16 @@
 \documentclass[11pt]{article}
-\usepackage[paperheight=15in, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
-\usepackage[most]{tcolorbox}
-\usepackage{amsmath, amssymb, amsthm, enumitem, stmaryrd, cancel, pifont, dsfont, hyperref, fancyhdr, lastpage, tocloft, changepage, tkz-tab, tikz-among-us}
 
-\newcommand*{\K}{\mathbb{K}}
-\newcommand*{\C}{\mathbb{C}}
-\newcommand*{\R}{\mathbb{R}}
-\newcommand*{\Q}{\mathbb{Q}}
-\newcommand*{\Z}{\mathbb{Z}}
-\newcommand*{\N}{\mathbb{N}}
-\newcommand*{\F}{\mathcal{F}}
-\newcommand*{\CM}{\mathcal{CM}}
-\newcommand*{\m}{\mathcal}
-
-\newcommand{\0}{\varnothing}
-\newcommand*{\e}{\varepsilon}
-\newcommand*{\g}{\gamma}
-\newcommand*{\s}{\sigma}
-\renewcommand*{\l}{\lambda}
-\renewcommand*{\t}{\tau}
-
-\newcommand*{\ra}{\Longrightarrow}
-\newcommand*{\la}{\Longleftarrow}
-\newcommand*{\rla}{\Longleftrightarrow}
-\newcommand*{\lb}{\llbracket}
-\newcommand*{\rb}{\rrbracket}
-\newcommand*{\n}{\\[0.2cm]}
-
-\newcommand*{\cmark}{\ding{51}}
-\newcommand*{\xmark}{\ding{55}}
-
-\newcommand{\dx}{\textrm{d}x}
-\newcommand{\dt}{\textrm{d}t}
-\newcommand{\rg}[1]{\textrm{rg}(#1)}
-\newcommand{\vect}[1]{\textrm{Vect}(#1)}
-\newcommand{\tr}[1]{\textrm{Tr}(#1)}
-
-\renewcommand*{\Re}{\textrm{Re}}
-\renewcommand{\dim}[1]{\textrm{dim}~#1}
-\renewcommand*{\ker}[1]{\textrm{Ker}(#1)}
-\renewcommand{\Im}{\textrm{Im}}
-\renewcommand*{\phi}{\varphi}
-
-\newcommand{\providetcbcountername}[1]{%
-  \@ifundefined{c@tcb@cnt@#1}{%
-    --undefined--%
-  }{%
-    tcb@cnt@#1%
-  }
-}
-
-\newcommand{\settcbcounter}[2]{%
-  \@ifundefined{c@tcb@cnt@#1}{%
-    \GenericError{Error}{counter name #1 is no tcb counter }{}{}%
-  }{%
-    \setcounter{tcb@cnt@#1}{#2}%
-   }%
-}%
-
-\newcommand{\displaytcbcounter}[1]{% Wrapper for \the...
-  \@ifundefined{thetcb@cnt@#1}{%
-    \GenericError{Error}{counter name #1 is no tcb counter }{}{}%
-  }{%
-    \csname thetcb@cnt@#1\endcsname% 
-  }%
-}
-
-% MATHS %
-\newtcbtheorem{thm}{Théorème}
-{
-    enhanced,frame empty,interior empty,
-    colframe=red,
-    after skip = 1cm,
-    borderline west={1pt}{0pt}{green!25!red},
-    borderline south={1pt}{0pt}{green!25!red},
-    left=0.2cm,
-    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colbacktitle=white,
-    boxed title style={boxrule=.4pt,sharp corners},
-    before lower = {\textbf{Preuve :}\n}
-}{thm}
-
-\newtcbtheorem[use counter from = thm]{defi}{Définition}
-{
-    enhanced,frame empty,interior empty,
-    colframe=green,
-    after skip = 1cm,
-    borderline west={1pt}{0pt}{green},
-    borderline south={1pt}{0pt}{green},
-    left=0.2cm,
-    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colbacktitle=white,
-    boxed title style={boxrule=.4pt,sharp corners},
-    before lower = {\textbf{Preuve :}\n}
-}{defi}
-
-\newtcbtheorem[use counter from = thm]{prop}{Proposition}
-{
-    enhanced,frame empty,interior empty,
-    colframe=blue,
-    after skip = 1cm,
-    borderline west={1pt}{0pt}{green!25!blue},
-    borderline south={1pt}{0pt}{green!25!blue},
-    left=0.2cm,
-    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colbacktitle=white,
-    boxed title style={boxrule=.4pt,sharp corners},
-    before lower = {\textbf{Preuve :}\n}
-}{prop}
-
-\newtcbtheorem[use counter from = thm]{corr}{Corrolaire}
-{
-    enhanced,frame empty,interior empty,
-    colframe=blue,
-    after skip = 1cm,
-    borderline west={1pt}{0pt}{green!25!blue},
-    borderline south={1pt}{0pt}{green!25!blue},
-    left=0.2cm,
-    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colbacktitle=white,
-    boxed title style={boxrule=.4pt,sharp corners},
-    before lower = {\textbf{Preuve :}\n}
-}{corr}
-
-\newtcbtheorem[use counter from = thm]{lem}{Lemme}
-{
-    enhanced,frame empty,interior empty,
-    colframe=blue,
-    after skip = 1cm,
-    borderline west={1pt}{0pt}{green!25!blue},
-    borderline south={1pt}{0pt}{green!25!blue},
-    left=0.2cm,
-    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colbacktitle=white,
-    boxed title style={boxrule=.4pt,sharp corners},
-    before lower = {\textbf{Preuve :}\n}
-}{lem}
-
-\newtcbtheorem[use counter from = thm]{ex}{Exemple}
-{
-    enhanced,frame empty,interior empty,
-    colframe=orange,
-    after skip = 1cm,
-    borderline west={1pt}{0pt}{orange},
-    borderline south={1pt}{0pt}{orange},
-    left=0.2cm,
-    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colbacktitle=white,
-    boxed title style={boxrule=.4pt,sharp corners},
-    before lower = {\textbf{Preuve :}\n}
-}{ex}
-
-\newtcbtheorem[use counter from = thm]{meth}{Méthode}
-{
-    enhanced,frame empty,interior empty,
-    colframe=purple,
-    after skip = 1cm,
-    borderline west={1pt}{0pt}{purple},
-    borderline south={1pt}{0pt}{purple},
-    left=0.2cm,
-    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colbacktitle=white,
-    boxed title style={boxrule=.4pt,sharp corners},
-    before lower = {\textbf{Preuve :}\n}
-}{meth}
-
-% PHYSIQUE %
-\newtcbtheorem[use counter from = thm]{qc}{Question de Cours}
-{
-    enhanced,frame empty,interior empty,
-    colframe=red,
-    after skip = 1cm,
-    borderline west={1pt}{0pt}{green!25!red},
-    borderline south={1pt}{0pt}{green!25!red},
-    left=0.2cm,
-    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colbacktitle=white,
-    boxed title style={boxrule=.4pt,sharp corners},
-    before lower = {\textbf{Preuve :}\n}
-}{qc}
-\newtcbtheorem[use counter from = thm]{app}{Application}
-{
-    enhanced,frame empty,interior empty,
-    colframe=blue,
-    after skip = 1cm,
-    borderline west={1pt}{0pt}{green!25!blue},
-    borderline south={1pt}{0pt}{green!25!blue},
-    left=0.2cm,
-    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colbacktitle=white,
-    boxed title style={boxrule=.4pt,sharp corners},
-    before lower = {\textbf{Preuve :}\n}
-}{app}
-
+\def\chapitre{35}
 \def\pagetitle{Intégrales sur un segment}
-\setlength{\headheight}{14pt}
 
-\title{\bf{\pagetitle}\n\large{Corrigé}}
-
-\hypersetup{
-    colorlinks=true,
-    citecolor=black,
-    linktoc=all,
-    linkcolor=blue
-}
-
-\pagestyle{fancy}
-\cfoot{\thepage\ sur \pageref*{LastPage}}
+\input{/home/theo/MP2I/setup.tex}
 
 \begin{document}
 
-\thispagestyle{fancy}
-\fancyhead[L]{MP2I Paul Valéry}
-\fancyhead[C]{\pagetitle}
-\fancyhead[R]{2023-2024}
-
-\hrule
-\begin{center}
-    \LARGE{\textbf{Chapitre 35}}\n
-    \large{\pagetitle}\n
-    \rule{0.8\textwidth}{0.5pt}
-\end{center}
-
-
-\vspace{0.5cm}
+\input{/home/theo/MP2I/title.tex}
 
 \section{Intégrale d'une fonction continue sur un segment}
-\subsection{Ensemble $\CM(I,\K)$}
+\subsection{Ensemble \texorpdfstring{$\CM(I,\K)$}{Lg}}
 
 \begin{defi}{Fonction continue par morceaux sur un intervalle.}{}
     Soit $I$ un intervalle et $f:I\to\K$. On dit que $f$ est \textbf{continue par morceaux} sur $I$ si pour tout segment $[a,b]\subset I$, $f_{|[a,b]}$ est continue par morceaux sur $[a,b]$.\\
@@ -255,7 +21,7 @@
 La fonction $x\mapsto\lfloor\frac{1}{x}\rfloor$ est continue par morceaux sur $\R^*_+$. Expliquer.
 \tcblower
 Soit $[a,b]\subset\R^*_+$. Notons $S=\{\frac{1}{n}\mid n\in\N^*\}\cap]a,b[$.\\
-Cet ensemble est finito : pour $n\in\N^*$, $a<\frac{1}{n}<b\iff\frac{1}{b}<n<\frac{1}{a}\iff\lfloor\frac{1}{b}\rfloor+1 \leq n \leq \lfloor\frac{1}{a}\rfloor$.\\
+Cet ensemble est fini : pour $n\in\N^*$, $a<\frac{1}{n}<b\iff\frac{1}{b}<n<\frac{1}{a}\iff\lfloor\frac{1}{b}\rfloor+1 \leq n \leq \lfloor\frac{1}{a}\rfloor$.\\
 $S$ contient donc au plus $\lfloor\frac{1}{a}\rfloor-\lfloor\frac{1}{b}\rfloor$ points.\\
 Notons $n=|S|$ puis $S=\{a_1,...,a_n\}$, avec $a_1<a_2<...<a_n$.\\
 Posons $\s=(a_0,a_1,...,a_n,a_{n+1})$ avec $a_0 := a$ et $a_{n+1} := b$.\\
@@ -288,7 +54,6 @@ Ainsi, $f\in\CM(\R^*_+,\R)$.\\
     En effet, ces relations donnent que pour $i\in\lb0,n-1\rb$, les restrictions de $\Re(f)$ et $\Im(f)$ à $]a_i,a_{i+1}[$ y sont continues, et prolongeables par continuité sur les bords.
 \end{prop}
 
-\pagebreak
 \subsection{Relation de Chasles.}
 \begin{prop}{Relation de Chasles}{}
     Soient $f\in\CM(I,\K)$ et $a,b,c\in I$.
@@ -429,10 +194,10 @@ Ainsi, $f\in\CM(\R^*_+,\R)$.\\
     \boxed{3.} On a $nI_n = \frac{n}{n+1}(e-I_{n+1})\to e$ donc $I_n \sim \frac{e}{n}$.
 \end{ex}
 
-\begin{ex}{Lemme de Riemann-Lebesgue}{}
+\begin{ex}{Lemme de Riemann-Lebesgue $\star$}{}
     Soit $f\in\m{C}^1([a,b],\C)$. Montrer que
     \begin{equation*}
-        \int_a^bf(t)e^{int}\dt\to0.
+        I_n=\int_a^bf(t)e^{int}\dt\to0.
     \end{equation*}
     \textbf{Remarque:} Le lemme est vrai pour $f$ continue sur $[a,b]$, mais difficile à démontrer.
     \tcblower
@@ -442,14 +207,14 @@ Ainsi, $f\in\CM(\R^*_+,\R)$.\\
     \end{equation*}
     Alors
     \begin{align*}
-        |I_n|=\Big|...\Big|\leq \Big|[...]_a^b\Big| + \Big|\int_a^b...\Big|
+        |I_n|\leq \Big|[f(t)\frac{1}{in}e^{int}]_a^b\Big| + \Big|\int_a^bf'(t)\frac{1}{in}e^{int}\Big|
     \end{align*}
     D'une part : $\Big|\left[ f(t)\frac{1}{in} e^{int}\right]_a^b\Big|=\frac{1}{n}\Big|f(b)e^{inb}-f(a)e^{ina}\Big|\leq\frac{1}{n}(|f(b)|+|f(a)|)$.\\
     D'autre part : $\Big|\int_a^bf'(t)\frac{1}{in}e^{int}\dt\Big|\leq\frac{1}{n}\int_a^b\Big|f'(t)\Big|\dt$.\\
     Par majoration, $|I_n|=O(\frac{1}{n})$ donc $I_n\to0$.
 \end{ex}
 
-\begin{thm}{Théorème fondamental de l'analyse}{}
+\begin{thm}{Théorème fondamental de l'analyse $\star$}{}
     Soit $I$ un intervalle et $f:I\to\K$ une fonction continue sur $I$. Soit $a\in I$. La fonction
     \begin{equation*}
         E: \begin{cases}
@@ -460,15 +225,15 @@ Ainsi, $f\in\CM(\R^*_+,\R)$.\\
     est de classe $\m{C}^1$ sur $I$ et de dérivée $F'=f$.
     \tcblower
     Soit $x_0\in I$. Montrons que $\frac{F(x)-F(x_0)}{x-x_0}\to f(x_0)$\\
-    Soit $x\in I\setminus\{x_0\}$.
+    Soit $x\in I\setminus\{x_0\}$, on note $\min=\min(x_0,x)$ et $\max=\max(x_0,x)$.
     \begin{align*}
         \left|\frac{F(x)-F(x_0)}{x-x_0}-f(x_0)\right|&=\left|\frac{1}{x-x_0}\left(\int_a^xf(t)\dt-\int_a^{x_0}f(t)\dt\right)-f(x_0)\right|\\
         &=\left|\frac{1}{x-x_0}\int_{x_0}^xf(t)\dt-\frac{1}{x-x_0}\int_{x_0}^xf(x_0)\dt\right|\\
         &=\frac{1}{|x-x_0|}\left|\int_{x_0}^x(f(t)-f(x_0))\dt\right|\\
-        &\leq\frac{1}{|x-x_0|}\int_{\min(x_0,x)}^{\max(x_0,x)}\left|f(t)-f(x_0)\right|\dt
+        &\leq\frac{1}{|x-x_0|}\int_{\min}^{\max}\left|f(t)-f(x_0)\right|\dt
     \end{align*}
-    Soit $\e>0$. Par continuité de $f$ en $x_0$, $\exists \eta>0 \forall x \in I\cap]x_0-\eta,x_0+\eta[~|f(t)-f(x_0)|\leq\e$.\\
-    Supposons que $|x-x_0|\leq\eta$. Alors $[\min(x_0,x), \max(x_0,x)]\subset I\cap]x_0-\eta,x_0+\eta[$.\\
+    Soit $\e>0$. Par continuité de $f$ en $x_0$, $\exists \eta>0 ~ \forall x \in I\,\cap\,]x_0-\eta,x_0+\eta[,~|f(t)-f(x_0)|\leq\e$.\\
+    Supposons que $|x-x_0|\leq\eta$. Alors $[\min, \max]\subset I\,\cap\,]x_0-\eta,x_0+\eta[$.\\
     Par croissance :
     \begin{equation*}
         \int_{\min}^{\max}\Big|f(t)-f(x_0)\Big|\dt\leq\int_{\min}^{\max}\e\dt = \e(\max - \min) = \e|x-x_0|.
@@ -508,11 +273,8 @@ Ainsi, $f\in\CM(\R^*_+,\R)$.\\
     Découle du résultat précédent car $f$ est une primitive de $f'$ sur $[a,b]$ sous ces hypothèses.
 \end{prop}
 
-\begin{ex}{}{}
-    Soit la fonction
-    \begin{equation*}
-        F:x\mapsto\int_x^{x^2}\frac{1}{\ln(t)}\dt.
-    \end{equation*}
+\begin{ex}{$\star$}{}
+    Soit la fonction \begin{equation*}F:x\mapsto\int_x^{x^2}\frac{1}{\ln(t)}\dt\end{equation*}.\\
     \-\ ~1. Donner le domaine de définition de $F$.\\
     \-\ ~2. Montrer que $F$ est dérivable sur $D$ et calculer sa dérivée. Donner les variations de $F$.\\
     \-\ ~3. (*) Calculer les limites intéressantes.
@@ -524,42 +286,29 @@ Ainsi, $f\in\CM(\R^*_+,\R)$.\\
     \boxed{2.} $\circledcirc$ Sur $]0,1[$. Notons $L$ une primitive de $f$ sur $]0,1[$, elle existe par TFA et continuité de $f$.\\
     Alors $F(x)=\int_x^{x^2}f=L(x^2)-L(x)$ et $F$ et dérivable comme composée et différence.\\
     Donc $\forall x \in ]0,1[, ~ F'(x)=2xf(x^2) - f(x)=\frac{1}{\ln(x)}(x-1)>0$.\\
-    $\circledcirc$ Sur $]1,+\infty[$, on a $F'(x)=\frac{x-1}{\ln(x)}>0$.
-    \begin{center}
-        \begin{tikzpicture}
-            \tkzTabInit[espcl=3]{$x$/0.6,$F'(x)$/0.6,$F$/1.4}{$0$,$1$,$+\infty$}
-            \tkzTabLine{d,+,d,+}
-            \tkzTabVar{D-/,+D-/,+/}
-        \end{tikzpicture}
-    \end{center}
+    $\circledcirc$ Sur $]1,+\infty[$, on a $F'(x)=\frac{x-1}{\ln(x)}>0$.\\
     \boxed{3.} \textbf{Limite en $+\infty$:} Soit $x>1$. $\forall t\in[x,x^2] ~ \frac{1}{\ln(t)}\geq\frac{1}{\ln(x^2)}$ alors par croissance de l'intégrale ($x<x^2$):
     \begin{equation*}
         \int_x^{x^2}\frac{1}{\ln t}\dt\geq\int_x^{x^2}\frac{1}{\ln x^2}\dt \text{ donc } F(x)\geq\frac{x(x-1)}{2\ln(x)}\to+\infty
     \end{equation*}
-    Par minoration, $F(x)\to+\infty$ en $+\infty$.\n
+    Par minoration, $F(x)\to+\infty$ en $+\infty$.\\
     \textbf{Limite en $0_+$:} On encadre pour $x\in]0,1[$ : $\frac{1}{\ln(x)}\leq\frac{1}{\ln(t)}\leq\frac{1}{\ln(x^2)}$ alors ($x^2<x$):
     \begin{equation*}
         \int_x^{x^2}\frac{1}{\ln(x)}\dt\geq\int_x^{x^2}\frac{1}{\ln t}\dt\geq\int_x^{x^2}\frac{1}{\ln(x^2)}\dt
     \end{equation*}
-    Donc $\frac{x(x-1)}{2\ln(x)} \leq F(x)\leq \frac{x(x-1)}{\ln(x)}$ Par encadrement, $F(x)\to0$ en $0_+$.\n
-    \textbf{Limite en $1_+$:}Pour $x>1$, $F(x)=L(x^2)-L(x)$ et $L'(x)=\frac{1}{\ln(x)}\sim_1\frac{1}{x-1}$ donc $L'(x)=_1\frac{1}{x-1}+o(\frac{1}{x-1})$.\\
-    Posons $R(x)=L'(x)-\frac{1}{x-1}$ continue sur $]1,+\infty[$.\\
-    On a :
+    Donc $\frac{x(x-1)}{2\ln(x)} \leq F(x)\leq \frac{x(x-1)}{\ln(x)}$ Par encadrement, $F(x)\to0$ en $0_+$.\\
+    \textbf{Limite en $1_+$:} Pour $x>1$, $F(x)=L(x^2)-L(x)$ et $L'(x)=\frac{1}{\ln(x)}\sim_1\frac{1}{x-1}$ donc $L'(x)=_1\frac{1}{x-1}+o(\frac{1}{x-1})$.\\
+    Posons $R(x)=L'(x)-\frac{1}{x-1}$ continue sur $]1,+\infty[$. On a :
     \begin{align*}
-        F(x)&=\int_x^{x^2}L(t)\dt=\int_x^{x^2}\left(\frac{1}{t-1}+R(t)\right)\dt=\int_x^{x^2}\frac{1}{t-1}\dt+\int_x^{x^2}R(t)\dt\\
-        \int_x^{x^2}\frac{1}{t-1}\dt&=\ln(x^2-1)-\ln(x-1)=\ln(x+1)\xrightarrow[x\to1_+]{}\ln(2)
+        &F(x)=\int_x^{x^2}L(t)\dt=\int_x^{x^2}\left(\frac{1}{t-1}+R(t)\right)\dt=\int_x^{x^2}\frac{1}{t-1}\dt+\int_x^{x^2}R(t)\dt\\
+        &\int_x^{x^2}\frac{1}{t-1}\dt=\ln(x^2-1)-\ln(x-1)=\ln(x+1)\xrightarrow[x\to1_+]{}\ln(2)
     \end{align*}
-    Montrons que $\int_x^{x^2}R(t)\dt\to0$.\\
-    On a $(t-1)R(t)\to0$ quand $t\to1_+$.\\
+    Montrons que $\int_x^{x^2}R(t)\dt\to0$. On a $(t-1)R(t)\to0$ quand $t\to1_+$.\\
     Soit $\e>0, \exists\eta>0~\forall t\in]1,1+\eta[ ~ -\e\leq(t-1)R(t)\leq\e$ donc $-\frac{\e}{t-1}\leq R(t) \leq \frac{\e}{t-1}$.\\
     Supposons $x\in]1,\sqrt{1+\eta}[$ alors $[x,x^2]\subset]1,1+\eta[$.\\
     Alors $\forall t \in [x,x^2], ~ -\frac{\e}{t-1}\leq R(t) \leq \frac{\e}{t-1}$.\\
-    On intégre :
-    \begin{equation*}
-        -\e\leq-\e\ln(x+1) \leq \int_x^{x^2}R(t)\dt\leq \e\ln(x+1)\leq\e
-    \end{equation*}
-    On a donc bien $\int_x^{x^2}R(t)\dt=_1o(1)$.\\
-    On a donc prouvé que $F(x)=_1\ln(x+1)+o(1)$ donc $F(x)\xrightarrow[x\to1_+]{}\ln2$\n
+    On intégre : $-\e\leq-\e\ln(x+1) \leq \int_x^{x^2}R(t)\dt\leq \e\ln(x+1)\leq\e$.\\
+    On a bien $\int_x^{x^2}R(t)\dt=_1o(1)$ donc $F(x)=_1\ln(x+1)+o(1)$ donc $F(x)\xrightarrow[x\to1_+]{}\ln2$\\
     \textbf{Limite en $1_-$:} Soit $x\in]0,1[$. On a $F(x)=\int_x^{x^2}t\frac{1}{t\ln t}\dt$. On a $0<x^2<x<1$. Soit $t\in[x^2,x]$.\\
     On a $\frac{x}{t\ln t}\leq t\frac{1}{t\ln t}\leq \frac{x^2}{t\ln t}$. On intégre : $\int_x^{x^2}\frac{x^2}{t\ln t}\dt\leq\int_x^{x^2}\frac{1}{\ln t}\dt \leq \int_x^{x^2}\frac{x}{t\ln t}\dt$.\\
     Or, $\int_x^{x^2}\frac{1}{t\ln t}\dt = \left[ \ln | \ln t | \right]_x^{x^2}=\ln|\ln(x^2)|-\ln|\ln(x)|=\ln(-2\ln(x))-\ln(\ln(-x))=\ln(2)$.\\
@@ -623,11 +372,14 @@ Ainsi, $f\in\CM(\R^*_+,\R)$.\\
         \frac{1}{2}\int_{-1}^1\frac{1}{(t+\frac{1}{4})^2+(\frac{\sqrt{15}}{4})^2}\dt &= \frac{4}{2\sqrt{15}}\left[ \arctan(\frac{4}{\sqrt{15}(t+\frac{1}{4})})\right]_{-1}^1 = \frac{2}{\sqrt{15}}\left[ \arctan(\frac{5}{\sqrt{15}}) + \arctan(\frac{3}{\sqrt{15}}) \right]
     \end{align*}
     Or $\frac{5}{\sqrt{15}}\cdot\frac{3}{\sqrt{15}}=\frac{15}{\sqrt{15}^2}=1$ et $\arctan(x)+\arctan(\frac{1}{x})=\begin{cases}\frac{\pi}{2} ~ (x>0)\\-\frac{\pi}{2} ~ (x<0) \end{cases}$\\
-    Alors $\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\frac{1}{4+\sin x}\dx=\frac{2}{\sqrt{15}}\frac{\pi}{2}=\frac{\pi}{\sqrt{15}}$
+    Alors: 
+    \begin{equation*}
+        \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\frac{1}{4+\sin x}\dx=\frac{2}{\sqrt{15}}\frac{\pi}{2}=\frac{\pi}{\sqrt{15}}
+    \end{equation*}
 \end{ex}
 
 \begin{corr}{Intégrale d'une fonction paire/impaire.}{}
-    Soit $f\in\CM([-a,a],\\K)$.\\
+    Soit $f\in\CM([-a,a],\K)$.\\
     Si $f$ est paire : $\int_{-a}^af(t)\dt=2\int_0^af(t)\dt$.\\
     Si $f$ est impaire : $\int_{-a}^af(t)\dt=0$.
 \end{corr}
@@ -642,7 +394,7 @@ Ainsi, $f\in\CM(\R^*_+,\R)$.\\
 \begin{thm}{Formule de Taylor avec reste intégral}{}
     Soit $f\in\m{C}^{n+1}([a,b],\K)$ et $x\in[a,b]$. Alors,
     \begin{equation*}
-        f(x)=\sum_{k=0}^n\frac{f^{(k)}(a)}{k!}(x-a)^k+\int_a^b\frac{(x-t)^n}{n!}f^{(n+1)}(t)\dt
+        f(x)=\sum_{k=0}^n\frac{f^{(k)}(a)}{k!}(x-a)^k+\int_a^x\frac{(x-t)^n}{n!}f^{(n+1)}(t)\dt
     \end{equation*}
     \tcblower
     Par récurrence :\\
@@ -733,7 +485,7 @@ Ainsi, $f\in\CM(\R^*_+,\R)$.\\
         R_n(f)\xrightarrow[n\to+\infty]{}\int_a^bf(t)\dt
     \end{equation*}
     \tcblower
-    \textbf{Remarque:} on écrira la preuve dans le cas $f$ lipschitzienne.
+    On écrira la preuve dans le cas $f$ lipschitzienne en proposition \ref{prop:rectangles}.
 \end{thm}
 
 \begin{corr}{Cas particulier important}{}
@@ -792,13 +544,11 @@ Ainsi, $f\in\CM(\R^*_+,\R)$.\\
     \end{equation*}
 \end{ex}
 
-\pagebreak
-
 \subsection{Comparaison de la méthode des rectangle avec celle des trapèzes.}
 
-\begin{prop}{Erreur d'approximation avec la méthode des rectangles}{}
+\begin{prop}{Erreur d'approximation avec la méthode des rectangles. $\star$}{rectangles}
     Soit $f:[a,b]\to\K$ une fonction $M$-lipschitzienne, avec $M\in\R^*_+$.\\
-    Notons $R_n(f)=\frac{b-a}{n}\sum_{k=0}^{n-1}f(a+k\frac{b-a}{k})$, pour tout $n\in\N^*$.\\
+    Notons $R_n(f)=\frac{b-a}{n}\sum_{k=0}^{n-1}f(a+k\frac{b-a}{n})$, pour tout $n\in\N^*$.\\
     Ce nombre est une valeur approchée de l'intégrale de $f$ entre $a$ et $b$.\\
     Voici une majoration de l'erreur : $\Big|R_n(f)-\int_a^bf(t)\dt\Big|\leq\frac{M(b-a)^2}{2n}$.\\
     On a donc $\Big|R_n(f)-\int_a^bf(t)\dt\Big|=O(\frac{1}{n})$.
@@ -811,7 +561,7 @@ Ainsi, $f\in\CM(\R^*_+,\R)$.\\
         &=\Big|\sum_{k=0}^{n-1}\int_{a_k}^{a_{k+1}}\left(f(a_k)-f(t)\right)\dt\Big|\\
         &\leq \sum_{k=0}^{n-1}\int_{a_k}^{a_{k+1}}\Big|f(a_k)-f(t)\Big|\dt
     \end{align*}
-    Pour $k$ fixé, $\forall t \in [a_k,a_{k+1}], ~ |f(a_k)-f(t)|\leq M(b-a_k)$.\\
+    Pour $k$ fixé, $\forall t \in [a_k,a_{k+1}], ~ |f(a_k)-f(t)|\leq M(t-a_k)$.\\
     Par croissance de l'intégrale :
     \begin{equation*}
         \int_{a_k}^{a_{k+1}}\Big|f(a_k)-f(t)\Big|\dt\leq M\int_{a_k}^{a_{k+1}}(t-a_k)\dt\leq \frac{1}{2}M(a_{k+1}-a_k)^2\leq\frac{M}{2}(\frac{b-a}{2})^2
@@ -849,7 +599,7 @@ Ainsi, $f\in\CM(\R^*_+,\R)$.\\
     Soit $\e>0$, on pose $\eta=\frac{\e}{K}$. Soit $(x,y)\in I^2 ~ | ~ |x-y|\leq\eta$ alors $f|(x)-f(y)|\leq K|x-y| \leq K\eta = \e$.
 \end{prop}
 
-\begin{thm}{de Heine}{}
+\begin{thm}{de Heine $\star$}{}
     Toute fonction continue sur un segment y est uniformément continue.
     \tcblower
     Par l'absurde, soit $f:I\to\K$ continue sur $[a,b]$ mais non uniformément continue.
@@ -862,4 +612,5 @@ Ainsi, $f\in\CM(\R^*_+,\R)$.\\
     On a $\forall n\in\N^*, ~ |f(x_{\phi(n)})-f(y_{\phi(n)}))|>\e$ et $f$ continue en $l\in[a,b]$ donc $f(x_{\phi(n)})\to f(l)$.\\
     De même pour $f(y_{\phi(n)})\to f(l)$. Par passage à la limite, $|f(l)-f(l)|\geq\e$ et $\e\leq0$, absurde.
 \end{thm}
+
 \end{document}
