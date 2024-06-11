@@ -210,6 +210,8 @@
     \textbf{Remarque:} Avec les mêmes arguments, on montre que tout graphe non-orienté non-vide possède au moins un sommet de degré au plus 1.
 \end{defi}
 
+\pagebreak
+
 \begin{prop}{Équivalences $\star$}{}
     Soit $G=(S,A)$ un graphe non-orienté. Les propriétés suivantes sont équivalentes :
     \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
@@ -222,12 +224,12 @@
     \end{enumerate}
     \tcblower
     On sait $1\Rightarrow2,2\Rightarrow3,5\Rightarrow6$.\\
-    \fbox{$3\Rightarrow4$}. Supposons $G$ convexe minimal. Soient $s,t\in S$ distincts. Il existe un chemin élémentaire entre $s$ et $t$ car $G$ est connexe. Montrons qu'il est unique.\\
+    \fbox{$3\Rightarrow4$}. Supposons $G$ connexe minimal. Soient $s,t\in S$ distincts. Il existe un chemin élémentaire entre $s$ et $t$ car $G$ est connexe. Montrons qu'il est unique.\\
     Supposons qu'il en existe deux $\rho:u_0-...-u_k$ et $\rho':v_0-...-v_l$ où $u_0=v_0=s$ et $u_k=v_l=t$.\\
     Alors $\exists i \in \lb0,k\rb \forall j \in \lb 0, i-1 \rb ~ u_j = v_j$ et $u_i\neq v_i$.\\
     Soit $h$ le plus petit entier tel que $h\geq i$ et $u_h$ est sommet de $v_i-...-v_l$, il existe car c'est au moins $u_k$.\\
     Alors $\exists!g>i \quad u_h=v_g$  et donc $u_{i-1}-u_i-...-u_k=v_g-...-v_i$ est un cycle, ce qui contredit l'hypothèse.\n
-    \fbox{$4\Rightarrow5$}. Montons que $G$ est acylique par l'absurde. Soit un cycle de $G$ et $s,t$ deux sommets distincts de ce cycle.
+    \fbox{$4\Rightarrow5$}. Montrons que $G$ est acylique par l'absurde. Soit un cycle de $G$ et $s,t$ deux sommets distincts de ce cycle.
     Le cycle donne deux chemins simples entre $s$ et $t$ avec aucune arête commune. On extrait donc deux chemin élémentaires, différents de ces chemins, ce qui contredit l'hypothèse.\\
     Donc $G$ est acyclique et connexe $|A|=|S|-1$\n
     \fbox{$6\Rightarrow1$}. Soit $G$ acyclique maximal. Montrons que $G$ est connexe.\\
@@ -258,7 +260,9 @@
     Un \textbf{ordre topologique} sur un graphe orienté est un ordre total sur les sommets de ce graphe qui est compatible avec les arcs. Si $s\to t$ est un arc, alors $s<t$.
 \end{defi}
 
-\begin{prop}{}{}
+\pagebreak
+
+\begin{prop}{Tri de Kahn. $\star$}{}
     Un graphe orienté admet un ordre topologique si et seulement si il est acyclique.
     \tcblower
     L'implication directe est immédiate car l'existence d'un cycle interdit tout ordre topologique.\\
@@ -341,8 +345,6 @@
     Si on sort en ligne 19, l'hypothèse nous assure l'existence du chemin, sinon on sort ligne 22 et l'invariant assure l'inexistence du chemin.
 \end{prop}
 
-\pagebreak
-
 \begin{prop}{}{}
     La complexité temporelle de la fonction chemin est en $\Theta(n^l)$ avec $n=|S|$ et $l=len$.
     \tcblower
@@ -384,6 +386,8 @@
     \bf{Terminaison:} La boucle (6) de se termine.\\
     Pour la boucle (2), |S$|^2$+|decouverts|+|manqués|$\times(|-|S|-1|)$ est un variant de boucle car si le test (4) est faux, cette quantité diminue de 1, si il est vrai, elle diminue au moins de 1. Cette boucle se termine.
 \end{defi}
+
+\pagebreak
 
 \begin{prop}{Correction totale.}{}
     L'algorithme de parcours générique marque exactement les sommets atteignables à partir de $s_0$.\\

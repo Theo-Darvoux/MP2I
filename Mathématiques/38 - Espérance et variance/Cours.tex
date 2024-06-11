@@ -1,0 +1,434 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{38}
+\def\pagetitle{Espérance et variance.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+
+\section{Espérance.}
+\subsection{Définition et exemples.}
+
+\begin{defi}{}{}
+    Soit $(\O, P)$ un espace probabilisé fini et $X$ une variable aléatoire à valeurs dans $\K$ définie sur $\O$.\\
+    On appelle \bf{espérance} de $X$ et on note $E(X)$ le nombre
+    \begin{equation*}
+        E(X)=\sum_{x\in X(\O)}P(X=x)x.
+    \end{equation*}
+\end{defi}
+
+\begin{inter}{}{}
+    On réalise un certain nombre de fois un expérience conduisant à un résutat numérique : un nombre dans l'ensemble $\{x_1,...,x_n\}$. Pour $i\in\lb1,n\rb$, notons $f_i$ la fréquence à laquelle on a obtenu $x_i$. La valeur moyenne obtenue lors de cette série d'expériences vaut
+    \begin{equation*}
+        \sum_{i\in\lb1,n\rb}f_ix_i.
+    \end{equation*}
+    Si $X$ est une variable aléatoire à valeurs dans $\{x_1,...,x_n\}$ et qu'on note $p_i:=P(X=x_i)$, l'espérance de $X$ s'écrit
+    \begin{equation*}
+        \sum_{i\in\lb1,n\rb}p_ix_i.
+    \end{equation*}
+    Dans cette moyenne pondérée, les probabilités ont remplacé les fréquences. Or, on se souvient que le nombre $P(X=x_i)$ est interprété comme la fréquence a priori de l'événement $(X=x_i)$.\\
+    Ainsi, le nombre $E(X)$ peut être interprété comme la \bf{valeur moyenne} prise par $X$ a priori.\\
+    SI $X$ est comme dans l'exemple un gain à un jeu, $E(X)$ représente le gain moyen a priori, ce que l'on peut espérer gagner en jouant au jeu. On dira aussi que c'est un indicateur de position : $E(X)$ est la position moyenne de la variable $X$.
+\end{inter}
+
+\begin{ex}{}{}
+    On jette un dé équilibré, si le résultat est 1, 2 ou 3, on ne gagne rien. Si le résultat est 4 ou 5, on gagne dix euros. Si le résultat est 6, on gagne 100 euros. On note $X$ le gain à ce jeu.\\
+    Considérons que $X$ est une variable aléatoire dans un espace probabilisé $(\O,P)$. Calculer $E(X)$.
+    \tcblower
+    On a :
+    \begin{align*}
+        E(X) &= \sum_{x\in X(\O)}P(X=x)x \\
+             &= P(X=0)\cdot 0 + P(X=10)\cdot10 + P(X=100)\cdot100 \\
+             &= \frac{2}{6}\cdot10 + \frac{1}{6}\cdot100 = \frac{120}{6}\\
+             &= 20
+    \end{align*}
+    \bf{Interprétation:} À ce jeu, on gagne en moyenne 20 euros.
+\end{ex}
+
+\begin{prop}{Une évidence.}{}
+    Si deux variables aléatoires ont la même loi, alors elles ont la même espérance.
+    \tcblower
+    Lire la définition de l'espérance: elle ne dépend \bf{que} de la loi de $X$, pas de $(\O, P)$.
+\end{prop}
+
+\pagebreak
+
+\begin{prop}{Éspérance des lois usuelles.}{}
+    Soit $X, Y, Z$ des variables aléatoires définies sur un espace probabilisé $(\O, P)$, $n\in\N^*$ et $p\in]0,1[$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.5 ex]
+        \item \bf{Variable constante.} Si $X$ est la variable aléatoire constante égale à $a\in\K$, alors $\boxed{E(X)=a}$.
+        \item \bf{Loi de Bernoulli.} Si $Y\sim\B(p)$, $\boxed{E(Y)=p}$. En particulier, $\forall A \in \P(\O), ~ \boxed{E(\bf{1}_A)}=P(A)$.
+        \item \bf{Loi binomiale.} Si $Z\sim\B(n,p)$, $\boxed{E(Z)=np}$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} $X(\O)=\{a\}$ donc $P(X=a)=1$, d'où $E(X)=P(X=a)a=a$.\\
+    \boxed{2.} $Y(\O)=\{0,1\}$ et $P(Y=1)=p$, $P(Y=0)=1-p$ d'où $E(Y)=\cancel{P(Y=0)} + P(Y=1)=p$.\\
+    \boxed{3.} $Z(\O)=\lb0,n\rb$ et $\forall k\in\lb0,n\rb ~ P(Z=k)=\binom{n}{k}p^k(1-p)^{n-k}$.\\
+    Alors :
+    \begin{align*}
+        E(Z)&=\sum_{k=0}^nk\binom{n}{k}p^k(1-p)^{n-k}=n\sum_{k=0}^n\binom{n-1}{k-1}p^k(1-p)^{n-k}\\
+            &=np\sum_{k=1}^n\binom{n-1}{k-1}p^{k-1}(1-p)^{n-k}\\
+            &=np\sum_{j=0}^{n-1}\binom{n-1}{j}p^j(1-p)^{n-1-j}\\
+            &=np
+    \end{align*}
+\end{prop}
+
+\begin{ex}{Le pari de Pascal.}{}
+    Dans son texte célèbre dit du "pari", \emph{(Pensées, fragment 397)} Pascal met en scène un dialogue
+    avec un athée, qu'il veut convaincre de croire en Dieu. Celui qui croit \emph{gage} son énergie, son
+    temps, parfois sa vie entière, et au-dessus de lui \emph{se joue un jeu [...] où il arrivera croix ou pile},
+    c'est-à-dire qu'à la fin, \emph{Dieu est, ou il n'est pas}. S'il est, celui qui a cru sortira gagnant mais... il
+    sera perdant si Dieu n'existe pas ! Et c'est bien ce qui inquiète l'interlocuteur fictif de Pascal, qui
+    a peur de \emph{gager trop}, de ne pas récupérer sa mise... Savoir si l'on gagnera ou pas à ce jeu revient
+    à savoir si Dieu existe ou pas, et Pascal nous dit que \emph{la raison n'y peut rien déterminer} : pour
+    celui qui croit, il y a \emph{pareil hasard de gain et de perte.}\n
+    L'argument de Pascal en faveur de la croyance est le suivant : si on gagne, on gagne l'infini, si
+    on perd, on perd peut-être beaucoup mais on perd une quantité finie (finitude de l'homme...) En
+    moyenne, on gagne l'infini : son raisonnement est un calcul d'espérance ! N'oublions pas que Pascal
+    était mathématicien en plus d'être philosophe, et qu'il s'intéressait notamment au hasard.
+    Posons le calcul de Pascal, en notant $X$ ce que gagne le croyant. Le gain $X$ vaut $+\infty$ si Dieu
+    existe, la perte est finie s'il n'existe pas : disons qu'alors $X = -a$, où $a$ est une quantité finie.
+    Voici ce que le croyant gagne en moyenne :
+    \begin{equation*}
+        E(X)=\frac{1}{2}(+\infty)+\frac{1}{2}(-a)=+\infty.
+    \end{equation*}
+    Notez que le choix de $(\frac{1}{2},\frac{1}{2})$ comme distribution de probabilités n'a aucune importance, tant
+    que l'on évite une probabilité nulle. Dans \emph{Ma nuit chez Maud}, d'Éric Rohmer, Antoine Vitez
+    (Vidal dans le film) en choisit une autre lorsqu'il fait le pari que l'Histoire a un sens. Jean-
+    Louis Trintignant (Jean-Louis dans le film) lui parle alors d'espérance mathématique. L'extrait
+    est disponible sur Youtube, mais on n'hésitera pas à regarder tout le film !
+\end{ex}
+
+\subsection{Propriétés de l'espérance.}
+
+\begin{lemme}{}{}
+    Soit $X$ une variable aléatoir edéfinie sur $(\O,P)$ et à valeurs dans $\K$. Alors,
+    \begin{equation*}
+        E(X)=\sum_{\w\in\O}P(\{\w\})X(\w).
+    \end{equation*}
+    \tcblower
+    L'ensemble $X(\O)$ est fini puisque $\O$ l'est.\\
+    Un événement s'écrit comme la <<réunion des singletons>>. Ainsi pour $x$ fixé dans $X(\O)$, on a
+    \begin{equation*}
+        (X=x)=\bigcup_{\w\in(X=x)}\{\w\}.
+    \end{equation*}
+    La réunion précédente est bien sûr envisagée comme une réunion disjointe, ainsi
+    \begin{equation*}
+        P(X=x)=\sum_{\w\in(X=x)}P(\{\w\}).
+    \end{equation*}
+    Réinjectons :
+    \begin{equation*}
+        E(X)=\sum_{x\in X(\O)}\sum_{\w\in(X=x)}P(\{\w\})x=\sum_{x\in X(\O)}\sum_{\w\in(X=x)}P(\{\w\})X(\w).
+    \end{equation*}
+    Or, $(X=x)_{x\in X(\O)}$ est un système complet d'événements, une partition de $\O$. La double somme précédente est une somme sur $\O$. On a bien
+    \begin{equation*}
+        E(X)=\sum_{\w\in\O}P(\{\w\})X(\w).
+    \end{equation*}
+\end{lemme}
+
+\begin{prop}{Espérance et inégalités.}{}
+    Soient $X$ et $Y$ deux variables aléatoires à valeurs \emph{réelles} sur $(\O,P)$. Alors,
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item Si $\forall \w \in \O, ~ X(\w)\geq0$, alors $E(X)\geq0$ (positivité).
+        \item Si $\forall \w \in \O, ~ X(\w)\geq0$, et $E(X)=0$, alors $P(X=0)=1$ (cas d'égalité).
+        \item Si $\forall \w \in \O, ~ X(\w)\leq Y(\w)$, alors $E(X)\leq E(Y)$ (croissance).
+        \item $|E(X)|\leq E(|X|)$ (inégalité triangulaire).
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Supposons que $X(\O)\subset\R_+$. Alors :
+    \begin{equation*}
+        E(X)=\sum_{\w\in\O(P)}P(\{\w\})X(\w)\geq0 \quad \nt{car somme de termes positifs.}
+    \end{equation*}
+    \boxed{2.} Supposons que $X(\O)\subset\R_+$ et $E(X)=0$. Alors :
+    \begin{equation*}
+        \sum_{\w\in\O(P)}P(\{\w\})X(\w)=0
+    \end{equation*}
+    Alors $\forall \w\in\O\setminus(X=0), ~ P(\{\w\})X(\w)=0$ et $X(\w)\neq0$ donc $P(\{\w\})=0$.\\
+    Par conséquent, $P(X\neq0)=0$, donc $P(X=0)=1$.\n
+    \boxed{3.} Supposons que $\forall \w \in \O, ~ X(\w) \leq Y(\w)$. Alors :
+    \begin{equation*}
+        E(Y) - E(X) = \sum_{\w\in\O}P(\{\w\})(Y(\w)-X(\w))\geq0.
+    \end{equation*}
+    Donc $E(X)\leq E(Y)$.\n
+    \boxed{4.} Ici, on autorise $X:\O\to\C$. Alors :
+    \begin{equation*}
+        \Big| E(X) \Big| = \Big| \sum_{\w\in\O}P(\{\w\})X(\w) \Big| \leq \sum_{\w\in\O}P(\{\w\})|X(\w)| = E(|X|).
+    \end{equation*}
+\end{prop}
+
+\begin{thm}{L'espérance est linéaire.}{}
+    Soient $X$ et $Y$ deux variables aléatoires sur $(\O, P)$ et à valeurs dans $\K$. Alors,
+    \begin{equation*}
+        \forall \l, \mu \in \K, ~ E(\l X + \mu Y)=\l E(X) + \mu E(Y).
+    \end{equation*}
+    Notamment, $\forall \l, \mu \in \K, ~ E(\l X + \mu) = \l E(X) + \mu$.\n
+    Dans le cas de $n$ variables aléatoires $X_1,...,X_n$ et $n$ scalaires $\l_1,...,\l_n\in\K$,
+    \begin{equation*}
+        E\left( \sum_{i=1}^n\l_i X_i \right) = \sum_{i=1}^n\l_i E(X_i).
+    \end{equation*} 
+    \tcblower
+    Soient $\l, \mu\in\K$. On a :
+    \begin{align*}
+        E(\l X + \mu) &= \sum_{\w\in\O}P(\{\w\})(\l X(\w) + \mu Y(\w))\\
+        &= \l\sum_{\w\in\O}P(\{\w\})X(\w)+\mu\sum_{\w\in\O}P(\{\w\})Y(\w)\\
+        &= \l E(X) + \mu E(Y).
+    \end{align*}
+\end{thm}
+
+\begin{prop}{}{}
+    Soit $X$ une variable aléatoire définie sur $(\O, P)$ et à valeurs dans $\K$. La variable
+    \begin{equation*}
+        \ov{X} = X-E(X)
+    \end{equation*}
+    est appelée variable aléatoire centrée. On a $E(\ov{X})=0$.
+    \tcblower
+    On a :
+    \begin{equation*}
+        E(\ov{X})=E(X-E(X))=E(X)-E(E(X))=E(X)-E(X)=0.
+    \end{equation*}
+\end{prop}
+
+\pagebreak
+
+\begin{thm}{Formule du transfert.gc ngcfcn ygnjnfyfngt fn}{}
+    Soit une v.a. $X:\O\to E$ où $E$ est un ensemble sur lequel est défini une application $f:E\to\K$. Alors:
+    \begin{equation*}
+        E(f(X))=\sum_{x\in X(\O)}P(X=x)f(x).
+    \end{equation*}
+    \bf{Remarque:} On n'a pas besoin de connaître la loi de $f(X)$ pour calculer $E(f(X))$.
+    \tcblower
+    On a:
+    \begin{align*}
+        E(f(X)) &= \sum_{\w\in\O}P(\{\w\})f(X(\w))\\
+        &=\sum_{x\in X(\O)}\sum_{\w\in(X=x)}P(\{\w\})f(\underbrace{X(\w)}_{=x})\\
+        &=\sum_{x\in X(\O)}f(x)\underbrace{\sum_{\w\in(X=x)}P(\{\w\})}_{=P(X=x)}\\
+        &=\sum_{x\in X(\O)}f(x)P(X=x)
+    \end{align*}
+\end{thm}
+
+\begin{ex}{Un calcul simple.}{}
+    Calcul de $E\left( \frac{1}{1+X} \right)$ où $X$ suit la loi binomiale $\B(n,p)$.
+    \tcblower
+    On applique la formule du transfert avec $f:x\mapsto\frac{1}{x+1}$, alors :
+    \begin{align*}
+        E\left( \frac{1}{X+1} \right) &= \sum_{k=0}^nP(X=k)f(k)=\sum_{k=0}^n\binom{n}{k}p^k(1-p)^{n-k}\frac{1}{k+1}\\
+    \end{align*}
+    Or, $\binom{n}{k}(n+1)=\binom{n+1}{k+1}(k+1)$ donc $\binom{n}{k}\frac{1}{k+1}=\binom{n+1}{k+1}\frac{1}{n+1}$ et :
+    \begin{align*}
+        E\left( \frac{1}{X+1} \right) &= \frac{1}{n+1}\sum_{k=0}^n \binom{n+1}{k+1}p^k(1-p)^{n-k}\\
+        &= \frac{1}{p(n+1)}\sum_{j=1}^{n+1}\binom{n+1}{j}p^{j}(1-p)^{n+1-j}\\
+        &= \left( \frac{1}{p(n+1)}\left( 1 - (1-p)^{n+1} \right) \right)
+    \end{align*}
+\end{ex}
+
+\begin{ex}{Appliquer la formule de transfert à un couple.}{}
+    Calcul de $E[(2^X-1)2^{XY}]$ où $X$ et $Y$ sont deux v.a. indépendantes de loi uniforme sur $\lb0,n-1\rb$.\\
+    \emph{On pourra appliquer la formule de transfet au couple (X,Y) dont on connaît la loi conjointe.}
+\end{ex}
+
+\pagebreak
+
+\subsection{Espérance d'un produit et indépendance.}
+
+\begin{thm}{}{}
+    Soient $X,Y$ deux variables aléatoires définies sur un même espace probabilisé fini $(\O,P)$, et à valeurs dans $\K$. SI $X$ et $Y$ sont \bf{indépendantes}, alors
+    \begin{equation*}
+        E(XY)=E(X)E(Y).
+    \end{equation*}
+    Plus généralement, si $(X_i)_{i\in\lb1,n\rb}$ est une famille de variables aléatoires \bf{indépendantes},
+    \begin{equation*}
+        E\left( \prod_{i=1}^nX_i \right) = \prod_{i=1}^nE(X_i).
+    \end{equation*}
+    \tcblower
+    On applique la formule de transfert à $f:(x,t)\mapsto x\times y$.
+    \begin{equation*}
+        E(XY)=E[f(X,Y)]=\sum_{(x,y)\in X(\O)\times Y(\O)}P\left( (X,Y)=(x,y) \right)f(x,y).
+    \end{equation*}
+    Or, pour $(x,y)\in X(\O) \times Y(\O)$,
+    \begin{equation*}
+        P\left( (X,Y) = (x,y) \right) = P(X=x,Y=y) = P(X=x)P(Y=y).
+    \end{equation*}
+    Donc :
+    \begin{align*}
+        E(XY) &= \sum_{x\in X(\O)}\sum_{y\in Y(\O)}P(X=x)P(Y=y)xy\\
+        &= \left( \sum_{x\in X(\O)} P(X=x)x \right)\times\left( \sum_{y\in Y(\O)} P(Y=y)y \right)\\
+        &=E(X)E(Y)
+    \end{align*}
+\end{thm}
+
+\begin{ex}{}{}
+    Soient $X_1,...,X_n$ des variables aléatoires sur $(\O,P)$, indépendantes et de même loi de Rademacher, donnée par
+    \begin{equation*}
+        \forall k \in \lb1,n\rb, ~ X_k(\O)=\{-1,1\} \quad \nt{et} \quad P(X_k=1)=P(X_k=-1)=\frac{1}{2}.
+    \end{equation*}
+    Notons $S_n=\sum_{k=1}^nX_k$. Pour $t\in\R$, démontrer que $E(\cos(tS_n))=\cos^n(t)$.
+    \tcblower
+    On a $\cos(x)=\Re{e^{ix}}$.
+    \begin{align*}
+        E(\cos(tS_n)) &= E\left[ \Re(e^{itS_n}) \right]\\
+        &= \Re(E(e^{itS_n}))\\
+        &= \Re\left( E\left(e^{it\sum_{j=1}^nX_j}\right) \right)\\
+        &= \Re\left( E\left( \prod_{j=1}^ne^{itX_j} \right) \right)\\
+        &= \Re\left(\prod_{j=1}^nE(e^{itX_j})\right)
+    \end{align*}
+    Or $E(e^{itX_j})=P(X_j=1)e^{it}+P(X_j=-1)e^{-it}=\frac{1}{2}e^{it}+\frac{1}{2}e^{-it}=\cos t$.\\
+    Alors $E\left[ \cos(tS_n) \right]=\left( \cos t \right)^n$.
+\end{ex}
+
+
+\section{Variance.}
+\subsection{Définition et exemples.}
+
+\begin{defi}{}{}
+    Soit $(\O,P)$ un espace probabilisé fini et $X$ une variable aléatoire réelle sur $\O$.\\
+    On appele \bf{variance} de $X$ et on note $V(X)$ le réel
+    \begin{equation*}
+        V(X)=E\left[ (X-E(X))^2 \right].
+    \end{equation*}
+    On appelle \bf{écart-type}, parfois noté $\sigma(X)$, le réel $\sqrt{V(X)}$.
+\end{defi}
+
+\begin{inter}{}{}
+    L'expression de $V(X)$ donne \bf{l'écart quadratique moyen} de la variable $X$, par rapport à sa moyenne.
+    \begin{center}
+        \fbox{Plus la variance est grande, plus les valeurs prises pas $X$ sont <<loin>> (en moyenne) de $E(X)$.}
+    \end{center}
+    La variance et l'écart-type sont des indicateurs de dispersion. Il aurait pu sembler plus naturel de considérer la quantité $E(|X-E(X)|)$, mais on verra que le carré qui se trouve dans la définition est bien mieux adapté à la linéarité de l'espérance (voir plus loin le travail sur les sommes de v.a.).
+\end{inter}
+
+\begin{prop}{La variance est quadratique.}{}
+    Soit $X$ une variable aléatoire réelle sur un espace probabilisé fini. On a, pour tous $a,b\in\R$,
+    \begin{equation*}
+        V(aX+b)=a^2V(X).
+    \end{equation*}
+    \tcblower
+    Soient $a,b\in\R$.
+    \begin{align*}
+        V(aX+b)&=E[(aX+b-E(aX+b))^2]\\
+        &= E[(aX+b-(aE(X)+b))^2]\\
+        &= E[a^2(X-E(X))^2]\\
+        &= a^2E((X-E(X))^2)\\
+        &= a^2V(X)
+    \end{align*}
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $X$ une variable aléatoire réelle sur un espace probabilisé fini telle que $\s(X)>0$.\\
+    La variable aléatoire \Large$\frac{1}{\s(X)}$\normalsize$X$ est de variance 1 : elle est dite \bf{réduite}.\\
+    La variable aléatoire \LARGE$\frac{X-E(X)}{\s_X}$\normalsize.
+    \tcblower
+    \Large$\circledcirc$ $E\left(\frac{X-E(X)}{\s_X}\right)=\frac{1}{\s_x}\left( E(X) - E(X) \right) = 0$.\\
+    $\circledcirc$ $V\left( \frac{X-E(X)}{\s_X} \right) = \frac{1}{\s_X^2}V(X)=1$
+\end{prop}
+
+\begin{prop}{Lien avec le moment d'ordre 2.}{}
+    Soit $X$ une variable aléatoire réelle sur un espace probabilisé fini. On a
+    \begin{equation*}
+        V(X)=E(X^2)-E(X)^2.
+    \end{equation*}
+    Pour $k\in\N$, le nombre $E(X^k)$ est appelé \bf{moment} d'ordre $k$ de la variable $X$.
+    \tcblower
+    On a :
+    \begin{align*}
+        V(X)&=E\left[ (X-E(X))^2 \right]\\
+        &= E\left[ X^2 - 2E(X) + (E(X))^2 \right]\\
+        &= E(X^2) - 2E(X)E(X) + (E(X))^2\\
+        &= E(X^2) - (E(X))^2.
+    \end{align*}
+\end{prop}
+
+\begin{prop}{Une évidence.}{}
+    Si deux variables aléatoires ont la même loi, elles ont la même variance.
+\end{prop}
+
+\begin{prop}{Variance des lois usuelles.}{}
+    Soit $X,Y,Z$ des variables aléatoires définies sur un espace probabilisé $(\O,P)$, $n\in\N^*$ et $p\in]0,1[$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.5 ex]
+        \item \bf{Variable constante.} Si $X$ est la variable aléatoire constante égale à $a\in\K$, alors $\boxed{V(X)=0}$.
+        \item \bf{Loi de Bernoulli.} Si $Y\sim\B(p)$, $\boxed{V(Y)=p(1-p)}$.
+        \item \bf{Loi binomiale.} Si $Z\sim\B(n,p)$, $\boxed{V(Z)=np(1-p)}$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Si $X$ est constante égale à $a\in\R$, alors $V(X)=E[(X-E(X))^2]=E[(a-a)^2]=0$.\\
+    \boxed{2.} Si $Y\sim\B(p)$, alors :
+    \begin{equation*}
+        V(Y)=E(Y^2)-E(Y)^2=p-p^2=p(1-p) \quad \nt{car } Y^2=Y.
+    \end{equation*}
+    \boxed{3.} Si $Z\sim\B(n,p)$, on introduit $Z_1,...,Z_n$ indépendates de loi $\B(p)$, on note $\tilde{Z}$ la somme de ces variables.\\
+    On a $\tilde{Z}\sim\B(n,p)\sim Z$ donc $V(\tilde{Z})=V(Z)$. Ainsi :
+    \begin{equation*}
+        V(Z)=V\left( \sum_{i=1}^n X_i \right) = \sum_{i=1}^n V(X_i) = np(1-p).
+    \end{equation*}
+    On a utilisé la proposition \ref{prop:26}.
+\end{prop}
+
+\begin{defi}{}{}
+    On appelle \bf{covariance} de deux variables aléatoires $X$ et $Y$, et on note $\cov(X,Y)$ le nombre
+    \begin{equation*}
+        \cov(X,Y)=E[(X-E(X))(Y-E(Y))].
+    \end{equation*}
+    Lorsque ce nombre est nul, on dit qu'elles sont \bf{décorrélées}.
+\end{defi}
+
+\begin{inter}{}{}
+    Lorsque $X$ et $Y$ ont une covariance positive, alors le produit $(X-E(X))(Y-E(Y))$ est positif en moyenne. Cela signifie que lorsque $X$ est supérieure à sa moyenne, $Y$ a tendance à l'être aussi.\n
+    Lorsque $X$ et $Y$ ont une covariance négative, alors le produit $(X-E(X))(Y-E(Y))$ est négatif en moyenne. Cela signifie que lorsque $X$ est supérieure à sa moyenne, $Y$ a tendance à être inférieure à la sienne.
+\end{inter}
+
+\begin{prop}{}{}
+    Si $X$ et $Y$ sont deux variables aléatoires réelles, leur covariance s'exprime comme
+    \begin{equation*}
+        \cov(X,Y)=E(XY)-E(X)E(Y).
+    \end{equation*}
+    Si $X$ et $Y$ sont indépendantes, alors elles sont décorrélées :
+    \begin{equation*}
+        X \ind Y \ra \cov(X,Y)=0.
+    \end{equation*}
+    \tcblower
+    On a :
+    \begin{align*}
+        \cov(X,Y)&=E[(X-E(X))(Y-E(Y))]\\
+        &=E[XY-E(X)Y-E(Y)X+E(X)E(Y)]\\
+        &=E(XY)-E(X)E(Y)-\cancel{E(Y)E(X)}+\cancel{E(X)E(Y)}\\
+        &=E(XY)-E(X)E(Y)\\
+        &=0 \quad \nt{car } E(XY)=E(X)E(Y) \nt{ si } X \ind Y.
+    \end{align*}
+    Donc si $X$ et $Y$ indépendantes, elles sont décorrélées.
+\end{prop}
+
+\begin{ex}{Décorrélées mais pas indépendantes.}{}
+    Soient $X$ et $Y$ deux v.a. définies sur un espace probabilisé, indépendantes et de même loi de Bernoulli de paramètre $p\in]0,1[$. On note $U=X+Y$ et $V=X-Y$.\\
+    Vérifier que $U$ et $V$ sont décorrélées puis justifier qu'elles ne sont pas indépendantes.
+    \tcblower
+    On a $E(V)=E(X)-E(Y)=0$ car mêmes lois.\\
+    On a $E(UV)=E(X^2)-E(Y^2)=0$ car mêmes lois donc même moment d'ordre 2.\\
+    Donc $\cov(U,V)=0$.\n
+    On a $P(U=1,V=0)=0$ car $(V=0)\subset(U$ pair).\\
+    On a $P(U=1)=2p(1-p)$ et $P(V=0)=(1-p)^2+p^2$.\\
+    Donc $P(U=1)P(V=0)\neq P(U=1,V=0)$, elles ne sont pas indépendantes.
+\end{ex}
+
+\begin{ex}{}{}
+
+\end{ex}
+
+\begin{prop}{}{}
+
+\end{prop}
+
+\begin{prop}{}{26}
+
+\end{prop}
+
+\end{document}
+
+\iffalse
+\begin{align*}
+    V(X+Y)&=E\left[ (X+Y-E(X+Y))^2 \right] \\&= E\left[ (X - E(X) + Y - E(Y))^2 \right] \\&= E\left[ (X - E(X))^2 + 2(X-E(X))(Y-E(Y)) + (Y-E(Y))^2 \right]\\
+    &=V(X) + V(Y) + 2(X-E(X))(Y-E(Y)).
+\end{align*}
+\fi

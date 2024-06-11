@@ -45,12 +45,14 @@
     \hspace*{2em}$1.$ Tout sous-ensemble \textbf{non-vide} de $E$ admet un élément minimal.\\
     \hspace*{2em}$2.$ Toute suite infinie décroissante de $E$ est stationnaire.
     \tcblower
-    \fbox{$\ra$} Soit $(u_n)_{n\in\mathbb{N}}$ une suite infinie décroissante de $E$.\\
+    \fbox{$\ra$} Supposons que tout sous-ensemble non-vide de $E$ admet un élément minimal.\\
+    Soit $(u_n)_{n\in\mathbb{N}}$ une suite infinie décroissante de $E$.\\
     Soit $F=\{u_n ~ | ~ n \in \mathbb{N}\}\subset E$.\\
-    Alors $\exists k \in \mathbb{N} ~ | ~ u_k = \min(F)$, or $F$ est décroissante donc $\forall n \geq k, ~ u_n = u_k$.\\
+    Alors $\exists k \in \mathbb{N} ~ | ~ u_k = \min(F)$, or $(u_n)$ est décroissante donc $\forall n \geq k, ~ u_n = u_k$.\\
     On a bien montré que cette suite est stationnaire.\\[0.2cm]
-    \fbox{$\la$} Soit $F\subset E ~ | ~ F \neq \varnothing$.\\
-    On définit $(u_n)$ telle que $u_0 \in F$ et $u_{n+1}$ soit le prédécesseur de $u_n$ par $\leq$ s'il existe, sinon $u_n$.\\
+    \fbox{$\la$} Supposons que toute suite infinie décroissante de $E$ est stationnaire.\\
+    Soit $F\subset E ~ | ~ F \neq \varnothing$.\\
+    On définit $(u_n)$ telle que $u_0 \in F$ et $u_{n+1}$ soit le prédécesseur immédiat de $u_n$ par $\leq$ s'il existe, sinon $u_n$.\\
     Par construction, $(u_n)$ est infinie et décroissante donc stationnaire : $\exists k \in \mathbb{N} ~ \forall n \geq k, ~ u_n = u_k$.\\
     On en déduit que $u_k$ n'a pas de prédécesseur par $\leq$, c'est le minimum de $F$.\\
     On a bien montré l'équivalence.
