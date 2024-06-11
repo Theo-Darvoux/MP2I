@@ -727,4 +727,114 @@ Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
 \c@finalcolumnbadness=\count351
 \last@try=\dimen285
 \multicolovershoot=\dimen286
-\multicolund
+\multicolundershoot=\dimen287
+\mult@nat@firstbox=\box122
+\colbreak@box=\box123
+\mc@col@check@num=\count352
+)
+\Etoc@toctoks=\toks48
+\c@etoc@tocid=\count353
+\c@etoc@tocdepth=\count354
+\etoc@framed@titlebox=\box124
+\etoc@framed@contentsbox=\box125
+) (/usr/share/texlive/texmf-dist/tex/latex/esvect/esvect.sty
+Package: esvect 
+\symesvector=\mathgroup8
+) (/usr/share/texlive/texmf-dist/tex/latex/psnfss/pifont.sty
+Package: pifont 2020/03/25 PSNFSS-v9.3 Pi font support (SPQR) 
+LaTeX Font Info:    Trying to load font information for U+pzd on input line 63.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/upzd.fd
+File: upzd.fd 2001/06/04 font definitions for U/pzd.
+)
+LaTeX Font Info:    Trying to load font information for U+psy on input line 64.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/upsy.fd
+File: upsy.fd 2001/06/04 font definitions for U/psy.
+)) (/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+Package: algorithm2e 2017/07/18 v5.2 algorithms environments
+\c@AlgoLine=\count355
+\algocf@hangindent=\skip99
+ (/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
+\c@checkoddpage=\count356
+LaTeX Info: Redefining \checkoddpage on input line 45.
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+) (/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+\skiptotal=\skip100
+\skiplinenumber=\skip101
+\skiprule=\skip102
+\skiphlne=\skip103
+\skiptext=\skip104
+\skiplength=\skip105
+\algomargin=\skip106
+\skipalgocfslide=\skip107
+\algowidth=\dimen288
+\inoutsize=\dimen289
+\inoutindent=\dimen290
+\interspacetitleruled=\dimen291
+\interspacealgoruled=\dimen292
+\interspacetitleboxruled=\dimen293
+\algocf@ruledwidth=\skip108
+\algocf@inoutbox=\box126
+\algocf@inputbox=\box127
+\AlCapSkip=\skip109
+\AlCapHSkip=\skip110
+\algoskipindent=\skip111
+\algocf@nlbox=\box128
+\algocf@hangingbox=\box129
+\algocf@untilbox=\box130
+\algocf@skipuntil=\skip112
+\algocf@capbox=\box131
+\algocf@lcaptionbox=\skip113
+\algoheightruledefault=\skip114
+\algoheightrule=\skip115
+\algotitleheightruledefault=\skip116
+\algotitleheightrule=\skip117
+\c@algocfline=\count357
+\c@algocfproc=\count358
+\c@algocf=\count359
+\algocf@algoframe=\box132
+\algocf@algobox=\box133
+) (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+)
+\c@tcb@cnt@thm=\count360
+\c@tcb@cnt@exercice=\count361
+Package hyperref Info: Option `colorlinks' set `true' on input line 277.
+) (./Langages.aux)
+\openout1 = `Langages.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(28.45274pt, 557.38951pt, 28.45274pt)
+* v-part:(T,H,B)=(56.9055pt, 1138.11024pt, 56.9055pt)
+* \paperwidth=614.295pt
+* \paperheight=1251.92125pt
+* \textwidth=5
