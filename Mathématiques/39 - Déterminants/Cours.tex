@@ -1,0 +1,219 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{39}
+\def\pagetitle{Déterminants.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+
+\section{La théorie dans un \texorpdfstring{$\K$}{Lg}-ev de dimension \texorpdfstring{$n\in\N^*$}{Lg}.}
+\subsection{Formes \texorpdfstring{$n$}{Lg}-linéaires alternées.}
+
+\begin{defi}{}{}
+    Une forme $n$-linéaire sur $E$ est une fonction $f:E^n\to\K$ telle que 
+    \begin{equation*}
+        \forall j\in\lb1,n\rb, ~ \forall (a_1,...,a_{j-1},a_{j+1}...,a_n)\in E^{n-1}, ~ x\mapsto f(a_1,...,a_{j-1},x,a_{j+1},...,a_n) \quad \nt{est linéaire.}
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $f:E^n\to\K$ $n$-linéaire.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $\forall(x_1,...,x_n)\in E^n, ~ \forall \l \in \K, ~ f(\l x_1, ... , \l x_n) = \l^nf(x_1,...,x_n)$.
+        \item Soit $(x_1,...,x_n)\in E^n$ tel que l'un des $x_i$ est nul, alors $f(x_1,...,x_n)=0$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} $\l$ est factorisé $n$ fois par $n$-linéarité.\\
+    \boxed{2.} $f(x_1,...,0_E,...,x_n)=f(x_1,...,0_\K\cdot0_E,...,x_n)=0_\K f(x_1,...,x_n)=0$.
+\end{prop}
+
+\begin{defi}{}{}
+    Soit $f:E^n\to\K$ $n$-linéaire. On dit que $f$ est alternée si elle s'annule sur tous les $n$-uplets contenant deux vecteurs égaux.
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $f:E^n\to\K$ une forme $n$-linéaire alternée $(n\geq2)$ et $(x_1,...,x_n)\in E^n$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item On ne change pas la valeur prise par $f$ sur $(x_1,...,x_n)$ en ajoutant à l'un des vecteurs une combinaison linéaire des autres.
+        \item Si $(x_1,...,x_n)$ est liée, alors $f(x_1,...,x_n)=0$.
+        \item \bf{Effet d'une transposition.} Soit $\{i,j\}$ avec $i<j$. On a :
+        \begin{equation*}
+            f(...,x_{i-1},\boxed{x_j},x_{i+1},...,x_{j-1},\boxed{x_i},x_{j+1},...)=-f(...,x_{i-1}, \boxed{x_i},x_{i+1},...,x_{j-1},\boxed{x_j},x_{j+1},...)
+        \end{equation*}
+        L'échange de $x_i$ et $x_j$ provoque un changement de signe.
+        \item \bf{Effet d'une permutation.} Pour tout $\s\in S_n$,
+        \begin{equation*}
+            f(x_{\s(1)},...,x_{\s(n)}) = \e(\s)f(x_1,...,x_n)
+        \end{equation*}
+        Où $\e:S_n\to\{-1,1\}$ la signature de $\s$ l'unique morphisme non trivial de $(S_n,\circ)$ dans $(\{-1,1\},\times)$
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soit $j\in\lb1,n\rb$, $(\l_i)_{i\neq j}\in \K^{n-1}$.\\
+    On a $f(x_1,...,x_j+\sum\limits_{i\neq j}\l_ix_i,...,x_n)=f(x_1,...,x_n)+\underbrace{\sum_{i\neq j}\l_if(x_1,...,\overbrace{x_i}^{j},...,x_n)}_{=0\nt{ car alternée et deux fois } x_i}$\n
+    \boxed{2.} Supposons $(x_1,...,x_n)$ liée, alors $\exists j\in\lb1,n\rb, ~ \exists(\l_i)_{i\neq j} \mid x_j = \sum\limits_{i\neq j}\l_i x_i$.\\
+    Alors $f(x_1,...,x_j,...,x_n)\overset{(1)}{=}f(x_1,...,x_j-\sum\limits_{i\neq j}\l_ix_i,...,x_n)=f(x_1,...,0_E,...,x_n)=0_\K$.\n
+    \boxed{3.} On a ;
+    \begin{align*}
+        f(...,x_j,...,x_i,...)&=f(...,x_j+x_i,...,x_i,...)=f(...,\boxed{x_j+x_i},...,x_i-\boxed{(x_j+x_i)},...)\\
+        &=f(...,x_j+x_i,...,-x_j,...)=(-1)f(...,x_j+x_i,...,x_j,...)\\&=(-1)f(...,x_i,...,x_j,...)
+    \end{align*}
+    \boxed{4.} $\exists p\in\N^*, ~ \exists \t_1,...,\t_p$ transpositions $\mid \s=\t_1\circ...\circ\t_p$. Alors :
+    \begin{align*}
+        f(x_{\s(1)},...,x_{\s(n)})&=f(x_{\t_1\circ...\circ\t_p(1)},...,x_{\t_1\circ...\circ\t_p(n)})\\
+        &=(-1)f(x_{\t_2...\t_p(1)},...,x_{\t_2...\t_p(n)}) \quad \nt{et } (-1)=\e(\t_1)\\
+        &=\e(\t_1)...\e(\t_p)f(x_1,...,x_n)\\
+        &=\e(\s)f(x_1,...,x_n)
+    \end{align*}
+
+\end{prop}
+
+
+\subsection{Déterminant d'une famille de vecteurs dans une base.}
+
+\begin{thm}{}{}
+    L'ensemble des formes $n$-linéaires alternées sur $E$ est une droite vectorielle.\n
+    Si $\B=(e_1,...,e_n)$ est une base de $E$, alors il existe une unique forme $n$-linéaire alternée qui prend la valeur 1 sur $\B$. On l'appelle \bf{déterminant dans la base $\B$} et on note $\det_\B$. On a:
+    \begin{equation*}
+        \forall (x_1,...,x_n)\in E^n \quad \det\nolimits_\B(x_1,...,x_n)=\sum_{\s\in S_n}\e(\s)\prod_{j=1}^ne^*_{\s(j)}(x_j).
+    \end{equation*}
+    \tcblower
+    \bf{Analyse.} Soit $f:E^n\to\K$ une forme $n$-linéaire alternée. Soit $(x_1,...,x_n)\in E^n$. Alors
+    \begin{align*}
+        f(x_1,...,x_n)&=f\left(\sum_{i_1=1}^ne_{i_1}^*(x_1)e_{i_1},...,\sum_{i_n=1}^ne_{i_n}^*(x_n)e_{i_n}\right)\\
+        &= \sum_{i_1=1}^n...\sum_{i_n=1}^n\prod_{j=1}^ne_{i_j}^*(x_j)f(e_{i_1},...,e_{i_n})\\
+        &= \sum_{(i_1,...,i_n)\in\cursive{A}_n(\lb1,n\rb)}\left( \prod_{j=1}^ne_{i_j}^*(x_j) \right)f(e_{i_1},...,e_{i_n})
+    \end{align*}
+    Où $(i_1,...,i_n)\in\lb1 \mapsto (\s_i(k)\mapsto i_k)$ bijection de $\cursive{A}_n(\lb1,n\rb)\to S_n$.
+    \begin{align*}
+        f(x_1,...,x_n)&=\sum_{\s\in S_n}\prod_{j=1}^ne_{\s(j)}^*(x_j)f(e_{s(1)},...,e_{s(n)})\\
+        &=f(e_1,...,e_n)\sum_{\s\in S_n}\e(\s)\prod_{j=1}^ne_{\s(j)}^*(x_j)
+    \end{align*}
+    Supposons que $f(e_1,...,e_n)=1$, il reste un unique candidat.\\
+    \bf{Synthèse.} Posons $\det_\B:(x_1,...,x_n)\mapsto \sum\limits_{\s\in S_n}\e(\s)\prod\limits_{j=1}e_{\s(j)}^*(x_j)$. Vérifions qu'elle convient.\\
+    $\bullet$ Soit $k\in\lb1,n\rb$ et $(x_1,...,x_{k-1},x_{k+1},x_n)\in E^{n-1}$ et $x\in E$.\\
+    Alors $\det_\B(x_1,...,x_n)=\sum\limits_{\s\in S_n}\e(\s)\left(\prod\limits_{j\neq k}e^*_{\s(j)}(x_j)\right)e^*_{\s(k)}(x)$ linéaire car combinaison linéaire de linéaires.\n
+    $\bullet$ Soit $1\leq k < l \leq n,$ et $(x_1,...,x_n) \mid x_k = x_l$.\\
+    Alors $\det_\B(x_1,...,x_n)=\sum_{\s\in S_n}\e(\s)\prod_{j=1}^ne_{\s(j)}^*(x_j)$. Posons $\t=(k~l)$ qui échange $k$ et $l$.\\
+    Alors $\det_\B(x_1,...,x_n)=\sum_{\s\in S_n}\e(\s)\prod_{j=1}^ne_{\s(\t(j))}^*(x_j)=\sum_{\phi\in S_n}\e(\phi\t)\prod_{j=1}^ne^*_{\phi(j)}(x_j)$ où $\phi=\s\t$.\\
+    Donc $\det_\B(x_1,...,x_n)=-\sum_{\phi\in S_n}\e(\phi)\prod_{j=1}^ne^*_{\phi(j)}(x_j)=-\det_\B(x_1,...,x_n)$.\\
+    Donc $\det_\B(x_1,...,x_n)=0$.\n
+    $\bullet$ $\det_\B(\B)=\det_\B(e_1,...,e_n)=\sum\limits_{\s\in S_n}\e(\s)\prod\limits_{j=1}^ne_{\s(j)}^*(e_j)=\sum\limits_{\s\in S_n}\e(\s)\prod\limits_{j=1}^n\d_{j,\s(j)}=\e(\id)=1$.
+\end{thm}
+
+\begin{corr}{}{}
+    Si $f$ est une forme $n$-linéaire alternée et si $\B$ est une base de $E$, alors $\exists \l\in\K\mid f = \l\det_\B$
+\end{corr}
+
+\begin{defi}{}{}
+    Soit $\B=(e_1,..,e_n)$ base de $E$ et $(x_1,...,x_n)\in E^n$.\\
+    Le nombre $\det_\B(x_1,...,x_n)$ est appelé \bf{déterminant dans la base $\B$} de $(x_1,...,x_n)$. 
+\end{defi}
+
+\begin{thm}{Caractérisation des bases.}{8}
+    Soit $\B=(e_1,...,e_n)$ une base de $E$ et $(x_1,...,x_n)\in E^n$.
+    \begin{equation*}
+        (x_1,...,x_n) \nt{ est base de } E \quad \iff \quad \det\nolimits_\B(x_1,...,x_n)\neq 0
+    \end{equation*}
+    \tcblower
+    \fbox{$\la$} Supposons que le déterminant est différent de 0, alors $(x_1,...,x_n)$ libre, c'est une base car $\dim E = n$.\\
+    \fbox{$\ra$} Supposons que $\B'=(x_1,...,x_n)$ est base de $E$. Alors $\det_{\B'}$ existe, c'est une forme $n$-linéaire alternée.\\
+    Par théorème, $\exists \l \in \K \mid \det_{\B'}=\l\det_\B$. Alors $\det_{\B'}(\B')=\l\det_{\B}(\B')=1$ donc $\det_{\B}(\B')\neq0$.
+\end{thm}
+
+\begin{ex}{Interprétation géométrique.}{}
+    $\bullet$ Si $E=\R^2$ et $\B$ est la base canonique de $\R^2$, pour $(\v{u_1},\v{u_2})$ un couple de vecteurs, le nombre $\det_\B(\v{u_1}, \v{u_2})$ peut être vu comme l'aire orientée du parallélogramme engendré par $(\v{u_1},\v{u_2})$.\n
+    $\bullet$ Si $E=\R^3$ et $\B$ est la base canonique de $\R^3$, pour $(\v{u_1},\v{u_2},\v{u_3})$ un triplet de vecteurs, le nombre $\det_\B(\v{u_1},\v{u_2},\v{u_3})$ peut être vu comme le volume orienté du parallélépipède engendré par $(\v{u_1},\v{u_2},\v{u_3})$.
+\end{ex}
+
+\subsection{Déterminant d'un endomorphisme en dimension finie.}
+
+\begin{lemme}{}{}
+    Soit $u\in\L(E)$.\\
+    Le nombre $\det_\B(u(e_1),...,u(e_n))$ ne dépend pas de la base $\B=(e_1,...,e_n)$ considérée.
+    \tcblower
+    Soit $f\in\Lambda_n(E)$ une forme $n$-linéaire alternée.\\
+    Déformons la à l'aide de $u\in\L(E)~:~(x_1,...,x_n)\mapsto f(u(x_1),...,u(x_n))$ est $n$-linéaire alternée.\\
+    Notons-la $\phi_u(f)\in\Lambda_n(E)$. On pose $\phi_u:f\mapsto\phi_u(f)$ de $\Lambda_n(E) \to \Lambda_n(E)$ linéaire, c'est une homothétie.\\
+    Alors $\exists \l_u\in\K\mid\phi_u=\l_u\id_{\Lambda_n(E)}$.\\
+    On a prouvé que $\exists \l_u\in\K \quad \forall f \in \Lambda_n(E) \quad \forall (x_1,...,x_n)\in E \quad f(u(x_1),...,u(x_n))=\l_u f(x_1,...,x_n)$.\\
+    En particulier, $\det_\B(u(x_1),...,u(x_n))=\l_u\det_\B(x_1,...,x_n)$ est vrai pour tous $x_i$.\\
+    En particulier, $\det_\B(u_(\B))=\l_u\det_\B(\B)=\l_u$, ne dépend pas de $\B$.
+\end{lemme}
+
+\begin{defi}{}{}
+    Soi $u\in\L(E)$. On appelle \bf{déterminant} de $u$ et on note $\det(u)$ le nombre
+    \begin{equation*}
+        \det(u)=\det\nolimits_\B(\B),
+    \end{equation*}
+    où $\B=(e_1,...,e_n)$ une base quelconque de $E$.
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $u\in\L(E)$, $\B$ une base de $E$ et $(x_1,...,x_n)\in E^n$. On a
+    \begin{equation*}
+        \det\nolimits_\B(u(x_1),...,u(x_n))=\det(u)\times\det\nolimits_\B(x_1,...,x_n)
+    \end{equation*}
+    \tcblower
+    L'application $(x_1,...,x_n)\mapsto\det_\B(u(x_1),...u(x_n))$ est $n$-linéaire alternée : elle est dans $\Vect(\det_\B)$.\\
+    Il existe donc $\l\in\K\mid\forall(x_1,...,x_n)\in E^n, ~ \det_\B(u(x_1),...,u(x_n))=\l\det_\B(x_1,...,x_n)$.\\
+    En particulier, $\det_\B(u(\B))=\l\det_\B(\B)$ donc $\det(u)=\l$.\\
+    On a bien $\det_\B(u(x_1),...,u(x_n))=\det(u)\det_\B(x_1,...,x_n)$.
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $\det(\id_E)=1$.
+        \item $\forall u \in \L(E), ~ \forall \l \in \K, ~ \det(\l u) = \l^n\det(u)$
+        \item $\forall (u,v)\in\L(E)^2, ~ \det(u\circ v)=\det(u)\det(v)$
+        \item Pour tout $u\in\L(E)$, $u$ est un automorphisme de $E$ si et seulement si $\det(u)\neq 0$. Alors:
+        \begin{equation*}
+            \det(u^{-1})=\det(u)^{-1}
+        \end{equation*}
+    \end{enumerate}
+    \bf{Remarque:} Rien à dire sur $\det(u+v)$.
+    \tcblower
+    Soit $\B=(e_1,...,e_n)$ une base de $E$.\\
+    \boxed{1.} $\det(\id_E)=\det_\B(\id(e_1),...,\id(e_n))=\det_\B(\B)=1$.\\
+    \boxed{2.} Soit $u\in\L(E)$ et $\l\in\K$, alors $\det(\l u) = \det_\B(\l u(e_1),...,\l u(e_n))=\l^n\det_\B(u(e_1),...,u(e_n))=\l^n\det(u)$.\\
+    \boxed{3.} Soient $u,v\in\L(E)$.\\
+    Alors: $\det(u\circ v) = \det_\B(u(v(e_1)),...,u(v(e_n)))=\det(u)\det(v(e_1),...,v(e_n))=\det(u)\det(v)\cancelto{1}{\det_\B(B)}$.\\
+    \boxed{4.} Soit $u\in\L(E)$. $u$ est bijectif ssi l'image de $\B$ par $u$ est une base ssi son déterminant dans $B$ est non nul (\ref{thm:8}).
+    Alors pour un automorphisme $u$, on a $u\circ u^{-1}=\id_E$ et $\det(u\circ u^{-1})=\det(\id_E)=1$ donc $\det(u^{-1})=\det(u)^{-1}$. 
+\end{prop}
+
+\begin{corr}{}{}
+    Si $E$ est de dimension finie, $\det$ induit un morphisme de groupes entre $GL(E)$ et $\K^*$.
+\end{corr}
+
+\begin{ex}{Déterminant d'une symétrie vectorielle.}{}
+    Que dire de $\det(s)$ si $s$ est une symétrie vectorielle de $E$ ?
+    \tcblower
+    Soit $s\in\L(E)$ une symétrie vectorielle.\\
+    Alors $s^2=\id_E$ donc $\det(s^2)=\det(\id_E)=1$.\\
+    Alors $\det(s)^2=1$ donc $\det(s)=\pm1$.\n
+    On sait que $E=\Ker(s-\id_E)\oplus\Ker(s+\id_E)$.\\
+    Prenons une base adaptée à ces deux supplémentaires.\\
+    Notons $p=\dim~\Ker(s-\id_E)$ et prenons $(e_1,...,e_p)$ une de ses bases, et $(e_{p+1},...,e_n)$ base de $\Ker(s+\id_E)$.\n
+    Notons $B=(e_1,...,e_p,...e_n)$. Alors :
+    \begin{align*}
+        \det(s)&=\det\nolimits_{\B}(s(e_1),...,s(e_p),...,s(e_n))
+        =\det\nolimits_{\B}(e_1,...,e_p,-e_{p+1},...,-e_n)\\
+        &=(-1)^{n-p}\det\nolimits_{\B}(\B)
+        =(-1)^{n-p}.
+    \end{align*}
+\end{ex}
+
+\subsection{Déterminant d'une matrice carrée.}
+
+\section{La pratique.}
+
+\subsection{Échelonner.}
+\subsection{Développer selon une colonne ou une ligne.}
+\subsection{Complément théorique : la comatrice.}
+
+\end{document}

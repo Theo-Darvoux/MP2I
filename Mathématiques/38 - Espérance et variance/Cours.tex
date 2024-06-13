@@ -412,23 +412,142 @@
     Donc $P(U=1)P(V=0)\neq P(U=1,V=0)$, elles ne sont pas indépendantes.
 \end{ex}
 
-\begin{ex}{}{}
+\begin{lemme}{La covariance est presque un produit scalaire.}{}
+    Soient $X,\tilde{X}, Y$ trois variables aléatoires sur $(\O,P)$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.5 ex]
+        \item $\cov(X,Y)=\cov(Y,X)$.
+        \item Pour $(\l,\mu)\in\R^2,~\cov(\l X + \mu \tilde{X}, Y)=\l\cov(X,Y)+\mu\cov(\tilde{X},Y)$.
+        \item $\cov(X,X)=V(X)\geq0$.
+        \item $|\cov(X,Y)|\leq\sqrt{V(X)}\sqrt{V(Y)}$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} clair.\\
+    \boxed{2.} 
+    \begin{align*} 
+        \cov(\l X + \mu \tilde{X}, Y)&=E\left[ (\l X + \mu \tilde{X} - E(\l X + \mu \tilde{X}))(Y - E(Y)) \right]\\
+        &=E\left[ (\l(X-E(X))+\mu(\tilde{X}-E(\tilde{X})))(Y-E(Y)) \right]\\
+        &=...=\l\cov(X,Y)+\mu\cov(\tilde{X},Y).
+    \end{align*}
+    \boxed{3.} $\cov(X,X)=E\left[(X-E(X))^2\right]=V(X)\geq0$.\\
+    \boxed{4.} Posons $f:\l\mapsto V(X+\l Y)$ positive et $f(\l)=\cov(X+\l Y, X+\l Y)=\cov(X,X)+2\l\cov(X,Y)+\l^2\cov(Y,Y)$.\\
+    C'est un polynôme de degré inférieur à 2.\\
+    Si $\cov(Y,Y)\neq0$, $f$ est positif de discriminant négatif.\\
+    Donc $\Delta=4(\cov(X,Y)^2-V(X)V(Y))\neq0$ donc $\cov(X,Y)^2\leq V(X)V(Y)$ donc $|\cov(X,Y)|\leq\sqrt{V(X)}\sqrt{V(Y)}$.\n
+    Sinon, $\cov(Y,Y)=0$ et $Y=E(Y)$, l'inégalité est alors $0\leq0$.
+\end{lemme}
 
+\begin{prop}{Variance d'une somme de deux variables aléatoires.}{}
+    Soient $X$ et $Y$ deux variables aléatoires réelles sur $(\O,P)$. Alors,
+    \begin{equation*}
+        V(X+Y)=V(X)+V(Y)+2\cov(X,Y).
+    \end{equation*}
+    Dans le cas où $X$ et $Y$ sont décorrélés, on a
+    \begin{equation*}
+        V(X+Y)=V(X)+V(Y).
+    \end{equation*}
+    Cette égalité est notablement vraie lorsque $X$ et $Y$ sont indépendantes.
+    \tcblower
+    On a:
+    \begin{align*}
+        V(X,Y)=\cov(X+Y, X+Y)=\cov(X,X)+2\cov(X,Y)+\cov{Y,Y}=V(X)+2\cov(X,Y)+V(Y).
+    \end{align*}
+    Si $\cov(X,Y)=0$...
+\end{prop}
+
+\begin{prop}{Variance d'une somme.}{26}
+    Soit $(X_i)_{i\in\lb1,n\rb}$ une famille de variables aléatoires réelles sur $(\O,P)$. On a
+    \begin{equation*}
+        V\left( \sum_{i=1}^nX_i \right) = \sum_{i=1}^nV(X_i) + 2\sum_{1\leq i<j\leq n}\cov(X_i,X_j).
+    \end{equation*}
+    Si les variables $X_1,...,X_n$ sont deux à deux décorrélées, alors
+    \begin{equation*}
+        V\left( \sum_{i=1}^nX_i \right) = \sum_{i=1}^nV(X_i).
+    \end{equation*}
+    Cette égalité est notablement vraie lorsque les variables $X_1,...,X_n$ sont deux-à-deux indépendantes.
+    \tcblower
+    On a:
+    \begin{align*}
+        V\left( \sum_{i=1}^n X_i \right) &= \cov\left( \sum_{i=1}^nX_i, \sum_{i=1}^nX_i \right)\\
+        &= \sum_{i=1}^n\sum_{j=1}^n\cov(X_i,X_j)\\
+        &=\sum_{i=1}^n\underbrace{\cov(X_i,X_i)}_{=V(X_i)}+\underbrace{\sum_{i<j}\cov(X_i,X_j)+\sum_{i>j}\cov(X_i,X_j)}_{\nt{égales par symétrie.}}\\
+        &=\sum_{i=1}^nV(X_i)+2\sum_{i<j}\cov(X_i,X_j)
+    \end{align*}
+\end{prop}
+
+\subsection{Inégalités probabilistes.}
+
+\begin{prop}{Inégalité de Markov.}{}
+    Soit une variable aléatoire réelle positive $X:\O\to\R_+$ et $a\in\R_+$, alors:
+    \begin{equation*}
+        P(X\geq a)\leq\frac{E(X)}{a}.
+    \end{equation*} 
+    \tcblower
+    Soit $\w\in\O$.\\
+    Si $\w\in(X\geq a)$, alors $a\1_{X\geq a}(\w)=a\leq X(\w)$.\\
+    Si $\w\notin(X\geq a)$, alors $a\1_{X\geq a}(\w)=0  \leq X(\w)$\\
+    Donc pour tout $\w$, $a\1_{X\geq a}(\w)\leq X(\w)$.\n
+    On a : $a\1_{X\geq a} \leq X$, par passage à l'espérance : $aE(\1_{X\geq a})\leq E(X)$.\\
+    Or $\1_{X\geq a}\sim\B(p)$ où $p=P(X\geq a)$ donc $E(\1_{X\geq a})=P(X\geq a)$ donc $aP(X\geq a)\leq E(X)$.\\
+    Ainsi, $P(X\geq a)\leq\frac{E(X)}{a}$.
+\end{prop}
+
+\pagebreak
+
+\begin{prop}{Inégalité de Bienaymé-Tchebychev.}{}
+    Soit une variable aléatoire réelle $X$ sur $\O$ et $a\in\R^*_+$, alors:
+    \begin{equation*}
+        P(|X-E(X)|\geq a)\leq\frac{V(X)}{a^2}.
+    \end{equation*}
+    \tcblower
+    On a $((|X-E(X|)\geq a) = ((X-E(X))\geq a^2)$.\\
+    Soit $Y=(X-E(X))^2$, variable aléatoire positive à laquelle on applique Markov :
+    \begin{equation*}
+        P(Y\geq a^2) \leq \frac{E(Y)}{a^2}
+    \end{equation*}
+    Or $E(Y)=E\left[ (X-E(X))^2 \right]=V(X).$ Alors:
+    \begin{equation*}
+        P(|X-E(X)|\geq a)\leq\frac{V(X)}{a^2}
+    \end{equation*}
+\end{prop}
+
+\begin{ex}{Des inégalités pas si bonnes dans la pratique.}{}
+    Soit $X$ une v.a. sur $(\O,P)$ de loi binomiale $\B(10^3,\frac{1}{2})$. Majorer la probabilité de l'événement $(X\geq600)$ d'abord avec l'inégalité de Markov, puis avec l'inégalité de Bienaymé-Tchebychev. L'utilisation d'une machine nous donne que cette probabilité est de l'ordre de $10^{-10}$. Commenter.
+    \tcblower
+    On sait le calculer:
+    \begin{equation*}
+        P(X\geq600)=\frac{1}{2^{1000}}\sum_{k=600}^{1000}\binom{1000}{k}\sim 10^{-10}
+    \end{equation*}
+    L'inégalité de Markov donne :
+    \begin{equation*}
+        P(X\geq600)\leq\frac{E(X)}{600}\leq\frac{5}{6}
+    \end{equation*}
+    C'est claqué au sol, on ne voit même pas que l'évènement est rare.\n
+    Et avec l'inégalité de Bienaymé-Tchebychev ?\\
+    On a $(X\geq600)=(X-E(X)\geq100)\subset(|X-E(X)|\geq100)$.\\
+    De plus, $V(X)=10^3\cdot\frac{1}{2}\cdot\frac{1}{2}$. Alors :
+    \begin{equation*}
+        P(X\geq600)\leq P(|X-E(X)|\geq100) \leq \frac{V(X)}{100^2}\leq\frac{1}{40}.
+    \end{equation*}
+    C'est mauvais mais un peu meilleur.
 \end{ex}
 
-\begin{prop}{}{}
-
-\end{prop}
-
-\begin{prop}{}{26}
-
-\end{prop}
+\begin{ex}{Inégalité de concentration : distance entre moyennes empiriques et théoriques.}{}
+    Soit $n\in\N^*$. On considère $n$ variables aléatoires $X_1,...,X_n$ sur $(\O,P)$.\\
+    On les suppose indépendantes et de même loi. Notons $m=E(X_1)$ et $\s^2=V(X_1)$. On a
+    \begin{equation*}
+        \forall \e > 0, \quad P\left( \Big| \frac{1}{n}\sum_{i=1}^nX_i-m \Big| \geq \e\right) \leq \frac{\s^2}{n\e^2}.
+    \end{equation*}
+    La majoration par un $O(\frac{1}{n})$ montre que la probabilité que la moyenne empirique $\frac{1}{n}\sum\limits_{i=1}^nX_i$ des $n$ variables aléatoires soit éloignée de sa moyenne théorique $\mu$ est plus petite lorsque $n$ est grand.\n
+    On observe donc un phénomène de \bf{concentration}: plus $n$ devient grand, plus la variable aléatroie $\frac{1}{n}\sum\limits_{i=1}^nX_i$ prend des valeurs concentrées autour de $m$. Cette convergence est une loi de la nature observéee dans le monde physique. L'observer mathématiquement nous conduit à penser que le modèle probabiliste qui a été développé jusqu'ici n'est pas trop mauvais...\n
+    On retrouvera cette description de la concentration en spé avec la Loi faible des grands nombres.
+    \tcblower
+    Posons $Y_n=\frac{1}{n}\sum_{i=1}^nX_i$.\\
+    Alors $E(Y_n)=E\left[ \frac{1}{n}\sum\limits_{i=1}^nX_i \right]=\frac{1}{n}\sum\limits_{i=1}^nE(X_i)=m$.\\
+    De plus, $V(Y_n)=V\left( \frac{1}{n}\sum\limits_{i=1}^nX_i\right)=\frac{1}{n^2}V\left( \sum\limits_{i=1}^nX_i \right)=\frac{1}{n^2}\sum\limits_{i=1}^nV(X_i)=\frac{\s^2}{n}$.\n
+    On applique Bienaymé-Tchebychev à $Y_n$:
+    \begin{equation*}
+        P(|Y_n-E(Y_n)|\geq\e)\leq \frac{V(Y_n)}{\e^2} \quad\nt{alors}\quad P\left(\Big|\frac{1}{n}\sum_{i=1}^nX_i-m\Big|\geq\e\right)\leq\frac{\s^2}{\e^2n}=O\left(\frac{1}{n}\right)
+    \end{equation*}
+\end{ex}
 
 \end{document}
-
-\iffalse
-\begin{align*}
-    V(X+Y)&=E\left[ (X+Y-E(X+Y))^2 \right] \\&= E\left[ (X - E(X) + Y - E(Y))^2 \right] \\&= E\left[ (X - E(X))^2 + 2(X-E(X))(Y-E(Y)) + (Y-E(Y))^2 \right]\\
-    &=V(X) + V(Y) + 2(X-E(X))(Y-E(Y)).
-\end{align*}
-\fi
