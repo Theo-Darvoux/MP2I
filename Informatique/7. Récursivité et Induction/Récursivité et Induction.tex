@@ -2,7 +2,7 @@
 
 \input{/home/theo/MP2I/setup.tex}
 
-\def\chapitre{24}
+\def\chapitre{7}
 \def\pagetitle{Récursivité et Induction}
 
 \begin{document}
@@ -60,7 +60,24 @@
 
 \pagebreak
 
-\begin{prop}{Ordre lexicographique.}{}
+\begin{defi}{}{}
+    Soit une famille $(E_i,\leq_i)_{i\in I}$ d'ensembles ordonnés.\\
+    L'ordre produit sur $\prod_{i\in I}E_i$ est donné par:
+    \begin{equation*}
+        (x_i)_{i\in I}\leq (y_i)_{i\in I} \iff \forall i \in I, ~ x_i \leq_i y_i.
+    \end{equation*}
+    Cet ordre n'est pas total.
+\end{defi}
+
+\begin{prop}{Ordre sur les produits d'ensembles.}{}
+    Un ordre produit sur une famille finie de $N$ ensembles tous munis d'un ordre bien fondé est bien fondé.
+    \tcblower
+    On prend une suite infinie décroissante $(u_n)$ dans le produit cartésien. Notons $p_i$ sa $i^{\nt{ème}}$ composante.\\
+    On définit $k_i$ avec $1\leq i \leq N$ tel qu'il soit le rang à partir duquel la suite $(p_i(u_n))$ est stationnaire.\\
+    Alors $(u_n)$ est stationnaire à partir du rang $k_N$, donc l'ordre est bien fondé.
+\end{prop}
+
+\begin{corr}{Ordre lexicographique.}{}
     Soit $E$ un ensemble ordonné par $\leq$.\\
     L'ordre lexicographique sur $E^n$ est :
     \begin{equation*}
@@ -68,7 +85,7 @@
     \end{equation*}
     Si $\leq$ est total, alors l'ordre lexicographique l'est aussi.\\
     Si l'ordre de $E$ est bien fondé, alors l'ordre lexicographique sur $E^n$ l'est aussi.
-\end{prop}
+\end{corr}
 
 \subsection{Ensembles inductifs.}{}
 
@@ -109,6 +126,8 @@
     Soit $Y = \{x\in E ~ | ~ P(x)\}$. Alors $B \subset Y$ d'après $(B)$ et $Y$ est stable par $R$ d'après $(I)$.\\
     On a alors $X \subset Y$ donc $\forall x \in X, ~ \m{P}(x)$ est vrai.
 \end{thm}
+
+\pagebreak
 
 \begin{ex}{}{}
     Pour un arbre binaire strict A, on note $\cursive{N}(A)$ son nombre de noeuds, $\cursive{F}(A)$ son nombre de feuilles.\\
