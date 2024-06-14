@@ -1,8 +1,8 @@
 
 # MP2I à Paul Valéry (2023-2024)
 Polycopiés de cours et quelques corrections des exercices de maths 2023-2024 en MP2I option info.\
+🚨 MOn cours contient peut-être (sûrement) des erreurs, attention!!
 🚨 Le cours de physique ne contient que les polycopiés, sans cours.\
-🚨 Le cours contient peut-être (sûrement) des erreurs, attention!!
 
 ## Comment utiliser ce github (pour les noobs) ?
 Si vous êtes sur l'application mobile, désinstallez la immédiatement et allez sur le site.\
