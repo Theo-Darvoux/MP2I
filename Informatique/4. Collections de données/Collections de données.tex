@@ -308,7 +308,7 @@
 
 \subsection{Arbres rouge-noir.}
 \subsubsection{Définitions.}
-\begin{defi}{Arbre rouge-noir.}{}
+\begin{defi}{Arbre rouge-noir. $\star$}{}
     Un \bf{arbre rouge-noir (ARN)} est un ABR strict dont toutes les feuilles sont vides, dont chaque noeud est coloré en rouge, ou en noir, tel que :
     \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
         \item Chaque feuille est noire.
@@ -322,7 +322,7 @@
     La \bf{hauteur noire} d'un arbre rouge-noir est le nombre de noeuds noirs sur un chemin de la racine à une feuille.
 \end{defi}
 
-\begin{prop}{}{}
+\begin{prop}{$\star$}{}
     Soit un arbre rouge-noir de hauteur $h$ et de taille $n$, on a $h\leq 2\log_2(n+1)$.
     \tcblower
     Montrons qu'un ARN de hauteur noire $k$ a au moins $2^k-1$ noeuds.\\
@@ -443,6 +443,33 @@
         \ra~&\frac{\ov{T}(n)}{n+1}=\ov{T}(0) + 2\sum_{k=0}^{n+1}\frac{1}{k} = O(\log n) \qquad \text{(téléscopage)}\\
         \ra~&\ov{T}(n)=O(n\log n)
     \end{align*}
+\end{defi}
+
+\begin{defi}{Tri rapide avec doublons. $\star$}{}
+    \begin{algorithm}[H]
+        \caption{Tri rapide avec doublons}
+        \Entree{Tableau $\m{T}$, entier debut, entier fin}
+        \Sortie{$\m{T}$ trié}
+        \Si{debut $\geq$ fin}{fin}
+        pivot $\gets \m{T}$[debut]\\
+        inf $\gets$ debut\\
+        sup $\gets$ fin\\
+        egal $\gets$ debut\\
+        \Tq{egal $\leq$ sup}{
+            \Si{pivot > $\m{T}$[egal]}{
+                echanger($\m{T}$, inf, egal)\\
+                inf $\gets$ inf + 1\\
+                egal $\gets$ egal + 1
+            } \SinonSi{pivot < $\m{T}$[egal]}{
+                echanger($\m{T}$, sup, egal)\\
+                sup $\gets$ sup - 1\\
+            } \Sinon{
+                egal $\gets$ egal + 1
+            }
+        }
+        tri\_rapide($\m{T}$, debut, inf-1)\\
+        tri\_rapide($\m{T}$, sup+1, fin)
+    \end{algorithm}
 \end{defi}
 
 \section{Dictionnaires.}
