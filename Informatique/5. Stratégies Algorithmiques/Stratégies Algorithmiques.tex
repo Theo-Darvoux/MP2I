@@ -1,0 +1,97 @@
+\documentclass[french, 11pt]{article}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\def\chapitre{26}
+\def\pagetitle{Stratégies Algorithmiques}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\section{Stratégies.}
+
+\begin{defi}{Force brute.}{}
+    \underline{idée:} Explorer tous les candidats possibles.\\
+    \underline{contraintes:} Univers dénombrable, on sait tester si une entrée est solution.
+\end{defi}
+
+\begin{defi}{Backtracking.}{}
+    \underline{idée:} Construire une solution pas à pas et revenir sur le dernier choix en cas d'impasse.
+\end{defi}
+
+\begin{defi}{Algorithmes gloutons.}{}
+    \underline{idée:} Parier sur les maxima locaux.\\
+    \underline{contraintes:} La solution n'est pas toujours optimale.
+\end{defi}
+
+\begin{defi}{Programmation dynamique.}{}
+    Cette méthode est envisageable si :\\
+    \bf{1. Sous-problèmes optimaux:} La solution pour une entrée donnée s'exprime en fonction des solutions pour des entrées strictement plus petites.\\
+    \bf{2. Chevauchement de sous-problèmes:} La solution naïve mène à calculer plusieurs fois les mêmes solutions.\n
+    \bf{Approche de bas en haut:} Calculer les résultats dans l'ordre pour avoir les solutions quand on en a besoin. On peut les garder en mémoire (tableau...)\\
+    \bf{Mémoïsation:} On crée une structure stockant les solutions. Au moment du calcul, on vérifie si la solution a déjà été calculée, sinon on la rajoute.
+\end{defi}
+
+\section{Exemples.}
+
+\begin{ex}{Rendu de monnaie.}{}
+    \underline{Problème:} On dispose d'un nombre illimité de pièces de valeurs $n_1>n_2>...>n_k$. Comment arriver à une certaine somme $S$ avec le moins de pièces ?\n
+    L'algorithme glouton naturel consiste à puiser dans les pièces par ordre décroissant de valeurs sans dépasser $S$.
+\end{ex}
+
+\begin{ex}{Placement d'activités.}{}
+    \underline{Problème:} attribuer des salles pour le plus de cours possibles.\\
+    \underline{Théorème:} Le choix du cours terminant le plus tôt est optimal.
+    \tcblower
+    Supposons que ce choix mène à la liste de cours $(c_1,...c_n)$. Montrons par l'absurde qu'on ne peut pas avoir de suite plus longue par récurrence descendante sur la longueur du plus long préfixe commun.\\
+    \bf{Cas de base:} $(d_1,...,d_n,...)$ avec $d_i=c_i$ pour $i\in\lb1,n\rb$.\\
+    On peut alors construire $(c_1,...,c_n,c_{n+1})$, car $d_{n+1}$ est plaçable : contradiction.\\
+    \bf{Hérédité:} Pour $k<n$, il ne peut pas exister une suite de cours plaçable de longueur $n+1$ ayant un préfixe commun de longueur au moins $k+1$ avec $(c_1,...,c_n)$.\\
+    Supposons qu'il existe une suite de cours plaçables $(c_1,...,c_k,d_{k+1},...,d_{n+1})$, $c_{k+1}$ est plaçable entre $c_k$ et $d_{k+1}$, ce qui est absurde.
+\end{ex}
+
+\pagebreak
+
+\begin{ex}{Distance de Levenshtein}{}
+    C'est une distance sur l'ensemble des mots d'un dictionnaire. Elle représente le nombre minimal d'opérations élémentaires pour passer d'un mot à un autre : substitution, délétion et insertion.
+    \par Soient deux mots $u$ et $v$. On note $d[i,j]$ la distance de Levenshtein entre le préfixe de longueur $i$ de $u$ et le préfixe de longueur $j$ de $v$.\\
+    On a :
+    \begin{equation*}
+        d[i,j] = \min\begin{cases}
+            d[i,j-1] + 1\\
+            d[i-1,j] + 1\\
+            d[i-1,j-1] + \delta_{u[i] \neq v[j]}
+        \end{cases}
+    \end{equation*}
+    De plus, $d[0,j]=j$ et $d[i,0]=i$.\\
+    \textbf{Complexité de l'algorithme naïf:}\\
+    $T(m,n)=\alpha + T(m-1,n) + T(m,n-1) + T(m-1,n-1)$.\\
+    En simplifiant: $T(m,n) \geq \alpha + 3T(m-1, n-1)$.\\
+    On pose $U(n)=T(n,n)\geq\alpha+3U(n-1)$ donc $U(n)\geq\alpha n + 3^nU(0)=\Omega(3^n)$.\n
+    \textbf{Complexité de l'algorithme dynamique:}\\
+    On fait un nombre constant d'opérations pour chaque axe du tableau donc une complexité en $O(mn)$.
+\end{ex}
+
+\begin{ex}{Typographie}{}
+    \textbf{Hypothèses:} Police de longueur fixe, un seul espace entre deux mots.\\
+    \textbf{Entrée:} Une suite de $n$ mots de longueurs $l_1,...,l_n$ et la largeur $M$ de la ligne tels que $\forall i, ~ l_i \leq M$.\\
+    \textbf{Contraintes:}
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item Aucune ligne ne dépasse : si une ligne contient les mots $i$ à $j$, on a : $\sum_{k=i}^jl_k - i + j \leq M$
+        \item L'espacement est harmonieux sur l'ensemble des lignes : on minimise la somme cubes des espaces finaux sur chaque ligne, sauf la dernière.
+    \end{itemize}\vspace{0.2cm}
+    Montrons que la propriété de sous-problèmes optimaux est vérifiée.\\
+    Soit une solution optimale sur $h$ lignes, alors la composition est optimale sur les $h-1$ premières lignes.\\
+    Notons $\m{E}(i)$ la somme des cubes des espaces finaux de lignes, sauf la dernière à partir du mot $i$ jusqu'au dernier, en supposant que le mot $i$ est en début de ligne.\\
+    $\circledcirc$ Si on peut écrire tous les mots restants sur une seule ligne, il suffit de le faire : 
+    \begin{equation*}
+        E(i) = 0 \quad \text{si} \quad \sum_{k=i}^nl_k + n-i \leq M
+    \end{equation*}
+    $\circledcirc$ Sinon, il faut trouver $j$ tel que :
+    \begin{equation*}
+        E(i)=\min\{(M-(\sum_{k=i}^jl_k+j-i))^3+E(j+1) ~ | ~ j \in \llbracket1,n\rrbracket ~ \land ~ \sum_{k=i}^jl_k+j-i\leq M\}.
+    \end{equation*}
+\end{ex}
+
+\end{document}

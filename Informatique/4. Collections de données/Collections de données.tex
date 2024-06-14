@@ -1,0 +1,511 @@
+\documentclass[french, 11pt]{article}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\def\chapitre{21}
+\def\pagetitle{Structures de données}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\section{Listes chaînées, piles et files.}
+
+\begin{defi}{Liste chaînée.}{}
+    Une \bf{liste chaînée} est une structure qu'on peut définir inductivement :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item Soit c'est une liste vide.
+        \item Soit c'est un noeud, appelé \bf{cellule}, qui contient une valeur et une référence à une autre liste chaînée.
+    \end{itemize}
+\end{defi}
+
+\begin{defi}{Pile.}{}
+    Une \bf{pile} est une structure de données qui permet de stocker des éléments et de les retirer dans l'ordre inverse de leur insertion.\\
+    Interface :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item \bf{Empiler} un élément.
+        \item \bf{Dépiler} un élément.
+        \item \bf{Tester} si la pile est vide.
+    \end{itemize}
+\end{defi}
+
+\begin{defi}{File.}{}
+    Une \bf{file} est une structure de données qui permet de stocker des éléments et de les retirer dans l'ordre de leur insertion.\\
+    Interface :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item \bf{Enfiler} un élément.
+        \item \bf{Défiler} un élément.
+        \item \bf{Tester} si la file est vide.
+    \end{itemize}
+\end{defi}
+
+\section{Arbres.}
+\subsection{Arbres binaires.}
+\subsubsection{Définitions.}
+
+\begin{defi}{Arbre binaire.}{}
+    Un \bf{arbre binaire} est une structure de données hiérarchique où chaque élément est un \bf{noeud}.\\
+    Il est défini de manière inductive :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item Soit c'est une arbre vide.
+        \item Soit il est constitué d'un noeud et de deux arbre binaires disjoints, appelés \bf{fils gauche} et \bf{fils droit}
+    \end{itemize}
+\end{defi}
+
+\begin{defi}{Racine}{}
+    La \bf{racine} d'un arbre est le seul noeud qui n'a pas de père.
+\end{defi}
+
+\begin{defi}{Feuilles, noeuds internes.}{}
+    Les \bf{feuilles} d'un arbre sont les noeuds qui n'ont pas de fils.\\
+    Une \bf{branche} est un chemin de la racine à une feuille.\\
+    Les \bf{noeuds internes} sont les noeuds qui ont au moins un fils.\\
+    On a donc $|\texttt{feuilles}| + |\texttt{noeuds internes}| = |\texttt{noeuds}|$
+\end{defi}
+
+\begin{defi}{Arbre binaire strict.}{}
+    Un arbre binaire strict est un arbre où tous les noeuds internes ont deux fils.
+\end{defi}
+
+\begin{prop}{Dénombrement. $\star$}{}
+    Dans un arbre binaire strict non vide, le nombre de feulles est égal au nombre de noeuds internes plus un.
+    \tcblower
+    On a d'abord : $|\texttt{feuilles}|=|\texttt{noeuds}|-|\texttt{noeuds internes}|$.\\
+    On dénombre les liaisons père-fils : $N=2\cdot|\texttt{noeuds internes}|$ (les noeuds internes ont deux fils).\\
+    On dénombre les liaisons fils-père : $N=|\texttt{noeuds}|-1$ (la racine n'a pas de père).\\
+    En combinant les deux : $|\texttt{noeuds}|-1=2|\texttt{noeuds internes}|$.\\
+    Donc $|\texttt{feuilles}|=|\texttt{noeuds internes}|+1$.
+\end{prop}
+
+\begin{defi}{Vocabulaire.}{}
+    La \bf{taille} d'un arbre est son nombre de noeuds.\\
+    La \bf{profondeur} d'un noeud est sa distance à la racine.\\
+    Un \bf{niveau} d'un arbre est l'ensemble des noeuds de même profondeur.\\
+    La \bf{hauteur} d'un arbre est la profondeur maximale de ses noeuds.\n
+    \bf{Convention:} La hauteur d'un arbre vide est -1, la hauteur d'un arbre réduit à sa racine est 0.
+\end{defi}
+
+\begin{defi}{Arbre binaire parfait.}{}
+    Un arbre binaire est \bf{parfait} si toutes ses feuilles sont de même profondeur et que tous ses noeuds internes possèdent deux fils.
+\end{defi}
+
+\begin{prop}{Nombre de noeuds d'un arbre parfait. $\star$}{}
+    Un arbre binaire parfait de hauteur $h$ a $2^{h+1}-1$ noeuds.\\
+    De plus, pour tout $k\in\lb0,h\rb$, il a $2^k$ noeuds de profondeur $k$.
+    \tcblower
+    Montrons le par récurrence sur la hauteur.\\
+    \bf{Initialisation.} Un arbre de hauteur 0 est réduit à sa racine et de taille $1=2^{0+1}-1$.\\
+    \bf{Hérédité.} Supposons la propriété vraie sur les arbres de hauteur $h$.\\
+    Soit un arbre binaire parfait de hauteur $h+1$.\\
+    Un noeud de profondeur $k+1$ est le fils d'un noeud de profondeur $k$, qui a deux fils.\\
+    Ainsi, il y a deux fois plus de noeuds de profondeur $k+1$ que de noeuds de profondeur $k$.\\
+    Alors le nombre de noeuds total vaut $\sum_{k=0}^h2^k=\frac{2^{h+1}-1}{2-1}=2^{h+1}-1$.\\
+    La propriété est vraie pour $h+1$.\\
+    Par récurrence, elle est vraie pour tout $h\in\N$.
+\end{prop}
+
+\begin{defi}{Arbre binaire complet.}{}
+    Un arbre binaire de hauteur $h$ est \bf{complet} si tous ses niveaux sont remplis, sauf peut-être le dernier, qui est rempli de gauche à droite.
+\end{defi}
+
+\begin{corr}{Nombre de noeuds d'un arbre complet.}{}
+    La taille d'un arbre binaire complet de hauteur $h$ est comprise entre $2^h$ et $2^{h+1}-1$.\\
+    La hauteur d'un arbre complet de taille $n$ est $\lf\log n\rf$.
+\end{corr}
+
+\begin{defi}{Étiquette.}{}
+    Une \bf{étiquette} est une valeur associée à un noeud d'un arbre.
+\end{defi}
+
+\subsubsection{Parcours.}
+
+\begin{defi}{Parcours en profondeur. $\star$}{}
+    Un \bf{parcours en profondeur} est un parcours où on termine d'explorer une branche avant d'en visiter une autre.\\
+    Il existe trois types de parcours en profondeur :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item \bf{Préfixe} : on visite le noeud, puis le fils gauche, puis le fils droit.
+        \item \bf{Infixe} : on visite le fils gauche, puis le noeud, puis le fils droit.
+        \item \bf{Postfixe} : on visite le fils gauche, puis le fils droit, puis le noeud.
+    \end{itemize}
+\end{defi}
+
+\begin{defi}{Parcours en largeur. $\star$}{}
+    Un \bf{parcours en largeur} est un parcours où on visite les noeuds de même profondeur avant de passer à la profondeur suivante.\\
+    On utilise une file pour implémenter ce parcours.
+\end{defi}
+
+\subsection{Tas.}
+
+\subsubsection{Définitions.}
+
+\begin{defi}{File de priorité.}{}
+    Une \bf{file de priorité} est une structure de données qui permet de stocker des éléments d'un ensemble totalement ordonné.\\
+    Interface :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item Insérer un nouvel élément.
+        \item Extraire l'élément le plus grand.
+        \item Modifier la valeur d'un élément.
+        \item Tester si la file est vide.
+    \end{itemize}
+\end{defi}
+
+\begin{defi}{Tas.}{}
+    Un \bf{tas} est un arbre binaire complet tel que tout noeud porte une étiquette supérieure à celle de ses fils.
+\end{defi}
+
+\subsubsection{Implémentation.}
+
+\begin{defi}{Percoler vers le bas. $\star$}{}
+    \begin{algorithm}[H]
+        \LinesNumbered
+        \caption{Percoler vers le bas}
+        \Entree{Un tas $A$, un indice $i$ et une valeur $v$}
+        \Sortie{Un tas similaire à $A$, tel que $A[i]=v$}
+        $A[i] \gets$ $v$.\\
+        max $\gets$ indice du noeud d'étiquette maximale entre $A[i]$ et ses fils.\\
+        \Si{max $\neq$ $i$}{
+            $A[i] \gets A[$max$]$.\\
+            \texttt{percoler\_vers\_le\_bas}(A, max, $v$).
+        }
+    \end{algorithm}\vspace{0.25cm}
+    \textbf{Terminaison.}\\
+    Les lignes $1,2,3,4$ se terminent. Le variant d'appel est la hauteur du noeud d'indice $i$.\\
+    \textbf{Complexité.}\\
+    Notons $T(h)$ le nombre d'opérations élémentaires pour une certaine hauteur $h$.\\
+    On a $T(0) = \alpha$ et $T(h) = \alpha + T(h-1)$ donc $T(h) = \alpha h = O(h)$.\\
+    Or $2^h \leq n \leq 2^{h+1}-1$ avec $n$ le nombre de noeuds de l'arbre.\\
+    Donc $h \leq \log_2(n) \leq h+1$ : complexité dans le pire des cas en $O(\log n)$.\\
+    \textbf{Correction.}\\
+    Soit $h$ la hauteur d'un noeud d'indice $i$.\\
+    Si $h=0$, alors c'est une feuille et $max = i$ : il n'y a pas d'appel.\\
+    Supposons que l'appel est correct pour une certaine hauteur $h-1$. Montrons que l'appel sur $h$ fonctionne.\\
+    On prend un indice $i$ d'un noeud de hauteur $h$.\\
+    Si $max = i$ alors par hypothèse de récurrence, les sous-arbres de i sont des tas et l'appel est correct.\\
+    Si $max \neq i$ alors on remplace $A[i]$ par le max et la condition est donc vérifiée entre $i$ et ses fils.\\
+    Par hypothèse de récurrence, on sait que l'appel récursif est correct.
+\end{defi}
+
+\begin{defi}{Percoler vers le haut.}{}
+    \begin{algorithm}[H]
+        \LinesNumbered
+        \caption{Percoler vers le haut}
+        \Entree{Un tas $A$, un indice $i$ et une valeur $v$}
+        \Sortie{Un tas similaire à $A$, tel que $A[i]=v$}
+        $A[i] \gets$ $v$\\
+        min $\gets$ indice du noeud d'étiquette minimale entre $A[i]$ et son père.\\
+        \Si{max $\neq$ $i$}{
+            $A[i] \gets A[$max$]$\\
+            \texttt{percoler\_vers\_le\_haut}(A, min, $v$)
+        }
+    \end{algorithm}
+    Mêmes propriétés que pour \texttt{percoler\_vers\_le\_bas}.
+\end{defi}
+
+\begin{defi}{Modification.}{}
+    \begin{algorithm}[H]
+        \LinesNumbered
+        \caption{Modification}
+        \Entree{Un tas $A$, un indice $i$ et une valeur $v$}
+        \Sortie{Un tas similaire à $A$, tel que $A[i]=v$}
+        \Si{$v > A[i]$}{
+            \texttt{percoler\_vers\_le\_bas}(A, i, $v$)
+        }
+        \Sinon{
+            \texttt{percoler\_vers\_le\_haut}(A, i, $v$)
+        }
+    \end{algorithm}
+    Sa correction / complexité découle de celles de \texttt{percoler\_vers\_le\_bas} et \texttt{percoler\_vers\_le\_haut}.
+\end{defi}
+
+\begin{defi}{Insertion.}{}
+    \begin{algorithm}[H]
+        \LinesNumbered
+        \caption{Insertion}
+        \Entree{Un tas $A$ et une valeur $v$}
+        \Sortie{La valeur $v$ a été insérée dans le tas $A$.}
+        Ajouter $v$ à la fin du tas.\\
+        \texttt{percoler\_vers\_le\_haut}(A, n, $v$).
+    \end{algorithm}
+\end{defi}
+
+\begin{defi}{Extraction.}{}
+    \begin{algorithm}[H]
+        \LinesNumbered
+        \caption{Extraction}
+        \Entree{Un tas $A$}
+        \Sortie{La valeur maximale a été extraite du tas $A$.}
+        \Si{le tas est de taille 1}{
+            supprimer son élément et le renvoyer.
+        }
+        Garder en mémoire le plus grand élément du tas (le premier).\\
+        Remplacer le premier élément par le dernier.\\
+        Le percoler vers le bas.\\
+        \Retour le plus grand élément.
+    \end{algorithm}
+\end{defi}
+
+\begin{defi}{Construire un tas. $\star$}{}
+    \begin{algorithm}[H]
+        \LinesNumbered
+        \caption{Construire un tas}
+        \Entree{Un tableau $T$}
+        \Sortie{$T$ tel qu'il vérifie la condition de tas.}
+        \Pour{$i$ de $\lf n/2 \rf$ à 1}{
+            \texttt{percoler\_vers\_le\_bas}($T$, i, $T[i]$).
+        }
+    \end{algorithm}
+    \textbf{Compléxité.}\\
+    Soit $H$ la hauteur du tas. On sait que percoler\_vers\_le\_bas est en $O(H)$.\\
+    À une certaine profondeur $p$, il y a au plus $2^p$ noeuds.\\
+    De plus, ces noeuds sont à hauteur soit $h=H-p$, soit $h=H-p-1$, donc $p=H-h$ ou $p=H-h-1$.\\
+    La complexité de percoler\_vers\_le\_bas sur un noeud de hauteur $h$ est donc de $\alpha h$, $\alpha\in\mathbb{R}$.\\
+    Ainsi, il y a au plus $2^{H-h}$ noeuds de hauteur $h$.\\
+    Alors, dans le pire des cas :
+    \begin{align*}
+        \sum_{h=0}^{H}{\alpha h\cdot2^{H-h}}=\alpha2^H\sum_{h=0}^{H}{\frac{h}{2^h}}
+    \end{align*}
+    On pose $f:x\mapsto\sum\limits_{h=0}^Hx^h$, alors $f(x)=\sum\limits_{h=0}^Hx^h=\frac{x^{H+1}-1}{x-1}$.\\
+    De plus, on pose $g:x\mapsto xf'(x)$, et pour $x<1$: $f'(x)=\frac{Hx^{H+1}-Hx^{H}+x^{H}+1}{(x-1)^2}=\frac{1}{(x-1)^2}+Hx^H\frac{x - 1 - \frac{1}{H}}{(x-1)^2}\to\frac{1}{(x-1)^2}$.
+    Alors $g(x)\leq\frac{x}{(x-1)^2}+\beta$ en particulier pour $\frac{1}{2}$.
+    \begin{align*}
+        \sum_{h=0}^H\alpha h 2^{H-h}\leq\alpha2^{H}(2+\beta)
+    \end{align*}
+    Alors $\alpha2^H\sum_{h=0}^H\frac{h}{2^h} = O(2^H = n)$.
+\end{defi}
+
+\subsection{Arbres binaires de recherche.}
+
+\begin{defi}{Arbre binaire de recherche.}{}
+    Un \bf{arbre binaire de recherche (ABR)} a des noeuds étiquettés dans un ensemble totalement ordonné et tel que l'étiquette de chaque noeud interne est supérieur aux étiquettes de son sours-arbre gauche, et inférieure aux étiquettes de son sous-arbre droit.\\
+    Ce type d'arbres n'est pas nécéssairement strict.
+\end{defi}
+
+\begin{prop}{Élément minimal.}{}
+    Le minimum se trouve à l'extrémité gauche de l'arbre.
+    \tcblower
+    Par récurrence sur la hauteur $h$ de l'arbre.\\
+    \bf{Initialisation:} Pour $h=0$, un seul élément, c'est l'extrémité gauche.\\
+    \bf{Hérédité:} Supposons que la propriété est vraie pour les arbres de hauteur $h-1$.\\
+    Soit un arbre binaire de recherche de hauteur $h$.\\
+    \underline{1er cas:} Pas de sous-arbre gauche, la racine est le minimum.\\
+    \underline{2ème cas:} Il y a un sous-arbre gauche, le minimum y appartient, or ce sous-arbre est de hauteur inférieure.\\
+    Par hyothèse, le minimum est à l'extrémité gauche de ce sous-arbre.\\
+    Donc le minimum est à l'extrémité gauche de l'arbre.\\
+    Par récurrence, on a bien la propriété.
+\end{prop}
+
+\begin{prop}{Parcours infixe. $\star$}{}
+    Soit $\cursive{A}$ un ABR de hauteur $h$ et $P_h$ : <<Le parcours infixe de $\cursive{A}$ donne une liste triée>>.
+    \tcblower
+    \bf{Initialisation.} Pour $h=0$ c'est trivial car l'arbre est réduit à sa racine.\\
+    \bf{Hérédité.} Supposons $P_h$ vrai pour toute hauteur \bf{strictement} inférieure à $h$. Montrons $P_h$.\\
+    On note $\cursive{A}_g$ le fils gauche de $\cursive{A}$, $\cursive{A}_d$ son fils droit et $r$ sa racine.\\
+    Par supposition, le parcours est correct sur $\cursive{A}_g$ et $\cursive{A}_d$ car ils sont de hauteurs strictement inférieures à $h$.\\
+    Le parcours infixe parcourt d'abord $\cursive{A}_g$, puis $r$, puis $\cursive{A}_g$.\\
+    On a que tout élément de $\cursive{A}_g$ est inférieur à $r$ et que tout élément de $\cursive{A}_d$ est supérieur à $r$ par propriété des ABR.\\
+    Donc le parcours de $\cursive{A}_g$ puis $r$ puis $\cursive{A}_d$ est dans l'ordre croissant.
+\end{prop}
+
+\subsection{Arbres rouge-noir.}
+\subsubsection{Définitions.}
+\begin{defi}{Arbre rouge-noir.}{}
+    Un \bf{arbre rouge-noir (ARN)} est un ABR strict dont toutes les feuilles sont vides, dont chaque noeud est coloré en rouge, ou en noir, tel que :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item Chaque feuille est noire.
+        \item La racine est noire.
+        \item Les fils rouges d'un noeud noir sont noirs.
+        \item Tout chemin de la racine à une feuille contient le même nombre de noeuds noirs.
+    \end{itemize}
+\end{defi}
+
+\begin{defi}{Hauteur noire.}{}
+    La \bf{hauteur noire} d'un arbre rouge-noir est le nombre de noeuds noirs sur un chemin de la racine à une feuille.
+\end{defi}
+
+\begin{prop}{}{}
+    Soit un arbre rouge-noir de hauteur $h$ et de taille $n$, on a $h\leq 2\log_2(n+1)$.
+    \tcblower
+    Montrons qu'un ARN de hauteur noire $k$ a au moins $2^k-1$ noeuds.\\
+    \bf{Initialisation.} Pour $k=0$, un arbre de hauteur noire 0 est réduit à sa racine, donc un seul noeud.\\
+    \bf{Hérédité.} Supposons la propriété vraie pour tout arbre de hauteur noire inférieure à $k$. Montrons le pour $k+1$.\\
+    Les deux fils de la racine sont donc de hauteur noire $k$ : ils ont au moins $2^k-1$ noeuds.\\
+    Donc $A$ a au moins $2(2^k-1)+1=2^{k+1}-1$ noeuds.\\
+    Alors $k \leq \log_2(n+1)$ et $h\leq2k$ donc $h\leq2\log_2(n+1)$
+\end{prop}
+
+\subsubsection{Implémentation.}
+\begin{thm}{Implémentation. $\star$}{}
+    \href{https://anthonylick.com/wp-content/uploads/mp2i\_chap16.pdf}{Implémentation des arbres rouge-noir.}
+\end{thm}
+
+\pagebreak 
+
+\subsection{Applications des arbres binaires.}
+
+\begin{thm}{Complexité de tris par comparaisons. $\star$}{cmp}
+    Soit un algorithme de tri utilisant uniquement des comparaisons. Sa complexité temporelle dans le pire des cas est en $\Omega(n\log n)$ où $n$ est la taille du tableau à trier.
+    \tcblower
+    L'action de l'algorithme est d'appliquer une permutation sur l'entrée, dépendant uniquement de l'ordre relatif de ses éléments.
+    On considère l'arbre de flot de contrôle de l'algorithme sur une entrée donnée. On arrive à une feuille si le tri est terminé, correspondant à une unique permutation de l'entrée. On a donc $n!$ feuilles.\\
+    On note $h$ la hauteur de cet arbre, et on a alors que $2^h \geq n!$ donc $h\geq\log(n!)$. Alors :
+    \begin{equation*}
+        h\geq\log(n!)=\sum_{k=1}^n\log(k)\geq\sum_{k=n/2}^n\log(k)\geq\frac{n}{2}\log\left(\frac{n}{2}\right).
+    \end{equation*}
+    On en conclut que $h=\Omega(\frac{n}{2})$.
+\end{thm}
+
+\begin{defi}{Tri par tas. $\star$}{}
+    \begin{algorithm}[H]
+        \caption{Tri par tas}
+        \Entree{Un tableau $T$}
+        \Sortie{$T$ trié}
+        construire\_tas(T)\\
+        \Pour{i \normalfont{allant de n à 1}}{
+            échanger les cases 1 et i\\
+            percoler\_vers\_le\_bas(T, 1, T[i])
+        } 
+    \end{algorithm}
+    \textbf{Complexité:}\\
+    Soit $n$ la taille de $T$. On sait que construire\_tas s'effectue en $O(n)$ et percoler\_vers\_le\_bas en $O(\log n)$.\\
+    L'échange des cases et la décrémentation s'effectuent en $O(1)$.\\
+    La boucle for se termine, le variant est $n-1$, chaque itération se termine aussi et il y a $n$ itérations.\\
+    On en déduit que cet algorithme est en $O(n\log n)$, donc en $\Theta(n\log n)$ d'après \ref{thm:cmp}.
+\end{defi}
+
+\begin{defi}{Tri rapide (sans doublons). $\star$}{}
+    \begin{algorithm}[H]
+        \caption{Partitionner}
+        \Entree{Tableau $\m{T}$, entier debut, entier fin}
+        \Sortie{$\m{T}$ partitionné et indice du pivot}
+        pivot $\gets$ $\m{T}$[debut]\\
+        inf $\gets$ debut+1\\
+        sup $\gets$ fin\\
+        \Tq{\normalfont{true}}{
+            \Tq{$\m{T}$\normalfont{[sup]} $\geq$ \normalfont{pivot et sup > debut}}{
+                sup $\gets$ sup - 1
+            }
+            \Tq{$\m{T}$\normalfont{[inf]} < \normalfont{pivot et inf < fin}}{
+                inf $\gets$ inf +1
+            }
+            \Si{inf $\geq$ sup}{
+                break
+            }
+            echanger($\m{T}$, inf, sup)
+        }
+    
+        echanger($\m{T}$, debut, sup)\\
+        renvoyer sup
+    
+    \end{algorithm}\noindent
+    \begin{algorithm}[H]
+        \caption{Tri rapide}
+        \Entree{Tableau $\m{T}$, entier debut, entier fin}
+        \Sortie{$\m{T}$ trié}
+        \Si{debut < fin}{
+            pivot $\gets$ partitionner($\m{T}$, debut, fin)\\
+            tri\_rapide($\m{T}$, debut, pivot-1)\\
+            tri\_rapide($\m{T}$, pivot+1, fin)
+        }
+    \end{algorithm}\noindent
+    \textbf{Terminaison.}\\
+    Les boucles while internes de \texttt{partitionner} se terminent car $O(1)$ et $sup$ et $inf$ sont variants.
+    La boucle while externe se termine car $sup - inf$ est un variant.
+    Les autres instructions sont en $O(1)$.\\
+    Alors \texttt{partitionner} se termine.\\
+    Les appels à \texttt{partitionner} se terminent donc \texttt{tri\_rapide} aussi.\\
+    \textbf{Correction.}\\
+    Montrons la correction de \texttt{partitionner}.\\
+    Prédicat : <<les cases d'indices debut+1 à inf-1 ont des valeurs strictement inférieurs au pivot, les cases d'indices sup+1 à fin ont des valeurs strictement supérieures au pivot>>.\\
+    Avant la boucle, l'ensemble des cases est vide, donc le prédicat est vrai.\\
+    Supposons que le prédicat est vrai au début d'une itération.\\
+    Les deux boucles internes gardent le prédicat, tout comme le reste des instructions.\\
+    C'est bien un invariant, il est vérifié en fin de boucle.\\
+    L'échange final permet de mettre le pivot au bon endroit.\\
+    \texttt{Partitionner} fonctionne donc correctement, et par récurrence sur fin-debut, \texttt{tri\_rapide} aussi.\\
+    \textbf{Complexité.}\\
+    On prend la comparaison comme opération élémentaire.\\
+    On note $S$ le nombre de noeuds de l'arbre des appels.\\
+    Alors $h=\Omega(\log S)$ donc $h=\Omega(\log n)$.\\
+    et $h=O(S)$ donc $h=O(n)$.\\
+    Le meilleur des cas correspond à la plus petite valeur de $h$ : $\beta\log n$ alors on a une complexité en $O(n\log n)$.\\
+    Le pire des cas correspond à la plus grande valeur de $h$ : $\beta n$, alors on a une complexité en $O(n^2)$.\\
+    \textbf{Complexité en moyenne.}\\
+    Si les données de départ dans un ordre aléatoire uniforme, alors c'est le cas de tout sous-tableau de l'entrée.\\
+    Soit $T(n)$ le nombre d'opérations élémentaires sur une entrée de taille $n$ et $\ov{T}(n)$ le nombre moyen.
+    \begin{align*}
+        &T(n) = n + 1 + T(k) + T(n - k - 1)\\
+        \ra~&\ov{T}(n) = n+1+\frac{1}{n}\sum_{k=0}^{n-1}{\ov{T}(k)+\ov{T}(n-k-1)}=n+1+\frac{2}{n}\sum_{k=0}^{n-1}\ov{T}(k)\\
+        \ra~&n\ov{T}(n) = n(n+1) + 2\sum_{k=0}^{n-1}\ov{T}(k)\\
+        \ra~&(n-1)\ov{T}(n-1)=n(n-1) + 2\sum_{k=0}^{n-2}\ov{T}(k) \qquad (n \gets n-1)\\
+        \ra~&n\ov{T}(n) - (n-1)\ov{T}(n-1) = n(n+1) - n(n-1)+2\ov{T}(n-1)\\
+        \ra~&n\ov{T}(n) = 2n +(n+1)\ov{T}(n-1)\\
+        \ra~&\frac{1}{n+1}\ov{T}(n)=\frac{2}{n+1}+\frac{1}{n}\ov{T}(n-1)\\
+        \ra~&\frac{\ov{T}(n)}{n+1}=\ov{T}(0) + 2\sum_{k=0}^{n+1}\frac{1}{k} = O(\log n) \qquad \text{(téléscopage)}\\
+        \ra~&\ov{T}(n)=O(n\log n)
+    \end{align*}
+\end{defi}
+
+\section{Dictionnaires.}
+
+\begin{defi}{}{}
+    Les \bf{dictionnaires} permettent de manipuler des ensembles d'associations.\\
+    On appelle \bf{clé} un élément de l'ensemble de départ et \bf{valeur} son élément associé.\\
+    Interface:
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item \bf{Insertion} (clé, valeur).
+        \item \bf{Recherche} de clé.
+        \item \bf{Suppression} de clé.
+    \end{itemize}
+    Contraintes:
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item Les clés sont toutes de mêmes types.
+        \item Les valeurs sont toutes de mêmes types.
+        \item Les clés sont uniques.
+    \end{itemize}
+    Si les clés sont des entiers, on peut utiliser un tableau.\\
+    On parle de table à adressage direct, on appelle chaque case du tableau une \bf{alvéole}.
+\end{defi}
+
+
+\section{Tables de hachage.}
+
+\begin{defi}{Fonction de hachage.}{}
+    Une \bf{fonction de hachage} $h$ est une fonction qui associe à chaque clé un entier, appelé \bf{haché}.
+\end{defi}
+
+\begin{defi}{Table de hachage.}{}
+    Une \bf{table de hachage} est un tableau associatif, où chaque case est une alvéole.\\
+    On utilise une fonction de hachage pour associer une clé à une alvéole.
+\end{defi}
+
+\subsection{Résolution des collisions par sondage.}
+
+\begin{defi}{}{}
+    Principe : S'il n'y a pas de place, on en cherche ailleurs.\\
+    Comment choisir le <<ailleurs>> ?\\
+    On définit un cycle $\s$, qu'on applique successivement au hachage d'une clé, jusqu'à trouver une place libre.
+\end{defi}
+
+\subsection{Résolution des collisions par chaînage.}
+
+\begin{defi}{}{}
+    Principe : On chaîne les clés avec le même hachage.\\
+    Dans le pire des cas : insertion en $O(1)$, recherche et suppression en $O(n)$.
+\end{defi}
+
+\begin{defi}{Facteur de remplissage.}{}
+    Le \bf{facteur de remplissage} $\alpha$ est le rapport entre le nombre d'éléments stockés et le nombre d'alvéoles.
+\end{defi}
+
+\begin{thm}{Complexité. $\star$}{}
+    Dans une table de hachage où les collisions sont résolues par chaînage, la recherche d'un élément a une complexité temporelle moyenne en $O(1+\alpha)$.
+    \tcblower
+    On se place dans le cas où les hachés sont uniformément distribués.\\
+    \underline{1er cas:} La recherche échoue.\\
+    Le calcul de la valeur hachée est en $O(1)$, le parcours moyen d'un liste chaînée est en $O(\alpha)$.\\
+    Ainsi, pour toute la recherche, on obtient une complexité moyenne en $O(1+\alpha)$.\n
+    \underline{2ème cas:} La recherche réussit.\\
+    Comme on est susceptible de s'arrêter avant la fin du parcours, la complexité est meilleure que dans le premier cas, donc en $O(1+\alpha)$.
+\end{thm}
+
+\end{document}

@@ -1,0 +1,792 @@
+\documentclass[french, 11pt]{article}
+
+\usepackage{scrextend}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\def\chapitre{29}
+\def\pagetitle{Langages de Programmation}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\section{Caractériser un langage de programmation}
+
+\subsection{Programmation et pensée : les paradigmes.}
+
+\begin{defi}{Paradigmes.}{}
+    Les \bf{paradigmes} permettent de caractériser la vision du déroulement d'un programme qu'a le développeur.\\
+    ---Le paradigme impératif se caractérise par une suite d'instructions permettant de modifier la mémoire des processus par affectations successives.\\
+    ---Le paradigme déclaratif fonctionnel se caractérise par des déclarations de données et de règles de déductions (fonctions mathématiques), les appliquant pour arriver à une solution.
+\end{defi}
+
+\begin{defi}{Flot d'exécution.}{}
+    Le \bf{flot d'exécution} d'un programme impératif est l'ordre dans lequel les instructions de ce programme sont exécutées. 
+\end{defi}
+
+\begin{defi}{Graphe de flot de contrôle.}{}
+    Le \bf{graphe de flot de contrôle} d'un programme est l'ensemble de ses flots de contrôle donnés sous la forme d'un graphe.\n
+    Le contrôle explicite de ce flot par le programmeur se fait via des structures de contrôle (conditionnelles, boucles).
+\end{defi}
+
+\begin{defi}{Graphe.}{}
+    Un graphe est un objet mathématique qui contient deux types de données:
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex, label=---]
+        \item Des sommets.
+        \item Des arcs.
+    \end{itemize}
+    On peut suivre une suite d'arcs: on obtient un chemin.
+\end{defi}
+
+\subsection{Exécution d'un programme, compilation, interprétation.}
+
+\begin{defi}{Compilé, interprété.}{}
+    Les langages \bf{compilés} traduisent le code source en éxécutable.\\
+    Les langages \bf{interprétés} lisent le code source et l'exécutent directement.
+\end{defi}
+
+\subsection{Programmation et données : typage.}
+
+\begin{defi}{Types}{}
+    Les programmes traitent et manipulent des données.\\
+    Comme en maths, on peut regrouper ces données par ensembles de valeurs et d'opérations qui s'y appliquent :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex, label=---]
+        \item $\N : +,~\times,~/,~\%$.
+        \item $\Z : +,~\times,~-,~/,~\%$.
+        \item $\m{F}(\R,\R) : \circ$, l'ensemble des fonctions de $\R$ dans $\R$.
+    \end{itemize}
+    Ces groupes sont appelés des \bf{types}.
+\end{defi}
+
+\begin{defi}{Taille d'un type.}{}
+    La \bf{taille} d'un type est la place mémoire occupée par l'une de ses valeurs. Il existe des types à taille fixe et à taille variable. Les tailles sont exprimées soit en bits, soit en octets.\n
+    Chaque langage de programmation possède ses types de base et permet de définir de nouveaux types. Le typage est le fait d'attribuer un type à une valeur.
+\end{defi}
+
+\begin{defi}{Conversions.}{}
+    Dans certains langages de programmation, on peut sous certaines conditions convertir une valeur d'un type en un autre. Cette opération s'appelle une \bf{conversion} ou un cast. Elle est \bf{implicite} si le programmeur n'a pas besoin de la spécifier, sinon elle est \bf{explicite}.\n
+    \bf{Exemple:} En C, $\texttt{3 + 2.5}$ entraîne la conversion implicite de $\texttt{3}$ en flottant, ce qui est interdit en OCaml.
+\end{defi}
+
+\begin{defi}{Typage faible, fort.}{}
+    Plus il y a de conversions implicites dans un langage, plus on dit que son typage est \bf{faible}, à l'inverse, le typage est dit \bf{fort}.\\
+    Un typage fort permet d'éviter les erreurs de type très tôt dans le développement.\n
+    Ainsi, le C a un typage faible, et l'OCaml un typage fort.
+\end{defi}
+
+\begin{defi}{Typage statique, dynamique.}{}
+    Un langage possède un typage \bf{statique} si les vérifications des types sont faites au moment de la compilation..\\
+    Un langage possède un typage \bf{dynamique} si les vérifications des types sont faites au moment de l'exécution.
+\end{defi}
+
+\subsection{Mots-clés et indentifiants.}
+
+\begin{defi}{Mot-clé.}{}
+    Les langages de programmation textuels possèdent tous des \bf{mots-clés}. Ce sont des mots réservés par le langage, qui permettent de spécifier les programmes.\\
+    Par ailleurs, la plupart des langages permettent d'attribuer des noms à des données pour les réutiliser.
+\end{defi}
+
+\begin{defi}{Identifiant.}{}
+    Un \bf{identifiant} est un nom qui permet de désigner une entité du langage.
+\end{defi}
+
+\section{Le langage C.}
+
+\subsection{Les bases.}
+
+\begin{defi}{Le langage C.}{}
+    Le langage C est compilé et possède un typage faible et statique.\\
+    Les fichiers source en C possèdent l'extension \texttt{.c}.\\
+    On les compile en ligne de commande avec la commande \boxed{\bf{gcc}}.\\
+    On peut spécifier le nom de l'exécutable au moment de la compilation avec l'option \texttt{-o}.\n
+    \bf{Exemple:} \texttt{gcc -o executable source.c}
+\end{defi}
+
+\subsubsection{Un premier programme en C.}
+
+\begin{defi}{Programme.}{}
+    Un programme en C est un texte ou un ensemble de textes qui vérifient un certain nombre de règles.
+    L'ensemble de ces règles s'appellent une grammaire, elles permettent d'obtenir un exécutable à la compilation.\\
+    La compilation peut donner lieu à divers messages d'erreurs :\\
+    --- Des erreurs qui empêchent la fabrication de l'exécutable.\\
+    --- Des warnings qui n'empêchent pas la fabrication, mais qui sont à analyser soigneusement.\\
+    Pour afficher tous les warnings, on utilise l'option \boxed{\texttt{-Wall}}.\n
+    Le compilateur détecte les erreurs liées à la syntaxe et aux types, mais il ne peut pas détecter les erreurs liées aux valeurs, comme une division par zéro.
+\end{defi}
+
+\begin{defi}{La fonction main}{}
+    Le flot de contrôle d'un programme C est l'exécution de sa fonction \texttt{main}.\n
+    La fonction \texttt{main} renvoie nécessairement un entier, de type \texttt{int}. Son exécution est linéaire, et peut s'arrêter avant la dernière ligne :\\
+    --- Erreur à l'exécution.\\
+    --- Mot-clé \texttt{return}.\\
+    --- Appel à une fonction \texttt{exit()}.\\
+    Chaque instruction se termine par un point-virgule, et les blocs d'instructions sont délimités par des accolades.
+\end{defi}
+
+\subsection{Types de base.}
+
+\subsubsection{Les entiers.}
+
+\begin{defi}{Entiers.}{}
+    Il existe plusieurs types d'\bf{entiers} en C:\\
+    --- Des types dont on sait comparer les tailles, sans que la norme ne les fixe : \texttt{int}, \texttt{unsigned int}.\\
+    --- Des types dont la taille est fixée par la norme : \texttt{int8\_t}, \texttt{uint\_8t}, \texttt{int32\_t}, ...\n
+    Aucun type entier ne permet de représenter tout $\N$ ou $\Z$.
+\end{defi}
+
+\begin{defi}{Entiers signés.}{}
+    Ce sont des types qui peuvent représenter des entiers positifs et négatifs de façon symétrique.\\
+    --- \texttt{int8\_t}: $2^8$ valeurs représentées dans $\lb-2^7, 2^7-1\rb$.\n
+    Pour représenter les entiers positifs le premier bit est à 0, puis on a l'écriture du nombre en base 2 avec le bit de poids fort à gauche.
+\end{defi}
+
+\begin{defi}{Complément à 2.}{}
+    Le complément à 2 d'un nombre $k$ codé sur $n$ bits en base 2 est son complément à $2^n$ en base 2.\\
+    C'est l'écriture de $2^n-k$ en base 2 sur $n$ bits, il sert à coder $-k$.\n
+    \bf{Exemple:} Le complément à 2 de 37 sur 8 bits est $11011011$.
+\end{defi}
+
+\begin{defi}{Opérations entre entiers.}{}
+    \bf{Comparaisons:} \texttt{==}, \texttt{!=}, \texttt{<}, \texttt{>}, \texttt{<=}, \texttt{>=}.\\
+    \bf{Opérations:} \texttt{+}, \texttt{-}, \texttt{*}, \texttt{/}, \texttt{\%}.\n
+    Sur des opérations de même priorité, la priorité se fait de gauche à droite.
+\end{defi}
+
+\subsubsection{Les flottants.}
+
+\begin{defi}{Flottants.}{}
+    Les réels sont représentés en C par des nombres à virgule flottante.\\
+    Le seul type au programme de MP2I/MPI est le \texttt{double}, représenté en général sur 8 octets.
+\end{defi}
+
+\begin{defi}{Opérations entre flottants.}{}
+    \bf{Comparaisons:} \texttt{==}, \texttt{!=}, \texttt{<}, \texttt{>}, \texttt{<=}, \texttt{>=}.\\
+    \bf{Opérations:} \texttt{+}, \texttt{-}, \texttt{*}, \texttt{/}.
+\end{defi}
+
+\subsubsection{Cohabitation entre types.}
+
+\begin{defi}{}{}
+    Une opération entre un entier et un double entraîne une conversion implicite de l'entier en double. Une somme entre deux entiers signés entraîne en général la conversion de l'entier du type le plus petit vers l'autre.\\
+    On évite en général les opération entre entiers signés et non signés.\n
+    \bf{Attention:} 1/2 donne 0, mais 1.0/2 donne 0.5 en C.
+\end{defi}
+
+\subsubsection{Booléens.}
+\begin{defi}{Booléens.}{}
+    Les booléns n'existent pas par défaut en C. Pour les utiliser, il faut inclure le fichier d'en-tête \texttt{stdbool.h}.\\
+    Les booléns sont représentés par le type \texttt{bool}, codé sur un octet. Il possède deux valeurs : \texttt{true} et \texttt{false}.\\
+    Ce type supporte trois opérations :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex, label=---]
+        \item \texttt{!} : la négation.
+        \item \texttt{\&\&} : \bf{et} logique.
+        \item \texttt{||} : \bf{ou} logique.
+    \end{itemize}
+    L'opérateur \texttt{!} est prioritaire sur les autres.\\
+    Les opérateurs \texttt{\&\&} et \texttt{||} sont paresseux : ils n'évaluent que le strict nécessaire, de gauche à droite.\n
+    \bf{Exemple:} (\texttt{true || (1/0)}) ne provoque pas de division par zéro.
+\end{defi}
+
+\subsubsection{Chaînes de caractères.}
+
+\begin{center}
+    \fbox{cf. le chapitre sur les chaînes de caractères.}
+\end{center}
+
+\subsection{Les variables.}
+
+\begin{defi}{Variable.}{}
+    En C, une \bf{variable} est une boîte dans laquelle on met une valeur.\\
+    Une variable possède 4 caractéristiques ne pouvant pas être modifiées à l'exécution:
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex, label=---]
+        \item Son nom.
+        \item Son type.
+        \item La façon dont les données sont interpretées.
+        \item Son adresse.
+    \end{itemize}
+    En revanche, la valeur de la variable peut être modifiée pendant l'exécution.
+\end{defi}
+
+\subsubsection{Les identifiants.}
+
+\begin{defi}{Règles.}{}
+    Les règles \bf{strictes} de fabrication d'un identifiant en C sont les suivantes:
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex, label=---]
+        \item Il commence par une lettre ou un underscore.
+        \item Il ne contient que des lettres, des chiffres ou des underscores.
+        \item Il ne peut pas être un mot-clé.
+    \end{itemize}\vspace{0.25cm}
+    Les règles de \bf{bonne partique} sont les suivantes:
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex, label=---]
+        \item Éviter de prendre des indentifiants des librairies standard.
+        \item Les identifiants doivent être uniques.
+        \item Les identifiants doivent être intelligibles.
+        \item Éviter les underscore en premier caractère.
+    \end{itemize}
+\end{defi}
+
+\subsubsection{Syntaxe.}
+
+\begin{defi}{Déclaration.}{}
+    Avant de pouvoir utiliser une variable en C, il faut la \bf{déclarer}: annoncer qu'on va l'utiliser en spécifiant son nom et son type.\\
+    \bf{Exemple:} \texttt{int a;}\n
+    Suite à cette déclaration, le système réserve en mémoire une boîte de taille \texttt{sizeof(int)} à laquelle on peut accéder via le nom $a$.\\
+    On peut déclarer plusieurs variables de même type en une seule ligne : \texttt{int a, b, c;}.
+\end{defi}
+
+\begin{defi}{Affectation.}{}
+    Pour donner une valeur à une variable, ou la modifier, on utilise le nom de la variable suivi de l'opérateur d'\bf{affectation} \texttt{=}, puis de l'expression qui donne sa valeur.\\
+    \bf{Exemple:} \texttt{int a; a = 3;}\n
+    Il faut \bf{toujours} initialiser les valeurs.
+\end{defi}
+
+\begin{defi}{Initialisation.}{}
+    La première affectation s'appelle l'\bf{initialisation} de la variable.\\
+    On peut déclarer et initialiser une variable sur la même ligne : \texttt{double pi = 3.0;}.
+\end{defi}
+
+\begin{defi}{Portée.}{}
+    Une variable n'est pas visible avant d'être déclarée, elle cesse d'exister à la fin du bloc dans lequel elle est déclarée: l'ensemble du code dans lequel la variable est utilisable s'appelle sa \bf{portée}.\n
+    On ne peut pas déclarer deux variables de même nom dans le même bloc, mais on peut réutiliser un même identifiant pour une variable dans un sous-bloc. Dans ce cas, la variable du sous-bloc masque la variable externe. Ce masque n'est plus accessible en sortie du sous-bloc.\n
+    Pour maintenir la lisibilité du code, on évite de masquer des variables.
+\end{defi}
+
+\subsubsection{Constantes.}
+
+\begin{defi}{Constantes.}{}
+    En C, les \bf{constantes} sont des valeurs qu'on ne peut pas modifier:
+    ---Les constantes littérales: constantes numériques ou chaînes écrites par le programmeur pour lesquelles l'allocation mémoire et l'initialisation se font à la compilation.\\
+    --- Les constantes symboliques: une variable dont on ne peut pas modifier la valeur.\n
+    \bf{Exemple:} \texttt{const int maxint = 2147483647;}
+\end{defi}
+
+\subsection{Les fonctions.}
+\subsubsection{Syntaxe.}
+
+\begin{defi}{Fonction.}{}
+    Une \bf{fonction} est une boîte noire à laquelle on transmet des valeurs et qui soit renvoie un résultat, soit modifie l'état du système soit produit un affichage, soit effectue une combinaison de ces actions.\n
+    L'exécution d'une fonction dépend des valeurs transmises et de l'état du système.
+\end{defi}
+
+\begin{defi}{Appel.}{}
+    On peut exécuter la suite d'actions décrite dans une fonction autant de fois qu'on le souhaite, en utilisant le nom de la fonction suivi de parenthèse et de valeurs pour ses paramètres.\\
+    On dit qu'on invoque (on appelle) la fonction.\\
+    Les valeurs transmises à une fonction peuvent être littérales ou être le résultat d'un calcul.\n
+    \bf{Exemple:} \texttt{$\sin(3)$}, \texttt{$\sin(3*pi/2)$}.\n
+    La syntaxe pour écrire une fonction en C est la suivante:
+    \begin{center}
+        \texttt{type\_de\_retour nom(type nom1, type nom2, ...) \{ code \}}
+    \end{center}
+    Le type de retour peut être un type quelconque ou fabriqué. Si la fonction ne renvoie rien, on utilise \texttt{void}.\\
+    Le nom d'une fonction doit être un identifiant admissible et non encore utilisé.\\
+    Il est possible d'écrire des fonctions sans paramètres, il faut quand même mettre des parenthèses.\n
+    \bf{Exemple:} \texttt{int somme(int a, int b) \{ return a+b; \}}
+\end{defi}
+
+\subsubsection{Typage.}
+
+\begin{defi}{Signature.}{}
+    La \bf{signature} d'une fonction contient une liste de couples (type, nom) qui sont les paramètres de la fonction.\\
+    Ils permettent d'identifier les valeurs dont la fonction a besoin pour faire son travail.\\
+    En C, les paramètres sont transmis par valeurs, la fonction travaille sur une copie des valeurs qui sont transmises.
+\end{defi}
+
+\begin{defi}{Valeur de retour.}{}
+    Si le type de retour annoncé n'est pas \texttt{void}, alors la fonction doit contenir un retour pour tout chemin du graphe de flot de contrôle, le type de retour doit être compatible avec celui annoncé.
+\end{defi}
+
+\subsection{Structures de contrôle.}
+
+\begin{defi}{Structure de contrôle.}{}
+    Les \bf{structures de contrôle} sont des instructions du langage qui permettent au programmeur de contrôler le chemin du graphe de flot de contrôle.
+\end{defi}
+
+\begin{defi}{Conditions}{}
+    Les \bf{conditions} permettent de choisir entre plusieurs chemins d'exécution.\\
+    En C, on utilise la structure \texttt{if} pour cela:
+    \begin{center}
+        \texttt{if (condition) \{ instructions \} else \{ instructions \}}
+    \end{center}
+\end{defi}
+
+\begin{defi}{Boucle conditionnelle.}{}
+    Les \bf{boucles conditionnelles} permettent de répéter un bloc d'instructions tant qu'une condition est vraie.\\
+    En C, on utilise la structure \texttt{while} pour cela:
+    \begin{center}
+        \texttt{while (condition) \{ instructions \}}
+    \end{center}
+\end{defi}
+
+\begin{defi}{Boucle inconditionnelle.}
+    Les \bf{boucles inconditionnelles} permettent de répéter un bloc d'instructions un nombre de fois donné.\\
+    En C, on utilise la structure \texttt{for} pour cela:
+    \begin{center}
+        \texttt{for (initialisation; condition; incrémentation) \{ instructions \}}
+    \end{center}
+\end{defi}
+
+\subsection{Les pointeurs.}
+
+\begin{defi}{Pointeur.}{}
+    Un \bf{pointeur} est une adresse dans la mémoire d'un processus.\\
+    Le type de l'adresse d'une variable de type \texttt{t} est \texttt{t*}\n
+    \bf{Exemple:} \texttt{int* p;} est un pointeur sur entier.\n
+    La taille d'un type pointeur est de 8 octets. Pour affecter une valeur à un pointeur, il faut pouvoir écrire une expression qui s'évalue comme une adresse:\\
+    --- Prendre l'adresse d'une variable existante du bon type.\\
+    --- Demander au système une adresse libre de la bonne taille.\\
+    --- Invoquer une fonction qui renvoie un type pointeur.\\
+    --- Utiliser une expression littérale constante de type pointeur.\n
+    Il n'y a qu'une contante littérale de type pointeur, définie dans \texttt{stdlib} et de nom \texttt{NULL}. Le standard du C garantit qu'elle est différente de toute adresse utilisable.
+\end{defi}
+
+\begin{defi}{Adresse.}{}
+    L'\bf{adresse} d'une variable s'obtient en écrivant \texttt{\&} devant le nom de la variable. 
+\end{defi}
+
+\begin{defi}{Valeur, contenu.}{}
+    La \bf{valeur} d'une variable de type pointeur sur \texttt{t} est une adresse. Son \bf{contenu} est la valeur de la case sur laquelle elle pointe, de type \texttt{t}.
+\end{defi}
+
+\begin{defi}{Déréférencement.}{}
+    Pour accéder au contenu d'un pointeur, on écrit le caractère \texttt{*} devant le nom du pointeur: on le \bf{déréférence}.\\
+    Il ne faut jamais déréférencer \texttt{NULL}. 
+\end{defi}
+
+\subsubsection{Demandes de mémoire.}
+
+\begin{defi}{Allocation.}{}
+    On peut demander au système l'adresse d'une portion de mémoire à laquelle on aurait accès avec:
+    \begin{center}
+        \texttt{void* malloc(size\_t size);}
+    \end{center}
+    Le type \texttt{void*} peut être implicitement converti en tout type de pointeur.\\
+    Si \texttt{malloc} n'arrive pas à allouer de mémoire, il renvoie \texttt{NULL}.\\
+    Il n'y a pas de moyen de connaître la taille d'une zone allouée, il faut donc utiliser les méthodes usuelles.\\
+    On accède au contenu de la $i^{\nt{ème}}$ d'un pointeur \texttt{p} case en écrivant \texttt{p[i]}.
+\end{defi}
+
+\begin{defi}{Libération.}{}
+    En C, le programmeur doit signaler lui-même au système quel emplacement mémoire alloué par \texttt{malloc} est libre et peut être réutilisé :
+    \begin{center}
+        \texttt{void free(void* p);}
+    \end{center}
+    Il y a une conversion implicite de tout type de pointeur vers \texttt{void*}.\\
+    On ne peut libérer qu'en fournissant une adresse de début d'allocation.
+\end{defi}
+
+\subsubsection{Tableaux et pointeurs.}
+
+\begin{defi}{Contraintes.}{}
+    Dans un monde idéal, la mémoire d'un processus aurait plein de propriétés intéressantes:\\
+    --- Accès immédiat à n'importe quelle case.\\
+    --- Obtenir immédiatement un emplacement mémoire.\\
+    --- Libérer à n'importe quel moment un emplacement mémoire.\\
+    --- Modifier la taille d'un emplacement mémoire.\n
+    Comme il n'existe pas de structure de donnée fournissant tous ces services, on les sépare.
+\end{defi}
+
+\begin{defi}{Piles.}{}
+    Une \bf{pile} est une structure de type LIFO (Last In First Out), on ne peut accéder qu'à la dernière case ajoutée.\\
+    \bf{Opérations:} \texttt{empiler}, \texttt{dépiler}, \texttt{est\_vide}, \texttt{sommet}.
+\end{defi}
+
+\pagebreak
+
+\begin{defi}{La pile.}{}
+    La pile ne contient pas que des couples identifiants-valeurs, mais également les noms des fonctions appelées. Ce sont les appels qui sont empilés.\n
+    À chaque invocation de fonction, un bloc de données est créé, et empilé sur la pile du processus, c'est le bloc d'activation de l'appel (stack frame).\\
+    C'est dans ce bloc que sont écrites toutes les données locales à l'appel de la fonction, au retour de l'appel, le bloc est effacé de la pile. L'empilement et le dépilement de blocs se font rapidement car la structure de pile est faite pour ça.\n
+    Le bloc d'activation contient en particuler:\\
+    --- Les paramètres de la fonction initialisés avec les valeurs des arguments.\\
+    --- Les variables et tableaux locaux.\\
+    --- Un emplacement pour la valeur de retour affecté avec l'évaluation de l'expression qui suit le retour.\\
+    --- L'adresse de l'instruction à exéctuer après le retour.\n
+    La gestion de la pile d'appels incombe entièrement au système d'exploitation.\\
+    Les information locales à un appel sont perdues à la sortie de l'appel, la fonction appelante ne récupère que la valeur de retour.
+\end{defi}
+
+\begin{defi}{Le tas.}{}
+    Parfois, on a besoin qu des informations survivent à un appel. La meilleure solution est alors de les stocker dans le tas. Si on alloue de la mémoire dans une fonction et qu'on renvoie l'adresse de l'emplacement mémoire, la fonction appelante peut récupérer la valeur de retour et accéder à l'emplacement mémoire.\n
+    Les paramètres d'une fonction peuvent être de type pointeur, la fonction recopie alors l'adresse, ce qui lui permet d'en modifier le contenu. À la sortie de l'appel, le bloc d'activation disparaît donc cette copie aussi, mais son contenu ne disparaît pas car stocké dans le tas, ou dans un autre bloc.
+\end{defi}
+
+\begin{defi}{Tableaux.}{}
+    Un \bf{tableau} est une suite d'éléments de même type, stockés en mémoire de façon contigue.\\
+    En C, un tableau est un pointeur sur la première case du tableau.\\
+    Pour accéder à la $i^{\nt{ème}}$ case d'un tableau, on écrit \texttt{t[i]}.\n
+    \bf{Exemple:} \texttt{int t[5]; t[0] = 3; t[1] = 4; t[2] = t[0] + t[1];}
+\end{defi}
+
+\begin{defi}{Tableaux multidimensionnels.}{}
+    Les \bf{tableaux multidimensionnels} dont les données sont déterminées statiquement sont rangés en mémoire comme un tableau unidimensionnel, dans lequel on découpe chaque ligne. Au contraire, les tableaux dont les données sont déterminées dynamiquement ne représentent pas une zone mémoire contigue.\n
+    \bf{Exemple:} \texttt{int t[2][3]; t[0][0] = 3; t[1][2] = 4;}
+\end{defi}
+
+\begin{defi}{Conséquence sur les fonctions.}{}
+    Bien entendu, on ne peut pas renvoyer un tableau statique. Une fonction ne peut traiter de la même manière un emplacement mémoire à découper et un ensemble d'emplacements mémoire disjoints.
+\end{defi}
+
+\begin{defi}{Arguments du main.}{}
+    Pour donner un argument à une command dans le shell, on l'écrit après la command.\\
+    Les programmes en C récupères ces arguments comme valeur de paramètre du \texttt{main}.\\
+    Pour s'en servir, on écrit \texttt{int main(int argc, char* argv[])}.\\
+    Au lancement du programme, les paramètres \texttt{argc} et \texttt{argv} reçoivent:\\
+    --- \texttt{argc} : le nombre d'arguments passés au programme.\\
+    --- \texttt{argv} : un tableau de chaînes de caractères contenant les arguments passés au programme.\n
+    \bf{Exemple:} \texttt{./a.out 3 4} donne \texttt{argc = 3} et \texttt{argv = ["./a.out", "3", "4"]}.
+\end{defi}
+
+\subsection{Structures.}
+
+\begin{defi}{Structure.}{}
+    Une \bf{structure} agrège plusieurs informations qui peuvent avoir le même type ou non.\\
+    Chaque information de la structure s'appelle un \bf{champ} (ou attribut).\\
+    En quelque sorte, les tableaux permettent d'agréger des données numérotées, alors que les structures permettent d'agréger des données nommées.
+\end{defi}
+
+\pagebreak
+
+\subsubsection{Utilisation de base.}
+
+\begin{defi}{Syntaxe.}{}
+    La création d'un type structuré se fait grâce au spécifiacteur \texttt{struct} suivi du nom du type.
+    \begin{center}
+        \texttt{
+            struct point \{
+                double x;
+                double y;
+            \}
+        };
+    \end{center}
+    Cette instruction crée le type \texttt{struct point} qui contient deux champs de type \texttt{double} nommés \texttt{x} et \texttt{y}.\\
+    Une structure peut \bf{s'auto-référencer}, c'est-à-dire contenir un champ de type pointeur sur elle-même.
+\end{defi}
+
+\begin{defi}{}{}
+    On peut initialiser une variable de type structuré grâce à un initialisateur:
+    \begin{center}
+        \texttt{struct point p = \{.x = 3.0, .y = 4.0\};}
+    \end{center}
+    Pour accéder à un champ d'une telle variable, on écrit le nom de la variable, un point et le nom du champ.\n
+    \bf{Exemple:} \texttt{p.x == 3.0;} est vrai.
+\end{defi}
+
+\subsubsection{Structures et pointeurs.}
+
+\begin{defi}{}{}
+    On peut considérer l'adresse d'une variable de type structuré, ou utiliser un champ de type structure.\\
+    Attention: l'opérateur \texttt{.} est prioritaire sur \texttt{*}.\\
+    On utilise l'opérateur \texttt{->} pour accéder à un champ d'une structure pointée.\n
+    \bf{Exemple:} \texttt{struct point* p; p->x = 3.0;} pour une structure pointée.\\
+    \bf{Exemple:} \texttt{struct point p; p.x = 3.0;} pour une structure non pointée.\n
+    Si on a besoin de modifier la valeur d'une structure, on transmet son adresse.\\
+    Si une structure est grande, on transmet son adresse.
+\end{defi}
+
+\begin{ex}{Listes chaînées.}{}
+    Un exemple de structure auto-référencée est la liste chaînée.\\
+    C'est une structure qu'on peut définir récursivement:\\
+    --- Soit c'est une liste vide.\\
+    --- Soit elle contient une valeur et une référence vers une autre liste chaînée.
+\end{ex}
+
+\section{Le langage OCaml.}
+
+\subsection{Un langage fonctionnel.}
+
+\begin{defi}{Langage fonctionnel.}{}
+    OCaml est un \bf{langage fonctionnel}: l'abstraction de base est la fonction au sens mathématique du terme. Une fonction associe une sortie à une entrée.
+\end{defi}
+
+\begin{defi}{Mutabilité.}{}
+    Pour tout le début du cours, on s'astreint à n'utiliser que la partie immuable de OCaml, on ne peut pas modifier la valeur d'un emplacement mémoire.\\
+    En C, l'état du programme est mutable: on change en permanence les valeurs des variables.\n
+    Dans un programme purement fonctionnel, les variables ne changent pas de valeur, et les fonctions n'ont pas d'effet de bord.
+\end{defi}
+
+\begin{defi}{Expressions.}{}
+    En programmation fonctionnelle, il n'y a pas d'instructions mais des \bf{expressions}: elles ne décrivent pas comment faire le calcul, mais ce qu'il faut calculer.\\
+    Les expressions sont la brique de base des langages fonctionnels. Chaque expression a deux facettes qui nous permettent de l'écrire:\\
+    --- Sa syntaxe: mots-clés, ponctuation.\\
+    --- Sa sémantique: signification.\\
+    Il y a deux types de sémantiques:\\
+    --- Statique (avant l'exécution du programme), le compilateur produit un type pour chaque expression ou échoue.\\
+    --- Dynamique (règles d'évaluation), production d'une valeur si tout se passe bien, une valeur est une expression qui n'a plus besoin d'être évaluée.\n
+    Dans le cas où l'évaluation échoue, on se retrouve avec une erreur ou une boucle infinie.
+\end{defi}
+
+\begin{defi}{Exécuter du OCaml.}{}
+    Pour obtenir du bytecode, on utilise la commande \texttt{ocamlc source.ml}.\\
+    Elle produit un fichier \texttt{a.out} qu'on peut exécuter avec \texttt{ocamlrun a.out}.\\
+    Pour obtenir un exécutable natif, on utilise la commande \texttt{ocamlopt source.ml}.
+\end{defi}
+
+\subsection{Types.}
+
+\begin{defi}{Types de base.}{}
+    OCaml possède des types de base:\\
+    --- \texttt{int} : entiers \texttt{(+, -, *, /, mod)} codé sur 63 bits.\\
+    --- \texttt{float} : flottants \texttt{(+., -., *., /.)} en norme IEE.\\
+    --- \texttt{bool} : booléens \texttt{(\&\&, ||, not)}.\\
+    --- \texttt{char} : caractères codé sur 8 bits en ASCII.\\
+    --- \texttt{string} : chaînes de caractères \texttt{($\hat{\phantom{a}}$)}.
+\end{defi}
+
+\begin{defi}{Comparaisons.}{}
+    On peut comparer les entiers, les flottants, les booléens et les caractères.\\
+    Les comparaisons se font avec \texttt{=}, \texttt{<>}, \texttt{<}, \texttt{>}, \texttt{<=}, \texttt{>=}.\\
+    On ne compare pas de types différents.
+\end{defi}
+
+\begin{defi}{Conversions.}{}
+    OCaml ne fait pas de conversions implicites.\\
+    Pour convertir un entier en flottant, on utilise \texttt{float\_of\_int}.\\
+    Pour convertir un flottant en chaîne de caractères, on utilise \texttt{string\_of\_float}.\\
+    Pour convertir un flottant en entier, on utilise \texttt{int\_of\_float}.\\
+    ...
+\end{defi}
+
+\begin{defi}{Inférences de types.}{}
+    Le compilateur infère les types: le programmeur ne spécifie pas les types.\\
+    Si le compilateur ne parvient pas à les inférer, la compilation échoue.\\
+    On peut spécifier les types avec \texttt{let (nom : type) = expression}.
+\end{defi}
+
+\begin{defi}{Définitions des variables.}{}
+    Une variable permet de donner un nom à une valeur. En OCaml, cette valeur ne pourra pas être modifiée.\\
+    Pour définir une variable et lui donner une valeur, on utilise le mot-clé \texttt{let}:
+    \begin{center}
+        \texttt{let nom = expression}
+    \end{center}
+    où nom est un identifiant. Les règles de construction d'un identifiant sont globaleme,nt les mêmes qu'en C. L'identifiant commence nécessairement par une minuscule.\n
+    Une définition n'est pas une expression. 
+\end{defi}
+
+\subsection{Expressions.}
+
+\subsubsection{Expressions conditionnelles.}
+
+\begin{defi}{}{}
+    En OCaml, on utilise le mot-clé \texttt{if} pour les expressions conditionnelles.\\
+    La syntaxe est la suivante:
+    \begin{center}
+        \texttt{if condition then expression\_1 else expression\_2}
+    \end{center}
+    L'expression conditionnelle renvoie la valeur de \texttt{expression\_1} si la condition est vraie, et celle de \texttt{expression\_2} sinon.\\
+    La condition doit être de type booléen et les deux expressions doivent être du même type.
+\end{defi}
+
+\subsubsection{Expressions let.}
+
+\begin{defi}{}{}
+    Les expressions let ressemblent syntaxiquement aux définitions mais sont des expressions qu'on peut utiliser comme sous-expressions d'une expression plus grande:
+    \begin{center}
+        \texttt{let nom = expression\_1 in expression\_2}
+    \end{center}
+    \bf{Sémantique dynamique:}\\
+    --- On évalue \texttt{expression\_1} en \texttt{valeur\_1}.\\
+    --- On remplace \texttt{nom} par \texttt{valeur\_1} dans \texttt{expression\_2}.\\
+    --- On évalue \texttt{expression\_2} en \texttt{valeur\_2}.\\
+    --- On renvoie \texttt{valeur\_2}.\n
+    \bf{Sémantique statique:}\\
+    --- On vérifie que \texttt{expression\_1} est bien de type \texttt{t\_1}.\\
+    --- Si \texttt{nom} est de type \texttt{t\_1}, alors \texttt{expression\_2} est de type \texttt{t\_2}.\\
+    Alors le type de l'expression est \texttt{t\_2}.\n
+    Chaque \texttt{let} définit une nouvelle variable. Si elle porte le même nom qu'une variable existante, elle la masque, l'ancienne variable existe toujours.
+\end{defi}
+
+\subsection{Fonctions.}
+
+\begin{defi}{Fonctions anonymes.}{}
+    En OCaml, on peut définir des fonctions de manière similaire aux maths:
+    \begin{center}
+        \texttt{fun x -> x + 1}
+    \end{center}
+    On utilise le mot-clé \texttt{fun}.\\
+    Pour appliquer une fonction à une valeur, on écrit la fonction, un espace puis la valeur.
+\end{defi}
+
+\begin{defi}{Fonctions.}{}
+    La syntaxe précédente est un peu lourde, OCaml possède une autre syntaxe pour définir et donner directement un nom à une fonction : \texttt{let suivant x = x + 1}\\
+    Cette expression est sémantiquement équivalente à la précédente, mais possède une autre syntaxe. La deuxième écriture est un sucre syntaxique.
+\end{defi}
+
+\begin{defi}{Sémantique statique.}{}
+    Le type d'une fonction contient une flèche : $t \to u$ signifie que la fonction possède un unique paramètre de type $t$ et que son évaluation est de type $u$.\n
+    Si une fonction possède deux arguments, son type est : $t_1\to t_2 \to u$.\\
+    L'application d'une fonction est prioritaire sur les opérateurs arithmétiques.
+\end{defi}
+
+\begin{defi}{Sémantique dynamique.}{}
+    Chaque expression en argument est évaluée puis la fonction est évaluée sur les valeurs.
+\end{defi}
+
+\begin{defi}{Curryfication.}{}
+    On a vu que dans le type d'une fonction, le symbole flèche semble avoir deux significations différentes, en fait, ce n'est pas le cas: on ne définit que des fonctions à un seul argument en OCaml.\\
+    La notation \texttt{fun x y $\to$ e} est un sucre syntaxique pour \texttt{fun x $\to$ (fun y $\to$ e)}.\\
+    Dans cette notation, on voit que l'argument est unique.\n
+    L'associativité de $\to$ se fait de gauche à droite, donc \texttt{x $\to$ (y $\to$ e)} peut s'écrire \texttt{x $\to$ y $\to$ e}.
+\end{defi}
+
+\begin{defi}{Fonction récursives.}{}
+    Il faut spécifier explicitement qu'une fonction est récursive avec le mot-clé \texttt{rec}.\\
+    Pour définir des fonctions mutuellement récursives, on utilise le mot-clé \texttt{and}.\\
+    \bf{Exemples:}\\
+    --- \texttt{let rec f x = if x = 0 then 1 else x * f (x-1)}.\\
+    --- \texttt{let rec f x = if x = 0 then 1 else x * g (x-1) and g x = if x = 0 then 1 else x * f (x-1)}.
+\end{defi}
+
+\begin{defi}{Récursion terminale.}{}
+    OCaml possède un mécanisme qui lui permet de remplacer un bloc d'appel par un autre si le résultat de l'appel est en fait le résultat de l'appel suivant.\\
+    Une fonction récursive qui ne fait pas d'opérations sur le résultat de son appel récursif est dite récursive terminale. Les appels ne s'empilent pas donc la pile d'appel ne déborde pas.
+\end{defi}
+
+\subsection{Listes et filtrages.}
+
+\begin{defi}{Polymorphisme.}{}
+    Les identifiants de types commencent toujours par une apostrophe, ils sont appelés \bf{variables de types}.\\
+    Lorsqu'une fonction est \bf{polymorphe}, elle peut être appliquée à des arguments de types différents.\n
+    \bf{Exemple:} \texttt{let fst (x, y) = x} est de type \texttt{'a * 'b -> 'a}.
+\end{defi}
+
+\begin{defi}{Listes.}{}
+    Les \bf{listes} sont des listes chaînées. Elles s'écrivent entre crochets et ses élément sont séparés par des points-virgules.
+    Cette syntaxe est un sucre syntaxique pour : \texttt{t::s} où $t$ est la tête de liste et $s$ la suite.
+    Les listes sont immuables.\n
+    \bf{Exemple:} \texttt{[1; 2; 3]} est une liste d'entiers.\n
+    \bf{Sémantique dynamique:}\\
+    --- \texttt{[]} est une valeur.\\
+    --- si \texttt{e} s'évalue en \texttt{v} et \texttt{e'} s'évalue en la liste \texttt{l}, alors \texttt{e::e'} s'évalue en la liste \texttt{v::l}.\n
+    \bf{Sémantique statique:}\\
+    Pour un type \texttt{t}, le type \texttt{t list} est le type des listes dont les cases sont de type \texttt{t}.\\
+    --- \texttt{[]} est de type \texttt{'a list}.\\
+    --- si \texttt{e} est de type \texttt{t} et \texttt{e'} est de type \texttt{t list} ou \texttt{'a list}, alors \texttt{e::e'} est de type \texttt{t list}.
+\end{defi}
+
+\begin{defi}{\texttt{@} vs \texttt{::}}{}
+    L'opérateur \texttt{@} permet de concaténer deux listes: \texttt{l1 @ l2}.\\
+    La complexité de l'opérateur \texttt{@} est linéaire en le nombre d'éléments dans la liste, alors que celle de \texttt{::} est constante.
+\end{defi}
+
+\begin{defi}{Filtrage par motif.}{}
+    Cette technique permet d'appliquer un traitement à une liste selon ses premiers maillons:
+    \begin{center}
+        \texttt{match liste with\\
+        \hspace{-1.3cm}| [] -> $e_1$\\
+        \hspace{-0.9cm}| t::q -> $e_2$
+        }
+    \end{center}
+    Cette technique compare la valeur d'une expression à plusieurs motifs. Le premier identifiable à cette valeur est choisi et l'expression associée est évaluée.\n
+    Les retours à la ligne dans les \texttt{match} sont facultatifs, comme la barre avant le premier motif.\n
+    Les motifs peuvent utiliser des identifiants, des jokers (\texttt{\_}) et des constantes. Il y a des contraintes sur les variables de motifs:\\
+    --- On ne peut pas utiliser deux fois la même varibale dans un même motif : \texttt{x::x::x::\_} est illégal.\\
+    --- On ne peut pas utiliser une variable existante dans un motif (la masque).
+\end{defi}
+
+\begin{defi}{Fonctionnement du filtrage.}{}
+    --- Une constante s'identifie uniquement avec elle-même.\\
+    --- Une variable s'identifie avec toute valeur du même type qui lui est associée.\\
+    --- Le caractère \texttt{\_} s'identifie avec n'importe quelle valeur.\\
+    --- Chaque type de données a ses propres motifs de filtrages.\n
+    \bf{Sémantique dynamique:}\\
+    Pour un filtrage de motif:
+    \begin{addmargin}[2em]{1em}
+        \texttt{
+            match e with\\
+            \hspace*{0.1cm}| m1 -> e1\\
+            \hspace*{0.1cm}| m2 -> e2\\
+            \hspace*{0.1cm}| $\vdots$\\
+            \hspace*{0.1cm}| mn -> en
+        }
+    \end{addmargin}
+    --- \texttt{e} est évalué en \texttt{v}.\\
+    --- Si \texttt{v} s'identifie avec le premier motif possible.\\
+    --- L'expression associée est évaluée en substituant aux variables de motif les valeurs associées.\\
+    --- La valeur obtenue est la valeur de l'expression.\n
+    \bf{Sémantique statique:}\\
+    Les motifs \texttt{mi} doivent être compatibles avec le type de \texttt{e} et les expressions \texttt{ei} doivent être de même type.\n
+    \bf{Remarque:} Les motifs peuvent être imbriqués.
+\end{defi}
+
+\begin{defi}{Disjonction de motifs.}{}
+    On peut regrouper plusieurs motifs qui sont associés à la même expression: \texttt{| m1 | m2 | $\dots$ | mn -> e}.\\
+    Ces motifs doivent utiliser exactement les mêmes variables de motif, quel que soit le motif identifié à l'expression.
+\end{defi}
+
+\begin{defi}{Motifs gardés.}{}
+    On peut ajouter une condition à un motif: \texttt{| m when c -> e}.\\
+    La condition \texttt{c} est une expression booléenne qui doit être vraie pour que le motif soit identifié.
+\end{defi}
+
+\begin{defi}{Mot-clé \texttt{function}}{}
+    On filtre le dernier argument fourni à une fonction grâce à un sucre syntaxique: \texttt{function}.\\
+    \bf{Exemple:} \texttt{let f = function | [] -> 0 | x::q -> x}.\\
+    Cet exemple est équivalent à \texttt{let f x = match x with | [] -> 0 | x::q -> x}.
+\end{defi}
+
+\subsection{Types algébriques.}
+
+\begin{defi}{Types énumérés.}{}
+    Un \bf{type énuméré} (ou somme) représente un ensemble fini de valeurs.\\
+    En OCaml, on utilise le mot-clé \texttt{type} pour définir un type énuméré.\\
+    Le nom d'un type commence par une lettre miniscule, chaque valeur particulière d'un type énuméré s'appelle un constructeur et son identifiant commence par une majuscule. Dans la déclaration d'un type somme, les noms des constructeurs sont séparés par des barres verticales.\\
+    On peut évaleur une expression de type énuméré par filtrage.\\
+    \bf{Exemple:} \texttt{type jour = Lundi | Mardi | Mercredi | Jeudi | Vendredi | Samedi | Dimanche}.\\
+    \bf{Sémantique dynamique:}\\
+    Un constructeur est constant.\\
+    \bf{Sémantique statique:}\\
+    Si \texttt{t} est défini par \texttt{type t = c1 | c2 | $\dots$ | cn}, alors \texttt{ci} est de type \texttt{t}.\\
+    En cas d'ambiguïté sur un constructeur, le dernier type déclaré dans lequel il apparaît est choisi. 
+\end{defi}
+
+\begin{defi}{Types énumérés avec données.}{}
+    Les types énumérés peuvent être enrichis avec des valeurs.\\
+    \bf{Syntaxe:} \texttt{type t = c1 of t1 | c2 of t2 | $\dots$ | cn of tn}.\\
+    Un constructeur qui ne porte pas de valeur est constant, pour écrire une expression de type \texttt{t} avec un tel constructeur on utilise son nom.\\
+    Un constructeur qui transporte de l'information est non constant, on utilise alors le nom du constructeur suivi de l'information qu'il transporte.\n
+    \bf{Exemple:} \texttt{type nombre = Int of int | Float of float}.\\
+    On peut alors écrire \texttt{Int 3} ou \texttt{Float 3.0}.
+\end{defi}
+
+\begin{defi}{Types récursifs et polymorphismes.}{}
+    En OCaml, on peut définir des types récursifs, on peut définir des types polumorphes en leur ajoutant un paramètre sous la forme de variable de type avant son nom.\\
+    \bf{Exemple:} \texttt{type 'a liste = Vide | Maillon of 'a * 'a liste}.\n
+    On peut utiliser plusieurs paramètres de type.\\
+    \bf{Exemple:} \texttt{type ('a, 'b) couple = 'a * 'b}.\n
+    Autre exemple de liste chaînée:\\
+    \texttt{type maillon  \{valeur : int; suivant : liste\}\\
+    and liste = Vide | Maillon of maillon}.
+\end{defi}
+
+\begin{defi}{Enregistrements.}{}
+    Un \bf{enregistrement} est un type qui permet d'agréger des données (dont le type existe).\\
+    Il y a un champ par type, et il faut donner une valeur à chaque champs, sinon le compilateur renvoie une erreur.\\
+    Pour récurpérer la valeur d'un champ, on utilise le nom de la variable point le nom du champ.\n
+    \bf{Exemples:}\\
+    Définition du type: \texttt{type point = \{x : float; y : float\}}\\
+    Déclaration d'une instance de ce type: \texttt{let p = \{x = 3.0; y = 4.0\}}\\
+    Accès au champ \texttt{x} de \texttt{p}: \texttt{p.x}\n
+    On peut faire du filtrage par motif en ajoutant le motif : \texttt{\{f1 = v1; f2 = v2; ...\}}.\\
+    Où les \texttt{fi} sont des identifiants de champs et les \texttt{vi} des motifs compatibles avec le type du champ.
+\end{defi}
+
+
+\begin{defi}{n-uplets}{}
+    Un \bf{n-uplet} est un type qui permet d'agréger des données non-nommées.\\
+    Une valeur de type n-uplet s'écrit \texttt{(e1,...,en)}, et son type est \texttt{t1 * t2 * ... * tn} où les \texttt{ti} sont les types des éléments du n-uplet.\\
+    On peut récupérer les valeurs d'un n-uplet:
+    \begin{center}
+        \texttt{let v1, v2, ... = (e1, e2, ...)}
+    \end{center}
+    Quitte à utiliser un joker pour les valeurs qui ne nous intéressent pas.\\
+    On ajoute le motif \texttt{(m1, m2, ...)} dans les motifs autorisés, avec parenthèses facultative, mais le motif doit être de même taille que le n-uplet filtré.
+\end{defi}
+
+\begin{defi}{Type option.}{}
+    Le type \texttt{option} permet de gérer les valeurs qui peuvent être absentes.\\
+    \bf{Définition du type:} \texttt{type 'a option = None | Some of 'a}.\\
+    C'est un type présent dans la bibliothèque standard d'OCaml.
+\end{defi}
+
+\end{document}

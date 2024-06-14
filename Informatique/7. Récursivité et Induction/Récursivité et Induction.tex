@@ -1,0 +1,154 @@
+\documentclass[french, 11pt]{article}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\def\chapitre{24}
+\def\pagetitle{Récursivité et Induction}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\section{Récurrence sur \texorpdfstring{$\N$}{Lg}}
+
+\begin{prop}{Récurrence.}{}
+    Soit $P(n)$ un prédicat sur $n\in\N$.
+    \begin{equation*}
+        (P(0) ~ \nt{et} ~ \forall n\in\N, P(n) \ra P(n+1)) \ra \forall n\in\N, ~ P(n).
+    \end{equation*}
+    \tcblower
+    Supposons que $E=\{n\in\N ~ | ~ P(n)\}$ est non vide.\\
+    Alors $E$ est minoré et non vide, il a un minimum $m$ non nul tel que $P(m)$ est faux.\\
+    Ainsi, $P(m-1)$ est vrai car $m-1<m$ et $m$ est le minimum de $E$, or $P(m-1)\ra P(m)$.\\
+    On en déduit que $P(m)$ est vrai, ce qui est absurde, donc $E=\0$.\n
+    \bf{Remarques:} Ce principe repose sur les propriétés de $\N$, qui possède un ordre total, a un élément plus petit 0 et est le plus petit sous-ensemble de $\R$ tel que $0\in\N$ et $n\in\N\ra n+1\in\N$.
+\end{prop}
+
+\section{Ensembles ordonnés.}
+\subsection{Définitions.}
+
+\begin{defi}{Prédécesseurs.}{}
+    Soit $E\neq\0$ et $\leq$ une relation d'ordre sur $E$. Soient $x,y\in E$ tels que $x\neq y$.\\
+    On dit que $x$ est un \bf{prédécesseur} de $y$ si ils sont comparables et que $x\leq y$.\\
+    C'est un \bf{prédécesseur immédiat} de $y$ si $\forall z>x, ~ z\geq y$.\\
+    On dit que $x$ est \bf{minimal} si $\forall y \in E, ~ y \geq x$.
+\end{defi}
+
+\begin{defi}{Ordre total.}{}
+    La relation d'ordre est totale si $\forall x,y\in E, ~ x\leq y$ ou $y \leq x$.\n
+    Un ensemble muni d'un ordre total a au plus un élément minimal $m$.\\
+    La donnée d'un ordre sur un ensemble l'induit sur chacun de ses sous-ensembles.
+\end{defi}
+
+\begin{prop}{Ensemble bien fondé. $\star$}{}
+    Soit $E$ un ensemble ordonné par la loi $\leq$. Il y a équivalence entre :\\
+    \hspace*{2em}$1.$ Tout sous-ensemble \textbf{non-vide} de $E$ admet un élément minimal.\\
+    \hspace*{2em}$2.$ Toute suite infinie décroissante de $E$ est stationnaire.
+    \tcblower
+    \fbox{$\ra$} Supposons que tout sous-ensemble non-vide de $E$ admet un élément minimal.\\
+    Soit $(u_n)_{n\in\mathbb{N}}$ une suite infinie décroissante de $E$.\\
+    Soit $F=\{u_n ~ | ~ n \in \mathbb{N}\}\subset E$.\\
+    Alors $\exists k \in \mathbb{N} ~ | ~ u_k = \min(F)$, or $(u_n)$ est décroissante donc $\forall n \geq k, ~ u_n = u_k$.\\
+    On a bien montré que cette suite est stationnaire.\\[0.2cm]
+    \fbox{$\la$} Supposons que toute suite infinie décroissante de $E$ est stationnaire.\\
+    Soit $F\subset E ~ | ~ F \neq \varnothing$.\\
+    On définit $(u_n)$ telle que $u_0 \in F$ et $u_{n+1}$ soit le prédécesseur immédiat de $u_n$ par $\leq$ s'il existe, sinon $u_n$.\\
+    Par construction, $(u_n)$ est infinie et décroissante donc stationnaire : $\exists k \in \mathbb{N} ~ \forall n \geq k, ~ u_n = u_k$.\\
+    On en déduit que $u_k$ n'a pas de prédécesseur par $\leq$, c'est le minimum de $F$.\\
+    On a bien montré l'équivalence.
+\end{prop}
+
+\pagebreak
+
+\begin{prop}{Ordre lexicographique.}{}
+    Soit $E$ un ensemble ordonné par $\leq$.\\
+    L'ordre lexicographique sur $E^n$ est :
+    \begin{equation*}
+        (x_i)_{i\in\lb1,n\rb} < (y_i)_{i\in\lb1,n\rb} \ra \exists N \in \lb1,n\rb \mid \forall i < N, ~ x_i = y_i \land x_N < y_N.
+    \end{equation*}
+    Si $\leq$ est total, alors l'ordre lexicographique l'est aussi.\\
+    Si l'ordre de $E$ est bien fondé, alors l'ordre lexicographique sur $E^n$ l'est aussi.
+\end{prop}
+
+\subsection{Ensembles inductifs.}{}
+
+\begin{defi}{Ensemble défini inductivement. $\star$}{}
+    Soit $E$ un ensemble non vide. Une définition de $X \subseteq E$ consiste à se donner :\\
+    \hspace*{2em}$\circledcirc$ Un ensemble $B\subseteq E$ non vide d'assertions.\\
+    \hspace*{2em}$\circledcirc$ Un ensemble $R$ de règles : $\forall r_i \in R, ~ r_i : E^{n_i} \to E$ avec $n_i$ l'arité de $r_i$.
+\end{defi}
+
+\begin{thm}{Point fixe. $\star$}{}
+    Il existe un plus petit sous-ensemble $X$ de $E$ tel que :\\
+    \hspace*{2em}$(B)$ $B \subset X$ : les assertions sont dans $X$.\\
+    \hspace*{2em}$(I)$ $\forall r_i \in R, ~ \forall (x_1, ..., x_{n_i}) \in X^{n_i} ~ $ on a $ ~ r_i(x_1,...,x_{n_i})\in X$ avec $n_i$ l'arité de $r_i$ : $X$ est stable par les règles.
+    \tcblower
+    Soit $\cursive{F}$ l'ensemble des parties de $E$ vérifiant $(B)$ et $(I)$.\\
+    On considère $X$ l'intersection de tous les éléments de $\cursive{F}$ :
+    \begin{equation*}
+        X = \bigcap_{Y\in\cursive{F}}Y.
+    \end{equation*}
+    Puisque $\forall Y\in \cursive{F}, ~ B\subset Y$, on en déduit que $B \subset X$. On a donc vérifié $(B)$.\\
+    Soit $r_i\in R$ et $(x_1, ..., x_{n_i})\in X^{n_i}$.\\
+    Remarquons que $\forall Y \in \cursive{F}, ~ x_1, ..., x_{n_i} \in Y$, or les $Y$ sont stables par les règles d'où $\forall Y \in \cursive{F}, ~ r_i(x_1, ..., x_{n_i})\in Y$.\\
+    Puisque $X$ est leur intersection, $r_i(x_1, ..., x_{n_i})\in X$ et $X$ vérifie alors $(I)$.\\
+    C'est donc le plus petit ensemble vérifiant $(B)$ et $(I)$ par construction.
+\end{thm}
+
+\section{Preuve par induction.}
+\subsection{Théorème de l'induction.}
+
+\begin{thm}{Induction structurelle. $\star$}{}
+    Soit $X\subseteq E$ défini inductivement (cf question précédente) et $\m{P}$ un prédicat sur $E$.\\
+    Si on a que :\\
+    \hspace*{2em}$(B)$ $\m{P}(x)$ est vraie pour tout $x\in B$.\\
+    \hspace*{2em}$(I)$ $\m{P}$ est héréditaire : $\forall r_i\in R, ~ \forall (x_1,...,x_{n_i})\in E^{n_i}, ~ \m{P}(x_1),...,\m{P}(x_{n_i})\Longrightarrow \m{P}(r_i(x_1, ..., x_{n_i}))$.\\
+    Alors $\m{P}(x)$ est vraie pour tout $x\in X$.
+    \tcblower
+    On suppose $(B)$ et $(I)$, montrons que $\m{P}(x)$ est vraie pour tout $x\in E$.\\
+    Soit $Y = \{x\in E ~ | ~ P(x)\}$. Alors $B \subset Y$ d'après $(B)$ et $Y$ est stable par $R$ d'après $(I)$.\\
+    On a alors $X \subset Y$ donc $\forall x \in X, ~ \m{P}(x)$ est vrai.
+\end{thm}
+
+\begin{ex}{}{}
+    Pour un arbre binaire strict A, on note $\cursive{N}(A)$ son nombre de noeuds, $\cursive{F}(A)$ son nombre de feuilles.\\
+    On a alors $\cursive{N}(A)=2\cursive{F}(A)-1$.
+    \tcblower
+    On définit inductivement l'ensemble $\cursive{A}$ des arbres binaires stricts par :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item Assertions : $\{0\}$ l'arbre restreint à sa racine.
+        \item Règles : $\{R_0:(g,d) \mapsto \nt{Noeud}(g,d)\}$, l'arbre obtenu en donnant un ancêtre commun à $g,d\in\cursive{A}$.
+    \end{itemize}
+    La propriété est immédiatement vraie sur l'arbre réduit à sa racine.\\
+    On suppose que la propriété est vraie pour $g,d\in\cursive{A}$.\\
+    Ainsi, $\cursive{N}(R_0(g,d))=1+\cursive{N}(g)+\cursive{N}(d)=1+2\cursive{F}(g)-1+2\cursive{F}(d)-1=2\cursive{F}(R_0(g,d))-1$.\\
+    Donc la propriété est stable par les règles d'inférence.\\
+    Par théorème d'induction structurelle, elle est vraie pour tout arbre binaire strict.
+\end{ex}
+
+\pagebreak
+
+\begin{corr}{Induction bien fondée.}{}
+    Soit $E$ muni d'un ordre bien-fondé et $\P$ un prédicat sur $E$. Si :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item $\P$ est vraie sur tout élément minimal de $E$.
+        \item $\forall x\in E, ~ (\forall y<x, ~ \P(y)) \Longrightarrow \P(x)$.
+    \end{itemize}
+    Alors $\P$ est vraie pour tout $x\in E$.
+    \tcblower
+    $\bullet$ Les assertions sont les minimaux.\\
+    $\bullet$ Les règles sont une famille de fonction permettant de passer au successeur immédiat.
+\end{corr}
+
+\subsection{Correction des récursives.}
+
+\begin{meth}{Correction des récursives.}{}
+    L'ensemble des valeurs des paramètres des fonctions récursives peut être défini par induction :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item Assertions : cas de base.
+        \item Règles : lien entre les paramètres de l'appel récursif et ceux de l'appel courant.
+    \end{itemize}
+    On utilise alors le théorème d'induction pour prouver la correction.
+\end{meth}
+
+\end{document}
