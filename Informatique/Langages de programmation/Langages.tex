@@ -1,5 +1,7 @@
 \documentclass[french, 11pt]{article}
 
+\usepackage{scrextend}
+
 \input{/home/theo/MP2I/setup.tex}
 
 \def\chapitre{29}
@@ -606,17 +608,13 @@
 \end{defi}
 
 \begin{defi}{Fonctions.}{}
-    La syntaxe précédente est un peu lourde, OCaml possède une autre syntaxe pour définir et donner directement un nom à une fonction :
-    \begin{center}
-        \texttt{let suivant x = x + 1}
-    \end{center}
+    La syntaxe précédente est un peu lourde, OCaml possède une autre syntaxe pour définir et donner directement un nom à une fonction : \texttt{let suivant x = x + 1}\\
     Cette expression est sémantiquement équivalente à la précédente, mais possède une autre syntaxe. La deuxième écriture est un sucre syntaxique.
 \end{defi}
 
 \begin{defi}{Sémantique statique.}{}
     Le type d'une fonction contient une flèche : $t \to u$ signifie que la fonction possède un unique paramètre de type $t$ et que son évaluation est de type $u$.\n
-    Si une fonction possède deux arguments, son type est : $t_1\to t_2 \to u$.\n
-    Syntaxe: un espace entre la fonction et les arguments, pas de virgules.\n
+    Si une fonction possède deux arguments, son type est : $t_1\to t_2 \to u$.\\
     L'application d'une fonction est prioritaire sur les opérateurs arithmétiques.
 \end{defi}
 
@@ -644,7 +642,151 @@
     Une fonction récursive qui ne fait pas d'opérations sur le résultat de son appel récursif est dite récursive terminale. Les appels ne s'empilent pas donc la pile d'appel ne déborde pas.
 \end{defi}
 
-\subsection{Listes et filtrages}
+\subsection{Listes et filtrages.}
 
+\begin{defi}{Polymorphisme.}{}
+    Les identifiants de types commencent toujours par une apostrophe, ils sont appelés \bf{variables de types}.\\
+    Lorsqu'une fonction est \bf{polymorphe}, elle peut être appliquée à des arguments de types différents.\n
+    \bf{Exemple:} \texttt{let fst (x, y) = x} est de type \texttt{'a * 'b -> 'a}.
+\end{defi}
+
+\begin{defi}{Listes.}{}
+    Les \bf{listes} sont des listes chaînées. Elles s'écrivent entre crochets et ses élément sont séparés par des points-virgules.
+    Cette syntaxe est un sucre syntaxique pour : \texttt{t::s} où $t$ est la tête de liste et $s$ la suite.
+    Les listes sont immuables.\n
+    \bf{Exemple:} \texttt{[1; 2; 3]} est une liste d'entiers.\n
+    \bf{Sémantique dynamique:}\\
+    --- \texttt{[]} est une valeur.\\
+    --- si \texttt{e} s'évalue en \texttt{v} et \texttt{e'} s'évalue en la liste \texttt{l}, alors \texttt{e::e'} s'évalue en la liste \texttt{v::l}.\n
+    \bf{Sémantique statique:}\\
+    Pour un type \texttt{t}, le type \texttt{t list} est le type des listes dont les cases sont de type \texttt{t}.\\
+    --- \texttt{[]} est de type \texttt{'a list}.\\
+    --- si \texttt{e} est de type \texttt{t} et \texttt{e'} est de type \texttt{t list} ou \texttt{'a list}, alors \texttt{e::e'} est de type \texttt{t list}.
+\end{defi}
+
+\begin{defi}{\texttt{@} vs \texttt{::}}{}
+    L'opérateur \texttt{@} permet de concaténer deux listes: \texttt{l1 @ l2}.\\
+    La complexité de l'opérateur \texttt{@} est linéaire en le nombre d'éléments dans la liste, alors que celle de \texttt{::} est constante.
+\end{defi}
+
+\begin{defi}{Filtrage par motif.}{}
+    Cette technique permet d'appliquer un traitement à une liste selon ses premiers maillons:
+    \begin{center}
+        \texttt{match liste with\\
+        \hspace{-1.3cm}| [] -> $e_1$\\
+        \hspace{-0.9cm}| t::q -> $e_2$
+        }
+    \end{center}
+    Cette technique compare la valeur d'une expression à plusieurs motifs. Le premier identifiable à cette valeur est choisi et l'expression associée est évaluée.\n
+    Les retours à la ligne dans les \texttt{match} sont facultatifs, comme la barre avant le premier motif.\n
+    Les motifs peuvent utiliser des identifiants, des jokers (\texttt{\_}) et des constantes. Il y a des contraintes sur les variables de motifs:\\
+    --- On ne peut pas utiliser deux fois la même varibale dans un même motif : \texttt{x::x::x::\_} est illégal.\\
+    --- On ne peut pas utiliser une variable existante dans un motif (la masque).
+\end{defi}
+
+\begin{defi}{Fonctionnement du filtrage.}{}
+    --- Une constante s'identifie uniquement avec elle-même.\\
+    --- Une variable s'identifie avec toute valeur du même type qui lui est associée.\\
+    --- Le caractère \texttt{\_} s'identifie avec n'importe quelle valeur.\\
+    --- Chaque type de données a ses propres motifs de filtrages.\n
+    \bf{Sémantique dynamique:}\\
+    Pour un filtrage de motif:
+    \begin{addmargin}[2em]{1em}
+        \texttt{
+            match e with\\
+            \hspace*{0.1cm}| m1 -> e1\\
+            \hspace*{0.1cm}| m2 -> e2\\
+            \hspace*{0.1cm}| $\vdots$\\
+            \hspace*{0.1cm}| mn -> en
+        }
+    \end{addmargin}
+    --- \texttt{e} est évalué en \texttt{v}.\\
+    --- Si \texttt{v} s'identifie avec le premier motif possible.\\
+    --- L'expression associée est évaluée en substituant aux variables de motif les valeurs associées.\\
+    --- La valeur obtenue est la valeur de l'expression.\n
+    \bf{Sémantique statique:}\\
+    Les motifs \texttt{mi} doivent être compatibles avec le type de \texttt{e} et les expressions \texttt{ei} doivent être de même type.\n
+    \bf{Remarque:} Les motifs peuvent être imbriqués.
+\end{defi}
+
+\begin{defi}{Disjonction de motifs.}{}
+    On peut regrouper plusieurs motifs qui sont associés à la même expression: \texttt{| m1 | m2 | $\dots$ | mn -> e}.\\
+    Ces motifs doivent utiliser exactement les mêmes variables de motif, quel que soit le motif identifié à l'expression.
+\end{defi}
+
+\begin{defi}{Motifs gardés.}{}
+    On peut ajouter une condition à un motif: \texttt{| m when c -> e}.\\
+    La condition \texttt{c} est une expression booléenne qui doit être vraie pour que le motif soit identifié.
+\end{defi}
+
+\begin{defi}{Mot-clé \texttt{function}}{}
+    On filtre le dernier argument fourni à une fonction grâce à un sucre syntaxique: \texttt{function}.\\
+    \bf{Exemple:} \texttt{let f = function | [] -> 0 | x::q -> x}.\\
+    Cet exemple est équivalent à \texttt{let f x = match x with | [] -> 0 | x::q -> x}.
+\end{defi}
+
+\subsection{Types algébriques.}
+
+\begin{defi}{Types énumérés.}{}
+    Un \bf{type énuméré} (ou somme) représente un ensemble fini de valeurs.\\
+    En OCaml, on utilise le mot-clé \texttt{type} pour définir un type énuméré.\\
+    Le nom d'un type commence par une lettre miniscule, chaque valeur particulière d'un type énuméré s'appelle un constructeur et son identifiant commence par une majuscule. Dans la déclaration d'un type somme, les noms des constructeurs sont séparés par des barres verticales.\\
+    On peut évaleur une expression de type énuméré par filtrage.\\
+    \bf{Exemple:} \texttt{type jour = Lundi | Mardi | Mercredi | Jeudi | Vendredi | Samedi | Dimanche}.\\
+    \bf{Sémantique dynamique:}\\
+    Un constructeur est constant.\\
+    \bf{Sémantique statique:}\\
+    Si \texttt{t} est défini par \texttt{type t = c1 | c2 | $\dots$ | cn}, alors \texttt{ci} est de type \texttt{t}.\\
+    En cas d'ambiguïté sur un constructeur, le dernier type déclaré dans lequel il apparaît est choisi. 
+\end{defi}
+
+\begin{defi}{Types énumérés avec données.}{}
+    Les types énumérés peuvent être enrichis avec des valeurs.\\
+    \bf{Syntaxe:} \texttt{type t = c1 of t1 | c2 of t2 | $\dots$ | cn of tn}.\\
+    Un constructeur qui ne porte pas de valeur est constant, pour écrire une expression de type \texttt{t} avec un tel constructeur on utilise son nom.\\
+    Un constructeur qui transporte de l'information est non constant, on utilise alors le nom du constructeur suivi de l'information qu'il transporte.\n
+    \bf{Exemple:} \texttt{type nombre = Int of int | Float of float}.\\
+    On peut alors écrire \texttt{Int 3} ou \texttt{Float 3.0}.
+\end{defi}
+
+\begin{defi}{Types récursifs et polymorphismes.}{}
+    En OCaml, on peut définir des types récursifs, on peut définir des types polumorphes en leur ajoutant un paramètre sous la forme de variable de type avant son nom.\\
+    \bf{Exemple:} \texttt{type 'a liste = Vide | Maillon of 'a * 'a liste}.\n
+    On peut utiliser plusieurs paramètres de type.\\
+    \bf{Exemple:} \texttt{type ('a, 'b) couple = 'a * 'b}.\n
+    Autre exemple de liste chaînée:\\
+    \texttt{type maillon  \{valeur : int; suivant : liste\}\\
+    and liste = Vide | Maillon of maillon}.
+\end{defi}
+
+\begin{defi}{Enregistrements.}{}
+    Un \bf{enregistrement} est un type qui permet d'agréger des données (dont le type existe).\\
+    Il y a un champ par type, et il faut donner une valeur à chaque champs, sinon le compilateur renvoie une erreur.\\
+    Pour récurpérer la valeur d'un champ, on utilise le nom de la variable point le nom du champ.\n
+    \bf{Exemples:}\\
+    Définition du type: \texttt{type point = \{x : float; y : float\}}\\
+    Déclaration d'une instance de ce type: \texttt{let p = \{x = 3.0; y = 4.0\}}\\
+    Accès au champ \texttt{x} de \texttt{p}: \texttt{p.x}\n
+    On peut faire du filtrage par motif en ajoutant le motif : \texttt{\{f1 = v1; f2 = v2; ...\}}.\\
+    Où les \texttt{fi} sont des identifiants de champs et les \texttt{vi} des motifs compatibles avec le type du champ.
+\end{defi}
+
+
+\begin{defi}{n-uplets}{}
+    Un \bf{n-uplet} est un type qui permet d'agréger des données non-nommées.\\
+    Une valeur de type n-uplet s'écrit \texttt{(e1,...,en)}, et son type est \texttt{t1 * t2 * ... * tn} où les \texttt{ti} sont les types des éléments du n-uplet.\\
+    On peut récupérer les valeurs d'un n-uplet:
+    \begin{center}
+        \texttt{let v1, v2, ... = (e1, e2, ...)}
+    \end{center}
+    Quitte à utiliser un joker pour les valeurs qui ne nous intéressent pas.\\
+    On ajoute le motif \texttt{(m1, m2, ...)} dans les motifs autorisés, avec parenthèses facultative, mais le motif doit être de même taille que le n-uplet filtré.
+\end{defi}
+
+\begin{defi}{Type option.}{}
+    Le type \texttt{option} permet de gérer les valeurs qui peuvent être absentes.\\
+    \bf{Définition du type:} \texttt{type 'a option = None | Some of 'a}.\\
+    C'est un type présent dans la bibliothèque standard d'OCaml.
+\end{defi}
 
 \end{document}

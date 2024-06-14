@@ -113,6 +113,8 @@
     Le nombre $\det_\B(x_1,...,x_n)$ est appelé \bf{déterminant dans la base $\B$} de $(x_1,...,x_n)$. 
 \end{defi}
 
+\pagebreak
+
 \begin{thm}{Caractérisation des bases.}{8}
     Soit $\B=(e_1,...,e_n)$ une base de $E$ et $(x_1,...,x_n)\in E^n$.
     \begin{equation*}
@@ -164,7 +166,7 @@
     On a bien $\det_\B(u(x_1),...,u(x_n))=\det(u)\det_\B(x_1,...,x_n)$.
 \end{prop}
 
-\begin{prop}{}{}
+\begin{prop}{}{13}
     Soit $E$ un $\K$-espace vectoriel de dimension finie.
     \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
         \item $\det(\id_E)=1$.
@@ -210,9 +212,268 @@
 
 \subsection{Déterminant d'une matrice carrée.}
 
+\begin{defi}{}{}
+    Soit $A\in M_n(\K)$, on appelle \bf{déterminant} de $A$, et on note $\det(A)$ le nombre
+    \begin{equation*}
+        \det(A)=\det\nolimits_{\B_c}(C_1,...,C_1).
+    \end{equation*}
+    où $\B_c$ est la base canonique de $M_{n,1}(\K)$ et $C_1,...,C_n$ les colonnes de $A$.\n
+    Autrement dit, $\det(A)$ est le déterminant de l'endomorphisme canoniquement associé à A.
+\end{defi}
+
+\begin{nota}{}{}
+    Si $A=(a_{i,j})_{1\leq i,j \leq n}$, le déterminant de $A$ est aussi noté
+    \begin{equation*}
+        \begin{vmatrix}
+            a_{1,1} & ... & a_{1,n} \\
+            \vdots & \ddots & \vdots \\
+            a_{n,1} & ... & a_{n,n}
+        \end{vmatrix}
+    \end{equation*}
+\end{nota}
+
+\begin{thm}{}{}
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $\det(I_n)=1$.
+        \item $\forall A \in M_n(\K), ~ \forall \l\in\K, ~ \det(\l A) = \l^n\det(A)$.
+        \item $\forall (A,B) \in M_n(\K)^2 ~ \det(AB)=\det(A)\det(B)$.
+        \item Pour tout $A\in M_n(\K)$, $A$ est inversible ssi $\det(A)\neq 0$, alors:
+        \begin{equation*}
+            \det(A^{-1})=(\det(A))^{-1}.
+        \end{equation*}
+    \end{enumerate}
+    \tcblower
+    C'est juste le théorème \ref{prop:13} appliqué aux endomorphismes canoniquement associés.
+\end{thm}
+
+\begin{corr}{}{}
+    L'application $\det$ induit un morphisme de groupes entre $GL_n(\K)$ et $\K^*$.
+\end{corr}
+
+\begin{prop}{}{}
+    Soit $A=(a_{i,j})$ une matrice carrée d'ordre $n\geq1$.
+    \begin{equation*}
+        \det(A)=\sum_{\s\in S_n}\e(\s)a_{\s(1),1}...a_{\s(n),n}.
+    \end{equation*}
+    \bf{Remarque:} On appliquera très peu cette formule.
+    \tcblower
+    Notons $(E_1,...,E_n)$ la base canonique de $M_{n,1}(\K)$ et $(C_1,...,C_n)$ les colonnes de $A$. 
+    \begin{equation*}
+        \det(A)=\det\nolimits_{\B_c}(C_1,...,C_n)=\sum_{\s\in S_n}\e(\s)\prod_{j=1}^nE^*_{\s(j)}(C_j)=\sum_{\s\in S_n}\e(\s)\prod_{j=1}^na_{\s(j),j}.
+    \end{equation*}
+\end{prop}
+
+\begin{app}{}{}
+    Soit $A=(a_{i,j})\in M_n(\Z)$.\\
+    La formule précédente nous donne que $\det(A)$ est une somme de produits d'entiers:
+    \begin{equation*}
+        A\in M_n(\Z) \ra \det(A)\in \Z.
+    \end{equation*}
+\end{app}
+
+\begin{ex}{Cohérence avec la définition en taille 2.}{}
+    Retrouver à l'aide de la formule précédente l'expression connue pour le déterminant d'une matrice de taille 2:
+    \begin{equation*}
+        \begin{vmatrix}
+            a & b \\
+            c & d
+        \end{vmatrix}=ad-bc.
+    \end{equation*}
+    \tcblower
+    On a $S_2=\{\id, \t\}$ où $\t=(1~2)$. Alors:
+    \begin{align*}
+        \det(A)&=\e(\id)a_{\id(1),1}a_{\id(2),2} + \e(\t)a_{\t(1),1}a_{\t(2),2}\\
+        &=a_{1,1}a_{2,2}-a_{2,1}a_{1,2}=ad-cb.
+    \end{align*}
+\end{ex}
+
+\begin{ex}{}{}
+    Soient $(X_{i,j})_{1\leq i,j \leq n}$ une famille de variables aléatoires indépendantes sur un espace probabilisé fini $(\O,P)$.\\
+    On note $M=(X_{i,j})_{1\leq i,j \leq n}$ une matrice aléatoire. Démontrer que
+    \begin{equation*}
+        E\left[ \det((X_{i,j}))_{1\leq i,j \leq n} \right]=\det\left[ (E(X_{i,j}))_{1\leq i,j \leq n} \right]
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{align*}
+        E\left[ \det((X_{i,j}))\right]&=E\left[ \sum_{\s\in S_n}\e(\s)\prod_{j=1}^nX_{\s(j),j} \right]\\
+        &=\sum_{\s\in S_n}\e(\s)E\left[ \prod_{j=1}^nX_{\s(j),j} \right] \quad \nt{linéarité.}\\
+        &=\sum_{\s\in S_n}\e(\s)\prod_{j=1}^nE\left[ X_{\s(j),j} \right] \quad \nt{indépendance.}\\
+        &=\det(E(X_{i,j}))_{1\leq i,j \leq n}.
+    \end{align*}
+\end{ex}
+
+\begin{thm}{}{}
+    \begin{equation*}
+        \forall A \in M_n(\K), ~ \det(A^\top)=\det(A).
+    \end{equation*}
+    \tcblower
+    Soit $A=(a_{i,j})\in M_n(\K)$. Alors:
+    \begin{align*}
+        \det(A^\top) &= \sum_{\s\in S_n}\e(\s)\prod_{j=1}^n\left[A^\top\right]_{\s(j),j}\\
+        &= \sum_{\s\in S_n}\e(\s)\prod_{j=1}^n[A]_{j,\s(j)}\\
+        &= \sum_{\s\in S_n}\e(\s)\prod_{k=1}^na_{\s^{-1}(k),k} \quad \nt{(k := $\s(j)$)}\\
+        &= \sum_{\s\in S_n}\e(\s^{-1})\prod_{k=1}^na_{\s^{-1}(k),k} \quad \nt{($\e(\s^{-1})=\e(\s)$)}\\
+        &= \sum_{\phi \in S_n}\e(\phi)\prod_{k=1}^,a_{\phi(k),k} \quad \nt{($\phi:=\s^{-1}$)}\\
+        &= \det(A).
+    \end{align*}
+
+\end{thm}
+
+\begin{corr}{}{}
+    Soit $A\in M_n(\K)$ de lignes $L_1,...,L_n$.
+    \begin{equation*}
+        \det(A)=\det\nolimits_{\B_c}(L_1,...,L_n)
+    \end{equation*}
+    où $\B_c$ est la base canonique de $M_{1,n}(\K)$.
+\end{corr}
+
+\pagebreak
+
+\begin{prop}{}{}
+    Soit $u\in\L(E)$ et $\B=(x_1,...,x_n)$ une base de $E$. On a
+    \begin{equation*}
+        \det(\nt{Mat}_\B(u))=\det(u)
+    \end{equation*}
+    \tcblower
+    Notons $(a_{i,j})$ les coefficients de $\nt{Mat}_\B(u)$.
+    \begin{align*}
+        \det(\nt{Mat}_\B(u))&=\sum_{\s\in S_n}\e(\s)\prod_{j=1}^na_{\s(j),j}=\sum_{\s\in S_n}\e(\s)\prod_{j=1}^nx^*_{\s(j)}(u(x_j))=\det\nolimits_\B(u)=\det(u).
+    \end{align*}
+\end{prop}
+
+\begin{corr}{}{}
+    Deux matrices semblables ont même déterminant.
+    \tcblower
+    Soient $A,B\in M_n(\K)$ semblables : $\exists P\in GL_n(\K)~B=P^{-1}AP$.
+    \begin{align*}
+        \det(B)&=\det(P^{-1}AP)=\det(P^{-1})\det(A)\det(P)=\det(P)^{-1}\det(P)\det(A)=\det(A).
+    \end{align*}
+    \bf{Preuve :}\n
+    Notons $f\in\L(\K^n)$ canoniquement associé à $A$ : $\Mat_\B(f)=A$ avec $\B$ base canonique de $\K^n$.\\
+    Notons $\cursive{C}$ la base des colonnes de $P$. D'après le changement de base, $B=\Mat_{\cursive{C}}(f)$.\\
+    Donc d'après la proposition précédente:
+    \begin{equation*}
+        \det(A) = \det(f) = \det(B).
+    \end{equation*}
+\end{corr}
+ 
 \section{La pratique.}
 
 \subsection{Échelonner.}
+
+\begin{prop}{Effet des opérations de pivot sur les colonnes.}{}
+    Soit $A\in M_n(\K)$. On note $(C_j,~j\in\lb1,n\rb)$ ses colonnes. Soit $\m{O}$ une opération élémentaire sur les colonnes, transformant $A$ en $B$:
+    \begin{equation*}
+        A\underset{\m{O}}{\sim}B.
+    \end{equation*}
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item Si $\m{O}$ est du type $C_i \leftrightarrow C_j$, alors $\det(B)=-\det(A)$,
+        \item Si $\m{O}$ est du type $C_i \leftarrow \l C_i$, alors $\det(B)=\l \det(A)$,
+        \item Si $\m{O}$ est du type $C_i \leftarrow C_i+\l C_j$, alors $\det(B)=\det(A)$.
+    \end{enumerate}\vspace{0.25cm}
+    Le déterminant étant invariant par transposition, tout reste vrai pour des opérations élémentaires sur les lignes.
+    \tcblower
+    Notons $\B_c$ la base canonique de $\K^n$.\\
+    On sait que $\det(A)=\det_{\B_c}(C_1,...,C_n)$ qui est $n$-linéaire alternée.
+\end{prop}
+
+\begin{prop}{}{}
+    Le déterminant d'une matrice triangulaire est le produit de ses coefficients diagonaux.\\
+    Par exemple, pour une matrice triangulaire supérieure,
+    \begin{equation*}
+        \begin{vmatrix}
+            a_{1} & a_{1,2} & ... & a_{1,n} \\
+            0 & a_{2} & \ddots & \vdots \\
+            \vdots & \ddots & \ddots & * \\
+            0 & ... & 0 & a_{n}
+        \end{vmatrix}=\prod_{j=1}^na_j
+    \end{equation*}
+    \tcblower
+    Soit $A$ une matrice triangulaire.
+    \begin{equation*}
+        \det(A)=\sum_{\s\in S_n}\e(\s)\prod_{j=1}^na_{\s(j),j}
+    \end{equation*}
+    Le produit vaut $0$ sauf si $\s=\id$, il ne reste que $\prod_{j=1}^na_{j,j}$.\n
+    \bf{Preuve :}\n
+    $\bullet$ Si l'un des coefficients diagonaux est nul, $A$ n'est pas inversible donc le déterminant vaut 0. Cohérent.\\
+    $\bullet$ Sinon, $\forall j \in \lb 1,n \rb ~ a_j \neq 0$. Alors :
+    \begin{equation*}
+        \begin{vmatrix}
+            a_{1} & a_{1,2} & ... & a_{1,n} \\
+            0 & a_{2} & \ddots & \vdots \\
+            \vdots & \ddots & \ddots & * \\
+            0 & ... & 0 & a_{n}
+        \end{vmatrix}
+        =
+        \begin{vmatrix}
+            a_{1} & 0 & ... & 0 \\
+            0 & a_{2} & a_{2,3}\dots & \vdots \\
+            \vdots & \ddots & \ddots & * \\
+            0 & ... & 0 & a_{n}
+        \end{vmatrix}
+    \end{equation*}
+    L'opération est $C_2 \gets C_2 - \frac{a_{1,2}}{a_1}C_1$, ..., $C_n \gets C_n - \frac{a_{1,n}}{a_1}C_1$.\\
+    En itérant, on se ramène à une matrice diagonale de colonnes $(C'_1,...,C'_n)$.\\
+    Par linéarité, son déterminant est $a_1...a_n\cdot \det(I_n)=\prod_{j=1}^na_j$.\\
+    Par transitivité, c'est aussi le déterminant de $A$.
+
+\end{prop}
+
+\begin{ex}{}{}
+    Calculer$\quad \begin{vmatrix}
+        5 & 6 & -2 \\
+        10 & 6 & -4 \\
+        15 & 6 & -2
+    \end{vmatrix}
+    \quad \nt{et} \quad
+    \begin{vmatrix}
+        1 & 2 & 3 \\
+        4 & 5 & 6 \\
+        7 & 8 & 9
+    \end{vmatrix}$.
+    \tcblower
+    On a:
+    \begin{equation*}
+        \begin{vmatrix}
+            5 & 6 & -2 \\
+            10 & 6 & -4 \\
+            15 & 6 & -2
+        \end{vmatrix}
+        =5\cdot6\cdot(-2)\begin{vmatrix}
+            1&1&1\\
+            2&1&2\\
+            3&1&1
+        \end{vmatrix}
+        =-60\begin{vmatrix}
+            1&1&1\\
+            0&-1&0\\
+            0&-2&-2
+        \end{vmatrix}
+        =-60\begin{vmatrix}
+            1&1&1\\
+            0&-1&0\\
+            0&0&-2
+        \end{vmatrix}=-120.
+    \end{equation*}
+    L'autre est non-inversible donc de déterminant 0 car de rang $2<3$. 
+\end{ex}
+
+\begin{ex}{}{}
+    Soit $a\in\C$. Calculer le déterminant de taille $n$ ci-dessous.
+    \begin{equation*}
+        \begin{vmatrix}
+            a&1&&(1)\\
+            1&\ddots&\ddots&\\
+            &\ddots&\ddots&1\\
+            (1)&&1&a
+        \end{vmatrix}
+    \end{equation*}
+    \bf{Indication:} la somme des éléments de chaque colonne (ou ligne) est toujours la même.
+    \tcblower
+
+\end{ex}
+
 \subsection{Développer selon une colonne ou une ligne.}
 \subsection{Complément théorique : la comatrice.}
 
