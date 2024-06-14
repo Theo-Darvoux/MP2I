@@ -789,4 +789,58 @@
     C'est un type présent dans la bibliothèque standard d'OCaml.
 \end{defi}
 
+\subsection{La mutabilité.}
+
+\begin{defi}{Champs mutables.}{}
+    Les champs d'un enregistrement sont immuables par défaut.\\
+    Pour les rendre mutables, on utilise le mot-clé \texttt{mutable} dans la définition du type.\\
+    Les motifs de filtrage sont les mêmes que dans le cas où les champs sont immuables.
+\end{defi}
+
+\begin{defi}{Références.}{}
+    Une référence en OCaml correspond à une adresse en mémoire.\\
+    Une variable de type référence est immuable, mais son contenu est mutable.\\
+    On utilise le mot-clé \texttt{ref} devant une valeur pour créer une référence sur cette valeur.\n
+    \bf{Exemple:} \texttt{let r = ref 3} crée une référence sur l'entier 3.\n
+    Le type d'une référence est \texttt{'a ref} est en réalité le type \texttt{\{mutable contents : 'a\}}.\\
+    Le déréférencement se fait avec l'opérateur \texttt{!} et l'affectation avec \texttt{:=}.\n
+    On teste l'égalité des contenus avec \texttt{=} et \texttt{<>}.\\
+    On teste l'égalité des adresses avec \texttt{==} et \texttt{!=}.\n
+    Il est possible de filtrer une référence comme un enregistrement avec un unique champ contents.
+\end{defi}
+
+\begin{defi}{Unit.}{}
+    Unit est un type qui possède une unique instance, notée \texttt{()}.\\
+    C'est un type similaire au \texttt{void} de C, excepté que c'est un vrai type.
+\end{defi}
+
+\begin{defi}{Fonctions sans paramètres.}{}
+    Il est possible de définir des fonctions sans paramètres en utilisant unit.\\
+    \bf{Exemple:} \texttt{let f () = 3}.
+\end{defi}
+
+\begin{defi}{Le point-virgule.}{}
+    Lorsqu'une expression s'évalue en \texttt{()}, on utilise le point-virgule pour évaluer l'expression suivante.\n
+    \bf{Exemple:} \texttt{print\_char 'a'; print\_char 'b'}.
+\end{defi}
+
+\begin{defi}{Complément sur les conditionnelles.}{}
+    Dans une expression conditionnelle, si l'expression qui suit le \texttt{then} est unit, on peut omettre le \texttt{else}.
+\end{defi}
+
+\begin{defi}{Tableaux}{}
+    OCaml possède un type tableau qui permet l'accès à une case en temps constant à partir de son indice.\\
+    Le délimiteur est \texttt{[|e1; e2; ...|]}, où toutes les cases sont de même type.\\
+    On peut modifier la valeur d'une case avec \texttt{tableau.(i) <- e}\\
+    On peut accéder à une case avec \texttt{tableau.(i)}
+\end{defi}
+
+\begin{defi}{Boucles.}{}
+    OCaml possède une boucle \texttt{for} qui permet de parcourir un intervalle d'entiers.\\
+    \bf{Syntaxe:} \texttt{for i = debut to fin do (e : unit) done} (avec debut < fin)\\
+    \bf{Syntaxe:} \texttt{for i = debut downto fin do (e : unit) done} (avec debut > fin)\\
+    \bf{Syntaxe:} \texttt{while (e1 : bool) do (e2 : unit) done}
+\end{defi}
+
+
 \end{document}
