@@ -1,0 +1,198 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{40}
+\def\pagetitle{Arithmétique dans $\Z$.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\newcommand*{\PPCM}{\nt{PPCM}}
+\newcommand*{\PGCD}{\nt{PGCD}}
+\renewcommand*{\D}{\mathcal{D}}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\section{Divisibilité dans \texorpdfstring{$\Z$}{Lg}}
+
+\subsection{Définition et propriétés élémentaires.}
+
+\begin{defi}{}{}
+    Soit $(a,b)\in\Z^2$. On dit que $b$ \bf{divise} $a$ ($b\mid a$) s'il existe $k\in\Z$ tel que $a=kb$.\\
+    On dit aussi que $b$ est \bf{diviseur} de $a$, ou que $a$ est \bf{multiple} de $b$.\n
+    Notations pour les ensembles de diviseurs et multiples de $a\in\Z$:
+    \begin{equation*}
+        \D(a)=\{b\in\Z:b\mid a\} \qquad \nt{et} \qquad a\Z=\{ak,k\in\Z\}.
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{Faits immédiats.}{}
+    Tous les entiers divisent 0 et 1 divise tous les entiers. Ajoutons que pour $(a,b,c)\in\Z^3$,
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item Si $b$ est diviseur de $a$ et si $a\neq0$, alors $|b|\leq|a|$.
+        \item $b\mid a \iff a\Z \subset b\Z$.
+        \item Si $c\mid a$ et $c\mid b$, alors $c\mid au+bv$, pour tous $u$ et $v$ dans $\Z$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Supposons que $b\mid a$ et $a\neq 0$, alors $\exists k \in \Z \mid a = bk$ et $|a|=|b||k|$.\\
+    De plus, $k\neq0$ car $a\neq0$, donc $|k|\geq1$ et $|kb|\geq |b|$, on obtient bien $|a|\geq |b|$.\n
+    \boxed{2.} Supposons que $b\mid a$, alors $\exists k \in \Z \mid a = bk$, soit $m\in a\Z$ : $\exists k'\in\Z\mid m=ak'$ donc $m=bkk'$ donc $m\in b\Z$.\\
+    Supposons $a\Z\subset b\Z$, on a $a\in a\Z$ donc $a\in b\Z$ donc $b\mid a$.\n
+    \boxed{3.} Supposons que $c\mid a$ et $c \mid b$ : $\exists k,k'\in\Z\mid a=kc,~b=k'c$. Soient $u,v\in\Z$.\\
+    On a alors $au+bv=kuc+k'vc=(ku+k'v)c$ avec $ku+k'v\in\Z$, donc $c\mid au+bv$.
+\end{prop}
+
+\begin{prop}{Plus une relation d'ordre!}{}
+    Sur $\Z$, la relation \emph{divise} est réflexive, transitive, mais pas antisymétrique. On a
+    \begin{equation*}
+        \forall (a,b)\in\Z^2\quad(a\mid b \nt{ et } b \mid a) \iff (a=b \nt{ ou } a=-b).
+    \end{equation*}
+    Dans le cas où $(a\mid b)$ et $(b\mid a)$, ont dit que $a$ et $b$ sont \bf{associés}.
+    \tcblower
+    \fbox{$\la$} Trivial.\\
+    \fbox{$\ra$} Supposons que $a\mid b$ et $b\mid a$. Alors $\exists k,k'\in\Z\mid a=kb$ et $b=k'a$.\\
+    On a alors $b=bkk'$. Si $b=0$, alors $a=0$ donc $a=b$. Sinon, $kk'=1$ donc $k=\pm1$ et $a=\pm b$.
+\end{prop}
+
+\subsection{Division euclidienne.}
+
+\begin{thm}{}{}
+    Soit $(a,b)\in\Z\times\N^*$. Il existe un unique couple $(q,r)\in\Z^2$ tel que
+    \begin{equation*}
+        a=bq+r\quad\nt{et}\quad0\leq r < b.
+    \end{equation*}
+    Les entiers $q$ et $r$ sont appelés \bf{quotient} et \bf{reste} dans la division euclidienne de $a$ par $b$.
+    \tcblower
+    \bf{Unicité:}\\
+    Soit $(q,r)\in\Z^2$ et $(q',r')\in\Z^2$ avec $0\leq r,r' <b$ tels que $a=bq+r$ et $a=bq'+r'$.\\
+    On a $bq'+r'=bq+r$ donc $b(q'-q)=r-r'$. De plus, $0\leq r,r'<b$ donc $-b<-r'\leq0$.\\
+    Ainsi, $-b<r-r'<b$ donc $-b<b(q'-q)<b$ donc $-1<q'-q<1$ donc $q'=q$ car $q-q'\in\Z$.\\
+    Donc $r-r'=b\cdot0=0$ donc $(q,r)=(q',r')$.\n
+    \bf{Existence:}\\
+    On pose $q=\lf\frac{a}{b}\rf$ et $r=a-bq$. On a bien $a=bq+r$.\\
+    On a $\lf\frac{a}{b}\rf\leq\frac{a}{b}<\lf\frac{a}{b}\rf+1$ donc $q\leq\frac{a}{b}<q+1$ donc $qb\leq a<qb+b$ donc $0\leq a-bq<b$ donc $0\leq r < b$.
+\end{thm}
+
+\begin{prop}{}{}
+    Soient $a$ et $b$ deux entiers relatifs.\\
+    L'entier $b$ divise $a$ si et seulement si le reste de la division euclidienne de $a$ par $|b|$ est nul.
+    \tcblower
+    \fbox{$\la$} Trivial.\\
+    \fbox{$\ra$} Par unicité du reste.
+\end{prop}
+
+\subsection{PPCM de deux entiers.}
+
+\begin{defi}{}{}
+    Soient $a,b$ deux entiers relatifs.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item Si $a$ et $b$ sont non nuls, on appelle \bf{Plus Petit Commun Multiple} de $a$ et $b$, note $a\lor b$, ou encore $\PPCM(a,b)$, le plus petit élément strictement positif de $a\Z\cap b\Z$.
+        \item Si $a$ ou $b$ vaut 0, on pose $a\lor b=0$.
+    \end{enumerate}
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $(a,b)\in\Z^2$. Leur PPCM $a\lor b$ est l'unique entier positif $m$ tel que
+    \begin{equation*}
+        a\Z \cap b\Z = m\Z.
+    \end{equation*}
+    \tcblower
+    \bf{Unicité:}\\
+    Soient $m,m'\in\N$ tels que $a\Z\cap b\Z=m\Z$ et $a\Z\cap b\Z=m'\Z$.\\
+    Alors $m\Z = m'\Z$ donc $m$ et $m'$ sont associés (et positifs) donc $m=m'$.\n
+    \bf{Existence:}\\
+    On a $a\Z$ sous-groupe de $(\Z,+)$, $b\Z$ aussi, par intersection de groupes, $a\Z\cap b\Z$ l'est aussi.\\
+    Or les sous-groupes de $\Z$ sont de la forme $m\Z$ avec $m\in\N$. Donc il existe un unique $m\in\N$ tel que $a\Z\cap b\Z=m\Z$.\\
+    Vérifions que $m=\PPCM(a,b)$. Clair: $m$ est multiple commun de $a$ et $b$.\\
+    De plus, $a\Z\cap b\Z\cap\N=m\Z\cap\N=\{0,m,2m,...\}$.\\
+    Donc si $m=0$, $\PPCM(a,b)=0$, sinon $\PPCM(a,b)=m$. 
+\end{prop}
+
+\begin{thm}{}{}
+    Soient $a$ et $b$ deux entier relatifs. Leur PPCM $a\lor b$ est l'unique entier positif $m$ tel que
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $a\mid m$ et $b\mid m,\quad$ \emph{le PPCM est un multiple commun}.
+        \item $\forall \mu \in \Z,~(a\mid\mu \nt{ et } b \mid \mu) \ra m \mid \mu,\quad$ \emph{tout multiple commun est multiple du PPCM}.
+    \end{enumerate}
+    \tcblower
+    \bf{Unicité:} Soient $m,m'$ satisfaisant 1. et 2.\\
+    On a $m\mid m'$ et $m'\mid m$, par antisymétrie sur $\N$, $m=m'$.\n
+    \bf{Existence:} Posons $m=\PPCM(a,b)$.\\
+    Il satisfait 1. par définition. Soit $\mu\in\Z$ un multiple commun, alors $\mu\in a\Z\cap b\Z=m\Z$, donc $m\mid \mu$.
+\end{thm}
+
+\subsection{PGCD de deux entiers.}
+
+\begin{defi}{}{}
+    Soient $a,b$ deux entiers relatifs.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item Si $a$ et $b$ sont non nuls, on appelle \bf{Plus Grand Commun Diviseur} de $a$ et $b$, note $a\land b$, ou encore $\PGCD(a,b)$, le plus grand élément positif de $\D(a)\cap\D(b)$.
+        \item Si $a=b=0$, on pose $a\land b=0$.
+    \end{enumerate}
+\end{defi}
+
+\begin{prop}{}{}
+    \begin{equation*}
+        \forall (a,b)\in\Z^2\quad a\land b = |a|\land|b|
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{equation*}
+        \D(a)\cap\D(b)=\D(|a|)\cap\D(|b|).
+    \end{equation*}
+    On n'a plus qu'à passer au $\max$.
+\end{prop}
+
+\begin{prop}{}{}
+    Soient $a,b,c,d$ quatre entiers relatifs. Si $a=bc+d$, alors on a $a\land b=b\land d$.
+    \tcblower
+    Supposons que $a=bc+d$. Se convaincre que $\D(a,b)=\D(b,d)$ puis passer au max.             azazzzzzzzzzzzzzzzzzzzzzzzzza  xqasd
+\end{prop}
+
+\begin{meth}{}{}
+    Ce lemme est l'idée principale de l'algorithme d'Euclide, vu dans le "petit" cours d'arithmétique.\\
+    Si $a\in\Z$ et $b\in\Z^*$, on peut appliquer cet algorithme à $|a|$ et $|b|$ pour calculer $a\land b$.
+\end{meth}
+
+\begin{prop}{}{}
+    Soit $(a,b)\in\Z^2$. Notons $a\Z+b\Z=\{au+bv,~(u,v)\in\Z^2\}$. C'est un sous-groupe de $\Z$.\n
+    Le $\PGCD~a\land b$ est l'unique entier positif $d$ tel que
+    \begin{equation*}
+        a\Z+b\Z=d\Z.
+    \end{equation*}
+    En particulier, il existe un couple $(u,v)\in\Z^2$ tel que $d=au+bv$ \bf{(relation de Bézout)}.
+\end{prop}
+
+\begin{meth}{Écriture effective d'une relation de Bézout.}{}
+    En \emph{remontant} les divisions euclidiennes écrites lors de l'exécution de l'algorithme d'Euclide.
+\end{meth}
+
+\begin{prop}{}{}
+    \begin{equation*}
+        \forall(a,b)\in\Z^2,\quad\forall k\in\Z,\quad\PGCD(ka,kb)=|k|\cdot\PGCD(a,b).
+    \end{equation*}
+\end{prop}
+
+\begin{thm}{}{}
+    Soient $a$ et $b$ ddeux entiers relatifs. Leur $\PGCD~a\land b$ est l'unique entier positif $d$ tel que
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $d\in\D(a)\cap\D(b),\quad$ \emph{(le PGCD est un diviseur commun)}.
+        \item $\forall \d\in\D(a)\cap\D(b)\quad\d\mid d\quad$\emph{(tous les diviseurs communs divisent le PGCD)}.
+    \end{enumerate}
+\end{thm}
+
+\begin{corr}{}{}
+    \begin{equation*}
+        \forall(a,b)\in\Z^2\quad\D(a)\cap\D(b)=\D(a\land b).
+    \end{equation*}
+\end{corr}
+
+\begin{prop}{}{}
+    \begin{equation*}
+        \forall(a,b)\in\Z^2,\quad\PGCD(a,b)\cdot\PPCM(a,b)=|ab|.
+    \end{equation*}
+\end{prop}
+
+
+
+\end{document}
