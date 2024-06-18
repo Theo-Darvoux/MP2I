@@ -143,10 +143,10 @@
     On n'a plus qu'à passer au $\max$.
 \end{prop}
 
-\begin{prop}{}{}
+\begin{prop}{Lemme d'Euclide.}{}
     Soient $a,b,c,d$ quatre entiers relatifs. Si $a=bc+d$, alors on a $a\land b=b\land d$.
     \tcblower
-    Supposons que $a=bc+d$. Se convaincre que $\D(a,b)=\D(b,d)$ puis passer au max.             azazzzzzzzzzzzzzzzzzzzzzzzzza  xqasd
+    Supposons que $a=bc+d$. Se convaincre que $\D(a,b)=\D(b,d)$ puis passer au max.
 \end{prop}
 
 \begin{meth}{}{}
@@ -154,13 +154,24 @@
     Si $a\in\Z$ et $b\in\Z^*$, on peut appliquer cet algorithme à $|a|$ et $|b|$ pour calculer $a\land b$.
 \end{meth}
 
-\begin{prop}{}{}
+\begin{prop}{Le sous-groupe de $\Z$ sous-jacent.}{}
     Soit $(a,b)\in\Z^2$. Notons $a\Z+b\Z=\{au+bv,~(u,v)\in\Z^2\}$. C'est un sous-groupe de $\Z$.\n
     Le $\PGCD~a\land b$ est l'unique entier positif $d$ tel que
     \begin{equation*}
         a\Z+b\Z=d\Z.
     \end{equation*}
     En particulier, il existe un couple $(u,v)\in\Z^2$ tel que $d=au+bv$ \bf{(relation de Bézout)}.
+    \tcblower
+    On a $a\Z+b\Z=\{au+bv\mid(u,v)\in\Z^2\}$.\\
+    C'est un sous-groupe de $\Z$ car $0=a\cdot0+b\cdot0\in a\Z+b\Z$ et,\\Pour $(m,m')\in(a\Z+b\Z)^2$, $\exists(u,v,u',v')\in\Z\mid m=au+bv \nt{ et } m'=au'+bv'$\\
+    Donc $m-m'=a(u-u')+b(v-v')\in a\Z+b\Z$.\n
+    D'après le cours sur les structures algébriques, il existe $d\in\N\mid a\Z+b\Z=d\Z$.\n
+    \bf{Unicité:} Si $d,d'$ conviennent, $d\Z=d'\Z$, ils sont associés et positits donc $d=d'$.\n
+    Montrons que $d=\PGCD(a,b)$. \\
+    On a $d\mid a$ et $d\mid b$ car $a\Z\subset a\Z+b\Z\subset d\Z$, pareil pour $b\Z$.\\
+    Soit $\d\in\N$ diviseur de $a$ et $b$, on a $\exists (u,v)\in\Z^2\mid d=uv+bv$.\\
+    Puisque $\d$ divise $a$ et $b$, alors $\d$ divise $au+bv=d$.\\
+    Si $d\neq0$, $\d\mid d\ra \d\leq d$, sinon, $d=0$ donc $a=b=0$ donc $d=\PGCD(a,b)=0$.
 \end{prop}
 
 \begin{meth}{Écriture effective d'une relation de Bézout.}{}
@@ -171,28 +182,294 @@
     \begin{equation*}
         \forall(a,b)\in\Z^2,\quad\forall k\in\Z,\quad\PGCD(ka,kb)=|k|\cdot\PGCD(a,b).
     \end{equation*}
+    \tcblower
+    On a $a\Z+b\Z=(a\land b)\Z$ donc $ka\Z+kb\Z=|k|(a\land b)\Z$.\\
+    On a aussi $ka\land kb=|k|(a\land b)$.
 \end{prop}
 
-\begin{thm}{}{}
-    Soient $a$ et $b$ ddeux entiers relatifs. Leur $\PGCD~a\land b$ est l'unique entier positif $d$ tel que
+\begin{thm}{Une caractérisation du PGCD}{}
+    Soient $a$ et $b$ deux entiers relatifs. Leur $\PGCD~a\land b$ est l'unique entier positif $d$ tel que
     \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
         \item $d\in\D(a)\cap\D(b),\quad$ \emph{(le PGCD est un diviseur commun)}.
         \item $\forall \d\in\D(a)\cap\D(b)\quad\d\mid d\quad$\emph{(tous les diviseurs communs divisent le PGCD)}.
     \end{enumerate}
+    \tcblower
+    Notons $d=\PGCD(a,b)$, montrons que $d$ satisfait $1.$ et $2.$.\\
+    Il satisfait 1. par définition.\\
+    Soit $\d\in\Z\mid\d\mid a$ et $\d\mid b$, $\exists (u,v)\in\Z^2\mid d=au+bv$.\\
+    Il est clair que $\d\mid au+bv$ donc $\d\mid d$, $d$ satisfait donc 2.\n
+    Soit $d\in\N$ un entier qui satisfait 1. et 2.\\
+    Si $d=0$, alors $a=b=0$ donc $d=\PGCD(a,b)=0$.\\
+    Si $d\neq0$, alors $d\mid a$ et $d\mid b$, le plus grand d'après 2.
 \end{thm}
 
 \begin{corr}{}{}
     \begin{equation*}
         \forall(a,b)\in\Z^2\quad\D(a)\cap\D(b)=\D(a\land b).
     \end{equation*}
+    \tcblower
+    \fbox{$\supset$} claire par transitivité.\\
+    \fbox{$\subset$} Soit $\d\in\D(a)\cap\D(b)$, on a établi qu'un diviseur commun divise le PGCD, donc $\d\in\D(a\land b)$.
 \end{corr}
+
+\pagebreak
 
 \begin{prop}{}{}
     \begin{equation*}
         \forall(a,b)\in\Z^2,\quad\PGCD(a,b)\cdot\PPCM(a,b)=|ab|.
     \end{equation*}
+    \tcblower
+    On note $d=a\land b$ et $m=a\lor b$.\\
+    Puisque $d\mid a$ et $d\mid b$, $\exists (a',b')\in\Z^2\mid a=da'$ et $b=db'$.\\
+    On a $da'b'=ab'=a'b$ donc $da'b'$ est multiple de $a$ et $b$, donc $m\mid da'b'$.\\
+    Donc $md\mid (da')(db')$ donc $md\mid ab$.\n
+    On a $\exists (u,v)\in\Z^2\mid d=au+bv$ et $\exists (k,k')\mid m=ak=bk'$, donc $md=amu+bmv=ab(k'u+kv)$ donc $md\mid ab$.\n
+    Alors $ab$ et $md$ sont associés, $ab=\pm md$ donc $md=|ab|$. 
 \end{prop}
 
+\section{Entiers premiers entre eux.}
+\subsection{Couples d'entiers premiers entre eux.}
 
+\begin{defi}{}{}
+    On dit que deux entiers sont \bf{premiers entre eux} si leur PGCD vaut 1.
+\end{defi}
+
+\begin{prop}{}{}
+    Deux entiers naturels non nuls $a$ et $b$ sont premiers entre eux si et seulement si $a\lor b=|ab|$.
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $(a,b)\in\Z^2\setminus\{(0,0)\}$ et $d=a\land b$.\\
+    Si $a'$ et $b'$ sont les deux entiers relatifs tels que $a=da'$ et $b=db'$, alors $a'\land b'=1$.
+    \tcblower
+    On a $\PGCD(a,b)=d$ donc $\PGCD(da',db')=d$ donc $d\PGCD(a',b')=d$ or $d\neq0$ car $(a,b)\neq(0,0)$.\\
+    On retrouve bien que $\PGCD(a',b')=1$.
+\end{prop}
+
+\begin{thm}{de Bézout.}{}
+    \begin{equation*}
+        \forall(a,b)\in\Z^2\quad a\land b = 1 \iff \exists(u,v)\in\Z^2\mid au+bv=1.
+    \end{equation*}
+    \tcblower
+    \fbox{$\la$} Supposons qu'il existe $(u,v)\in\Z^2$ tels que $au+bv=1$.\\
+    Notons $d:=a\land b$, il divise $a$ et $b$ donc $au+bv$. Donc $d\mid 1$, c'est 1.\n
+    \fbox{$\ra$} Supposons que $a\land b = 1$, alors $a\Z+b\Z=1\Z$ donc $1\in a\Z+b\Z$ donc $\exists (u,v)\in\Z^2\mid au+bv=1$.
+\end{thm}
+
+\begin{corr}{}{}
+    Soit $(a,b,c)\in\Z^3$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item Si $a\land b=1$ et $a\land c=1$, alors $a\land(bc)=1$.
+        \item Plus généralement, si $a$ est premier avec chacun des $m$ entiers $b_1,...,b_m$ ($m\in\N^*$), alors il est premier avec leur produit $b_1...b_m$.
+        \item Si $a\land b=1$, alors pour tout $(n,p)\in\N^2,~a^n\land b^p=1$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Supposons $a\land b=1$ et $a\land c = 1$.\\
+    D'après le théorème de Bézout, $\exists (u,v)\in\Z^2 \mid au+bv=1$ et $\exists (u',v')\in\Z^2 \mid au'+cv'=1$.\\
+    Donc $(au+bv)(au'+cv')=1$ donc $a(auu'+ucv'+bu'v)+bc(vv')=1$ donc $a\land bc = 1$.\n
+    \boxed{2.} Tout pareil.\n
+    \boxed{3.} Supposons $a\land b=1$ alors $a\land b^p=1$ et $b^p\land a = 1$ donc $b^p\land a^n=1$ (d'après 2, par récurrence).\\
+    Donc $a^n\land b^p=1$.
+\end{corr}
+
+\subsection{Produit de diviseurs, diviseurs d'un produit.}
+
+\begin{prop}{Produit de diviseurs premiers entre eux.}{}
+    \begin{equation*}
+        \forall (a_1,a_2,b)\in\Z^3\quad\begin{cases}
+            a_1\mid b ~ \nt{ et } ~ a_2\mid b\\ a_1\land a_2=1
+        \end{cases} 
+        \ra a_1a_2\mid b.
+    \end{equation*}
+    \tcblower  
+    Supposons que $a_1\mid b$ et $a_2\mid b$ et $a_1\land a_2=1$.\\
+    Alors $|a_1a_2|=a_1\lor a_2$, or le PPCM divise tous les multiples communs, en particulier, $a_1a_2\mid b$.
+\end{prop}
+
+\begin{thm}{Lemme de Gauss.}{gauss}
+    \begin{equation*}
+        \forall(a,b,c)\in\Z^3,\quad\begin{cases}
+            a\mid bc\\
+            a\land b = 1
+        \end{cases}\ra a \mid c.
+    \end{equation*}
+    \tcblower
+    Supposons que $a\mid bc$ et $a\land b=1$ donc $\exists k \in \Z \mid bc = ak$.\\
+    D'après le théorème de Bézout, $\exists (u,v)\in\Z^2\mid au+bv=1$.\\
+    On a $c=acu+bcv=a(cu+kv)$ donc $a\mid c$.
+\end{thm}
+
+\begin{ex}{}{}
+    1. Soit $P=a_nX^n+...+a_0\in\Z[X]$.\\
+    Montrer que si $\frac{p}{q}$ est racine de $P$ avec $p\land q=1$, alors $p\mid a_0$ et $q\mid a_n$.\n
+    2. Factoriser $X^3+2X^2-4X-3$ dans $\R[X]$.
+    \tcblower
+    \boxed{1.} On a $P(\frac{p}{q})=0$ donc $a_n\left(\frac{p}{q}\right)^n+...+a_0=0$ donc $a_np^n+...+a_0q^n=0$.\\
+    Ainsi, $p(a_n^{n-1}+...+a_1q^{n-1})=-a_0q^n$ donc $p\mid a_0q^n$ or $p\land q^n=1$ donc $p\mid a_0$.\\
+    En factorisant par $q$, on obtient aussi que $q\mid a_n$.\n
+    \boxed{2.} D'après 1, $p\mid3$ et $q\mid1$ donc les seuls candidats : $\frac{p}{q}\in\{-3,-1,1,3\}$.\\
+    On a alos $P=(X+3)(X^2-X-1)=(X+3)(X-\phi)(X-\psi)$ où $\phi=\frac{1+\sqrt{5}}{2}$ et $\psi=\frac{1-\sqrt{5}}{2}$.
+\end{ex}
+
+\subsection{Le cas des diviseurs premiers.}
+
+\begin{defi}{}{}
+    On appelle \bf{nombre premier} tout entier $p$ supérieur à 2 dont les diviseurs sont $1,p,-1$ et $-p$.
+\end{defi}
+
+\begin{prop}{}{}
+    Tout entier naturel supérieur ou égal à 2 possède un diviseur premier.
+    \tcblower
+    On l'avait fait par récurrence forte au premier semestre.
+\end{prop}
+
+\begin{prop}{}{}
+    Deux entiers relatifs sont premiers entre eux si et seulement si ils n'admettent aucun nombre premier comme diviseur commun.
+    \tcblower
+    \fbox{$\ra$} Par contraposée, supposons qu'il existe $p$ premier tel que $p\mid a$ et $p\mid b$.\\
+    Puisque $p$ divise les deux, il divise le PGCD, or $p\geq2$ donc le PGCD est différent de 1.\n
+    \fbox{$\la$} Par contraposée, supposons que $a$ et $b$ ne sont pas premiers entre-eux, alors $a\land b\geq2$.\\
+    D'après la proposition précédente, le PGCD a un diviseur premier $p$, donc $p\mid a$ et $p\mid b$.
+\end{prop}
+
+\begin{prop}{}{28}
+    Si $a$ est un entier et $p$ un nombre premier, alors $p\mid a$ ou $p$ est premier avec $a$.
+    \tcblower
+    Notons $d=p\land a$, il divise $p$, alors $d=p$ ou $d=1$.\\
+    Mais si $d=p$, alors $p\mid a$, sinon si $d=1$, $a\land p=1$.
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $(a,b)\in\Z^2$ et $p$ un nombre premier.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item Si $p\mid ab$, alors $p\mid a$ ou $p\mid b$.
+        \item Si $p$ divise un produit d'entiers, alors il divise l'un des facteurs.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Supposons que $p\mid ab$.\\
+    Si $p\mid a$, on a fini. Sinon, $p\land a=1$ d'après \ref{prop:28}, donc $p\mid b$ d'après \ref{thm:gauss}.\n 
+    \boxed{2.} Récurrence, trivial.
+\end{prop}
+
+\subsection{Extension à un nombre fini de vecteurs.}
+
+\begin{defi}{}{}
+    Soit $n\in\N^*$ et $(a_1,...,a_n)\in\Z^n\setminus\{(0,...,0)\}$.\\
+    Le plus grand diviseur positif commun à $a_1,...,a_n$ est appelé leur \bf{PGCD} et noté:
+    \begin{equation*}
+        a_1\land ... \land a_n.
+    \end{equation*}
+    On convient que le PGCD de $n$ entiers nuls vaut 0.
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $n\in\N^*$, $(a_1,...,a_n)\in\Z^n$. Leur PGCD est l'unique entier positif $d$ tel que
+    \begin{equation*}
+        a_1\Z+...+a_n\Z=d\Z
+    \end{equation*}
+    En particulier,
+    \begin{equation*}
+        \exists(u_1,...,u_n)\in\Z^n\quad d=a_1u_1+...+a_nu_n.
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{}{}
+    \begin{equation*}
+        \forall (a_1,...,a_n)\in\Z^n, \quad \forall k \in \Z, \quad \PGCD(ka_1,...,ka_n)=|k|\cdot\PGCD(a_1,...,a_n).
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $n\in\N^*$ et $a_1,...,a_{n+1}$ des entiers relatifs. Alors,
+    \begin{equation*}
+        a_1\land...\land a_n\land a_{n+1}=(a_1\land ... \land a_n) \land a_{n+1}
+    \end{equation*}
+    \tcblower
+    Notons $d_n=a_1\land ... \land a_n$, $d_{n+1}=a_1\land...\land a_n \land a_{n+1}$ et $d'_{n+1}=d_n\land a_{n+1}$.\\
+    D'une part, d'après la proposition précédente:
+    \begin{equation*}
+        a_1\Z+...+a_n\Z+a_{n+1}\Z=d_{n+1}\Z.
+    \end{equation*}
+    D'autre part,
+    \begin{align*}
+        a_1\Z+...+a_n\Z+a_{n+1}\Z&=(a_1\Z+...+a_n\Z)+a_{n+1}\Z\\
+        &=d_n\Z+a_{n+1}\Z\\
+        &=(d_n\land a_{n+1})\Z\\
+        &= d'_{n+1}\Z.
+    \end{align*}
+    Ceci amène que $d_{n+1}$ et $d'_{n+1}$ sont associés et donc égaux par positivité.
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $n\in\N^*$, $(a_1,...,a_n)\in\Z^n$ et $d$ leur PGCD, on a
+    \begin{equation*}
+        \bigcap_{k=1}^n\D(a_k)=\D(d).
+    \end{equation*}
+\end{prop}
+
+\begin{defi}{}{}
+    Des entiers relatifs $a_1,...,a_n$ sont dits \bf{premiers entre eux dans leur ensemble} si leur PGCD est égal à 1, ou de manière équivalente si $1$ et $-1$ sont les seuls diviseurs communs.\n
+    Ils sont \bf{deux à deux premiers entre eux} si
+    \begin{equation*}
+        \forall (i,j) \in \lb1,n\rb^2, ~ i \neq j \ra a_i \land a_j = 1.
+    \end{equation*}
+\end{defi}
+
+\begin{ex}{}{}
+    Justifier que si $n$ entiers $(n\geq2)$ sont premiers entre eux deux-à-deux, ils le sont dans leur ensemble.\n
+    Les entiers $6$, $10$ et $15$ sont premiers entre-eux dans leur ensemble, mais pas deux-à-deux.
+    \tcblower
+    Soit $a_1,...,a_n\in\Z^n$ premiers entre-eux deux-à-deux.\\
+    Soit $d=a_1\land ... \land a_n$, alors $d\mid a_1$ et $d\mid a_2$ : il divise $a_1\land a_2=1$ donc $d=1$.
+\end{ex}
+
+\pagebreak
+
+\begin{thm}{}{}
+    Soit $n\in\N^*$ et $(a_1,...,a_n)\in\Z^n$.\n
+    $a_1,...,a_n$ sont premiers entre eux dans leur ensemble $\iff$ $\exists(u_1,...,u_n)\in\Z^n\quad\sum_{i=1}^na_iu_i=1.$
+\end{thm}
+
+\begin{prop}{}{}
+    Soit $n\in\N^*$ et $(a_1,...,a_n)\in\Z^n$ et $b\in\Z$.\n
+    Si tous les $a_i$ divisent $b$, et si les $a_i$ sont deux-à-deux premiers entre eux, alors $a_1...a_n$ divise $b$.
+    \tcblower
+    Supposons que $a_1,...,a_n$ divisent $b$ et sont deux-à-deux premiers entre eux.\\
+    Alors, $a_1 \mid b$, $a_2\mid b$, et $a_1 \land a_2=1$ donc $a_1a_2\mid b$.\\
+    De plus, $a_1a_2 \mid b$ et $a_3 \mid b$ et $a_1a_2\land a_3=1$ donc $a_1a_2a_3\mid b$.\\
+    En itérant, on obtient le résultat.
+\end{prop}
+
+\section{Théorème fondamental de l'arithmétique et applications.}
+\subsection{Le TFAr.}
+
+\begin{thm}{Théorème fondamental de l'arithmétique.}{}
+    Soit $n$ un entier supérieur à 2. Il existe un entier naturel $r$ non nul et $r$ nombres premiers $p_1<...<p_r$, ainsi que des entiers naturels non nuls $\a_1,...,\a_r$ tels que
+    \begin{equation*}
+        n=p_1^{\a_1}p_2^{\a_2}...p_r^{\a_r}.
+    \end{equation*}
+    Cette décomposition de $n$ en facteurs premiers est unique.
+    \tcblower
+    \bf{Existence:}\\
+    Si $n$ est premier c'est bon. Sinon, $\exists n_1,n_2\in\lb2,n\rb\mid n=n_1n_2$.\\
+    Il faut raisonner sur $n_1$ et $n_2$ et les décomposer par récurrence forte.\n
+    \bf{Unicité:} On considère deux décompositions $n=p_1^{\a_1}...p_r^{\a_r}=q_1^{\b_1}...q_s^{\b_s}$ où $r,s\in\N^*$ et les $p_i,q_i$ sont premiers.\\
+    On suppose les $p_i$ et $q_i$ distincts deux-à-deux.\n
+    Montrons que $\{p_1,...,p_r\}=\{q_1,...,q_s\}$. Pour $i\in\lb1,r\rb$, on a que $p_i$ divise $q_1^{\b_1}...q_s^{\b_s}$.\\
+    D'après le lemme d'euclide, $\exists j\in\lb1,s\rb\mid p_i \mid q_j$ donc $p_j=q_j$ car ils sont tous les deux premiers.\\
+    On a donc $\{p_1,...,p_r\}\subset\{q_1,...,q_s\}$. On a l'autre inclusion de la même manière.\\
+    Finalement, $\{p_1,...,p_r\}=\{q_1,...,q_s\}$, donc $r=s$ par égalité de cardinaux.\n
+    On a $n=p_1^{\a_1}...p_r^{\a_r}=p_1^{\b_1}...p_r^{\b_r}$. Montrons que pour $i\in\lb1,r\rb$, on a $\a_i=\b_i$.\\
+    Supposons que $\a_i<\b_i$ SPDG. Alors:
+    \begin{equation*}
+        p_i^{\a_i}\prod_{j\neq i}p_j^{\a_j}=p_i^{\b_i}\prod_{j\neq i}p_j^{\b_j}.
+    \end{equation*}
+    Puisque $\Z$ est intègre et que $p_i^{\a_i}\neq0$, on a:
+    \begin{equation*}
+        \prod_{j\neq i}p_j^{\a_j}=p_i^{\b_i-\a_i}\prod_{j\neq i}p_j^{\b_j}.
+    \end{equation*}
+    Donc $p_i\mid\prod_{j\neq i}p_j^{\a_j}$, donc $p_i$ divise l'un des $p_j$ pour $j\neq i$, ce qui est absurde.\\
+    On a donc $\a_i=\b_i$.
+\end{thm}
 
 \end{document}
