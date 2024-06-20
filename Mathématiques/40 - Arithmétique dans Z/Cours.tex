@@ -212,8 +212,6 @@
     \fbox{$\subset$} Soit $\d\in\D(a)\cap\D(b)$, on a établi qu'un diviseur commun divise le PGCD, donc $\d\in\D(a\land b)$.
 \end{corr}
 
-\pagebreak
-
 \begin{prop}{}{}
     \begin{equation*}
         \forall(a,b)\in\Z^2,\quad\PGCD(a,b)\cdot\PPCM(a,b)=|ab|.
@@ -423,8 +421,6 @@
     Soit $d=a_1\land ... \land a_n$, alors $d\mid a_1$ et $d\mid a_2$ : il divise $a_1\land a_2=1$ donc $d=1$.
 \end{ex}
 
-\pagebreak
-
 \begin{thm}{}{}
     Soit $n\in\N^*$ et $(a_1,...,a_n)\in\Z^n$.\n
     $a_1,...,a_n$ sont premiers entre eux dans leur ensemble $\iff$ $\exists(u_1,...,u_n)\in\Z^n\quad\sum_{i=1}^na_iu_i=1.$
@@ -471,5 +467,310 @@
     Donc $p_i\mid\prod_{j\neq i}p_j^{\a_j}$, donc $p_i$ divise l'un des $p_j$ pour $j\neq i$, ce qui est absurde.\\
     On a donc $\a_i=\b_i$.
 \end{thm}
+
+\subsection{Valuations \texorpdfstring{p}{Lg}-adiques.}
+
+\begin{defi}{}{}
+    Soit $p$ un nombre premier et $n$ un entier naturel non nul.\\
+    On appelle \bf{valuation $p$-adique} de $n$, notée $v_p(n)$ l'exposant de $p$ dans la décomposition de $n$ en facteurs premiers (cet exposant valant 0 si $p$ ne figure pas dans la décomposition).
+\end{defi}
+
+\pagebreak
+
+\begin{prop}{}{}
+    Soit $n\in\N^*$, $p$ premier et $k\in\N$.
+    \begin{equation*}
+        v_p(n) = k \quad \iff \quad \exists q \in \N \quad n=p^kq \quad \nt{et} \quad p \land q = 1
+    \end{equation*}
+    \tcblower
+    On distingue un entier $p_0$.\\
+    \fbox{$\ra$} Supposons $v_{p_0}(n)=k$, on écrit la décomposition de $n$: $\prod_{p\in\P}p^{v_p(n)}$
+    Notons $q=\prod_{p\neq p_0}p^{v_p(n)}$, alors $n=p_0^{v_{p_0}(n)}q$.\\
+    De plus, $p\land q=1$ par produit.\n
+    \fbox{$\la$} Supposons $\exists q \in \N\quad n=p^kq\quad\nt{et}\quad p\land q=1$.\\
+    On a $q=\prod_{p\in\P}p^{v_p(q)}$, alors $n=p_0^k\prod_{p\in\P}p^{v_p(q)}$.\\
+    Or $p_0\land q = 1$ donc $v_{p_0}(q)=0$ (car sinon $p_0\mid q$).\\
+    On peut donc écrire $n=p_0^k\prod_{p\neq p_0}p^{v_p(q)}$.\\
+    Par unicité, $v_{p_0}(n)=k$.
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $p$ un nombre premier.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $\forall(m,n)\in(\N^*)^2,\quad v_p(mn)=v_p(m)+v_p(n)$.
+        \item $\forall n \in \N^*~\forall k\in\N\quad v_p(n^k)=kv_p(n)$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} On écrit les décomposition de $m$ et $n$.
+    \begin{equation*}
+        m=\prod_{p\in\P}p^{v_p(m)} \quad \nt{et} \quad n=\prod_{p\in\P}p^{v_p(n)}.
+    \end{equation*}
+    Donc:
+    \begin{equation*}
+        mn=\left( \prod_{p\in\P}p^{v_p(m)} \right)\left( \prod_{p\in\P}p^{v_p(n)} \right) = \prod_{p\in\P}p^{v_p(m)+v_p(n)}.
+    \end{equation*}
+    Par unicité de la décomposition, pour $p_0\in\P$, $v_{p_0}(mn)=v_{p_0}(m)+v_{p_0}(n)$.\n
+    \boxed{2.} Récurrence facile.
+\end{prop}
+
+\begin{ex}{}{}
+    Soit $n$ entier supérieur à 2. Montrer que $\sqrt{n}\in\Q \iff \exists k \in \Z \mid n = k^2$.
+    \tcblower
+    \fbox{$\la$} Supposons $n=m^2$ où $m\in\Q$ alors $\sqrt{n}=\sqrt{m^2}=m\in\Q$.\n
+    \fbox{$\ra$} Supposons $\sqrt{n}\in\Q$, alors $\exists a,b\in\N\times\N^*$ tels que $\sqrt{n}=\frac{a}{b}$, alors $b^2n=a^2$.\\
+    Soit $p\in\P$, on a $v_p(b^2n)=v_p(a^2)$ donc $2v_p(b)+v_p(n)=2v_p(a)$ donc $v_p(n)$ est pair :
+    \begin{equation*}
+        n=\prod_{p\in\P}p^{v_p(n)}=\prod_{p\in\P}p^{2v_p(n)/2}=\left( \prod_{p\in\P}p^{\frac{v_p(n)}{2}} \right)^2
+    \end{equation*}
+    Donc $n$ est bien un carré d'entiers.
+\end{ex}
+
+\begin{thm}{Description des diviseurs d'un entier.}{}
+    Soit $n$ un entier naturel supérieur ou égal à 2, s'écrivant
+    \begin{equation*}
+        n = p_1^{\a_1}p_2^{\a_2}...p_r^{\a_r}.
+    \end{equation*}
+    Ses diviseurs positifs sont exactement les entiers de la forme
+    \begin{equation*}
+        p_1^{\b_1}p_2^{\b_2}...p_r^{\b_r}, \quad \nt{avec} \quad \forall i \in \lb1,r\rb ~ 0 \leq \b_i \leq \a_i.
+    \end{equation*}
+    \tcblower
+    Découle du corrolaire \ref{corr:45}.
+\end{thm}
+
+\pagebreak
+
+\begin{corr}{}{45}
+    Soient $m,n\in\N^*$.
+    \begin{center}
+        $m\mid n \quad \iff \quad \forall p\in\P\quad v_p(m)\leq v_p(n)$.
+    \end{center}
+    \tcblower
+    \fbox{$\ra$} Supposons $m \mid n$, alors $\exists k\in\N^*~n=mk$.\\
+    Alors pour $p\in\P,~v_p(n)=v_p(m)+v_p(k)$ donc $v_p(m)\leq v_p(n)$.\n
+    \fbox{$\la$} Supposons $\forall p\in\P\quad v_p(m)\leq v_p(n)$.\\
+    On a:
+    \begin{equation*}
+        n=\prod_{p\in\P}p^{v_p(n)}=\prod_{p\in\P}p^{v_p(m)+v_p(n)-v_p(m)}=\prod_{p\in\P}p^{v_p(m)}\prod_{p\in\P}p^{v_p(n)-v_p(m)}.
+    \end{equation*}
+    Donc $m\mid n$.
+\end{corr}
+
+\begin{ex}{Un cas particulier important.}{}
+    Soit $p$ un nombre premier et $\a$ un entier naturel non nul. Quels sont les diviseurs de $p^\a$ ?
+    \tcblower
+    On a $\D(p^\a)=\{p^\b\mid 0\leq\b\leq\a\}$.
+\end{ex}
+
+\begin{ex}{}{}
+    Combien de diviseurs possède le nombre trente-six-milliards ?
+    \tcblower
+    Notons $N=36\times10^9$, alors $N=(2\times3)^2(2\times5)^9=2^{11}3^25^9$.\\
+    Ainsi, $\D(N)=\{2^\a3^\b5^\g\mid (\a,\b,\g)\in\lb0,11\rb\times\lb0,2\rb\times\lb0,9\rb\}$ et $|\D(N)|=12\times3\times10=360$.
+\end{ex}
+
+\begin{prop}{Décomposition primaire du PGCD, du PPCM.}{}
+    Soient $a$ et $b$ deux entiers naturels non nuls, dont une décomposition sur une même famille de nombres premiers $p_1<...<p_r$ est
+    \begin{equation*}
+        a=p_1^{\a_1}...p_r^{\a_r} \quad \nt{et} \quad b=p_1^{\b_1}...p_r^{\b_r}.
+    \end{equation*}
+    où les $\a_i$ et $\b_i$ sont des entiers naturels éventuellement nuls, on a alors
+    \begin{equation*}
+        a \land b = \prod_{i=1}^rp_i^{\min(\a_i,\b_i)}, \quad \nt{et} \quad a\lor b = \prod_{i=1}^rp_i^{\max(\a_i,\b_i)}.
+    \end{equation*}
+    De manière équivalente, pour tout nombre premier $p$,
+    \begin{equation*}
+        v_p(a\land b) = \min(v_p(a),v_p(b)) \quad \nt{et} \quad v_p(a\lor b)=\max(v_p(a), v_p(b)).
+    \end{equation*}
+    \tcblower
+    C'est clair.
+\end{prop}
+
+\section{Congruences.}
+\subsection{Une relation d'équivalence compatible avec la somme et le produit.}
+
+\begin{defi}{}{}
+    Soit $n\in\Z$. On dit que deux entiers relatifs sont \bf{congrus modulo} $n$, ce que l'on note $a\equiv b[n]$ s'il existe un entier relatif $k$ tel que $a=b+kn$.
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $n\in\Z$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item La relation de congruence modulo $n$ est une relation d'équivalence sur $\Z$.
+        \item $\forall a \in \Z \quad n \mid a \iff a \equiv 0[n]$. En particulier $n\equiv 0[n]$.
+        \item Compatible avec la somme et le produit:
+        \begin{equation*}
+            \forall (a,b,a',b')\in\Z^4\quad\begin{cases}
+                a\equiv b &[n]\\
+                a'\equiv b &[n]
+            \end{cases}\ra\begin{cases}
+                a+a'\equiv b+b' &[n]\\
+                aa'\equiv bb' &[n]
+            \end{cases}
+        \end{equation*}
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} et \boxed{2.} Trivial.\n
+    \boxed{3.} Supposons $a\equiv b[n]$ et $a'\equiv b'[n]$, $\exists k,k'\in\Z\mid b-a=nk$ et $b'-a'=nk'$.\\
+    Alors $(b+b')-(a+a')=n(k+k')$, il est clair que $n\mid (b+b')-(a+a')$ donc $a+a'\equiv b+b'[n]$.\\
+    De même, $bb'=(a+nk)(a'+nk')=aa'+n(ak'+ak+nkk')$ donc $aa'=bb'[n]$.
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $n\in\N^*$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $\forall a \in \Z, ~ \exists!r\in\lb0,n-1\rb\mid a\equiv r[n]$.
+        \item Il y a exactement $n$ classes d'équivalence pour la relation de congruence module $n$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soit $a\in\Z$, $\exists!(q,r)\in\Z\times N \mid a=nq+r \quad \nt{et} \quad 0\leq r \leq n-1$.\\
+    On a bien $n\mid a-r$ donc $a\equiv r[n]$.\n
+    \boxed{2.} Tout entier appartient à une unique classe d'équivalence modulo $n$ : celle de son reste dans sa division euclidienne avec $n$.
+\end{prop}
+
+\begin{ex}{}{}
+    Démontrer qu'un entier naturel est un multiple de 3 si et seulement si la somme de ses chiffres est un multiple de 3, idem avec 9.
+    \tcblower
+    Soit $n\in\N$, notons $N=\sum_{k=0}^pc_k10^k$ avec $p\in\N$ et $\forall k\in\lb0,p\rb$, $c_k\in\lb0,9\rb$ le $k^{\nt{ème}}$ chiffre de $n$.\\
+    Remarque: $10=1[3]$ donc $\forall k \in \N ~ 10^k=1[3]$.\\
+    Par somme et produit modulo 3, on obtient:
+    \begin{equation*}
+        \sum_{k=0}^pc_k10^k\equiv\sum_{k=0}^pc_k\cdot1[3]
+    \end{equation*}
+    \begin{equation*}
+        3 \mid n \iff n \equiv 0[3] \iff \sum_{k=0}^pc_k\equiv0[3] \iff 3 \mid \sum_{k=0}^pc_k.
+    \end{equation*}
+\end{ex}
+
+\subsection{Inversibilité modulo \texorpdfstring{n}{Lg}.}
+
+\begin{prop}{}{}
+    Soit $n\in\N^*$ et $a\in\Z$.\\
+    Si $a\land n=1$, alors $\exists b\in\Z \mid ab\equiv1[n]$ (la réciproque est vraie).\n
+    Dans le cas $a\land n = 1$, si $x$ et $y$ sont deux entiers, on a
+    \begin{equation*}
+        ax\equiv y[n] \iff x\equiv by[n]
+    \end{equation*}
+    \tcblower
+    Supposons que $a$ et $n$ sont premiers entre eux. Le théorème de Bézout donne alors l'existence d'un couple $(u,v)$ d'entiers relatifs tels que $au+nv=1$. Posons $b=u$ et passons modulo $n$:
+    \begin{equation*}
+        ab+0v\equiv 1[n]
+    \end{equation*}
+    ce qui montre que $b$ est un inverse de $a$ modulo $n$. Pour $x$ et $y$ dans $\Z$, on a
+    \begin{equation*}
+        ax\equiv y[n] \iff abx\equiv by[n]
+    \end{equation*}
+    (on multiplie par $b$ dans le sens direct, par $a$ dans le sens indirect en utilisant $ab\equiv1[n]$). On a bien
+    \begin{equation*}
+        ax\equiv y[n] \iff x\equiv by[n].
+    \end{equation*}
+\end{prop}
+
+\begin{ex}{}{}
+    Résoudre l'équation $7x\equiv11[31]$.
+    \tcblower
+    On remonte l'algorithme d'Euclide:\\
+    On a $31=7\time4+3$, $7=3\times2+1$.\\
+    Alors $1=7-3\times2=7-(31-7\times4)\times2=7\times9 - 2\times31$.\n
+    Soit $x\in\Z$, $7x\equiv11[31]\iff9\times7x\equiv99[31]\iff x\equiv 99[31]\iff x\equiv 6[31]$.\\
+    L'ensemble des solutions : $\{31k+6\mid k\in\Z\}$.
+\end{ex}
+
+\begin{corr}{}{}
+    Soit $n\in\N^*$, ainsi que deux entiers relatifs $a$ et $y$.\\
+    L'équation $ax\equiv y[n]$ possède une solution dans $\Z$ si et suelement si $a\land n$ divise $y$.\\
+    Dans le cas où une solution existe, elle est unique modulo $\frac{n}{a\land n}$.
+    \tcblower
+    $\circledcirc$ Supposons qu'il existe $x\in\Z$ tel que $ax\equiv y[n]$. Alors, il existe $k\in\Z$ tel que $y=ax+kn$.\\
+    Puisque $a\land n$ divise $a$ et $n$, il divise $y$.\\
+    $\circledcirc$ Supposons réciproquement que $a\land n$ divise $y$. Notons alors $d=a\land n$; il existe $a'$ et $n'$ premiers entre eux tels que $a=da'$, $n=dn'$ et $y=dy'$. Pour $x\in\Z$, on a $ax\equiv y[n]\iff da'x\equiv dy'[dn']\iff a'x\equiv y'[n]$ .\\
+    On a pu simplifier par $d$ par intégrité de $\Z$. Alors $a'$ et $n'$ sont premiers entre eux: il existe $b'$ tel que $a'b'\equiv1[n']$ et l'équation $a'x\equiv y'[n']$ possède $by'$ comme unique solution modulo $n'$ c'est à dire modulo $\frac{n}{a\land n}$.
+\end{corr}
+
+\subsection{Petit théorème de Fermat.}
+
+\begin{prop}{}{}
+    Soit $p$ un nombre premier.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $\forall k\in\lb1,p-1\rb,~ p\mid\binom{p}{k}$.
+        \item $\forall (a,b)\in\Z^2~(a+b)^p\equiv a^p+b^p[p]$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soit $k\in\lb1,p-1\rb$. On a:
+    \begin{equation*}
+        k\binom{p}{k}=p\binom{p-1}{k-1}
+    \end{equation*}
+    Alors $p\mid k\binom{p}{k}$ et $p\land k=1$ donc d'après le Lemme de Gauss, $p\mid\binom{p}{k}$.\n
+    \boxed{2.} Soient $a,b\in\Z$, on a:
+    \begin{equation*}
+        (a+b)^p=\sum_{k=0}^p\binom{p}{k}a^kb^{p-k}=a^p+b^p+\underbrace{\sum_{k=1}^{p-1}\binom{p}{k}a^kb^{p-k}}_{\nt{multiple de }p}\equiv a^p+b^p[p].
+    \end{equation*}
+\end{prop}
+
+\begin{thm}{Petit théorème de Fermat.}{}
+    Soit $n$ un entier relatif et $p$ un nombre premier. On a \fbox{${n^p\equiv n[p]}$}.\n
+    Si de surcroît $n$ n'est pas un multiple de $p$, on a $n^{p-1}\equiv1[p]$.
+    \tcblower
+    Fixons $p$ premier. Par récurrence sur $n$:\\
+    \bf{Initialisation:} $0^p=0[p]$.\\
+    \bf{Hérédité:} Supposons pour $n\in\N$ que $n^p\equiv n[p]$. Alors:
+    \begin{equation*}
+        (n+1)^p\equiv n^p + 1^p [p] \equiv n+1[p]
+    \end{equation*}
+    On conclut par récurrence.\n
+    Si $n$ n'est pas multiple de $p$, alors $n\land p=1$, alors $n$ est inversible modulo $p$ et on a bien que $n^{p-1}\equiv 1[p]$.
+\end{thm}
+
+\begin{ex}{Plus petit nombre de Carmichael.}{}
+    1. Vérifier que
+    \begin{equation*}
+        561\equiv 1[2], \qquad 561\equiv1[10], \qquad 561\equiv 1[16].
+    \end{equation*}
+    2. Démontrer que pour tout entier $n$,
+    \begin{equation*}
+        n^{561}\equiv n[3], \qquad n^{561}\equiv n[11], \qquad n^{561}\equiv n[17].
+    \end{equation*}
+    3. Démontrer que pour tout $n\in\Z$, on a $n^{561}\equiv n[561]$.\\
+    4. \emph{Le petit théorème de Fermat n'est pas un critère de primalité.} Expliquer.
+    \tcblower
+    \boxed{1.} Clair pour les deux premiers, et $561=35\times16+1$ donc $561\equiv1[16]$.\n
+    \boxed{2.} On a $n^{561}\equiv n^{2\times280+1}[3]\equiv n(n^2)^{280}[3]$.\\
+    Si $n$ n'est pas multiple de 3, alors $n^{2}\equiv 1[3]$ d'après le petit théorème de Fermat. Alors $n^{561}\equiv n[3]$.\\
+    Si $n$ est multiple de 3, alors $n^{561}\equiv0[3]\equiv n[3]$.\\
+    De même, $n^{561}\equiv n[11]$ et $n^{561}\equiv n[17]$.\n
+    \boxed{3.} Soit $n\in\Z$, on a $561=17\times11\times3$, alors $3\mid n^{561}-n$ et $11\mid n^{561}-n$ et $17\mid n^{561}-n$.\\
+    Ainsi, $3\times11\times17\mid n^{561}$ car $3$, $11$ et $17$ sont premiers entre-eux.\n
+    \boxed{4.} Le petit théorème de Fermat ne caractérise pas les nombre premiers. En effet, 561 n'est pas premier mais vérifie le petit théorème de Fermat.
+\end{ex}
+
+\section{Exercices.}
+
+\begin{exercice}{}{}
+    Soit $n\in\N$, que vaut le PGCD de $3n+1$ et de $2n$ ?
+    \tcblower
+    On applique l'algorithme d'Euclide:
+    \begin{align*}
+        3n+1 &= 2n\times1+(n+1)\\
+        2n &= (n+1)\times1+(n-1)\\
+        n+1 &= (n-1)\times1+2
+    \end{align*}
+    Par transitivité, $\PGCD(3n+1,2n)=\PGCD(n-1,2)$.\\
+    Le PGCD est donc 1 si $n$ est impair, et 2 si $n$ est pair.
+\end{exercice}
+
+\begin{exercice}{}{}
+    Soient deux entiers relatifs $a$ et $b$ tels que $a^2\mid b^2$. Montrer que $a\mid b$.
+    \tcblower
+    Soit $d=a\land b$ ,alors $\exists (a',b')\in\Z^2\mid a=da',~b=db',~a'\land b'=1$.\\
+    Par hypothèse, $\exists k \in \Z \mid b^2=a^2k$ donc $d^2{b'}^2=d^2{a'}^2k$.\\
+    $\circledcirc$ Si $d=0$, alors $a=b=0$ et $a\mid b$.\\
+    $\circledcirc$ Si $d\neq 0$, alors $(b')^2=(a')^2k$ donc $a'\mid(b')^2$ et $a'\land b'=1$.\\
+    D'après le Lemme de Gauss, $a'\mid b'$ donc $da'\mid db'$ donc $a\mid b$.\n
+    \bf{Solution :}\n
+    Soit $p$ un nombre premier, $a^2\mid b^2$ donc $v_p(a^2)\leq v_p(b^2)$ donc $2v_p(a)\leq2v_p(b)$ donc $v_p(a)\leq v_p(b)$.\\
+    Et ce pour tout $p$, donc $a\mid b$.
+\end{exercice}
+
+
 
 \end{document}
