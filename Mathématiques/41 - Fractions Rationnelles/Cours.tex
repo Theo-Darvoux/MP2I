@@ -1,0 +1,392 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{41}
+\def\pagetitle{Fractions rationnelles.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\section{Fractions rationnelles.}
+
+\subsection{Le corps \texorpdfstring{$\K[X]$}{Lg}}
+
+
+\begin{defi}{}{}
+    On note $K(X)$ le corps des fractions de l'anneau $\K[X]$.\\
+    Ses éléments, appelés \bf{fractions rationnelles} sont de la forme
+    \begin{equation*}
+        F=AB^{-1} \quad \nt{ou} \quad F=\frac{A}{B}.
+    \end{equation*}
+    où $A,B\in\K[X]$, avec $B\neq0$. Le couple $(A,B)$ est appelé un \bf{représentant} de $F$.
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $F\in\K(X)$. Il existe un unique $(A,B)\in\K[X]^2$ tel que
+    \begin{equation*}
+        B \nt{ est unitaire et non nul}, \quad A\land B = 1\quad\nt{et}\quad F=\frac{A}{B}.
+    \end{equation*}
+    C'est la \bf{forme irréductible} de la fraction $F$.
+\end{prop}
+
+\subsection*{Fonction rationnelle associée, composée, dérivation.}
+
+\begin{defi}{Fonction rationnelle associée à une fraction rationnelle.}{}
+    Soit $F\in\K(X)$ de forme irréductible $F=\frac{A}{B}$. On pose $D_F=\K\setminus\{\a\in\K\mid B(\a)=0\}$.\\
+    On appelle \bf{fonction rationnelle} associée à $F$ l'application $\tilde{F}:\begin{cases}
+        D_F &\to \quad \K\\
+        x &\mapsto\quad \frac{A(x)}{B(x)}
+    \end{cases}$
+\end{defi}
+
+\begin{ex}{}{}
+    Soit $F=\frac{X^4+1}{X^4+X^2+1}$. Montrer que $F(-X)=F(X)$ et $F(\frac{1}{X})=F(X)$.
+\end{ex}
+
+\begin{ex}{}{}
+    Soit $P$ un polynôme de $\K[X]$, non nul, de degré $d$. Justifier que $X^dP(\frac{1}{X})$ est un polynôme.\\
+    Pourquoi l'appelle-t-on parfois polynôme symétrique de $P$ ?
+    \tcblower
+    Notons $P=\sum_{k=0}^da_kX^k$. Alors:
+    \begin{equation*}
+        X^dP\left(\frac{1}{X}\right)=X^d\sum_{k=0}^da_k\frac{1}{X^k}=\sum_{k=0}^da_kX^{d-k}=\sum_{j=0}^da_{d-j}X^j.
+    \end{equation*}
+    \bf{Remarque:} $f:P\mapsto X^dP(\frac{1}{X})$ est un endomorphisme de $R_d[X]$.
+\end{ex}
+
+\subsection*{Degré et partie entière d'une fraction rationnelle.}
+
+\begin{defi}{}{}
+    Soit $F\in\K(X)$ de forme irréductible $F=\frac{A}{B}$. Le \bf{degré} de $F$ est
+    \begin{equation*}
+        \deg(F) = \deg(A) - \deg(B).
+    \end{equation*}
+    On a donc $\deg(F)\in\Z\cup\{-\infty\}$.
+\end{defi}
+
+\begin{prop}{Degré et opérations.}{}
+    Soient $F,G\in\K(X)$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $\deg(F+G)\leq\max(\deg(F),\deg(G))$.
+        \item $\forall \l\in\K, ~ \deg(\l F)\leq \deg(F)$.
+        \item $\deg(FG)=\deg(F)+\deg(G)$.
+        \item Si $G\neq0, ~ \deg(\frac{F}{G}) = \deg(F) - \deg(G)$
+    \end{enumerate}
+\end{prop}
+
+\begin{ex}{}{}
+    \begin{equation*}
+        \deg\left( \frac{X^4}{X^2+1} \right) = 2; \quad \deg\left( \frac{X-1}{X^3+1} \right) = -2; \quad \deg\left( \frac{X^2+1}{X^2-1} \right) = 0.
+    \end{equation*}
+\end{ex}
+
+\begin{prop}{}{}
+    Soit $F=\frac{A}{B}\in\K(X)$. Alors
+    \begin{equation*}
+        \exists!(Q,R)\in(\K[X])^2\mid A = BQ+R \quad \nt{et} \quad \deg(R)<\deg(B).
+    \end{equation*}
+    On divise par $B$: $\frac{A}{B}=Q+\frac{R}{B}$.\\
+    On appelle $Q$ la \bf{partie entière} de $F$, notée $E$, et $\frac{R}{B}$ est une fraction de degré strictement négatif.
+\end{prop}
+
+\begin{ex}{}{}
+    Soit $n\in\N^*$. Quelle est la partie entière de $\frac{X^n}{X-1}$.
+    \tcblower
+    On a
+    \begin{equation*}
+        X^n=X^n-1+1=(X-1)\sum_{k=0}^{n-1}X^k+1
+    \end{equation*}
+    La partie entière est donc $\sum_{k=0}^{n-1}X^k$.
+\end{ex}
+
+\subsection{Zéros et pôles d'une fraction rationnelle.}
+
+\begin{defi}{}{}
+    Soit $F\in\K(X)$ de forme irréductible $F(X)=\frac{A(X)}{B(X)}$. Soient $\a\in\K$ et $m\in\N$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $\a$ est un \bf{zéro} de $F$ si $A(\a)=0$.
+        \item $\a$ est un \bf{pôle} de $F$ si $B(\a)=0$.
+    \end{enumerate}
+    On parlera de \bf{pôle simple} au sujet d'un pôle de multiplicité 1.
+\end{defi}
+
+\begin{ex}{}{}
+    Déterminer les pôles de $\frac{1}{X^2+1}$ dans $\R$ et dans $\C$.
+    \tcblower
+    Pas de pôles réels, mais $i$ et $-i$ dans $\C$.
+\end{ex}
+
+\begin{ex}{}{}
+    Justifier qu'une fraction rationnelle de $\C(X)$ sans pôle ne peut être qu'un polynôme.
+    \tcblower
+    Soit $F=\frac{A}{B}\in\K(X)$.\\
+    On utilise le théorème de d'Alembert-Gauss sur $B$: les polynômes non constants ont des racines dans $\C$, ce n'est pas le cas de $B$ donc il est constant (non nul).\\
+    Alors $\exists\l\in\K^*\mid B=\l$ et $F=\frac{1}{\l}A\in\K[X]$.
+\end{ex}
+
+\begin{prop}{}{}
+    Soit $F\in\R(X)$ et $\a\in\C$.\\
+    Alors $\a$ est pôle de $F$ de multiplicité $m$ ssi $\ov{a}$ l'est aussi.
+\end{prop}
+
+\section{Décomposition en éléments simples.}
+\subsection{Les deux théorèmes.}
+
+\begin{thm}{Décomposition en éléments simples de $\C(X)$.}{}
+    Soit $F\in\C(X)$ sous forme irréductible, le dénominateur étant décomposé en facteurs irréductibles:
+    \begin{equation*}
+        F(X)=\frac{A(X)}{\prod\limits_{k=1}^r(X-\a_k)^{m_k}}
+    \end{equation*}
+    Les complexes $\a_k$ sont distincts deux-à-deux, les $m_k$ sont des entiers naturels non nuls. Alors il existe:\\
+    --- Un unique polynôme $E\in\C[X]$ (partie entière de $F$).\\
+    --- Une unique famille $(a_{k,j})$ de complexes.\\
+    tels que
+    \begin{equation*}
+        F(X)=E(X)+\sum_{k=1}^r\left( \sum_{j=1}^{m_k}\frac{\a_{k,j}}{(X-\a_k)^j} \right)
+    \end{equation*}
+\end{thm}
+
+\begin{thm}{Décomposition en éléments simples dans $\R(X)$.}{}
+    Soit $F\in\R(X)$ sous forme irréductible:
+    \begin{equation*}
+        F(X)=\frac{A(X)}{\prod\limits_{k=1}^r(X-\a_k)^{m_k}\prod\limits_{l=1}^s(X^2+p_l+q_l)^{n_l}}
+    \end{equation*}
+    Les réels $\a_k$ sont distincts deux-à-deux; les irréductibles de degré 2: $X^2+p_l+q_l$ sont distrincts deux-à-deux, les $m_k$ et les $n_l$ sont dans $\N^*$.\\
+    Alors il existe:\\
+    --- Un unique polynôme $E\in\R[X]$ (partie entière de $F$).\\
+    --- Une unique famille $(a_{k,j})$ de réels.\\
+    --- Une unique famille $(b_{l,j}X+c_{l,j})$ de polynômes des $\R_1[X]$.\\
+    tels que:
+    \begin{equation*}
+        F(X)=E(X)+\sum_{k=1}^r\left( \sum_{j=1}^{m_k}\frac{\a_{k,j}}{(X-\a_k)^j} \right)+\sum_{l=1}^s\left( \sum_{j=1}^{n_l}\frac{b_{l,j}X+c_{l,j}}{(X^2+p_lX+q_l)^j} \right).
+    \end{equation*}
+\end{thm}
+
+\begin{ex}{Forme d'une décomposition en éléments simples.}{}
+    1. Donner la forme de la décomposition en éléments simples dans $\C(X)$ de 
+    \begin{equation*}
+        F(X)=\frac{X}{(X+1)^3(X^2+X+1)}
+    \end{equation*}
+    2. Donner la forme de la décomposition en éléments simples dans $\R(X)$ de
+    \begin{equation*}
+        F(X)=\frac{X^2+2}{(X-1)^2(X+2)(X^2+X+1)^2}
+    \end{equation*}
+    \tcblower
+    \boxed{1.} \begin{equation*}
+        F = \frac{X}{(X+1)^3(X^2+X+1)}=\frac{X}{(X+1)^3(X-j)(X-\ov{j})}.
+    \end{equation*}
+    D'après le théorème: $\exists\a,\b,\g,\d,\e\in\C$ tels que
+    \begin{equation*}
+        F=\frac{\a}{X+1}+\frac{\b}{(X+1)^2}+\frac{\g}{(X+1)^3}+\frac{\d}{X-j}+\frac{\e}{X-\ov{j}}
+    \end{equation*}
+    \boxed{2.} \begin{equation*}
+        F = \frac{X^2+2}{(X-1)^2(X+2)(X^2+X+1)^2}
+    \end{equation*}
+    Par théorème, $\exists \a_1,\a_2,\b,\g_1,\g_2,\d_1,\d_2\in\R$ tels que
+    \begin{equation*}
+        F(X)=\frac{\a_1}{X-1}+\frac{\a_2}{(X-1)^2} + \frac{\b}{(X+2)} + \frac{\g_1X + \d_1}{X^2+X+1} + \frac{\g_2X+\d_2}{(X^2+X+1)^2}.
+    \end{equation*}
+\end{ex}
+
+\pagebreak
+\subsection{Coefficient relatif à un pôle simple.}
+
+\begin{prop}{Calcul du coefficient relatif à un pôle simple.}{}
+    Soit $F\in\K(X)$ et $\a\in\K$ un \bf{pôle simple} de $F$.\\
+    La décomposition en éléments simples de $F$ s'écrit donc
+    \begin{equation*}
+        F=\frac{c}{X-\a}+G\quad\nt{où $\a$ n'est pas un pôle de $G$}.
+    \end{equation*}
+    1. Formule du cache : $c=[(X-\a)F(X)](\a)$.\\
+    2. Formule théorique: si $F=\frac{A}{B}$ et $B'\neq0$, alors $c=\frac{A(\a)}{B'(\a)}$.
+    \tcblower
+    \boxed{1.} On a $F(X)=\frac{c}{X-\a}+G$ donc $(X-\a)F(X)=c+(X-\a)G$, en évaluant en $\a$ on trouve $c=[(X-\a)F(X)](\a)$.\\
+    \boxed{2.} Notons $B=(X-\a)Q$, avec $Q\in\K[X]$ tel que $Q(\a)\neq0$.\\
+    On a $B'=(X-\a)Q'+Q$ donc $B'(\a)=Q(\a)$, or :
+    \begin{equation*}
+        \frac{A}{(X-\a)Q}=\frac{C}{X-\a}+G
+    \end{equation*}
+    Donc $\frac{A}{Q}=c+(X-\a)G$ et donc $\frac{A(\a)}{Q(\a)}=c$ donc $c=\frac{A(\a)}{Q(\a)}=\frac{A(\a)}{B'(\a)}$.
+\end{prop}
+
+\begin{ex}{}{}
+    Décomposer en éléments simples dans $\R(X)$:
+    \begin{equation*}
+        F=\frac{2X-1}{X^3+3X^2+2X}
+    \end{equation*}
+    \begin{equation*}
+        G=\frac{n!}{X(X-1)...(X-n)} \quad (n\in\N^*)
+    \end{equation*}
+    \tcblower
+    \boxed{1.} On a:
+    \begin{equation*}
+        F=\frac{2X-1}{X(X+1)(X+2)}
+    \end{equation*}
+    Alors $\exists \a, \b, \g\in\R$ tels que
+    \begin{equation*}
+        F(X)=\frac{\a}{X}+\frac{\b}{X+1}+\frac{\g}{X+2}.
+    \end{equation*}
+    Alors $\a=-\frac{1}{2}$, $\b=3$, $\g=-\frac{5}{2}$.\\
+    \boxed{2.} On a:
+    \begin{equation*}
+        G=\frac{n!}{X(X-1)...(X-n)}
+    \end{equation*}
+    Alors $\exists \a_0...\a_n\in\R$ tels que
+    \begin{equation*}
+        G(X)=\sum_{k=0}^n\frac{\a_k}{X-k}
+    \end{equation*}
+    Pour $k\in\lb0,n\rb$ fixé, $\a_k=\frac{n!}{k(k-1)...1\cdot(-1)...(k-n)}=(-1)^{n-k}\frac{n!}{k!(n-k)!}=(-1)^{n-k}\binom{n}{k}$.
+\end{ex}
+
+\begin{ex}{}{}
+    Soit $P\in\K[X]$ de degré $n\geq1$ admettant $n$ racines distinctes non nulles $z_1,...,z_n$.\\
+    1. Décomposer en éléments simples la fraction $P^{-1}$.\\
+    2. En déduire la valeur de \begin{equation*}
+        \sum_{k=1}^n\frac{1}{z_kP'(z_k)}.
+    \end{equation*}
+    \tcblower
+    \boxed{1.} On a $P=\l\prod_{i=1}^n(X-z_k)$ où $\l$ est le coefficient dominant de $P$.\\
+    Alors $\exists \a_1,...,\a_n\in\K$ tels que
+    \begin{equation*}
+        P^{-1}=\sum_{k=1}^n\frac{a_k}{X-z_k}.
+    \end{equation*}
+    Pour $k\in\lb1,n\rb$, la formule du cache donne $a_k=\frac{1}{\l\prod\limits_{i\neq k}^n(z_i-z_k)}$.\n
+    La formule théorique donne $\forall k\in\lb1,n\rb~a_k=\frac{1}{P'(z_k)}$, alors
+    \begin{equation*}
+        P^{-1}=\sum_{k=1}^n\frac{1}{P'(z_k)(X-z_k)}
+    \end{equation*}
+    \boxed{2.} On évalue en 0:
+    \begin{equation*}
+        P^{-1}(0)=-\sum_{k=1}^n\frac{1}{z_kP'(z_k)}
+    \end{equation*}
+\end{ex}
+
+\subsection{Une décomposition importante : celle de \texorpdfstring{$\frac{P'}{P}$}{Lg}.}
+
+\begin{lemme}{Dérivée logarithmique d'un produit.}{}
+    Soient $P_1,...,P_r\in\K[X]\setminus\{0\}$. Alors
+    \begin{equation*}
+        \frac{\left( \prod\limits_{k=1}^rP_k \right)'}{\prod\limits_{k=1}^rP_k}=\sum_{k=1}^r\frac{P_k'}{P_k}
+    \end{equation*}
+    \tcblower
+    \begin{equation*}
+        \left( \prod_{k=1}^r P_k \right)"=\sum_{k=1}^rP_k'\prod_{i\neq k}P_i.
+    \end{equation*}
+    On divise par $\prod_{i=1}^rP_i$:
+    \begin{equation*}
+        \frac{\left( \prod_{k=1}^rP_k' \right)}{\prod_{k=1}^rP_k}=\sum_{k=1}^r\frac{P_k'}{P_k}.
+    \end{equation*}
+\end{lemme}
+
+\begin{thm}{Décomposition en éléments simples de $\frac{P'}{P}$}{}
+    Soit $P$ un polynôme scindé sur $\K$ :
+    \begin{equation*}
+        P=\l\prod_{k=1}^r(X-\a_k)^{m_k}
+    \end{equation*}
+    Alors
+    \begin{equation*}
+        \frac{P'}{P}=\sum_{k=1}^r\frac{m_k}{X-\a_k}
+    \end{equation*}
+    \tcblower
+    Posons $P_k=(X-\a_k)^{m_k}$. D'après le Lemme:
+    \begin{equation*}
+        \frac{P_k'}{P_k}=\frac{\left( \prod\limits_{k=1}^rP_k \right)'}{\prod\limits_{k=1}^rP_k}=\sum_{k=1}^r\frac{P_k'}{P_k}
+    \end{equation*}
+    Or:
+    \begin{equation*} 
+        \forall k \in \lb1,r\rb, ~ \frac{P_k'}{P_k}=\frac{m_k(X-a_k)^{m_k-1}}{(X-\a_k)^{m_k}}=\frac{m_k}{X-\a_k}
+    \end{equation*}
+    Donc $\frac{P'}{P}=\sum_{k=1}^r\frac{m_k}{X-\a_k}$.
+\end{thm}
+
+\begin{ex}{Utilisation d'une décomposition en éléments simples.}{}
+    Soit $n\in\N$, $n\geq2$. Déterminer la forme irréductible de
+    \begin{equation*}
+        F=\sum_{k=1}^{n-1}\frac{1}{X-e^{\frac{2ik\pi}{n}}}
+    \end{equation*}
+    En déduire la valeur de
+    \begin{equation*}
+        \sum_{k=1}^{n-1}\frac{1}{1-e^{\frac{2ik\pi}{n}}}
+    \end{equation*}
+    \tcblower
+    Posons $P=\prod\limits_{k=1}^{n-1}(X-e^{\frac{2ik\pi}{n}})$. On sait que $F=\frac{P'}{P}$ et on a:
+    \begin{equation*}
+        P=\frac{X^n-1}{X-1}=\sum_{k=0}^{n-1}X^k; \quad P'=\sum_{k=0}^{n-1}kX^{k-1}.
+    \end{equation*}
+    On a PGCD$(P',P)=1$ car $P$ n'a que des racines simples, donc $P$ et $P'$ n'ont pas de racines communes.\n
+    On évalue en 1:
+    \begin{equation*}
+        \sum_{k=1}^n\frac{1}{1-e^{\frac{2ik\pi}{n}}}=\frac{P'(1)}{P(1)}=\frac{\frac{n(n-1)}{2}}{n}=\frac{n-1}{2}
+    \end{equation*}
+\end{ex}
+
+\subsection{Pratique de la décomposition en éléments simples.}
+
+\begin{meth}{comment aborder un calcul de décomposition en éléments simples.}{}
+    Soit $F\in\K(X)$ dont on cherche la décomposition en éléments simples.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item On écrit $F$ sous forme irréductible.\\On décompose le dénominateur en facteurs irréductibles.
+        \item On cherche la partie entière de $F$ (si $\deg F < 0$, la partie entière est nulle).
+        \item On écrit \emph{a priori} la décomposition en éléments simples de $F$.\\Elle fait intervenir des coefficients qu'il reste à calculer.
+        \item On calcule les coefficients relatifs aux pôles simples (formule du cache).
+        \item On calcule les autres coefficients comme on peut.\\On peut s'aider de la parité, de la conjugaison complexe, de l'évaluation en quelques valeurs, des limites en $+\infty$...
+    \end{enumerate}
+\end{meth}
+
+\begin{ex}{}{}
+    Décomposer en éléments simples dans $\C(X)$.
+    \begin{equation*}
+        F=\frac{X^2+2}{X^2(X^2+1)} \quad \nt{et} \quad G=\frac{1}{X^n-1} \quad (n\in\N^*)
+    \end{equation*}
+    \tcblower
+    \boxed{1.} On a:
+    \begin{equation*}
+        F=\frac{X^2+2}{X^2(X-i)(X+i)}=\frac{\a}{X}+\frac{\b}{X^2}+\frac{\g}{X-i}+\frac{\d}{X+i}
+    \end{equation*}
+    Avec la formule du cache : $\g=\frac{i}{2}$ et $\d=-\frac{i}{2}$.\\
+    On multiplie par $X^2$: $\frac{X^2+2}{X^2+1}=\a X + \b + \frac{\g X^2}{X-i} + \frac{\d X^2}{X+i}$.\\
+    On évalue en 0: $\b=2$.\\
+    On multiple par $X$: $\frac{X^2+2}{X(X^2+1)}=\a+\frac{\b}{X}+\frac{\g X}{X-i} + \frac{\d X}{X + i}$\\
+    On passe à la limite: $0 = \a + 0 + \g + \d$ donc $\a=0$.\\
+    Conclusion: $F=\frac{2}{X^2}+\frac{i/2}{X-i}-\frac{i/2}{X+i}$.\n
+    \boxed{2.} On a:
+    \begin{equation*}
+        G=\frac{1}{X^n-1}=\frac{1}{\prod\limits_{k=0}^{n-1}\left(X-e^{\frac{2ik\pi}{n}}\right)}=\sum_{k=0}^{n-1}\frac{a_k}{X-\w_k}
+    \end{equation*}
+    Avec $\forall k \in \lb0,n-1\rb, ~ \w_k = e^{\frac{2ik\pi}{n}}$ et $a_0,...,a_{n-1}\in\C$.\\
+    Avec la formule théorique, on sait que si $\a$ est un pôle simple de $\frac{A}{B}$, alors le coefficient vaut $\frac{A(\a)}{B(\a)}$.\\
+    Ici, $A=1$, $B=X^n$ et $B'=nX^{n-1}$.\\
+    On a:
+    \begin{equation*}\forall k \in \lb0,n-1\rb~a_k=\frac{1}{n\w_k^{n-1}}=\frac{\w_k}{n}\end{equation*}
+    Donc:
+    \begin{equation*}
+        \frac{1}{X^n-1}=\sum_{k=0}^{n-1}\frac{\w_k}{n(X-\w_k)}.
+    \end{equation*}
+\end{ex}
+
+\begin{ex}{}{}
+    Décomposer en éléments simples dans $\R(X)$.
+    \begin{equation*}
+        F=\frac{1}{X^3+1} \quad \nt{et} \quad G=\frac{4X^2}{X^4+1}
+    \end{equation*}
+    \tcblower
+    \boxed{1.} On a:
+    \begin{equation*}
+        F=\frac{1}{X^3+1}=\frac{1}{(X+1)(X^2-X+1)}=\frac{\a}{X+1}+\frac{\b X + \g}{X^2-X+1}
+    \end{equation*}
+    Formule du cache : $\a=\frac{1}{3}$.\\
+    On évalue en 0: $F(0)=1=\a+\g$ donc $\g=\frac{2}{3}$.\\
+    On évalue en 1: $F(1)=\frac{1}{2}=\frac{1}{6}+\b+\frac{2}{3}$ donc $\b=-\frac{1}{3}$.\\
+    Conclusion: $F=\frac{1}{3}\left( \frac{1}{X+1} - \frac{X-2}{X^2-X+1} \right)$.\n
+    \boxed{2.} On a
+    \begin{equation*}
+        G=\frac{4X^2}{X^4+1}=\frac{4X^2}{(X^2-\sqrt{2}X+1)(X^2+\sqrt{2}X+1)}=\frac{\a X + \b}{X^2-\sqrt{2}X+1}+\frac{\g X + \d}{X^2+\sqrt{2}X+1}
+    \end{equation*}
+    On passe à la limite dans $XG(X)$ : $0=\a+\g$.\\
+    On évalue en 0: $0=\b+\d$.\\
+    Il en faut deux autres...
+\end{ex}
+
+\end{document}
