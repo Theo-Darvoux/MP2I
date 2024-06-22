@@ -5,3 +5,4 @@ bicolore ?
 
 Base de données ?
 Manque des chose dans logique (ex: La taille d'une proposition CNF est exponentielle en celle du passage de NNF TO CNF size(CNF) >= 2^SIZE(NNF))
+Algorithme de mise en forme d'un texte avec la méthode des cubes
