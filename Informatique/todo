@@ -3,4 +3,5 @@ Algorithmique (corrections, complexités, tests)
 Rabin karp ?
 bicolore ?
 
-SQL ?
+Base de données ?
+Manque des chose dans logique (ex: La taille d'une proposition CNF est exponentielle en celle du passage de NNF TO CNF size(CNF) >= 2^SIZE(NNF))
