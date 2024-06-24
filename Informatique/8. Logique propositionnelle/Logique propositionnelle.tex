@@ -252,4 +252,62 @@
     Une FND est complète si chaque variable est représentée une unique fois dans chaque conjonction élémentaire.
 \end{defi}
 
+\section{Logique des prédicats.}
+
+\begin{defi}{}{}
+    Pour chaque instance de logique du premier ordre, on introduit un ensemble de symboles:\\
+    --- Une infinité de symboles de variables.\\
+    --- Des symboles de constantes, éléments particuliers du domaine d'interprétation.\\
+    --- Des symboles de fonctions, transforment les tuples d'éléments.\\
+    --- Des symboles de prédicats, expriment des propriétés sur les éléments.
+\end{defi}
+
+\begin{ex}{}{}
+    Un groupe peut être décrit par:\\
+    --- Constantes: $e$ le neutre.\\
+    --- Fonctions: le produit, l'inverse.\\ 
+    --- Prédicat: l'égalité.\n
+    Familles des ensembles:\\
+    --- Constantes: $\0$\\
+    --- Fonctions: $\cup$, $\cap$, $\setminus$\\
+    --- Prédicats: $\in$, $\subset$, $=$.
+\end{ex}
+
+\begin{defi}{Termes.}{}
+    À partir des fonctions, des constantes et des variables, on définit inductivement les \bf{termes}:\\
+    --- Assertions:  constantes et variables.\\
+    --- Règles d'inférence: si $f$ est une fonction d'arité $n$, et $t_1,...,t_n$ des termes, $f(t_1,...,t_n)$ est un terme.
+\end{defi}
+
+\begin{defi}{Atomes.}{}
+    Un \bf{atome} (ou formule atomique) est l'application d'un prédicat $n$-aire à une suite de $n$ termes.
+\end{defi}
+
+\begin{defi}{Formules.}{}
+    Les \bf{formules} de la logique des prédicats sont construites inductivement:\\
+    --- Assertions: atomes.\\
+    --- Règles d'inférence: $\land$, $\lor$, $\lnot$, $\exists$, $\forall$.
+\end{defi}
+
+\begin{ex}{Groupes abéliens.}{}
+    Dans un groupe abélien, on voudrait que les formules suivantes soient vraies:
+    \begin{equation*}
+        \forall x.~x+0 = x,\quad\forall x.~\exists y.~x+y=0,\quad \forall x.~\forall y.~x+y=y+x
+    \end{equation*}
+\end{ex}
+
+\begin{defi}{Occurences.}{}
+    Une occurence d'une variable $x$ dans une formule $F$ est une position de cette variable dans $F$.\\
+    Une occurence de $x$ est liée dans $F$ si dans la branche qui aboutit à cette occurence on rencontre une quantification de $x$. Sinon elle est libre. 
+\end{defi}
+
+\begin{ex}{}{}
+    Dans $\exists x.~P(x,y)$, $x$ est liée et $y$ est libre.
+\end{ex}
+
+\begin{defi}{}{}
+    Deux formules $F$ et $G$ sont $\a$-équivalentes si on peut passer de l'une à l'autre en renommant des variables liées.
+\end{defi}
+
+
 \end{document}

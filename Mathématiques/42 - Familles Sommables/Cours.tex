@@ -1,0 +1,256 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{42}
+\def\pagetitle{Familles sommables.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\section*{Introduction.}
+
+\begin{ex}{Pour poser le problème.}{}
+    Soit la famille $(u_{n,p})_{(n,p)\in\N^2}$ définie pour tout $(n,p)\in\N^2$ par $u_{n,p}=\begin{cases}
+        1 & \nt{si } n=p+1\\
+        -1 & \nt{si } p=n+1\\
+        0 & \nt{sinon}
+    \end{cases}$
+    \begin{equation*}
+        \nt{Calculer:} \quad \sum_{n=0}^{+\infty}\sum_{p=0}^{+\infty}u_{n,p}, \quad \sum_{p=0}^{+\infty}\sum_{n=0}^{+\infty}u_{n,p}, \quad \sum_{N=0}^{+\infty}\sum_{n+p=N}u_{n,p}. \quad \nt{Commenter.}
+    \end{equation*}
+    \tcblower
+    La première somme vaut $-1$, la deuxième vaut $1$ et la dernière n'est pas sommable.
+\end{ex}
+
+\section{Sommer des réels positifs.}
+\setcounter{subsection}{-1}
+\subsection{Travailler dans \texorpdfstring{$[0,+\infty]$}{Lg}}
+
+On note \fbox{$[0,+\infty]=\R_+\cup\{+\infty\}$}.
+
+\begin{defi}{}{}
+    On appelle \bf{borne supérieure} d'une partie $A$ de $[0,+\infty]$ le plus petit des majorants de $A$ dans $[0,+\infty]$. Cet élément de $[0,+\infty]$ est noté $\sup(A)$.
+\end{defi}
+
+\begin{meth}{Passage au sup : l'argument clé du cours.}{}
+    Soient $M\in[0,+\infty]$ un réel et $A$ une partie de $[0,+\infty]$. Pour démontrer l'inégalité $\sup(A)\leq M$, il suffira de montrer que $M$ est un majorant de $A$, autrement dit:
+    \begin{equation*}
+        (\forall x \in A\quad x\leq M) \ra \sup(A) \leq M.
+    \end{equation*}
+\end{meth}
+
+\subsection{Somme d'une famille de réels positifs.}
+
+\begin{defi}{}{}
+    Soit $(u_i)_{i\in I}$ une famille de réels \bf{positifs}. On appelle \bf{somme} de cette famille, notée $\sum_{i\in I}u_i$ le nombre
+    \begin{equation*}
+        \sum_{i\in I}u_i=\sup\left\{\sum_{i\in F}u_i, ~ F\subset I, ~ F \nt{ finie}\right\} \quad (\in[0,+\infty]).
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $(u_i)_{i\in I}$ une famille de réels positifs et $I'\subset I$. On a \large$\sum\limits_{i\in I'}u_i\leq \sum\limits_{i\in I}u_i$.
+    \tcblower
+    Soit $F\subset I'$ finie. Alors $F\subset I$. On a: 
+    \begin{equation*}
+        \sum_{i\in F}u_i\leq \sum_{i\in I}u_i\quad\nt{alors}\quad\sum_{i\in I'}u_i \leq \sum_{i\in I}u_i
+    \end{equation*}
+    Par passage au sup sur $F$.
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $(u_i)_{i\in I}$ et $(v_i)_{i\in I}$ deux familles de réels positifs telles que $\forall i \in I,~u_i\leq v_i$. On a \large$\sum_{i\in I}u_i\leq\sum_{i\in I}v_i$
+    \tcblower
+    Soit $F\subset I$ finie. Alors on a:
+    \begin{equation*}
+        \sum_{i\in F}u_i\leq\sum_{i\in F}v_i\leq\sum_{i\in I}v_i\quad\nt{alors}\quad\sum_{i\in I}u_i\leq\sum_{i\in I}v_i
+    \end{equation*}
+    Par passage au sup sur $F$.
+\end{prop}
+
+\begin{prop}{Lien avec les sommes finies, les sommes de séries.}{}
+    Soit $(u_i)_{i\in I}$ une famille de réels positifs.
+    \begin{enumerate}[itemsep=-0.9 ex]
+        \item Si $I$ est finie, le nombre $\sum\limits_{i\in I}u_i$ est à la fois la somme des nombres de la famille, et la somme de la famille.
+        \item Si $I=\N$, alors $\sum\limits_{i\in I}u_i=\sum\limits_{k=0}^{+\infty}u_k$, le nombre à droite étant la somme de la série $\sum u_n$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Notons $s$ la somme finie habituelle et $\s$ la nouvelle.\\
+    $\circledcirc$ On a $I\subset I$ finie, donc $s\leq \s$.\\
+    $\circledcirc$ Soit $F\subset I$ finie, on a
+    \begin{equation*}
+        \sum_{i\in F}u_i=\sum_{i\in I} u_i - \sum_{i\in I\setminus F}u_i\quad\nt{alors}\quad\sum_{i\in F}u_i\leq s\quad\nt{alors}\quad\s\leq s.
+    \end{equation*}
+    Par antisymétrie, $\s=s$.\n
+    \boxed{2.} 
+    $\circledcirc$ Soit $N\in\N$, $\lb0,N\rb\subset\N$ donc \large$\sum\limits_{i=0}^Nu_i\leq\sum\limits_{i\in I}u_i$. \normalsize Par passage à la limite, \large$\sum\limits_{i=0}^{+\infty}u_i\leq\sum\limits_{i\in I}u_i$.\normalsize\\
+    $\circledcirc$ Soit $F\subset\N$ finie. On a
+    \begin{equation*}
+        \sum_{i\in F}u_i \leq \sum_{i=0}^Nu_i\quad\nt{avec }N=\max(F).
+    \end{equation*}
+    Alors, par passage à la limite, puis au sup:
+    \begin{equation*}
+        \sum_{i\in I}u_i\leq\sum_{i=0}^{+\infty}u_i.
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{Invariance de la somme par permutation, cas positif.}{}
+    Soit $(u_i)_{i\in I}$ une famille de nombres réels positifs et $\s$ une bijection de $I$ dans $I$. On a
+    \begin{equation*}
+        \sum_{i\in I}u_{\s(i)}=\sum_{i\in I}u_i.
+    \end{equation*}
+    \tcblower
+    $\circledcirc$ Soit $F\subset I$ finie. On a
+    \begin{equation*}
+        \sum_{i\in F}u_{\s(i)}=\sum_{i\in\s(F)}u_i\leq\sum_{i\in I}u_i\quad\nt{alors}\quad\sum_{i\in I}u_{\s(i)}\leq\sum_{i\in I}u_i.
+    \end{equation*}
+    $\circledcirc$ Soit $F\subset I$ finie. On a
+    \begin{equation*}
+        \sum_{i\in F}u_i = \sum_{i\in\s^{-1}(F)}u_{\s(i)}\leq\sum_{i\in I}u_{\s(i)}\quad\nt{alors}\quad\sum_{i\in I}u_i\leq \sum_{i\in I}u_{\s(i)}.
+    \end{equation*}
+\end{prop}
+
+\subsection{Familles sommables de réels positifs.}
+
+\begin{defi}{}{}
+    Une famille de réels \bf{positifs} $(u_i)_{i\in I}$ est dite $\bf{sommable}$ si sa somme est finie, ce qui se note
+    \begin{equation*}
+        \sum_{i\in I}u_i < +\infty.
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $(u_i)_{i\in I}$ et $(v_i)_{i\in I}$ deux familles de réels positifs (indexées par le même ensemble) et $\l\in\R_+$.
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item La famille $(u_i+v_i)_{i\in I}$ est sommable ssi $(u_i)_{i\in I}$ et $(v_i)_{i\in I}$ le sont.
+        \item Si $(u_i)_{i\in I}$ est sommable, alors $(\l u_i)_{i\in I}$ l'est aussi.
+    \end{itemize}
+    \tcblower
+    Trivial.
+\end{prop}
+
+\subsection{Sommation par paquets.}
+
+\begin{thm}{de sommation par paquets, cas positifs.}{}
+    Soit $(u_i)_{i\in I}$ une famille de réels \bf{positifs}.\\
+    On suppose que $I$ s'écrit comme une réunion \bf{disjointe} $I=\bigcup_{j\in J}I_j$. Alors
+    \begin{equation*}
+        \sum_{j\in J}\left( \sum_{i\in I_j}u_i \right) = \sum_{i\in I}u_i
+    \end{equation*}
+    \tcblower
+    Preuve hors-programme. 
+\end{thm}
+
+\begin{corr}{si cette somme est finie, alors c'est sommable.}{}
+    Une famille $(u_i)_{i\in I}$ de nombres positifs est sommable si et seulement si
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item pour tout $j\in J$, $(u_i)_{i\in I_j}$ est sommable,
+        \item la famille $(\sum\limits_{i\in I_j}u_i)_{j\in J}$ est sommable.
+    \end{enumerate}
+\end{corr}
+
+\begin{thm}{de Fubini positif.}{}
+    Soit $(u_{i,j})_{(i,j)\in I\times J}$ une famille de réels positifs indexée par un produit cartésien $I\times J$, on a:
+    \begin{equation*}
+        \sum_{(i,j)\in I\times J}u_{i,j}=\sum_{i\in I}\sum_{j\in J}u_{i,j}=\sum_{j\in J}\sum_{i\in I}u_{i,j}.
+    \end{equation*}
+    \tcblower
+    On a $I\times J=\bigcup_{i\in I}(\{i\}\times J)$ où les $\{i\}\times J$ sont un recouvrement disjoint de $I\times J$. Alors:
+    \begin{equation*}
+        \sum_{(i,j)\in I\times J}u_{i,j}=\sum_{i\in I}\sum_{(i,j)\in\{i\}\times J}u_{i,j}=\sum_{i\in I}\sum_{j\in J}u_{i,j}.
+    \end{equation*}
+\end{thm}
+
+\begin{ex}{Sommes triangulaires, cas positif.}{}
+    Soit $(u_{n,p})_{(n,p)\in\N^2}$ une famille de nombres réels positifs indexée par $\N^2$. On a
+    \begin{equation*}
+        \sum_{(n,p)\in\N^2}u_{n,p}=\sum_{n=0}^{+\infty}\sum_{k=0}^nu_{k,n-k}
+    \end{equation*}
+    \tcblower
+    On a $\N^2=\bigcup_{n\in\N}I_n$ où $I_n=\{(k,n-k)\mid0\leq k \leq n\}$ recouvrement disjoint.
+\end{ex}
+
+\begin{ex}{}{}
+    Calculer la somme de la famille \Large$\left( \frac{1}{p^2q^2} \right)_{(p,q)\in(\N^*)^2}$\normalsize.\\
+    Montrer que la famille \Large$\left( \frac{1}{(p+q)^2} \right)_{(p,q)\in(\N^*)^2}$\normalsize n'est pas sommable.
+    \tcblower
+    On a:
+    \begin{align*}
+        \sum_{(p,q)\in(\N^*)^2}\frac{1}{p^2q^2}&=\sum_{p\in\N^*}\sum_{q\in\N^*}\frac{1}{p^2q^2}=\sum_{p\in\N^*}\frac{1}{p^2}\left( \sum_{q\in\N^*}\frac{1}{q^2} \right) =\frac{\pi^2}{6}\sum_{p\in\N^*}\frac{1}{p^2}\\
+        &=\frac{\pi^4}{36}.
+    \end{align*}
+    On pose pour $n\in\N^*,~ I_n=\{(p,q)\in(\N^*)^2\mid p+q=n\}=\{(k,n-k)\mid k\in\lb1,n\rb\}$ (recouvrement disjoint).
+    \begin{align*}
+        \sum_{(p,q)\in(\N^*)^2}\frac{1}{(p+q)^2}&=\sum_{n\in\N^*}\sum_{(p,q)\in I_n}\frac{1}{(p+q)^2}\\
+        &=\sum_{n\in\N^*}\frac{1}{n^2}|I_n|=\sum_{n\in\N^*}\frac{1}{n}\\
+        &=+\infty
+    \end{align*}
+    Donc la famille n'est pas sommable.
+\end{ex}
+
+\begin{ex}{}{}
+    Démontrer l'identité \Large$\sum\limits_{p=2}^{+\infty}(\zeta(p)-1)=1$.
+    \tcblower
+    On a:
+    \begin{align*}
+        \sum_{p=2}^{+\infty}(\zeta(p)-1) &= \sum_{p=2}^{+\infty}\sum_{n=2}^{+\infty}\frac{1}{n^p}=\sum_{n=2}^{+\infty}\sum_{p=2}^{+\infty}\frac{1}{n^p}=\sum_{n=2}^{+\infty}\frac{1}{n^2}\cdot\frac{n}{n-1}\\
+        &=\sum_{n=2}^{+\infty}\frac{1}{n(n-1)}=\sum_{n=2}^{+\infty}\left(\frac{1}{n-1}-\frac{1}{n}\right)\\
+        &=1
+    \end{align*}
+\end{ex}
+
+\begin{ex}{}{}
+    Soit $a\in[0,1[$. En considérant la famille $(a^{pq})_{(p,q)\in(\N^*)^2}$, démontrer l'identité:
+    \begin{equation*}
+        \sum_{n=1}^{+\infty}\frac{a^n}{1-a^n}=\sum_{n=1}^{+\infty}d(n)a^n,
+    \end{equation*}
+    où pour tout entier $n\in\N^*$, $d(n)$ est le nombre de diviseurs positifs de $n$.
+    \tcblower
+    On va poser pour $n\in\N^*, ~ I_n=\{(p,q)\in(\N^*)^2\mid pq=n\}$ (recouvrement disjoint):
+    \begin{align*}
+        \sum_{n=1}^{+\infty}\frac{a^n}{1-a^n}&=\sum_{n=1}^{+\infty}\sum_{p=1}^{+\infty}(a^n)^p=\sum_{(p,q)\in(\N^*)^2}a^{pq}\\
+        &=\sum_{n\in\N^*}\sum_{(p,q)\in I_n}a^{pq}=\sum_{n\in\N^*}a^n|I_n|\\
+        &=\sum_{n\in\N^*}a^{n}d(n)
+    \end{align*}
+    En effet, $I_n=\{(p,\frac{n}{p})\mid p \nt{ divise } n\}$. Donc $|I_n|=d(n)$.
+\end{ex}
+
+\section{Sommer des nombres complexes.}
+
+\subsection{Familles sommables de nombres complexes: l'espace \texorpdfstring{$\ell^1$}{Lg}.}
+
+\subsection{Somme d'une famille sommable de nombres complexes.}
+
+\subsection{Sommation par paquets.}
+
+\subsection{Produits.}
+
+\pagebreak
+
+\section{Exercices.}
+
+\begin{exercice}{}{}
+    Calculer la somme de \Large$\left( \frac{1}{(i+j^2)(i+j^2+1)} \right)_{i\geq 0,j\geq1}$ \normalsize (on suppose $\zeta(2)$ connu). En déduire
+    \begin{equation*}
+        \sum_{n=1}^{+\infty}\frac{\lf \sqrt{n} \rf}{n(n+1)}.
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{align*}
+        \sum_{(i,j)\in\N\times\N^*}\frac{1}{(i+j^2)(i+j^2+1)}&=\sum_{j=1}^{+\infty}\sum_{i=0}^{+\infty}\frac{1}{(j^2+i)(j^2+i+1)}\\
+        &=\sum_{j=1}^{+\infty}\sum_{i=0}^{+\infty}\left( \frac{1}{j^2+i}-\frac{1}{j^2+i+1} \right)\\
+        &=\sum_{j=1}^{+\infty}\frac{1}{j^2}=\frac{\pi^2}{6}
+    \end{align*}
+    Pour $n\in\N^*$, on définit $I_n=\{(i,j)\in\N\times\N^*\mid n=i+j^2\}$ (recouvrement disjoint).
+    \begin{align*}
+        \sum_{(i,j)\in\N\times\N^*}\frac{1}{(i+j^2)(i+j^2+1)}&=\sum_{n\in\N^*}\sum_{(i,j)\in I_n}\frac{1}{(i+j^2)(i+j^2+1)}\\
+        &=\sum_{n\in\N^*}\frac{1}{n(n+1)}|I_n|\\
+        &=\sum_{n\in\N^*}\frac{\lf \sqrt{n} \rf}{n(n+1)}
+    \end{align*}
+    En effet, $I_n=\{(n-j^2,j^2)\mid j^2\in\lb1,n\rb\}=\{(n-j^2,j^2)\mid j\in\lb1,\sqrt{n}\rb\}$. Donc $|I_n|=\lf\sqrt{n}\rf$.\n
+    En conclusion, cette somme vaut $\zeta(2)$.
+\end{exercice}
+
+\end{document}
