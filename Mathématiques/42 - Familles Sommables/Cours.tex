@@ -50,7 +50,7 @@ On note \fbox{$[0,+\infty]=\R_+\cup\{+\infty\}$}.
     \end{equation*}
 \end{defi}
 
-\begin{prop}{}{}
+\begin{prop}{}{4}
     Soit $(u_i)_{i\in I}$ une famille de réels positifs et $I'\subset I$. On a \large$\sum\limits_{i\in I'}u_i\leq \sum\limits_{i\in I}u_i$.
     \tcblower
     Soit $F\subset I'$ finie. Alors $F\subset I$. On a: 
@@ -60,7 +60,7 @@ On note \fbox{$[0,+\infty]=\R_+\cup\{+\infty\}$}.
     Par passage au sup sur $F$.
 \end{prop}
 
-\begin{prop}{}{}
+\begin{prop}{}{5}
     Soit $(u_i)_{i\in I}$ et $(v_i)_{i\in I}$ deux familles de réels positifs telles que $\forall i \in I,~u_i\leq v_i$. On a \large$\sum_{i\in I}u_i\leq\sum_{i\in I}v_i$
     \tcblower
     Soit $F\subset I$ finie. Alors on a:
@@ -70,7 +70,7 @@ On note \fbox{$[0,+\infty]=\R_+\cup\{+\infty\}$}.
     Par passage au sup sur $F$.
 \end{prop}
 
-\begin{prop}{Lien avec les sommes finies, les sommes de séries.}{}
+\begin{prop}{Lien avec les sommes finies, les sommes de séries.}{6}
     Soit $(u_i)_{i\in I}$ une famille de réels positifs.
     \begin{enumerate}[itemsep=-0.9 ex]
         \item Si $I$ est finie, le nombre $\sum\limits_{i\in I}u_i$ est à la fois la somme des nombres de la famille, et la somme de la famille.
@@ -221,13 +221,275 @@ On note \fbox{$[0,+\infty]=\R_+\cup\{+\infty\}$}.
 
 \subsection{Familles sommables de nombres complexes: l'espace \texorpdfstring{$\ell^1$}{Lg}.}
 
+\begin{defi}{}{}
+    Une famille $(u_i)_{i\in I}$ de $\K^I$ est dite \bf{sommable} si $\sum\limits_{i\in I}|u_i|<+\infty$.\\
+    L'ensemble des familles sommables de $\K^I$ est noté $\ell^1(I)$
+\end{defi}
+
+\begin{prop}{}{}
+    Si $(u_i)_{i\in I}$ est une famille sommable, alors toute sous-famille de $(u_i)_{i\in I'}$ ($I\subset I'$) l'est aussi.
+    \tcblower
+    Supposons $(u_i)_{i\in I}$ sommable. D'après \ref{prop:4}
+    \begin{equation*}
+        \sum{i\in I'}|u_i|\leq\sum_{i\in I}|u_i|<+\infty.
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $(u_i)_{i\in I}\in\K^I$ et $(v_i)_{i\in I}$ une famille de réels positifs telles que
+    \begin{equation*}
+        \forall i \in I, ~ |u_i|\leq v_i.
+    \end{equation*}
+    Si la famille $(v_i)_{i\in I}$ est sommable, alors $(u_i)_{i\in I}\in\ell^1(I)$.
+    \tcblower
+    On a $(|u_i|)_{i\in I}$ et $(v_i)_{i\in I}$ sont des familles positives. D'après \ref{prop:5}:
+    \begin{equation*}
+        \sum_{i\in I}|u_i|\leq\sum_{i\in I}v_i < +\infty
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{}{}
+    L'ensemble $\ell^1(I)$ des familles sommables de $\K^I$ est un sous-espace vectoriel de $\K^I$.
+    \tcblower
+    $\circledcirc$ Posons $(\theta_i)_{i\in I}=0_{\K^I}$. Alors $\sum\theta_i=0$, donc $(\theta_i)_{i\in I}\in\ell^1(I)$.\n
+    $\circledcirc$ Soient $(u_i)_{i\in I}$ et $(v_i)_{i\in I}$ deux familles sommables et $\l,\mu\in\K$. On a:
+    \begin{align*}
+        \sum_{i\in I}\left| \l u_i + \mu v_i \right| &\leq \sum_{i\in I}|\l u_i| + \sum_{i\in I}|\mu v_i|\\
+        &= |\l|\sum_{i\in I}|u_i| + |\mu|\sum_{i\in I}|v_i|\\
+        &< +\infty
+    \end{align*}
+\end{prop}
+
 \subsection{Somme d'une famille sommable de nombres complexes.}
+
+\begin{defi}{Somme d'une famille sommable réelle.}{}
+    Soit $(u_i)_{i\in I}$ une famille \bf{sommable} de nombre réels. On pose
+    \begin{equation*}
+        I_+=\{i\in I\mid u_i\geq0\}\quad\nt{et}\quad I_-=\{i\in I\mid u_i<0\}.
+    \end{equation*}
+    Les famille s$(u_i)_{i\in I_+}$ et $-(u_i)_{i\in I_-}$ sont des familles sommables de réels positifs.\n
+    On appelle \bf{somme} de la famille $(u_i)_{i\in I}$ et on note $\sum\limits_{i\in I}u_i$ le nombre réel défini par
+    \begin{equation*}
+        \sum_{i\in I}u_i=\sum_{i\in I_+}u_i - \sum_{i\in I_-}(-u_i)
+    \end{equation*}
+\end{defi}
+
+\begin{defi}{Somme d'une famille sommable complexe.}{}
+    Soit $(u_i)_{i\in I}$ une famille \bf{sommable} de nombres complexes.\\
+    Les familles $(\Re(u_i))_{i\in I}$ et $(\Im(u_i))_{i\in I}$ sont des familles réelles sommables.\n
+    On appelle \bf{somme} de la famille $(u_i)_{i\in I}$ et on note $\sum\limits_{i\in I}u_i$ le nombre complexe défini par
+    \begin{equation*}
+        \sum_{i\in I}u_i = \sum_{i\in I}\Re(u_i)+i\sum_{i\in I}\Im(u_i).
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{Lien avec les séries.}{}
+    Une famille $(u_n)_{n\in\N}$ est sommable ssi la série $\sum u_n$ est absolument convergente.\\
+    Si c'est le cas,
+    \begin{equation*}
+        \sum_{n\in\N}u_n=\sum_{n=0}^{+\infty}u_n.
+    \end{equation*} 
+    Le membre de gauche étant la somme de la famille, et celui de droite la somme de la série.
+    \tcblower
+    Proposition \ref{prop:6}.
+    \begin{equation*}
+        (u_n)_{n\in\N}\in\ell^1(I)\iff\sum_{n\in\N}|u_n|<+\infty\iff\sum_{n=0}^{+\infty}|u_n|<+\infty\iff\sum u_n\nt{ CVA.}.
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{Approcher la somme par une somme finie.}{}
+    Soit $(u_i)_{i\in I}$ une famille sommable. Pour tout $\e>0$, il existe une partie $F$ finie de $I$ telle que
+    \begin{equation*}
+        \left|\sum_{i\in I}u_i - \sum_{i\in F}u_i\right|\leq \e
+    \end{equation*}
+    \tcblower
+    Idée de preuve (cas réel). Soit $F$ partie finie de $I$. On a
+    \begin{align*}
+        \left|\sum_{i\in I}u_i - \sum_{i\in F}u_i\right|&=\left|\sum_{i\in I_+}u_i - \sum_{i\in I_-}(-u_i)-\sum_{i\in F\cap I_+}u_i + \sum_{i\in F\cap I_-}(-u_i)\right|\\
+        &\leq \left|\sum_{i\in I_+} u_i - \sum_{i\in F\cap I_+}u_i\right| + \left| \sum_{i\in I_-}(-u_i) - \sum_{i\in F\cap I_-}(-u_i)\right|\\
+        &\leq \left|\sum_{i\in I_+\setminus F}u_i\right| + \left|\sum_{i\in I_-\setminus F}(-u_i)\right|\\
+        &\leq \frac{\e}{2} + \frac{\e}{2} \quad \nt{caractérisation de la borne sup}.\\
+        &\leq \e
+    \end{align*}
+\end{prop}
+
+\begin{thm}{Linéarité de la somme.}{}
+    \begin{center}
+        $(u_i)_{i\in I}\mapsto \sum\limits_{i\in I}u_i$ est une forme linéaire sur $\ell^1(I)$.
+    \end{center}
+    \tcblower
+    Admis.
+\end{thm}
+
+\begin{prop}{Croissance de la somme.}{}
+    Si $(u_i)_{i\in I}$ et $(v_i)_{i\in I}$ sont deux familles sommables telles que $\forall i\in I,~u_i\leq v_i$, alors:
+    \begin{equation*}
+        \sum_{i\in I}u_i\leq\sum_{i\in I}v_i.
+    \end{equation*}
+    \tcblower
+    Admis.
+\end{prop}
+
+\begin{corr}{Inégalité triangulaire.}{}
+    \begin{equation*}
+        \forall (u_i)_{i\in I}\in\ell^1(I),~\left|\sum_{i\in I}u_i\right|\leq\sum_{i\in I}|u_i|.
+    \end{equation*}
+    \tcblower
+    Admis.
+\end{corr}
+
+\begin{thm}{Permutation des termes de la somme d'une famille sommable.}{}
+    Soit $(u_i)_{i\in I}$ une famille sommable de nombre complexes et $\s$ une bijection de $I$ dans $I$. On a
+    \begin{equation*}
+        \sum_{i\in I}u_{\s(i)}=\sum_{i\in I}u_i.
+    \end{equation*}
+    En particulier, on peut permuter les termes de la somme d'une série absolument convergente.
+    \tcblower
+    Admis.
+\end{thm}
 
 \subsection{Sommation par paquets.}
 
+\begin{thm}{de sommation par paquets.}{}
+    Soit $(u_i)_{i\in I}$ une famille de nombres complexes.\\
+    On suppose que $I$ s'écrit comme une réunion disjointe $I=\bigcup\limits_{j\in J}I_j$.\\
+    Si $u$ est sommable, alors
+    \begin{equation*}
+        \sum_{j\in J}\left( \sum_{i\in I_j}u_i \right) = \sum_{i\in I}u_i.
+    \end{equation*}
+\end{thm}
+
+\begin{thm}{de Fubini.}{}
+    Soit $(u_{i,j})_{(i,j)\in I\times J}$ une famille de nombres complexes indexée par un produit cartésien $I\times J$.\\
+    Si $u$ est \bf{sommable},
+    \begin{equation*}
+        \sum_{(i,j)\in I\times J} u_{i,j}=\sum_{i\in I}\sum_{j\in J}u_{i,j}=\sum_{j\in J}\sum_{i\in I}u_{i,j}.
+    \end{equation*}
+\end{thm}
+
+\begin{ex}{Sommes triangulaires.}{}
+    Soit $(u_{n,p})_{(n,p)\in\N^2}$ une famille sommable de nombres complexes. On a
+    \begin{equation*}
+        \sum_{(n,p)\in\N^2}u_{n,p}=\sum_{n=0}^{+\infty}\sum_{k=0}^nu_{k,n-k}.
+    \end{equation*}
+\end{ex}
+
+\begin{meth}{Le calcul d'abord, la justification ensuite.}{}
+    En partique, on pourra écrire une sommation par paquets ou un échange de somme "sous réserve de sommabilité", le temps de voir si on aboutit ainsi à un résultat intéressant.\n
+    Le cas échéant, il est encore temps de prouver la sommabilité en sommant les modules.\\
+    On insiste sur le fait que les calculs de somme sur les modules sont justifiés par la seule positivité!
+\end{meth}
+
+\begin{ex}{Retour sur un exemple.}{}
+    Soit $z\in\C$ tel que $|z|<1$. Démontrer que la famille $(z^{pq})_{(p,q)\in(\N^*)^2}$ est sommable.\\
+    Montrer que
+    \begin{equation*}
+        \sum_{n=1}^{+\infty}\frac{z^n}{1-z^n}=\sum_{n=1}^{+\infty}d(n)z^n,
+    \end{equation*}
+    où pour tout entier $n\in\N^*$, $d(n)$ est le nombre de diviseurs positifs de $n$.
+\end{ex}
+
+\begin{ex}{}{}
+    Soit $z\in\C$ tel que $|z|<1$. Montrer que:
+    \begin{equation*}
+        \sum_{n=1}^{+\infty}\frac{z^{2n-1}}{1-z^{2n-1}}=\sum_{n=1}^{+\infty}\frac{z^n}{1-z^{2n}},\quad\nt{et}\quad\sum_{n=0}^{+\infty}\frac{z^{2^n}}{1-z^{2^{n+1}}}=\frac{z}{1-z}.
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{equation*}
+        \sum_{n=1}^{+\infty}\frac{2^{2n-1}}{1-z^{2n-1}}=\sum_{n=1}^{+\infty}\sum_{p=1}^{+\infty}(z^{2n-1})^p=\sum_{p=1}^{+\infty}\sum_{n=1}^{+\infty}z^{(2n-1)p}=\sum_{p=1}^{+\infty}z^{-p}\sum_{n=1}^{+\infty}(z^{2p})^n=\sum_{p=1}^{+\infty}\frac{z^p}{1-z^{2p}}.
+    \end{equation*}
+    Justifions que ces opérations sont possible: que $(z^{(2n-1)p})_{(n,p)\in(\N^*)^2}$ est sommable.\\
+    Calculons la somme des modules:
+    \begin{equation*}
+        \sum_{(n,p)\in(\N^*)^2}|z^{(2n-1p)}|=\sum_{n=1}^{+\infty}\sum_{p=1}^{+\infty}|z|^{(2n-1)p}=\sum_{p=1}^{+\infty}\frac{|z|^p}{1-|z|^{2p}}
+    \end{equation*}
+    Convergente car $\frac{|z|^p}{1-|z|^{2p}}\sim|z|^p$ avec $|z|<1$.\n
+    On a:
+    \begin{equation*}
+        \sum_{n=0}^{+\infty}\frac{z^{2^n}}{1-z^{2^{n+1}}}=\sum_{n=0}^{+\infty}z^{2^n}\sum_{p=0}^{+\infty}(z^{2^{n+1}})^p=\sum_{n=0}^{+\infty}\sum_{p=0}^{+\infty}z^{2^n(2p+1)}
+    \end{equation*}
+    Pour $q\in\N^*$, $I_q=\{(n,p)\in\N^2\mid 2^n(2p+1)=q\}$, on a $\N^2=\bigcup_{q\in\N^*}I_q$ et les $I_q$ sont disjoints deux-à-deux.\\
+    Soit $(n,p)\in\N^2$, alors $(n,p)\in I_{2^n(2p+1)}$.\\
+    Par sommation par paquets:
+    \begin{equation*}
+        \sum_{n=0}^{+\infty}\frac{z^{2^n}}{1-z^{2^{n+1}}}=\sum_{(n,p)\in\N^2}z^{2^n(2p+1)}=\sum_{q\in\N^*}\sum_{(n,p)\in I_q}z^{2^n(2p+1)}=\sum_{q\in\N^*}z^q|I_q|=\sum_{q\in\N^*}z^q=\frac{z}{1-z}.
+    \end{equation*}
+    En effet, pour $q\in\N^*$, d'après le TFAr, $q$ s'écrit de manière unique sous la forme $q=2^np_1^{\a_1}...p_r^{\a_r}$. Or les $p_i$ sont premiers impairs donc leur produit est impair, noté $(2p+1)$ $(p\in\N)$. On a donc $q=2^n(2p+1)$, donc $|I_q|=1$.\\
+    Il reste à prouver que $(z^{2^n(2p+1)})_{(n,p)\in\N^2}$ est sommable.
+    \begin{equation*}
+        \sum_{(n,p)\in\N^2}|z^{2^n(2p+1)}|=\sum_{(n,p)\in\N^2}|z|^{2^n(2p+1)}=\frac{|z|}{1-|z|}<+\infty.
+    \end{equation*}
+\end{ex}
+
+
 \subsection{Produits.}
 
+\begin{prop}{}{}
+    Si $(a_i)_{i\in I}$ et $(b_j)_{j\in J}$ sont deux familles sommables, alors la famille $(a_ib_j)_{(i,j)\in I\times J}$ est sommable et
+    \begin{equation*}
+        \sum_{(i,j)\in I\times J}a_ib_j=\left( \sum_{i\in I}a_i \right) \left( \sum_{j\in J} b_j \right)
+    \end{equation*}
+    Ce résultat s'étend à un produit à un produit fini de familles sommables.
+    \tcblower
+    On somme les modules.
+    \begin{equation*}
+        \sum_{(i,j)\in I \times J}|a_ib_j| = \sum_{i\in I}\sum_{i\in J}|a_i||b_j| = \left(\sum_{i\in I}|a_i|\right)\left(\sum_{j\in J}|b_j|\right)<+\infty.
+    \end{equation*}
+    La famille est donc sommable. Alors:
+    \begin{equation*}
+        \sum_{(i,j)\in I \times J}a_ib_j = \sum_{i\in I}\sum_{j\in J}a_ib_j = \left( \sum_{i\in I} a_i \right)\left( \sum_{j\in J} b_j \right).
+    \end{equation*}
+\end{prop}
+
 \pagebreak
+
+\begin{thm}{Produit de Cauchy de deux séries absolument convergentes.}{}
+    Soit $\sum a_n$ et $\sum b_n$ deux séries de nombres complexes toutes deux absolument convergents.\n
+    La série de terme général
+    \begin{equation*}
+        c_n:=\sum_{p+q=n}a_pb_q=\sum_{k=0}^na_kb_{n-k},
+    \end{equation*}
+    est absolument convergente. On l'appelle \bf{produit de Cauchy} de $\sum a_n$ et $\sum b_n$.\\
+    On a
+    \begin{equation*}
+        \left( \sum_{n=0}^{+\infty} a_n \right) \left( \sum_{n=0}^{+\infty} b_n  \right) = \sum_{n=0}^{+\infty} \left( \sum_{p+q=n} a_pb_q \right)
+    \end{equation*}
+    \tcblower
+    $\circledcirc$ Montrons que $\sum c_n$ CVA. Sommons les modules:
+    \begin{equation*}
+        \sum_{n=0}^{+\infty}|c_n|=\sum_{n=0}^{+\infty}\left|\sum_{k=0}^na_kb_{n-k}\right|\leq\sum_{n=0}^{+\infty}\sum_{k=0}^n|a_k||b_{n-k}|=\sum_{i=0}^{+\infty}\sum_{j=0}^{+\infty}|a_i||b_j|=\left( \sum_{i=0}^{+\infty}a_i \right)\left( \sum_{j=0}^{+\infty} b_j \right)<+\infty.
+    \end{equation*}
+    $\circledcirc$ En refaisant le calcul sans les modules, on obtient bien l'égalité.
+\end{thm}
+
+\begin{ex}{}{}
+    Démontrer que pour tout $z\in\C$ tel que $|z|<1$,
+    \begin{equation*}
+        \frac{1}{(1-z)^2}=\sum_{n=0}^{+\infty}(n+1)z^n.
+    \end{equation*}
+\end{ex}
+
+\begin{ex}{Propriété de morphisme de l'exponentielle, et retour sur le début de l'année.}{}
+    Pour tout $z\in\C$ on définit le nombre $\exp(z)$ par
+    \begin{equation*}
+        \exp(z):=\sum_{n=0}^{+\infty}\frac{z^k}{k!},
+    \end{equation*}
+    (on avait prouvé qu'il s'agit bien d'une série convergente).\n
+    Démontrer que
+    \begin{equation*}
+        \forall (z,\tilde{z})\in\C^2\quad\exp(z+\tilde{z})=\exp(z)\exp(\tilde{z}).
+    \end{equation*}
+    Démontrer que $\exp:x\mapsto\exp(x)$ est dérivable sur $\R$ et qu'elle est sa propre dérivée.
+\end{ex}
+
+\pagebreak
+
+\begin{thm}{Théorème de réarrangement de Riemann.}{}
+    Soit $\sum u_n$ une série de nombres réels convergente, mais pas absolument. Alors pour tout $l\in\overline{\R}$, il existe une bijection $\s:\N\to\N$ telle que \begin{equation*}\sum_{n=0}^Nu_{\s(n)}\xrightarrow[N\to+\infty]{}l.\end{equation*}
+    \tcblower
+    Hors-programme.
+\end{thm}
 
 \section{Exercices.}
 
