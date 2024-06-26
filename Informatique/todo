@@ -4,3 +4,4 @@ Rabin karp ?
 bicolore ?
 
 Manque des chose dans logique (ex: La taille d'une proposition CNF est exponentielle en celle du passage de NNF TO CNF size(CNF) >= 2^SIZE(NNF))
+Arbre (contruction, parcours, arbre de recherche etc)
