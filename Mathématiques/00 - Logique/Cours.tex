@@ -1,0 +1,843 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{0}
+\def\pagetitle{Logique.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\thispagestyle{fancy}
+
+\section{Négation, conjonction, disjonction.}
+
+\subsection{Non, Ou, Et : tables de vérité.}
+
+\begin{defi}{}{}
+    Une \bf{assertion} est une phrase pouvant prendre l'une des deux valeurs : Vrai (V) ou Faux (F).
+\end{defi}
+
+Il n'y a pas d'autre possibilité que Vrai ou Faux en logique classique: c'est le principe du \emph{tiers exclu}.
+\vspace*{0.3cm}
+
+\begin{defi}{}{}
+    On appelle \bf{négation} d'un assertion $P$, et on note (non $P$), ou $\lnot P$ l'assertion définie par
+    \begin{equation*}
+        \begin{array}{|c|c|}
+            \hline
+            P&\lnot P\\
+            \hline
+            V&F\\
+            \hline
+            F&V\\
+            \hline
+        \end{array}
+    \end{equation*}
+\end{defi}
+
+\begin{defi}{}{}
+    Soient deux assertions $P$ et $Q$. Les assertions ($P$ et $Q$), ($P$ ou $Q$) et ($P$ ou bien $Q$) sont appelées respectivement \bf{conjonction}, \bf{disjonction} et disjonction exclusive de $P$ et $Q$, et sont définies par
+    \begin{equation*}
+        \begin{array}{|c|c|c|c|c|}
+            \hline
+            P&Q&P$ et $Q&P$ ou $Q&P$ ou bien $Q\\
+            \hline
+            V&V&V&V&F\\
+            \hline
+            V&F&F&V&V\\
+            \hline
+            F&V&F&V&V\\
+            \hline
+            F&F&F&F&F\\
+            \hline
+        \end{array}
+    \end{equation*}
+\end{defi}
+
+\begin{ex}{}{}
+    Évaluer les assertions ci-dessous.
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item <<Ali est un garçon et Elsa est une fille.>> : Vrai
+        \item <<Ali est un garçon ou Elsa est une fille.>> : Vrai
+        \item <<Ali est un garçon ou bien Elsa est une fille.>> : Faux
+        \item <<Ali est un garçon et Elsa est en MP2I.>> : Faux
+        \item <<Ali est un garçon ou Elsa est en MP2I.>> : Vrai
+    \end{itemize}
+\end{ex}
+
+\pagebreak
+
+\subsection{Calculer avec des assertions.}
+
+Soient $P,Q,R$ trois assertions. On note $p,q,r$ leurs valeurs de vérité respectives, de sorte que le triplet $(p,q,r)$ appartient à $\{V,F\}^3$ et peut prendre $2^3=8$ valeurs différentes.\n
+Considérons maintenant deux assertions $\A(P,Q,R)$ et $\B(P,Q,R)$ bien définies, leurs valeurs de vérité dépendent alors de $(p,q,r)$.
+\vspace*{0.3cm}
+
+\begin{nota}{}{}
+    Si \bf{dans les huit cas possibles}, les assertions $\A(P,Q,R)$ et $\B(P,Q,R)$ ont la même valeur de vérité, on dira alors que les expressions $\A$ et $\B$ sont \bf{synonymes}, ce que l'on notera:
+    \begin{equation*}
+        \A(P,Q,R)\equiv\B(P,Q,R).
+    \end{equation*} 
+\end{nota}
+
+\begin{prop}{}{}
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item ($P$ et $P$) $\equiv P$,$\quad$($P$ ou $P$) $\equiv P$.
+        \item ($P$ et $Q$) $\equiv$ ($Q$ et $P$),$\quad$($P$ ou $Q$) $\equiv$ ($Q$ ou $P$).
+        \item (($P$ et $Q$) et $R$) $\equiv$ ($P$ et ($Q$ et $R$)),$\quad$(($P$ ou $Q$) ou $R$) $\equiv$ ($P$ ou ($Q$ ou $R$)).
+        \item $P$ et ($Q$ ou $R$) $\equiv$ ($P$ et $Q$) ou ($P$ et $R$),$\quad$P ou ($Q$ et $R$) $\equiv$ ($P$ ou $Q$) et ($P$ ou $R$).
+    \end{enumerate}
+    \tcblower
+    La preuve se fait via les tables de vérité.
+\end{prop}
+
+\begin{prop}{}{}
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $\lnot(\lnot P)\equiv P$. (négation de la négation).
+        \item $\lnot(P$ et $Q)\equiv\lnot P$ ou $\lnot Q$,$\quad$$\lnot(P$ ou $Q)\equiv\lnot P$ et $\lnot Q$. (formules de De Morgan).
+    \end{enumerate}
+    \tcblower
+    Par les tables de vérité.
+\end{prop}
+
+\subsection{Un ou deux quantificateurs.}
+
+On appelle \bf{prédicat} $\P(X)$ sur un ensemble $E$ une phrase contenant la lettre $X$ telle que lorsqu'on substitue à $X$ un élément $x$ de $E$, on obient une assertion $\P(x)$. Par exemple, la phrase
+\begin{center}
+    << $X$ est pair >>
+\end{center}
+est un prédicat sur $\Z$. Il permet d'obtenir (entre autres) les assertions "4 est pair" et "3 est pair".
+\vspace{0.3cm}
+
+\begin{defi}{}{}
+    Soit un prédicat $\P(X)$ sur un ensemble $E$.
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item L'assertion << pour tout $x$ dans $E$, $\P(x)$ est vraie >> s'écrit
+        \begin{equation*}
+            \forall x \in E, ~ \P(x).
+        \end{equation*}
+        \item L'assertion << il existe (au moins un) $x$ dans $E$ tel que $\P(x)$ est vraie >> s'écrit
+        \begin{equation*}
+            \exists x \in E, ~ \P(x).
+        \end{equation*}
+        \item L'assertion << il existe un unique $x$ dans $E$ tel que $\P(x)$ est vraie >> s'écrit
+        \begin{equation*}
+            \exists! x \in E, ~ \P(x).
+        \end{equation*}
+    \end{itemize}
+\end{defi}
+
+\begin{prop}{Deux quantificateur égaux commutent.}{}
+    Soient $E,F$ deux ensembles et $\P(X,Y)$ un prédicat où $X$ prend ses valeurs dans $E$ et $Y$ dans $F$.\\
+    On a les synonymies:
+    \begin{equation*}
+        \begin{aligned}
+            \forall x \in E, \quad \forall y \in F, \quad \P(x,y) \quad &\equiv \quad \forall y \in F, \quad \forall x \in E, \quad \P(x,y),\\
+            \exists x \in E, \quad \exists y \in F, \quad \P(x,y) \quad &\equiv \quad \exists y \in F, \quad \exists x \in E, \quad \P(x,y).
+        \end{aligned}
+    \end{equation*}
+\end{prop}
+
+\warning En revanche, les assertions suivantes ne sont pas synonymes !
+\begin{center}
+    (A) $\quad \forall x \in E\quad\exists y \in F\quad \P(x,y); \qquad$ (B) $\quad \exists y\in F \quad \forall x \in E\quad \P(x,y)$.
+\end{center}
+$\bullet$ Dans la phrase (A), l'existence de $y$ est affirmée après qu'on a parlé d'un élément $x$ : l'élément $y$ peut donc dépendre de $x$. On peut insister sur cette dépendance en écrivant (A): $\forall x\in E\quad\exists y_x\in F\quad P(x,y_x)$.\n
+$\bullet$ Dans la phrase (B), $y$ est introduit en premier. Le reste de la phrase se comprend donc à $y$ fixé.
+
+\pagebreak
+
+\begin{ex}{Une assertion de type A}{}
+    Une théorie affirme que chacun sur Terre a une âme soeur (c'est sans doute vrai, je l'ai lu sur Internet). Formaliser en introduisant quelques notations.\\
+    Échanger l'ordre d'écriture des quantificateurs : quel sens a l'assertion obtenue ?
+    \tcblower
+    On note $H$ l'ensemble des humains et $A(x,y)$ l'assertion << $x$ est l'âme soeur de $y$ >>. L'assertion est alors
+    \begin{equation*}
+        \forall x \in H, \quad \exists y \in H, \quad A(x,y).
+    \end{equation*}
+    Si on échange l'ordre des quantificateurs, on obtient
+    \begin{equation*}
+        \exists y \in H, \quad \forall x \in H, \quad A(x,y).
+    \end{equation*}
+    Cette assertion signifie qu'il existe une personne qui est l'âme soeur de tout le monde. C'est un peu prétentieux.
+\end{ex}
+
+\begin{ex}{Une assertion de type B}{}
+    Soit $f$ une fonction définie sur $\R$. Écrire à l'aide de quantificateurs "la fonction $f$ est majorée".\\
+    Échanger l'ordre d'écriture des quantificateurs : quel sens a l'assertion obtenue ?
+    \tcblower
+    L'assertion est
+    \begin{equation*}
+        \exists M \in \R, \quad \forall x \in \R, \quad f(x) \leq M.
+    \end{equation*}
+    Si on échange l'ordre des quantificateurs, on obtient
+    \begin{equation*}
+        \forall x \in \R, \quad \exists M \in \R, \quad f(x) \leq M.
+    \end{equation*}
+    Cette assertion signifie que pour chaque $x$, il existe un majorant $M$ de $f(x)$, c'est évident car $f(x)$ se majore par lui-même.
+\end{ex}
+
+\noindent$\bullet$ << Tous les chats sont gris >>.\\
+Négation: << Il existe un chat qui n'est pas gris >>.\n
+$\bullet$ << Il existe un MP2I qui n'aime pas ce petit cours de logique >>.\\
+Négation: << Tout MP2I aime ce petit cours de logique >>.
+\vspace{0.3cm}
+
+\begin{thm}{Négation d'une proposition contenant des quantificateurs.}{}
+    Soit $\P(X)$ un prédicat sur un ensemble $E$.
+    \begin{equation*}
+        \begin{aligned}
+            \lnot(\forall x \in E \quad \P(x)) \quad &\equiv \quad \exists x \in E \quad \lnot \P(x)\\
+            \lnot(\exists x \in E \quad \P(x)) \quad &\equiv \quad \forall x \in E \quad \lnot \P(x)
+        \end{aligned}
+    \end{equation*}
+\end{thm}
+
+\begin{ex}{}{}
+    Soit $(u_n)$ une suite réelle et $l\in\R$.\\
+    La phrase $P$ ci-dessous sera notre définition de << $(u_n)$ est majorée >>. Écrire sa négation.
+    \begin{equation*}
+        P: \quad \exists M\in\R,\quad\forall n\in\N,\quad u_n\leq M.
+    \end{equation*}
+    \tcblower
+    La négation de $P$ est
+    \begin{equation*}
+        \lnot P: \quad \forall M\in\R,\quad\exists n\in\N,\quad u_n> M.
+    \end{equation*}
+\end{ex}
+
+\begin{ex}{Quand on écrit deux << il existe >>.}{}
+    Soit $f:\R\to\R$.\\
+    Écrire puis nier l'assertion $P$: << la fonction $f$ est constante égale à 1 ou constante égale à $-1$>>.
+    \tcblower
+    L'assertion $P$ est
+    \begin{equation*}
+        \forall x\in\R,\quad f(x)=1\text{ ou }f(x)=-1.
+    \end{equation*}
+    Sa négation est
+    \begin{equation*}
+        \exists x\in\R,\quad f(x)\neq 1\text{ et }f(x)\neq -1.
+    \end{equation*}
+\end{ex}
+
+\section{Implication, équivalence.}
+
+\subsection{Implique, Équivaut : tables de vérité.}
+
+\begin{defi}{}{}
+    Soient $P$ et $Q$ deux assertions.\\
+    Les assertions $P\ra Q$ (<< $P$ \bf{implique} $Q$ >>) et $P\iff Q$ (<< $P$ est \bf{équivalent} à $Q$ >>) sont définies par:
+    \begin{equation*}
+        \begin{array}{|c|c|c|c|c|}
+            \hline
+            P&Q&P\ra Q&P\iff Q\\
+            \hline
+            V&V&V&V\\
+            \hline
+            V&F&F&F\\
+            \hline
+            F&V&V&F\\
+            \hline
+            F&F&V&V\\
+            \hline
+        \end{array}
+    \end{equation*}
+    L'implication $Q\ra P$ est appelée \bf{réciproque} de $P\ra Q$.
+\end{defi}
+
+\begin{ex}{}{}
+    Maintenant que la table de $P\ra Q$ est complète, évaluer les assertions suivantes.
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item "6 est pair" $\ra$ "7 est impair" : Vrai
+        \item "5 est impair" $\ra$ "7 est pair" : Faux
+        \item "5 est pair" $\ra$ "7 est impair" : Vrai
+        \item "5 est pair" $\ra$ "je suis ton père" : Vrai 
+    \end{itemize}
+\end{ex}
+
+\begin{thm}{Lien entre $\ra$ et ou}{}
+    \begin{equation*}
+        P\ra Q \quad \equiv \quad (\lnot P) \text{ ou } Q.
+    \end{equation*}
+    \tcblower
+    Par les tables de vérité.
+\end{thm}
+
+\subsection{L'implication dans la pratique.}
+
+Comment \emph{prouver} une implication $P\ra Q$ ?\\
+Par définition, si $P$ est fausse, $P\ra Q$ est vraie... alors concentrons nous sur le cas où $P$ est vraie!
+\vspace*{0.3cm}
+
+\begin{meth}{Preuve directe par implication.}{}
+    Pour démontrer une implication $P\ra Q$,
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item On suppose $P$ (et on l'écrit).
+        \item Puis on démontre $Q$.
+    \end{enumerate}
+\end{meth}
+
+\begin{defi}{}{}
+    Dans l'écriture $P\ra Q$ d'une implication,
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item $P$ est dite condition \bf{suffisante}, il suffit que $P$ soit vraie pour que $Q$ le soit.
+        \item $Q$ est dite condition \bf{nécessaire}, il faut que $Q$ soit vraie pour que $P$ le soit.
+    \end{itemize}
+\end{defi}
+
+\begin{prop}{Modus Ponens.}{}
+    Soient $P$ et $Q$ deux assertions.
+    \begin{equation*}
+        \nt{Si} \quad (P \ra Q) \nt{ et } P \nt{ sont vraies,} \quad \nt{alors } Q \nt{ est vraie.}
+    \end{equation*}
+\end{prop}
+
+\begin{ex}{Application : un syllogisme célèbre.}{}
+    << Tous les hommes sont mortels >>. Ce "théorème" affirme que l'implication << Si cet être est un homme, alors il est mortel >> est vraie, quel que soit l'être que l'on considère.\\
+    C'est donc le Modus Ponens que l'on utilise dans le raisonnement célèbre suivant:
+    \begin{center}
+        << Tous les hommes sont mortels et Socrate est un homme, donc Socrate est mortel. >>
+    \end{center}
+\end{ex}
+
+\warning Lorsqu'on écrit que $P\ra Q$ est vraie, on n'écrit pas que $P$ est vraie, ni que $Q$ est vraie.\\
+Par exemple, l'implication
+\begin{center}
+    << Si Superman est un homme, alors Superman est mortel. >>
+\end{center}
+est vraie, simplement parce que l'assertion << Superman est un homme >> est fausse. On n'a donc pas à se poser de questions sur la kryptonit, c'est à dire sur la valeur de l'assertion << Superman est mortel >>.\n
+On voit donc qu'utiliser le symbole $\ra$ à la place de << donc >> est une bien mauvaise habitude : on ne raisonne pas au conditionnel !
+\vspace*{0.3cm}
+
+\begin{meth}{Ne pas écrire $\ra$ à la place de << donc >>.}{}
+    Écrire << $P \ra Q$ >> n'est \bf{pas la même chose} qu'écrire << $P$ est vraie, donc $Q$ est vraie >>.\\
+    Ainsi, nous utilisons volontiers le symbole $\ra$ pour \emph{énoncer} des résultats, mais pas dans les \emph{démonstrations} de ces résultats.
+\end{meth}
+
+\begin{prop}{Transitivité de l'implication, de l'équivalence.}{}
+    Les connecteurs $\ra$ et $\iff$ sont transitifs, en effets, si $P,Q,R$ sont des assertions,
+    \begin{center}
+        Si $(P \ra Q)$ et $(Q \ra R)$ sont vraies, alors $(P\ra R)$ est vraie.\\
+        Si $(P \iff Q)$ et $(Q \iff R)$ sont vraies, alors $(P \iff R)$ est vraie.
+    \end{center}
+\end{prop}
+
+\subsection{Négation d'une implication.}
+
+\begin{prop}{Négation d'une implication.}{}
+    \begin{equation*}
+        \lnot (P \ra Q) \quad \equiv \quad P \text{ et } (\lnot Q).
+    \end{equation*}
+\end{prop}
+
+\warning On remarquera notamment que la négation d'une implication n'est \bf{pas} une implication.
+
+\vspace*{0.3cm}
+
+\begin{ex}{}{}
+    Soit une fonction $f:X\to\R$ définie sur une partie $X$ de $\R$.\\
+    Nier la phrase << $f$ est croissante sur $X$ >>.
+    \tcblower
+    La négation de cette phrase est
+    \begin{center}
+        << Il existe $x,y\in X$ tels que $x<y$ et $f(x)>f(y)$. >>
+    \end{center}
+\end{ex}
+
+\subsection{Contraposée d'une implication.}
+
+\begin{defi}{}{}
+    Soient $P$ et $Q$ deux assertions, on appelle \bf{contraposée} de l'implication $P\ra Q$, l'implication
+    \begin{equation*}
+        (\lnot Q) \ra (\lnot P).
+    \end{equation*}
+\end{defi}
+
+\begin{thm}{}{}
+    Soient $P$ et $Q$ deux assertions, on a la synonymie:
+    \begin{equation*}
+        P \ra Q \quad \equiv \quad (\lnot Q) \ra (\lnot P)
+    \end{equation*}
+    Autrement dit, une implication est vraie si et seulement si sa contraposée l'est.
+\end{thm}
+
+\begin{meth}{Preuve par contraposée d'une implication $P\ra Q$}{}
+    Au lieu d'utiliser la manière classique (\emph{supposer P, montrer Q}), on pourra choisir, si cela paraît plus simplen de prouver la contraposée: (\emph{supposer (non Q), montrer (non P)}).
+\end{meth}
+
+\begin{prop}{}{}
+    Soient $P$ et $Q$ deux assertions. On a la synonymie
+    \begin{equation*}
+        P \iff Q \quad \equiv \quad (P \ra Q) \nt{ et } (Q\ra P).
+    \end{equation*}
+    Lorsque $P\iff Q$ est vraie, on dit que $Q$ est une \bf{condition nécessaire et suffisante} (CNS) pour que $P$ soit vraie.
+\end{prop}
+
+\begin{ex}{La première étoile ! $\star$}{26}
+    Soit $n$ un entier naturel. Démontrer l'équivalence
+    \begin{equation*}
+        n \nt{ est pair} \iff n^2 \nt{ est pair.}
+    \end{equation*}
+    \tcblower
+    \fbox{$\ra$} Supposons $n$ pair : $\exists k \in \N\mid n = 2k$. Ainsi, $n^2=(2k)^2=2(2k^2)$, donc $n^2$ est pair.\n
+    \fbox{$\la$} On va raisonner par contraposée ! Supposons $n$ impair : $\exists k \in \N \mid n = 2k+1$.\\
+    Alors $n^2=(2k+1)^2=4k^2+4k+1=2(2k^2+2k) + 1$, donc $n^2$ est impair.\\
+    On a bien montré l'équivalence.
+\end{ex}
+
+\section{Raisonnements usuels.}
+
+\subsection{Raisonner par récurrence.}
+
+Soit une assertion dont le sens dépend d'un entier $n$, et que l'on note $\P(n)$. Soit un entier naturel $n_0$.\\
+Le raisonnement par récurrence permet de démontrer l'assertion
+\begin{center}
+    << Pour tout entier $n$ supérieur à $n_0$, $\P(n)$ est vraie. >> $\quad$ ou $\quad$ << $\forall n \geq n_0 \quad \P(n)$. >>.
+\end{center}
+
+\noindent Raisonner par récurrence à partir de $n_0$, c'est démontrer les deux propriétés suivantes:
+\begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \item L'initialisation : $\P(n_0)$ est vraie.
+    \item L'hérédité : Pour tout $n$ supérieur à $n_0$, si $\P(n)$ est vraie, alors $\P(n+1)$ l'est.
+\end{itemize}
+On peut le démontrer:
+\vspace*{0.3cm}
+
+\begin{thm}{Raisonnement par récurrence.}{}
+    Soit $P(n)$ un prédicat sur $n\in\N$.
+    \begin{equation*}
+        (P(0) ~ \nt{et} ~ \forall n\in\N, P(n) \ra P(n+1)) \ra \forall n\in\N, ~ P(n).
+    \end{equation*}
+    \tcblower
+    Supposons que $E=\{n\in\N ~ | ~ P(n) \nt{ est vrai}\}$ est non vide.\\
+    Alors $E$ est minoré et non vide, il a un minimum $m$ non nul tel que $P(m)$ est faux.\\
+    Ainsi, $P(m-1)$ est vrai car $m-1<m$ et $m$ est le minimum de $E$, or $P(m-1)\ra P(m)$.\\
+    On en déduit que $P(m)$ est vrai, ce qui est absurde, donc $E=\0$.
+\end{thm}
+
+\subsection{Raisonner par l'absurde.}
+
+En mathématiques, une assertion qui n'est pas fausse est vraie, c'est ainsi que ce cours a débuté.\\
+Cela conduit à la stratégie suivante, dite \emph{preuve par l'absurde}. Pour prouver qu'une assertion $P$ est vraie, on suppose qu'elle est fausse, et on raisonne jusqu'à trouver une contradiction manifeste, une << absurdité >>.\\
+Si cette absurdité est apparue (et que l'on a pas fait d'erreur dans le raisonnement), c'est que l'hypothèse faite au départ (<< $P$ est fausse >>) est fausse. Donc $P$ est vraie.\n
+Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chose n'est pas vrai, démontrer qu'un objet n'existe pas, ou qu'un ensemble est vide car en supposant le contraire, on introduit une information positive et exploitable dans la suite du raisonnement.
+\vspace*{0.3cm}
+
+\begin{ex}{}{}
+    On souhait démontrer par l'absurde qu'une certaine porte est fermée.\\
+    Quelle est la première phrase de notre raisonnement ?
+\end{ex}
+
+\begin{ex}{Une célébrité.}{}
+    Démontrer que $\sqrt{2}$ est irrationnel, c'est-à-dire qu'il n'est pas le quotient de deux entiers.
+    \tcblower
+    Supposons $\sqrt{2}$ rationnel. $\exists (p,q)\in \Z\times\N^* \mid \sqrt{2}=\frac{p}{q}$ et $p,q$ premiers entre-eux.\\
+    Alors $2=\frac{p^2}{q^2}$, $2q^2=p^2$, donc $p^2$ est pair. Donc d'après \ref{ex:26}, $p$ est pair.\\
+    Ainsi, $\exists k\in\Z\mid p=2k$, donc $q^2=2k^2$, il est aussi pair, comme $q$ : $\exists k'\in\N\mid q=2k'$.\n
+    Cela contredit l'hypothèse, car alors $p$ et $q$ ne sont pas premiers; d'où l'absurdité.
+\end{ex}
+
+\subsection{Prouver une unicité.}
+
+\begin{meth}{}{}
+    Pour démontrer une unicité,
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item On considère deux solutions du problème $X_1$ et $X_2$.
+        \item On montre que $X_1=X_2$.
+    \end{enumerate}
+\end{meth}
+
+\begin{ex}{}{}
+    Preuve de l'unicité du maximum pour une partie de $\R$
+\end{ex}
+
+\subsection{Raisonner par analyse-synthèse.}
+
+\begin{meth}{Les deux étapes du raisonnement.}{}
+    \bf{Analyse:} il s'agit de trouver une proposition $Q$ qui découle de $P$ ($P\ra Q$ et la condition $Q$ est nécessaire). Pour cela, on suppose $P$. On cherche alors une proposition $Q$ qui permettra de réaliser la synthèse.\n
+    \bf{Synthèse:} On montre que la proposition $Q$ découverte dans la partie Analyse est suffisante.\\
+    Pour cela, on suppose $Q$ et on montre $P$.\\
+    \bf{Conclusion:} La propriété $P$ est vraie si et seulement si $Q$ est vraie.
+\end{meth}
+
+\begin{ex}{Une équation fonctionnelle.}{}
+    Déterminer les fonctions $f:\R\to\R$ telles que
+    \begin{equation*}
+        \forall x,y\in \R \quad f(x+y) = x+f(y).
+    \end{equation*}
+    \tcblower
+    \bf{Analyse:} Supposons qu'il existe une fonction $f$ satisfaisant l'énoncé. Alors pour $x\in\R$, $f(x)=x+f(0)$. On voit donc que $f$ est affine de pente 1.\n
+    \bf{Synthèse:} Soit $f:x\mapsto x+c$ avec $c\in \R$, affine de pente 1. Soient $x,y\in\R$.
+    \begin{equation*}
+        f(x+y)=x+y+c=x+f(y).
+    \end{equation*}
+    \bf{Conclusion:} Les fonctions solutions du problème sont exactement les fonctions affines de pente 1.
+\end{ex}
+
+\begin{ex}{}{}
+    Démonter que toute fonction définie sur $\R$ s'écrit de manière unique comme somme d'une fonction paire et d'une fonction impaire.
+    \tcblower
+    Soit $f:\R\to\R$.\\
+    \bf{Analyse:} Supposons qu'il existe $g$ paire et $h$ impaire, telles que $f=g+h$. Pour $x\in\R$, on a:
+    \begin{equation*}
+        \begin{cases}
+            f(x)\quad=\quad g(x)+h(x)\quad=\quad g(x)+h(x)\\
+            f(-x)\quad=\quad g(-x)+h(-x)\quad=\quad g(x)-h(x)
+        \end{cases}
+    \end{equation*}
+    En sommant et différenciant les lignes, on obtient:
+    \begin{equation*}
+        g(x)=\frac{1}{2}(f(x)+f(-x))\quad\nt{et}\quad h(x)=\frac{1}{2}(f(x)-f(-x)).
+    \end{equation*}
+    Cela met en évidence un unique couple $(g,h)$ candidat.\n
+    \bf{Synthèse:} Posons
+    \begin{equation*}
+        g:x\mapsto\frac{1}{2}(f(x)+f(-x))\quad\nt{et}\quad h:x\mapsto\frac{1}{2}(f(x)-f(-x)).
+    \end{equation*}
+    On vérifie facilement que $g$ est paire, $h$ est impaire et $f=g+h$.\n
+    \bf{Conclusion:} La fonction $f$ s'écrit bien de manière unique comme somme d'une fonction paire et d'une fonction impaire. C'est donc le cas pour toute fonction définie sur $\R$.
+\end{ex}
+
+\subsection{Résoudre une équation.}
+
+\begin{ex}{Équation $2x=x+1$.}{}
+    Soit $x\in\R$.
+    \begin{center}
+        $x$ est solution $\iff$ $2x=x+1$ $\iff$ $x=1$
+    \end{center}
+    L'équation a donc une unique solution : le nombre 1.
+\end{ex}
+
+\begin{ex}{Équation $x=x+1$.}{}
+    Soit $x$ un nombre réel.
+    \begin{center}
+        $x$ est solution $\iff$ $x=x+1$ $\iff$ $0=1$
+    \end{center}
+    L'équation ne possède donc aucune solution.
+\end{ex}
+
+\begin{meth}{Résolution d'une équation par équivalences.}{}
+    On commence par déclarer la variable, disons $x$, puis on crée une chaîne d'équivalences en "partant" de l'assertion << $x$ est solution >>.\n
+    Attention : en écrivant le symbole $\iff$ : il faut être capable de justifier les deux implications !\n
+    Pour plus de lisibilité, on alignera les symboles $\iff$, comme on aligne les $=$ dans un calcul sur plusieurs lignes.
+\end{meth}
+
+\begin{ex}{Équation $x=\sqrt{1-x^2}$}{}
+    Soit $x$ un nombre réel.\n
+    $\bullet$ Supposons que $x$ est solution.\\
+    On a alors $x=\sqrt{1-x^2}$, donc $x^2=1-x^2$ donc $x^2=\frac{1}{2}$, d'où $x=\pm\frac{\sqrt{2}}{2}$.\\
+    À ce stade, on sait que \bf{SI} $x$ est solution, \bf{ALORS}, $x$ vaut $\pm\frac{\sqrt{2}}{2}$.\n
+    $\bullet$ Éxaminons les candidats obtenus.\\
+    Il est facile de vérifier que $\frac{\sqrt{2}}{2}$ est une solution, et que $-\frac{\sqrt{2}}{2}$ n'en est pas une.\n
+    $\bullet$ Conclusion : l'équation possède une unique solution : $\frac{\sqrt{2}}{2}$.
+\end{ex}
+
+\begin{ex}{Équation $x-1=\sqrt{1+x^2}$}{}
+    Soit $x$ un nombre réel.\n
+    $\bullet$ Supposons que $x$ est solution.\\
+    Alors $x-1=\sqrt{1+x^2}$, donc $x^2-2x+1=1+x^2$, donc $-2x=0$ et $x=0$.\n
+    $\bullet$ Or, il est facile de vérifier que 0 n'est pas solution.\n
+    $\bullet$ Conclusion : l'équation ne possède pas de solution.
+\end{ex}
+
+\section{Exercices.}
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    Que répond un mathématicien à la question <<Vous êtes gaucher ou droitier ?>>.
+    \tcblower
+    - << OUI >>
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    C'est l'histoire de cinq mathématiciens qui vont au restaurant. Ils ont pris un menu avec thé ou bien café compris. À la fin du repas, le serveur demande : \textbf{tout le monde} prendra du café ? Le premier mathématicien répond <<Je ne sais pas>>. Idem pour le second, le troisième, et le quatrième. Le cinquième répond <<Quatre cafés et un thé SVP>>. Expliquer.
+    \tcblower
+    Le premier, deuxième, troisième et quatrième veulent un café car s'ils voulaient un thé, ils auraient répondu <<Non>>. Le cinquième sait alors qu'ils veulent tous les quatres un café et choisit un thé pour lui-même. 
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    Soit $(u_n)_{n\in\N}$ une suite de réels.\\
+    Plus tard dans l'année, nous définirons la phrase <<$u_n\xrightarrow[n\to+\infty]{}+\infty$>> par l'assertion :
+    \begin{equation*}
+        \forall M \in \R \quad \exists p \in \N \quad \forall n \in \N \quad n \geq p \la u_n\geq M.
+    \end{equation*}
+    Écrire la négation de cette assertion.
+    \tcblower
+    On a:
+    \begin{equation*}
+        \exists M \in \R \quad \forall p \in \N \quad \exists n \in \N \quad \left(n \geq p ~ \nt{ et } ~ u_n<M\right)
+    \end{equation*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    1. Nier l'assertion :
+    \begin{equation*}
+        \exists x \in \R \quad \forall y \in \R \quad x+y \geq 0
+    \end{equation*}
+    2. Prouver que l'assertion est fausse.
+    \tcblower
+    \boxed{1.} Sa négation est :
+    \begin{equation*}
+        \forall x \in \R \quad \exists y \in \R \quad x+y<0
+    \end{equation*}
+    \boxed{2.} Soit $x \in \R$. Posons $y=-(x+1)$.\\
+    On a $x+y=-1$ c'est pourquoi $x+y<0$. Ainsi, la négation de l'assertion est toujours vraie.\\
+    On en déduit que l'assertion est toujours fausse.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    <<S'il fait beau, je ne prends pas mon parapluie.>>\\
+    Écrire la contraposée de la réciproque.
+    \tcblower
+    Sa réciproque est :\\
+    <<Si je ne prends pas mon parapluie, il fait beau.>>\n
+    La contraposée de cette réciproque est :\\
+    <<S'il ne fait pas beau, je prends mon parapluie.>>
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Une suite croissante est une fonction croissante sur $\N$.\\
+    Démontrer que pour une suite réelle $(u_n)_{n\in\N}$ l'équivalence entre\\
+    1. $\forall n \in \N ~ u_{n+1} \geq u_n$.\\
+    2. $\forall (n,p) \in \N^2 ~ n \leq p \ra u_n \leq u_p$.
+    \tcblower
+    \fbox{$\ra$} On suppose que $\forall n \in \N, ~ u_{n+1} \geq u_n.$\\
+    Soit $(n,p) \in \N^2$ tel que $n \leq p$. On sait que $u_{n+1} \geq u_n$, $u_{n+2} \geq u_{n+1}$, $u_{n+3} \geq u_{n+2}$, etc...\\
+    Par récurrence triviale et par transitivité, pour tout entier $q\geq n$, $u_q \geq u_n$. En particulier, $u_n \leq u_n$.\n
+    \fbox{$\la$} On suppose que $\forall (n,p) \in \N^2, ~ n \leq p \ra u_n \leq u_p$.\\
+    En particulier, pour $n\in \N$, $n+1 \geq n$ donc $u_{n+1} \geq u_n$.\n
+    On a bien l'équivalence. 
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$ Récurrence standard.}{}
+    Déterminer les entiers naturels $n$ tels que $2^n\geq n^2$.
+    \tcblower
+    Montrons le résultat par récurrence pour tout $n\geq4$.\\
+    \bf{Initialisation.} Pour $n=4$, $2^4=16\geq16=4^2$.\\
+    \bf{Hérédité.} Soit $n\in\N \mid 2^n\geq n^2$.\\
+    Alors $2^{n+1}=2\times2^n\geq2n^2\geq n^2 + 2n + 1 = (n+1)^2$.\\
+    En effet, $n^2\geq2n+1$ pour $n\geq4$ (polynôme second degré).\\
+    \bf{Conclusion.} Par principe de récurrence, $\forall n\geq4,~ 2^n\geq n^2$.\n
+    On vérifie aussi facilement que c'est vrai pour $n\in\lb0,2\rb$.\\
+    L'ensemble des solutions est donc $\N\setminus\{3\}$.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$ Récurrence double.}{}
+    Soit $x$ un réel non nul.\\
+    1. Pour $n$ un entier naturel, calculer $(x^n+\frac{1}{x^n})\cdot(x+\frac{1}{x})$\\
+    2. Supposons que $x+\frac{1}{x}\in\mathbb{Z}$. Démontrer que $\forall n\in\mathbb{N}$ $x^n + \frac{1}{x}\in\mathbb{Z}$
+    \tcblower
+    \boxed{1.}
+    \begin{equation*}
+        (x^n + \frac{1}{x^n})\cdot(x+\frac{1}{x}) = x^{n+1}+x^{n-1}+x^{1-n}+x^{-n-1}
+    \end{equation*}
+    \boxed{2.} Soit $\mathcal{P}_n$ la proposition : <<$x^n+\frac{1}{x^n}\in\mathbb{Z}$>>.\\
+    Montrons que $\mathcal{P}_n$ est vraie pour tout $n\in\mathbb{N}$.\\
+    \bf{Initialisation.} On a $x^0 + \frac{1}{x^0} = 1 + \frac{1}{1} = 2$. Or $2\in\mathbb{Z}$. Mézalor, $\mathcal{P}_0$ est vérifiée.\\
+    Pour $n=1$.\\
+    $x^1 + \frac{1}{x^1} = x + \frac{1}{x}$. Or on a supposé que ceci appartenait à $\mathbb{Z}$. Conséquemment, $\mathcal{P}_1$ est vérifiée.\\[0.5cm]
+    \bf{Hérédité.} Soit $n\in\mathbb{N}$ tel que $\mathcal{P}_n$ et $\mathcal{P}_{n+1}$ soient vérifiées. Montrons $\mathcal{P}_{n+2}$. On a:
+    \begin{equation*}
+        (x^{n+1}+\frac{1}{x^{n+1}})\cdot(x+\frac{1}{x})=x^{n+2}+\frac{1}{x^{n+2}}+x^n+\frac{1}{x^{n}}
+    \end{equation*}
+    D'où :
+    \begin{equation*}
+        (x^{n+1}+\frac{1}{x^{n+1}})\cdot(x+\frac{1}{x})-(x^n+\frac{1}{x^n}) = x^{n+2}+\frac{1}{x^{n+2}}
+    \end{equation*}
+    Or, par hypothèse de récurrence, $x^{n+1}+\frac{1}{x^{n+1}}\in\mathbb{Z}$, ainsi que $x^n+\frac{1}{x^n}\in\mathbb{Z}$.\\
+    Enfin, par stabilité de $\mathbb{Z}$ en somme et en produit, on obtient que :
+    \begin{equation*}
+        (x^{n+1}+\frac{1}{x^{n+1}})\cdot(x+\frac{1}{x})-(x^n+\frac{1}{x^n})\in\mathbb{Z}
+    \end{equation*}
+    Alors :
+    \begin{align*}
+        x^{n+2} + \frac{1}{x^{n+2}} \in \mathbb{Z}
+    \end{align*}
+    C'est exactement $\mathcal{P}_{n+2}$.\\
+    \bf{Conclusion.} Par le principe de récurrence double, $\mathcal{P}_n$ est vraie pour tout $n\in\mathbb{N}$.
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$ Récurrence forte.}{}
+    Soit $(u_n)$, définie par récurrence par
+    \begin{equation*}
+        \begin{cases}
+            u_1 = 3\\
+            \forall{n\geq1} \hspace{0.25cm} u_{n+1}= \frac{2}{n}\sum\limits^{n}_{k=1}{u_k}
+        \end{cases}
+    \end{equation*}
+    Démontrer par récurrence forte que $\forall{n\geq1}$ $u_n=3n$.
+    \tcblower
+    Soit $\mathcal{P}_n$ la proposition : <<$\forall{n\geq1}$, $u_n=3n$>>.\\
+    \bf{Initialisation.} Triviale.\\
+    \bf{Hérédité.} Soit $n\geq1$ tel que $\forall k\in[1,n], \quad \mathcal{P}_k$ soit vraie. Montrons que $\mathcal{P}_{n+1}$ est vraie.\\
+    On a :
+    \begin{align*}
+        u_{n+1} 
+        &= \frac{2}{n}\sum^{n}_{k=1}{u_k}
+        \stackrel{HR}{=} \frac{2}{n}\sum^{n}_{k=1}{3k}
+        = \frac{6}{n}\sum^{n}_{k=1}{k}
+        = \frac{3n(n+1)}{n}
+        = 3(n+1)
+    \end{align*}
+    C'est exactement $\mathcal{P}_{n+1}$.\\
+    \bf{Conclusion.} Par le principe de récurrence forte, $\mathcal{P}_n$ est vraie pour tout $n\geq1$.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Comme on l'a fait plus haut pour le principe de récurrence, écrire un <<principe de récurrence forte>> à l'aide d'une suite de quantificateurs.
+    \tcblower
+    Soit une assertion $\P_n$ où $n\in\N$.
+    \begin{equation*}
+        [\forall n \in \N \quad  \left( \forall k \in \lb 0, n \rb \quad \P_k \right) \Rightarrow \P_{n+1}] \ra (\forall n \in \N \quad \P_n)
+    \end{equation*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Déterminer les fonctions $f: \mathbb{R} \rightarrow \mathbb{R}$ telles que 
+    \begin{equation*}
+        \forall{x\in\mathbb{R},\forall{y\in\mathbb{R}}, \hspace{0.5cm} f(x)f(y) - f(xy) = x + y}
+    \end{equation*}
+    \tcblower
+    \bf{Analyse.}\\
+    Supposons qu'il existe $f$ une telle fonction. Soit $(x,y)\in\mathbb{R}^2$.
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item Lorsque $x=y=0$, $f^2(0)-f(0)=0$. Donc $f(0) = 0$ ou $f(0) = 1$.
+        \item Lorsque $y=0$, $f(x)f(0)-f(0)=x$. Ainsi, la possibilité $f(0)=0$ est éliminée.
+    \end{enumerate}
+    On en déduit que, $f(x)f(0)-f(0)=x$. Donc $f(x)=x+1$.\\
+    Alors $f$ est solution si elle existe.\n
+    \bf{Synthèse.}\\
+    Soient $(x,y)\in\mathbb{R}^2$. Posons $g:x\mapsto x+1$. On vérifie bien que
+    \begin{align*}
+        g(x)g(y)-g(xy)=x+y
+    \end{align*}
+    \bf{Conclusion.} La fonction $x\mapsto x+1$ est alors solution unique.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Déterminer les fonctions $f: \mathbb{R} \rightarrow \mathbb{R}$ telles que 
+    \begin{equation*}
+        \forall{x\in\mathbb{R}},\forall{y\in\mathbb{R}}, \hspace{0.25cm} f(x-f(y)) = 1-x-y
+    \end{equation*}
+    \tcblower
+    \bf{Analyse.}\\
+    Supposons qu'il existe $f$ une telle fonction. Soit $(x,y)\in\mathbb{R}^2$.
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item[1.] On a $f(f(0)-f(0))=1-f(0)-0$ donc $f(0)=1-f(0)$ donc $f(0)=\frac{1}{2}$.
+        \item[2.] Donc $f(x-f(0))=f(x-\frac{1}{2})=1-x$.
+    \end{itemize}
+    Ainsi, $f(x)=f((x+\frac{1}{2})-\frac{1}{2})=1-x-\frac{1}{2}=\frac{1}{2}-x$.\n
+    \bf{Synthèse.}\\
+    Soient $(x,y)\in\mathbb{R}^2$. On pose $g:x\mapsto\frac{1}{2}-x$. On vérifie bien
+    \begin{equation*}
+        g(x-g(y)) = \frac{1}{2} - (x - (\frac{1}{2}-y)) = 1-x-y
+    \end{equation*}
+    \bf{Conclusion.} La fonction $x\mapsto\frac{1}{2}-x$ est alors solution unique.
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    Déterminer les fonctions $f:\R_+^* \rightarrow \R_+^*$ telles que 
+    \begin{equation*}
+        \forall x,y \in \R^*_+, \quad xf(xy) = f(y).
+    \end{equation*}
+    \tcblower
+    \bf{Analyse.}\\
+    Supposons qu'il existe $f$ une telle fonction. Soient $x,y\in\mathbb{R}^*_+$
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item Lorsque $y=1$, $f(1)=xf(x)$.
+        \item Lorsque $x=\frac{1}{y}$, $f(1)=yf(y)$
+    \end{enumerate}
+    Alors $xf(x)=yf(y)$, donc $f(x)=\frac{yf(y)}{x}=\frac{f(1)}{x}$.\\
+    En posant $a=f(1)$, $f(x)=\frac{a}{x}$.
+    Donc $f$ est solution si elle existe.\n
+    \bf{Synthèse.}\\
+    Soient $x,y\in\mathbb{R}^*_+$.\\
+    Soit $a\in\mathbb{R^*_+}$, posons $g:x\mapsto\frac{a}{x}$. On a
+    \begin{equation*}
+        xg(xy)=x\frac{a}{xy}=\frac{a}{y}=g(y).
+    \end{equation*}
+    \bf{Conclusion.} Les solutions sont donc les fonctions de la forme $x\mapsto\frac{a}{x}$ avec $a\in\mathbb{R^*_+}$.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\blacklozenge$}{}
+    Déterminer les fonctions $f: \mathbb{R} \rightarrow \mathbb{R}$ telles que 
+    \begin{equation*}
+        \forall{(x,y)\in\mathbb{R}}, \hspace{0.25cm} f(f(x)+y) = f(x^2-y)+4x^2y.
+    \end{equation*}
+    \tcblower
+    \bf{Analyse.}
+    Supposons qu'il existe $f$ une telle fonction. Soit $(x,y)\in\mathbb{R}^2$. 
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item On a $f(f(x)+x^2)=f(0)+4x^4$ donc $f(0)=f(f(x)+x^2)-4x^4$.
+        \item On a $f(f(x)-f(x))=f(x^2+f(x))-4x^2f(x)$ donc $f(0)=f(f(x)+x^2)-4x^2f(x)$. 
+        \item En soustrayant les deux: $4x^2(x^2 - f(x)) = 0$.
+    \end{enumerate}
+    Ainsi, lorsque $x\neq0$, on a: $x^2-f(x) = 0$, c'est-à-dire $f(x)=x^2$.\\
+    Donc $f$ est solution si elle existe.\\[0.2cm]
+    \bf{Synthèse.}\\
+    Soient $x,y\in\mathbb{R}$. Posons $g:x\mapsto x^2$. On a
+    \begin{align*}
+        g(g(x)+y)&=(x^2+y)^2 = x^4 + 2x^2y + y^2 = (x^4-2x^2y+y^2)+4x^2y\\
+        &=(x^2-y)^2+4x^2y=g(x^2-y)+4x^2y
+    \end{align*}
+    \bf{Conclusion.} La fonction $x\mapsto x^2$ est donc solution unique.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Résoudre l'équation
+    \begin{equation*}
+        x^2 + x\sqrt{1-x^2}-1=0
+    \end{equation*}
+    \tcblower
+    \bf{Analyse.}\\
+    Supposons qu'il existe $x\in\mathbb{R}$ vérifiant cette équation.
+    \begin{align*}
+        &x^2-1=-x\sqrt{1-x^2}\\
+        \ra~& (x^2-1)^2=(-x\sqrt{1-x^2})^2\\
+        \ra~& x^4 - 2x^2 + 1 = -x^4+x^2\\
+        \ra~& 2x^4-3x^2+1=0
+    \end{align*}
+    Posons $\omega=x^2$. On a alors $2\omega^2-3\omega+1=0$. Les racines de ce polynome sont : $\omega_1=\frac{1}{2}$ et $\omega_1=1$.\\
+    Ainsi, si $x$ existe alors $x\in\{-\frac{\sqrt{2}}{2},-1,1,\frac{\sqrt{2}}{2}\}$.\n
+    \bf{Synthèse.}\\
+    On remarque que l'équation est vérifiée lorsque $x\in\{-1,1,\frac{\sqrt{2}}{2}\}$ uniquement.\n
+    \bf{Conclusion.}\\
+    L'équation admet donc pour ensemble de solutions : $\{-1,1,\frac{\sqrt{2}}{2}\}$.
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\blacklozenge\blacklozenge\blacklozenge$}{}
+    Soit $E$ l'ensemble des fonctions dérivables sur $\mathbb{R}$.\\
+    On considère $F$ l'ensemble des fonctions affines, et $G$ l'ensemble des fonctions $g$ dérivables sur $\mathbb{R}$ telles que $g(0)=g'(0)=0$.\\
+    Démontrer que toute fonction de $E$ s'écrit de manière unique comme la somme d'une fonction de $F$ et d'une fonction de $G$.
+    \tcblower
+    Soit $h$ une fonction dérivable sur $\mathbb{R}$.\n
+    \bf{Analyse.}\\
+    On suppose qu'il existe $f\in F$ et $g\in G$ telles que $h=f+g$. On a :
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item $f$ est affine: $\exists(a,b)\in\mathbb{R}^2\mid\forall{x\in\mathbb{R}}, ~ f(x)=ax+b$ et $f'(x)=a$.  
+        \item $\forall{x\in\mathbb{R}}$, $h(x)=f(x)+g(x)$ donc $h'(x)=f'(x)+g'(x)=a+g'(x)$.
+        \item $h(0)=f(0)+g(0)=b$ et $h'(0)=f'(0)+g'(0)=a$
+    \end{itemize}
+    Ainsi, si $f$ existe, $\forall{x\in\mathbb{R}}, ~ f(x) = h'(0)x+h(0)$.\\
+    De plus, si $g$ existe, $\forall{x\in\mathbb{R}}, ~ g(x) = h(x)-f(x)$.\\
+    On a donc l'unicité.\n
+    \bf{Synthèse.}\\
+    Soient $f$ et $g$ définis comme ci-dessus.
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item $f$ est une fonction affine de coefficient $h'(0)$ et d'ordonnée à l'origine $h(0)$ donc $f\in F$.
+        \item $g$ est dérivable sur $\mathbb{R}$, et $g(0)=g'(0)=0$, donc $g\in G$. 
+    \end{itemize}
+    On a bien $h=f+g$.\n
+    \bf{Conclusion.} La fonction $h$ s'écrit bien de manière unique comme la somme d'une fonction de $F$ et de $G$.
+\end{exercice}
+
+\end{document}

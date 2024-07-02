@@ -468,19 +468,44 @@ On note \fbox{$[0,+\infty]=\R_+\cup\{+\infty\}$}.
     \begin{equation*}
         \frac{1}{(1-z)^2}=\sum_{n=0}^{+\infty}(n+1)z^n.
     \end{equation*}
+    \tcblower
+    On a:
+    \begin{equation*}
+        \frac{1}{(1-z^2)}=\frac{1}{1-z}\times\frac{1}{1-z}=\left(\sum_{n=0}^{+\infty}z^n\right)\left(\sum_{n=0}^{+\infty}z^n\right)=\sum_{n=0}^{+\infty}\sum_{k=0}^nz^kz^{n-k}=\sum_{n=0}^{+\infty}(n+1)z^n
+    \end{equation*}
+    On a utilisé le théorème du produit de Cauchy, car les séries sont absolument convergentes.
 \end{ex}
 
 \begin{ex}{Propriété de morphisme de l'exponentielle, et retour sur le début de l'année.}{}
     Pour tout $z\in\C$ on définit le nombre $\exp(z)$ par
     \begin{equation*}
-        \exp(z):=\sum_{n=0}^{+\infty}\frac{z^k}{k!},
+        \exp(z):=\sum_{n=0}^{+\infty}\frac{z^n}{n!},
     \end{equation*}
-    (on avait prouvé qu'il s'agit bien d'une série convergente).\n
+    (on avait prouvé qu'il s'agit bien d'une série convergente avec d'Alembert).\n
     Démontrer que
     \begin{equation*}
         \forall (z,\tilde{z})\in\C^2\quad\exp(z+\tilde{z})=\exp(z)\exp(\tilde{z}).
     \end{equation*}
     Démontrer que $\exp:x\mapsto\exp(x)$ est dérivable sur $\R$ et qu'elle est sa propre dérivée.
+    \tcblower
+    Soient $z,\tilde{z}\in\C^2$. On a $\exp(z)$ et $\exp(\tilde{z})$ les sommes de deux séries absolument convergentes.
+    On écrit le produit de Cauchy:
+    \begin{align*}
+        \exp(z)\exp(\tilde{z})&=\left(\sum_{n=0}^{+\infty}\frac{z^n}{n!}\right)\left( \sum_{n=0}^{+\infty}\frac{\tilde{z}^n}{n!} \right)=\sum_{n=0}^{+\infty}\sum_{k=0}^n\frac{z^k}{k!}\times\frac{\tilde{z}^{n-k}}{(n-k)!}\\
+        &=\sum_{n=0}^{+\infty}\frac{1}{n!}\sum_{k=0}^{n}\binom{n}{k}z^{k}\tilde{z}^{n-k}=\sum_{n=0}^{+\infty}\frac{1}{n!}(z+\tilde{z})^n\\
+        &=\exp(z+\tilde{z})
+    \end{align*}
+    Soit $a\in \R$ et $h\neq0$. On a
+    \begin{align*}
+        \left|\frac{\exp(a+h)-\exp(a)}{h}-\exp(a)\right|&=\exp(a)\left| \frac{\exp(h)-1}{h} - 1 \right|\\
+        &=\exp(a)\left| \frac{\exp(h)-1-h}{h} \right|\\
+        &=\exp(a)\left| \frac{1}{h}\sum\limits_{n=2}^{+\infty}\frac{h^n}{n!} \right|\\
+        &=\exp(a)\left| h\sum_{n=2}^{+\infty}\frac{h^{n-2}}{n!} \right|\\
+        &\leq |h|\sum_{n=2}^{+\infty}\left|\frac{h^n}{n!}\right|\\
+        &\leq |h|\sum_{n=2}^{+\infty}\frac{1}{n!} \xrightarrow[h\to0]{} 0
+    \end{align*}
+    Donc $\frac{\exp(a+h)-\exp(a)}{h}\xrightarrow[h\to0]{}\exp(a)$.\\
+    Donc $\exp$ est dérivable en $a$ et $\exp'(a)=\exp(a)$. 
 \end{ex}
 
 \pagebreak

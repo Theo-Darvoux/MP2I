@@ -1,0 +1,309 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{43}
+\def\pagetitle{Fonctions de deux variables.}
+
+
+\input{/home/theo/MP2I/setup.tex}
+
+\renewcommand*{\C}{\m{C}}
+
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\begin{center}
+    \Large Un cours très chaotique marqué par la fin d'année et 33°C dans la salle !
+\end{center}
+
+\section{Fonctions définies sur un ouvert de \texorpdfstring{$\R^2$}{Lg} et à valeurs réelles.}
+
+\subsection{Ouverts de \texorpdfstring{$\R^2$}{Lg}.}
+
+\begin{defi}{}{}
+    Soit $a\in\R^2$ et $r>0$.
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item On appelle \bf{boule ouverte} de centre $a$ et de rayon $r$ l'ensemble
+        \begin{equation*}
+            \B(a,r)=\{x\in\R^2\quad\|x-a\|<r\}.
+        \end{equation*}
+        \item On appelle \bf{boule fermée} de centre $a$ et de rayon $r$ l'ensemble
+        \begin{equation*}
+            \overline{\B}(a,r)=\{x\in\R^2\quad\|x-a\|\leq r\}.
+        \end{equation*}
+    \end{itemize}
+\end{defi}
+
+\begin{ex}{}{}
+    Représenter $\overline{\B}(0_{\R^2},\frac{1}{2})$. Représenter la boule ouverte de centre $(2,1)$ et de rayon 1.
+\end{ex}
+
+\begin{defi}{}{}
+    On dit qu'une partie $X$ de $\R^2$ est un \bf{ouvert} si
+    \begin{equation*}
+        \forall x \in X \quad \exists r > 0 \quad \B(x,r) \subset X
+    \end{equation*}
+\end{defi}
+
+\begin{ex}{}{}
+    Dessiner un ouvert de $\R^2$.\\
+    Montrer qu'une boule ouverte de $\R^2$ est un ouvert de $\R^2$.\\
+    Montrer qu'une intersection finie d'ouverts de $\R^2$ est un ouvert de $\R^2$.
+    \tcblower
+    Soit $\B(a,r)$ une boule ouverte et $x\in\B(a,r)$. On pose $r'=r-\|x-a\|$. Alors $\B(x,r')\subset X$.\\
+    En effet, pour $y\in \B(x,r')$, $\|y-x\|<r'=r-\|x-a\|$ donc $\|y-a\|\leq\|y-x\|+\|x-a\|$.\\
+    Alors $\|y-a\| < r$ : $y\in\B(a,r)$.\n
+    Soient $X_1,...,X_n$ des ouverts de $R^2$ et $x\in$\large$\bigcap\limits_{i=1}^nX_i$\normalsize.\\
+    Par définition, $\forall i\in\lb1,n\rb,~x\in X_i$ et $\forall i \in \lb1,n\rb,~\exists r_i>0\quad \B(x,r_i)\subset X_i$.\\
+    Posons $\rho=\min\limits_{i\in\lb 1,n\rb}r_i$, prouvons \large$\B(x,\rho)\subset\bigcap\limits_{i=1}^nX_i$.\normalsize\\
+    Soit $y\in\B(x,\rho)$ et $i\in\lb1,n\rb$, on a $\|y-x\|<\rho\leq r_i$ donc $y\in\B(x,r_i)$.\\
+    Or, $\B(x,r_i)\subset X_i$ donc $y\in X_i$, et ce pour tout $i$.
+\end{ex}
+
+\subsection{Limite et continuité d'une fonction définie sur un ouvert de \texorpdfstring{$\R^2$}{Lg}.}
+
+\begin{defi}{}{}
+    Soit $U$ un ouvert de $\R^2$, $f:U\to\R$, $a\in U$ et $l\in \R$.\\
+    On dit que $f$ \bf{tend vers} $l$ en $a$, noté $f(x)\xrightarrow[x\to a]{}l$ si
+    \begin{equation*}
+        \forall \e>0 \quad \exists \eta > 0 \quad \forall x \in U \quad \|x-a\|\leq \eta \ra |f(x)-l|\leq \e.
+    \end{equation*}
+\end{defi}
+
+\begin{defi}{}{}
+    Soit $U$ un ouvert de $\R^2$, $f:U\to \R$ et $a\in U$, ainsi que $l\in\R$.
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item On dit que $f$ est \bf{continue en} $a$ si $f(x)\xrightarrow[x\to a]{}f(a)$.
+        \item On dit que $f$ est \bf{continue sur} $U$ si $f$ est continue en tout $a\in U$.
+    \end{itemize}
+\end{defi} 
+
+\section{Dérivées partielles.}
+
+\subsection{Dérivées partielles, gradient.}
+
+\begin{defi}{}{}
+    Soient $U$ ouvert de $\R^2$, $f:U\to\R$ et $a=(x_0,y_0)\in U$.
+    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+        \item On dit que $f$ admet une \bf{première dérivée partielle} en $a$ si $x\mapsto f(x,y_0)$ est dérivable en $x_0$. Dans ce cas, on note $\frac{\6 f}{\6 x}(x_0, y_0)$ sa limite:
+        \begin{equation*}
+            \frac{\6 f}{\6 x}(x_0,y_0)=\lim_{h\to0}\frac{f(x_0+h,y_0)-f(x_0,y_0)}{h}.
+        \end{equation*}
+        \item On dit que $f$ admet une \bf{deuxième dérivée partielle} en $a$ si $y\mapsto f(x_0,y)$ est dérivable en $y_0$. Dans ce cas, on note $\frac{\6 f}{\6 y}(x_0,y_0)$ sa limite:
+        \begin{equation*}
+            \frac{\6 f}{\6 y}(x_0,y_0)=\lim_{h\to 0}\frac{f(x_0,y_0+h)-f(x_0,y_0)}{h}
+        \end{equation*}
+    \end{itemize}
+\end{defi}
+
+\begin{defi}{}{}
+    Si $f:U\to\R$ admet des dérivées partielles en $a\in U$, on définit son $\bf{gradient}$ en $a$ noté $\grad f(a)$ par
+    \large
+    \begin{equation*}
+        \grad f(a) = \left(\begin{aligned}
+        &\frac{\6 f}{\6 x}(a)\n
+        &\frac{\6 f}{\6 y}(a)
+        \end{aligned}\right)
+    \end{equation*}
+\end{defi}
+
+\begin{meth}{}{}
+    Calculer la première dérivée partielle, c'est par définition dériver $x\mapsto f(x,y)$ pour $y$ \emph{fixé} : on dérive en traitant $y$ comme une constante.\\
+    Pour le calcul de la seconde dérivée partielle, c'est $x$ qui est traité comme une constante.
+\end{meth}
+
+\begin{ex}{}{}
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $f:(x,y)\mapsto x^2+x^2y-2y^2$. Calculer \Large$\frac{\6 f}{\6 x}$\normalsize$(x,y)$, \Large$\frac{\6 f}{\6 y}$\normalsize$(x,y)$ puis $\grad f(1,2)$.
+        \item Si $g$ est dérivable sur $\R$, on pose $F(x,y)=g$\Large$(\frac{y}{x})$ \normalsize définie sur $\R^*\times\R$.\\
+        Calculer \Large$\frac{\6 F}{\6 x}$\normalsize$(x,y)$ et \Large$\frac{\6 F}{\6 y}$\normalsize$(x,y)$ et $\grad F(x,y)$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.}
+    Soient $(x,y)\in\R^2$.\\
+    On a $\frac{\6 f}{\6 x}(x,y)=2x+2xy$ et $\frac{\6 f}{\6 y}(x,y)=x^2-4y$.\\
+    Alors $\grad f(1,2) = \left(\begin{aligned}
+        6\n
+        -7
+        \end{aligned}\right)$\n
+    \boxed{2.}
+    On a $\frac{\6 F}{\6 x}(x,y)=-\frac{y}{x^2}g'(\frac{y}{x})$ et $\frac{\6 F}{\6 y}(x,y)=\frac{1}{x}g'(\frac{y}{x})$\\
+    Alors $\grad F(x,y) = \frac{1}{x^2}g'(\frac{y}{x})\left(\begin{aligned}
+        -y\n
+        x
+        \end{aligned}\right)$
+\end{ex}
+
+\begin{ex}{\warning}{}
+    Contrairement au cas d'une fonction d'une variable réelle, l'existence des dérivées partielles en $a$ n'implique pas la continuité en $a$. On le constatera sur l'exemple ci-dessous :\\
+    $f$ définie sur $\R^2$ par \large$\begin{cases}f(x,y)=\frac{xy}{x^2+y^2}&\nt{si } (x,y)\neq(0,0)\\f(0,0)=0 &\nt{sinon}\end{cases}$\normalsize admet des dérivées partielles en $(0,0)$ mais n'est pas continue en $(0,0)$.
+    \tcblower
+    On a $\frac{\6 f}{\6 x}(0,0)=\frac{\6 f}{\6 y}(0,0)=0$\n
+    Supposons par l'absurde que $f(x,y)\xrightarrow[(x,y)\to(0,0)]{}{f(0,0)}$.\\
+    C'est-à-dire $\forall \e>0, ~ \exists \eta>0 \mid \forall (x,y)\in\R^2, ~ \|(x,y)-(0,0)\|\leq\eta \ra |f(x,y)-f(0,0)|\leq\e$.\\
+    Alors $\forall \e>0, ~ \exists\eta>0 \mid \forall (x,y)\in\R^2, ~ \|(x,y)\|\leq \eta \ra |f(x,y)|\leq \e$.\\
+    Pour $x\neq0$, $f(x,x)=\frac{1}{2}\cancel{\xrightarrow[x\to0]{}}0$, donc pour $\e=\frac{1}{3}$, on a pour tout $|x|\leq\frac{\eta}{\sqrt{2}}$.\\
+    On a $\|(x,x)\|\leq\sqrt{(\frac{\eta}{\sqrt{2}})^2+(\frac{\eta}{\sqrt{2}})^2}\leq\eta$.
+\end{ex}
+
+\subsection{Fonctions de classe \texorpdfstring{$\C^1$}{Lg}.}
+
+\begin{defi}{}{}
+    Soit $U$ ouvert de $\R^2$ et $f:U\to\R$.\\
+    On dit que $f$ est \bf{de classe} $\C^1$ sur $U$ si $f$ possède deux dérivées partielles en tout point de $U$, \bf{et} que ces dérivées partielles sont continues sur $U$.\\
+    On note $\C^1(U,\R)$ l'ensemble des fonctions de classe $\C^1$ sur $U$.
+\end{defi}
+
+\begin{ex}{}{}
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item Si $I,J$ sont deux intervalles ouverts de $\R$ et $\phi\in\C^1(I,\R),\phi\in\C^1(J,\R)$ alors la fonction $(x,y)\mapsto\phi(x)\psi(y)$ est de classe $\C^1$ sur $I\times J$.
+        \item $(x,y)\mapsto \arctan(\frac{y}{x})$ est de classe $C^1$ sur $\R_+^*\times\R$.
+        \item $(x,y)\mapsto \|(x,y)\|$ est de classe $\C^1$ sur $\R^2\setminus\{(0,0)\}$.
+    \end{enumerate}
+    \tcblower
+    \boxed{3.} Les dérivées partielles existent en tout point de $\R^2\setminus\{(0,0)\}$.
+    \begin{equation*}
+        \frac{\6 f}{\6 x}(x,y)=\frac{2x}{2\sqrt{x^2+y^2}}, \quad \frac{\6 f}{\6 y}(x,y)=\frac{y}{\sqrt{x^2+y^2}}.
+    \end{equation*}
+    Elles sont continues sur $\R^2\setminus\{(0,0)\}$... 
+\end{ex}
+
+\begin{prop}{DL à l'ordre 1.}{}
+    Toute fonction $f\in\C^1(U,\R)$ admet le DL à l'ordre 1 suivant en tout point $a=(x_0,y_0)\in U$.
+    \begin{equation*}
+        f(x_0+h, y_0+k)\underset{(h,k)\to(0,0)}{=}f(x_0,y_0)+h\frac{\6 f}{\6 x}(x_0+y_0)+k\frac{\6 f}{\6 y}(x_0,y_0)+o(\|(h,k)\|).
+    \end{equation*}
+    Ou encore
+    \begin{equation*}
+        f(a+H)\underset{H\to(0,0)}{=}f(a)+\Lg \grad f(a), H \Rg + o(\|H\|).
+    \end{equation*}
+\end{prop}
+
+\begin{corr}{}{}
+    Soit $U$ un ouvert de $\R^2$. Toute fonction de classe $\C^1$ sur $U$ y est continue.
+\end{corr}
+
+\begin{defi}{Plan tangent à la surface en un point.}{}
+    Soit $f$ une fonction de $C^1$ sur un ouvert $U$ de $\R^2$. On considère un point $(x_0,y_0,z_0)\in\R^3$ appartenant à la surface d'équation $z=f(x,y)$, c'est-à-dire tel que $(x_0,y_0)\in U$ et $z_0=f(x_0,z=y_0)$.\\
+    Le plan d'équation
+    \begin{equation*}
+        z-z_0=(x-x_0)\frac{\6 f}{\6 x}(x_0, y_0)+(y-y_0)\frac{\6 f}{\6 y}(x_0,y_0)
+    \end{equation*}
+    est appelé \bf{plan tangent} en $(x_0,y_0)$ à la surface $z=f(x,y)$.
+\end{defi}
+
+\section{Deux questions naturelles.}
+
+\subsection{Comment dériver une composée ?}
+
+\begin{thm}{Règle de la chaîne (1).}{}
+    Soient $U$ un ouvert de $\R^2$, $I$ un intervalle de $\R$.\\
+    Soient $f\in\C^1(U,\R)$ et $\g:t\mapsto (x(t),y(t))\in\C^1(I,U)$.\\
+    Alors $F:t\mapsto f(x(t),y(t))$ est de classe $\C^1$ sur $I$ avec
+    \begin{equation*}
+        \forall t \in I \quad F'(t)=\frac{\nt{d}}{\dt}f(x(t),y(t))=x'(t)\frac{\6 f}{\6 x}(x(t),y(t))+y'(t)\frac{\6 f}{\6 y}(x(t), y(t)).
+    \end{equation*}
+    \begin{equation*}
+        \nt{soit} \quad \forall t \in I, ~ (f\circ \g)'(t)=\Lg \g'(t), \grad f(\g(t)) \Rg.
+    \end{equation*}
+    On dit qu'on a calculé la dérivée de $f$ suivant l'arc paramétré $\g$.
+    \tcblower
+    ...
+    \begin{align*}
+        F(t+h)&=f(\g(t+h))=f(x(t+h),y(t+h))=f(x(t+h),y(t+h))\\
+        &=f(x(t)+hx'(t)+\e_1(h),y(t)+hy'(t)+\e_2(h))\\
+        &=f(\underbrace{(x(t),y(t))}_a+\underbrace{(hx'(t)+\e_1(h),hy'(t)+\e_2(h))}_H)\\
+        &=f(x(t),y(t))+\Lg \grad f(x(t),y(t)), H\Rg+o(\|H\|)\\
+        &=f(\g(t))+(hx'(t)+\e_1(h))\frac{\6 f}{\6 x}(\g(t))+(hy'(t)+\e_2(h))\frac{\6 f}{\6 y}(\g(t))+o(\|H\|)\\
+        &=f(\g(t))+h(x'(t)\frac{\6 f}{\6 x}(\g(t))+y'(t)\frac{\6 f}{\6 y}(\g(t)))+o(h)
+    \end{align*}
+\end{thm}
+
+\begin{ex}{}{}
+    Soit $f\in\C^1(R^2,\R)$. Calculer la dérivée de $\phi:t\mapsto f(t^3,\cos t)$.
+    \tcblower
+    On a:
+    \begin{equation*}
+        \forall t \in \R, ~ \phi'(t)=3t^2\frac{\6 f}{\6 t^3}(t^3,\cos t)-\sin(t)\frac{\6 f}{\6 \cos(t)}(t^3,\cos(t))
+    \end{equation*}
+\end{ex}
+
+\begin{thm}{Règle de la chaîne (2).}{}
+    Soient $U$ et $V$ deux ouverts de $\R^2$, $\phi_1$ et $\phi_2$ dans $\C^1(U,\R)$ et $\phi:\begin{cases}U&\to\R^2\\(u,v)&\mapsto (\phi_1(u,v), \phi_2(u,v))\end{cases}$.\\
+    Si $f\in\C^1(V,\R)$, et $\phi(U)\subset V$, alors $f\circ\phi$ est de classe $\C^1$ sur $U$ et
+    \begin{equation*}
+        \forall (u,v) \in U\quad \begin{aligned}
+            \frac{\6 (f\circ \phi)}{\6 u}(u,v)=\frac{\6 \phi_1}{\6 u}(u,v)\times \frac{\6 f}{\6 x}(\phi(u,v))+\frac{\6 \phi_2}{\6 u}(u,v)\times\frac{\6 f}{\6 y}(\phi(u,v)).\\
+            \frac{\6(f\circ \phi)}{\6 v}(u,v)=\frac{\6 \phi_1}{\6 v}(u,v)\times \frac{\6 f}{\6 x}(\phi(u,v)) + \frac{\6 \phi_2}{\6 v}(u,v)\times\frac{\6 f}{\6 y}(\phi(u,v)).
+        \end{aligned}
+    \end{equation*}
+\end{thm}
+
+\begin{meth}{À la physicienne.}{}
+    En notant $x(u,v)=\phi_1(u,v)$ et $y=\phi_2(u,v)$:
+    \begin{equation*}
+        \frac{\6(f \circ \phi)}{\6 u}=\frac{\6 f}{\6 x}\frac{\6 x}{\6 u}+\frac{\6 f}{\6 y}\frac{\6 y}{\6 u} \quad \nt{et} \quad \frac{\6(f\circ\phi)}{\6 v}=\frac{\6 f}{\6 x}\frac{\6 x}{\6 v} + \frac{\6 f}{\6 y}\frac{\6 y}{\6 v}.
+    \end{equation*}
+\end{meth}
+
+\begin{ex}{Changement de variable affine.}{}
+    Soient $a,b,c,d,e,f$ six réels et $g\in\C^1(\R^2,\R)$. Calculer les dérivées partielles de
+    \begin{equation*}
+        h:(x,y)\mapsto g(ax+by+c, dx+ey+f)
+    \end{equation*}
+    \tcblower
+    On note $u=ax+by+c$ et $v=dx+ey+f$.
+    \begin{equation*}
+        \frac{\6 h}{\6 x}(x,y)=\frac{\6 g}{\6 u}\frac{\6 u}{\6 x}+\frac{\6 g}{\6 v}\frac{\6 v}{\6 x}=a\frac{\6 g}{\6 u}(u,v)+d\frac{\6 g}{\6 v}(u,v).
+    \end{equation*}
+    \begin{equation*}
+        \frac{\6 h}{\6 y}(x,y)=\frac{\6 g}{\6 u}\frac{\6 u}{\6 y}+\frac{\6 g}{\6 v}\frac{\6 v}{\6 y}=b\frac{\6 g}{\6 u}(u,v)+e\frac{\6 g}{\6 v}(u,v)
+    \end{equation*}
+\end{ex}
+
+\subsection{Que peut-on dire au sujet des extrema ?}
+
+\begin{defi}{}{}
+    Soit $A\subset \R^2$, $f:A\to\R$ et $a\in A$. On dit que
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $f$ admet un \bf{maximum local} en $a$ si $f(a)$ majore $f(A)$ au voisinage de $a$, soit
+        \begin{equation*}
+            \exists r>0\quad\forall x\in A\quad\|x-a\|\leq r \ra f(x)\leq f(a).
+        \end{equation*}
+        \item $f$ admet un \bf{minimum local} en $a$ si $f(a)$ minore $f(A)$ au voisinage de $a$, soit
+        \begin{equation*}
+            \exists r>0 \quad \forall x \in A \quad \|x-a\|\leq r \ra f(x) \geq f(A).
+        \end{equation*}
+        \item $f$ présente un \bf{extremum local} en $a$ si elle y admet un maximum ou un minimum local.
+        \item \bf{Extremum global} : un maximum (resp. minimum) est global si il majore (resp. minore) $f$ sur tout $A$.  
+    \end{enumerate}
+\end{defi}
+
+\begin{ex}{}{}
+    $f:(x,y)\mapsto x^2 + y^2$ présente un minimum global en $(0,0)$.
+\end{ex}
+
+\begin{prop}{}{}
+    Soit $f$ de classe $\C^1$ sur $U$ ouvert de $\R^2$ et $a\in U$.\n
+    Si $f$ admet un extremum local en $a$, alors
+    \begin{equation*}
+        \frac{\6 f}{\6 x}(a) = \frac{\6 f}{\6 y}(a) = 0 \quad \nt{autrement dit} \quad \grad f(a)=(0,0).
+    \end{equation*}
+    On dit alors que $a$ est un \bf{point critique}.
+\end{prop}
+
+\begin{ex}{La réciproque est fause !}{}
+    Comme pour les fonctions d'une seule variable, la réciproque est fausse.\n
+    Vérifier ainsi que $(0,0)$ est un point critique de $f:(x,y)\mapsto x^2-y^2$ mais n'est pas un extremum.\\
+    On le remarque aussi sur le graphe : première page du poly.
+\end{ex}
+
+\begin{ex}{}{}
+    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+        \item $f:(x,y)\mapsto x^2+y^2-2x-4y$ admet un minimum global en un point de $\R^2$ à préciser.
+        \item La fonction $f:(x,y)\mapsto x^3+y^3-6(x^2-y^2)$ présente un minimum local en $(4,0)$, un maximum local en $(0,-4)$. Les autres points critiques ne sont pas des extrema.
+    \end{enumerate}
+\end{ex}
+
+\end{document}
