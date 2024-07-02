@@ -3,11 +3,11 @@
 \def\chapitre{42}
 \def\pagetitle{Familles sommables.}
 
-\input{/home/theo/MP2I/setup.tex}
+\input{Latex/setup.tex}
 
 \begin{document}
 
-\input{/home/theo/MP2I/title.tex}
+\input{Latex/title.tex}
 
 \section*{Introduction.}
 
@@ -508,17 +508,17 @@ On note \fbox{$[0,+\infty]=\R_+\cup\{+\infty\}$}.
     Donc $\exp$ est dérivable en $a$ et $\exp'(a)=\exp(a)$. 
 \end{ex}
 
-\pagebreak
-
 \begin{thm}{Théorème de réarrangement de Riemann.}{}
     Soit $\sum u_n$ une série de nombres réels convergente, mais pas absolument. Alors pour tout $l\in\overline{\R}$, il existe une bijection $\s:\N\to\N$ telle que \begin{equation*}\sum_{n=0}^Nu_{\s(n)}\xrightarrow[N\to+\infty]{}l.\end{equation*}
     \tcblower
     Hors-programme.
 \end{thm}
 
+\pagebreak
+
 \section{Exercices.}
 
-\begin{exercice}{}{}
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
     Calculer la somme de \Large$\left( \frac{1}{(i+j^2)(i+j^2+1)} \right)_{i\geq 0,j\geq1}$ \normalsize (on suppose $\zeta(2)$ connu). En déduire
     \begin{equation*}
         \sum_{n=1}^{+\infty}\frac{\lf \sqrt{n} \rf}{n(n+1)}.
@@ -538,6 +538,82 @@ On note \fbox{$[0,+\infty]=\R_+\cup\{+\infty\}$}.
     \end{align*}
     En effet, $I_n=\{(n-j^2,j^2)\mid j^2\in\lb1,n\rb\}=\{(n-j^2,j^2)\mid j\in\lb1,\sqrt{n}\rb\}$. Donc $|I_n|=\lf\sqrt{n}\rf$.\n
     En conclusion, cette somme vaut $\zeta(2)$.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Montrer que \Large $\left( \frac{1}{(|p| + |q|)^s} \right)_{(p, q)\in\Z^{2} \setminus \{(0, 0)\}}$ \normalsize est une famille sommable si et seulement si $s > 2$.\n
+    Exprimer alors sa somme à l'aide de la fonction $\zeta$.
+    \tcblower
+    Posons $I_{n} = \{(p, q) ~|~ (p, q) \in \Z^{2} \setminus \{(0, 0)\} ~|~ |p| + |q| = n \}$ (recouvrement disjoint).\n
+    Ainsi $I_{n} = \{((-1)^{u}p, (-1)^{v}q) ~|~ (p, q) \in \N^{2} \setminus \{(0, 0)\} ~|~ (u, v) \in \{0, 1 \}^{2} ~|~ p + q = n\}$.\n
+    Donc $I_{n} = \{((-1)^{u}p, (-1)^{v}(n-p)) ~|~ 1 \leq p \leq n ~|~ (u, v) \in \{0, 1 \}^{2}\}$.\n
+    \begin{align*}
+        \sum_{(p, q)\in\Z^{2} \setminus \{(0, 0)\}} \frac{1}{(|p| + |q|)^s} &= \sum_{n=1}^{+\infty} \sum_{(p, q) \in I_{n}} \frac{1}{(|p| + |q|)^s} ~~~~~~(\text{paquets positifs})\n
+        &= \sum_{n=1}^{+\infty} \frac{1}{n^s} \times |I_{n}| ~~~~~~~~~~~~~~~~~~((p, q) \in I_{n}) \n
+        &= \sum_{n=1}^{+\infty} \frac{4}{n^{s-1}} ~~~~~~~~~~~~~~~~~~~~~~~~(|I_{n}| = 4n)\n
+    \end{align*}
+    Ainsi par comparaison ( Serie de Riemman ) : \n
+        \Large $\left( \frac{1}{(|p| + |q|)^s} \right)_{(p, q)\in\Z^{2} \setminus \{(0, 0)\}}$ \normalsize est une famille sommable si et seulement si s > 2. \n
+        Ainsi 
+        \begin{equation*}
+        \forall s > 2~,~ \sum_{(p, q)\in\Z^{2} \setminus \{(0, 0)\}} \frac{1}{(|p| + |q|)^s} = 4~\zeta(s-1)
+        \end{equation*}
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$ Mines MP 2019}{}
+    \begin{equation*}
+       \text{Calculer } \sum_{n=2}^{+\infty} (n-1)(2^{n}(\zeta(n)-1) -1)
+    \end{equation*}
+    \tcblower
+    \begin{align*}
+        \sum_{n=2}^{+\infty} (n-1)(2^{n}(\zeta(n)-1) -1) &= \sum_{n=2}^{+\infty} (n-1)(2^{n}(\sum_{k=2}^{+\infty} \frac{1}{k^{n}}) -1) \n
+        &= \sum_{n=2}^{+\infty} (n-1)(\sum_{k=2}^{+\infty} (\frac{2}{k})^{n} -1) \n
+        &= \sum_{n=2}^{+\infty} \sum_{k=3}^{+\infty} (n-1)(\frac{2}{k})^{n} \n
+        &= \sum_{k=3}^{+\infty} \sum_{n=2}^{+\infty} (n-1)(\frac{2}{k})^{n} ~~~~~~~~~~ (\text{Fubini positif}) \n
+        &= \sum_{k=3}^{+\infty} (\frac{2}{k})^2 \sum_{n=2}^{+\infty} (n-1)(\frac{2}{k})^{n-2} \n
+        &= \sum_{k=3}^{+\infty} (\frac{2}{k})^2 (\sum_{n=0}^{+\infty} (n+1)(\frac{2}{k})^{n}) \n
+        &= \sum_{k=3}^{+\infty} (\frac{2}{k})^2 \frac{1}{(1-\frac{2}{k})^2} ~~~~~~~~~~ (\text{Exemple 36: } \forall k>3~,~ |\frac{2}{k}| < 1)\n
+        &= \sum_{k=3}^{+\infty} (\frac{\frac{2}{k}}{1-\frac{2}{k}})^2 \n
+        &= \sum_{k=3}^{+\infty} (\frac{2}{k-2})^2 \n
+        &= 4\sum_{k=1}^{+\infty} (\frac{1}{k})^2 \n
+        &= 4\zeta(2) \n
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$ Calcul de $\zeta(4)$}{}
+    Pour tout $p > 1$, on note $\zeta(p) = \sum_{n=1}^{+\infty}\frac{1}{n^p}$ et on rappelle que $\zeta(2) = \frac{\pi^2}{6}$.\n
+    Pour tout $(n, m) \in {\N^{*}}^{2}$, on note
+    \begin{equation*}
+        f(n, m) = \frac{2}{n^{3}m} + \frac{1}{n^{2}m^{2}} + \frac{2}{nm^{3}}
+    \end{equation*}
+    et
+    \begin{equation*}
+        u_{n, m} = f(n, m) - f(n, m + n) - f(m, m + n)
+    \end{equation*}
+    
+    \begin{enumerate}
+        \item Monter que, pour tout $(n, m) \in {\N^{*}}^{2}$, 
+        \begin{equation*}
+            u_{n, m} = \frac{2}{n^{2}m^{2}}
+        \end{equation*}
+        \item En deduire que la famille $\left( u_{n, m} \right)_{(p, q)\in {\N^{*}}^{2}}$ est sommable et calculer 
+        \begin{align*}
+            \sum_{n=1}^{+\infty} \sum_{m=1}^{+\infty} u_{n, m}
+        \end{align*}
+        \item Soit $N \in \N^{*}$. Exprimer $\sum_{n=1}^{+\infty} \sum_{m=1}^{+\infty} u_{n, m}$ en fonction de $\zeta(4)$ puis montrer que 
+        \begin{equation*}
+            \zeta(4) = \frac{\pi^{4}}{90}
+        \end{equation*}
+    \end{enumerate}
+
+    \tcblower
+    \boxed{1} 
+    \begin{align*}
+        u_{n, m} &= f(n, m) - f(n, m + n) - f(m, m + n) \n
+    \end{align*}
+    \Huge\centering TODO 
 \end{exercice}
 
 \end{document}
