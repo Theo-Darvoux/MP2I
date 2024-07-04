@@ -1,0 +1,722 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{1}
+\def\pagetitle{Sommes et produits.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\thispagestyle{fancy}
+
+\section{Sommes et produits d'une famille finie de nombres.}
+
+\begin{nota}{}{}
+    Soit $(a_i)_{i\in I}$ une famille de nombres complexes indexée par un ensemble \bf{fini non vide} $I$.\n
+    On note $\sum\limits_{i\in I}a_i$ (resp. $\prod\limits_{i\in I}a_i$) la somme (resp. le produit) des éléments de la famille $(a_i)_{i\in I}$.
+\end{nota}
+
+\bf{Exemple.} Notons $I=\{\lozenge,\heartsuit,\D\}$, puis posons $a_\lozenge:=2,~a_{\heartsuit}:=e$ et $a_\D:=\pi$.\\
+Alors $(a_i)_{i\in I}$ est une famille de trois nombres complexes.
+\begin{equation*}
+    \sum_{i\in I}a_i=a_{\lozenge}+a_{\heartsuit}+a_\D=2+e+\pi\quad\nt{et}\quad\prod_{i\in I}a_i=a_{\lozenge}\times a_{\heartsuit} \times a_{\D}=2e\pi.
+\end{equation*}
+
+\begin{nota}{}{}
+    Pour $n\in\N^*$, si $I=\lb1,n\rb=\{1,2,...,n\}$, on peut aussi noter
+    \begin{equation*}
+        a_1+...+a_n=\sum_{i\in\lb1,n\rb}a_i=\sum_{1\leq i\leq n}a_i=\sum_{i=1}^na_i.
+    \end{equation*}
+    Plus généralement, si $m,n\in\Z,~m\leq n$ et $I=\lb m,n \rb = \{m,m+1,...,n\}$ on peut noter
+    \begin{equation*}
+        a_m+...+a_n=\sum_{i\in\lb m,n\rb}a_i=\sum_{m\leq i\leq n}a_i = \sum_{i=m}^na_i.
+    \end{equation*}
+\end{nota}
+
+\bf{Remarque.} La lettre $i$ est une variable \emph{muette}, elle a seulement un sens localement, dans l'écriture de la somme ou du produit :
+\begin{equation*}
+    \sum_{i=1}^na_i=\sum_{j=1}^na_j=\sum_{k=1}^na_k.
+\end{equation*}
+
+\begin{nota}{}{}
+    Si $I$ est l'ensemble vide, on convient qu'une expression du type $\sum\limits_{i\in I}a_i$ vaut 0 et que $\prod\limits_{i\in I}a_i$ vaut 1.
+\end{nota}
+
+\setcounter{tcb@cnt@thm}{1}
+
+\begin{ex}{}{}
+    Soit $n\in\N^*$. Détailler les sommes suivantes, éventuellement avec des points de suspension.
+    \begin{equation*}
+        \sum_{k=2}^{5}k,\quad\sum_{k=0}^02^k,\quad\sum_{k=0}^nk^2,\quad\sum_{k=0}^n(-1)^kk^2,\quad\sum_{k=1}^0k,\quad\sum_{k=0}^n1.
+    \end{equation*}
+\end{ex}
+
+\pagebreak
+
+\begin{prop}{}{}
+    Soient deux entiers $m$ et $n$ tels que $m\leq n$ et $a_m,a_{m+1},...,a_n$ des nombres.\\
+    L'ensemble $\lb m,n\rb$ contient $n-m+1$ entiers, de sorte que
+    \begin{equation*}
+        \begin{aligned}
+            &\sum_{i=m}^na_i \nt{ est une somme de } n-m+1 \nt{ \bf{termes},}\\
+            &\prod_{i=m}^na_i \nt{ est un produit de } n-m+1 \nt{ \bf{facteurs}.}
+        \end{aligned}
+    \end{equation*}
+    \tcblower
+    On a $\lb m,n \rb = \lb 1, n \rb \setminus \lb 1, m-1\rb$ donc $|\lb m,n\rb|=|\lb1,n\rb - |\lb1,m-1\rb|=n-m+1$.\\
+    On a $\lb m,n\rb = \{m+0, m+1, ..., m + (n-m)\}$ donc $|\lb m,n \rb|=n-m+1$.
+\end{prop}
+
+\begin{ex}{Termes ou facteurs égaux.}{}
+    Soit $n\in\N^*$ et $a\in\C$. Que valent $\sum\limits_{k=0}^na$ et $\prod\limits_{k=0}^na$ ?
+    \tcblower
+    On a $\sum\limits_{k=0}^na=(n+1)a$ et $\prod\limits_{k=0}^na=a^{n+1}$.
+\end{ex}
+
+\section{Règles de calculs.}
+
+\begin{prop}{Linéarité de la somme.}{}
+    Soient deux familles de nombres $(a_i)_{i\in I}$ et $(b_i)_{i\in I}$, où $I$ est un ensemble fini et $\l\in\C$.
+    \begin{equation*}
+        \sum_{i\in I}(a_i+b_i)=\sum_{i\in I}a_i+\sum_{i\in I}b_i\quad\nt{et}\quad\sum_{i\in I}\l a_i=\l\sum_{i\in I}a_i.
+    \end{equation*}
+\end{prop}
+
+\begin{corr}{La somme de la combinaison linéaire, c'est la combinaison linéaire des sommes.}{}
+    Soient $(a_i)_{i\in I}$ et $(b_i)_{i\in I}$ et $\l,\m\in\C$.
+    \begin{equation*}
+        \sum_{i\in I}(\l a_i + \m b_i) = \l\sum_{i\in I}a_i + \m\sum_{i\in I}b_i.
+    \end{equation*}
+\end{corr}
+
+\begin{prop}{Produits de produits.}{}
+    Soient deux familles de nombres complexes $(a_i)_{i\in I}$ et $(b_i)_{i\in I}$. Soient $\l\in\C$ et $n\in\N^*$.
+    \begin{equation*}
+        \prod_{i\in I}(a_i\cdot b_i)=\left( \prod_{i\in I}a_i \right)\left( \prod_{i\in I} b_i \right), \quad \nt{En particulier, } \prod_{i=1}^n(\l a_i)=\l^n\prod_{i=1}^na_i.
+    \end{equation*}
+    Si de surcroît tous les $b_i$ sont non nuls
+    \begin{equation*}
+        \prod_{i\in I}\frac{a_i}{b_i}=\frac{\prod_{i\in I}a_i}{\prod_{i\in I}b_i}.
+    \end{equation*} 
+\end{prop}
+
+\begin{prop}{Relation de Chasles.}{}
+    Soient $n\in \N^*$ et $m$ un entier tel que $1\leq m \leq n$. Soit $(a_i)_{i\in\lb1,n\rb}$ une famille de nombres complexes.
+    \begin{equation*}
+        \sum_{i=1}^na_i=\sum_{i=1}^ma_i+\sum_{i=m+1}^na_i \quad \nt{et} \quad \prod_{i=1}^na_i=\left( \prod_{i=1}^ma_i \right) \cdot \left( \prod_{i=m+1}^{n}a_i \right).
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{Exponentielle d'une somme, logarithme d'un produit.}{}
+    Soient $(a_i)_{i\in I}$ et $(b_i)_{i\in I}$ deux familles finies de nombre réels, les $b_i$ étant tous strictement positifs.
+    \begin{equation*}
+        \exp\left( \sum_{i\in I}a_i \right)=\prod_{i\in I}\exp(a_i) \quad \nt{et} \quad \ln\left( \prod_{i\in I}b_i \right) = \sum_{i\in I}\ln(b_i).
+    \end{equation*}
+\end{prop}
+
+\section{Téléscopage.}
+
+\begin{thm}{Sommes télescopiques.}{}
+    Soient $a_m,a_{m+1},...,a_n,a_{n+1}$ des nombres complexes. Alors,
+    \begin{equation*}
+        \sum_{k=m}^n(a_{k+1}-a_k)=a_{n+1}-a_m.
+    \end{equation*}
+\end{thm}
+
+\begin{prop}{Produits télescopiques.}{}
+    Soient $a_m,a_{m+1},...,a_n,a_{n+1}$ des nombres complexes non nuls. Alors,
+    \begin{equation*}
+        \prod_{k=m}^n\frac{a_{k+1}}{a_k}=\frac{a_{n+1}}{a_m}.
+    \end{equation*}
+\end{prop}
+
+\begin{ex}{}{}
+    Soit $n$ un entier supérieur à 2. Simplifier
+    \begin{equation*}
+        \sum_{k=0}^n((k+1)^6-k^6), \quad \sum_{k=1}^{n+1}(\sqrt{k+1}-\sqrt{k}),\quad \sum_{k=1}^n\frac{1}{k(k+1)},\quad\prod_{k=2}^n\left( 1-\frac{1}{k} \right).
+    \end{equation*}
+    \tcblower
+    \boxed{1.} On a $\sum_{k=0}^n((k+1)^6-k^6)=(n+1)^6$.\n
+    \boxed{2.} On a $\sum_{k=1}^{n+1}(\sqrt{k+1}-\sqrt{k})=\sqrt{n+2}-1$.\n
+    \boxed{3.} On a $\sum_{k=1}^n\frac{1}{k(k+1)}=\sum_{k=1}^n(\frac{1}{k}-\frac{1}{k+1})=1-\frac{1}{n+1}$.\n
+    \boxed{4.} On a $\prod_{k=2}^n\left( 1-\frac{1}{k} \right)=\prod_{k=2}^n\frac{k-1}{k}=\frac{1}{n}$.
+\end{ex}
+
+\section{Sommes et produits de référence.}
+
+\begin{prop}{$\sum_{k=1}^nk^p$ avec $p\in\{1,2,3\}$.}{}
+    Soit $n\in\N^*$. On a
+    \begin{equation*}
+        \sum_{k=1}^nk=\frac{n(n+1)}{2},\quad\sum_{k=1}^nk^2=\frac{n(n+1)(2n+1)}{6},\quad\sum_{k=1}^nk^3=\left( \frac{n(n+1)}{2} \right)^2.
+    \end{equation*}
+    \tcblower
+    Pour la première somme, on a
+    \begin{equation*}
+        2\sum_{k=1}^nk=\sum_{k=1}^nk+\sum_{k=1}^n(n-k+1)=\sum_{k=1}^n(n+1)=n(n+1).
+    \end{equation*}
+    On peut montrer la deuxième par récurrence, ou en calculant $\sum_{k=1}^n((k+1)^3-k^3)$.
+\end{prop}
+
+\begin{prop}{Progression géométrique.}{}
+    Soit $n\in\N$ et $q\in\C$.
+    \begin{equation*}
+        \sum_{k=0}^nq^k=\begin{cases}
+            \frac{1-q^{n+1}}{1-q}&\nt{si }q\neq1\\
+            n+1&\nt{si }q=1
+        \end{cases}
+    \end{equation*}
+    \tcblower
+    Le cas $q=1$ est trivial.\\
+    Dans le cas $q\neq 1$, on a:
+    \begin{align*}
+        &(1-q)\sum_{k=0}^nq^k=\sum_{k=0}^n(q^k-q^{k+1})=1-q^{n+1}\\
+        \nt{Donc }&\sum_{k=0}^nq^k=\frac{1-q^{n+1}}{1-q}
+    \end{align*}
+\end{prop}
+
+\begin{ex}{de sommes de progressions géométriques.}{}
+    Soit $m,n\in\N~(m\leq n)$ et $x\in\R$. $\quad$ Calculer : \large$\sum\limits_{k=0}^n\frac{1}{2^k},\quad\sum\limits_{k=1}^n2^k,\quad\sum\limits_{k=0}^n(-1)^kx^{2k},\quad\sum\limits_{k=m}^nx^k$.
+    \tcblower
+    On a:
+    \begin{align*}
+        &\sum_{k=0}^n\frac{1}{2^k}=\sum_{k=0}^n\left( \frac{1}{2} \right)^k=\frac{1-\frac{1}{2^{n+1}}}{1-\frac{1}{2}}=2-\frac{1}{2^n}.\\
+        &\sum_{k=1}^n2^k=\sum_{k=0}^n2^k-1=\frac{1-2^{n+1}}{1-2}-1=2^{n+1}-2=2(2^n-1).\\
+        &\sum_{k=0}^n(-1)^kx^{2k}=\sum_{k=0}^n(-x^2)^k=\frac{1+(-1)^n(x^2)^{n+1}}{1+x^2}.\\
+        &\sum_{k=m}^nx^k=\sum_{k=0}^nx^k-\sum_{k=0}^{m-1}x^k=\frac{1-x^{n+1}}{1-x}-\frac{1-x^{m}}{1-x}=\frac{x^m-x^{n+1}}{x-1}=x^m\frac{1-x^{n-m+1}}{1-x}.
+    \end{align*}
+\end{ex}
+
+\begin{prop}{Factorisation de $a^n-b^n$ par $a-b$}{}
+    Soient $a$ et $b$ deux nombres complexes et $n\in\N^*$. On a
+    \begin{equation*}
+        a^n-b^n=(a-b)\sum_{k=0}^{n-1}a^{k}b^{n-k-1}
+    \end{equation*}
+    \tcblower
+    On a par téléscopage:
+    \begin{equation*}
+        (a-b)\sum_{k=0}^{n-1}a^{k}b^{n-k-1}=\sum_{k=0}^{n-1}\left( a^{k+1}b^{n-(k+1)}-a^kb^{n-k} \right)=a^nb^0-a^0b^n=a^n-b^n.
+    \end{equation*}
+\end{prop}
+
+\begin{ex}{}{}
+    \begin{center}
+        Factoriser : $\quad a^2-b^2,\quad a^3-b^3,\quad a^4-b^4,\quad a^3+b^3$.
+    \end{center}
+    \tcblower
+    On a:
+    \begin{align*}
+        &a^2-b^2=(a-b)(a+b).\\
+        &a^3-b^3=(a-b)(a^2+ab+b^2).\\
+        &a^4-b^4=(a-b)(a^3+a^2b+ab^2+b^3).\\
+        &a^3+b^3=(a+b)(a^2-ab+b^2).
+    \end{align*}
+\end{ex}
+
+\begin{defi}{}{}
+    Soit $n\in\N$. On appelle \bf{factorielle} de $n$ et on note $n!$ le nombre
+    \begin{equation*}
+        n!=\prod_{k=1}^nk=1\cdot2\cdot3...(n-1)\cdot n \quad\nt{si }n\geq1,
+    \end{equation*}
+    et on pose que $0!=1$. Par exemple, $2!=2,\quad3!=6,\quad4!=24,\quad5!=120$.
+\end{defi}
+
+\bf{Remarque.} Vu en Terminale: $n!$ est le nombre de permutations d'un ensemble à $n$ éléments. C'est aussi le nombre de façons différentes de numéroter $n$ objets. Sera revu dans le cours de dénombrement.
+
+\begin{prop}{Une relation simple et utile.}{}
+    \begin{equation*}
+        \forall n \in \N, \quad (n+1)! = (n+1)\cdot n!
+    \end{equation*}
+    \tcblower
+    Soit $n\in\N$, on a $(n+1)!=\prod_{k=1}^{n+1}k=\prod_{k=1}^nk\cdot(n+1)=(n+1)\cdot n!$
+\end{prop}
+
+\begin{ex}{Produit des entiers pairs, des entiers impairs.}{}
+    Soit $n\in\N^*$. Montrer que
+    \begin{equation*}
+        \prod_{k=1}^n(2k)=2^nn!\quad\nt{et}\quad\prod_{k=0}^{n-1}(2k+1)=\frac{(2n)!}{2^nn!}
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{align*}
+        &\prod_{k=1}^n(2k)=2^n\prod_{k=1}^nk=2^nn!.\\
+        &\prod_{k=0}^{n-1}(2k+1)=\frac{\prod_{k=0}^{2n}k}{\prod_{k=0}^n(2k)}=\frac{(2n)!}{2^nn!}
+    \end{align*}
+\end{ex}
+
+\pagebreak
+
+\section{Changements d'indice.}
+
+\begin{ex}{}{}
+    Soit $n\in\N$. Calculer :
+    \begin{equation*}
+        \sum_{k=0}^n(\sqrt{k+2}-\sqrt{k})\quad\nt{et}\quad\sum_{k=1}^{2n}k^2+\sum_{k=1}^{2n}(-1)^kk^2.
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{align*}
+        &\sum_{k=0}^n(\sqrt{k+2}-\sqrt{k})=\sum_{j=2}^{n+2}\sqrt{j}-\sum_{k=0}^n\sqrt{k}=\sqrt{n+2}+\sqrt{n+1}-1.\\
+        &\sum_{k=1}^{2n}k^2+\sum_{k=1}^{2n}(-1)^kk^2=\sum_{k=1}^{2n}(1+(-1)^k)k^2=\sum_{k=1}^{n}2(2k)^2=8\sum_{k=1}^nk^2=\frac{4}{3}n(n+1)(2n+1).
+    \end{align*}
+\end{ex}
+
+\begin{prop}{}{}
+    Soit $(u_i)_{i\in I}$ une famille de nombres complexes indexée par un ensemble fini $I$ et $\s$ une bijection de $I$ vers $I$. Alors
+    \begin{equation*}
+        \sum_{i\in I}u_{\s(i)}=\sum_{i\in I}u_i.
+    \end{equation*}
+\end{prop}
+
+\section{Coefficients binomiaux et formule du binôme.}
+
+\begin{defi}{}{}
+    Pour deux entiers $n\in\N$ et $p\in\Z$, on appelle \bf{coefficient binomial} <<$p$ parmi $n$>> le nombre
+    \begin{equation*}
+        \binom{n}{p}:=\begin{cases}
+            \frac{n!}{p!(n-p)!} &\nt{si } p\in\lb0,n\rb.\\
+            0&\nt{sinon}.
+        \end{cases}
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{}{}
+    Soient $n$ et $p$ deux entiers naturels.\\
+    Le nombre $\binom{n}{p}$ est le nombre de parties à $p$ éléments dans un ensemble à $n$ éléments.\\
+    Pour $n\in\N$ et $p\in\lb0,n\rb$, on a \Large$\binom{n}{p}=\frac{n(n-1)...(n-p+1)}{p!}$.
+\end{prop}
+
+\begin{ex}{}{}
+    \begin{equation*}
+        \forall n\in\N\quad\binom{n}{0}=1,\quad\binom{n}{1}=n,\quad\binom{n}{2}=\frac{n(n-1)}{2}.
+    \end{equation*}
+\end{ex}
+
+\begin{prop}{}{}
+    Soit $n\in\N$.
+    \begin{equation*}
+        \forall p\in\N~\binom{n}{p}=\binom{n}{n-p},\quad\forall p\in\N^*~p\binom{n}{p}=n\binom{n-1}{p-1},\quad\forall p\in\N~\binom{n+1}{p+1}=\binom{n}{p+1}+\binom{n}{p}.
+    \end{equation*}
+    Appelées formule de symétrie, formule du pion et formule de Pascal, dans l'ordre.
+    \tcblower
+    On ne fait que les cas où $p\leq n$.\\
+    \fbox{$1.$} Soit $p\in\lb0,n\rb$.
+    \begin{equation*}
+        \binom{n}{n-p}=\frac{n!}{(n-p)!(n(n-p)!)}=\frac{n!}{(n-p)!p!}=\binom{n}{p}.
+    \end{equation*}
+    \fbox{$2.$} Soit $p\in\lb0,n\rb$.
+    \begin{equation*}
+        \binom{n}{p}=\frac{n!}{p!(n-p)!}=\frac{n\times(n-1)!}{p\times(p-1)!(n-p)!}=\frac{n}{p}\frac{(n-1)!}{(p-1)!(n-1-p+1)!}=\frac{n}{p}\binom{n-1}{p-1}.
+    \end{equation*}
+    \fbox{$3.$} Soit $p\in\lb0,n-1\rb$,
+    \begin{align*}
+        \binom{n}{p+1}+\binom{n}{p}&=\frac{n!}{(p+1)!(n-(p+1))!}+\frac{n!}{p!(n-p)!}\\
+        &=\frac{n!}{p!(n-p-1)!}\times\left( \frac{1}{p+1} + \frac{1}{n-p} \right)\\
+        &=\frac{n!}{p!(n-p-1)!}\times\left( \frac{n+1}{(p+1)(n-p)} \right)\\
+        &=\frac{(n+1)!}{(p+1)!(n-p)!}=\binom{n+1}{p+1}.
+    \end{align*}
+\end{prop}
+
+\begin{ex}{}{}
+    Démontrer que les coefficients binomiaux sont des entiers.
+    \tcblower
+    Montrons le par récurrence sur $n$.\\
+    \bf{Initialisation.} Pour $p\in\N$, on a $\binom{0}{p}=0$ si $p\neq 0$ et $\binom{0}{p}=1$ sinon.\\
+    \bf{Hérédité.} Soit $n\in\N$ tel que $\forall p \in \N, ~ \binom{n}{p}\in\N$.\\
+    On a $\binom{n+1}{p}=\binom{n}{p}+\binom{n}{p-1}\in\N$ par somme d'entiers.
+    \bf{Conclusion.} Pour tout $n,p\in\N$, $\binom{n}{p}\in\N$.
+\end{ex}
+
+\begin{thm}{Formule du binôme de Newton. $\star$}{}
+    Soient $a,b\in\C$ et $n\in\N$. On a
+    \begin{equation*}
+        (a+b)^n=\sum_{k=0}^n\binom{n}{k}a^kb^{n-k}.
+    \end{equation*}
+    \tcblower
+    Montrons le par récurrence sur $n$.\\
+    \bf{Initialisation.} On a $(a+b)^0=\sum_{k=0}^0\binom{0}{k}a^kb^{0-k}=1$.\\
+    \bf{Hérédité.} Soit $n\in\N$ tel que la propriété soit vraie.
+    \begin{align*}
+        (a+b)^{n+1}&=(a+b)(a+b)^n=(a+b)\sum_{k=0}^n\binom{n}{k}a^kb^{n-k}\\
+        &=\sum_{k=0}^n\binom{n}{k}a^{k+1}b^{n-k}+\sum_{k=0}^n\binom{n}{k}a^kb^{n-k+1}\\
+        &=\sum_{k=1}^{n+1}\binom{n}{k-1}a^kb^{n-k+1}+\sum_{k=0}^n\binom{n}{k}a^kb^{n-k+1}\\
+        &=a^{n+1}+b^{n+1}+\sum_{k=1}^n\left( \binom{n}{k-1}+\binom{n}{k} \right)a^kb^{n-k+1}\\
+        &=\binom{n+1}{n+1}a^{n+1}b^0+\binom{n+1}{0}a^0b^{n+1}+\sum_{k=1}^n\binom{n+1}{k}a^kb^{n-k+1}\\
+        &=\sum_{k=0}^{n+1}\binom{n+1}{k}a^kb^{n+1-k}
+    \end{align*}
+    \bf{Conclusion.} Pour tout $n\in\N$, $(a+b)^n=\sum_{k=0}^n\binom{n}{k}a^kb^{n-k}$.
+\end{thm}
+
+\begin{ex}{}{}
+    \begin{align*}
+        &(a+b)^2=a^2+2ab+b^2\\
+        &(a+b)^3=a^3+3a^2b+3ab^2+b^3\\
+        &(a+b)^4=a^4+4a^3b+6a^2b^2+4ab^3+b^4\\
+        &(a+b^5)=a^5+5a^4b+10a^3b^2+10a^2b^3+5ab^4+b^5
+    \end{align*}
+\end{ex}
+
+\begin{ex}{Calculs classiques.}{}
+    Soit $n\in\N$. Calculer
+    \begin{equation*}
+        \sum_{k=0}^n\binom{n}{k}, \quad \sum_{k=0}^n\binom{n}{k}(-1)^k,\quad\sum_{k=0}^nk\binom{n}{k}.
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{align*}
+        &\sum_{k=0}^n\binom{n}{k}=\sum_{k=0}^n\binom{n}{k}1^k1^{n-k}=(1+1)^n=2^n.\\
+        &\sum_{k=0}^n\binom{n}{k}(-1)^k=\sum_{k=0}^n\binom{n}{k}(-1)^k(1)^{n-k}=(1-1)^n=0^n=\begin{cases}
+            0 \nt{ si }n\neq0\\
+            1 \nt{ si }n=0
+        \end{cases}\\
+        &\sum_{k=0}^nk\binom{n}{k}=\sum_{k=1}^nn\binom{n-1}{k-1}=n\sum_{j=0}^{n-1}\binom{n-1}{j}=n2^{n-1}.
+    \end{align*}
+\end{ex}
+
+\section{Sommes doubles.}
+
+\begin{thm}{Sommes doubles: deux écritures.}{}
+    Soient $n$ et $p$ dans $\N^*$, $I=\lb1,n\rb\times\lb1,p\rb$ et $(a_{i,j})_{i,j\in I}$ une famille de nombres complexes.
+    \begin{equation*}
+        \sum_{i,j\in I}a_{i,j}=\sum_{i=1}^n\sum_{j=1}^pa_{i,j}=\sum_{j=1}^p\sum_{i=1}^na_{i,j}.
+    \end{equation*}
+\end{thm}
+
+\begin{prop}{Produit de deux sommes.}{}
+    Soient $n$ et $p$ dans $\N^*$ et deux familles de nombres compelxes $(a_i)_{i\in\lb1,n\rb}$ et $(b_i)_{i\in\lb1,p\rb}$. On a
+    \begin{equation*}
+        \left( \sum_{i=1}^na_i \right) \times \left( \sum_{j=1}^pb_j \right) = \sum_{(i,j)\in\lb1,n\rb\times\lb1,p\rb}a_i\cdot b_j.
+    \end{equation*}
+    En particulier,
+    \begin{equation*}
+        \left( \sum_{i=1}^na_i \right)^2=\sum_{i=1}^na_i^2+2\sum_{1\leq i<j\leq n}a_ia_j.
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{Sommes triangulaires : deux écritures.}{}
+    Soient $n$ et $p$ dans $\N^*$, et $I=\{(i,j)\in\lb1,n\rb\times\lb1,p\rb:i\leq j\}$.\\
+    Soit $(a_{i,j})_{i,j\in I}$ une famille de nombres complexes indexée par $I$. Leur somme peut s'écrire:
+    \begin{equation*}
+        \sum_{i,j\in I}a_{i,j}=\sum_{j=1}^p\sum_{i=1}^ja_{i,j}=\sum_{i=1}^n\sum_{j=i}^pa_{i,j}.
+    \end{equation*}
+\end{prop}
+
+\begin{meth}{}{}
+    Dans les doubles sommes, on peut ajouter des parenthèses superflues:
+    \begin{equation*}
+        \sum_{i,j\in I}a_{i,j}=\sum_{k=1}^p\left( \sum_{i=1}^ja_{i,j} \right).
+    \end{equation*}
+    À l'intérieur des parenthèses, on calcule à $j$ fixé, c'est-à-dire que l'on traite $j$ comme une constante.
+\end{meth}
+
+\begin{ex}{}{}
+    Soit $n\in\N^*$. Calculer $\sum\limits_{1\leq i\leq j\leq n}\frac{i}{j+1}$
+    \tcblower
+    On a:
+    \begin{equation*}
+        \sum_{i=1}^n\sum_{j=1}^n\frac{i}{j+1}=\sum_{j=2}^{n+1}\frac{1}{j}\sum_{i=1}^ji=\sum_{j=2}^{n+1}\frac{j+1}{2}=\frac{1}{2}\sum_{j=1}^nj=\frac{n(n+1)}{4}.
+    \end{equation*}
+\end{ex}
+
+\section{Exercices.}
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    Démontrer :
+    \begin{equation*}
+        \forall{n}\in\mathbb{N}^*,\hspace{0.5cm} \sum\limits^{n}_{k=1}{(-1)^kk} = \frac{(-1)^n(2n+1)-1}{4}.
+    \end{equation*}
+    \tcblower
+    \bf{Initialisation.} Pour $n=1$, on a :
+    \begin{equation*}
+        \sum\limits^{n}_{k=1}{(-1)^kk} = \frac{(-1)^n(2n+1)-1}{4} = -1
+    \end{equation*}
+    \bf{Hérédité.} Soit $n\in\mathbb{N}^*$ tel que la propriété soit vraie. On a:
+    \begin{equation*}
+        \sum\limits^{n}_{k=1}{(-1)^kk} = \frac{(-1)^n(2n+1)-1}{4}
+    \end{equation*}
+    Donc:
+    \begin{equation*}
+        \sum\limits^{n}_{k=1}{(-1)^kk} + (-1)^{n+1}(n+1) = \frac{(-1)^n(2n+1)-1}{4} +(-1)^{n+1}(n+1)
+    \end{equation*}
+    Donc:
+    \begin{equation*}
+        \begin{aligned}
+            \sum\limits^{n+1}_{k=1}(-1)^kk 
+            &= \frac{(-1)^n(2n+1)-1+4(-1)^{n+1}(n+1)}{4}\\
+            &=\frac{(-1)^n(-2n - 3)-1}{4}\\
+            &=\frac{(-1)^{n+1}(2n+3)-1}{4}\\
+            &=\frac{(-1)^{n+1}(2(n+1)+1)-1}{4}
+        \end{aligned}
+    \end{equation*}
+    \bf{Conclusion.} Par récurrence, la propriété est vraie pour tout $n\in\mathbb{N}^*$.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    Soit $n\in\mathbb{N}$. Calculer
+    \begin{equation*}
+        \sum\limits^{n}_{k=1}{k(k+1)}, \hspace{0.5cm} \sum\limits^{2n}_{k=n}{e^{-k}}, \hspace{0.5cm} \sum\limits^{2n}_{k=0}{|k-n|}.
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{align*}
+        &\sum\limits^n_{k=1}{k(k+1)} = \sum\limits^n_{k=1}{k^2} + \sum\limits^n_{k=1}{k} = \frac{n(2n+1)(n+1)}{6}+\frac{3n(n+1)}{6}=\frac{n(n+1)(n + 2)}{3}\\
+        &\sum\limits^{2n}_{k=n}{e^{-k}} = \sum\limits^{n}_{k=0}{e^{-k-n}}=e^{-n}\sum\limits^{n}_{k=0}{(\frac{1}{e})^k}=e^{-n}\cdot\frac{1-e^{-n-1}}{1-e^{-1}}=\frac{e^{-n}-e^{-2n-1}}{1-e^{-1}}\\
+        &\sum\limits^{2n}_{k=0}{|k-n|}=\sum\limits^{n}_{k=0}{(-k+n)}+\sum\limits^{n}_{k=0}{(k+n-n)}=-\frac{n(n+1)}{2}+n(n+1)+\frac{n(n+1)}{2}=n(n+1)
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $n\in\mathbb{N}^*$. Calculer
+    \begin{equation*}
+        \sum\limits^{n}_{k=-n}{(k+2)}, \quad \sum\limits^{2n}_{k=1}{(-1)^kk^2}.
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{align*}
+        &\sum\limits^{n}_{k=-n}{(k+2)}=\sum\limits^{2n}_{k=0}{(k-n+2)}=2(2n+1)=4n+2\\
+        &\sum\limits^{2n}_{k=1}{(-1)^kk^2}=\sum\limits^{n}_{k=1}{(-1)^{2k}4k^2}+\sum\limits^{n}_{k=1}{(-1)^{2k-1}(4k^2-4k+1)}=n(2n+1)
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $n\in\mathbb{N}$. Calculer
+    \begin{equation*}
+        \sum\limits^{n}_{k=1}{\ln(1+\frac{1}{k})}, \quad \sum\limits^{n}_{k=2}{\frac{1}{k(k-1)}}, \quad \sum\limits_{k=0}^{n}{k\cdot k!}.
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{align*}
+        &\sum\limits^{n}_{k=1}{\ln(1+\frac{1}{k})}=\sum\limits^n_{k=1}{\ln(\frac{k+1}{k})}=\sum\limits^n_{k=1}{(\ln(k+1)-\ln(k))}=\ln(n+1)\\
+        &\sum\limits^{n}_{k=2}{\frac{1}{k(k-1)}}=\sum\limits^n_{k=2}{(\frac{1}{k-1}-\frac{1}{k})}=1-\frac{1}{n}=\frac{n-1}{n}\\
+        &\sum\limits_{k=0}^{n}{k\cdot k!}=\sum\limits^n_{k=0}{(k+1-1)\cdot k!}=\sum\limits^n_{k=0}{((k+1)! - k!)}=(n+1)!-1
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $(u_n)_{n\in\mathbb{N}}$ une suite réelle et $n\in\mathbb{N}^*$. Simplifier.
+    \begin{equation*}
+        \sum\limits^{n-1}_{k=0}{(u_{2k+2}-u_{2k})}, \hspace{0.5cm} \sum\limits^{n}_{k=1}{(u_{2k+1}-u_{2k-1})}.
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{align*}
+        &\sum\limits^{n-1}_{k=0}{(u_{2k+2}-u_{2k})}=\sum\limits^{n-1}_{k=0}{(u_{2(k+1)}-u_{2(k)})}=u_{2n}-u_0
+    \end{align*}
+    Et :
+    \begin{align*}
+        &\sum\limits^{n}_{k=1}{(u_{2k+1}-u_{2k-1})}=\sum\limits^{n-1}_{k=0}{(u_{2k+3}-u_{2k+1})}\\
+        \nt{Donc : }&\sum\limits^{n-1}_{k=0}{(u_{2k+3}-u_{2k+1})}-\sum\limits^{n-1}_{k=0}{(u_{2k+2}-u_{2k})}=\sum\limits^{n-1}_{k=0}{(u_{2k+3}-u_{2k+2})} + \sum\limits^{n-1}_{k=0}{(u_{2k}-u_{2k+1})}\\&=u_{2n+1}-u_{2n}-u_{2n-1}+u_{0}\\
+        \nt{Alors :}&\sum\limits^{n}_{k=1}{(u_{2k+1}-u_{2k-1})}=u_{2n+1}-u_{2n-1}
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soient $q\in\mathbb{R}$ et $n\in\mathbb{N}^*$. On cherche à calculer la somme $S_n=\sum\limits^{n}_{k=0}{kq^{k-1}}$.\\
+    Que vaut-elle si $q=1$ ? Désormais, on supposera $q\neq 1$.\\
+    Soit la fonction $f_n:x\mapsto\sum\limits^{n}_{k=1}{kx^{k-1}}$. En la voyant comme la dérivée d'une autre que l'on calculera, calculer $S_n$.
+    \tcblower
+    Pour $q=1$, $S_n=\sum\limits^{n}_{k=0}{k}=\frac{n(n+1)}{2}$\\
+    On remarque que $\sum\limits^{n}_{k=1}{kq^{k-1}}$ est la dérivée de $\sum\limits^{n}_{k=1}{q^k}$ à une constante près.\\
+    Or :
+    \begin{equation*}
+        \sum\limits^{n}_{k=1}{q^k}=\frac{q-q^{n+1}}{1-q}
+    \end{equation*}
+    Et sa dérivée est :
+    \begin{equation*}
+        \frac{1-(n+1)q^n+nq^{n+1}}{(1-q)^2}
+    \end{equation*}
+    On en déduit que \begin{equation*}S_n=\frac{nq^{n+1}-(n+1)q^n+1}{(1-q)^2}\end{equation*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    $0.999...=1$. Expliquer.
+    \tcblower
+    Soit $n\in\mathbb{N}$. On a :
+    \begin{equation*}
+        0,999... = \sum\limits^{n}_{k=1}{\frac{9}{10^k}}=9\sum\limits^{n}_{k=1}{\left(\frac{1}{10}\right)^k}=\frac{9-\frac{9}{10^n}}{9}.
+    \end{equation*}
+    Or :
+    \begin{equation*}
+        \lim_{n\rightarrow+\infty}{\frac{9-\frac{9}{10^n}}{9}}=\frac{9}{9}=1.
+    \end{equation*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $n\in\mathbb{N}$ et $f_n:x\mapsto x^n$. On se donne un entier naturel $p$ et un réel $x$.\\
+    Exprimer le nombre $f_{n}^{(p)}(x)$ à l'aide de factorielles.
+    \tcblower
+    On a:
+    \begin{itemize}
+        \item Lorsque $p\leq n$ : $\frac{n!}{(n-p)!}x^{n-p}$
+        \item Lorsque $p>n$ : 0
+    \end{itemize}
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $n\in\mathbb{N}^*$ et $p\in\mathbb{N}$.\\
+    1. À l'aide d'un téléscopage, démontrer l'identité :
+    \begin{equation*}
+        \sum\limits^{n}_{k=p}{\binom{k}{p}}=\binom{n+1}{p+1}
+    \end{equation*}
+    2. Grâce au cas $p=1$, retrouver l'expression connue de $\sum\limits_{k=1}^nk$.\\
+    3. Grâce au cas $p=2$, retrouver l'expression connue de $\sum_{k=1}^nk^2$.
+    \tcblower
+    \boxed{1.} On a :
+    \begin{equation*}
+        \sum\limits^{n}_{k=p}\binom{k}{p}=\sum\limits^{n}_{k=p}{\left(\binom{k+1}{p+1}-\binom{k}{p+1}\right)}=\binom{n+1}{p+1}-\binom{p}{p+1}=\binom{n+1}{p+1}.
+    \end{equation*}
+    \boxed{2.} On a :
+    \begin{equation*}
+        \sum\limits^{n}_{k=1}{\binom{k}{1}}=\sum\limits^{n}_{k=1}{k} \hspace{0.5cm} \mathrm{et} \hspace{0.5cm} \sum\limits^{n}_{k=1}{\binom{k}{1}}=\binom{n+1}{2}=\frac{(n+1)!}{2(n-1)!}=\frac{n(n+1)}{2}
+    \end{equation*}
+    \boxed{3.} On a :
+    \begin{equation*}
+        \sum\limits^{n}_{k=2}{\binom{k}{2}}=\sum\limits^{n}_{k=2}{\frac{k!}{2(k-2)!}}=\sum\limits^{n}_{k=2}{\frac{k^2-k}{2}}=\frac{1}{2}\sum\limits^{n}_{k=2}{k^2}-\frac{1}{2}\sum\limits^{n}_{k=2}{k}
+    \end{equation*}
+    Et :
+    \begin{equation*}
+        \sum\limits^{n}_{k=2}{\binom{k}{2}}=\binom{n+1}{3}=\frac{(n+1)!}{6(n-2)!}=\frac{n(n+1)(n-1)}{6}
+    \end{equation*}
+    On en déduit donc que \emph{(on isole $\sum\limits^{n}_{k=2}{k^2}$ du premier résultat.)}:
+    \begin{align*}
+        \sum\limits^{n}_{k=2}{k^2}&=2\left(\frac{n(n+1)(n-1)}{6}+\frac{n(n+1)}{4}-\frac{1}{2}\right)\\
+        &=\frac{2n(n+1)(n-1)+3n(n+1)-6}{6}\\
+        &=\frac{n(n+1)(2n+1)-6}{6}
+    \end{align*}
+    On a donc :
+    \begin{equation*}
+        \sum\limits^{n}_{k=1}{k^2}=\sum\limits^{n}_{k=2}{k^2}+1=\frac{n(n+1)(2n+1)}{6}
+    \end{equation*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $x\in\mathbb{R}$ et $n\in\mathbb{N}$. Calculer $\sum\limits^{n}_{k=0}{\ch(kx)}$ et $\sum\limits^{n}_{k=0}{\binom{n}{k}\ch(kx)}$.
+    \tcblower
+    On a :
+    \begin{align*}
+        \sum\limits^{n}_{k=0}{\ch(kx)}&=\sum\limits^{n}_{k=0}{\frac{e^{kx}+e^{-kx}}{2}}\\
+        &=\frac{1}{2}\left(\sum\limits^{n}_{k=0}{(e^x)^k}+\sum\limits^{n}_{k=0}{\left(\frac{1}{e^x}\right)^{k}}\right)\\
+        &=\frac{1-e^{(n+1)x}}{2-2e^x}+\frac{1-e^{-(n+1)x}}{2-2e^{-x}}
+    \end{align*}
+    Ensuite, on a :
+    \begin{align*}
+        \sum\limits^{n}_{k=0}{\binom{n}{k}\ch(kx)}&=\frac{1}{2}\sum\limits^{n}_{k=0}{\binom{n}{k}(e^x)^k+\frac{1}{2}\sum\limits^{n}_{k=0}{\binom{n}{k}{(e^{-x})^k}}}\\
+        &\stackrel{Newton}{=}\frac{1}{2}\left((1+e^x)^n+(1+e^{-x})^n\right)\\
+    \end{align*}
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $n\in\mathbb{N}$. Calculer :
+    \begin{equation*}
+        \sum\limits_{0\leq{i}\leq{j}\leq{n}}{2^{-j}\binom{j}{i}}
+    \end{equation*}
+    \tcblower
+    On a :
+    \begin{align*}
+        \sum\limits_{0\leq{i}\leq{j}\leq{n}}{2^{-j}\binom{j}{i}}
+        &=\sum\limits^{n}_{j=0}{2^{-j}\sum\limits^{j}_{i=0}{\binom{j}{i}}}\\
+        &=\sum\limits^{n}_{j=0}{2^{-j}\cdot2^j}\\
+        &=n+1
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $n\in\mathbb{N}$. Calculer :
+    \begin{equation*}
+        S_n = \sum\limits_{1\leq i,j\leq n}{|i-j|}
+    \end{equation*}
+    \tcblower
+    On a :
+    \begin{align*}
+        \sum\limits_{1\leq i,j\leq n}{|i-j|}
+        &=\sum\limits^{n}_{j=1}{\sum\limits^{n}_{i=1}{|i-j|}}\\
+        &=\sum\limits^{n}_{j=1}{\left(\sum\limits^{j}_{i=1}{|i-j|}+\sum\limits^{n}_{i=j+1}{|i-j|}\right)}\\
+        &=\sum\limits^{n}_{j=1}{\left(\sum\limits^{n}_{i=j+1}{(i-j)}-\sum\limits^{j}_{i=1}{(i-j)}\right)}\\
+        &=\sum\limits^{n}_{j=1}{\sum\limits^{n-j}_{i=1}{i}-\sum\limits^{n}_{j=1}\sum\limits^{j}_{i=1}{i}+\sum\limits^n_{j=1}j^2}\\
+    \end{align*}
+    Or,
+    \begin{equation*}
+        \sum^n_{j=1}{\sum^{n-j}_{i=1}{i}}=\frac{n(n^2-1)}{6}
+    \end{equation*}
+    Et :
+    \begin{equation*}
+        \sum^n_{j=1}\sum^j_{i=1}{i}=\sum^n_{j=1}{\frac{j(j+1)}{2}}=\frac{n(n+1)(n+2)}{6}
+    \end{equation*}
+    Donc :
+    \begin{align*}
+        S_n &= \frac{n(n+1)(n-1)}{6} - \frac{n(n+1)(n+2)}{6} + \frac{n(n+1)(2n+1)}{6} = \frac{n(n+1)(n-1)}{3}
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $n\in\mathbb{N}^*$. Calculer :
+    \begin{equation*}
+        \sum^n_{k=0}\sum^n_{i=k}{\binom{n}{i}\binom{i}{k}}
+    \end{equation*}
+    \tcblower
+    On a :
+    \begin{align*}
+        \sum^n_{k=0}\sum^n_{i=k}{\binom{n}{i}\binom{i}{k}}&=\sum^n_{i=0}\binom{n}{i}\sum^i_{k=0}\binom{i}{k}=\sum^n_{i=0}\binom{n}{i}2^i=3^n
+    \end{align*}
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\blacklozenge\blacklozenge\blacklozenge$}{}
+    Démontrer :
+    \begin{equation*}
+        \forall{n\in\mathbb{N}^*}\hspace{0.5cm}\sum^n_{k=1}{\binom{n}{k}\frac{(-1)^{k-1}}{k}}=\sum^n_{k=1}{\frac{1}{k}}
+    \end{equation*}
+    \tcblower
+    Soit $n\in\mathbb{N}^*$, on note $\mathcal{P}_n$ cette proposition. Montrons $\mathcal{P}_n$ pour tout $n$.\\
+    \bf{Initialisation}. Pour $n=1$, on a :
+    \begin{equation*}
+        \sum^1_{k=1}{\binom{1}{k}\frac{(-1)^0}{k}}=\sum^1_{k=1}{\frac{1}{k}}=1
+    \end{equation*}
+    \bf{Hérédité}. Soit $n\in\mathbb{N}^*$ tel que $\mathcal{P}_n$ soit vraie. Montrons que $\mathcal{P}_{n+1}$ est vraie. On a:
+    \begin{align*}
+        \sum^{n+1}_{k=1}{\binom{n+1}{k}\frac{(-1)^{k-1}}{k}}
+        &=\sum^{n+1}_{k=1}{\left(\binom{n}{k}+\binom{n}{k-1}\right)\frac{(-1)^{k-1}}{k}}\\
+        &=\sum^{n+1}_{k=1}{\binom{n}{k}\frac{(-1)^{k-1}}{k}}+\sum^{n+1}_{k=1}{\binom{n}{k-1}\frac{(-1)^{k-1}}{k}}\\
+        &=\sum^n_{k=1}{\frac{1}{k}}+\sum^{n+1}_{k=1}{\binom{n}{k-1}\frac{(-1)^{k-1}}{k}}\\
+        &=\sum^n_{k=1}{\frac{1}{k}}+\sum^{n}_{k=0}{\binom{n}{k}\frac{(-1)^k}{k+1}}\\
+        &=\sum^n_{k=1}{\frac{1}{k}}+\frac{1}{n+1}\sum^n_{k=0}{(-1)^k\frac{(n+1)!}{(k+1)!(n-k)!}}\\
+        &=\sum^n_{k=1}{\frac{1}{k}}-\frac{1}{n+1}\sum^n_{k=0}{\binom{n+1}{k+1}(-1)^{k+1}}\\
+        &=\sum^n_{k=1}{\frac{1}{k}}+\frac{1}{n+1}\\
+        &=\sum^{n+1}_{k=1}{\frac{1}{k}}
+    \end{align*}
+    \bf{Conclusion.} Par le principe de récurrence, $\mathcal{P}_n$ est vraie pour tout $n\in\mathbb{N}^*$
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\blacklozenge$}{}
+    Pour $k\in\mathbb{N}^*$, on pose $H_k=\sum\limits^k_{p=1}{\frac{1}{p}}$.\\
+    Pour $n\in\mathbb{N}^*$, exprimer $\sum\limits^n_{k=1}H_k$ et $\sum\limits^n_{k=1}kH_k$ en fonction de $n$ et $H_n$.\\
+    On a :
+    \begin{align*}
+        \sum^n_{k=1}{H_k}
+        &=\sum^n_{k=1}{\sum^k_{p=1}{\frac{1}{p}}}
+        =\sum^n_{p=1}{\sum^n_{k=p}{\frac{1}{p}}}
+        =\sum^n_{p=1}{\frac{1}{p}\sum^n_{k=p}{1}}
+        =\sum^n_{p=1}{\frac{n-p+1}{p}}\\
+        &=n\sum^n_{p=1}{\frac{1}{p}}-\sum^n_{p=1}{\frac{p-1}{p}}
+        =nH_n + H_n - n\\
+        &=(n+1)H_n - n
+    \end{align*}
+    On a :
+    \begin{align*}
+        \sum^n_{k=1}{kH_k} &=\sum^n_{k=1}{k\sum^k_{p=1}{\frac{1}{p}}} =\sum^n_{k=1}{\sum^k_{p=1}{\frac{k}{p}}} = \sum^n_{p=1}{\sum^n_{k=p}{\frac{k}{p}}}=\sum^n_{p=1}{\frac{1}{p}\sum^n_{k=p}{k}}\\&
+        =\sum^n_{p=1}{\frac{(n-p+1)(p+n)}{2p}} = \frac{1}{2}\sum^n_{p=1}{\frac{n^2-p^2+p+n}{p}}\\
+        &=\frac{1}{2}\left(\sum^n_{p=1}{\frac{n^2+n}{p}}+\sum^{n}_{p=1}{\frac{p(1-p)}{p}}\right)\\
+        &=\frac{1}{2}\left(n(n+1)H_n+n\frac{n(n+1)}{2}\right)\\
+        &=\frac{n(n+1)H_n+n}{2}-\frac{n(n+1)}{4}\\
+        &=\frac{2n(n+1)H_n+2n-n(n+1)}{4}\\
+        &=\frac{n(2(n+1)H_n-n+1)}{4}
+    \end{align*}
+\end{exercice}
+
+\end{document}
