@@ -1,0 +1,751 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{2}
+\def\pagetitle{Propriétés de \texorpdfstring{$\R$}{Lg}.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\thispagestyle{fancy}
+
+\section{Une relation d'ordre sur \texorpdfstring{$\R$}{Lg}.}
+\subsection{Relation \texorpdfstring{$\leq$}{Lg}.}
+
+\begin{rappel}{$\leq$ est une relation d'ordre sur $\R$.}{}
+    \begin{itemize}
+        \item $\forall x\in\R~x\leq x$ (réflexivité).
+        \item $\forall x,y\in\R~(x\leq y \et y\leq x)\ra x=y$ (antisymétrie).
+        \item $\forall x,y,z \in \R~(x\leq y \et y \leq z) \ra x \leq z$ (transitivité).
+    \end{itemize}
+\end{rappel}
+
+\begin{rappel}{C'est une relation d'ordre totale.}{}
+    \begin{equation*}
+        \forall x,y \in\R,~ x\leq y \ou y\leq x. 
+    \end{equation*}
+\end{rappel}
+
+\begin{rappel}{Élémentaire mais fondamental.}{}
+    \begin{equation*}
+        \forall x,y\in\R,~x\leq y \iff y - x \geq 0.
+    \end{equation*}
+\end{rappel}
+
+\begin{ex}{Inégalité arithmético-géométrique.}{}
+    Établir l'inégalité $\sqrt{xy}\leq\frac{x+y}{2}$ pour deux réels $x$ et $y$ positifs. Dans quel cas a-t-on égalité ?
+    \tcblower
+    Soient $x,y\in\R_+$.
+    \begin{equation*}
+        \frac{x+y}{2}-\sqrt{xy}=\frac{x-2\sqrt{xy}+y}{2}=\frac{(\sqrt{x}-\sqrt{y})^2}{2}\geq 0.
+    \end{equation*}
+    Donc $\sqrt{xy}\leq\frac{x+y}{2}$, avec égalité si $x=y$.
+\end{ex}
+
+\subsection{Relation \texorpdfstring{$<$}{Lg} et opérations algébriques.}
+
+\begin{rappel}{$\leq$ et somme.}{}
+    On peut sommer des inégalités. Pour tous réels $x,x',y,y'$:
+    \begin{equation*}
+        \begin{cases}
+            x &\leq \quad y\\
+            &\nt{et}\\
+            x' &\leq \quad y' 
+        \end{cases} \ra x+x' \leq y+y'.
+    \end{equation*}
+    Si $(x_i)_{i\in I}$ et $(y_i)_{i\in I}$ sont des familles finies de nombres réels,
+    \begin{equation*}
+        (\forall i \in I \quad x_i \leq y_i) \ra \sum_{i\in I}x_i \leq \sum_{i\in I}y_i.
+    \end{equation*}
+\end{rappel}
+
+\begin{prop}{Somme nulle de termes positifs.}{}
+    Soient $x_1,...,x_n$ des réels \boxed{\bf{positifs}}, alors
+    \begin{equation*}
+        \sum_{i=1}^nx_i=0 \ra \forall i \in \lb 1,n \rb, ~ x_i=0.
+    \end{equation*}
+    \tcblower
+    Supposons que les $x_i$ somment à 0 et soit $j\in\lb1,n\rb$. On a:
+    \begin{equation*}
+        \sum_{\substack{i\in\lb1,n\rb\\i\neq j}}x_i\geq 0 \quad \nt{car les $x_i$ sont positifs.}
+    \end{equation*}
+    Donc $x_j\leq\sum\limits_{i=1}^nx_i=0$, ainsi $x_j=0$ car $0\leq x_j \leq 0$.
+\end{prop}
+
+\begin{rappel}{$\leq$ et produit.}{}
+    Soient $x$ et $y$ deux réels tels que $x\leq y$.\\
+    --- Si $a$ est un réel \bf{positif}, alors $ax\leq ay$.\\
+    --- Si $a$ est un réel \bf{négatif}, alors $ax\geq ay$.\n
+    On peut multiplier des inégalités dont les membres sont \bf{positifs}. Pour touts réels $x,x',y,y'$:
+    \begin{equation*}
+        \begin{cases}
+            0\leq x\leq y\\
+            \quad~\et\\
+            0\leq x'\leq y'
+        \end{cases}\ra x\times x' \leq y\times y'
+    \end{equation*}
+\end{rappel}
+
+\begin{rappel}{$\leq$ et quotient}{}
+    \begin{equation*}
+        \forall x,y\in\R,\quad 0<x\leq y \ra 0\leq\frac{1}{y}\leq\frac{1}{x}.
+    \end{equation*}
+\end{rappel}
+
+\begin{ex}{Majorer, minorer une somme, un produit, un quotient.}{}
+    Soient $x$ et $y$ deux réels tels que $2\leq x\leq 5$ et $1 \leq y \leq 3$. Encadrer $x-y,(x-y)^2$ et \Large $\frac{xy}{x+y}$.
+    \tcblower
+    On a $x-y\in\lb-1,4\rb, \quad (x-y)^2\in\lb0,16\rb$ et \Large$\frac{xy}{x+y}$\normalsize$\in\left[\frac{1}{4},5\right]$
+\end{ex}
+
+\subsection{Intervalles.}
+
+\begin{defi}{Les deux infinis.}{}
+    On ajoute à l'ensemble $\R$ les deux éléments $+\infty$ et $-\infty$ pour former l'ensemble
+    \begin{equation*}
+        \ov{R}=\R\cup\{+\infty,-\infty\}
+    \end{equation*}
+    en prenant la convention que $\forall x\in\R,~ x\leq+\infty\et-\infty\leq x$.
+\end{defi}
+
+\begin{defi}{}{}
+    On appelle \bf{intervalle} de $\R$ une partie de $\R$ ayant l'une des formes décrites ci-dessous:
+    \begin{itemize}
+        \item Segment $[a,b]=\{x\in\R:~a\leq x\et x\leq b\}$ où $a,b\in\R$.
+        \item Intervalles ouverts $]a,b[=\{x\in\R:~a<x\et x<b\}$ où $a\in\R\cup\{-\infty\}$ et $b\in\R\cup\{+\infty\}$.
+        \item Intervalles semi-ouverts. $[a,b[$ ou bien $]a,b]$.
+    \end{itemize}
+    \bf{Remarque:} les parties décrites peuvent être vides : $[5,3]=\0$.
+\end{defi}
+
+\begin{ex}{}{}
+    L'ensemble des réels non nuls $\R^*$ n'est \bf{pas} un intervalle. C'est néanmoins une réunion d'intervalles:
+    \begin{equation*}
+        \R^*=]-\infty,0[\cup]0,+\infty[.
+    \end{equation*}
+    Pour une preuve, on attendra la caractérisation des intervalles comme parties convexes de $\R$.
+\end{ex}
+
+\section{Valeur absolue.}
+
+\subsection{Valeur absolue.}
+
+\begin{defi}{}{}
+    Soit $x\in\R$, on appelle \bf{valeur absolue} de $x$ et on note $|x|$ le nombre réel positif donné par
+    \begin{equation*}
+        \begin{cases}
+            x&\nt{si }x\geq0\\
+            -x&\nt{si }x<0
+        \end{cases}
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{Propriétés élémentaires.}{}
+    Pour tout réel $x$, $|x|=\max(x,-x)$, $|-x|=|x|$, $x\leq|x|$, $-x\leq|x|$, $-|x|\leq x\leq |x|$ et $|x|=0\iff x=0$.
+    \tcblower
+    \boxed{1.} Si $x\geq0$, alors $|x|=x$ et $\max(x,-x)=x$; si $x\leq0$, alors $|x|=-x$ et $\max(x,-x)=-x$.\\
+    \boxed{2.} $|-x|=\max(-x,--x)=\max(-x,x)=|x|$ \\
+    \boxed{3.} $x\leq\max(x,-x)$ donc $x\leq |x|$.\\
+    \boxed{4.} $-x\leq\max(x,-x)$ donc $-x\leq|x|$.\\
+    \boxed{5.} En combinant les deux précédentes, on a $-|x|\leq x\leq |x|$.\\
+    \boxed{6.} Si $x=0$, alors $|x|=0$. Si $|x|=0$, on a $-|x|\leq x\leq 0$ donc $x=0$.
+\end{prop}
+
+\subsection{Valeur absolue et opérations algébriques.}
+
+\begin{prop}{Valeurs absolues et produits.}{}
+    \begin{enumerate}
+        \item $\forall x\in\R,~|x|^2=x^2~\et~|x|=\sqrt{x^2}$.
+        \item $\forall x,y \in \R,~|xy|=|x||y|$.
+        \item $\forall (x,y)\in\R\times\R^*,~$\Large$\left|\frac{x}{y}\right|=\frac{|x|}{|y|}$
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soit $x\in\R$, si $x\geq0$, alors $|x|^2=x^2$, si $x<0$, alors $|x|^2=(-x)^2=x^2$.\\
+    \boxed{2.} Soient $x,y\in\R$. $|xy|=\sqrt{(xy)^2}=\sqrt{x^2y^2}=\sqrt{x^2}\sqrt{y^2}=|x||y|$.\\
+    \boxed{3.} Soit $(x,y)\in\R\times\R^*$. $\left|\frac{x}{y}\right|=\left|\frac{x}{y}\right|\times1=\left|\frac{x}{y}\right|\times\frac{|y|}{|y|}=\frac{|x|}{|y|}$.
+\end{prop}
+
+\begin{thm}{Inégalité triangulaire. $\star$}{}
+    \begin{equation*}
+        \forall x,y\in\R,~|x+y|\leq|x|+|y|.
+    \end{equation*}
+    \tcblower
+    Soient $x,y\in\R$. On a:
+    \begin{align*}
+        (|x|+|y|)^2 - |x+y|^2 &= |x|^2+2|x||y|+|y|^2-(x+y)^2\\
+        &= x^2 + 2|x||y| + y^2 - x^2 - 2xy - y^2\\
+        &= 2(|xy|-xy)\geq 0 \quad \nt{car } |xy|\geq xy.
+    \end{align*}
+    donc $(|x|+|y|)^2\geq |x+y|^2$ donc $|x|+|y|\geq|x+y|$ par croissance de $\sqrt{\cdot}$ sur $\R_+$.
+\end{thm}
+
+\begin{corr}{}{}
+    \begin{enumerate}
+        \item $\forall (x,y)\in\R^2,~|x-y|\leq|x|+|y|$.
+        \item $\forall (x,y)\in\R^2,~||x|-|y||\leq|x-y|$.
+        \item $\forall n\in\N^*,~\forall (x_1,...,x_n)\in\R,~$\large$\Big|\sum\limits_{k=1}^nx_k\Big|\leq\sum\limits_{k=1}^n|x_k|$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soient $x,y\in\R$, $|x-y|=|x+(-y)|\leq|x|+|-y|=|x|+|y|$.\\
+    \boxed{2.} On le verra dans $\C$.\\
+    \boxed{3.} Par récurrence sur $n$, pour $x_1,...,x_n\in\R$ (hérédité):
+    \begin{equation*}
+        \left|\sum_{k=1}^{n+1}x_k\right|=\left|\sum_{k=1}^nx_k+x_{n+1}\right|\leq\left|\sum_{k=1}^nx_k\right|+|x_{n+1}|\leq\sum_{k=1}^n|x_k|+|x_{n+1}|=\sum_{k=1}^{n+1}|x_k|.
+    \end{equation*}
+\end{corr}
+
+\warning On notera que dans la première inégalité, on a écrit un $-$ à gauche, mais il y a toujours un $+$ à droite !
+
+\subsection{Une notion de distance sur \texorpdfstring{$\R$}{Lg}}
+
+\begin{center}
+    \fbox{$|x-y|$ est la \bf[distance] entre $x$ et $y$.}
+\end{center}
+
+\begin{prop}{}{}
+    \begin{equation*}
+        \forall x,a\in\R,~\forall b\in\R_+,\quad\begin{aligned}
+            |x-a|\leq b &\iff x\in[a-b,a+b]\\
+            |x-a|\geq b &\iff x\geq a+b \ou x\leq a-b
+        \end{aligned}
+    \end{equation*}
+    \begin{center}
+        En particulier, $\quad\forall x\in \R\quad\forall b\in\R_+~|x|\leq b\iff -b\leq x \leq b$.
+    \end{center}
+\end{prop}
+
+\section{Entiers.}
+
+\subsection{Entiers naturels, entiers relatifs.}
+
+\begin{defi}{}{}
+    On note $\N$ l'ensemble des entiers naturels $\N=\{0,1,...\}$ et $\Z=\{0,1,...\}\cup\{-1,-2,...\}$ l'ensemble des entiers relatifs.
+\end{defi}
+
+\begin{prop}{}{}
+    L'ensemble des entiers relatifs est stable par somme, différence et produit.
+    \tcblower
+    Le résultat est admis, mais précisons le sens de stable: on a
+    \begin{equation*}
+        \forall (p,q)\in\Z^2,~p+q\in\Z\et p-q\in\Z\et pq\in\Z.
+    \end{equation*}
+    L'ensemble des entiers naturels quant à lui est stable par somme et produit, mais pas par différence.
+\end{prop}
+
+\begin{prop}{}{}
+    Toute partie non vide et majorée de $\N$ ou $\Z$ admet un plus grand élément.\\
+    Toute partie non vide de $\N$ admet un plus petit élément.\\
+    Toute partie non vide et minorée de $\Z$ admet un plus petit élément.
+\end{prop}
+
+\subsection{Partie entière d'un réel.}
+
+\begin{defi}{}{}
+    Pour tout nombre réel $x$, on appelle \bf{partie entière} de $x$, et on note $\lf x \rf$ le plus grand entier relatif inférieur à $x$:
+    \begin{equation*}
+        \lf x \rf = \max\{k\in\Z\mid k\leq x\}.
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{Partie entière et encadrements.}{}
+    Pour tout nombre réel $x$,
+    \begin{equation*}
+        \lf x \rf \leq x < \lf x \rf + 1.
+    \end{equation*}    
+    En <<croisant>> les inégalites, on obient notamment que
+    \begin{equation*}
+        x-1<\lf x \rf \leq x
+    \end{equation*}
+    \tcblower
+    Par définition, on a $\lf x \rf \leq x$.\\
+    Supposons $x\geq\lf x \rf + 1$. Alors $\lf x \rf + 1$ est un entier inférieur à $x$, et $\lf x \rf$ est le plus grand entier inférieur à $x$.\\
+    Donc $\lf x \rf + 1 \leq \lf x \rf$, ce qui est absurde. Donc $x<\lf x \rf + 1$.
+\end{prop}
+
+\begin{prop}{}{}
+    La fonction $x\mapsto\lf x \rf$ est croissante sur $\R$.
+    \tcblower
+    Soient $x,y\in\R\mid x\leq y$, alors $\lf x \rf \leq x \leq y$, donc $\lf x \rf \leq y$.\\
+    Ainsi, $\lf x \rf$ est un entier inférieur à $y$, donc inférieur à $\lf y \rf$, le plus grand entier inférieur à $y$.\\
+    On a bien $\lf x \rf \leq \lf y \rf$ : la fonction est croissante.
+\end{prop}
+
+\begin{ex}{Une propriété simple de la partie entière.}{}
+    Montrer que $\forall x \in \R, ~ \lf x + 1 \rf = \lf x \rf + 1$.\\
+    Ceci a pour conséquence que la fonction $x\mapsto x-\lf x \rf$ est $1$-périodique.
+    \tcblower
+    Soit $x\in\R$. On a $\lf x \rf \leq x < \lf x \rf + 1$ donc $\lf x \rf + 1 \leq x+1 < \lf x \rf + 2$.\\
+    Ainsi, $\lf\lf x \rf + 1 \rf \leq \lf x + 1 \rf < \lf \lf x \rf + 2 \rf$.\\
+    Donc $\lf x \rf + 1 \leq \lf x+1 \rf < \lf x + 2 \rf<\lf x \rf + 2$  (la partie entière d'un entier est cet entier).\\
+    Donc $\lf x + 1 \rf = \lf x \rf + 1$.
+\end{ex}
+
+\begin{lemme}{Une utilisation de la partie entière en analyse.}{}
+    L'ensemble $\R$ possède la propriété dite d'Archimède :
+    \begin{equation*}
+        \forall x \in \R_+^*,~\forall \e>0,~\exists n\in\N \mid n\e>x.
+    \end{equation*}
+\end{lemme}
+
+\section{Rationnels.}
+
+\subsection{Nombres décimaux.}
+
+\begin{defi}{}{}
+    On appelle \bf{nombre décimal} un nombre réel qui s'écrit sous la forme $\frac{p}{10^k}$, où $p\in\Z$ et $k\in\N$.\\
+    L'ensemble des nombres décimaux est noté $\D$.
+\end{defi}
+
+\begin{defi}{généralisation.}{}
+    Soit $p$ un entier naturel supérieur ou égal à 2.\\
+    On appelle \bf{fraction $p$-adique} un nombre réel qui s'écrit sous la forme $\frac{q}{p^k}$ où $q\in\Z$ et $k\in\N$.
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $x\in\R$ et $n\in\N$. Le nombre décimal $d_n(x):=\frac{\lf 10^nx\rf}{10^n}$ satisfait l'encadrement
+    \begin{equation*}
+        d_n(x) \leq x<d_n(x)+10^{-n}.
+    \end{equation*}
+    Les nombres $d_n(x)$ et $d_n(x)+10^{-n}$ sont appelés respectivement \bf{valeur décimale} par défaut (resp. par excès) de $x$ à la précision $10^{-n}$.
+    \tcblower
+    Soit $x\in\R$ et $n\in\N$. On a
+    \begin{align*}
+        &\lf 10^nx \rf \leq 10^nx<\lf 10^nx\rf + 1\\
+        &\frac{\lf 10^n x \rf}{10^n} \leq x < \frac{\lf 10^n x\rf + 1}{10^n}\\
+        &d_n(x)\leq x < d_n(x)+10^{-n}.
+    \end{align*}
+\end{prop}
+
+\begin{corr}{$\D$ est dense dans $\R$.}{}
+    Entre deux réels distincts, il existe toujours un nombre décimal.
+    \begin{equation*}
+        \forall (a,b)\in\R^2,~a<b\ra \D\cap]a,b[\neq\0.
+    \end{equation*}
+    \tcblower
+    Soient $a,b\in\R\mid a<b$. On pose $m=\frac{a+b}{2}$. Alors pour tout $n\in\N$, on a $a<m<d_n(m)+10^{-n}$.\\
+    On pose $\e=b-m$. Il existe $n\in\N\mid10^{-n}<\e$. Alors
+    \begin{equation*}
+        a<m<d_n(m)+10^{-n}<d_n(m)+\e\leq m+(b-m)=b
+    \end{equation*}
+    Donc
+    \begin{equation*}
+        a<\underbrace{d_n(m)+10^{-n}}_{\in\D}<b.
+    \end{equation*}
+\end{corr}
+
+\subsection{Nombres rationnels.}
+
+\begin{defi}{}{}
+    Un nombre \bf{rationnel} est un nombre réel qui s'écrit sous la forme d'un quotient d'entiers $\frac{p}{q}$, où $p\in\Z$ et $q\in\N^*$. On note $\Q$ l'ensemble des nombres rationnels.\n
+    On dit d'un nombre de $\R\setminus\Q$ qu'il est \bf{irrationnel}.
+\end{defi}
+
+\begin{prop}{}{}
+    $\sqrt{2}$ est irrationnel.
+\end{prop}
+
+\begin{prop}{}{}
+    L'ensemble des rationnels est stable par somme, différence, produit, et passage à l'inverse.
+\end{prop}
+
+\pagebreak
+
+\begin{ex}{}{}
+    Justifier que $\R\setminus\Q$ n'est pas stable par somme, ni par produit.
+    \tcblower
+    On a $-\sqrt{2}+\sqrt{2}=0$, or $0\in\Q$.\\
+    On a $\sqrt{2}\sqrt{2}=2$, or $2\in\Q$.
+\end{ex}
+
+\subsection{Densité de \texorpdfstring{$\Q$}{Lg} dans \texorpdfstring{$\R$}{Lg}}
+
+\begin{thm}{$\Q$ et $\R\setminus\Q$ sont denses dans $\R$.}{}
+    Entre deux réels distincts, il existe toujours un nombre rationnel et un nombre irrationnel.\\
+    Autrement dit, pour touts $a,b$ réels avec $a<b$,
+    \begin{equation*}
+        ]a,b[\cap\Q\neq\0\et]a,b[\cap(\R\setminus\Q)\neq\0.
+    \end{equation*}
+    \tcblower
+    Soient $a,b\in\R\mid a<b$.\\
+    $\bullet$ On sait déjà que dans $]a,b[$ il existe un décimal: $d_n(\frac{a+b}{2})$, c'est donc un rationnel.\n
+    $\bullet$ Puisque $a-\sqrt{2}<b-\sqrt{2}$, il existe un rationnel $r$ entre eux.\\
+    Alors $a-\sqrt{2}<r<b-\sqrt{2}$, donc $a<r+\sqrt{2}<b$.\\
+    Supposons que $r+\sqrt{2}$ soit rationnel, alors $r+\sqrt{2}-r$ l'est aussi par stabilité, donc $\sqrt{2}\in\Q$, absurde.\\
+    Il existe donc un nombre irrationnel entre $a$ et $b$.
+\end{thm}
+
+\begin{corr}{Écriture séquentielle de la densité de $\Q$.}{}
+    Pour tout réel $x$, il existe une suite $(r_n)$ de rationnels telle que $r_n\to x$.
+    \tcblower
+    Soit $x\in\R$. Pour tout $n\in\N^*$, il existe $y_n\in\Q\cap]x,x+\frac{1}{n}$[ par densité de $\Q$ dans $\R$.\\
+    Alors $\forall n\in\N^*, ~ x<y_n<x+\frac{1}{n}$.\\
+    Par encadrement, $y_n\to x$. 
+\end{corr}
+
+\section{Parties bornées de \texorpdfstring{$\R$}{Lg}.}
+
+\subsection{Majorants, minorants.}
+
+Dans tout ce qui suit, $A$ est une partie de $\R$.
+
+\begin{defi}{Majorant, minorant.}{}
+    \begin{itemize}
+        \item On dit que $A$ est \bf{majorée} si il existe $M\in\R\mid\forall x\in A,~ x\leq M$.
+        Dans ce contexte, $M$ est un \bf{majorant} de $A$.
+        \item On dit que $A$ est \bf{minorée} si il existe $m\in\R\mid\forall x\in A,~ m\leq x$.
+        Dans ce contexte, $m$ est un \bf{minorant} de $A$.
+        \item On dit que $A$ est \bf{bornée} si elle est majorée et minorée.
+    \end{itemize}
+\end{defi}
+
+\begin{ex}{}{}
+    Donner des majorants et des minorants de $A=[0,1[$.\\
+    Soit $A'=[1,+\infty[$, démontrer que $A'$ n'est pas majorée.
+    \tcblower
+    $A$ est majorée par $1$, mais aussi par $\pi,666$... et minorée par $0, -1,...$\\
+    Supposons $A'$ majorée, alors $\exists M\in\R\mid\forall x\in A,~x\leq M$, or $M+1\in A'$ donc $M+1\leq M$, absurde.
+\end{ex}
+
+\begin{prop}{Caractérisation des parties bornées avec la valeur absolue.}{}
+    Soit $A$ une partie de $\R$.
+    \begin{equation*}
+        A \nt{ est bornée} \iff \exists \mu \in \R_+ \mid \forall x \in A, ~ |x|\leq\mu.
+    \end{equation*}
+    \tcblower
+    \fbox{$\ra$} Supposons $A$ bornée, alors il existe $M\in\R\mid\forall x\in A,~x\leq M$ et $m\in\R\mid\forall x\in A,~m\leq x$.\\
+    Alors $\forall x\in A,~-|m|\leq x\leq |M|$, donc $|x|\leq\max(|M|,|m|)$.\n
+    \fbox{$\la$} Supposons $\exists \mu \in \R_+\mid\forall x\in A,~|x|\leq \mu$. Alors $\forall x \in A, -\mu\leq x \leq \mu$. Donc $A$ est bornée.
+\end{prop}
+
+\subsection{Maximum, minimum.}
+
+\begin{defi}{Maximum, minimum.}{}
+    \begin{itemize}
+        \item S'il existe un élément $a\in A$ tel que $\forall x\in A,~x\leq a$, alors cet élément est unique.
+        Il est appelé plus grand élément de $A$ ou encore \bf{maximum} de $A$ et noté $\max(A)$.
+        \item S'il existe un élément $b\in A$ tel que $\forall x\in A,~b\leq x$, alors cet élément est unique.
+        Il est appelé plus petit élément de $A$ ou encore \bf{minimum} de $A$ et noté $\min(A)$.
+    \end{itemize}
+    \tcblower
+    Soient $M$ et $M'$ deux maximums de $A$, alors $M\leq M'$ et $M' \leq M$ donc $M=M'$, il y a bien unicité.
+\end{defi}
+
+\begin{ex}{}{}
+    La partie $[0,1[$ admet 0 comme minimum, mais n'a pas de maximum.
+    \tcblower
+    Supposons que $A$ ait un maximum $M$.\\
+    On a $0 \leq M < 1$ donc $\frac{1}{2} \leq \frac{M+1}{2} < 1$.\\
+    Alors $\frac{M+1}{2}\in[0,1[$ : $\frac{M+1}{2}\leq M$, donc $M+1\leq 2M$ donc $1 \leq M$, absurde.
+\end{ex}
+
+\section{Exercices.}
+
+\begin{exercice}{}{}
+    Soient $a$ et $b$ deux nombres réels strictement positifs. Démontrer l'inégalité
+    \begin{equation*}
+        \frac{a^2}{b}+\frac{b^2}{a} \geq a + b
+    \end{equation*}
+    \tcblower
+    On a :
+    \begin{align*}
+        &\hspace{1.2cm}\frac{a^2}{b}+\frac{b^2}{a} \geq a+b\\
+        &\iff\frac{a^3-a^2b+b^3-ab^2}{ab}\geq0\\
+        &\iff\frac{a^2(a-b)+b^2(b-a)}{ab}\geq0\\
+        &\iff\frac{(a-b)(a^2-b^2)}{ab}\geq0\\
+        &\iff\frac{(a-b)^2(a+b)}{ab}\geq0
+    \end{align*}
+    Or $(a-b)^2\geq0$, $(a+b)\geq0$ et $ab\geq0$.\\
+    Ainsi, cette inégalité est vraie pour tout $(a,b)\in\mathbb{R}^*_+$.
+\end{exercice}
+
+\begin{exercice}{}{}
+    1. Montrer que $\forall(a,b)\in(\mathbb{R}_+)^2$ $\sqrt{a+b}\leq\sqrt{a}+\sqrt{b}$.\\
+    2. Montrer que $\forall(a,b)\in(\mathbb{R}_+)^2$ $|\sqrt{a}-\sqrt{b}|\leq\sqrt{|a-b|}$.
+    \tcblower
+    \boxed{1.} Soit $(a,b)\in(\mathbb{R}_+)^2$.
+    \begin{align*}
+        &\sqrt{a+b}\leq\sqrt{a}+\sqrt{b}\\
+        \iff&a+b\leq a + 2\sqrt{ab} + b\\
+        \iff&2\sqrt{ab} \geq 0\\
+        \iff&\sqrt{ab} \geq 0\\
+        \iff&ab \geq 0
+    \end{align*}
+    Ainsi, $\forall(a,b)\in(\mathbb{R}_+)^2$ $\sqrt{a+b}\leq\sqrt{a}+\sqrt{b}$.\n
+    \boxed{2.} Soit $(a,b)\in(\mathbb{R}_+)^2$.\\
+    Considérons $a\geq b$, alors $|a-b| = a-b$.
+    \begin{align*}
+        &|\sqrt{a}-\sqrt{b}|\leq\sqrt{a-b}\\
+        \iff& a - 2\sqrt{ab} + b \leq a-b\\
+        \iff& 2b \leq 2\sqrt{ab}\\
+        \iff& b^2 \leq ab\\
+        \iff&b \leq a
+    \end{align*}
+    Le raisonnement est symétrique lorsque $b\geq a$.\\
+    Ainsi, $\forall(a,b)\in(\mathbb{R}_+)^2$ $|\sqrt{a}-\sqrt{b}|\leq\sqrt{|a-b|}$.
+\end{exercice}
+
+\begin{exercice}{}{}
+    En utilisant la notion de distance sur $\mathbb{R}$, écrire comme réunion d'intervalles l'ensemble
+    \begin{equation*}
+        E=\{x\in\mathbb{R} \hspace{0.25cm} | \hspace{0.25cm} |x+3| \leq 6 \text{ et } |x^2-1| > 3\}
+    \end{equation*}
+    \tcblower
+    On a $x\in[-9,3] \text{ et } x\in]-\infty, -2[\cup]2,+\infty[$ donc $x\in[-9,-2]\cup[2,3]$.
+\end{exercice}
+
+\begin{exercice}{}{}
+    Soient $a$ et $b$ deux réels tels que $0 < a \leq b$. On définit les nombres $m,g,h$ par
+    \begin{equation*}
+        m=\frac{a+b}{2}, \hspace{1.5cm} g=\sqrt{ab}, \hspace{1.5cm} \frac{1}{h}=\frac{1}{2}\left(\frac{1}{a}+\frac{1}{b}\right).
+    \end{equation*}
+    Et on les appelle respectivement moyenne arithmétique, géométrique et harmonique de $a$ et $b$.\\
+    Démontrer l'encadrement
+    \begin{equation*}
+        a \leq h \leq g \leq m \leq b
+    \end{equation*}
+    \tcblower
+    Montrons les inégalités une par une :
+    \begin{itemize}
+        \item $m \leq b \iff \frac{a+b}{2}-b\leq 0 \iff \frac{a-b}{2} \leq 0 \iff a - b \leq 0 \iff a \leq b$.
+        \item $g \leq m \iff \sqrt{ab} \leq \frac{a+b}{2} \iff \frac{a - 2\sqrt{ab} + b}{2} \geq 0 \iff \frac{(\sqrt{a}-\sqrt{b})^2}{2} \geq 0$.
+        \item $h \leq g \iff \frac{1}{h} \geq \frac{1}{g} \iff \frac{1}{2a}+\frac{1}{2b}-\frac{1}{\sqrt{ab}} \geq 0 \iff \frac{a-2\sqrt{ab}+b}{2ab} \geq 0 \iff \frac{(\sqrt{a}-\sqrt{b})^2}{2ab}\geq0$.
+        \item $a \leq h \iff \frac{1}{a} \geq \frac{1}{h} \iff \frac{1}{a}-\frac{1}{2a}-\frac{1}{2b}\geq 0 \iff \frac{b-a}{2ab}\geq0 \iff b-a\geq 0 \iff a \leq b$
+    \end{itemize}
+    Ainsi, $a\leq h \leq g \leq m \leq b$.
+\end{exercice}
+
+\begin{exercice}{}{}
+    Résoudre l'équation
+    \begin{equation*}
+        \ln|x|+\ln|x+1|=0
+    \end{equation*}
+    \tcblower
+    Soit $x\in\mathbb{R}\setminus\{-1,0\}$.
+    \begin{align*}
+        &\ln|x|+\ln|x+1|=0\\
+        \iff&\ln\left(|x(x+1|\right)=0\\
+        \iff&|x(x+1)|=1\\
+    \end{align*}
+    Supposons $x\in]-\infty,-1[\cup]0,+\infty[$.\\
+    On a :
+    \begin{align*}
+        &|x(x+1)|=1\\
+        \iff&x(x+1)=1\\
+        \iff&x^2+x-1=0\\
+        \iff&x=\frac{1\pm\sqrt{5}}{2}
+    \end{align*}
+    Supposons $x\in]-1,0[$.
+    \begin{align*}
+        &|x(x+1)|=1\\
+        \iff&-x^2-x-1=0
+    \end{align*}
+    Il n'y a donc pas de solutions dans $]-1,0[$.\\
+    L'ensemble des solutions de l'équation est : $\{\frac{1-\sqrt{5}}{2},\frac{1+\sqrt{5}}{2}\}$.
+\end{exercice}
+
+\begin{exercice}{}{}
+    Résoudre l'équation
+    \begin{equation*}
+        |x-2|=6-2x
+    \end{equation*}
+    \tcblower
+    Soit $x\in\mathbb{R}$.\\
+    Considérons $x\geq2$
+    \begin{align*}
+        &|x-2|=6-2x\\
+        \iff&x-2=6-2x\\
+        \iff&x=\frac{8}{3}
+    \end{align*}
+    Considérons $x\leq2$
+    \begin{align*}
+        &|x-2|=6-2x\\
+        \iff&2-x=6-2x\\
+        \iff&x=4
+    \end{align*}
+    Seul la solution $x=\frac{8}{3}$ convient.
+    Ainsi, l'unique solution à l'équation est $\frac{8}{3}$.
+\end{exercice}
+
+\begin{exercice}{}{}
+    Démontrer l'égalité $\lfloor\frac{\lfloor{nx}\rfloor}{n}\rfloor=\lfloor{x}\rfloor$ pour tout entier $n\in\mathbb{N}^*$ et tout réel $x$.\\
+    Soient $(x,n)\in\mathbb{R}\times\mathbb{N}^*$.
+    \tcblower
+    Notons $r$ la partie fractionnaire de $x$, ainsi $x=\lfloor{x}\rfloor+r$.\\
+    On a alors $nx=n\lfloor{x}\rfloor+nr$ et $\lfloor{nx}\rfloor=\lfloor{n\lfloor{x}\rfloor+nr}\rfloor=n\lfloor{x}\rfloor+\lfloor{nr}\rfloor$.\\
+    Conséquemment, $\frac{\lfloor{nx}\rfloor}{n}=\lfloor{x}\rfloor+\frac{\lfloor{nr}\rfloor}{n}$.\\
+    Or, $0\leq\frac{\lfloor{nr}\rfloor}{n}<1$ car $0\leq r<1$, donc $\lfloor{x}\rfloor\leq\lfloor{x}\rfloor+\frac{\lfloor{nr}\rfloor}{n}<\lfloor{x}\rfloor+1$.\\
+    Ainsi, $\lfloor{x}\rfloor\leq\lfloor\frac{\lfloor{nx}\rfloor}{n}\rfloor<\lfloor{x}+1\rfloor$.\\
+    Par conséquent, $\lfloor\frac{\lfloor{nx}\rfloor}{n}\rfloor = \lfloor{x}\rfloor$.
+\end{exercice}
+
+\begin{exercice}{}{}
+    1. Démontrer : 
+    \begin{equation*}
+        \forall{x\in\mathbb{R}^*_+}\hspace{0.5cm}\frac{1}{2\sqrt{x+1}}<\sqrt{x+1}-\sqrt{x}<\frac{1}{2\sqrt{x}}.
+    \end{equation*}
+    2. Soit $p$ un entier supérieur à $2$. Que vaut la partie entière de
+    \begin{equation*}
+        \sum_{k=1}^{p^2-1}{\frac{1}{\sqrt{k}}}
+    \end{equation*}
+    \tcblower
+    \boxed{1.} Soit $x\in\mathbb{R}^*_+$.\\
+    On a :
+    \begin{align*}
+        &\sqrt{x+1}-\sqrt{x}<\frac{1}{2\sqrt{x}}\\
+        \iff&2\sqrt{x(x+1)}-2x<1\\
+        \iff&(2\sqrt{x(x+1)})^2<(1+2x)^2\\
+        \iff&4x(x+1)<4x^2+4x+1\\
+        \iff&4x^2+4x-4x^2-4x<1\\
+        \iff&0<1
+    \end{align*}
+    Et :
+    \begin{align*}
+        &\frac{1}{2\sqrt{x+1}}<\sqrt{x+1}-\sqrt{x}\\
+        \iff&1<2\sqrt{(x+1)^2}-2\sqrt{x(x+1)}\\
+        \iff&1<2|x+1|-2\sqrt{x(x+1)}\\
+        \iff&(2x+1)^2>(2\sqrt{x(x+1)})^2\\
+        \iff&4x^2+4x+1>4x^2+4x\\
+        \iff&1>0
+    \end{align*}
+    \boxed{2.}
+    Soit $x\in\mathbb{R}^*_+$\\
+    On a :
+    \begin{equation*}
+        \frac{1}{2\sqrt{x+1}}<\sqrt{x+1}-\sqrt{x}<\frac{1}{2\sqrt{x}}
+    \end{equation*}
+    Donc, en remplaçant $x$ par $x-1$ :
+    \begin{equation*}
+        \frac{1}{2\sqrt{x}}<\sqrt{x}-\sqrt{x-1}<\frac{1}{2\sqrt{x-1}}
+    \end{equation*}
+    Ainsi,
+    \begin{equation*}
+        \sqrt{x+1}-\sqrt{x}<\frac{1}{2\sqrt{x}}<\sqrt{x}-\sqrt{x-1}
+    \end{equation*}
+    Mais alors :
+    \begin{align*}
+        &\sum^{p^2-1}_{k=1}{\left(\sqrt{k+1}-\sqrt{k}\right)}<\sum^{p^2-1}_{k=1}{\frac{1}{2\sqrt{k}}}<\sum^{p^2-1}_{k=1}{\left(\sqrt{k}-\sqrt{k-1}\right)}\\
+        \iff&\sqrt{p^2}-\sqrt{1}<\frac{1}{2}\sum^{p^2-1}_{k=1}{\frac{1}{\sqrt{k}}}<\sqrt{p^2-1}-\sqrt{0}\\
+        \iff&2p-2<\sum^{p^2-1}_{k=1}{\frac{1}{\sqrt{k}}}<2\sqrt{p^2-1}\\
+        \iff&2p-2<\sum^{p^2-1}_{k=1}{\frac{1}{\sqrt{k}}}<\lfloor{2\sqrt{p^2-1}}\rfloor
+    \end{align*}
+    Or $2p-2<2\sqrt{p^2-1}<2p$ donc $\lfloor{2\sqrt{p^2-2}}\rfloor=2p-2$\\
+    On en conclut : 
+    \begin{equation*}
+        \lfloor{\sum^{p^2-1}_{k=1}{\frac{1}{\sqrt{k}}}}\rfloor = 2p-2
+    \end{equation*}
+\end{exercice}
+
+\begin{exercice}{}{}
+    Prouver que $\frac{\ln(2)}{\ln(3)}$ est un nombre irrationnel.
+    \tcblower
+    Supposons que $\frac{\ln{2}}{\ln{3}}\in\mathbb{Q}$. Alors il existe $p\in\mathbb{N}$ et $q\in\mathbb{N}^*$ premiers entre eux tels que :
+    \begin{equation*}
+        \frac{\ln{2}}{\ln{3}}=\frac{p}{q}
+    \end{equation*}
+    Alors :
+    \begin{align*}
+        &p\ln{3}=q\ln{2}\\
+        \iff&\ln(3^p)=\ln(2^q)\\
+        \iff&e^{\ln(3^p)}=e^{\ln{2^q}}\\
+        \iff&3^p=2^q
+    \end{align*}
+    Or $3^p$ est toujours impair et $2^q$ est toujours pair, donc cela est absurde.\\
+    Ainsi, $\frac{\ln2}{\ln3}$ est irrationnel.
+\end{exercice}
+
+\begin{exercice}{}{}
+    Soient $x$ et $y$ deux rationnels positifs tels que \\$\sqrt{x}$ et $\sqrt{y}$ soient irrationnels.\\
+    Montrer que $\sqrt{x} + \sqrt{y}$ est irrationnel.
+    \tcblower
+    Supposons $\sqrt{x}+\sqrt{y}\in\mathbb{Q}$.\\
+    On a :
+    \begin{align*}
+        &(\sqrt{x}+\sqrt{y})(\sqrt{x}-\sqrt{y})=x-y\\
+        \iff&\sqrt{x}-\sqrt{y}=\frac{x-y}{\sqrt{x}+\sqrt{y}}
+    \end{align*}
+    Or $x-y\in\mathbb{Q}$ et $\sqrt{x}+\sqrt{y}\in\mathbb{Q}$ par hypothèse. Donc $\sqrt{x}-\sqrt{y}\in\mathbb{Q}$.\\
+    D'autre part,
+    \begin{align*}
+        &\sqrt{x}+\sqrt{y}+\sqrt{x}-\sqrt{y}=2\sqrt{x}\\
+    \end{align*}
+    $\sqrt{x}$ est donc la somme de deux rationnels, et est donc rationnel.\\
+    C'est absurde. On en conclut que $\sqrt{x}+\sqrt{y}$ est irrationnel.
+\end{exercice}
+
+\begin{exercice}{}{}
+    Soit l'ensemble 
+    \begin{equation*}
+        A = \left\{\frac{ n-\frac{1}{n} }{ n+\frac{1}{n}}, n\in\mathbb{N}^* \right\}
+    \end{equation*}
+    Cette partie de $\mathbb{R}$ est-elle bornée ? Possède-t-elle un maximum ? Un minimum ?
+    \tcblower
+    Soit $(u_n)$ une suite telle que $\forall{n\in\mathbb{N}^*}, u_n=\frac{n-\frac{1}{n}}{n+\frac{1}{n}}$.\\
+    Soit $n\in\mathbb{N}^*$.\\
+    On a :
+    \begin{align*}
+        u_n 
+        &= \frac{n-\frac{1}{n}}{n+\frac{1}{n}} = \frac{n^2-1}{n} \cdot \frac{n}{n^2+1}\\
+        &= \frac{n^3-n}{n^3+n} = \frac{n^3+n}{n^3+n}-\frac{2n}{n^3+n}\\
+        &= 1 - \frac{2}{n^2+1}
+    \end{align*}
+    Étudions le signe de $u_{n+1}-u_n$.
+    \begin{align*}
+        u_{n+1}-u_n
+        &= 1 - \frac{2}{(n+1)^2+1}-1+\frac{2}{n^2+1}\\
+        &= \frac{2}{n^2+1} - \frac{2}{n^2+2n+2}\\
+        &= \frac{4n+2}{(n^2)(n^2+2n+2)}
+    \end{align*}
+    C'est toujours positif : on en déduit que, $(u_n)$ est croissante sur $\mathbb{N}^*$.\\
+    Elle admet donc un minimum en $1$, qui est $0$.\\
+    Elle admet aussi un majorant lorsque $n$ tend vers l'infini :
+    \begin{align*}
+        \lim_{n\rightarrow+\infty}u_n=1
+    \end{align*}
+    Ainsi, $A$ admet $0$ comme minimum, n'a pas de maximum et est majorée par $1$.
+\end{exercice}
+
+\begin{exercice}{}{}
+    1. Montrer que
+    \begin{equation*}
+        \forall(a,b)\in(\mathbb{R}^*_+)^2\hspace{0.5cm}:\hspace{0.5cm}\frac{a^2}{a+b}\geq\frac{3a-b}{4}.
+    \end{equation*}
+    Étudier le cas d'égalité.\\
+    2. En déduire que l'ensemble
+    \begin{equation*}
+        E=\left\{\frac{a^2}{a+b}+\frac{b^2}{b+c}+\frac{c^2}{c+a} \text{ | } (a,b,c)\in(\mathbb{R^*_+})^3 \text{ et } a+b+c\geq2 \right\}
+    \end{equation*}
+    admet un minimum et le calculer.
+    \tcblower
+    \boxed{1.} Soit $(a,b)\in(\mathbb{R}^*_+)^2$\\
+    On a :
+    \begin{align*}
+        &\frac{a^2}{a+b}-\frac{3a-b}{4}\geq0\\
+        \iff&\frac{a^2-2ab+b^2}{4(a+b)}\geq0\\
+        \iff&(a-b)^2\geq0\\
+    \end{align*}
+    D'autre part,
+    \begin{align*}
+        &\frac{a^2}{a+b}=\frac{3a-b}{4}\\
+        \iff&(a-b)^2=0\\
+        \iff&a=b
+    \end{align*}
+    \boxed{2.} Soient $(a,b,c)\in\mathbb{R^*_+}^3$ tels que $a+b+c\geq2$.\\
+    On a :
+    \begin{align*}
+        \frac{a^2}{a+b}+\frac{b^2}{b+c}+\frac{c^2}{c+a}
+        &\geq\frac{3a-b}{4}+\frac{3b-c}{4}+\frac{3c-a}{4}\\
+        &\geq\frac{2a+2b+2c}{4}\\
+        &\geq\frac{a+b+c}{2}\\
+        &\geq1
+    \end{align*}
+    Or, lorsque $a=b=c=\frac{2}{3}$, on a $a+b+c\geq2$ et:
+    \begin{align*}
+        \frac{a^2}{a+b}+\frac{b^2}{b+c}+\frac{c^2}{c+a}
+        &=3\frac{a}{2}=3\cdot\frac{2}{3}\cdot\frac{1}{2}=1
+    \end{align*}
+    Ainsi, $1\in E$ et $\forall{x\in E}$, $x\geq1$ donc $1$ est minimum de $E$.
+\end{exercice}
+
+\end{document}
