@@ -4,6 +4,7 @@
 \def\pagetitle{Propriétés de \texorpdfstring{$\R$}{Lg}.}
 
 \input{/home/theo/MP2I/setup.tex}
+\renewcommand*{\D}{\mathbb{D}}
 
 \begin{document}
 
@@ -408,7 +409,7 @@ Dans tout ce qui suit, $A$ est une partie de $\R$.
     Supposons $A'$ majorée, alors $\exists M\in\R\mid\forall x\in A,~x\leq M$, or $M+1\in A'$ donc $M+1\leq M$, absurde.
 \end{ex}
 
-\begin{prop}{Caractérisation des parties bornées avec la valeur absolue.}{}
+\begin{prop}{Caractérisation des parties bornées avec la valeur absolue. $\star$}{}
     Soit $A$ une partie de $\R$.
     \begin{equation*}
         A \nt{ est bornée} \iff \exists \mu \in \R_+ \mid \forall x \in A, ~ |x|\leq\mu.
@@ -421,7 +422,7 @@ Dans tout ce qui suit, $A$ est une partie de $\R$.
 
 \subsection{Maximum, minimum.}
 
-\begin{defi}{Maximum, minimum.}{}
+\begin{defi}{Maximum, minimum. $\star$}{}
     \begin{itemize}
         \item S'il existe un élément $a\in A$ tel que $\forall x\in A,~x\leq a$, alors cet élément est unique.
         Il est appelé plus grand élément de $A$ ou encore \bf{maximum} de $A$ et noté $\max(A)$.
@@ -432,7 +433,7 @@ Dans tout ce qui suit, $A$ est une partie de $\R$.
     Soient $M$ et $M'$ deux maximums de $A$, alors $M\leq M'$ et $M' \leq M$ donc $M=M'$, il y a bien unicité.
 \end{defi}
 
-\begin{ex}{}{}
+\begin{ex}{$\star$}{}
     La partie $[0,1[$ admet 0 comme minimum, mais n'a pas de maximum.
     \tcblower
     Supposons que $A$ ait un maximum $M$.\\
@@ -442,7 +443,7 @@ Dans tout ce qui suit, $A$ est une partie de $\R$.
 
 \section{Exercices.}
 
-\begin{exercice}{}{}
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
     Soient $a$ et $b$ deux nombres réels strictement positifs. Démontrer l'inégalité
     \begin{equation*}
         \frac{a^2}{b}+\frac{b^2}{a} \geq a + b
@@ -460,7 +461,7 @@ Dans tout ce qui suit, $A$ est une partie de $\R$.
     Ainsi, cette inégalité est vraie pour tout $(a,b)\in\mathbb{R}^*_+$.
 \end{exercice}
 
-\begin{exercice}{}{}
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
     1. Montrer que $\forall(a,b)\in(\mathbb{R}_+)^2$ $\sqrt{a+b}\leq\sqrt{a}+\sqrt{b}$.\\
     2. Montrer que $\forall(a,b)\in(\mathbb{R}_+)^2$ $|\sqrt{a}-\sqrt{b}|\leq\sqrt{|a-b|}$.
     \tcblower
@@ -486,7 +487,7 @@ Dans tout ce qui suit, $A$ est une partie de $\R$.
     Ainsi, $\forall(a,b)\in(\mathbb{R}_+)^2$ $|\sqrt{a}-\sqrt{b}|\leq\sqrt{|a-b|}$.
 \end{exercice}
 
-\begin{exercice}{}{}
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
     En utilisant la notion de distance sur $\mathbb{R}$, écrire comme réunion d'intervalles l'ensemble
     \begin{equation*}
         E=\{x\in\mathbb{R} \hspace{0.25cm} | \hspace{0.25cm} |x+3| \leq 6 \text{ et } |x^2-1| > 3\}
@@ -495,7 +496,7 @@ Dans tout ce qui suit, $A$ est une partie de $\R$.
     On a $x\in[-9,3] \text{ et } x\in]-\infty, -2[\cup]2,+\infty[$ donc $x\in[-9,-2]\cup[2,3]$.
 \end{exercice}
 
-\begin{exercice}{}{}
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
     Soient $a$ et $b$ deux réels tels que $0 < a \leq b$. On définit les nombres $m,g,h$ par
     \begin{equation*}
         m=\frac{a+b}{2}, \hspace{1.5cm} g=\sqrt{ab}, \hspace{1.5cm} \frac{1}{h}=\frac{1}{2}\left(\frac{1}{a}+\frac{1}{b}\right).
@@ -516,7 +517,7 @@ Dans tout ce qui suit, $A$ est une partie de $\R$.
     Ainsi, $a\leq h \leq g \leq m \leq b$.
 \end{exercice}
 
-\begin{exercice}{}{}
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
     Résoudre l'équation
     \begin{equation*}
         \ln|x|+\ln|x+1|=0
@@ -545,7 +546,7 @@ Dans tout ce qui suit, $A$ est une partie de $\R$.
     L'ensemble des solutions de l'équation est : $\{\frac{1-\sqrt{5}}{2},\frac{1+\sqrt{5}}{2}\}$.
 \end{exercice}
 
-\begin{exercice}{}{}
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
     Résoudre l'équation
     \begin{equation*}
         |x-2|=6-2x
@@ -568,7 +569,7 @@ Dans tout ce qui suit, $A$ est une partie de $\R$.
     Ainsi, l'unique solution à l'équation est $\frac{8}{3}$.
 \end{exercice}
 
-\begin{exercice}{}{}
+\begin{exercice}{$\blacklozenge\blacklozenge\blacklozenge$}{}
     Démontrer l'égalité $\lfloor\frac{\lfloor{nx}\rfloor}{n}\rfloor=\lfloor{x}\rfloor$ pour tout entier $n\in\mathbb{N}^*$ et tout réel $x$.\\
     Soient $(x,n)\in\mathbb{R}\times\mathbb{N}^*$.
     \tcblower
@@ -580,7 +581,7 @@ Dans tout ce qui suit, $A$ est une partie de $\R$.
     Par conséquent, $\lfloor\frac{\lfloor{nx}\rfloor}{n}\rfloor = \lfloor{x}\rfloor$.
 \end{exercice}
 
-\begin{exercice}{}{}
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
     1. Démontrer : 
     \begin{equation*}
         \forall{x\in\mathbb{R}^*_+}\hspace{0.5cm}\frac{1}{2\sqrt{x+1}}<\sqrt{x+1}-\sqrt{x}<\frac{1}{2\sqrt{x}}.
@@ -637,7 +638,7 @@ Dans tout ce qui suit, $A$ est une partie de $\R$.
     \end{equation*}
 \end{exercice}
 
-\begin{exercice}{}{}
+\begin{exercice}{$\blacklozenge\blacklozenge\blacklozenge$}{}
     Prouver que $\frac{\ln(2)}{\ln(3)}$ est un nombre irrationnel.
     \tcblower
     Supposons que $\frac{\ln{2}}{\ln{3}}\in\mathbb{Q}$. Alors il existe $p\in\mathbb{N}$ et $q\in\mathbb{N}^*$ premiers entre eux tels que :
@@ -655,7 +656,7 @@ Dans tout ce qui suit, $A$ est une partie de $\R$.
     Ainsi, $\frac{\ln2}{\ln3}$ est irrationnel.
 \end{exercice}
 
-\begin{exercice}{}{}
+\begin{exercice}{$\blacklozenge\blacklozenge\blacklozenge$}{}
     Soient $x$ et $y$ deux rationnels positifs tels que \\$\sqrt{x}$ et $\sqrt{y}$ soient irrationnels.\\
     Montrer que $\sqrt{x} + \sqrt{y}$ est irrationnel.
     \tcblower
@@ -674,7 +675,7 @@ Dans tout ce qui suit, $A$ est une partie de $\R$.
     C'est absurde. On en conclut que $\sqrt{x}+\sqrt{y}$ est irrationnel.
 \end{exercice}
 
-\begin{exercice}{}{}
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
     Soit l'ensemble 
     \begin{equation*}
         A = \left\{\frac{ n-\frac{1}{n} }{ n+\frac{1}{n}}, n\in\mathbb{N}^* \right\}
@@ -706,7 +707,7 @@ Dans tout ce qui suit, $A$ est une partie de $\R$.
     Ainsi, $A$ admet $0$ comme minimum, n'a pas de maximum et est majorée par $1$.
 \end{exercice}
 
-\begin{exercice}{}{}
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
     1. Montrer que
     \begin{equation*}
         \forall(a,b)\in(\mathbb{R}^*_+)^2\hspace{0.5cm}:\hspace{0.5cm}\frac{a^2}{a+b}\geq\frac{3a-b}{4}.
