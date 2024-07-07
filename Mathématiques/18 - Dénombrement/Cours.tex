@@ -1,0 +1,560 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{18}
+\def\pagetitle{Dénombrement.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\thispagestyle{fancy}
+
+\section{Cardinal d'un ensemble fini.}
+\subsection{Cardinal d'un ensemble, d'une partie.}
+
+\begin{defi}{Point de vue naïf.}{}
+    Soit $E$ un ensemble non vide. Il est dit fini s'il a un nombre fini d'éléments.\\
+    Ce nombre est appelé \bf{cardinal} de $E$, et noté $|E|$, $\#E$ ou Card$(E)$.\\
+    On pose que l'ensemble vide est fini et que son cardinal est 0.
+\end{defi}
+
+\begin{prop}{La partie et le tout.}{}
+    Soit $E$ un ensemble fini et $A$ une partie de $E$.
+    \begin{itemize}
+        \item Toute partie $A$ de $E$ est un ensemble fini et $|A|\leq|E|$.
+        \item Si $A$ et $B$ sont des parties de $E$, alors
+        \begin{equation*}
+            A=B \iff \begin{cases}
+                A\subset B\\
+                |A|=|B|
+            \end{cases}
+        \end{equation*}
+    \end{itemize}
+\end{prop}
+
+\subsection{Cardinal et réunion.}
+
+\begin{prop}{Réunion de parties disjointes.}{}
+    Soit $E$ un ensemble fini et $A$ et $B$ deux parties de $E$ \bf{disjointes} ($A\cap B=\0$). Alors la partie $A\cup B$ est finie et
+    \begin{equation*}
+        |A\cup B| = |A| + |B|.
+    \end{equation*}
+    Plus généralement, pour $n\in\N^*$, si $A_1,...,A_n$ sont $n$ parties disjointes deux-à-deux de $E$, alors leur réunion est finie est
+    \begin{equation*}
+        \left|\bigcup_{k=1}^nA_k\right|=\sum_{k=1}^n|A_k|.
+    \end{equation*} 
+\end{prop}
+
+\begin{prop}{Cardinal du complémentaire.}{}
+    Soit $E$ un ensemble fini et $A,B$ deux parties de $E$. Alors
+    \begin{equation*}
+        |A\setminus B| = |A| - |A\cap B|.
+    \end{equation*}
+    Notamment, le complémentaire de $A$ dans $E$ a pour cardinal $|\ov{A}|=|E\setminus A|=|E|-|A|$.
+    \tcblower
+    On a $(A\setminus B)\cup(A\cap B) = A$. On passe au cardinal (union disjointe): $|A\setminus B| + |A\cap B| = |A|$.\\
+    Alors $|A\setminus B| = |A| - |A\cap B|$.
+\end{prop}
+
+\begin{prop}{Réunion de parties quelconques.}{}
+    Soit $E$ un ensemble fini et $A,B$ deux parties de $E$. La partie finie $A\cup B$ a pour cardinal:
+    \begin{equation*}
+        |A\cup B| = |A|+|B|-|A\cap B|.
+    \end{equation*}
+    \tcblower
+    On a $(A\setminus B)\cup B = A\cup B$, c'est une union disjointe à gauche.\\
+    Alors, en passant au cardinal: $|A\setminus B| + |B| = |A\cup B|$.\\
+    On en conclut que $|A\cup B|=|A|+|B|-|A\cap B|$.
+\end{prop}
+
+\begin{ex}{}{}
+    Soit $n\in\N^*$.\\
+    Compter tous les couples d'entiers $(i,j)$ de $\lb1,n\rb^2$ tels que $i\geq j$.
+    \tcblower
+    On pose $E=\{(i,j)\in\lb1,n\rb^2\mid i\geq j\}$. On a
+    \begin{equation*}
+        E=\bigcup_{i=1}^n\{(i,j)\mid j\in\lb1,i\rb\}=\bigcup_{i=1}^n\bigcup_{j=1}^n\{(i,j)\}.
+    \end{equation*}
+    Les parties de cette union sont disjointes deux-à-deux.\\
+    Alors $|E|=\sum_{i=1}^n\sum_{j=1}^n1=\sum_{i=1}^ni=\frac{n(n+1)}{2}$.
+\end{ex}
+
+\begin{ex}{Formule du crible pour trois parties.}{}
+    Soient $A,B,C$ trois parties d'un ensemble fini. Justifier que
+    \begin{equation*}
+        |A\cup B\cup C|=|A|+|B|+|C|-|A\cap B|-|A\cap C|-|B\cap C|+|A\cap B\cap C|.
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{align*}
+        |A\cup B\cup C| &= |A\cup (B\cup C)| = |A| + |B\cup C| - |A\cap(B\cup C)|\\
+        &= |A| + |B| + |C| - |B\cap C| - |A\cap(B\cup C)|\\
+        &= |A|+|B|+|C|-|B\cap C| - |(A\cap B)\cup(A\cap C)|\\
+        &= |A|+|B|+|C|-|B\cap C| - |A\cap B| - |A\cap C| + |(A\cap B)\cap(A\cap C)|\\
+        &= |A|+|B|+|C|-|A\cap B|-|A\cap C|-|B\cap C|+|A\cap B\cap C|.
+    \end{align*}
+\end{ex}
+
+\subsection{Cardinal et produit cartésien.}
+Rappel : si $A_1,...,A_p$ sont $p$ ensembles, leur produit cartésien, ensemble de $p$\bf{-uplets} est défini par
+\begin{equation*}
+    A_1\times ...\times A_p=\{(a_1,...,a_p)\mid a_1\in A_1,...,a_p\in A_p\}.
+\end{equation*}
+
+\begin{prop}{Cardinal d'un produit cartésien.}{}
+    $\bullet$ Soient $A$ et $B$ deux ensembles finis. Leur produit cartésien $A\times B$ est fini, de cardinal
+    \begin{equation*}
+        |A\times B|=|A|\cdot|B|.
+    \end{equation*}
+    $\bullet$ Plus généralement, si $A_1,...,A_p$ sont $p$ ensembles finis ($p\in\N^*$), alors
+    \begin{equation*}
+        |A_1\times...\times A_p|=\prod_{k=1}^p|A_k|
+    \end{equation*}
+    \tcblower
+    On a
+    \begin{equation*}
+        A_1\times...\times A_p=\bigcup_{a_1\in A_1}...\bigcup_{a_p\in A_p}\{(a_1,...,a_p)\}.
+    \end{equation*}
+    Les parties de cette union sont disjointes deux-à-deux donc
+    \begin{equation*}
+        |A_1\times...\times A_p|=\sum_{a_1\in A_1}...\sum_{a_p\in A_p}1=\prod_{k=1}^p|A_k|.
+    \end{equation*}
+\end{prop}
+
+\subsection{Cardinal et applications entre ensembles finis.}
+
+\begin{prop}{}{9}
+    Soient $E$ et $F$ deux ensembles finis et $f:E\to F$ une application. Alors
+    \begin{enumerate}
+        \item Si $f$ est injective, alors $|E|\leq|F|$.
+        \item Si $f$ est surjective, alors $|E|\geq|F|$.
+    \end{enumerate}
+    \tcblower
+    Posons $n=|E|$, $m=|F|$, $E=\{x_1,...,x_n\}$ et $F=\{y_1,...,y_n\}$.\\ 
+    \boxed{1.} Supposons $f$ injective. On a $f(E)\subset F$, or $E=\bigcup\limits_{i=1}^nx_i$ donc $f(E)=\bigcup\limits_{k=1}^nf(\{x_i\})\subset F$.\\
+    Les singletons $f(\{x_i\})$ sont disjoints par injectivité de $f$, donc
+    \begin{equation*}
+        \sum_{i=1}^n|f(\{x_i\})|=\sum_{i=1}^n1=n\leq m.
+    \end{equation*}
+    Donc $n\leq m$.\n
+    \boxed{2.} Supposons $f$ surjective. On a $E=f^{-1}(F)$ donc $E=\bigcup\limits_{i=1}^mf^{-1}(\{y_i\})$.\\
+    La réunion est disjointe: si $i,j\in\lb1,m\rb$ et $x\in f^{-1}(\{y_i\})\cap f^{-1}(\{y_j\})$, alors $f(x)=y_i=y_j$.\\
+    Ainsi, $n=\sum_{i=1}^m|f^{-1}(\{y_i\})\geq\sum_{i=1}^m1=m$, donc $n\geq m$.
+\end{prop}
+
+\begin{prop}{Caractérisation de la bijectivité avec le cardinal.}{}
+    Soient $E$ et $F$ deux ensembles finis et $f:E\to F$. Alors
+    \begin{equation*}
+        f\nt{ est bijective} \iff \begin{cases}
+            f \nt{ est injective}\\
+            |E|=|F|
+        \end{cases} \iff \begin{cases}
+            f \nt { est surjective}\\
+            |E|=|F|
+        \end{cases}
+    \end{equation*}
+    \tcblower
+    \fbox{$1.$} Supposons $f$ bijective: $f$ est injective et surjective donc $|E|=|F|$.\n
+    \fbox{$2.$} Supposons $f$ injective et $|E|=|F|$.\\
+    On a $\Im(f)\subset F$ et $|F|=|E|\leq|\Im(f)|$ donc $F \subset \Im(f)$ donc $\Im(f) = F$ donc $f$ est surjective.\n
+    \fbox{$3.$} Supposons $f$ surjective et $|E|=|F|$. On pose $F=\{y_1,...y_{|F|}\}$\\
+    On a $|E|=\sum\limits_{i=1}^{|F|}|f^{-1}(\{y_i\})$ donc $\sum\limits_{i=1}^{|F|}(|f^{-1}(\{y_i\})|-1)=0$, or pour tout $i$, $|f^{-1}(\{y_i\})\geq1$ par surjectivité.\\
+    On a donc une somme nulle de termes positifs: tous les termes sont nuls, donc tous les $y_i$ ont un unique antécédent par $f$, donc $f$ est injective donc bijective.
+\end{prop}
+
+\begin{prop}{Compter les applications de $E$ dans $F$. $\star$}{11}
+    L'ensemble des applications de $E$ vers $F$, noté $F^E$ est un ensemble fini et de cardinal
+    \begin{equation*}
+        |F^E|=|F|^{|E|}
+    \end{equation*}
+    \tcblower
+    On note $p=|E|$, $n=|F|$ et $E=\{x_1,...,x_p\}$.\\
+    On pose $\Phi:\begin{cases}
+        F^E&\to\quad F^{p}\\
+        f&\mapsto\quad(f(x_1),...,f(x_p))
+    \end{cases}$.\\
+    On peut prouver que $\Phi$ est bijective, on l'admet.\\
+    On a $|F^E|=|F^p|$ car il existe une bijection de $F^E$ vers $F^p$.\\
+    On a $|F^E|=|F^p|=|F|^p=|F|^{|E|}$.
+\end{prop}
+
+\section{Listes et combinaisons.}
+\indent Lorsqu'on voudra dénombrer des objets, on essaiera de modéliser la situation à l'aide d'objets mathématiques connus, appartenant à des ensembles dont on connaît le cardinal. Les objets qui seront utilisés sont essentiellement de deux types: les \bf{$p$-uplets} et les \bf{parties à $p$ éléments}. Avant de passer aux résultats de dénombrement proprement dits, on fait ci-dessous quelques rappels, et on introduit les mots \bf{listes} et \bf{combinaisons}, utilisés en combinatoire.
+
+\begin{defi}{}{}
+    Soit $E$ un ensemble et $p$ un entier naturel non nul.\\
+    Un élément de $E^p$ est un \bf{$p$-uplet} ($p$-liste) $(x_1,...,x_p)$ d'éléments de $E$.
+\end{defi}
+
+Dans un $p$-uplet, certaines coordonnées peuvent être égales. De plus, l'ordre d'écriture des coordonnées est primordial. Ainsi,
+\begin{center}
+    $(1,2,3,3,2)$ est un $5$-uplet de $\N$ différent de $(1,2,2,3,3)$.
+\end{center}
+
+\begin{defi}{}{}
+    Soit $E$ un ensemble et $p$ un entier naturel.\\
+    Une partie de $E$ à $p$ éléments $\{x_1,...,x_p\}$ pourra être appelée \bf{$p$-combinaison} de $E$.
+\end{defi}
+
+L'ensemble $\{1,2,4,4\}$ est égal à l'ensemble $\{1,2,4\}$, c'est donc une $3$-combinaison de $\N$.\\
+Lorsqu'on écrira que $\{x_1,...,x_p\}$ est une $p$-combinaison de $E$, $p$ sera alors le cardinal de $E$: pour une telle écriture, les $x_i$ sont forcément distincts.\\
+Dans l'écriture $\{x_1,...,x_p\}$, l'ordre d'écriture des $x_i$ n'a aucune importance:
+\begin{center}
+    $\{1,2,3\}$ et $\{3,2,1\}$ sont la même 3-combinaison.
+\end{center}
+
+\subsection{\texorpdfstring{$p$}{Lg}-uplets d'un ensemble fini.}
+
+\begin{prop}{Compter les $p$-uplets d'éléments de $E$.}{}
+    Soit $E$ un ensemble fini de cardinal $n$ et un entier naturel non nul $p$.\\
+    Le nombre de $p$-uplets d'éléments de $E$ est $n^p$.
+    \tcblower
+    C'est le cardinal du produit cartésien de $E$ avec lui-même $p$ fois.
+\end{prop}
+
+\pagebreak
+
+\begin{prop}{Compter les $p$-uplets d'éléments distincts ($p$-arrangements).}{}
+    Soit $E$ un ensemble fini de cardinal $n$ et un entier naturel non nul $p$.\\
+    Le nombre de $p$-uplets d'éléments de $E$ deux-à-deux distincts est
+    \begin{equation*}
+        n(n-1)...(n-p+1)=\begin{cases}
+            \frac{n!}{(n-p)!}&\nt{si }p\leq n\\
+            0&\nt{si }p>n
+        \end{cases}.
+    \end{equation*}
+    \tcblower
+    Cas $p\leq n$.
+    \begin{equation*}
+        \m{A}_p(E)=\bigcup_{x_1\in E}\bigcup_{x_2\in E\setminus\{x_1\}}...\bigcup_{x_p\in E\setminus\{x_1,...,x_{p-1}\}}\{(x_1,...,x_p)\}.
+    \end{equation*}
+    Ce sont des unions disjointes donc
+    \begin{align*}
+        |\m{A}_p(E)|&=\sum^n\sum^{n-1}...\sum^{n-p+1}1=n(n-1)...(n-p+1)\textcolor{green}{\frac{(n-p)(n-p-1)...1}{(n-p)(n-p-1)...1}}\\
+        &=\frac{n!}{(n-p)!}
+    \end{align*}
+\end{prop}
+
+Si besoin : une proposition de notation pour l'ensemble des $p$-arrangements d'un ensemble $E$: $\m{A}_p(E)$.
+
+\begin{corr}{Compter les injections, les bijections.}{}
+    Soient $E$ et $F$ deux ensembles finis de cardinaux respectifs $p$ et $n$. On suppose $p\leq n$.\\
+    Le nombre d'applications injectives de $E$ vers $F$ est $\frac{n!}{(n-p)!}$.\\
+    Il existe donc $n!$ bijections entre deux ensemble de même cardinal $n$.\\
+    En particulier, si $E$ est un ensemble fini de cardinal $n$, son groupe symétrique (le groupe de ses permutations) est de cardinal $n!$.
+    \tcblower
+    Notons Inj$(E,F)$ les injections de $E$ vers $F$. Notons $E=\{x_1,...,x_p\}$.\\
+    On pose $\Psi:\begin{cases}
+        \nt{Inj}(E,F)\to\m{A}_p(F)\\
+        f\mapsto (f(x_1),...,f(x_p))
+    \end{cases}$.\\
+    On a $\Psi$ injective et surjective donc $|\nt{Inj}(E,F)|=|A_p(E,F)|=\frac{n!}{(n-p)!}$.
+\end{corr}
+
+\subsection{Parties d'un ensemble fini.}
+
+\begin{prop}{Compter les parties d'un ensemble fini. $\star$}{}
+    Soit $E$ un ensemble fini de cardinal $n$.\\
+    Le nombre de parties de $E$ est $2^n$.
+    \tcblower
+    On pose une bijection entre $\P(E)$ et un ensemble qu'on sait compter (\ref{prop:11}):
+    \begin{equation*}
+        \zeta:\begin{cases}
+            \P(E)&\to\quad \{0,1\}^E\\
+            A&\mapsto\quad\1_A
+        \end{cases}
+    \end{equation*}
+    $\zeta$ est une bijection car une partie de $E$ est caractérisée par son indicatrice.\\
+    Alors $|\P(E)|=|\{0,1\}^E|=2^{|E|}=2^n$.
+\end{prop}
+
+Le résultat peut se réécrire ainsi: si $E$ est un ensemble fini, \fbox{$|\P(E)|=2^{|E|}$}.\n
+\bf{Rappel:} on avait défini le coefficient binomial \Large$\binom{n}{p}$\normalsize comme le quotient \Large$\frac{n!}{p!(n-p)!}$\normalsize (cas non dégénérés) et prouvé que c'est un entier. Il est temps de comprendre pourquoi il se lit <<$p$ parmi $n$>>.
+
+\begin{prop}{Compter les parties à $p$ éléments d'un ensemble fini. $\star$}{}
+    Soient $E$ un ensemble fini de cardinal $n$ et $p$ un entier naturel.\\
+    Le nombre de parties de $E$ ayant $p$ éléments est \Large$\binom{n}{p}$.
+    \tcblower
+    Soit $\m{P}_p(E)$ l'ensemble des $p$-combinaisons de $E$.\\
+    On a $\m{A}_p(E)=\bigcup\limits_{A\in P_p(E)}\m{A}_p(A)$.\\
+    C'est une union disjointe, donc $|\m{A}_p(E)|=\sum\limits_{A\in\P_p(E)}|\m{A}_p(A)|=\sum\limits_{A\in\P_p(E)}p!=p!|\P_p(E)|$.\\
+    Alors $|\P_p(E)|=\frac{|\m{A}_p(E)|}{p!}=\frac{n!}{p!(n-p)!}$.
+\end{prop}
+Si besoin: une proposition de notation pour l'ensemble des parties à $p$ éléments d'un ensemble $E$: $\P_p(E)$.
+
+\pagebreak
+\begin{prop}{Formules classiques. $\star$}{}
+    Soit $n\in\N$.
+    \begin{equation*}
+        \forall p\in\N~\binom{n}{p}=\binom{n}{n-p},\quad\forall p\in\N^*~p\binom{n}{p}=n\binom{n-1}{p-1},\quad\forall p\in\N~\binom{n+1}{p+1}=\binom{n}{p+1}+\binom{n}{p}.
+    \end{equation*}
+    Appelées formule de symétrie, formule du pion et formule de Pascal, dans l'ordre.
+    \tcblower
+    \fbox{Symétrie.} Soit $E$ un ensemble tel que $|E|=n$ et $f:A\mapsto\ov{A}$ de $\P_p(E)$ vers $\P_{n-p}(E)$.\\
+    Soit $g:A\mapsto\ov{A}$ de $\P_{n-p}(E)$ vers $\P_p(E)$. On a $g\circ f=\id$ et $f\circ g=\id$ donc $f$ bijective.\\
+    On a bien $|\P_p(E)|=|\P_{n-p}(E)|$.\n
+    \fbox{Pascal $\star$} Soit $E$ un ensemble tel que $|E|=n+1$.\\
+    On distingue $x_0\in E$. Alors $\P_{p+1}(E)=\P_{p+1}(E\setminus\{x_0\})\cup\P^{(x_0)}_{p+1}(E)$.\\
+    L'union est disjointe car une partie ne contient pas $x_0$ et l'autre oui. Alors
+    \begin{equation*}
+        |\P_{p+1}(E)|=|\P_{p+1}(E\setminus\{x_0\})|+|\P_{p+1}^{(x_0)}(E)|=\binom{n}{p+1}+\binom{n}{p}.
+    \end{equation*}
+    En effet, $f:\begin{cases}
+        \P_{p+1}(E)&\to\quad\P_{p}(E\setminus\{x_0\})\\
+        A&\mapsto\quad A\setminus\{x_0\}
+    \end{cases}$
+    est une bijection, donc $|\P_{p+1}(E)|=|\P_{p}(E\setminus\{x_0\})|=\binom{n}{p}$.
+\end{prop}
+
+\section{Exercices.}
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    À Reuste-sur-Linuxe, charmant village francilien, il y a 52 célibataires : 20 femmes et 32 homems.\\
+    Combien de nouveaux couples hétérosexuels peuvent être formés dans le village ? De couples homosexuels ?
+    \tcblower
+    On note $H$ l'ensemble des hommes et $F$ l'ensembles des femmes (disjoints).\\
+    L'ensemble des couples hétérosexuels est $H\times F$ de cardinal $|H\times F|=|H|\cdot|F|=32\times20=640$.\\
+    L'ensemble des couples homosexuels est $\m{A}_2(H)\cup\m{A}_2(F)$ de cardinal $\binom{32}{2}+\binom{20}{2}=686$ (disjoints).
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    Soit $n\geq 2$. On suppose que $n$ couples se rencontrent et se serrent la main. Chaque personne sert la main de tous les autres, sauf celle de son conjoint. Combien y a-t-il de poignées de main échangées ?
+    \tcblower
+    Entre deux couples, il y a 4 poignées de main. Chaque couple serre la main avec les $n-1$ autres couples.\\
+    On a alors $4n(n-1)$ poignées de main, or on est en train de compter deux fois les même poignées de main.\\
+    Il y a donc $2n(n-1)$ poignées de main.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    À l'entrée d'un immeuble, on dispose d'un clavier de 12 touches : trois lettres $A, B, C$ et neuf chiffres de $1$ à $9$. Le code d'ouverture de la porte est composé d'une lettre suivie d'un nombre de quatre chiffres. Par exemple $A1234$.
+    \begin{enumerate}
+        \item Combien existe-t-il de codes différents ?
+        \item Combien y a-t-il de codes
+        \begin{enumerate}
+            \item comportant au moins une fois le chiffre 7 ?
+            \item pour lesquels tous les chiffres sont pairs ?
+            \item pour lesquels les quatres chiffres sont différents ?
+        \end{enumerate}
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} On a 3 choix pour la lettre, puis 9 choix pour chaque chiffre : $3\times9^4=19683$.\\
+    \boxed{2.a)} On présélectionne le 7, alors on a $3\times9^3=2187$ codes.\\
+    \boxed{2.b)} Il y a 4 chiffres pairs entre 1 et 9, donc $3\times4^4=768$ codes.\\
+    \boxed{2.c)} On a $3\times9\times8\times7\times6=9072$ codes.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Mes voisins font la fête et c'est l'heure de trinquer, j'entends 78 tintements de verres. Combien sont-ils ?
+    \tcblower
+    On modélise chaque tintement par un couple de personnes distinctes.\\
+    On cherche donc le nombre de personnes requises pour former 78 couples.\\
+    C'est à dire $n\in\N$ tel que $\binom{n}{2}=78$. Les solutions possibles sont $n=13$ et $n=-12$.\\
+    On écarte évidemment $n=-12$, il y a donc 13 personnes.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Combiens d'anagrammes ont les mots $MATHS$, $COLLE$ et $ABRACADABRA$ ?
+    \tcblower
+    Dans $MATHS$, toutes les lettres sont différentes. Il y a donc $5!=120$ anagrammes.\\
+    Dans $COLLE$, il y a 2 $L$. Il y a donc $\binom{5}{2}\times3!=60$ anagrammes.\\
+    Dans $ABRACADABRA$, il y a 5 $A$, 2 $B$ et 2 $R$. Il y a donc $\binom{11}{5}\times\binom{11}{2}\times\binom{11}{2}\times2!=2795100$ anagrammes.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    Soit $E$ un ensemble de cardinal $n\in\N^*$.
+    \begin{enumerate}
+        \item Rappeler le nombre de parties de $E$.
+        \item Pour $k\in\lb0,n\rb$, rappeler combien il existe de parties de $E$ ayant $k$ éléments.
+        \item Sait-on retrouver le résultat de la question 1 en connaissant celui de la question 2 ?
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} $|\P(E)|=2^n$.\\
+    \boxed{2.} Soit $k\in\lb0,n\rb$, $|\P_p(E)|=\binom{n}{p}$.\\
+    \boxed{3.} On utilise le binôme de Newton:
+    \begin{equation*}
+        |\P(E)|=\sum_{k=0}^n|\P_k(E)|=\sum_{k=0}^n\binom{n}{k}=(1+1)^n=2^n.
+    \end{equation*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $E$ un ensemble de cardinal $n\in\N^*$.
+    \begin{enumerate}
+        \item Combien existe-t-il de couples $(A,x)$ avec $A$ une partie de $E$ et $x$ un élément de $E$ ?
+        \item Combien existe-t-il de couples $(A,x)$ avec $A$ une partie de $E$ et $x$ un élément de $A$ ?
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} C'est un produit cartésien entre $\P(E)$ et $E$, son cardinal est $2^nn$.\\
+    \boxed{2.} C'est un produit cartésien entre chaque partie et ses éléments, on en a
+    \begin{equation*}
+        \sum_{k=1}^nk|\P_k(E)|=\sum_{k=1}^nk\binom{n}{k}=\sum_{k=1}^nn\binom{n-1}{k-1}=n\sum_{k=0}^{n-1}\binom{n-1}{k}=n2^{n-1}
+    \end{equation*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    Soit $n\geq1$. En développant $(1-1)^n$, démontrer qu'un ensemble de cardinal $n$ a autant de parties de cardinal pair que de parties de cardinal impair.
+    \tcblower
+    On a
+    \begin{equation*}
+        (1-1)^n=\sum_{k=0}^n\binom{n}{k}(-1)^k=\sum_{k=0}^{\lf\frac{n}{2}\rf}\binom{n}{2k}-\sum_{k=0}^{\lf\frac{n}{2}\rf}\binom{n}{2k-1}=0.
+    \end{equation*}
+    D'où l'égalité.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\blacklozenge$ CCINP n°112}{}
+    Soit $n\in\N^*$ et $E$ un ensemble possédant $n$ éléments.
+    \begin{enumerate}
+        \item Déterminer le nombre $a$ de couples $(A,B)\in(\P(E))^2$ tels que $A\subset B$.
+        \item Déterminer le nombre $b$ de couples $(A,B)\in(\P(E))^2$ tels que $A\cap B=\0$.
+        \item Déterminer le nombre $c$ de triplets $(A,B,C)\in(\P(E))^3$ tels que $A,B$ et $C$ soient deux-à-deux disjoints et vérifient $A\cup B\cup C=E$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Remarquons que
+    \begin{equation*}
+        \{(A,B)\in(\P(E))^2\mid A\subset B\} = \bigcup_{k=0}^n\bigcup_{B\in\P_k(E)}\bigcup_{A\subset B}\{(A,B)\}
+    \end{equation*}
+    C'est une union disjointe. On a donc:
+    \begin{equation*}
+        a=\sum_{k=0}^n\sum_{B\in\P_k(E)}\sum_{A\subset B}1=\sum_{k=0}^n\binom{n}{k}2^{k}=3^n.
+    \end{equation*}
+    \boxed{2.} On a $\{(A,B)\in(\P(E))^2\mid A\cap B=\0\}=\{(A,B)\in(\P(E))^2\mid A\subset\ov{B}\}$, même résultat que la question 1.\\
+    \boxed{3.} Il suffit de chosir $A$ et $B$ tels que $A\cap B=\0$, alors il n'y a plus qu'une possibilité pour $C$: $E\setminus A\setminus B$.\\
+    On se ramène à la question 2. On a donc $c=3^n$.
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    \begin{center}
+        << Lorsqu'on range des chaussettes dans des tiroirs,\\
+        s'il y a (strictement) plus de chaussettes que de tiroirs,\\
+        alors au moins un tiroir contiendra plus de deux chaussettes. >>
+    \end{center}
+    Démontrer cette assertion en utilisant le cours. On pourra utiliser une application bien choisie...
+    \tcblower
+    On note $T$ l'ensemble des tiroirs et $C$ l'ensemble des chaussettes tels que $|C|>|T|$.\\
+    On pose $f:C\to T$ une application qui à chaque chaussette associe le tiroir dans lequel elle est rangée.\\
+    Supposons que tous les tiroirs contiennent au plus une chaussette.\\
+    Alors $f$ est injective, donc $|C|\leq|T|$ d'après \ref{prop:9}, contradiction.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $E$ un ensemble non vide et $n$ son cardinal.\\
+    Exprimer en fonction de $n$ les sommes
+    \begin{equation*}
+        \sum_{X\in\P(E)}1,\quad\sum_{X\in\P(E)}|X|,\quad\sum_{(X,Y)\in(\P(E)^2)}|X\cap Y|,\quad\sum_{(X,Y)\in(\P(E))^2}|X\cup Y|.
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{align*}
+        &\boxed{1.}~\sum_{X\in\P(E)}1=|\P(E)|=2^n,\\
+        &\boxed{2.}~\sum_{X\in\P(E)}|X|=\sum_{x\in E}\sum_{X\in\P(E)}\1_X(x)=\sum_{x\in E}2^{n-1}=n2^{n-1},\\
+        &\begin{aligned}
+            \boxed{3.}~\sum_{X,Y\in\P(E)}|X\cap Y|&=\sum_{X,Y\in\P(E)}\sum_{x\in E}\1_X(x)\1_Y(x)=\sum_{x\in E}\sum_{X\in\P(E)}\1_X(x)\sum_{Y\in\P(E)}\1_Y(x)\\
+            &=\sum_{x\in E}\sum_{X\in\P(E)}\1_X(x)2^{n-1}=\sum_{x\in E}2^{2(n-1)}=n4^{n-1},
+        \end{aligned}\\
+        &\begin{aligned}
+            \boxed{4.}~\sum_{X,Y\in\P(E)}|X\cup Y|&=\sum_{x\in E}\sum_{X,Y\in\P(E)}(\1_X(x)+\1_Y(x)-\1_X(x)\1_Y(x))\\
+            &=\sum_{X,Y\in\P(E)}|X|+\sum_{X,Y\in\P(E)}|Y|-\sum_{X,Y\in\P(E)}|X\cap Y|\\
+            &=2n2^{2n-1}-n2^{2n-2}=n2^{2n-2}(4-1)=3n2^{2n-2}
+        \end{aligned}
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    On dispose de $8$ professeurs, à répartir dans $4$ écoles.\\
+    Combien de répartitions sont possibles ?\\
+    Et combien si on impose deux professeurs par école ?
+    \tcblower
+    Soit $P$ l'ensemble des professeurs et $E$ l'ensemble des écoles.\\
+    On suppose qu'un professeur ne peut être affecté qu'à une école.\\
+    Chaque professeur a le choix entre les 4 écoles: $|E|^{|P|}=4^8=65536$.\\
+    Si on impose deux professeurs par école, la première école choisit 2 professeurs parmi 8, la deuxième 2 parmi 6, la troisième 2 parmi 4 et la dernière 2 parmi 2.\\
+    Le nombre de répartitions est donc $\binom{8}{2}\binom{6}{2}\binom{4}{2}\binom{2}{2}=2520$. 
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit $G$ un groupe fini de cardinal pair. On travaille en notation multiplicative et on note $e$ le neutre du groupe. On souhaite prouver l'existence d'un élément $x$ de $G$ tel que $x^2=e$ et $x\neq e$. On définit l'ensemble
+    \begin{equation*}
+        E=\{x\in G\mid x^2\neq e\}.
+    \end{equation*}
+    \begin{enumerate}
+        \item On définit sur $E$ la relation $\sim$ par
+        \begin{equation*}
+            \forall(x,y)\in E^2,~x\sim y\iff (x=y\ou x=y^{-1}).
+        \end{equation*}
+        Démontrer que $\sim$ est une relation d'équivalence sur $E$.
+        \item Conclure.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soient $x,y,z\in E$.\\
+    \bf{Réfléxivité:} On a bien $x\sim y$ car $x=x$.\\
+    \bf{Symétrie:} Supposons $x\sim y$, si $x=y$ alors $y\sim x$, sinon $x=y^{-1}$ alors $y=x^{-1}$ et $y\sim x$.\\
+    \bf{Transitive:} Supposons $x\sim y$ et $y\sim z$. Si $x=y$, alors $x\sim z$ car $x=y\sim z$.\\
+    Si $x=y^{-1}$, alors si $y=z$, $x=z^{-1}$ donc $x\sim z$, sinon $x=y^{-1}=z$ donc $x\sim z$.\n
+    \boxed{2.} $G$ est la réunion disjointe de tous les $\{x,x^{-1}\}$ différents pour $x\in G$.\\
+    Ce sont des ensembles de cardinal 2, sauf $\{e, e^{-1}\}$, qui est de cardinal 1.\\
+    S'il n'existait pas d'élément $x\neq e$ tel que $x^2=e$, alors $G$ serait de cardinal impair, ce qui est absurde.\\
+    Il existe donc un tel élément.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\blacklozenge$ Vandermonde.}{}
+    Soient $(p,q,n)\in\N^3$. Proposer une démonstration combinatoire de l'identité:
+    \begin{equation*}
+        \sum_{k=0}^n\binom{p}{k}\binom{q}{n-k}=\binom{p+q}{n}.
+    \end{equation*}
+    \tcblower
+    Soit $E$ un ensemble à $p+q$ éléments. On souhaite compter le nombre de parties de $E$ à $n$ éléments.\\
+    Soient $A$ et $B$ deux sous-ensembles disjoints de $E$ à $p$ et $q$ éléments respectivement.\\
+    On va créer des parties de $E$ à $n$ éléments en choisissant $k$ éléments dans $A$ et $n-k$ éléments dans $B$.\\
+    On commence par choisir $k$ éléments dans $A$, on a $\binom{p}{k}$ façons de le faire.\\
+    Il reste alors $n-k$ éléments à choisir dans $B$, on a $\binom{q}{n-k}$ façons de le faire.\\
+    On fait alors varier $k$ de 0 à $n$, on a donc $\sum_{k=0}^n\binom{p}{k}\binom{q}{n-k}$ façons de choisir $n$ éléments dans $E$.\\
+    On a bien l'identité.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\blacklozenge$}{}
+    Soient $(n,p)\in(\N^*)^2$.\\
+    Combien y a-t-il d'applications strictement croissantes de $\lb1,p\rb$ dans $\lb1,n\rb$ ?
+    \tcblower
+    Soit $E=\{f:\lb1,p\rb\to\lb1,n\rb\mid f \nt{ strictement croissante}\}$.\\
+    Soit $f\in E$. On a immédiatement que $n\geq p$ car $f$ est strictement croissante.\\
+    On pose $\Psi:\begin{cases}
+        E&\to\quad\m{A}_p(\lb1,n\rb)\\
+        f&\mapsto\quad(f(1),...,f(p))
+    \end{cases}$.\\
+    On a que $f$ est bijective, ainsi $\Psi$ est bijective, donc $|E|=|\m{A}_p(\lb1,n\rb)|=\binom{n}{p}$.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\blacklozenge$}{}
+    Soient $n\in\N^*$ et $p\in\N$. Déterminer le nombre de solutions dans $\{0,1\}^n$ à l'équation
+    \begin{equation*}
+        x_1+x_2+...+x_n=p.
+    \end{equation*}
+    \tcblower
+    Combien de façons de choisir $p$ uns parmi $n$ éléments ? $\binom{n}{p}$.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\blacklozenge$}{}
+    Soient $n\in\N^*$. Combien y a-t-il de surjections de $\lb1,n+1\rb$ dans $\lb1,n\rb$ ?
+    \tcblower
+    Soit $\phi$ une surjection de $\lb1,n+1\rb$ dans $\lb1,n\rb$\\
+    On sait qu'exactement un élément $y\in\lb1,n\rb$ a deux antécédents $x_1$ et $x_2$ par $\phi$.\\
+    Pour choisir $y$, on a $n$ choix, et pour choisir $x_1$ et $x_2$, on a $\binom{n+1}{2}$ choix.\\
+    Il ne reste alors plus qu'à créer une bijection entre $\lb1,n+1\rb\setminus\{x_1,x_2\}$ et $\lb1,n\rb\setminus\{y\}$, il en existe $(n-1)!$.\\
+    Il y a alors $n(n-1)!\binom{n+1}{2}=\frac{n(n+1)!}{2}$ surjections de $\lb1,n+1\rb$ dans $\lb1,n\rb$.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\blacklozenge$}{}
+    Soit $E$ un ensemble à $n$ éléments, où $n$ est un entier supérieur à 2.\\
+    Combien existe-t-il de fonctions $f:E\to E$ telles que $|\Im(f)|=n-1$ ?
+    \tcblower
+    Soit $f:E\to E$ telle que $|\Im(f)|=n-1$.\\
+    Il existe un unique $y\in E$ tel que $y\notin\Im(f)$. Notons $\tilde{E}=E\setminus\{y\}$.\\
+    Alors $f$ est une surjection de $E$ dans $\tilde{E}$.\\
+    D'après l'exercice précédent, il y a $\frac{(n-1)n!}{2}$ surjections de $E$ dans $\tilde{E}$.\\
+    On a $n$ choix pour $y$, donc il y a $\frac{n(n-1)n!}{2}$ fonctions $f:E\to E$ telles que $|\Im(f)|=n-1$.
+\end{exercice}
+
+\end{document}
