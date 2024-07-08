@@ -1,0 +1,952 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{4}
+\def\pagetitle{Fonctions de la variable réelle.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\DeclareMathOperator{\argth}{argth}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\thispagestyle{fancy}
+
+Dans tout ce cours, la lettre $\K$ pourra être remplacée par $\R$ ou $\C$.\n
+Les lettres $I$ et $J$ désigneront des intervalles de $\R$ non vides et non réduits à un point.
+
+\section{Vocabulaire sur les fonctions.}
+
+Soit $X$ un partie de $\R$ et $Y$ une partie de $\K$. Une fonction (ou application)
+\begin{equation*}
+    f:\begin{cases}
+        X&\to\quad Y\\
+        x&\mapsto f(x)
+    \end{cases}
+\end{equation*}
+est un procédé qui à tout élément $x$ de $X$ associe un unique élément $f(x)$ appartenant à $Y$.\n
+Si $x\in X$ et $y=f(x)$, on dit que $y$ est l'\bf{image} de $x$ et que $x$ est un \bf{antécédent} de $y$ par $f$.\n
+Puisqu'ici la variable $x$ est un nombre réel, on dit que la fonction est de la \bf{variable réelle}.\n
+Lorsque toutes les images par la fonction $f$ sont des nombres réels, alors $f$ est dite \bf{à valeurs réelles}.\n
+La notion de fonction (ou d'application) entre deux ensembles quelconques sera étudiée plus formellement dans un cours Ensemble et applications à venir.
+
+\subsection{Ensemble de définition.}
+
+\begin{rappel}{}{}
+    L'\bf{ensemble de définition} d'une fonction $f$ est l'ensemble des réels $x$ tel que $f(x)$ a un sens.
+\end{rappel}
+
+\begin{ex}{}{}
+    Donner l'ensemble de définition de
+    \begin{equation*}
+        f:x\mapsto\sqrt{x(x-2)},\quad g:x\mapsto\ln(x(x-2)),\quad h:x\mapsto\ln(x)+\ln(x-2).
+    \end{equation*}
+\end{ex}
+
+\subsection{Représentation graphique d'une fonction à valeurs réelles.}
+
+\begin{defi}{}{}
+    Soit $f:X\to\R$ une fonction réelle de la variable réelle et à valeurs réelles.\\
+    On appelle \bf{graphe} de $f$ la partie de $\R^2$ suivante:
+    \begin{equation*}
+        \{(x,f(x)),\quad x\in X\}.
+    \end{equation*}
+    qui peut aussi s'écrire $\{(x,y)\in\R^2~:~x\in X\et y=f(x)\}$.\\
+    Supposons le plan muni d'un repère orthonormé $(O,\v{i}, \v{j})$. À chaque élément du graphe correspond alors un point du plan. Déposons une goutte d'encre sur chacun de ces points. Le résultat est appelé \bf{courbe représentative} de la fonction. Dans la pratique, on confond graphe et courbe représentative.
+\end{defi}
+
+\subsection{Somme et produit de fonctions.}
+
+\begin{defi}{}{}
+    Soient $f$ et $g$ définies sur un même ensemble $X\subset\R$, à valeurs réelles.\\
+    La \bf{somme} de $f$ et $g$ est la fonction définie par
+    \begin{equation*}
+        f+g:\begin{cases}
+            X&\to\quad\R\\
+            x&\mapsto\quad f(x)+g(x)
+        \end{cases}.
+    \end{equation*}
+\end{defi}
+
+\begin{defi}{}{}
+    Soient $f$ et $g$ définies sur un même ensemble $X\subset\R$, à valeurs réelles.\\
+    Le \bf{produit} et le \bf{quotient} de $f$ et $g$ sont les fonctions définies par
+    \begin{equation*}
+        f\cdot g:\begin{cases}
+            X&\to\quad\R\\
+            x&\mapsto\quad f(x)g(x)
+        \end{cases} \quad \nt{et} \quad f/g : \begin{cases}
+            X&\to\quad\R\\
+            x&\mapsto\quad f(x)/g(x)
+        \end{cases}.
+    \end{equation*}
+    Pour que la définition du quotient ait un sens, il est nécessaire que $g$ ne s'annule pas sur $X$.
+\end{defi}
+
+\subsection{Parité, imparité, périodicité.}
+
+\begin{defi}{}{}
+    Soit $X$ un partie de $\R$. Une fonction $f:X\to\K$ est dite
+    \begin{center}
+        $\bullet$ \bf{paire} si $\forall x \in X$ $\begin{cases}-x\in X\\f(-x)=f(x)\end{cases}$\qquad$\bullet$ \bf{impaire} si $\forall x \in X$ $\begin{cases}-x\in X\\f(-x)=-f(x)\end{cases}$.
+    \end{center}
+\end{defi}
+
+\begin{ex}{}{}
+    Montrer que le produit de deux fonctions impaires est une fonction paire.
+    \tcblower
+    Soient $f$ et $g$ impaires et définies sur $X\subset\R$.\\
+    Soit $x\in X$, on a $(f\cdot g)(-x)=f(-x)g(-x)=(-f(x))(-g(x))=f(x)g(x)=(f\cdot g)(x)$.\\
+    Le produit de $f$ et $g$ est donc une fonction paire.
+\end{ex}
+
+\begin{ex}{Une preuve par analyse-synthèse.}{}
+    Démontrer le résultat ci-dessous
+    \begin{center}
+        Toute fonction définie sur $\R$ s'écrit de manière unique comme somme\\
+        d'une fonction paire et d'une fonction impaire.
+    \end{center}
+    \tcblower
+    Soit $\phi:\R\to\K$ une fonction.\\
+    \bf{Analyse.} Supposons qu'il existe $f:\R\to\K$ paire et $g:\R\to\K$ impaire telles que $f+h=\phi$.\\
+    Soit $x\in\R$. On a:\\
+    --- $\phi(x)=f(x)+g(x)$\\
+    --- $\phi(-x)=f(x)-g(x)$\\
+    En sommant les deux égalités : $f(x)=\frac{\phi(x)+\phi(-x)}{2}$.\\
+    En soustrayant les deux égalités : $g(x)=\frac{\phi(x)-\phi(-x)}{2}$.\\
+    On a donc montré l'unicité de la décomposition.\n
+    \bf{Synthèse.} Soit $f:\R\to\K$ définie par $f(x)=\frac{\phi(x)+\phi(-x)}{2}$ et $g:\R\to\K$ définie par $g(x)=\frac{\phi(x)-\phi(-x)}{2}$ pour tout $x\in\R$.\\
+    On vérifie facilement que $f$ est paire et $g$ est impaire, et que $\phi$ est la somme des deux (on a tout fait pour).\n
+    \bf{Conclusion.} $\phi$ s'écrit de manière unique comme somme d'une fonction paire et d'une fonction impaire.
+\end{ex}
+
+\begin{defi}{}{}
+    Soit $T>0$ et $X\subset\R$. Une fonction $f:X\to\R$ est dite $T$-\bf{périodique} si
+    \begin{equation*}
+        \forall x \in X~\begin{cases}x+T\in X\\f(x+T)=f(x)\end{cases}
+    \end{equation*}
+    Une fonction sera dite \bf{périodique} si elle admet une certaine période $T\in\R_+^*$.
+\end{defi}
+
+\bf{Exemples.} cos et sin sont $2\pi$-périodiques. La fonction tan et $\pi$-périodique sur son ensemble de définition.\\
+Un exemple de fonction à valeurs complexes : $t\mapsto e^{it}$ est $2\pi$-périodique.\n
+La fonction $x\mapsto x-\lf x \rf$ est $1$-périodique.
+
+\pagebreak
+
+\begin{ex}{}{}
+    Soit $f:\R\to\K$ une fonction $T$-périodique, où $T$ est un réel strictement positif.\\
+    Montrer que $g:x\mapsto f(-x)$ est $T$-périodique.\\
+    Soit $a>0$, prouver que $h:x\mapsto f(ax)$ est $T'$-périodique, en précisant $T'$.
+    \tcblower
+    $\bullet$ Soit $x\in\R$, on a $g(x+T)=f(-x-T)=f(-x-T+T)=f(-x)=g(x)$.\\
+    $\bullet$ Soit $x\in\R$, on a $h(x+\frac{T}{a})=f(ax+T)=f(ax)=h(x)$.
+\end{ex}
+
+\begin{meth}{Réduction de l'intervalle d'étude.}{}
+    Soit $f:X\to\R$.
+    \begin{itemize}
+        \item Si $f$ est $T$-périodique, son graphe est laissé invariant par la translation de vecteur $T\v{i}$.\\
+        Il suffit donc d'étudier une fonction $T$-périodique sur un intervalle de longueur $T$, le plus souvent $[0,T]$ ou $[-\frac{T}{2},\frac{T}{2}]$. On obtient le reste du graphe par translations.
+        \item Si $f$ est paire, son graphe est symétrique par rapport à l'axe des ordonnées.\\
+        Si $f$ est impaire, il est invariant par la symétrie centrale de centre $O$.\\
+        Il suffit alors d'étudier $f$ sur $X\cap\R_+$. L'étude sur $X\cap\R_-$ vient par symétrie. 
+    \end{itemize}
+\end{meth}
+
+\begin{ex}{}{}
+    Proposer un intervalle d'étude pour $f:x\mapsto\ch(\sin(3x))$.
+    \tcblower
+    C'est une fonction paire et $\frac{\pi}{3}$ périodique.\\
+    On peut restreindre son intervalle d'étude à $[-\frac{\pi}{6},\frac{\pi}{6}]$ et donc à $[0,\frac{\pi}{6}]$ par parité.
+\end{ex}
+
+\subsection{Monotonie.}
+
+\begin{defi}{}{}
+    Soit $f:X\to\R$. Elle est dite
+    \begin{itemize}
+        \item \bf{croissante} si $\forall x,x'\in X\quad x\leq x' \ra f(x)\leq f(x')$.
+        \item \bf{décroissante} si $\forall x,x'\in X\quad x\leq x' \ra f(x)\geq f(x')$.
+        \item \bf{strictement croissante} si $\forall x,x'\in X\quad x< x' \ra f(x)< f(x')$.
+        \item \bf{strictement décroissante} si $\forall x,x'\in X\quad x< x' \ra f(x)> f(x')$.
+    \end{itemize}
+    Lorsqu'une fonction a l'une de ces propriétés, elle est dite \bf{monotone} (stricteement monotone dans les deux derniers cas).
+\end{defi}
+
+\begin{ex}{}{}
+    Soit $f$ une fonction paire sur $\R$ et croissante sur $\R_+$, montrer qu'elle est décroissante sur $\R_-$.
+    \tcblower
+    Soient $x,y\in\R_-$ tels que $x\leq y$, alors $-x\geq -y$.\\
+    On applique $f$, croissante sur $\R_+$ : $f(-x)\geq f(-y)$, or $f$ est paire donc $f(x)\geq f(y)$.\\
+    On a bien montré que $f$ est décroissante sur $\R_-$. 
+\end{ex}
+
+\begin{ex}{Un peu de composition.}{}
+    Que dire de la composée de deux fonctions décroissantes ?
+    \tcblower
+    Soient $f:X\to Y$ et $g: Y\to \R$ décroissantes sur leurs ensembles de définition.\\
+    Soient $x,y\in X$ tels que $x\leq y$.\\
+    Alors $f(x)\geq f(y)$ donc $g(f(x))\leq g(f(y))$ par décroissance de $g$.\\
+    On en conclut que $(g\circ f)(x)\leq (g\circ f)(y)$, la composée est croissante.
+\end{ex}
+
+\begin{ex}{Un peu de logique.}{}
+    Justifier que si $f$ est strictement monotone, alors les réciproques des implications écrites dans la définition sont vraie.\\
+    Que dire si $f$ est seulement monotone ?
+    \tcblower
+    Soit $f:X\to\R$ strictement croissante et $x,y\in X$ : $x < y \ra f(x) < f(y)$.\\
+    La contraposée de la réciproque est $x \geq y \ra f(x) \geq f(y)$, c'est vrai par croissance de $f$.\n
+    Supposons $f$ seulement croissante, on a $x\leq y \ra f(x) \leq f(y)$.\\
+    On peut avoir $f(2)\leq f(1)$, mais $2\leq 1$ est faux, donc la réciproque est fausse.
+\end{ex}
+
+\subsection{Fonctions bornées.}
+
+\begin{defi}{}{}
+    Une fonction $f: X\to \R$ est dite
+    \begin{itemize}
+        \item \bf{majorée} s'il existe $M\in\R$ tel que $\forall x \in X, ~ f(x)\leq M$.
+        \item \bf{minorée} s'il existe $m\in\R$ tel que $\forall x \in X, ~ f(x) \geq m$.
+        \item \bf{bornée} si elle est majorée et minorée.
+    \end{itemize}
+\end{defi}
+
+\begin{prop}{Caractérisation des fonctions bornées.}{}
+    Soit $f:X\to\R$ une fonction.
+    \begin{equation*}
+        f \nt{ est bornée} \quad \iff \quad \exists \mu \in \R_+,~\forall x \in X, ~ |f(x)|\leq\mu.
+    \end{equation*}
+    \tcblower
+    On a
+    \begin{equation*}
+        f \nt{ bornée} \iff \{f(x),~x\in X\} \nt{ est borné}.
+    \end{equation*}
+    Il reste alors à appliquer la caractérisation des parties bornées à cet ensemble (cours précédent).
+\end{prop}
+
+\begin{ex}{$\star$}{}
+    Soient deux fonctions bornées $f$ et $g$ définies sur un même ensemble $X$.\\
+    Montrer que leur somme $f+g$ et leur produit $fg$ sont bornées.
+    \tcblower
+    Il existe $M,N\in\R_+$ tels que $\forall x \in X,~|f(x)|\leq M$ et $|g(x)|\leq N$.\\
+    Alors pour $x\in X$, on a $|f(x)+g(x)|\leq|f(x)|+|g(x)|\leq M + N$, la somme est bornée.\\
+    De même, $|f(x)g(x)|=|f(x)||g(x)|\leq MN$. Le produit est borné. 
+\end{ex}
+
+\begin{defi}{}{}
+    Soit une fonction $f:X\to\R$ et $a\in X$. On dit que
+    \begin{itemize}
+        \item $f$ admet un \bf{maximum} en $a$ si $\forall x\in X,~f(x)\leq f(a)$.
+        \item $f$ admet un \bf{minimum} en $a$ si $\forall x\in X,~f(x)\geq f(a)$.
+        \item un \bf{extremum} est un maximum ou un minimum.
+    \end{itemize}
+\end{defi}
+
+\subsection{Bijections.}
+
+La notion de bijection entre un ensemble $E$ et un ensemble $F$ sera étudiée ultérieurement.\\
+On se contente ici de quelques résultats sur les bijections entre deux intervalles $I$ et $J$ de $\R$.
+
+\begin{defi}{}{}
+    On dit qu'une fonction $f:I\to J$ est une \bf{bijection} de $I$ vers $J$ si tout élément de $J$ possède un unique antécédent dans $I$ par $f$, ce qui s'écrit
+    \begin{equation*}
+        \forall y \in J,~\exists!x\in I\quad y=f(x).
+    \end{equation*}
+\end{defi}
+
+\begin{defi}{}{}
+    Soit $f:I\to J$ une bijection. Tout élément $y\in J$ possède un unique antécédent dans $I$ par $f$; notons-le $f^{-1}(y)$. Ceci définit la fonction \bf{réciproque} de $f$.
+    \begin{equation*}
+        f^{-1}:\begin{cases}J&\to\quad I\\y&\mapsto\quad f^{-1}(y)\end{cases}.
+    \end{equation*}
+\end{defi}
+
+\begin{meth}{L'équation reliée à la bijectivité.}{}
+    Prouver la bijectivité de $f:I\to J$ revient à montre rque pour tout élément $y\in J$, l'équation
+    \begin{equation*}
+        y=f(x),
+    \end{equation*}
+    a une unique solution dans $I$. Calculer $f^{-1}(y)$ c'est exprimer cette solution $x$ en fonction de $y$.
+\end{meth}
+
+\begin{ex}{}{}
+    Montrer que $f:x\mapsto\sqrt{1+x^2}$ réalise une bijection de $\R_+$ dans $[1,+\infty[$ et expliciter sa réciproque.
+    \tcblower
+    Soit $y\in[1,+\infty[$, on cherche $x\in\R_+$ tel que $\sqrt{1+x^2}=y$.\\
+    On a $1+x^2=y^2$ donc $x^2=y^2-1$ et $x=\sqrt{y^2-1}$ car $x\in\R_+$.\\
+    L'équation a donc une unique solution. C'est bien une bijection de $\R_+$ vers $[1,+\infty[$.\\
+    Sa réciproque est $f^{-1}:x\mapsto\sqrt{y^2-1}$.
+\end{ex}
+
+\begin{prop}{découle de la définition de $f^{-1}$}{}
+    Soit $f:I\to J$ une bijection et $f^{-1}:J\to I$ sa réciproque. On a
+    \begin{equation*}
+        \forall x\in I\quad f^{-1}(f(x))=x\quad\et\quad\forall y\in J\quad f(f^{-1}(y))=y.
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $f:I\to J$ une bijection.\\
+    Le graphe de $f^{-1}:J\to I$ est le symétrique de celui de $f$ par rapport à la droite d'équation $y=x$.
+    \tcblower
+    Notons $C_f$ et $C_{f^{-1}}$ les graphes de $f$ et $f^{-1}$. Soit $(x,y)\in \R^2$.
+    \begin{equation*}
+        (x,y)\in C_f \iff x\in I\et y=f(x)\iff y\in J\et x=f^{-1}(y) \iff (y,x)\in C_{f^{-1}}.
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $f:I\to J$ une bijection.
+    \begin{enumerate}
+        \item Si $f$ est strictement croissante (resp. strictement décroissante) sur $I$, alors $f^{-1}$ est strictement croissante (resp. strictement décroissante sur $J$).
+        \item Si $f$ est impaire, alors $f^{-1}:J\to I$ l'est aussi.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Supposons $f$ strictement croissante sur $I$, soient $y,y'\in J$. Par contraposée, supposons $f^{-1}(y)\geq f^{-1}(y')$.\\
+    Appliquons $f$ croissante: $f(f^{-1}(y))\geq f(f^{-1}(y'))$ alors $y\geq y'$.\n
+    \boxed{2.} Supposons $f$ impaire sur $I$ et soit $y\in J$. On note $x=f^{-1}(y)$. Alors:
+    \begin{equation*}
+        -y=-f(x)=f(-x)\quad\nt{donc }-y\in J.
+    \end{equation*}
+    Alors $f^{-1}(-y)=f^{-1}(f(-x))=-x=-f^{-1}(y)$.\\
+    On a $f^{-1}$ bien impaire sur $J$.
+\end{prop}
+
+\section{Continuité et dérivabilité.}
+
+\subsection{Définitions.}
+
+\begin{defi}{}{}
+    Soit $f:I\to\K$ et $a\in I$. La fonction $f$ est \bf{continue} en $a$ si
+    \begin{equation*}
+        f(x)\xrightarrow[x\to a]{}f(a).
+    \end{equation*} 
+    Si $f$ est continue en tout point de $I$, elle est dite \bf{continue sur} I.
+\end{defi}
+
+\begin{defi}{}{}
+    Soit $f:I\to\K$ et $a\in I$. La fonction $f$ est \bf{dérivable} en $a$ si
+    \begin{equation*}
+        \frac{f(x)-f(a)}{x-a}\quad(x\neq a)
+    \end{equation*}
+    a une limite finie lorsque $x$ tend vers $a$. On note alors $f'(a)=\lim_{x\to a}\frac{f(x)-f(a)}{x-a}$.\\
+    Si $f$ est dérivable en tout point de $I$, elle est dite \bf{dérivable} sur $I$.\\
+    La fonction $f':\begin{cases}I&\to\quad\K\\x&\mapsto\quad f'(x)\end{cases}$, est alors appelée \bf{dérivée} de $f$.
+\end{defi}
+
+\begin{ex}{}{}
+    Continuité et dérivabilité de la fonction $f:x\mapsto\sqrt{x}$.
+    \tcblower
+    $\bullet$ Montrons que $f$ est dérivable sur $\R_+^*$. Soit $a\in\R_+^*$, $x\in\R_+\setminus\{a\}$.
+    \begin{equation*}
+        \frac{f(x)-f(a)}{x-a}=\frac{\sqrt{x}-\sqrt{a}}{x-a}=\frac{\sqrt{x}-\sqrt{a}}{(\sqrt{x}-\sqrt{a})(\sqrt{x}+\sqrt{a})}=\frac{1}{\sqrt{x}+\sqrt{a}}\xrightarrow[x\to a]{}\frac{1}{2\sqrt{a}}
+    \end{equation*}
+    Donc $f$ est dérivable en $a$ et $f'(a)=\frac{1}{2\sqrt{a}}$.\n
+    $\bullet$ Montrons que $f$ n'est pas dérivable en 0. Soit $x\in\R_+^*$.
+    \begin{equation*}
+        \frac{f(x)-f(0)}{x-0}=\frac{\sqrt{x}}{x}=\frac{1}{\sqrt{x}}\xrightarrow[x\to0]{}+\infty
+    \end{equation*}
+    Ainsi, $f$ n'est pas dérivable en 0.
+\end{ex}
+
+\begin{center}
+    \includegraphics*[scale=0.9]{derivees_usuelles.png}
+\end{center}
+
+\begin{prop}{}{}
+    Si une fonction est dérivable, alors elle est continue, la réciproque est fausse.
+    \tcblower
+    Soit $f:I\to \K$ et supposée dérivable en $a\in I$. Pour $x\in I\setminus\{a\}$, on a
+    \begin{equation*}
+        f(x)-f(a)=\frac{f(x)-f(a)}{x-a}(x-a)\xrightarrow[x\to a]{} f'(a)\cdot 0 = 0.
+    \end{equation*}
+    Ainsi, $f(x)\xrightarrow[x\to a]{}f(a)$, donc $f$ est continue en $a$.
+\end{prop}
+
+\subsection{Continuité et opérations.}
+
+\begin{prop}{}{}
+    Si $f$ et $g$ sont continues sur $I$, alors leur somme et leur produit sont continues sur $I$.\\
+    Si $f$ et $g$ sont continues sur $I$ et que $g$ ne s'annule pas sur $I$, leur quotient est continu sur $I$.
+\end{prop}
+
+\begin{prop}{}{}
+    Soient deux fonctions $f:I\to J$ et $g:J\to\K$.\\
+    Si $f$ est continue sur $I$ et $g$ est continue sur $J$, alors la composée $g\circ f$ est continue sur $I$.
+\end{prop}
+
+\subsection{Dérivabilité et opérations.}
+
+La plupart des résultats théoriques seront démontrés dans le cours dédié à la dérivabilité.
+
+\begin{prop}{Dérivée d'une somme, d'un produit, d'un quotient.}{}
+    Soient deux fonctions $f,g:I\to\K$, dérivables sur l'intervalle $I$. Soit $\l\in\R$.
+    \begin{itemize}
+        \item La fonction $f+g$ est dérivable sur $I$ et $(f+g)'=f'+g'$.
+        \item La fonction $\l f$ est dérivable sur $I$ et $(\l f)'=\l f'$.
+        \item La fonction $fg$ est dérivable sur $I$ et $(fg)'=f'g+fg'$.
+        \item Si $g$ ne s'annule pas sur $I$, la fonction $f/g$ est dérivable sur $I$ et $(f/g)'=\frac{f'g-fg'}{g^2}$.
+    \end{itemize}
+\end{prop}
+
+\begin{thm}{Dérivée d'une composée. $\star$}{}
+    Soient deux fonctions $f:I\to J$ et $g:J\to\K$.\\
+    Si $f$ est dérivable sur $I$ et $g$ dérivable sur $J$, alors $g\circ f$ est dérivable sur $I$ et
+    \begin{center}
+        \boxed{(g\circ f')=f'\cdot(g'\circ f)} \quad i.e. \quad $\forall x \in I, ~ (g\circ f)'(x)=f'(x)g'(f(x))$.
+    \end{center}
+\end{thm}
+
+\begin{ex}{}{}
+    Dériver les fonctions $A:x\mapsto\cos(\ln(x))$ et $B:x\mapsto(\ch(x))^{\pi}$.
+    \tcblower
+    $\bullet$ On a $\ln$ dérivable sur $\R_+^*$ et $\cos$ dérivable sur $\R$, alors $A$ est dérivable sur $\R_+^*$. Pour $x\in\R_+^*$:
+    \begin{equation*}
+        A'(x)=\ln'(x)\cos'(\ln(x))=\frac{1}{x}\sin(\ln(x)).
+    \end{equation*}
+    $\bullet$ Notons $u:x\mapsto x^\pi$, dérivable sur $\R_+^*$, on a $\ch$ dérivable sur $\R$, alors $B$ est dérivable sur $\R$ et pour $x\in\R$:
+    \begin{equation*}
+        B'(x)=\\ch'(x)u'(\ch(x))=\sh(x)(\pi\ch(x)^{\pi-1}).
+    \end{equation*}
+\end{ex}
+
+\pagebreak
+
+\begin{ex}{}{}
+    Soit $C:x\mapsto\sqrt{1-x^2}$. Où est-elle définie ? Où est-elle dérivable ? Donner sa dérivée.
+    \tcblower
+    Elle est définie sur $\{x\in\R\mid 1-x^2\geq0\}=[-1,1]$.\\
+    La fonction $\sqrt{\cdot}$ est dérivable sur $\R_+^*$ et $u : x \mapsto 1-x^2$ est dérivable sur $\R$.\\
+    C'est est dérivable par composée sur $]-1,1[$. Sa dérivée est pour $x\in]-1,1[$:
+    \begin{equation*}
+        C'(x)=u'(x)\frac{1}{2u(x)}=\frac{-2x}{2\sqrt{1-x^2}}=\frac{-x}{\sqrt{1-x^2}}.
+    \end{equation*} 
+\end{ex}
+
+\begin{corr}{Cas particuliers courants.}{}
+    Soit $u:I\to\R$, dérivable sur $I$, alors
+    \begin{itemize}
+        \item la fonction $e^u$ est dérivable sur $I$ et \boxed{(e^u)'=u'e^u}.
+        \item $u^n$ est dérivable sur $I$ et $(u^n)'=nu'u^{n-1}$.
+    \end{itemize}
+    Si de surcroît
+    \begin{itemize}
+        \item $u:I\to\R^*$, alors $1/u$ est dérivable sur $I$ et \boxed{\left( \frac{1}{u} \right)'=-\frac{u'}{u^2}}.
+        \item $u:I\to\R_+^*$, alos pour tout réel $a$, $u^a$ est dérivable sur $I$ et \boxed{(u^a)'=au'u^{a-1}}.\\
+        Notamment, \boxed{(\sqrt{u})'=\frac{u'}{2\sqrt{u}}}.
+        \item $u:I\to\R_+^*$, la fonction $\ln(u)$ est dérivable sur $I$ et \boxed{(\ln(u))'=\frac{u'}{u}}.
+    \end{itemize}
+\end{corr}
+
+\bf{Remarque.} À quoi sert de regarder des cas particuliers puisqu'on a une formule simple dans le cas général ? La réponse est à chercher du côté du calcul de primitive : nous aurons besoin de savoir << dériver à l'envers >> : il est donc utile de bien connaître la forme des dérivées de composées dans les cas courants.
+
+\subsection{Dérivée d'une réciproque.}
+
+\begin{thm}{Dérivée d'une réciproque.}{}
+    Soit une bijection $f:I\to J$ dérivable sur $I$.\\
+    Sa réciproque $f^{-1}$ est dérivable sur $J$ ssi $f'$ ne s'annule pas sur $I$. On a alors
+    \begin{center}
+        \boxed{(f^{-1})'=\frac{1}{f'\circ f^{-1}}}\quad i.e.\quad $\forall y\in J\quad(f^{-1})'(y)=\frac{1}{f'(f^{-1}(y))}$.
+    \end{center}
+\end{thm}
+
+\begin{ex}{}{}
+    Appliquer le théorème pour retrouver le résultat connu sur la dérivée de ln.
+    \tcblower
+    La fonction exponentielle est une bijection de $\R$ dans $\R_+^*$, elle est dérivable sur $\R$ et sa dérivée ne s'annule pas sur $\R$, donc par théorème, sa réciproque $\ln$ est dérivable sur $\R_+^*$ et pour $x\in\R_+^*$:
+    \begin{equation*}
+        \ln'(x)=\frac{1}{\exp'(\ln(x))}=\frac{1}{x}.
+    \end{equation*}
+\end{ex}
+
+\subsection{Dérivées d'ordre supérieur.}
+
+\begin{defi}{}{}
+    Soit $f:I\to\K$ une fonction dérivable sur $I$ telle que $f':I\to\K$ est elle-même dérivable sur $I$.\\
+    On appelle \bf{dérivée seconde de} $f$ et on note $f''$ la fonction dérivée de $f'$.
+\end{defi}
+
+\begin{defi}{}{}
+    Soit $f:I\to\K$. On peut définir par récurrence une dérivée de $f$ à l'ordre $n$, notée $f^{(n)}$.
+    \begin{itemize}
+        \item On convient que $f^{(0)}=f$.
+        \item Soit $n\in\N$, si $f^{(n)}$ est bien définie et dérivable sur $I$, alors \boxed{f^{(n+1)}=(f^{(n)})'}.
+    \end{itemize}
+\end{defi}
+
+\begin{ex}{$\star$}{}
+    Dérivées successives de $f:x\mapsto x^p$ ($p\in\N$) et de $\ln$ sur $\R_+^*$.
+    \tcblower
+    Elles sont dérivables, de même pour toutes leurs dérivées successives. Soit $x\in\R$.\\
+    On a $f'(x)=px^{p-1}$, $f''(x)=p(p-1)x^{p-2}$ ... $f^{(n)}(x)=p(p-1)...(p-(n-1))x^{p-n}$.\\
+    Alors si $p<n$, alors $f^{(n)(x)=0}$, sinon, $f^{(n)}(x)=\frac{p!}{(p-n)!}x^{p-n}$.\\
+    Soit $x\in\R_+^*$, on a $\ln^0(x)=\ln(x)$, $\ln'(x)=\frac{1}{x}$, $\ln''(x)=-\frac{1}{x^2}$... $\ln^{(n)}(x)=(-1)^{n-1}(n-1)!x^{-n}$. 
+\end{ex}
+
+\section{Résultats importants du cours d'analyse.}
+Les théorèmes présentés dans cette section étaient connus en Terminale, et seront démontrés plus tard dans l'année dans un cours d'analyse où la notion de limite aura été définie rigoureusement.
+\subsection{Théorème des valeurs intermédiaires.}
+
+\begin{thm}{}{}
+    Soient deux réels $a\leq b$ et $f:[a,b]\to\R$ continue. Alors, pour tout réel $y$ entre $f(a)$ et $f(b)$,
+    \begin{equation*}
+        \exists c\in[a,b]\quad y=f(c)
+    \end{equation*}
+\end{thm}
+Autrement dit, toutre valeur intermédiaire entre $f(a)$ et $f(b)$ possède (au moins) un antécédent par $f$. Comme on le voit dans l'exemple ci-dessous, il n'y a pas forcément unicité de l'antécédent.\n
+Le TVI pourra donc être utilisé pour prouver l'existence d'une solution à une équation. Ceci est illustré dans le corollaire suivant, qui revient à prouver l'existence d'une solution à une équation du type $f(x)=0$.
+
+\begin{corr}{Changement de signe d'une fonction continue.}{}
+    Si une fonction continue sur un intervalle y change de signe, alors elle s'annule sur cet intervalle.
+\end{corr}
+
+Voici maintenant un corollaire où l'hypothèse de stricte monotonie est ajoutée, il pourra être utilisé pour prouver l'existence \bf{et} l'unicité d'une solution à une équation.
+
+\begin{corr}{TVI strictement monotone.}{}
+    Soit $f:[a,b]\to\R$ continue et strictement monotone sur $[a,b]$. Pour tout réel $y$ entre $f(a)$ et $f(b)$
+    \begin{equation*}
+        \exists!c\in[a,b]\quad y=f(c).
+    \end{equation*}
+\end{corr}
+
+\begin{ex}{}{}
+    Soient $a$ et $b$ deux nombres réels, on considère l'équation
+    \begin{equation*}
+        x^3+ax+b=0.
+    \end{equation*}
+    \begin{enumerate}
+        \item Démontrer que l'équation possède une solution et ce quelles que soient les valeurs de $a$ et $b$.
+        \item Démontrer l'unicité de la solution dans le cas où $a$ est positif.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Posons $f:x\mapsto x^3+ax+b$ polynomiale donc continue sur $\R$.\\
+    Elle tend vers $-\infty$ en $-\infty$ et $+\infty$ en $+\infty$, elle change alors de signe, donc s'annule par TVI.\n
+    \boxed{2.} Supposons $a\geq0$, $f$ est dérivable sur $\R$ et pour $x\in\R^*$, $f'(x)=3x^2+a>0$.\\
+    Ainsi, $\forall x\in]-\infty,0[, ~ f'(x)>0$, $f$ est strictement croissante sur $]-\infty,0[$, de même sur $]0,+\infty[$.\\
+    Bilan: $f$ est strictement croissante et continue sur $\R$. Par TVI, $\exists!c\in\R\mid f(c)=0$.
+\end{ex}
+
+\begin{thm}{Théorème de la bijection continue.}{}
+    Soit $I$ un intervalle de $\R$ et $f:I\to\R$ une fonction.\vspace*{0.2cm}
+    \begin{center}
+        \fbox{Si $f$ est \bf{strictement monotone} et \bf{continue} sur $I$, alors elle réalise une bijection de $I$ dans $f(I)$.}
+    \end{center}\vspace*{0.2cm}
+    Précisons que la notation $f(I)$ désigne l'ensemble des images des éléments de $I$ par $f$.
+    \begin{equation*}
+        f(I)=\{f(x),x\in I\}=\{y\in J\mid \exists x \in I~:~y=f(x)\}.
+    \end{equation*}
+    De surcroît,
+    \begin{itemize}
+        \item L'ensemble $f(I)$ est un intervalle.
+        \item Sur cet intervalle, $f^{-1}$ est strictement monotone, de même monotonie que $f$.
+        \item Sur cet intervalle, la réciproque $f^{-1}$ est continue.
+    \end{itemize}
+\end{thm}
+
+\begin{ex}{$\star$}{}
+    \begin{enumerate}
+        \item Justifier que $\sh$ réalise une bijection de $\R$ dans $\R$.
+        \item Expliciter sa réciproque, puis calculer la dérivée de cette réciproque.
+        \item Retrouver le dernier résultat en appliquant le théorème de dérivation d'une réciproque.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} $\sh$ est continue et strictement croissante sur $\R$, d'après le théorème de la bijection continue, elle réalise une bijection de $\R$ dans $\sh(R)=\R$.\\
+    \boxed{2.} Soient $x,y\in\R$, on pose l'équation $y=\sh(x)$:
+    \begin{align*}
+        y=\sh(x)&\iff y=\frac{e^x-e^{-x}}{2}\iff e^x-2y-e^{-x}=0\iff e^{2x}-2ye^{x}-1=0\\
+        &\iff e^x \nt{ racine de } X^2-2yX-1=0 \iff e^x=y+\sqrt{y^2+1}\iff x=\ln(y+\sqrt{y^2}+1).
+    \end{align*}
+    La réciproque de $\sh$ est donc argsh$:x\mapsto\ln(x+\sqrt{x^2+1})$.\\
+    En dérivant, on trouve pour $x\in\R$ que argsh$'(x)=\frac{1}{\sqrt{x^2+1}}$.\\
+    \boxed{3.} $\sh$ est dérivable et ne s'annule pas sur $\R$, $\nt{argsh}=\frac{1}{\ch(\nt{argsh}(x))}=\frac{1}{\sqrt{1+\sh^2(\nt{argsh}(x))}}=\frac{1}{\sqrt{1+x^2}}$.
+\end{ex}
+
+\subsection{Variations des fonctions dérivables.}
+
+\begin{thm}{Caractérisation des fonctions monotones parmi les fonctions dérivables.}{}
+    Soit $I$ un intervalle et $f:I\to\R$ dérivable sur $I$.
+    \begin{itemize}
+        \item $f$ est croissante sur $I$ ssi $f'$ est positive sur $I$.
+        \item $f$ est décroissante sur $I$ ssi $f'$ est négative sur $I$.
+        \item $f$ est constante sur $I$ ssi $f'$ est nulle sur $I$.
+    \end{itemize}
+\end{thm}
+
+\begin{prop}{Caractérisation des fonctions strictement motones parmi les fonctions dérivables.}{}
+    Soit $I$ un intervalle et $f:I\to\R$ dérivable sur $I$.\\
+    La fonction $f$ est strictement croissante sur $I$ ssi $f'$ est positive (ou nulle) sur $I$ et n'est identiquement nulle sur aucun intervalle $[a,b]$ inclus dans $I$ avec $a<b$.
+\end{prop}
+
+\begin{corr}{Dans la pratique.}{}
+    Soit $I$ un intervalle, et $f:I\to\R$ dérivable sur $I$.
+    \begin{itemize}
+        \item Si $f'$ est strictement positive sur $I$, alors $f$ y est strictement croissante. Réciproque fausse.
+        \item Si $f'$ est strictement négative sur $I$, alors $f$ y est strictement décroissante. Réciproque fausse.
+    \end{itemize}
+    L'implication demeure vraie si $f'$ ne s'annule qu'en un nombre fini de points de $I$.
+\end{corr}
+
+\begin{ex}{}{}
+    Donner un exemple de fonction...
+    \begin{enumerate}
+        \item dérivable et strictement croissante sur $\R$, dont la dérivée s'annule.
+        \item dérivable sur $\R^*$, et dont la dérivée est négative sans que la fonction soit décroissante sur $\R^*$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} La fonction cube est dérivable sur $\R$ et strictement croissante, sa dérivée s'annule en 0.\\
+    \boxed{2.} La fonction $f:x\mapsto\frac{1}{x}$ est dérivable sur $\R^*$, de dérivée négative, mais $f$ n'est pas décroissante sur $\R^*$.
+\end{ex}
+
+\begin{meth}{Conseils pour l'étude d'une fonction}{}
+    \begin{itemize}
+        \item Déterminer son ensemble de définition.
+        \item Détecter une éventuelle parité/imparité/périodicité et réduire en conséquence le domaine d'étude.
+        \item Pour l'étude des variations, on ne se rue pas sur la dérivation si la fonction est une somme ou une composée de fonction croissantes, par exemple !
+        \item Dans le cas où on dérive, on justifie sur quel ensemble et pourquoi on peut le faire, soigneusement.
+        \item Calcul de la dérivée. Puisque c'est son signe qui nous intéressera, on cherche à la \bf{factoriser} le plus possible!
+        \item Étude du signe de la dérivée : il suffira la plupart du temps de résoude l'\bf{inéquation} $f'(x)\geq0$.
+        \item Tableau de signe pour la dérivée, de variations pour la fonction.
+        \item Calcul des limites aux bords. Si on détecte une incohérence, il est encore temps de se relire !
+        \item Esquisser un graphe résumant l'étude. Ne pas hésiter à y souligner des valeurs, ou des tangentes notables.
+    \end{itemize}
+\end{meth}
+
+\section{Exercices.}
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    Soit $f:\mathbb{R}\rightarrow\mathbb{R}$ une fonction $2$-périodique et $3$-périodique. Montrer que $f$ est $1$-périodique.
+    \tcblower
+    On a $\forall{x\in\mathbb{R}}\begin{cases}x-2\in\mathbb{R}\\f(x-2)=f(x)\end{cases} \text{ et } \begin{cases}x+3\in\mathbb{R}\\f(x+3)=f(x)\end{cases}$.\\
+    Alors $\forall{x\in\mathbb{R}}\begin{cases}x-2+3\in\mathbb{R}\\f(x-2+3)=f(x-2)=f(x)\end{cases}$
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\blacklozenge$}{}
+    Déterminer toutes les fonctions croissantes $f:\mathbb{R}\rightarrow\mathbb{R}$ telles que
+    \begin{equation*}
+        \forall{x\in\mathbb{R}} \hspace{0.25cm} f(f(x))=x.
+    \end{equation*}
+    \tcblower
+    Soit $x\in\mathbb{R}$ et $f$ une solution du problème.\\
+    On remarque que $f:x\mapsto x$ est solution du problème.\\
+    $\bullet$ Supposons $f(x)>x$, on a : $f(f(x))>f(x)$ par croissance de $f$.\\
+    Or $f(f(x))=x$ donc $x>f(x)$, ce qui est absurde.\n
+    $\bullet$ Supposons $f(x)<x$, on a : $f(f(x))<f(x)$ par croissance de $f$.\\
+    Or $f(f(x))=x$ donc $x<f(x)$, ce qui est absurde.\n
+    Ainsi, la seule fonction de $\mathbb{R}$ vers $\mathbb{R}$ solution est $f:x\mapsto x$.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    Pour chacune des fonctions ci-dessous, donner un ou plusieurs intervalles sur lesquels la fonction est dérivable, et préciser sa dérivée.
+    \begin{center}
+        $A:x\mapsto x^\pi,\hspace{0.5cm}B:x\mapsto\pi^x,\hspace{0.5cm}C:x\mapsto\cos(5x),\hspace{0.5cm}D:x\mapsto\th(\ch(x))$,\\
+        $E:x\mapsto\ln\left(1+x^3\right)n\hspace{0.5cm}F:x\mapsto\cos\left(\sqrt{\ln(x)}\right),\hspace{0.5cm}G:x\mapsto\frac{1}{\sqrt{3x-1}},\hspace{0.5cm}H:x\mapsto\sin|x+1|$.
+    \end{center}
+    \tcblower
+    \null
+    \begin{itemize}
+        \item $A':\begin{cases}\mathbb{R}^*_+\rightarrow\mathbb{R}\\x\mapsto\pi x^{\pi-1}\end{cases}$\hspace{1.8cm}• $D':\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto\frac{\sh(x)}{\ch^2(\ch(x))}\end{cases}$\hspace{1.6cm}• $G':x\mapsto-\frac{3}{2}(3x-1)^{3/2}$
+        \item $B':\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto\ln(\pi)\pi^x\end{cases}$\hspace{1.5cm}• $E':\begin{cases}\mathbb{R}\setminus\{1\}\rightarrow\mathbb{R}\\x\mapsto\frac{3x^2}{1+x^3}\end{cases}$\hspace{1.6cm}• $H'_-:\begin{cases}]-\infty,-1[\rightarrow\mathbb{R}\\x\mapsto-\cos(-x-1)\end{cases}$
+        \item $C':\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto-5\sin(5x)\end{cases}$\hspace{1.0cm}• $F':\begin{cases}]1,+\infty[\rightarrow\mathbb{R}\\x\mapsto\frac{\sin(\sqrt{\ln(x)})}{2x\sqrt{\ln(x)}}\end{cases}$\hspace{1.6cm}• $H'_+:\begin{cases}]1,+\infty[\rightarrow\mathbb{R}\\x\mapsto\cos(x+1)\end{cases}$
+    \end{itemize}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    Donner le tableau de variations complet de
+    \begin{align*}
+        f:x\mapsto x^{x\ln(x)}
+    \end{align*}
+    \tcblower
+    On a $f':\begin{cases}\mathbb{R}_+^*\rightarrow\mathbb{R}\\x\mapsto\ln(x)(\ln(x)+2)e^{x\ln^2(x)}\end{cases}$.\\
+    Son tableau de variations est donc :\vspace*{0.2cm}
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=3]{$x$/0.6,$f'(x)$/0.6,$f$/1.4}{$0$,$e^{-2}$,$1$,$+\infty$}
+            \tkzTabLine{d,+,z,-,z,+}
+            \tkzTabVar{-/$1$,+/$e^{4/e^{2}}$,-/$1$,+/$+\infty$}
+        \end{tikzpicture}
+    \end{center}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    1. Démontrer que
+    \begin{equation*}
+        \forall x\in]-1,+\infty[, \hspace{0.5cm} \frac{x}{1+x}\leq\ln(1+x)\leq x.
+    \end{equation*}
+    2. À l'aide du théorème des gendarmes, calculer $\lim\limits_{x\rightarrow0}{\frac{\ln(1+x)}{x}}$.\\
+    3. Retrouver ce résultat en faisant apparaître un taux d'accroissement.
+    \tcblower
+    \boxed{1.} Posons :
+    \begin{equation*}
+        f:x\mapsto\frac{x}{1+x}-\ln(1+x) \hspace{2cm} g:x\mapsto\ln(1+x)-x
+    \end{equation*}
+    Elles sont dérivables et tout et tout :
+    \begin{equation*}
+        f':x\mapsto-\frac{x}{(1+x)^2} \hspace{2cm} g':x\mapsto-\frac{x}{1+x}
+    \end{equation*}
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=4]{$x$/0.6,$f'(x)$/0.6,$f$/1.4}{$-1$,0,$+\infty$}
+            \tkzTabLine{d,+,z,-}
+            \tkzTabVar{D-/$-\infty$, +/$0$, -/$-\infty$}
+        \end{tikzpicture}
+        \\[0.25cm]
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=4]{$x$/0.6,$g'(x)$/0.6,$g$/1.4}{$-1$,0,$+\infty$}
+            \tkzTabLine{d,+,z,-}
+            \tkzTabVar{D-/$-\infty$, +/$0$, -/$-\infty$}
+        \end{tikzpicture}
+    \end{center}
+    L'inégalité est donc vérifiée car ces fonctions prennent des valeurs négatives.\n
+    \boxed{2.} Soit $x\in]-1,+\infty[$. On a :
+    \begin{equation*}
+        \frac{x}{1+x}\leq\ln(1+x)\leq x
+    \end{equation*}
+    Et :
+    \begin{equation*}
+        \lim_{x\rightarrow0}\frac{1}{1+x}=1 \hspace{1cm} \text{et} \hspace{1cm} \lim_{x\rightarrow0}1=1
+    \end{equation*}
+    Donc, d'après le théorème des gendarmes :
+   \begin{equation*}
+        \lim_{x\rightarrow0}\frac{\ln(1+x)}{x}=1
+   \end{equation*}
+   \boxed{3.}
+   On a :
+   \begin{equation*}
+        \lim_{x\rightarrow0}\frac{\ln(x+1)}{x}=\lim_{x\rightarrow0}\frac{\ln(x+1)-\ln(1)}{x}=\ln'(1)=\frac{1}{1}=1
+   \end{equation*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Démontrer l'inégalité
+    \begin{equation*}
+        \forall{x\in\mathbb{R}_+}, \hspace{1cm} 0\leq x-\sin x\leq\frac{x^3}{6}.
+    \end{equation*}
+    \tcblower
+    Posons :
+    \begin{equation*}
+        f:x\mapsto x-\sin x \hspace{2cm} g:x\mapsto x-\sin x - \frac{x^3}{6}
+    \end{equation*}
+    Ces fonctions sont dérivables sur $\mathbb{R}_+$ :
+    \begin{equation*}
+        f':x\mapsto 1-\cos x \hspace {2cm} g':x\mapsto 1-\cos x - \frac{x^2}{2}
+    \end{equation*}
+    La première inégalité est triviale car $\cos x\leq1$, ainsi $x-\sin x\geq 0$.\\
+    On a :
+    \begin{equation*}
+        g'':x\mapsto\sin x - x
+    \end{equation*}
+    Et donc :
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=8]{$x$/0.6,$g''(x)$/0.6,$g'(x)$/1.4,$g$/1.4}{$0$,$+\infty$}
+            \tkzTabLine{z,-}
+            \tkzTabVar{+/$0$,-/$-\infty$}
+            \tkzTabVar{+/$0$,-/$-\infty$}
+        \end{tikzpicture}
+    \end{center}
+    Ainsi, $g$ prend des valeurs négatives sur $\mathbb{R}_+$, donc : $x-\sin x\leq\frac{x^3}{6}$.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Faire une étude complète de la fonction 
+    \begin{equation*}
+        f:x\mapsto\ln\left(\left|\frac{1+x}{1-x}\right|\right)
+    \end{equation*}
+    \tcblower
+    $\circledcirc$ Soit $x\in]-1,1[$.\\
+    On a :
+    \begin{equation*}
+        f:x\mapsto\ln\left(\frac{1+x}{1-x}\right) \hspace{2cm} f':x\mapsto\frac{2}{1-x^2}
+    \end{equation*}
+    $\circledcirc$ Soit $x\in]-\infty,-1[]1,+\infty[$.\\
+    On a :
+    \begin{equation*}
+        f:x\mapsto\ln\left(-\frac{1+x}{1-x}\right) \hspace{2cm} f':x\mapsto\frac{2}{1-x^2}
+    \end{equation*}
+    Donc :
+    \begin{equation*}
+        \forall{x\in\mathbb{R}\setminus\{-1,1\}}, \hspace{1cm} f':x\mapsto\frac{2}{1-x^2}.
+    \end{equation*}
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=4]{$x$/0.6,$f'(x)$/0.6,$f$/1.4}{$-\infty$,-1,1,$+\infty$}
+            \tkzTabLine{,-,d,+,d,-}
+            \tkzTabVar{+/$0$,-D-/$-\infty$/$-\infty$,+D+/$+\infty$/$+\infty$,-/$0$}
+        \end{tikzpicture}
+    \end{center}
+    Pour les limites on a factorisé par $x$ :
+    \begin{equation*}
+        f:x\mapsto\ln\left(\left|\frac{\frac{1}{x}+1}{\frac{1}{x}-1}\right|\right)
+    \end{equation*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Démontrer l'inégalité
+    \begin{equation*}
+        \forall{x\in]0,1[}\hspace{1cm}x^x(1-x)^{1-x}\geq\frac{1}{2}.
+    \end{equation*}
+    \tcblower
+    Soit $x\in]0,1[$.\\
+    On a :
+    \begin{equation*}
+        x^x(1-x)^{1-x}=e^{x\ln x}e^{(1-x)\ln(1-x)}=e^{x\ln{x}+(1-x)\ln(1-x)}
+    \end{equation*}
+    Posons :
+    \begin{equation*}
+        f:x\mapsto e^{x\ln{x}+(1-x)\ln(1-x)} \hspace{1cm} f':x\mapsto \ln\left(\frac{x}{1-x}\right)e^{x\ln{x}+(1-x)\ln(1-x)}
+    \end{equation*}
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=4]{$x$/0.6,$f'(x)$/0.6,$f$/0.9}{$0$,$0.5$,$1$}
+            \tkzTabLine{d,-,z,+,d}
+            \tkzTabVar{D+/$1$,-/$\frac{1}{2}$,+D/$1$}
+        \end{tikzpicture}
+    \end{center}
+    La fonction est donc toujours supérieur à $\frac{1}{2}$ sur $]0,1[$.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}
+    1. Étudier les variations de $f:x\mapsto\frac{x}{1+x}$ sur $[0,+\infty[$.\\
+    2. Prouver que
+    \begin{equation*}
+        \forall{x,y\in\mathbb{R}}, \hspace{1cm} \frac{|x+y|}{1+|x+y|}\leq\frac{|x|}{1+|x|}+\frac{|y|}{1+|y|}.
+    \end{equation*}
+    \tcblower
+    \boxed{1.} Soit $x\in\lbrack0,+\infty\lbrack$. On a :
+    \begin{equation*}
+        f':x\mapsto\frac{1}{(1+x)^2}
+    \end{equation*}
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=8]{$x$/0.6,$f'(x)$/0.6,$f$/0.9}{$0$,$+\infty$}
+            \tkzTabLine{,+,}
+            \tkzTabVar{-/$0$,+/$1$}
+        \end{tikzpicture}
+    \end{center}
+    \boxed{2.} Soient $x,y\in\mathbb{R}$. Par inégalité triangulaire, on a :
+    \begin{equation*}
+        |x+y|\leq|x|+|y|
+    \end{equation*}
+    On applique $f$, fonction croissante sur $\mathbb{R}_+$, ce qui ne change pas les inégalités:
+    \begin{align*}
+        \frac{|x+y|}{1+|x+y|}&\leq\frac{|x|+|y|}{1+|x|+|y|}\\
+        &\leq\frac{|x|}{1+|x|+|y|}+\frac{|y|}{1+|x|+|y|}\\
+        &\leq\frac{|x|}{1+|x|}+\frac{|y|}{1+|y|}
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Soit la fonction $f:x\mapsto\ln\left(\sqrt{x^2+1}-x\right)$.\\
+    1. Donner le domaine de définition de $f$.\\
+    2. Montrer que $f$ est impaire.\\
+    3. Étudier ses variations et donner le tableau correspondant.
+    \tcblower
+    \boxed{1.} Soit $g:\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto\sqrt{x^2+1}-x\end{cases}$ On a : $g':\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto\frac{x}{\sqrt{x^2+1}}-1\end{cases}$
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=8]{$x$/0.6,$g'(x)$/0.6,$g$/0.9}{$-\infty$,$+\infty$}
+            \tkzTabLine{,-,}
+            \tkzTabVar{+/$+\infty$,-/$0$}
+        \end{tikzpicture}
+    \end{center}
+    $f$ donc définie sur $\mathbb{R}$.\n
+    \boxed{2.} Soit $x\in\mathbb{R}$, on a :
+    \begin{align*}
+        -f(x)&=-\ln\left(\sqrt{x^2+1}-x\right)
+        =\ln\left(\frac{1}{\sqrt{x^2+1}-x}\right)
+        =\ln\left(\frac{\sqrt{x^2+1}+x}{x^2+1-x^2}\right)
+        =\ln\left(\sqrt{x^2+1}+x\right)
+        =f(-x)
+    \end{align*}
+    \boxed{3.} On a $f':\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto-\frac{1}{\sqrt{x^2+1}}\end{cases}$\vspace*{0.2cm}
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=8]{$x$/0.6,$f'(x)$/0.6,$f$/0.9}{$-\infty$,$+\infty$}
+            \tkzTabLine{,-,}
+            \tkzTabVar{+/$+\infty$,-/$-\infty$}
+        \end{tikzpicture}
+    \end{center}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
+    Notons $a$ le nombre
+    \begin{equation*}
+        \sqrt[3]{20+14\sqrt{2}}+\sqrt[3]{20-14\sqrt{2}}.
+    \end{equation*}
+    1. Montrer que $a^3=6a+40$.\\
+    2. En déduire la valeur de $a$.
+    \tcblower
+    \boxed{1.}
+    \begin{align*}
+        a^3&=40+3\sqrt[3]{(20+14\sqrt{2})^2(20-14\sqrt{2})}+3\sqrt[3]{(20+14\sqrt{2})(20-14\sqrt{2})^2}\\
+        &=40+3\sqrt[3]{(20+14\sqrt{2})(400-392)}+3\sqrt[3]{(20-14\sqrt{2})(400-392)}\\
+        &=40+6\sqrt[3]{20+14\sqrt{2}}+6\sqrt[3]{20-14\sqrt{2}}\\
+        &=6a+40
+    \end{align*}
+    \boxed{2.} On a :
+    \begin{align*}
+        a^3-6a-40=0
+        \iff(a-4)(a^2+4a+10)=0
+        \iff a=4
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}
+    Considérons la fonction
+    \begin{equation*}
+        f:\begin{cases}\rbrack1,+\infty\lbrack\rightarrow\mathbb{R}\\x\mapsto\exp(-\frac{1}{\ln(x)})\end{cases}.
+    \end{equation*}
+    1. Démontrer que $f$ réalise une bijection de $\rbrack1,+\infty\lbrack$ dans un intervalle que l'on précisera.\\
+    2. Expliciter la réciproque de $f$. Peut-on écrire en conclusion que $f^{-1}=f$ ?
+    \tcblower
+    \boxed{1.} Soit $x\in\rbrack1,+\infty\lbrack$ et $y\in\mathbb{R}^*_+$. On a :
+    \begin{align*}
+        &y=f(x)\\
+        \iff& y=\exp(-\frac{1}{\ln(x)})\\
+        \iff& \ln(y)=-\frac{1}{\ln(x)}\\
+        \iff& -\frac{1}{\ln(y)}=\ln(x)\\
+        \iff& x=\exp(-\frac{1}{\ln(y)})
+    \end{align*}
+    L'équation a une unique solution, $f$ réalise donc une bijection de $\rbrack1,+\infty\lbrack$ vers $\mathbb{R}^*_+$.\\
+    \boxed{2.} On a :
+    \begin{equation*}
+        f^{-1}:\begin{cases}\mathbb{R}^*_+\rightarrow\rbrack1,+\infty\lbrack\\x\mapsto\exp(-\frac{1}{\ln(x)})\end{cases}
+    \end{equation*}
+    $f\neq f^{-1}$ car leurs domaines de définition sont différents.
+\end{exercice}
+
+\begin{exercice}{$\blacklozenge\blacklozenge\blacklozenge$}{}
+    1. Montrer que $\th$ est une bijection de $\mathbb{R}$ dans $\rbrack-1,1\lbrack$ et déterminer une expression explicite de sa réciproque, qu'on notera $\argth$.\\
+    2. De deux façons différentes, montrer que $\argth$ est dérivable sur son intervalle de définition et calculer sa dérivée.\\
+    3. Montrer que pour tout $x\in\mathbb{R}$, $\argth\left(\frac{1+3\th x}{3+\th x}\right)=x+\ln\sqrt{2}$.
+    \tcblower
+    \boxed{1.} Soit $x\in\mathbb{R}$ et $y\in\rbrack-1,1\lbrack$. On a :
+    \begin{align*}
+        &y=\th(x)\\
+        \iff& y=\frac{e^x-e^{-x}}{e^x+e^{-x}}\\
+        \iff& y=\frac{e^{2x}-1}{e^{2x}+1}\\
+        \iff& e^{2x}(1-y)=y+1\\
+        \iff &e^{2x}=\frac{y+1}{1-y}\\
+        \iff &x=\frac{1}{2}\ln\left(\frac{y+1}{1-y}\right)
+    \end{align*}
+    L'équation a une unique solution, $\th$ réalise donc une bijection de $\mathbb{R}$ dans $\rbrack-1,1\lbrack$.\\
+    Sa réciproque est $\argth:\begin{cases}\rbrack-1,1\lbrack\rightarrow\mathbb{R}\\x\mapsto\frac{1}{2}\ln\left(\frac{x+1}{1-x}\right)\end{cases}$\\[0.25cm]
+    \boxed{2.} On peut montrer que $\argth$ est dérivable sur $]-1,1[$ par le théorème de dérivée des réciproques ou en dérivant $x\mapsto\frac{1}{2}\ln\left(\frac{x+1}{1-x}\right)$ comme composée de fonctions dérivables.\\
+    On retrouve dans les deux cas:
+    \begin{equation*}
+        \argth':\begin{cases}]-1,1[\rightarrow\mathbb{R}\\x\mapsto\frac{1}{1-x^2}\end{cases}
+    \end{equation*}
+    \boxed{3.} Soit $x\in\mathbb{R}$.
+    \begin{align*}
+        \argth\left(\frac{1+3\th x}{3+\th x}\right)&=\frac{1}{2}\ln\left(\frac{\frac{1+3\th x}{3+\th x}+1}{1-\frac{1+3\th x}{3+\th x}}\right)\\
+        &=\frac{1}{2}\ln\left(\frac{\frac{4+4\th x}{3+\th x}}{\frac{2-2\th x}{3 + \th x}}\right)\\
+        &=\frac{1}{2}\ln\left(\frac{2+2\th x}{1-\th x}\right)\\
+        &=\frac{1}{2}\ln\left(\frac{\ch(x)+\sh(x)}{\ch(x)-\sh(x)}\right)+\frac{1}{2}\ln(2)\\
+        &=\frac{1}{2}\ln\left(e^{2x}\right)+\ln(\sqrt{2})\\
+        &=x+\ln\sqrt{2}
+    \end{align*}
+\end{exercice}
+
+\end{document}
