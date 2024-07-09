@@ -1,132 +1,701 @@
 \documentclass[11pt]{article}
 
-\input{Latex/packages}
+\def\chapitre{5}
+\def\pagetitle{Ensembles et applications.}
 
-\def\pagetitle{Ensembles}
-\setlength{\headheight}{14pt}
-
-\title{\bf{\pagetitle}\\\large{Corrigé}}
-
-\hypersetup{
-    colorlinks=true,
-    citecolor=black,
-    linktoc=all,
-    linkcolor=blue
-}
-
-\pagestyle{fancy}
-\cfoot{\thepage\ sur \pageref*{LastPage}}
+\input{/home/theo/MP2I/setup.tex}
 
 \begin{document}
 
-\include{Latex/page}
-\include{Latex/command}
+\input{/home/theo/MP2I/title.tex}
 
 \thispagestyle{fancy}
-\fancyhead[L]{MP2I Paul Valéry}
-\fancyhead[C]{\pagetitle}
-\fancyhead[R]{2023-2024}
-
-\hrule
-\begin{center}
-    \LARGE{\textbf{Chapitre 5}}\\
-    \large{\pagetitle}\\
-    \rule{0.8\textwidth}{0.5pt}
-\end{center}
-
-
-\vspace{0.5cm}
 
 \section{Ensembles et opérations.}
+
 \subsection{Notations.}
 
-\begin{defi}{Naive}{}
+\begin{defi}{Naïve.}{}
     \begin{itemize}
-        \item Un \textbf{ensemble} non vide E est une collection d'objets x appelés \textbf{éléments}.
-        \item On dit d'un élément $x$ de $E$ qu'il \textbf{appartient} à $E$, ce qui se note $x \in E$\\
-        Si l'objet $x$ n'est pas un élément de l'ensemble $E$, on peut noter $x \notin E$
+        \item Un \bf{ensemble} non vide $E$ est une collection d'objets $x$ appelés \bf{éléments}.
+        \item On dit d'un élément $x$ de $E$ qu'il \bf{appartient} à $E$, ce qui se note $x\in E$.\\
+        Si l'objet $x$ n'est pas un élément de $E$, on note $x\notin E$.
         \item On pose qu'il existe un ensemble n'ayant pas d'éléments et que cet ensemble est unique.\\
-        On l'appelle \textbf{ensemble vide} et on note $\0$. Pour tout objet $x$, l'assertion $x \in \0$ est fausse.
-        \item Signe $\ll = \gg$. Si $x$ et $y$ deux éléments d'un ensemble $E$, on notera $x = y$ \\
-        si on veut exprimer que $x$ et $y$ sont un seul et même élément de $E$.
+        On l'appelle \bf{ensemble vide} et on note $\0$. Pour tout objet $x$, l'assertion "$x\in\0$" est fausse.
+        \item Signe << = >>. Si $x$ et $y$ sont deux éléments d'un ensemble $E$, on notera $x=y$ si on veut exprimer que $x$ et $y$ sont un seul et même élement de $E$.
     \end{itemize}
 \end{defi}
 
-\begin{ex}{Ensembles de nombres}{}
+\begin{ex}{Ensembles de nombres.}{}
     \begin{enumerate}
-        \item $\N$ l'ensemble des entiers naturels : $\N = \{ 0, 1, 2, 3, 4,$ · · · $\}$; $\Z$ l'ensemble des entiers relatifs.
-        \item $\Q$ l'ensemble des nombres rationnels $\Q = \{ \frac{a}{b} | a \in \Z, b \in \N^{*} \}$
-        \item $\R$ est l'ensemble des nombres réels. $\R^{*}_{+}$ celui des réels strictement positifs. On a $\R^{*}_{+} = \rbrack 0, \infty \lbrack$.
-        \item Soit $n \in \N^{*}$. L'ensemble des entiers compris entre 1 et n s'écrit
-        \begin{equation*}
-            \{ 1, 2, \text{ ... }, n \}
-        \end{equation*}, \\
-        ou bien $\{k \in \N ~|~ 1 \leq k \leq n \}$. Cet intervalle d'entiers pourra aussi être noté $\lb 1, n \rb$.
+        \item $\N$ l'ensemble des entiers naturels : $\N=\{0,1,...\}$; $\Z$ l'ensemble des entiers relatifs.
+        \item $\Q$ l'ensemble des nombres rationnels $\Q=\{\frac{a}{b}\mid a\in\Z,~ b\in\N^*\}$.
+        \item $\R$ est l'ensemble des nombres réels,  $\R_+^*$ celui des réels strictement positifs. On a $\R_+^*=]0,+\infty[$.
+        \item Soit $n\in\N^*$, l'ensemble des entiers compris entre 1 et $n$ s'écrit $\lb1,n\rb$.
     \end{enumerate}
 \end{ex}
 
+\fbox{Comment décrire un ensemble non vide ?}\\
+On utilise des accolades, ainsi qu'une description de ses éléments, qui peut prendre deux formes.
+\begin{itemize}
+    \item En \bf{extension}: les éléments sont présentés sous forme de liste, par exemple $\{1,2,3\}$. Signalons que l'ordre n'a pas d'importance : $\{1,2,3\}=\{3,2,1\}$. L'ensemble
+    \begin{equation*}
+        \{2k,~k\in\N\}
+    \end{equation*}
+    est l'ensemble des entiers naturels pairs, qu'il faut lire $\{0,2,4,...\}$ en comprenant le sens des points de suspension.
+    \item En $\bf{compréhension}$: on sélectionne dans un autre ensemble, des éléments possédant une certaine propriété. Par exemple, l'ensemble des entiers pairs se note, en compréhension
+    \begin{equation*}
+        \{n\in\N\mid \exists p\in\N~:~n=2p\}
+    \end{equation*}
+    Dans la notation en compréhension
+    \begin{equation*}
+        \{x\in E\mid \cursive{P}(x)~\nt{est vraie}\}
+    \end{equation*}
+    on écrit, dans l'ordre et entre accolades
+    \begin{center}
+        $x$ : l'élément typique,\quad $E$ : l'ensemble de sélection,\quad $|$ : tel que,\quad$\cursive{P}(x)$ : condition de sélection.
+    \end{center}
+\end{itemize}
+
 \begin{ex}{}{}
-    Écrire de deux façons l'ensemble des couples de réels opposés.
+    Écrire de deux façon l'ensemble des couples de réels opposés.
     \tcblower
-    En \textbf{extension}: $\{(x, -x), x \in \R_{+} \}$\\
-    En \textbf{compréhension}: $\{(a, b) \in \R^{2} ~|~ a = -b \}$
+    On l'écrit:
+    \begin{equation*}
+        \{(x,-x),~x\in\R\}=\{(x,y)\in\R^2\mid x=-y\}
+    \end{equation*}
 \end{ex}
 
-\begin{meth*}{Démontrer qu'un ensemble est vide}{}
+\fbox{Que dire de l'ensemble vide?} Si on imagine les ensembles comme des boîtes, il n'est pas difficile d'imaginer l'ensemble vide: c'est une boîte qui ne contient rien. On conviendra que l'assertion
+\begin{equation*}
+    \forall x \in \0~\P(x)
+\end{equation*}
+est vraie, quelle que soit l'assertion $\P(x)$ énoncée à l'aide de $x$. Puisqu'il n'y a pas d'éléments dans l'ensemble vide, on peut dire que tous les éléments de l'ensemble vide sont verts. Ils sont aussi bleus à poils durs.
+
+\begin{meth}{Démontrer qu'un ensemble est vide.}{}
     Le raisonnement par l'absurde peut être utile : on suppose que l'ensemble n'est pas vide, on prend un élément de l'ensemble, et on cherche une contradiction.
-\end{meth*}
+\end{meth}
 
 \subsection{Inclusion.}
 
 \begin{defi}{}{}
-    Soit $A$ et $B$ deux ensembles. On dit que $A$ est \textbf{inclus} dans $B$, ce que l'on note $A \subset B$, si tout élément de $A$ est un élément de $B$ : 
+    Soit $A$ et $B$ deux ensembles. On dit que $A$ est \bf{inclus} dans $B$, ce que l'on note $A\subset B$, si tout élément de $A$ est un élément de $B$ :
     \begin{equation*}
-        \forall x \in A ~~~~x \in B
+        \forall x \in A\quad x\in B.
     \end{equation*}
 \end{defi}
 
-\begin{meth*}{}{}
-    Pour prouver une inclusion $A \subset B$,
+On peut faire un lien entre inclusion et implication en écrivant que $A$ est inclus dans $B$ signifie :
+\begin{equation*}
+    \forall x\quad x\in A \ra x \in B.
+\end{equation*}
+ceci en écrivant un $\forall x$ sans préciser où $x$ est pris, ce qui n'est pas très bien mais...
+
+\begin{meth}{}{}
+    Pour prouver une inclusion $A\subset B$
     \begin{enumerate}
-        \item On considère un élément de $A$ ("Soit $x \in A$")
-        \item puis on prouve qu'il est dans $B$ (on devra conclure avec "donc $x \in B$")
+        \item On considère un élément de $A$ ("Soit $x\in A$")
+        \item puis on prouve qu'il est dans $B$ (on devra conclure avec "donc $x\in B$").
     \end{enumerate}
-\end{meth*}
+\end{meth}
 
 \begin{ex}{}{}
-    Justifier que $\Z \subset \Q$ puis que $\Q \not \subset \Z$
+    Justifier que $\Z \subset \Q$ puis que $\Q \not\subset \Z$.
     \tcblower
-    Soit $x \in \Z$, on peut écire $x$ comme $\frac{x}{1}$ avec $x \in \Z$ et $1 \in \N^{*}$\n
-    Donc $x \in \Q$ ($\Q = \{ \frac{p}{q} ~|~ p \in \Z, ~ q \in \N^{*} \}$)\n
-    Ainsi on a donc $\Z \subset \Q$ \n\n
-    $\frac{3}{2} \in \Q$ mais $\frac{3}{2} \not \in \Z$\n
-    Ainsi on a donc $\Q \not \subset \Z$\n
-    On peut remarquer que pour prouver qu'il n'y a pas d'inclusion, il suffit de montrer une contradiction.
+    Soit $k\in\Z$, $k=\frac{k}{1}$, donc $k\in\Q$, on a $\frac{1}{2}\in\Q$ mais $\frac{1}{2}\notin\Z$.\\
+    Ainsi, $\Z\subset\Q$ mais $\Q\not\subset\Z$.
 \end{ex}
 
-\begin{prop}{Transitivité}{}
-    Soient A, B, C trois ensembles.
+\begin{prop}{Transitivité.}{}
+    Soient $A,B,C$ trois ensembles.
     \begin{equation*}
-        (A \subset B ~et~ B \subset C) \ra A \subset C
+        (A \subset B~\et~\B\subset C) \ra A \subset C.
     \end{equation*}
     \tcblower
-    Supposons $A \subset B$ et $B \subset C$\n
-    Soit $x \in A$, \n
-    Donc $x \in B$ ($A \subset B$)\n
-    Donc $x \in C$ ($B \subset C$)\n
-    On en conclut : $A \subset C$
+    Supposons $A\subset B$ et $B\subset C$.\\
+    Soit $x\in A$, alors $x\in B$, alors $x\in C$ donc $A\subset C$.
 \end{prop}
 
-\begin{thm}{Double-inclusion}{}
-    Soient A et B deux ensembles. On a
+\begin{thm}{Double-inclusion.}{}
+    Soient $A$ et $B$ deux ensembles. On a
     \begin{equation*}
-        A = B \rla A \subset B ~et~ B \subset A
+        A=B\iff A\subset B~\et~ B\subset A.
     \end{equation*}
     \tcblower
-    \boxed{\la} Suposons $A = B$\n
-    On a bien évidemment que $A \subset B$ et $B \subset A$\n\n
-    \boxed{\ra} Suposons $A \subset B$ et $B \subset A$ \n
-    On a bien évidemment que $A = B$ (Tout élément de A est élément de B et réciproquement, on a donc exactement les mêmes éléments)
+    On a:
+    \begin{equation*}
+        A = B \iff \left( \forall x, ~ x \in A \ra x \in B \right) \et \left( \forall x, ~ x \in B \ra x \in A \right) \iff A \subset B ~\et~ B \subset A.
+    \end{equation*}
 \end{thm}
+
+\begin{meth}{}{}
+    Pour prouver que $A=B$, on peut prouver les deux inclusions $A\subset B$ et $B\subset A$.
+\end{meth}
+
+\begin{ex}{Prouver une égalité par double-inclusion.}{}
+    Soient $A=\R_-$ et $B=\{x\in\R~:\quad\forall y \in \R_+,~y\geq x\}$. Montrer que $A=B$.
+    \tcblower
+    Soit $x\in \R_-$, et $y\in\R_+$. On a $x\leq0$ et $y\geq0$, donc $x\leq0\leq y$ et $x\leq y$. Donc $x\in B$ et $R_-\subset B$.\\
+    Soit $x\in B$, on a $x\leq0$ car $\forall y \in \R_+,~y\geq x$. Ainsi, $x\in\R_-$. Donc $B\subset\R_-$.\\
+    Donc $A=B$.
+\end{ex}
+
+\subsection{Parties d'un ensemble et opérations.}
+
+\begin{defi}{}{}
+    On appelle \bf{partie} d'un ensemble $E$ tout ensemble $A$ tel que $A\subset E$.\\
+    Alternativement, on pourra dire que $A$ est un sous-ensemble de $E$.
+\end{defi}
+
+\bf{Remarque.} Pour tout ensemble $E$, les ensembles $E$ et $\0$ sont des parties de $E$.
+
+\begin{defi}{}{}
+    Soient $A$ et $B$ deux parties d'un ensemble $E$.\\
+    On définit l'\bf{intersection} de $A$ et $B$, notée $A\cap B$ et leur \bf{réunion} $A\cup B$ par
+    \begin{equation*}
+        A \cap B = \{x\in E\mid x\in A\et x\in B\}\quad\et\quad A\cup B=\{x\in E\mid x\in A\ou x\in B\}
+    \end{equation*}
+    On appelle \bf{différence} de $A$ et de $B$, (<< $A$ privé de $B$ >>) la partie
+    \begin{equation*}
+        A\setminus B = \{x\in E\mid x\in A\et x\notin B\}.
+    \end{equation*}
+    On appelle \bf{complémentaire} de $A$ la partie $E\setminus A$. Cet ensemble pourra être noté $\ov{A}$ ou $A^C$.
+\end{defi}
+Dans le reste du paragraphe, on allège les énoncés en fixant une fois pour toutes un ensemble $E$ et trois parties $A,B,C$ de $E$.
+\begin{prop}{Évidences.}{}
+    \begin{equation*}
+        \begin{aligned}
+            A\cup A= A\cap A = A&\qquad &\ov{\ov{A}}=A\\
+            A\cup E=E\cup A=E& \qquad &A\cup B=B\cup A\\
+            A\cap E=E\cap A=A& \qquad &A\cap B=B\cap A\\
+            A\cup\0=\0\cup A=A&\qquad &A\cup(B\cup C)=(A\cup B)\cup C\\
+            A\cap\0=\0\cap A=\0&\qquad &A\cap(B\cap C)=(A\cap B)\cap C\\
+            A\setminus A=\0&\qquad &A\cap B\subset A\subset A\cup B\\
+            A\setminus\0=A&
+        \end{aligned}
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{Distributivité.}{}
+    \begin{equation*}
+        A\cap(B\cup C)=(A\cap B)\cup(A\cap C)\quad\et\quad A\cup(B\cap C)=(A\cup B)\cap(A\cup C)
+    \end{equation*}
+    \tcblower
+    Soit $x\in E$. On a:
+    \begin{align*}
+        x\in A\cap(B\cup C) &\iff x\in \et (x\in B \ou  x\in C) \iff (x\in A\et x\in B)\ou(x\in A\et x\in C)\\
+        &\iff(x\in A\cap B)\ou(x\in A\cap C) \iff x\in(A\cap B)\cup(A\cap C).
+    \end{align*}
+    Donc $A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$
+\end{prop}
+
+\begin{prop}{Lien entre différence et complémentaire.}{}
+    \begin{equation*}
+        A\setminus B=A\cap\ov{B}.
+    \end{equation*}
+    \tcblower
+    Soit $x\in E$, $x\in A\setminus B\iff(x\in A\et x\notin B)\iff(x\in A \et x\in \ov{B})\iff x\in A\cap\ov{B}$
+\end{prop}
+
+\begin{prop}{Décroissance du passage au complémentaire.}{}
+    \begin{equation*}
+        A \subset B \ra \ov{B} \subset \ov{A}.
+    \end{equation*}
+    \tcblower
+    Supposons $A\subset B$. Soit $x\in\ov{B}$, supposons $x\in A$, alors $x\in B$ car $A\subset B$, absurde.
+\end{prop}
+
+\begin{prop}{Formules de De Morgan.}{}
+    \begin{equation*}
+        \ov{A\cap B}=\ov{A}\cup\ov{B}\quad\et\quad\ov{A\cup B}=\ov{A}\cap\ov{B}.
+    \end{equation*}
+    \tcblower
+    Soit $x\in E$. On a:
+    \begin{equation*}
+        x\in\ov{A\cap B}\iff \nt{non}(x\in A \et x \in B)\iff x\notin A \ou x\notin B\iff x\in\ov{A}\cup\ov{B} 
+    \end{equation*}
+    Donc $\ov{A\cap B}=\ov{A}\cup\ov{B}$.
+\end{prop}
+
+\begin{ex}{}{}
+    Montrer que $A\setminus(B\cap C)=(A\setminus B)\cup(A\setminus C)$.
+    \tcblower
+    On a $A\setminus(B\cap C)=A\cap(\ov{B\cap C})=A\cap(\ov{B}\cup\ov{C})=(A\cap\ov{B})\cup(A\cap\ov{C})=(A\setminus B)\cup(A\setminus C)$.
+\end{ex}
+
+\begin{defi}{Généralisations : Intersection et union d'une famille de parties.}{}
+    Soit $E$ un ensemble et $(A_i)_{i\in I}$ une famille de parties de $E$, indexée par un ensemble $I$.
+    \begin{itemize}
+        \item On appelle intersection des $A_i$, pour $i$ parcourant $I$ l'ensemble ci-dessou:
+        \begin{equation*}
+            \bigcap_{i\in I}A_i = \{x\in E~:~\forall i \in I,~x\in A_i\}
+        \end{equation*}
+        C'est l'ensemble des éléments de $E$ qui appartiennent à tous les $A_i$.
+        \item On appelle union des $A_i$, pour $i$ parcourant $I$ l'ensemble ci-dessous:
+        \begin{equation*}
+            \bigcup_{i\in I}A_i = \{x\in E~:~\exists i \in I,~x\in A_i\}
+        \end{equation*}
+        C'est l'ensemble des éléments de $E$ qui appartiennent à au moins un des $A_i$.
+    \end{itemize}
+\end{defi}
+
+\begin{ex}{}{}
+    Pour $n\in\N^*$, on pose $A_n=[\frac{1}{n},1]$. Que valent $\bigcap\limits_{n\in\N^*}A_n$ et $\bigcup\limits_{n\in\N^*}A_n$?
+    \tcblower
+    Il est clair que $1\in A_i$ pour tout $i$, et $A_1=\{1\}$ donc l'intersection vaut $\{1\}$.\\
+    Soit $x$ dans l'union, $\exists n\in \N^*\mid x\in A_n$ donc $x\in[\frac{1}{n},1]\subset]0,1]$.\\
+    Soit $x\in ]0,1]$. En posant $n=\lf \frac{1}{x} \rf + 1$, on a $x\in A_n$ donc $x$ est dans l'union.
+\end{ex}
+
+\begin{defi}{}{}
+    Soient $A$ et $B$ deux parties d'un ensemble $E$. Lorsque $A\cap B=\0$, c'est à dire qu'il n'existe pas d'élément commun à $A$ et $B$, on dit que $A$ et $B$ sont \bf{disjointes}. 
+\end{defi}
+
+\begin{ex}{}{}
+    Pour chacune des situations ci-dessous, donner l'exemple de deux ensembles $A$ et $B$ tels que
+    \begin{enumerate}
+        \item $A$ et $B$ sont distincts mais non disjoints.
+        \item $A$ et $B$ sont disjoints mais non distincts.
+        \item $A$ et $B$ sont disjoints et distincts.
+        \item $A$ et $B$ sont non disjoints et non distincts.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} $\N$ et $\R$.\\
+    \boxed{2.} $\0$ et $\0$.\\
+    \boxed{3.} Les rationnels et les irrationnels.\\
+    \boxed{4.} $\R$ et $\R$.
+\end{ex}
+
+\begin{defi}{}{}
+    Soit $E$ un ensemble et $(A_i)_{i\in I}$ uen famille de parties de $E$, indexée par un ensemble $I$. On dit que cette famille est constituée de parties \bf{deux-à-deux disjointes} si
+    \begin{equation*}
+        \forall(i,j)\in I^2\quad i\neq j \ra A_i\cap A_j = \0.
+    \end{equation*}
+\end{defi}
+
+\begin{ex}{Il ne suffit pas à l'intersection d'être vide !}{}
+    Donner l'exemple d'un ensemble $E$ et de trois parties $A,B,C$ de $E$ telles que $A\cap B\cap C=\0$ et telles que $A,B$ et $C$ sont \bf{non disjointes deux-à-deux}.
+    \tcblower
+    $E=\{1\}$, $A=B=E$ et $C=\0$. L'intersection est vide puisque $C$ l'est, mais $A\cap B\neq\0$.
+\end{ex}
+
+\subsection{Cardinal d'un ensemble fini.}
+
+On effleure seulement le sujet ici : un chapitre Dénombrement y sera consacré.
+
+\begin{defi}{point de vue naïf.}{}
+    Soit $E$ un ensemble non vide. Il est dit fini s'il a un nombre fini d'éléments.\\
+    Ce nombre est appelé \bf{cardinal} de $E$ et noté $|E|$. On pose que l'ensemble vide est fini et que son cardinal est 0.\\
+    Un ensemble constitué d'un unique élément est appelé \bf{singleton}.\\
+    Un ensemble constitué d'exactement deux éléments est appelé une \bf{paire}.
+\end{defi}
+
+\pagebreak
+
+\begin{prop}{La partie et le tout.}{}
+    Soit $E$ un ensemble fini et $A\subset E$.
+    \begin{itemize}
+        \item Toute partie $A$ de $E$ est finie et $|A|\leq|E|$.
+        \item Si $A$ et $B$ sont des parties de $E$, alors
+        \begin{equation*}
+            A=B\iff A\subset B\et|A|=|B|
+        \end{equation*}
+    \end{itemize}
+\end{prop}
+
+\subsection{Produit cartésien.}
+
+\begin{defi}{}{}
+    Soient $E$ et $F$ eux ensembles, on appelle \bf{produit cartésien} de $E$ et $F$ et on note $E\times F$ l'ensemble:
+    \begin{equation*}
+        \{(x,y)\mid x\in E,y\in F\}.
+    \end{equation*}
+    Les éléments de $E\times F$ sont appelés \bf{couples}.
+\end{defi}
+
+\begin{nota}{}{}
+    On note $E^2=E\times E$. Par exemple, $\R^2=\{(x,y)\mid x\in \R,y\in \R\}$.
+\end{nota}
+
+\begin{ex}{}{}
+    Soient $E=\{1,2,3\}$ et $F=\{\lozenge, \heartsuit\}$. Expliciter $E\times F$.
+    \tcblower
+    $E\times F=\{(1,\lozenge),(1,\heartsuit),(2,\lozenge),(2,\heartsuit),(3,\lozenge),(3,\heartsuit)\}$.
+\end{ex}
+
+\begin{defi}{}{}
+    Soient $E_1,...,E_n$ $n$ ensembles. On appelle produit cartésien de $E_1,...,E_n$ et on note $E_1\times...\times E_n$:
+    \begin{equation*}
+        \{(x_1,...,x_n) \mid x_1 \in E_1,..., x_n\in E_n\}.
+    \end{equation*}
+    Les éléments de $E_1\times ... \times E_n$ sont appelés $n$\bf{-uplets}.
+\end{defi}
+
+\begin{prop}{Égalité de deux $n$-uplets.}{}
+    Soient $(x_1,...,x_n)$ et $(y_1,...y_n)$ deux $n$-uplets d'un produit cartésien $E_1 \times ... \times E_n$.
+    \begin{equation*}
+        (x_1,...,x_n) = (y_1,...,y_n) \iff \forall i \in \lb 1, n\rb,~ x_i=y_i.
+    \end{equation*}
+\end{prop}
+
+\subsection{Ensemble des parties d'un ensemble.}
+
+\begin{defi}{}{}
+    L'\bf{ensemble des parties} d'un ensemble $E$ est noté $\P(E)$.
+\end{defi}
+
+\begin{prop}{Admis pour le moment.}{}
+    Si $E$ est un ensemble fini à $n$ éléments, $\P(E)$ est fini et a $2^n$ éléments.\\
+    Si $p\in\lb0,n\rb$, le nombre de ces parties ayant exactement $p$ éléments est
+    \begin{equation*}
+        \binom{n}{p}=\frac{n!}{p!(n-p)!}.
+    \end{equation*}
+\end{prop}
+
+\subsection{Recouvrement disjoint, partition.}
+
+\begin{defi}{}{}
+    Un \bf{recouvrement disjoint} d'un ensemble $E$ est une famille $(A_i)_{i\in I}$ de parties $E$ telle que
+    \begin{itemize}
+        \item $E=\bigcup\limits_{i\in I}A_i$ ($E$ est la réunion des $A_i$)
+        \item $\forall i,j\in I~i\neq j\ra A_i\cap A_j = \0$ (les $A_i$ sont deux-à-deux disjoints).
+    \end{itemize}
+    Si de surcroît tous les $A_i$ sont non vides, on dit que c'est une \bf{partition} de $E$.
+\end{defi}
+
+\begin{ex}{}{}
+    Proposer une partition de $]0,+\infty[$ en trois parties.\\
+    Proposer une partition de $]0,+\infty[$ en une infinité de parties.
+    \tcblower
+    \boxed{1.} $]0,+\infty[=]0,1]\cup]1,2]\cup]2,+\infty[$.\\
+    \boxed{2.} $]0,+\infty[=\bigcup\limits_{n\in\N^*}]n-1,n]$.
+\end{ex}
+
+\section{Applications entre deux ensembles.}
+
+Dans ce qui suit, $E$, $F$ et $G$ sont trois ensembles.
+
+\subsection{Définitions.}
+
+\begin{defi}{}{}
+    Une \bf{application} $f$ de $E$ dans $F$ est un procédé qui à tout élément $x$ de $E$ associe un unique élément dans $F$, que l'on note $f(x)$. Cet objet est aussi appelé \bf{fonction}, et décrit à l'aide de la notation
+    \begin{equation*}
+        f:\begin{cases}
+            E&\to\quad F\\
+            x&\mapsto\quad f(x)
+        \end{cases}
+    \end{equation*}
+    L'ensemble $E$ est alors appelé \bf{ensemble de départ}, et $F$ \bf{ensemble d'arrivée}.\n
+    Soient $x\in E$ et $y\in F$ tels que $y=f(x)$.\\
+    On dit que $y$ est l'\bf{image} de $x$ par $f$, et que $x$ est un \bf{antécédent} de $y$ par $f$.
+\end{defi}
+
+\begin{defi}{Des applications simples à définir.}{}
+    On appelle application \bf{identité} sur $E$ et on note $\id_E$ l'application
+    \begin{equation*}
+        \id_E:\begin{cases}
+            E&\to\quad E\\
+            x&\mapsto\quad x
+        \end{cases}
+    \end{equation*}
+    Soit $a\in F$; on appelle \bf{application constante} égale à $a$ l'application
+    \begin{equation*}
+        \begin{cases}
+            E&\to\quad F\\
+            x&\mapsto\quad a
+        \end{cases}
+    \end{equation*}
+\end{defi}
+
+\begin{nota}{}{}
+    L'ensemble des fonctions de $E$ dans $F$ est noté $F^E$ ou bien $\mathcal{F}(E,F)$.
+\end{nota}
+
+\begin{prop}{Égalité de deux fonctions.}{}
+    Deux applications sont égales si et seulement si elles sont égales en tout point:
+    \begin{equation*}
+        \forall (f,g)\in(\mathcal{F}(E,F))^2,\quad f=g\iff \forall x \in E,~f(x)=g(x).
+    \end{equation*}
+\end{prop}
+
+\subsection{Restriction, prolongement.}
+
+\begin{defi}{}{}
+    Soit $f\in\mathcal{F}(E,F)$ et $A\subset E$.\\
+    On appelle \bf{restriction} de $f$ à $A$, et on note $f_{|A}$ l'application
+    \begin{equation*}
+        f_{|A}:\begin{cases}
+            A&\to\quad F\\
+            x&\mapsto\quad f(x)
+        \end{cases}
+    \end{equation*}
+\end{defi}
+
+\begin{defi}{}{}
+    Soit $A$ une partie de $E$ et $g\in\m{F}(A,F)$.\\
+    On appelle \bf{prolongement} de $g$ sur $E$ toute application $f$ telle que $f_{|A}=g$.
+\end{defi}
+
+\begin{ex}{}{}
+    Soit $g:\R^*\to\R;$ $x\mapsto 1$. Définir sur $\R$ deux prolongement de $g$.
+    \tcblower
+    On peut prolonger $g$ en $f:\R\to\R;~x\mapsto 1$ ou $\tilde{f}:\R\to\R x\mapsto \begin{cases}1&\nt{si }x\in\R^*\\42&\nt{sinon}\end{cases}$
+\end{ex}
+
+\subsection{Composition.}
+
+\begin{defi}{}{}
+    Soient $f:E\to F$ et $g:F\to G$ deux applications.\\
+    La \bf{composée} de $f$ par $g$, notée $f\circ g$ est l'application
+    \begin{equation*}
+        g\circ f:\begin{cases}
+            E&\to\quad G\\
+            x&\mapsto\quad g(f(x))
+        \end{cases}
+    \end{equation*}
+\end{defi}
+
+\begin{ex}{}{}
+    Soient $f:x\mapsto\ln(x-3)$,\quad $g:x\mapsto\sqrt{x^2-4}$,\quad$h:x\mapsto\sqrt{\ln(x)}$.\\
+    Écrire chacune comme la composée de deux fonctions "simples" (en précisant les ensembles de départ et d'arrivée).
+    \tcblower
+    Notons $\phi:x\mapsto x-3$, $\psi:x\mapsto x^2-4$.\\
+    On a $f=\ln~\circ~\phi$ de $]3,+\infty[$ vers $\R$.\\
+    On a $g=\sqrt{\cdot}~\circ~\psi$ de $]-\infty,-2]\cup[2,+\infty[$ vers $\R_+$.\\
+    On a $h=\sqrt{\cdot}\circ \ln$ de $[1,+\infty[$ vers $\R_+$.
+\end{ex}
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item La composée de deux fonctions monotones de même monotonie est croissante.
+        \item La composée de deux fonctions monotones, de monotonies contraires, est décroissante.
+    \end{enumerate}
+\end{ex}
+
+\begin{prop}{L'identité est neutre pour la composition}{}
+    Si $f\in\m{F}(E,F)$, alors
+    \begin{equation*}
+        \id_F\circ f = f\quad\et\quad f\circ\id_E=f.
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{Associativité de la composition.}{}
+    Si $f:E\to F$, $g:F\to G$ et $h:G\to I$, alors
+    \begin{equation*}
+        (h\circ g)\circ f=h\circ(g\circ f)
+    \end{equation*}
+\end{prop}
+
+
+\subsection{Famille d'éléments d'un ensemble.}
+
+\begin{defi}{}{}
+    Soient $E$ et $I$ deux ensembles.\\
+    Une \bf{famille d'éléments de $E$ indexée par $I$} est une fonction $a:I\to E$.\\
+    Pour $i\in I$, on note $a_i=a(i)$. La famille des $a$ est alors notée $a=(a_i)_{i\in I}$.\\
+    L'ensemble des familles d'éléments de $E$ indexées par $I$ sera noté $E^I$.
+\end{defi}
+L'idée : $a_i$ est un élément de $E$ <<étiqueté>> par une étiquette $i$ prise dans $I$.
+
+\begin{defi}{}{}
+    On appelle \bf{suite} d'éléments de $E$ une famille d'éléments de $E$ indexée par $\N$.
+\end{defi}
+
+\begin{prop}{admis}{}
+    Soit $f:E\to E$ et $a\in E$. Alors il existe une unique suite $(u_n)_{n\in\N}\in E^\N$ telle que
+    \begin{equation*}
+        \begin{cases}
+            u_0=a\\
+            \forall n \in \N ~ : ~ u_{n+1}=f(u_n)
+        \end{cases}
+    \end{equation*}
+\end{prop}
+
+\section{Exercices.}
+
+\begin{exercice}{$\bww$}{}
+    Soient $A,B$ deux parties d'un ensemble $E$. Établir que
+    \begin{equation*}
+        A \setminus (A \setminus B) = A \cap B \hspace{1cm} \text{ et } \hspace{1cm} A \setminus (A \cap B) = A \setminus B = (A \cup B) \setminus B.
+    \end{equation*}
+    \tcblower
+    On a :
+    \begin{align*}
+        A \setminus (A \setminus B) &= A \cap \overline{(A\ \cap \overline{B})}
+        =A \cap (\overline{A} \cup B)
+        = (A \cap \overline{A}) \cup(A \cap B)\\
+        &= A \cap B
+    \end{align*}
+    D'autre part :
+    \begin{align*}
+        A \setminus (A \cap B) &= A \cap \overline{(A \cap B)}
+        = A \cap (\overline{A} \cup \overline{B})
+        = (A \cap \overline{A}) \cup (A \cap \overline{B})
+        = A \cap \overline{B}\\
+        &= A \setminus B
+    \end{align*}
+    Et :
+    \begin{align*}
+        (A \cup B) \setminus B &= (A \cup B) \cap \overline{B}
+        = (A \cap \overline{B}) \cup (B \cap \overline{B})
+        = A \cap \overline{B}\\
+        &= A \setminus B
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Soient $A,B,C,D$ quatre parties d'un ensemble $E$, telles que
+    \begin{equation*}
+        E = A \cup B \cup C, \hspace{1cm} A \cap D \subset B, \hspace{1cm} B \cap D \subset C, \hspace{1cm} C \cap D \subset A.
+    \end{equation*}
+    Montrer que $D \subset A \cap B \cap C$.
+    \tcblower
+    Soit $x \in D$, on sait que $x \in E$. Alors $x \in A$ ou $x \in B$ ou $x \in C$.\\
+    $\circledcirc$ Si $x \in A$, alors $x \in A \cap D$, donc $x \in B$.\\
+    $\circledcirc$ Si $x \in B$, alors $x \in B \cap D$, donc $x \in C$.\\
+    $\circledcirc$ Si $x \in C$, alors $x \in C \cap D$, donc $x \in A$.\\
+    On en déduit que $x \in A \cap B \cap C$.\\
+    Ainsi, $D \subset A \cap B \cap C$.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Démontrer que
+    \begin{equation*}
+        \mathbb{R} = \left\lbrace{x \in \mathbb{R} \hspace{0.1cm} | \hspace{0.1cm} \exists a \in \mathbb{R}^*_+ \hspace{0.1cm} \exists b \in \mathbb{R}^*_- : x = a + b}\right\rbrace.
+    \end{equation*}
+    \tcblower
+    On note $A$ = $\left\lbrace{x \in \mathbb{R} \hspace{0.1cm} | \hspace{0.1cm} \exists a \in \mathbb{R}^*_+ \hspace{0.1cm} \exists b \in \mathbb{R}^*_- : x = a + b}\right\rbrace$\\
+    $\circledcirc$ Montrons que $\mathbb{R} \subset A$.\\
+    Soit $x \in \mathbb{R}$.\\
+    $\circ$ Si $x \leq 0$, On pose $a=1$ et $b=x-1$, ainsi $x = a + b$ donc $x \in A$.\\
+    $\circ$ Si $x > 0$, On pose $a=x+1$ et $b=-1$, ainsi $x = a + b$ donc $x \in A$.\\
+    Dans tous les cas $x \in A$, on en conclut que $\mathbb{R} \subset A$.\\
+    $\circledcirc$ Montrons que $A \subset \mathbb{R}$.\\
+    Soit $x \in A$, alors il existe $a \in \mathbb{R}^*_+$ et $b \in \mathbb{R}^*_-$ tels que $x = a + b$.\\
+    Or $a + b \in \mathbb{R}$, donc $x \in \mathbb{R}$. On en conclut que $A \subset \mathbb{R}$.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $n \in \mathbb{N}^*$ et $A_1, A_2, \dots, A_n$ $n$ parties de $E$ telles que
+    \begin{equation*}
+        A_n = E \hspace{1cm} \text{et} \hspace{1cm} A_1 \subset A_2 \subset \dots \subset A_n.
+    \end{equation*}
+    On pose $B_1=A_1$ et pour $k \in \llbracket{2, n}\rrbracket$, on pose $B_k = A_k \setminus A_{k-1}$.\\
+    Prouver que $(B_k)_{1 \leq k \leq n}$ est un recouvrement disjoint de $E$.
+    \tcblower
+    Soit $x \in E$. Alors $x \in A_n$. Il existe alors $k$ le plus petit entier tel que $x \in A_k$. Ainsi, $x \in B_k$ puisque $x \in A_k \wedge x \notin A_{k-1}$ par définition de $k$.\\
+    On en déduit que tout élément de $E$ appartient à au moins un $(B_k)$.\\[0.25cm]
+    Montrons maintenant que tout élément de $E$ appartient aussi au plus à un $B_k$.\\
+    Soit $x \in E$. Supposons qu'il existe $i,j \in \llbracket1,n\rrbracket$ tels que $i < j$ et $x \in B_i$ et $x \in B_j$.\\
+    Or, puisque $x \in B_j$ et $i<j$, $x \notin A_i$. De plus, puisque $x \in B_i$, $x \in A_i$ ce qui est absurde.\\
+    Ainsi, tout élément de $E$ appartient au plus à un $(B_k)$.\n
+    $(B_k)_{1 \leq k \leq n}$ est donc un recouvrement disjoint de E.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $E$ un ensemble et $A,B$ deux parties de $E$. Démontrer que
+    \begin{equation*}
+        B \subset A \iff (\forall X \in \mathcal{P}(E) \hspace{0.5cm} (A \cap X) \cup B = A \cap (X \cup B)).
+    \end{equation*}
+    \tcblower
+    Supposons $B \subset A$ et soit $X \in \mathcal{P}(E)$. On a:
+    \begin{align*}
+        (A \cap X) \cup B &= (A \cup B) \cap (X \cup B) = A \cap (X \cup B)
+    \end{align*}
+    Supposons $(\forall X \in \mathcal{P}(E) \hspace{0.5cm} (A \cap X) \cup B = A \cap (X \cup B))$.\\
+    On a $B \in \mathcal{P}(E)$, donc :
+    \begin{align*}
+        (A \cap B) \cup B = A \cap (B \cup B) &\iff (A \cup B) \cap B = A \cap B\\
+        &\iff (A \cup B) = A\\
+        &\iff B \subset A
+    \end{align*}
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\bbb$}{}
+    Expliciter les ensembles
+    \begin{equation*}
+        A = \bigcap_{n\in\mathbb{N}^*}{\left\lbrack{\frac{1}{n+1},\frac{1}{n}}\right\rbrack} \hspace{0.5cm} \text{et} \hspace{0.5cm} B =\bigcup_{n\in\mathbb{N}^*}{\left\lbrack{\frac{1}{n+1}, \frac{1}{n}}\right\rbrack}.
+    \end{equation*}
+    \tcblower
+    A est l'ensemble vide, puisque l'intersection est commutative, on peut prendre $n=1$ et $n=10$, par exemple, et remarquer que leur intersection est nulle, ce qui se propage à toutes les intersections.\\[0.25cm]
+    Montrons que B est l'ensemble $\rbrack0,1\rbrack$ par double inclusion.\\
+    $\circledcirc$ Montrons que $B \subset \rbrack0,1\rbrack$.\\
+    Soit $x \in B$. Il existe $n\in\mathbb{N}^*$ tel que $\frac{1}{n+1}\leq x \leq \frac{1}{n}$. Ainsi, $0 < x \leq 1$. Donc $x\in\rbrack0,1\rbrack$.\\
+    $\circledcirc$ Montrons que $\rbrack0,1\rbrack \subset B$.\\
+    Soit $x \in \rbrack 0,1 \rbrack$. Il existe $n\in\mathbb{N}^*$ tel que $n+1 \geq \frac{1}{x} \geq n$. Donc que $\frac{1}{n+1} \leq x \leq \frac{1}{n}$.\\
+    Ainsi $x \in \left\lbrack\frac{1}{n+1},\frac{1}{n}\right\rbrack$ et donc $x \in B$.\\
+    On en conclut que $B=\rbrack0,1\rbrack$. \qed
+\end{exercice}
+
+\begin{exercice}{$\bbb$ Différence symétrique.}{}
+    Soient $E$ un ensemble et $A,B$ deux parties de $E$, on définit 
+    \begin{equation*}
+        A \Delta B = (A \setminus B) \cup (B \setminus A)
+    \end{equation*}
+    1. Montrer que la réunion définissant $A \Delta B$ est disjointe.\\
+    2. Montrer que $A \Delta B = (A \cup B) \setminus (A \cap B)$.\\
+    3. Montrer que $\overline{A} \Delta \overline{B} = A \Delta B$.\\
+    4. Simplifier $A \Delta E$, $A \Delta \varnothing$, $A \Delta A$, $A \Delta \overline{A}$.\\
+    5. (*) Résoudre l'équation $A \Delta X = \varnothing$, d'inconnue $X \in \mathcal{P}(E)$.
+    \tcblower
+    \boxed{1.} Considérons l'intersection :
+    \begin{align*}
+        (A \setminus B) \cap (B \setminus A) &= (A \cap \overline{B}) \cap (B \cap \overline{A})\\
+        &=A \cap (B \cap \overline{B}) \cap \overline{A}\\
+        &=\varnothing
+    \end{align*}
+    \boxed{2.} On a :
+    \begin{align*}
+        (A \cup B) \setminus (A \cap B) &= (A \cup B) \cap (\overline{A} \cup \overline{B})\\
+        &=\overline{A} \cap (A \cup B) \cup (A \cup B) \cap \overline{B}\\
+        &=(\overline{A} \cap B) \cup (A \cap \overline{B})\\
+        &=A \Delta B
+    \end{align*}
+    \boxed{3.} On a :
+    \begin{align*}
+        (\overline{A} \setminus \overline{B}) \cup (\overline{B} \setminus \overline{A}) &= (\overline{A} \cap B) \cup (\overline{B} \cap A)
+        =(B \cap \overline{A}) \cup (A \cap \overline{B})
+        =(B \setminus A) \cup (A \setminus B)
+        =A \Delta B
+    \end{align*}
+    \boxed{4.} On a :
+    \begin{itemize}
+        \item $A \Delta E = (A \cup E) \setminus (A \cap E) = E \setminus A = E \cap \overline{A}$.
+        \item $A \Delta \varnothing = (A \cup \varnothing) \setminus (A \cap \varnothing) = A \setminus \varnothing = A$.
+        \item $A \Delta A = (A \cup A) \setminus (A \cap A) = A \setminus A = \varnothing$.
+        \item $A \Delta \overline{A} = (A \cup \overline{A}) \setminus (A \cap \overline{A}) = E \setminus \varnothing = E$
+    \end{itemize}
+    \boxed{5.} Soit $X \in \mathcal{P}(E)$. On a :
+    \begin{align*}
+        A \Delta X = \varnothing
+        \iff (A \setminus X) \cup (X \setminus A) = \varnothing
+        \iff A \setminus X = \varnothing \text{ et } X \setminus A = \varnothing
+        \iff X \subseteq A \text{ et } A \subseteq X
+        \iff X = A
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\bbb$ Paradoxe de Russel.}{}
+    Supposons qu'il existe un \emph{ensemble de tous les ensembles} et notons le $\mathcal{E}$.\\
+    Considérons alors l'ensemble des ensembles n'appartenant pas à eux-mêmes :
+    \begin{equation*}
+        y=\left\lbrace x \in \mathcal{E} \hspace{0.1cm} | \hspace{0.1cm} x \notin x \right\rbrace.
+    \end{equation*}
+    Démontrer que $y \in y \iff y \notin y$.
+    \tcblower
+    Supposons que $y \in y$. Montrons que $y \notin y$.\\
+    On a que $y \in y$.
+    Or tout élément de $y$ n'appartient pas à lui-même.\\
+    Ainsi, $y \notin y$.\\[0.25cm]
+    Supposons que $y \notin y$. Montrons que $y \in y$.\\
+    $y$ est un ensemble, donc $y \in \mathcal{E}$. De plus, $y \notin y$ par supposition.\\
+    Ce sont les deux conditions nécessaires pour appartenir à $y$.\\
+    Ainsi, $y \in y$.\\[0.25cm]
+    On a bien montré que $y \in y \iff y \notin y$.\\
+    Cela est absurde, ainsi les ensemble $\mathcal{E}$ et $y$ ne peuvent pas exister.\\
+    \qed
+\end{exercice}
+
 \end{document}
- 
