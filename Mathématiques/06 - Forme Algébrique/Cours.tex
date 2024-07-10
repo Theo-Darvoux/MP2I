@@ -1,0 +1,444 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{6}
+\def\pagetitle{Forme algébrique.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\thispagestyle{fancy}
+
+\section{Le corps des nombres complexes.}
+
+On admet l'existence d'un ensemble de nombres noté $\C$ ainsi que d'une addition et d'un produit:
+\begin{equation*}
+    +:\begin{cases}
+        \C^2&\to\quad\C\\
+        (z,z')&\mapsto\quad z+z'
+    \end{cases}\quad\et\quad\cdot:\begin{cases}
+        \C^2&\to\quad\C\\
+        (z,z')&\mapsto\quad z\cdot z'
+    \end{cases}
+\end{equation*}
+Les éléments de $\C$ sont appelés \bf{nombres complexes}. La construction de ($\C,+,\cdot$) n'est pas très difficile, mais elle est hors-programme. La liste des propriétés ci-dessous est donc admise.
+\begin{itemize}
+    \item Les nombres réels sont des nombres complexes : $\R \subset \C$. Dans $\C$ il existe un nombre $i$ tel que
+    \begin{equation*}
+        i^2=-1.
+    \end{equation*}
+    Ainsi, l'équation $x^2=-1$ qui n'a pas de solutions dans $\R$, en possède une dans $\C$.
+    \item Tout nombre complexe $z$ s'écrit sous la forme \boxed{a+ib} avec $(a,b)\in\R^2$.\\
+    Cette écriture est unique : on dit que $a+ib$ est la \bf{forme algébrique} de $z$.
+    \item Les lois $+$ et $\cdot$ sont commutatives et associatives.
+    \item La loi $\cdot$ est distributive par rapport à $+$.
+    \item Il existe un élément neutre pour $+$ : $0$ et un élément neutre pour $\cdot$ : $1$.
+\end{itemize}
+
+\begin{meth}{Un premier calcul dans $\C$}{}
+    $(a+ib)(c+id)=ac + iad + ibc + i^2bd = (ac - bd) + i(ad + bc)$.
+\end{meth}
+
+\begin{itemize}
+    \item L'ensemble $\C\setminus\{0\}$ sera noté $\C^*$.
+    Pour tout nombre complexe $z$ non nul, il existe un unique nombre complexe $\w$ tel que $\w z=z\w=1$.\\
+    Ce nombre sera appelé \bf{inverse} de $z$ et noté $z^{-1}$. Comme dans $\R$, 0 n'a pas d'inverse dans $\C$.
+    \item Le quotient de deux nombres complexes est défini ainsi : si $(z,z')\in\C^*\times\C$,
+    \begin{equation*}
+        \frac{z'}{z}=z'(z)^{-1}.
+    \end{equation*}
+    Les égalités suivantes sont vraies pour tous $z_1,z_2,z_3\in\C^*$:
+    \begin{equation*}
+        \left( \frac{z_1}{z_2} \right)^{-1}=\frac{z_2}{z_1},\quad\frac{z_1+z_2}{z_3}=\frac{z_1}{z_3}+\frac{z_2}{z_3},\quad\frac{z_1z_2}{z_3}=z_1\frac{z_2}{z_3}.
+    \end{equation*}
+    \item Un produit de nombres complexes est nul si et seulement si l'un des facteurs est nul.
+    \item Les nombres complexes n'ont pas de signe : écrire une égalité entre deux nombres complexes n'a \bf{aucun sens}.
+    \item Les identités démontrées dans le cours Sommes et Produits sont toujours vraies pour les nombres complexes.
+\end{itemize}
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item $\forall p\in\Z\quad i^{2p}=(-1)^p$ et $i^{2p+1}=(-1)^pi$. En particulier, \boxed{\frac{1}{i}=-i}.
+        \item Calcul de \begin{equation*}
+            1+2i+3i^2+4i^3+5i^4, \quad (1+2i)^2, \quad (1+i)^3.
+        \end{equation*}
+    \end{enumerate}
+    \tcblower
+    \boxed{2.} $1+2i+3i^2+4i^3+5i^4=1-3+5+2i-4i=3-2i$.\\
+    $(1+2i)^2=1+4i+4i^2=-3+4i$, \quad et \quad $(1+i)^3=1+3i+3i^2+i^3=-2+2i$.
+\end{ex}
+
+\begin{ex}{Calcul de l'inverse.}{}
+    \begin{enumerate}
+        \item Soient $(a,b)\in\R^2\setminus\{(0,0)\}$. Vérifier que
+        \begin{equation*}
+            \frac{1}{a+ib}=\frac{a-ib}{a^2+b^2}.
+        \end{equation*}
+        Le nombre $a-ib$ sera appelé plus loin le conjugué de $a+ib$ et $\sqrt{a^2+b^2}$ son module.
+        \item Calculer $\frac{1}{1+i}$ et $\frac{2-i}{1-3i}$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} On a $\frac{1}{a+ib}=\frac{a-ib}{(a+ib)(a-ib)}=\frac{a-ib}{a^2-(ib)^2}=\frac{a-ib}{a^2+b^2}$.\\
+    \boxed{2.} $\frac{1}{1+i}=\frac{1-i}{(1+i)(1-i)}=\frac{1-i}{2}$\quad\et\quad$\frac{2-i}{1-3i}=\frac{(2-i)(1+3i)}{10}=\frac{1}{2}+\frac{1}{2i}$.
+\end{ex}
+
+\begin{prop}{Retour sur l'unicité de la forme algébrique.}{}
+    Soient $a,a',b,b'\in\R$. L'unicité de l'écriture de la forme algébrique donne
+    \begin{equation*}
+        a+ib = a'+ib' \iff (a=a'\et b=b').
+    \end{equation*}
+    En particulier,
+    \begin{equation*}
+        a+ib=0\iff(a=0\et b=0).
+    \end{equation*}
+    \hrule\vspace*{0.2cm}
+    Soit $z=a+ib$ un nombre complexe, avec $(a,b)$ tel que $z=a+ib$.\\
+    Le réel $a$ est appelé \bf{partie réelle} de $z$ et noté $\Re(z)$.\\
+    Le réel $b$ est appelé \bf{partie imaginaire} de $z$ et noté $\Im(z)$.
+\end{prop}
+
+\begin{prop}{Réel et imaginaires purs.}{}
+    \begin{equation*}
+        \forall z \in \C, \quad z\in\R\iff \Im(z)=0.
+    \end{equation*}
+    La nullité de $\Re(z)$ caractérise quant à elle l'appartenance de $z$ aux \bf{imaginaires purs}, parfois noté $i\R$.
+    \tcblower
+    Soit $z\in\C$, $z=\Re(z)+i\Im(z)$.\\
+    Supposons $\Im(z)=0$, alors $z=\Re(z)\in \R$.\\
+    Supposons $z\in\R$, alors $z=z+i\times0=\Re(z)+\Im(z)$. Par unicité, $\Im(z)=0$.
+\end{prop}
+
+\begin{prop}{}{}
+    Pour tous $z,z'\in\C$, pour tout $\l\in\R$ réel, on a
+    \begin{align*}
+        \Re(z+z')=\Re(z)+\Re(z')\quad\et\quad\Re(\l z)=\l\Re(z).\\
+        \Im(z+z')=\Im(z)+\Im(z')\quad\et\quad\Im(\l z)=\l\Im(z).
+    \end{align*}
+    Plus généralement, si $z_1,...,z_n\in\C$,
+    \begin{equation*}
+        \Re\left( \sum_{k=1}^nz_k \right)=\sum_{k=1}^n\Re(z_k)\quad\et\quad\Im\left( \sum_{k=1}^nz_k \right)=\sum_{k=1}^n\Im(z_k).
+    \end{equation*}
+    \tcblower
+    Soient $z,z'\in\C$, $\exists a,b\in\R\mid z=a+ib$ et $\exists a',b'\in\R\mid z'=a'+ib'$.\\
+    On a $z+z'=(a+a')+i(b+b')$, et par unicité de la forme algébrique:\\
+    --- $\Re(z+z')=a+a'=\Re(z)+\Re(z')$ et $\Im(z+z')=b+b'=\Im(z)+\Im(z')$.\n
+    Soit $\l\in\R$, on a $\l z = \l a + i\l b$, et par unicité de la forme algébrique:\\
+    --- $\Re(\l z)=\l a + \l\Re(z)$ et $\Im(\l z)=\l  b =\l\Im(z)$. 
+\end{prop}
+<< La partie réelle de la somme, c'est la somme des parties réelles >>. Idem pour la partie imaginaire.
+
+\begin{corr}{}{}
+    Les applications partie rélle et partie imaginaire sont $\R$-linéaires, c'est à dire que pour tous $z,z'\in\C$, pour tout $\l,\mu \in\R$ réels, on a
+    \begin{align*}
+        \Re(\l z + \mu z')=\l\Re(z)+\mu\Re(z')\\
+        \Im(\l z+\mu z')=\l\Im(z)+\mu\Im(z')
+    \end{align*}
+\end{corr}
+
+Le nombre $\l z + \mu z'$ peut être désigné comme une \bf{combinaison linéaire} de $z$ et $z'$ à coefficients réels.
+
+\section{Représentation géométrique.}
+
+On travaille dans cette partie avec un repère orthonormé du plan $(O,\v{i}, \v{j})$.
+
+\begin{defi}{}{}
+    Soient $a$ et $b$ deux réels.
+    \begin{enumerate}
+        \item Si $M$ est le point du plan de coordonnées $(a,b)$, le nombre $a+ib$ est appelé l'\bf{affixe} de $M$. Réciproquement, si $z=a+ib$, le point $M$ de coordonnées $(a,b)$ est l'unique point du plan d'affixe $z$, on pourra le noter $M(z)$.
+        \item Cette correspondance bijective $z\mapsto M(z)$ entre nombre complexes et points du plan permet d'identifier $\C$ à $\R^2$ : on parle de \bf{plan complexe}.
+        \item L'affixe d'un vecteur $\v{u}(a,b)$ est le nombre complexe $a+ib$.
+    \end{enumerate}
+\end{defi}
+
+\begin{prop}{}{}
+    Si $A$ a pour affixe $z_A$ et $B$ pour affixe $z_B$, le vecteur $\v{AB}$ a pour affixe $z_B-z_A$.\n
+    Si $\v{u}$ et $\v{v}$ sont deux vecteurs d'affixe respectives $z$ et $z'$, et $\l$ et $\mu$ deux réels, le vecteur $\l\v{u}+\mu\v{v}$ a pour affixe $\l z + \mu z'$.
+\end{prop}
+
+\section{Conjugué d'un nombre complexe.}
+
+\begin{defi}{}{}
+    On appelle \bf{conjugué} d'un nombre complexe $z$, et on note $\ov{z}$ le nombre
+    \begin{equation*}
+        \ov{z}:=\Re(z)-i\Im(z).
+    \end{equation*}
+    Autrement dit,
+    \begin{equation*}
+        \forall (a,b)\in\R^2\quad\ov{a+ib}=a-ib.
+    \end{equation*}
+\end{defi}
+
+Soit $z\in\C$, le point $M'$ d'affixe $\ov{z}$, est le symétrique par rapport à l'axe des abscisses, du point $M$ d'affixe $z$.
+
+\begin{prop}{}{}
+    Pour tout $z\in\C$,
+    \begin{equation*}
+        z+\ov{z}=2\Re(z)\quad\et\quad z-\ov{z}=2i\Im(z).
+    \end{equation*}
+    Ceci permet d'obtenir les caractérisations suivantes:
+    \begin{equation*}
+        z\in\R \iff z=\ov{z}\quad\et\quad z\in i\R\iff z=-\ov{z}.
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{Conjugaison et opérations. $\star$}{}
+    Pour tous nombres complexes $z$ et $z'$, on a
+    \begin{align*}
+        &\nt{a)}~\ov{\ov{z}}=z \qquad\qquad\qquad \nt{c)}~\ov{z\cdot z'}=\ov{z}\cdot\ov{z'}.\\
+        &\nt{b)}~\ov{z+z'}=\ov{z}+\ov{z'}\qquad\nt{d)}~\nt{si}~z'\neq0,\quad\ov{\left( \frac{z}{z'} \right)}=\frac{\ov{z}}{\ov{z'}}.
+    \end{align*}
+    Par conséquent, l'application $z\mapsto\ov{z}$ est $\R$-linéaire, c'est-à-dire que pour tous nombres $z,z'\in\C$ et tous réels $\l,\mu$, on a
+    \begin{equation*}
+        \ov{\l z + \mu z'} = \l \ov{z} + \mu \ov{z'}.
+    \end{equation*}
+\end{prop}
+<< Le conjugué de la somme, c'est la somme des conjugués >>. Marche avec le produit et le quotient.
+
+\section{Module d'un nombre complexe.}
+
+\begin{defi}{}{}
+    Pour tout nombre complexe $z$, on appelle \bf{module} de $z$ et on note $|z|$ le nombre réel positif
+    \begin{equation*}
+        |z|:=\sqrt{\Re(z)^2+\Im(z)^2}.
+    \end{equation*}
+\end{defi}
+
+\begin{ex}{}{}
+    \begin{equation*}
+        |i|=1\qquad\qquad|2+3i|=\sqrt{2^2+3^3}=\sqrt{13}
+    \end{equation*}
+    Le moudle d'un nombre réel $a$ vaut $\sqrt{a^2+0^2}=|a|$.
+\end{ex}
+
+\begin{center}
+    \fbox{pour $z,z'\in\C,~|z-z'|$ est la \bf{distance} entre $z$ et $z'$.}
+\end{center}
+
+\begin{ex}{Module, cercles et disques.}{}
+    Représenter les points dont l'affixe $z$ satisfait $|z-1|=1$ et $|z+1|\leq2$.
+\end{ex}
+
+\begin{prop}{}{}
+    Pour tout nombre complexe $z=a+ib$,
+    \begin{align*}
+        &\nt{a)}~|z|=0\iff z=0\qquad\quad~ \nt{c)}~|\Re(z)|\leq|z|\et|\Im(z)|\leq|z|.\\
+        &\nt{b)}~|-z|=|z|=|\ov{z}|.\qquad\qquad \nt{d)}~\Re(z)=|z|\iff z\in\R_+.
+    \end{align*}
+    \tcblower
+    \fbox{a)} Supposons $|z|=0$, alors $|z|^2=0$ donc $a^2+b^2=0$ donc $a=b=0$ donc $z=0$.\\
+    Supposons $z=0$, alors $a=b=0$, donc $|z|=\sqrt{0^2+0^2}=0$.\\
+    \fbox{b)} $|-z|=|-a-ib|=\sqrt{(-a)^2+(-b)^2}=\sqrt{a^2+b^2}=|z|=\sqrt{a^2+(-b)^2}=|\ov{z}|$.\\
+    \fbox{c)} $|z|^2\geq a^2$ donc $|z|\geq|a|$ donc $|z|\geq|\Re(z)|$ , idem pour $\Im(z)$.\\
+    \fbox{d)} Supposons $\Re(z)=|z|$, alors $\Re(z)|=|z|^2=\Re(z)^2+\Im(z)^2\geq0$ donc $\Im(z)=0$ donc $z=\Re(z)\in\R_+$.\\
+    Supposons $z\in\R_+$, alors $\Re(z)=z$ et $|z|=z$ car $z\geq0$, donc $\Re(z)=|z|$.
+\end{prop}
+
+\begin{prop}{Propriétés multiplicatives du module.}{}
+    Pour tous nombres complexes $z$ et $z'$, on a
+    \begin{equation*}
+        \nt{a)}~|z|^2=z\cdot\ov{z}\quad\nt{b)}~|z\cdot z'|=|z|\cdot|z'|,\quad\nt{c)}~\nt{si}~z'\neq0,\quad\left|\frac{z}{z'}\right|=\frac{|z|}{|z'|}\quad\nt{d)}~\nt{si}~z\neq0,\quad\frac{1}{z}=\frac{\ov{z}}{|z|^2}.
+    \end{equation*}
+    \tcblower
+    Notons $z=a+ib$ avec $(a,b)\in\R^2$.\\
+    \fbox{a)} $z\cdot\ov{z}=(a+ib)(a-ib)=a^2+b^2=|z|^2$.\\
+    \fbox{b)} $|zz'|^2=zz'\times \ov{zz'}=z\ov{z}\times z'\ov{z'}=|z|^2|z'|^2$, tout est positif : $|zz'|=|z||z'|$.\\
+    \fbox{c)} Supposons $z'\neq0$: $|z'|\left|\frac{z}{z'}\right|=|z|$ donc $\left|\frac{z}{z'}\right|=\frac{|z|}{|z'|}$.\\
+    \fbox{d)} $z\ov{z}=|z|^2$ donc $z\frac{\ov{z}}{|z|^2}=1$ donc $\frac{1}{z}=\frac{\ov{z}}{|z|^2}$.
+\end{prop}
+
+\begin{prop}{Inégalité triangulaire. $\star$}{}
+    Pour tous nombres complexes $z,z'$, on a
+    \begin{equation*}
+        |z+z'|\leq|z|+|z'|.
+    \end{equation*}
+    \bf{Cas d'égalité:} les deux membres sont égaux ssi $z=0$ ou $\exists \l \in \R_+\mid z'=\l z$.
+    \tcblower
+    On compare les carrés.
+    \begin{align*}
+        (|z|+|z'|)^2-|z+z'|^2&=|z|^2+2|z||z'|+|z'|^2-(z+z')(\ov{z+z'})\\
+        &=|z|^2+2|z||z'|+|z'|^2-z\ov{z}-\ov{z}z'-z'\ov{z}-z'\ov{z'}\\
+        &=2|z||z'|-(z\ov{z'}+\ov{z}z')\\
+        &=2(|zz'|-\Re(zz'))
+    \end{align*}
+    Or on a vu que $\forall z \in \C, ~ |\Re(z)|\leq|z|$, le résultat est donc positif. Alors:
+    \begin{equation*}
+        |z+z'|^2\leq(|z|+|z'|)^2 \iff |z+z'|\leq|z|+|z'|
+    \end{equation*}
+\end{prop}
+
+\begin{corr}{}{}
+    \begin{enumerate}
+        \item $\forall (z,z')\in\C^2\quad|z-z'|\leq|z|+|z'|$.
+        \item $\forall (z,z')\in\C^2\quad||z|-|z'||\leq|z-z'|$.
+        \item Soit $n\in\N^*$, pour tous $z_1,...,z_n\in\C$:
+        \begin{equation*}
+            \left|\sum_{k=1}^nz_k\right|\leq\sum_{k=1}^n|z_k|.
+        \end{equation*}
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soient $z,z'\in\C$. On a $|z-z'|=|z+(-z')|\leq|z|+|-z'|=|z|+|z'|$.\\
+    \boxed{2.} Soient $z,z'\in\C$. On a $|z|=|z+z'-z'|\leq|z|+|z-z'|$ donc $|z|-|z'|\leq|z-z'|$.\\
+    Par symétrie, $|z'|-|z|\leq|z-z'|=|z-z'|$. Alors $\max(|z|-|z'|,|z'|-|z|)\leq |z-z'|$.\\
+    On en déduit que $||z|-|z'||\leq|z-z'|$.
+\end{corr}
+
+\section{Exercices.}
+
+\begin{exercice}{$\bww$}{}
+    Résoudre $4z^2 + 8|z|^2 - 3 = 0$.
+    \tcblower
+    Soit $z \in \mathbb{C}$ et $(a,b)\in\mathbb{R}^2$ tels que $z=a+ib$. On a :
+    \begin{align*}
+        &4z^2+8|z|^2-3=0\\
+        \iff&4(a+ib)^2+8(a^2+b^2)-3=0\\
+        \iff&4a^2+8aib-4b^2+8a^2+8b^2-3=0\\
+        \iff&(12a^2+4b^2-3)+i(8ab) = 0\\
+        \iff&\begin{cases}12a^2+4b^2-3=0\\8ab=0\end{cases}\\
+        \iff&\begin{cases}12a^2+4b^2-3=0\\a=0\end{cases} \text{ ou } \begin{cases}12a^2+4b^2-3=0\\b=0\end{cases}\\
+        \iff&4b^2-3=0 \text{ ou } 12a^2-3=0\\
+        \iff&b^2=\frac{3}{4} \text{ ou } a^2 = \frac{1}{4}\\
+        \iff&b=\pm\frac{\sqrt{3}}{2} \text{ ou } a=\pm\frac{1}{2}
+    \end{align*}
+    Les solutions sont donc :
+    \begin{equation*}
+        \left\{-\frac{1}{2}, \frac{1}{2}, -i\frac{\sqrt{3}}{2}, i\frac{\sqrt{3}}{2}\right\}
+    \end{equation*}
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Soient $a$ et $b$ deux nombres complexes non nuls. Montrer que :
+    \begin{equation*}
+        \left|\frac{a}{|a|^2}-\frac{b}{|b|^2}\right|=\frac{|a-b|}{|a||b|}.
+    \end{equation*}
+    \tcblower
+    On a : 
+    \begin{align*}
+        \left|\frac{a}{|a|^2}-\frac{b}{|b|^2}\right| &= \left|\frac{a|b|^2-b|a|^2}{|a|^2|b|^2}\right| = \frac{|ab\overline{b}-ba\overline{a}|}{||ab|^2|}\\
+        &=\frac{\left|ab(\overline{b}-\overline{a})\right|}{||ab|^2|} =\frac{|ab||\overline{a}-\overline{b}|}{|ab|^2}\\
+        &=\frac{|a-b|}{|ab|} = \frac{|a-b|}{|a||b|}
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $z \in \mathbb{C} \setminus \{1\}$, montrer que :
+    \begin{equation*}
+        \frac{1+z}{1-z} \in i\mathbb{R} \iff |z| = 1.
+    \end{equation*}
+    \tcblower
+    Supposons $\frac{1+z}{1-z} \in i\mathbb{R}$. Montrons $|z|=1$.\\
+    Soit $b\in\mathbb{R}$, on a :
+    \begin{align*}
+        &\frac{1+z}{1-z}=ib\iff1+z=ib-zib\iff z(1+ib)=ib-1\iff z=\frac{ib-1}{1+ib}
+    \end{align*}
+    Ainsi, $|z|=|\frac{ib-1}{1+ib}|=\frac{\sqrt{1+b^2}}{\sqrt{1+b^2}}=1$.\\
+    Supposons $|z|=1$, montrons $\frac{1+z}{1-z} \in i\mathbb{R}$.\\
+    Soient $(a,b)\in\mathbb{R}$ tels que $z=a+ib$. Par supposition, $a^2+b^2=1$. On a :
+    \begin{align*}
+        \frac{1+z}{1-z}&=\frac{1+a+ib}{1-a-ib}=\frac{(1+a+ib)(1-a+ib)}{(1-a-ib)(1-a+ib)}=\frac{1+2ib-a^2-b^2}{1-2a+a^2+b^2}\\
+        &= \frac{2ib}{2-2a} = \frac{ib}{1-a}=i\frac{b}{1-a}
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Soient $z_1,z_2,\dots,z_n$ des nombres complexes non nuls de mêmes module. Démontrer que
+    \begin{equation}
+        \frac{(z_1 + z_2)(z_2 + z_3)\dots(z_{n-1}+z_n)(z_n + z_1)}{z_1z_2\dots z_n} \in \mathbb{R}.
+    \end{equation}
+    \tcblower
+    Commençons par énoncer que :
+    \begin{equation*}
+        \forall{(i,j)\in\llbracket1,n\rrbracket^2}, \hspace{1cm} \frac{\overline{z_i}}{\overline{z_j}}=\frac{z_j}{z_i}.
+    \end{equation*}
+    En effet,
+    \begin{equation*}
+        \frac{z_i}{z_j}\cdot\frac{\overline{z_i}}{\overline{z_j}}=\left|\frac{z_i}{z_j}\right|^2=1 \iff \frac{\overline{z_i}}{\overline{z_j}}=\frac{z_j}{z_i}.
+    \end{equation*}
+    Le conjugué de (1) est :
+    \begin{align*}
+        &\frac{(\overline{z_1} + \overline{z_2})(\overline{z_2} + \overline{z_3})\dots(\overline{z_{n-1}}+\overline{z_n})(\overline{z_n} + \overline{z_1})}{\overline{z_1}\overline{z_2}\dots\overline{z_n}}=(1+\frac{\overline{z_2}}{\overline{z_1}})(1+\frac{\overline{z_3}}{\overline{z_2}})\dots(1+\frac{\overline{z_n}}{\overline{z_{n-1}}})(1+\frac{\overline{z_1}}{\overline{z_n}})
+    \end{align*}
+    Ainsi :
+    \begin{align*}
+        &\frac{(\overline{z_1} + \overline{z_2})(\overline{z_2} + \overline{z_3})\dots(\overline{z_{n-1}}+\overline{z_n})(\overline{z_n} + \overline{z_1})}{\overline{z_1}\overline{z_2}\dots\overline{z_n}}=(1+\frac{z_1}{z_2})\dots(1+\frac{z_n}{z_1})\\
+        =&\frac{z_1+z_2}{z_2}\dots\frac{z_n+z_1}{z_1}=\frac{(z_1+z_2)(z_2+z_3)\dots(z_{n-1}+z_n)(z_n+z_1)}{z_1z_2\dots z_n}
+    \end{align*}
+    Puisque (1) est égal à son conjugué, $(1) \in \mathbb{R}$.
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\bbw$}{}
+    Soient $a,b$ deux nombres complexes tels que $\overline{a}b\neq1$ et $c=\frac{a-b}{1-\overline{a}b}$. Montrer que
+    \begin{equation*}
+        (|c|=1) \iff (|a| = 1 \text{ ou } |b| = 1).
+    \end{equation*}
+    \tcblower
+    Supposons $|c|=1$. Montrons que $|a|=1$ ou $|b|=1$.\\
+    On a :
+    \begin{align*}
+        &|c|=1\\
+        \iff&|c|^2=\frac{(a-b)(\overline{a}-\overline{b})}{(1-\overline{a}b)(1-a\overline{b})}=\frac{|a|^2-a\overline{b}-b\overline{a}+|b|^2}{1-a\overline{b}-\overline{a}b+|a|^2|b|^2}=1\\
+        \iff&|a|^2-a\overline{b}-\overline{a}b+|b|^2=1-a\overline{b}-\overline{a}b+|a|^2|b|^2\\
+        \iff&|a|^2+|b|^2-|a|^2|b|^2=1\\
+        \iff&|a|^2(1-|b|^2)=1-|b|^2
+    \end{align*}
+    Si on suppose $|b|\neq1$, on obtient : $|c|=1\iff|a|^2=\frac{1-|b|^2}{1-|b|^2}=1$ donc $|a|=1$.\\
+    Si on suppose $|a|\neq1$, on obtient : $|c|=1\iff|b|^2=\frac{1-|a|^2}{1-|a|^2}=1$ donc $|b|=1$.\\
+    Supposons $|a|=1$. 
+    On a :
+    \begin{align*}
+        |c|=\left|\frac{a-b}{1-\overline{a}b}\right|=\left|\frac{a-b}{\overline{a}a-\overline{a}b}\right|=\left|\frac{1}{\overline{a}}\right|\left|\frac{a-b}{a-b}\right|=|a|=1
+    \end{align*}
+    Supposons $|b|=1$. 
+    On a :
+    \begin{align*}
+        |c|=\left|\frac{a-b}{1-\overline{a}b}\right|=\left|\frac{a-b}{\overline{b}b-\overline{a}b}\right|=\left|\frac{1}{b}\right|\left|\frac{a-b}{\overline{b}-\overline{a}}\right|=|b|\frac{|a-b|}{|a-b|}=|b|=1
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Pour $n\in\mathbb{N}^*$, calculer $R^2+S^2$ où
+    \begin{equation*}
+        R = \sum_{0\leq 2k \leq n}{(-1)^k\binom{n}{2k}} \hspace{1cm} \text{et} \hspace{1cm} S = \sum_{0 \leq 2k+1 \leq n}{(-1)^k\binom{n}{2k+1}}.
+    \end{equation*}
+    \tcblower
+    On a :
+    \begin{equation*}
+        (1+i)^n = \sum_{k=0}^n{\binom{n}{k}i^k}=\sum_{0 \leq 2k \leq n}{\binom{n}{2k}i^{2k}}+\sum_{0\leq 2k+1 \leq n}{\binom{n}{2k+1}i^{2k}\cdot i}=R+iS
+    \end{equation*}
+    Ainsi :
+    \begin{equation*}
+        \begin{cases}
+            R = \text{Re}\left((1+i)^n\right)=2^\frac{n}{2}\cos(\frac{n\pi}{4})\\
+            S = \text{Im}\left((1+i)^n\right)=2^\frac{n}{2}\sin(\frac{n\pi}{4})
+        \end{cases}
+    \end{equation*}
+    Finalement, $R^2 + S^2$ = $2^n(\cos^2(\frac{n\pi}{4})+\sin^2(\frac{n\pi}{4}))=2^n$.
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Soit $ABCD$ un parallélogramme.\\
+    Montrer que $AC^2+BD^2=AB^2+BC^2+CD^2+DA^2$
+    \tcblower
+    Soient $(z,z')\in\mathbb{R}$. Les points $A,B,C,D$ d'affixes $0,z,z+z',z'$ forment un parallélogramme.\\
+    Alors :
+    \begin{equation*}
+        \begin{cases}
+            AC^2 = |z+z'|^2\\
+            BD^2 = |z-z'|^2\\
+            AB^2 = CD^2 = |z|^2\\
+            BC^2 = DA^2 = |z'|^2
+        \end{cases}
+    \end{equation*}
+    On a :
+    \begin{align*}
+        AC^2 + BD^2 &= |z+z'|^2 + |z-z'|^2 = (z+z')(\overline{z}+\overline{z'})+(z-z')(\overline{z}-\overline{z'})\\
+        &=z\overline{z}+z\overline{z'}+z'\overline{z}+z'\overline{z'}+z\overline{z}-z\overline{z'}-z'\overline{z}+z'\overline{z'}\\
+        &=|z|^2+|z'|^2+|z|^2+|z'|^2\\
+        &= AB^2 + BC^2 + CD^2 + DA^2
+    \end{align*}
+\end{exercice}
+
+\end{document}
