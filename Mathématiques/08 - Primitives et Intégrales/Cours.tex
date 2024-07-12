@@ -1,0 +1,790 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{8}
+\def\pagetitle{Primitives et intégrales.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\thispagestyle{fancy}
+
+\section{Définition et calculs directs.}
+
+\subsection{Définition.}
+
+\begin{defi}{}{}
+    Soit $I$ un intervalle de $\R$ et $f:I\to\R$ une fonction.\\
+    On dit qu'une fonction $F:I\to\R$ est une \bf{primitive} de $f$ sur $I$ si elle est dérivable sur $I$ et si
+    \begin{equation*}
+        \forall x \in I, \quad F'(x)=f(x).
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{Ensemble des primitives d'une même fonction sur un intervalle.}{}
+    Soit $f:I\to\R$ une fonction définie sur un intervalle $I$ et $\P_f$ l'ensemble des primitives de $f$ sur $I$, dont oon suppose ici qu'il est non vide. Soit $F$ une primitive de $f$, alors
+    \begin{equation*}
+        \P_f = \{F+c,~c\in C_I\}
+    \end{equation*}
+    où $C_I$ est l'ensemble des fonctions constantes sur $I$.
+    \tcblower
+    \boxed{\supset} Soit $c\in C_I$. $F+c$ est dérivable sur $I$ comme somme, $(F+c)'=F'=f$.\\
+    \boxed{\subset} Soit $G\in\P_f$, $(G-F)'=G'-F'=0$, donc $G-F$ est constante : $\exists c\in C_I\mid G=F+c$.
+\end{prop}
+
+\begin{prop}{Primitives usuelles. $\star$}{}
+    \begin{center}
+        \includegraphics*[scale=0.65]{PRIMITIVES.png}
+    \end{center}
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $f:I\to\R$ et $g:I\to\R$. Soient $F$ et $G$ des primitives respectivements de $f$ et $g$ sur $I$, et deux nombres $\a,\b\in\R$. Alors,
+    \begin{center}
+        la fonction $\a F+\b G$ est une primitive de $\a f + \b g$ sur $I$.
+    \end{center} 
+\end{prop}
+
+\begin{ex}{}{}
+    Soit une fonction polynomiale $f:x\mapsto\sum\limits_{k=0}^na_kx^k$, où $n\in\N$ et $a_0,...,a_n\in\R$.\\
+    La fonction $F:x\mapsto\sum\limits_{k=0}^na_k\frac{x^{k+1}}{k+1}$ en est une primitive.
+    \tcblower
+    Soit $x\in\R$, on a $F'(x)=\sum_{k=0}^na_k\frac{(k+1)x^k}{k+1}=\sum_{k=0}^na_kx^k=f(x)$.
+\end{ex}
+
+\subsection{Fonctions composées.}
+
+\begin{prop}{Primitive et composée. $\star$}{}
+    Soient deux fonctions $u:I\to J$, dérivable sur $I$, et $F:J\to\R$, dérivable sur $J$.\\
+    Alors la fonction
+    \begin{center}
+        $F\circ u$ est une primitive de $u'\times F'\circ u$ sur $I$.
+    \end{center}
+\end{prop}
+
+\arraycolsep=1.2pt
+\def\arraystretch{1.4}
+\begin{center}
+    $
+        \begin{array}{|c|c|}
+            \hline
+            \bf{Fonction} & \bf{Une primitive}\\
+            \hline
+            u'u & \frac{1}{2}u^2\\
+            \hline
+            u'u^\a ~ (a\neq -1) & \frac{1}{\a+1}u^{\a+1}\\
+            \hline
+            u'e^u & e^u\\
+            \hline
+        \end{array}
+        \qquad\qquad
+        \begin{array}{|c|c|}
+            \hline
+            \bf{Fonction} & \bf{Une primitive}\\
+            \hline
+            \frac{u'}{\sqrt{u}} & 2\sqrt{u}\\
+            \hline
+            \frac{u'}{u} & \ln(|u|)\\
+            \hline
+            \frac{u'}{1+u^2} & \arctan(u)\\
+            \hline
+        \end{array}
+    $
+\end{center}
+
+\begin{ex}{}{}
+    Calculer pour chacune des fonctions ci-dessous une primitive (on précisera sur quel intervalle).
+    \begin{equation*}
+        x\mapsto\sin(3x)\qquad x\mapsto\cos x\sin x\qquad x\mapsto xe^{x^2} \qquad x\mapsto \tan x\qquad x\mapsto\frac{x}{1+x^2}\qquad x\mapsto\frac{x}{\sqrt{1-x^2}}
+    \end{equation*}
+\end{ex}
+
+\subsection{Inverse de trinôme. \texorpdfstring{$\star$}{Lg}}
+
+Soient $a,b,c\in\R$ avec $a\neq0$. On cherche une primitive de $f:x\mapsto\frac{1}{ax^2+bx+c}$.
+\begin{itemize}
+    \item Si le trinôme a une racine double $\g$, on peut écrire
+    \begin{equation*}
+        \frac{1}{ax^2+bx+c}=\frac{1}{a(x-\g)^2}.
+    \end{equation*}
+    Une primitive est:
+    \begin{equation*}
+        F:x\mapsto-\frac{1}{a}\cdot\frac{1}{x-\g}\quad x\in]-\infty,\g[\ou]\g,+\infty[.
+    \end{equation*}
+    \item Si le trinôme a deux racines distinctes $\a$ et $\b$:
+    \begin{equation*}
+        \frac{1}{ax^2+bx+c}=\frac{1}{a(x-\a)(x-\b)}=\frac{A}{x-\a}+\frac{B}{x-\b}.
+    \end{equation*}
+    Une primitive est:
+    \begin{equation*}
+        F:x\mapsto A\ln|x-\a|+B\ln|x-\b|\quad x\in]-\infty,\a[\ou]\a,\b[\ou]\b,+\infty[.
+    \end{equation*}
+    On a toujours $B=-A$, ce qui permet d'écrire la primitive sous la forme $x\mapsto A\ln\left|\frac{x-\a}{x-\b}\right|$.
+    \item Si le trinôme n'a pas de racine réelle, on met sous forme canonique:
+    \begin{equation*}
+        \frac{1}{ax^2+bx+c}=\frac{1}{a((x+A)^2+B^2)}
+    \end{equation*}
+    Une primitive est:
+    \begin{equation*}
+        F:x\mapsto\frac{1}{aB}\arctan\left( \frac{x+A}{B} \right)\quad x\in\R.
+    \end{equation*}
+\end{itemize}
+
+\begin{meth}{}{}
+    Soient $\a$ et $\b$ deux réels distincts. Il existe deux constantes $A$ et $B$ réelles telles que
+    \begin{equation*}
+        \forall x\in\R\setminus\{\a,\b\}\quad\frac{1}{(x-\a)(x-\b)}=\frac{A}{x-\a}+\frac{B}{x-\b}.
+    \end{equation*}
+    Cette écriture est appelée \bf{décomposition en éléments simples.}\\
+    On donne en classe deux méthodes pour trouver $A$ et $B$ (qui sont opposés).
+\end{meth}
+
+\begin{meth}{}{}
+    Mise sous forme canonique : pour $a\neq0$, $b,c\in\R$ et $x\in\R$,
+    \begin{equation*}
+        ax^2+bx+c=a(x^2+\frac{b}{a}x+\frac{c}{a})=a\left( (x+\frac{b}{2a})^2 - (\frac{b}{2a})^2 + \frac{c}{a} \right) = a\left( \left( x+\frac{b}{2a} \right)^2 + \frac{4ac - b^2}{4a^2} \right)
+    \end{equation*} 
+\end{meth}
+
+\begin{ex}{}{}
+    Calculer une primitive des fonctions $\displaystyle f:x\mapsto\frac{1}{x^2+3x+2}$ et $\displaystyle g:x\mapsto\frac{1}{x^2+x+1}$.
+    \tcblower
+    \boxed{1.} Racines évidentes : $-1$ et $-2$. On calcule la décomposition en éléments simples:
+    \begin{equation*}
+        \frac{1}{x^2+3x+2}=\frac{1}{(x+1)(x+2)}=\frac{(x+2)-(x+1)}{(x+1)(x+2)}=\frac{1}{x+1}-\frac{1}{x+2}.
+    \end{equation*}
+    Primitive: $x\mapsto\ln\left|\frac{x+1}{x+2}\right|$ sur $\R\setminus\{-2,-1\}$.\\
+    \boxed{2.} Pas de racines. On met sous forme canonique.
+    \begin{equation*}
+        \frac{1}{x^2+x+1}=\frac{1}{(x+\frac{1}{2})^2+\frac{3}{4}}=\frac{1}{(x+\frac{1}{2})^2+\left( \frac{\sqrt{3}}{2} \right)^2}
+    \end{equation*}
+    Primitive: $x\mapsto \frac{2}{\sqrt{3}}\arctan\left( \frac{2}{\sqrt{3}}(x+\frac{1}{2}) \right)$.
+\end{ex}
+
+\subsection{Primitive d'une fonction \texorpdfstring{$t\mapsto e^{\a t}\cos(\w t)$}{Lg} ou \texorpdfstring{$t\mapsto e^{\a t}\sin(\w t)$}{Lg}.}
+
+Soit $\a\in\R$ et $\w\in\R_+^*$, on veut calculer une primitive pour chacune des deux fonctions
+\begin{equation*}
+    f:t\mapsto e^{\a t}\cos(\w t) \quad\et\quad g:t\mapsto e^{\a t}\sin(\w t) \quad \nt{avec } \a\in\R,~\w\in\R^*.
+\end{equation*}
+
+\fbox{Méthode} : passer dans $\C$. Pour $t$ réel, on a
+\begin{equation*}
+    e^{\a t}\cos(\w t) = e^{\a t}\Re(e^{i\w t}) = \Re(e^{\a + i\w}t) \quad\et\quad e^{\a t}\sin(\w t)=e^{\a t}\Im(e^{i\w t})=\Im(e^{(a+i\w)t}).
+\end{equation*}
+Or, $t\mapsto\frac{1}{\a+i\w}e^{(\a+i\w)t}$ est une primitive de $t\mapsto e^{(\a+i\w)t}$ sur $\R$, on peut alors calculer
+\begin{equation*}
+    \begin{cases}
+        F(t)\quad:=\quad\Re\left( \frac{1}{\a+i\w}e^{(\a+i\w)t} \right) = ... = \frac{e^{\a t}}{\a^2+\w^2}(\a\cos(\w t) + \w\sin(\w t)).\\
+        G(t)\quad:=\quad\Im\left( \frac{1}{\a+i\w}e^{(\a+i\w)t} \right) = ... = \frac{e^{\a t}}{\a^2+\w^2}(\a\sin(\w t)-\w\cos(\w t)).
+    \end{cases}
+\end{equation*}
+
+La fonction $F$ est une primitive de $f$ et la fonction $G$ est une primitive de $g$.
+
+\begin{ex}{}{}
+    Calculer une primitive sur $\R$ de la fonction $x\mapsto e^{3x}\cos(2x)$.
+    \tcblower
+    Soit $t\in\R$.\\
+    On a $f(t)=\Re\left[ e^{(3+2i)t} \right]$.\\
+    On note $F$ sa primitive, on a donc $F(t)=\Re\left[ \frac{1}{3+2i}e^{(3+2i)t} \right]=\Re\left[ \frac{3-2i}{|3+2i|^2}e^{3t}\left( \cos(2t) + i\sin(2t) \right) \right]$.\\
+    On sélectionne la partie réelle : $F(t)=\frac{3}{13}e^{3t}\cos2t+\frac{2}{13}e^{3t}\sin2t$
+\end{ex}
+
+\section{Calcul intégral et primitives.}
+
+\subsection{Propriétés de l'intégrale.}
+
+Soit $f$ une fonction \bf{continue} sur un intervalle $I$ et $a,b\in I$. Pour une telle fonction, la construction de l'intégrale de Riemann au second semestre donnera un sens au nombre \boxed{\displaystyle\int_a^bf(t)\dt}.\\
+Rappelons brièvement quelques propriétés entrevues au lycée ; elles seront démontrées en fin d'année.
+\begin{enumerate}
+    \item \bf{Intégrale d'une constante.} Si $f$ est constante égale à $C$ sur $I$, alors $\int_a^bC\dx=C(b-a)$.
+    \item \bf{Positivité.} Si $f$ est \bf{continue} et \bf{positive} sur $[a,b]$ ($a\leq b$), alors $\int_a^bf(t)\dt$ est positif.
+    \item \bf{Croissance.} Si $f$ et $g$ sont continues sur $[a,b]$ ($a\leq b$), telle que $f\leq g$, alors $\int_a^bf(t)\dt\leq\int_a^bg(t)\dt$.
+    \item \bf{Relation de Chasles}. Si $a,b,c\in I$, alors $\int_a^cf(t)\dt=\int_a^bf(t)\dt+\int_b^cf(t)\dt$.
+    \item \bf{Linéarité.} Si $f$ et $g$ sont continues sur $I$, et $a,b\in I$, alors
+    \begin{equation*}
+        \int_a^b(\l f(t)+\mu g(t))\dt=\l \int_a^bf(t)\dt+\mu \int_a^bg(t)\dt
+    \end{equation*}
+    \item \bf{Inégalité triangulaire.} Si $f$ est continue sur $[a,b]$ avec $a\leq b$, alors
+    \begin{equation*}
+        \left| \int_a^bf(t)\dt \right| \leq \int_a^b|f(t)|\dt.
+    \end{equation*} 
+\end{enumerate}
+
+\pagebreak
+
+\subsection{Inégrales et primitives d'une fonction continue.}
+
+Le théorème suivant énonce que sous certaines conditions, la dérivation et l'intégration, deux opérations fondamentales en analyse, sont réciproques l'une de l'autre. Ce théorème sera démontré au second semetre dans le cours d'intégration.
+
+\begin{thm}{Théorème fondamental de l'analyse. $\star$}{}
+    Soit $I$ un intervalle et $a\in I$ et $f:I\to\R$ \bf{continue} sur $I$. Alors la fonction
+    \begin{equation*}
+        F:x\mapsto \int_a^xf(t)\dt
+    \end{equation*}
+    est une primitive de $f$ sur $I$. (c'est la primitive de $f$ qui s'annule en $a$)
+\end{thm}
+
+\begin{corr}{}{}
+    Si une fonction est continue sur un intervalle, elle y admet des primitives.
+\end{corr}
+
+\begin{ex}{}{}
+    Exprimer à l'aide sur symbole intégrale une primitive de $f:x\mapsto e^{-x^2}$ et $g:x\mapsto\ln^2(x)$.
+\end{ex}
+
+\begin{prop}{Calculer une intégrale à grâce à une primitive.}{}
+    Soit $f:[a,b]\to\R$ continue et $F$ une primitive de $f$ sur $[a,b]$. Alors
+    \begin{equation*}
+        \int_a^bf(t)=F(b)-F(a).
+    \end{equation*}
+\end{prop}
+
+Rappel : pour une fonction $F$ définie sur $[a,b]$, on note $[F]_a^b=F(b)-F(a)$.
+
+\begin{ex}{}{}
+    Calcul de $I_1=\int_0^{\frac{1}{2}}t^3\dt, \qquad I_2=\int_0^{\frac{\pi}{2}}\cos t\sin^3 t\dt,\qquad I_3=\int_0^{\frac{\pi}{4}}\tan^2(x)\dx$.
+    \tcblower
+    On a:
+    \begin{align*}
+        &I_1=\int_0^{{\frac{1}{2}}}t^3\dt=\left[\frac{1}{4}t^4\right]_0^{\frac{1}{2}}=\frac{1}{4}\cdot\frac{1}{2^4}-0=\frac{1}{64}.\\
+        &I_2=\int_0^{\frac{\pi}{2}}\cos t\sin^3t\dt=\left[ \frac{1}{4}\sin^4(t) \right]_0^{\frac{\pi}{4}}=\frac{1}{4}\sin^4(\frac{\pi}{2})-0=\frac{1}{4}.\\
+        &I_3=\int_0^{\frac{\pi}{4}}\tan^2(x)\dx=\int_0^{\frac{\pi}{4}}\left( 1+\tan^2(x) - 1 \right)\dx=\left[ \tan x \right]_0^{\frac{\pi}{4}}-\frac{\pi}{4}=1-\frac{\pi}{4}.
+    \end{align*}
+\end{ex}
+
+\begin{ex}{}{}
+    Domaine de définition et variations de $L:x\mapsto\int_x^{x^2}\frac{1}{\ln(t)}\dt$.
+    \tcblower
+    On a $1/\ln$ définie et continue sur $\R_+^*\setminus\{1\}$, donc $L$ y est définie. On va dériver $L$.\\
+    $\bullet$ Soit $F$ une primitive de $\frac{1}{\ln}$ sur $]1,+\infty[$ (TFA).\\
+    Pour $x\in]1,+\infty[$, $L(x)=\int_x^{x^2}\frac{1}{\ln(t)}\dt=\left[ F(t) \right]_x^{x^2}=F(x^2)-F(x)$.\\
+    On a $L$ dérivable comme somme et composée, donc: $L'(x)=2xF'(x^2)-F'(x)=\frac{2x}{\ln(x^2)}-\frac{1}{\ln(x)}=\frac{x-1}{\ln(x)}\geq0$\\
+    $\bullet$ C'est pareil sur $]0,1[$.\\
+    Ainsi, $L$ est croissante sur $]0,1[$, puis sur $]1,+\infty[$ (pas continue en 1).
+\end{ex}
+
+\subsection{Intégration par parties.}
+
+Pour les intégrales, l'intégration par parties (souvent abrégée en "IPP") est le pendant de la formule de la dérivée d'un produit :
+\begin{equation*}
+    (uv)'=u'v+uv',\quad \nt{i.e.} \quad u'v=(uv)'-uv'.
+\end{equation*}
+
+\begin{defi}{}{}
+    On dit qu'une fonction $f:I\to\R$ est \bf{de classe $\m{C}^1$} sur un intervalle $I$ si $f$ est dérivable sur $I$ et si sa dérivée $f'$ est continue sur $I$.
+\end{defi}
+
+\pagebreak
+
+\begin{thm}{Intégration par parties. $\star$}{}
+    Soient $u$ et $v$ deux fonctions de classe $\m{C}^1$ sur un intervalle $I$ et $a,b\in I$. On a
+    \begin{equation*}
+        \int_a^bu'(x)v(x)\dx = [uv]_a^b-\int_a^bu(x)v'(x)\dx.
+    \end{equation*}
+    \tcblower
+    Les fonctions $u$ et $v$ sont dérivables sur $I$, donc $(uv)'=u'v+uv'$.\\
+    Les fonctions $u,v,u',v'$ sont continues sur $I$, car $u,v\in\m{C}^1$.\\
+    Par somme et produit de fonctions continues, $u'v+uv'$ est continue sur $I$. On intègre entre $a$ et $b$:
+    \begin{align*}
+        &\int_a^b(uv)'(t)\dt=\int_a^b\left(u'(t)v(t)+u(t)v'(t)\right)\dt\\
+        \underset{\nt{TFA}}{\ra}&\hspace{0.7cm}\left[ uv \right]_a^b\hspace*{0.6cm}=\int_a^bu'(t)v(t)\dt+\int_a^bu(t)v'(t)\dt
+    \end{align*}
+\end{thm}
+
+\begin{ex}{}{}
+    Calculer les intégrales $\displaystyle I= \int_0^\frac{\pi}{2}x\cos x\dx$ et $\displaystyle J=\int_0^\pi\ch(x)\sin(x)\dx$ (douple IPP pour cette dernière).
+    \tcblower
+    On a:
+    \begin{equation*}
+        I=\int_0^\frac{\pi}{2}x\cos x\dx = \left[ x\sin x \right]_0^\frac{\pi}{2}-\int_0^\frac{\pi}{2}\sin x\dx=\frac{\pi}{2}-\left[ -\cos x \right]_0^\frac{\pi}{2}=\frac{\pi}{2}-1.
+    \end{equation*}
+    \begin{equation*}
+        J=\int_0^\pi\ch(x)\sin(x)\dx=\left[ \sh\sin \right]_0^\pi - \int_0^\pi\sh(x)\cos(x)\dx=0-\left[ \ch\cos \right]_0^\pi+\int_0^\pi-\ch(x)\sin(x)\dx
+    \end{equation*}
+    Donc $J=1+\ch(\pi)-J$ donc $J=\frac{1+\ch(\pi)}{2}$.
+\end{ex}
+
+\begin{ex}{}{}
+    Calculer des primitives pour les fonctions :
+    \begin{equation*}
+        f~:~x\mapsto\sqrt{x}\ln(x)\et g~:~x\mapsto\arctan(x).
+    \end{equation*}
+    \tcblower
+    Posons $F:x\mapsto\int_1^x\sqrt{t}\ln t\dt$. Soit $x\in\R_+^*$.
+    \begin{equation*}
+        F(x)=\int_1^x\sqrt{t}\ln t=\left[ \frac{2}{3}t^{\frac{3}{2}}\ln t \right]_1^x-\int_1^x\frac{2}{3}t^{\frac{1}{2}}\dt=\frac{2}{3}x^{\frac{3}{2}}\ln x - \frac{2}{3}\left[ \frac{2}{3}t^{\frac{3}{2}} \right]_1^x=\frac{2}{3}x^{\frac{3}{2}}\ln x - \frac{4}{9}x^{\frac{3}{2}}+\frac{4}{9}
+    \end{equation*}
+    Posons $G:x\mapsto\int_0^x\arctan(t)\dt$. Soit $x\in\R$, on calcule $G(x)$:
+    \begin{equation*}
+        G(x)=\int_0^x1\cdot\arctan t\dt=\left[ t\arctan t \right]_0^x - \int_0^x\frac{t}{1+t^2}\dt=x\arctan x-\left[ \frac{1}{2}\ln|1+t^2| \right]_0^x=x\arctan x-\frac{1}{2}\ln(1+x^2)
+    \end{equation*}
+\end{ex}
+
+\subsection{Changement de variable.}
+
+\begin{thm}{Changement de variable. $\star$}{}
+    Soit $\phi:I\to J$, de classe $\m{C}^1$ sur $I$ et $f:J\to\R$ continue sur $J$. Pour tous $a,b\in I$, on a
+    \begin{equation*}
+        \int_{\phi(a)}^{\phi(b)}f(x)\dx=\int_a^bf(\phi(t))\phi'(t)\dt
+    \end{equation*}
+    \tcblower
+    La fonction $f$ est continue sur $J$, posons $F:x\mapsto\int_{x_0}^xf(t)\dt$ où $x_0\in J$, c'est une primitive de $f$ d'après le TFA.
+    \begin{align*}
+        \int_a^bf(\phi(t))\phi'(t)\dt&=\int_a^bF'(\phi(t))\phi'(t)\dt=\left[ F\circ\phi \right]_a^b=F(\phi(b))-F(\phi(a))\\
+        &=\int_{x_0}^{\phi(b)}f(t)\dt-\int_{x_0}^{\phi(a)}f(t)\dt\\
+        &=\int_{\phi(a)}^{x_0}f(t)\dt+\int_{x_0}^{\phi(b)}f(t)\dt\\
+        &=\int_{\phi(a)}^{\phi(b)}f(t)\dt
+    \end{align*}
+\end{thm}
+
+Les physiciens ont un moyen pour se souvenir de la formule : ils posent \boxed{\displaystyle \begin{cases}x&=\quad\phi(t)\\\dx&=\quad\phi'(t)\dt\end{cases}}
+
+\begin{ex}{Appliquer la formule "dans les deux sens".}{}
+    \begin{enumerate}
+        \item En posant $x=\sin t$, calculer $\displaystyle I=\int_0^{\frac{1}{2}}\sqrt{1-x^2}\dx$.
+        \item À l'aide du changement de variable de votre choix, calculer $\displaystyle J=\int_0^1\frac{e^{2t}}{e^t+1}\dt$.
+    \end{enumerate}
+    \boxed{1.} 
+    \begin{align*}
+        I&=\int_0^\frac{1}{2}\sqrt{1-x^2}\dx=\int_0^\frac{\pi}{6}\sqrt{1-\sin^2t}\cos t\dt=\int_0^\frac{\pi}{6}\cos^2t\dt\\
+        &=\int_0^\frac{\pi}{6}\frac{1+\cos2t}{2}\dt=\frac{1}{2}\int_0^\frac{\pi}{6}\dt+\frac{1}{2}\int_0^\frac{\pi}{6}\cos2t\dt\\
+        &=\frac{\pi}{12}+\frac{1}{2}\left[ \frac{1}{2}\sin2t \right]_0^\frac{\pi}{6}=\frac{\pi}{12}+\frac{\sqrt{3}}{8}
+    \end{align*}
+    \boxed{2.} On pose $x=e^t$ : $\dx=e^t\dt$.
+    \begin{align*}
+        J &= \int_0^1\frac{e^{2t}}{e^t+1}\dt=\int_0^1\frac{e^t}{e^t+1}e^t\dt=\int_{e^0}^{e^1}\frac{x}{x+1}\dx\\
+        &=\int_1^e1\dx-\int_1^e\frac{1}{x+1}\dx=e-1-\left[ \ln|x+1| \right]_1^e\\
+        &=e-1+\ln\frac{2}{e+1}
+    \end{align*}
+\end{ex}
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item Calcul d'une primitive de $\displaystyle\frac{1}{\ch}$ sur $\R$.
+        \item Calcul d'une primitive de $\displaystyle\frac{1}{\sin}$ sur $]0,\pi[$ en posant $u=\cos x$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soit $F:x\mapsto\int_0^x\frac{1}{\ch(t)}\dt$. Soit $x\in \R$.
+    \begin{equation*}
+        F(x)=\int_0^x\frac{2}{e^t+e^{-t}}=\int_0^x\frac{2e^t}{(e^t)^2+1}\dt=\int_1^{e^x}\frac{2}{u^2+1}\du=\left[ 2\arctan \right]_1^{e^x}=2\arctan(e^x)-\frac{\pi}{2}
+    \end{equation*}
+    \boxed{2.} Soit $F:x\mapsto\int_\frac{\pi}{2}^x\frac{1}{\sin t}\dt$. Soit $x\in]0,\pi[$.
+    \begin{align*}
+        F(x) &= \int_\frac{\pi}{2}^x\frac{1}{-\sin^2t}(-\sin t)\dt=\int_0^{\cos x}\frac{1}{\cos^2t-1}(-\sin t)\dt=\int_0^{\cos x}\frac{1}{u^2-1}\du\\
+        &=\frac{1}{2}\int_0^{\cos x}\frac{1}{u-1}\du-\frac{1}{2}\int_0^{\cos x}\frac{1}{u+1}\du=\frac{1}{2}\left[ \ln |u-1| \right]_0^{\cos x}-\frac{1}{2}\left[ \ln|u+1| \right]_0^{\cos x}\\
+        &= \frac{1}{2}\ln|\cos x - 1|-\frac{1}{2}\ln|\cos x + 1|  = \frac{1}{2}\ln\frac{|\cos x - 1|}{|\cos x + 1|}
+    \end{align*}
+\end{ex}
+
+\begin{corr}{Intégrale d'une fonction paire, d'une fonction impaire.}{}
+    Soit $a$ un réel positif et $f$ une fonction continue sur $[-a,a]$.
+    \begin{center}
+        Si $f$ est paire, $\displaystyle\int_{-a}^af(t)\dt=2\int_0^af(t)\dt$. \qquad Si $f$ est impaire, $\displaystyle\int_{-a}^af(t)\dt=0$.
+    \end{center}
+\end{corr}
+
+\begin{corr}{}{}
+    Soit $f$ une fonction sur $\R$ et $T$ périodique, avec $T$ un réel strictement positif.
+    \begin{equation*}
+        \forall a \in \R \quad \int_a^{a+T}f(t)\dt=\int_0^Tf(t)\dt.
+    \end{equation*}
+\end{corr}
+
+\pagebreak
+
+\section{Exercices.}
+
+\begin{exercice}{$\bww$}{}
+    Donner les primitives des fonctions suivantes (on précisera l'intervalle que l'on considère).
+    \begin{align*}
+        &a:x\mapsto\cos{xe^{\sin{x}}}; \hspace{1cm} b:x\mapsto\frac{\cos x}{\sin x}; \hspace{1cm} c:x\mapsto\frac{\cos x}{\sqrt{\sin x}}; \hspace{1cm} d:x\mapsto\frac{1}{3x+1};\\
+        &e:x\mapsto\frac{\ln x}{x}; \hspace{1cm} f:x\mapsto\frac{1}{x\ln x}; \hspace{1cm} g:x\mapsto\sqrt{3x+1}; \hspace{1cm} h:x\mapsto\frac{x+x^2}{1+x^2}.
+    \end{align*}
+    \tcblower
+    On a:
+    \begin{align*}
+        &A:\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto e^{\sin x} + c\end{cases}; \hspace{0.5cm} B:\begin{cases}\mathbb{R}\setminus\{k\pi, k\in\mathbb{Z}\}\rightarrow\mathbb{R}\\x\mapsto\ln(\sin x) + c\end{cases}; \hspace{0.5cm}\\
+        &C:\begin{cases}]2k\pi, (2k+1)\pi[, k\in\mathbb{Z}\rightarrow\mathbb{R}\\x\mapsto2\sqrt{\sin x} + c\end{cases}; \hspace{0.5cm} D:\begin{cases}\mathbb{R}\setminus\{-\frac{1}{3}\}\rightarrow\mathbb{R}\\x\mapsto\frac{1}{3}\ln(3x+1) + c\end{cases};\\
+        &E:\begin{cases}\mathbb{R_+^*}\rightarrow\mathbb{R}\\x\mapsto\frac{1}{2}\ln^2x + c\end{cases}; \hspace{0.5cm} F:\begin{cases}\mathbb{R_+^*}\rightarrow\mathbb{R}\\x\mapsto\ln(\ln x) + c\end{cases};\\
+        &G:\begin{cases}[-\frac{1}{3}, +\infty]\rightarrow\mathbb{R}\\x\mapsto\frac{2}{9}(3x+1)^{\frac{3}{2}} + c\end{cases}; \hspace{0.5cm}H:\begin{cases}\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto\frac{1}{2}\ln(1+x^2) + x - \arctan(x) + c\end{cases}.
+    \end{align*}
+    Avec $c$ les constantes d'intégration.
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    On rappelle que $\int_a^b{f(x)dx}$ est l'aire algébrique entre la courbe représentative de $f$ et l'axe des abscisses.\\
+    1. Sans chercher à les calculer, donner le signe des intégrales suivantes.
+    \begin{equation*}
+        \int_{-2}^3{e^{-x^2}\dx}; \hspace{1cm} \int_5^{-3}{|\sin x|\dx}; \hspace{1cm} \int_1^a{\ln^7(x)\dx} (a\in\mathbb{R_+^*}).
+    \end{equation*}
+    2. En vous ramenant à des aires, calculer de tête
+    \begin{equation*}
+        \int_1^3{7\dx}; \hspace{1cm} \int_0^7{3x\dx}; \hspace{1cm} \int_{-2}^1{|x|\dx}.
+    \end{equation*}
+    \tcblower
+    \boxed{1.}
+    La première est positive car $-2<3$ et la fonction est positive sur $[-2,3]$e.\\
+    La seconde est négative car $5>-3$ et la fonction est positive sur $[-3,5]$.\\
+    La dernière est positive lorsque $a\geq1$ et négative lorsque $a\leq1$ car $\ln^7$ est positive sur $[1,+\infty[$.\n
+    \boxed{2.}
+    La première vaut $2\times7=14$.\\
+    La seconde vaut $\frac{7^2\times3}{2}=\frac{147}{2}$.\\
+    La dernière vaut $\frac{1}{2}+\frac{2\times2}{2}=2.5$
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Calculer les intégrales ci-dessous :
+    \begin{align*}
+        &I_1 = \int_0^1{x\sqrt{x}\dx}, \hspace{0.5cm} I_2 = \int_{-1}^1{2^x\dx}, \hspace{0.5cm} I_3=\int_1^e{\frac{\ln^3(t)}{t}\dt}, \hspace{0.5cm} I_4=\int_0^1{\frac{x}{2x^2+3}\dx},\\
+        &I_5=\int_0^1{\frac{1}{2x^2+3}\dx}, \hspace{0.5cm} I_6=\int_0^{\frac{\pi}{2}}{\cos^2x\dx}, \hspace{0.5cm} I_7=\int_0^\pi{|\cos x|\dx}, \hspace{0.5cm} I_8 = \int_0^{\frac{\pi}{2}}{\cos^3x\dx}\\
+        &I_9=\int_0^{\frac{\pi}{4}}{\tan^3x\dx}.
+    \end{align*}
+    \tcblower
+    On a:
+    \begin{align*}
+        &I_1 = \left[\frac{2}{5}x^{\frac{5}{2}}\right]_0^1=\frac{2}{5}, \hspace{0.5cm} I_2=\left[\frac{1}{\ln2}e^{x\ln2}\right]_{-1}^1=\frac{3}{\ln4}, \hspace{0.5cm} I_3=\left[\frac{\ln^4t}{4}\right]_1^e=\frac{1}{4},\\
+        &I_4=\left[\frac{1}{4}\ln(2x^2+3)\right]_0^1=\frac{1}{4}\left(\ln\left(\frac{5}{3}\right)\right), \hspace{0.5cm} I_5 = \left[\frac{1}{\sqrt{6}}\arctan\left(\sqrt{\frac{2}{3}}x\right)\right]_0^1=\frac{1}{\sqrt{6}}\arctan\left(\sqrt{\frac{2}{3}}\right),\\
+        &I_6=\frac{1}{2}\int_0^{\frac{\pi}{2}}{\cos2x\dx}+\frac{\pi}{4}=\frac{1}{2}\left[-2\sin(2x)\right]_0^\frac{\pi}{2}+\frac{\pi}{4}=\frac{\pi}{4}, I_7=\left[2\sin x\right]_0^\pi=2,\\
+        &I_8=\int_0^{\frac{\pi}{2}}{\cos x-\cos x\sin^2(x)\dx}=\left[\sin x\right]_0^{\frac{\pi}{2}}-\left[\frac{1}{3}\sin^3x\right]_0^\frac{\pi}{2}=\frac{2}{3},\\
+        &I_9=\int_0^\frac{\pi}{4}{\tan^3x+\tan x-\tan x\dx}=\int_0^\frac{\pi}{4}{\tan x(\tan^2 x + 1)\dx} - \frac{\ln2}{2}=\left[\frac{1}{2}\tan^2(x)\right]_0^\frac{\pi}{4}-\frac{\ln2}{2}=\frac{1-\ln2}{2} 
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Calculer le nombre $\int_1^2{\frac{\ln x}{\sqrt{x}}\dx}$.\\
+    1. À l'aide d'une IPP.\\
+    2. À l'aide du changement de variable $x=t^2$.
+    \tcblower
+    \boxed{1.}
+    \begin{align*}
+        \int_1^2{\ln x\cdot x^{-\frac{1}{2}} \dx}&=\left[\ln x \cdot 2\sqrt{x}\right]_1^2 - 2\int_1^2{x^{-\frac{1}{2}}\dx}=2\sqrt{2}\ln2-2\left[2\sqrt{x}\right]_1^2=2\sqrt{2}(\ln2-2)+4
+    \end{align*}
+    \boxed{2.}
+    \begin{align*}
+        \int_1^2{\frac{\ln x}{\sqrt{x}}\dx}=\int_1^{\sqrt{2}}{\frac{\ln t^2}{t}2t\dt}=4\int_1^{\sqrt{2}}{\ln(t)\dt}=4\left[t\ln t-t\right]_1^{\sqrt{2}}=4+2\sqrt{2}(\ln2-2)
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Calculer
+    \begin{align*}
+        \int_0^1{\frac{1}{(t+1)\sqrt{t}}\dt} \hspace{1cm} \text{en posant }t=u^2.
+    \end{align*}
+    \tcblower
+    On a :
+    \begin{align*}
+       \int_0^1{\frac{1}{(t+1)\sqrt{t}}\dt} = \int_0^1{\frac{1}{(u^2+1)u}2u\du} = 2\int_0^1{\frac{1}{u^2+1}\du}=2\left[\arctan(u)\right]_0^1 = \frac{\pi}{2}
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Calculer
+    \begin{align*}
+        \int_0^1{\frac{t^9}{t^5+1}\dt} \hspace{1cm} \text{en posant } u=t^5.
+    \end{align*}
+    \tcblower
+    On a :
+    \begin{align*}
+        \int_0^1{\frac{t^9}{t^5+1}\dt}=\int_0^1{\frac{\frac{1}{5}t^5}{t^5+1}5t^4\dt}=\frac{1}{5}\int^1_0{\frac{u}{u+1}\du}=\frac{1}{5}\int^1_0{1-\frac{1}{u+1}\du}=\frac{1}{5}\left(1-\ln2\right)
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    En posant le changement de variable $u=\tan(x)$, calculer l'intégrale
+    \begin{align*}
+        \int_0^{\frac{\pi}{4}}{\frac{1}{1+\cos^2(x)}\dx}
+    \end{align*}
+    \tcblower
+    On a:
+    \begin{align*}
+        \int_0^{\frac{\pi}{4}}{\frac{1}{1+\cos^2(x)}\dx}
+        &=\int_0^1{\frac{1}{1+\cos^2(\arctan(u))}\cdot\frac{1}{1+u^2}\du}\\
+        &=\int_0^1{\frac{1+u^2}{(2+u^2)(1+u^2)}\du}\\
+        &=\int_0^1{\frac{1}{2+u^2}\du}\\
+        &=\left[\frac{1}{\sqrt{2}}\arctan\left(\frac{u}{\sqrt{2}}\right)\right]_0^1\\
+        &=\frac{1}{\sqrt{2}}\arctan\left(\frac{1}{\sqrt{2}}\right)\\
+    \end{align*}
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\bww$}{}
+    On pose
+    \begin{equation*}
+        C=\int_0^{\frac{\pi}{2}}{\frac{\cos x}{\sin x + \cos x}\dx} \hspace{0.5cm} \text{et} \hspace{0.5cm} S=\int_0^{\frac{\pi}{2}}{\frac{\sin x}{\sin x + \cos x}\dx}
+    \end{equation*}
+    1. À l'aide du changement de variable $u=\frac{\pi}{2}-x$, prouver que $C=S$.\\
+    2. Calculer $C + S$, en déduire la valeur commune de ces deux intégrales.
+    \tcblower
+    \boxed{1.} En posant le changement de variable $u = \frac{\pi}{2} - x$, on a :
+    \begin{align*}
+    S &= \int_{\frac{\pi}{2}}^{0} \frac{\sin\left(\frac{\pi}{2} - x\right)}{\sin\left(\frac{\pi}{2} - x\right) + \cos\left(\frac{\pi}{2} - x\right)} (-\du) \\
+    &= \int_{0}^{\frac{\pi}{2}} \frac{\cos(u)}{\cos(u) + \sin(u)} \, \du\\
+    \end{align*}
+    Ainsi, $C = S$.\n
+    \boxed{2.} On a :
+    \begin{align*}
+        C + S &= \int_{0}^{\frac{\pi}{2}} \frac{\cos(x)}{\sin(x) + \cos(x)}\dx + \int_{0}^{\frac{\pi}{2}} \frac{\sin(x)}{\cos(x) + \sin(x)} \, \dx\\
+        &= \int_{0}^{\frac{\pi}{2}} \frac{\cos(x) + \sin(x)}{\cos(x) + \sin(x)} \,\dx\\
+        &= \int_{0}^{\frac{\pi}{2}} 1 \, \dx = \frac{\pi}{2}
+    \end{align*}
+    On en déduit que $C = S = \frac{\pi}{4}$.
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    On considère les deux intégrales suivantes
+    \begin{equation*}
+        I=\int_0^{\frac{\pi}{2}}{\frac{\cos(t)}{\sqrt{1+\sin(2t)}}\dt} \hspace{1cm} J=\int_0^{\frac{\pi}{2}}{\frac{\sin(t)}{\sqrt{1+\sin(2t)}}\dt}
+    \end{equation*}
+    1. À l'aide du changement de variable $u=\frac{\pi}{4}-t$ calculer $I+J$.\\
+    2. À l'aide du changement de variable $u=\frac{\pi}{2}-t$ montrer que $I=J$.\\
+    3. En déduire $I$ et $J$.
+    \tcblower
+    \boxed{1.} On a :
+    \begin{align*}
+        I + J &= \int_0^{\frac{\pi}{2}}{\frac{\cos(t) + \sin(t)}{\sqrt{1+\sin(2t)}}\dt}=\int_{-\frac{\pi}{4}}^{\frac{\pi}{4}}{\frac{\cos(\frac{\pi}{4}-u)+\sin(\frac{\pi}{4}-u)}{\sqrt{1+\cos(2u)}}\du}\\
+        &=\int_{-\frac{\pi}{4}}^{\frac{\pi}{4}}{\frac{\sqrt{2}\cos(u)}{\sqrt{2\cos^2(u)}}\du}=\int_{-\frac{\pi}{4}}^{\frac{\pi}{4}}{\frac{\sqrt{2}\cos(u)}{\sqrt{2}|\cos(u)|}\du}=\frac{\pi}{2}.
+    \end{align*}
+    \boxed{2.} On a :
+    \begin{align*}
+        I &= \int_0^{\frac{\pi}{2}}{\frac{\cos(t)}{\sqrt{1+\sin(2t)}}\dt}=\int_0^{\frac{\pi}{2}}{\frac{\sin(u)}{\sqrt{1+\sin(\pi-u)}}\du}=\int_0^{\frac{\pi}{2}}{\frac{\sin(u)}{\sqrt{1+\sin(u)}}\du}=J
+    \end{align*}
+    \boxed{3.} On a $2I = 2J = I+J = \frac{\pi}{2}$. Donc $I = J = \frac{\pi}{4}$.
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Que vaut
+    \begin{equation*}
+        \int_{-666}^{666}{\ln\left(\frac{1+e^{\arctan(x)}}{1+e^{-\arctan(x)}}\right)\dx} \text{ ?}
+    \end{equation*}
+    \tcblower
+    Soit $x\in[-666,666]$.\\
+    Par imparité de $\arctan$, on a :
+    \begin{align*}
+        \ln\left(\frac{1+e^{\arctan(-x)}}{1+e^{-\arctan(-x)}}\right)=\ln\left(\frac{1+e^{-\arctan(x)}}{1+e^{\arctan(x)}}\right)=-\ln\left(\frac{1+e^{\arctan(x)}}{1+e^{-\arctan(x)}}\right)
+    \end{align*}
+    Ainsi, $\ln\left(\frac{1+e^{\arctan(x)}}{1+e^{-\arctan(x)}}\right)$ est impaire. Donc 
+    \begin{equation*}
+        \int_{-666}^{666}{\ln\left(\frac{1+e^{\arctan(x)}}{1+e^{-\arctan(x)}}\right)\dx}=0.
+    \end{equation*}
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Le but de cet exercice est de calculer les intégrales
+    \begin{equation*}
+        I = \int_0^1{\sqrt{1+x^2}\dx} \hspace{1cm} \text{et} \hspace{1cm} J=\int_0^1{\frac{1}{\sqrt{1+x^2}}\dx}.
+    \end{equation*}
+    1. Justifier que l'équation $\sh(x)=1$ possède une unique solution réelle que l'on notera dans la suite $\alpha$.\\
+    Exprimer $\alpha$ à l'aide de la fonction $\ln$.\\
+    2. Calculer $J$ en posant $x=\sh(t)$. On exprimera le résultat en fonction de $\alpha$.\\
+    3. À l'aide d'une intégration par parties, obtenir une équation reliant $I$ et $J$.\\
+    4. En déduire une expression de $I$ en fonction de $\alpha$.
+    \tcblower
+    1. On a :
+    \begin{equation*}
+        \sh(\alpha) = 1 \iff \left( \frac{e^\alpha - e^{-\alpha}}{2} \right) = 1 \iff e^\alpha - 2e^{-\alpha} = 0 \iff e^{2\alpha} - 2e^\alpha - 1 = 0
+    \end{equation*}
+    Changement de variable : $X = e^\alpha$
+    \begin{align*}
+        &X^2 - 2X - 1 = 0 \\
+        &\Delta = (-2)^2 - 4 \cdot (-1) = 8 \\
+        &\Delta > 0 \text{, donc il y a 2 racines} \\
+        &X_1 = \frac{4 + 2\sqrt{2}}{2} = 2 + \sqrt{2}, \quad X_2 = \frac{4 - 2\sqrt{2}}{2} = 2-\sqrt{2} \\
+        &\alpha = \ln(2 + \sqrt{2}) \quad \text{(Impossible, car } \ln(2 - \sqrt{2}) < 0) \\
+    \end{align*}
+    Ainsi, $\alpha=\ln(2+\sqrt{2})$\\
+    2. On a :
+    \begin{equation*}
+        J = \int_0^1 \frac{1}{\sqrt{1+x^2}} \, \dx = \int_0^\alpha \frac{1}{\sqrt{1+\text{sh}^2(t)}} \cdot \text{ch}(t) \, \dt = \int_0^\alpha \frac{\text{ch}(t)}{\sqrt{\text{ch}^2(t)}} \, \dt = \int_0^\alpha 1 \, \dt = \alpha
+    \end{equation*}
+    3. On a :
+    \begin{align*}
+        I &= \int_0^1{\sqrt{1+x^2}\dx}=\left[x\sqrt{1+x^2}\right]_0^1 - \int_0^1{\frac{x^2}{\sqrt{1+x^2}}\dx}\\
+        &= \sqrt{2} - \int_0^1{\frac{1+x^2}{\sqrt{1+x^2}}-\frac{1}{\sqrt{1+x^2}}\dx}\\
+        &=\sqrt{2} - \int_0^1{\sqrt{1+x^2}\dx} + \int_0^1{\frac{1}{\sqrt{1+x^2}}\dx}\\
+        &=\sqrt{2} - I + J
+    \end{align*}
+    Ainsi, $I = \frac{1}{2}\left(\sqrt{2} + J\right)$.\\
+    4. Il vient immédiatement que $I=\frac{1}{2}\left(\sqrt{2}+\alpha\right)$
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Calculer $\int_0^1{\arctan(x^{1/3})dx}$ en posant d'abord $x=t^3$.
+    \tcblower
+    On a :
+    \begin{align*}
+        \int_0^1{\arctan(x^{\frac{1}{3}})\dx}&=\int_0^1{\arctan(t)\cdot3t^2\dt}=\left[\arctan(t)\cdot t^3\right]_0^1 - \int_0^1{\frac{t^3}{1+t^2} \dt}\\
+        &=\frac{\pi}{4} - \int_0^1{t\dt}+\int_0^1{\frac{t}{1+t^2}\dt}\\
+        &=\frac{\pi}{4} - \frac{1}{2} + \left[\frac{1}{2}\ln(1+t^2)\right]_0^1\\
+        &=\frac{\pi}{4} - \frac{1}{2} + \frac{1}{2}\ln(2)\\
+        &=\frac{1}{4}\left(\pi - 2 + \ln(4)\right)
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Calculer l'intégrale $I = \int_0^{\frac{\pi}{4}}{\ln(1+\tan x)\dx}$ en posant $x=\frac{\pi}{4}-u$.
+    \tcblower
+    On a :
+    \begin{align*}
+        I &= \int_0^{\frac{\pi}{4}}{\ln(1+\tan x)\dx} = \int_{0}^{\frac{\pi}{4}}{\ln\left(1+\tan\left(\frac{\pi}{4}-u\right)\right)\du}\\
+        &=\int^{\frac{\pi}{4}}_0{\ln\left(1+\frac{1-\tan u}{1+\tan u}\right)\du}=\int_0^{\frac{\pi}{4}}{\ln\left(\frac{2}{1+\tan u}\right)\du}\\
+        &=\int_0^{\frac{\pi}{4}}{\ln2\du}-\int_0^{\frac{\pi}{4}}{\ln(1+\tan u)\du} = \frac{\pi}{4}\ln2 - I
+    \end{align*}
+    On en déduit que $2I = \frac{\pi}{4}\ln2$. Ainsi, $I=\frac{\pi}{8}\ln2$
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    On définit, pour tout entier $n\in\mathbb{N}$ le nombre
+    \begin{equation*}
+        W_n = \int_0^{\frac{\pi}{2}}{\sin^n(x)\dx}.
+    \end{equation*}
+    1. À l'aide d'une intégration par parties, montrer que
+    \begin{equation*}
+        \forall{n\in\mathbb{N}}, \hspace{0.3cm} W_{n+2} = \frac{n+1}{n+2}W_n.
+    \end{equation*}
+    2. Démontrer les égalités suivantes pour $n\in\mathbb{N}$ :
+    \begin{equation*}
+        W_{2n}=\frac{(2n)!}{2^{2n}(n!)^2}\cdot\frac{\pi}{2} \hspace{0.5cm} \text{ et } \hspace{0.5cm} W_{2n+1}=\frac{2^{2n}(n!)^2}{(2n+1)!}.
+    \end{equation*}
+    \tcblower
+    \bf{DM n°7 : Correction.}
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Pour tous entiers naturels $p$ et $q$, on note
+    \begin{equation*}
+        I(p,q):=\int_0^1{t^p(1-t)^q\dt}.
+    \end{equation*}
+    1. Soit $(p,q)\in\mathbb{N}^2$.\\
+    Avec un changement de variable, démontrer que $I(p,q)=I(q,p)$.\\
+    2. À l'aide de l'intégration par parties, démontrer
+    \begin{equation*}
+        \forall{p,q\in\mathbb{N}}, \hspace{0.5cm} (p+1)I(p,q+1)=(q+1)I(p+1,q).
+    \end{equation*}
+    3. (a) Calculer $I(p,0)$ pour un entier $p$ donné.\\
+    (b) Démontrer enfin que
+    \begin{equation*}
+        \forall{p,q\in\mathbb{N}}, \hspace{0.5cm} I(p,q)=\frac{p!q!}{(p+q+1)!}.
+    \end{equation*}
+    \tcblower
+    \boxed{1.} Changement de variable : $u=1-t$ :
+    \begin{align*}
+        \int^1_0{t^p(1-t)^q\dt}=-\int_1^0{(1-u)^pu^q\du}=\int_0^1{u^q(1-u)^p\du}
+    \end{align*}
+    \boxed{2.} On a :
+    \begin{align*}
+        I(p,q+1)=\int^1_0{t^p(1-t)^{q+1}\dt}&=\left[\frac{1}{p+1}t^{p+1}\cdot(1-t)^{q+1}\right]_0^1-\int_0^1{\frac{1}{p+1}t^{p+1}\cdot-(q+1)(1-t)^{q}\dt}\\
+        &=\frac{q+1}{p+1}\int_0^1{t^{p+1}(1-t)^{q}\dt}=\frac{q+1}{p+1}I(p+1,q)
+    \end{align*}
+    Donc on a bien $(p+1)I(p,q+1)=(q+1)I(p+1,q)$.\\
+    \boxed{3.a)} On a :
+    \begin{align*}
+        I(p,0)=\int_0^1{t^p\dt}=\left[\frac{1}{p+1}t^{p+1}\right]_0^1=\frac{1}{p+1}.
+    \end{align*}
+    \boxed{3.b)} Soit $\mathcal{P}_q$ la proposition $I(p,q)=\frac{p!q!}{(p+q+1)!}$. Montrons que $\mathcal{P}_q$ est vraie pour tout $q\in\mathbb{N}$.\\
+    \bf{Initialisation :} Pour $q=0$, on a $I(p,q)=\frac{1}{p+1}$ et $\frac{p!q!}{(p+q+1)!}=\frac{p!}{(p+1)!}=\frac{1}{p+1}$. $\mathcal{P}_0$ est vérifiée.\\
+    \bf{Hérédité :} Soit $q\in\mathbb{N}$ fixé tel que $\mathcal{P}_q$ soit vraie. Montrons $\mathcal{P}_{q+1}$.\\
+    On a :
+    \begin{align*}
+        I(p,q+1)&=\frac{q+1}{p+1}I(p+1,q)=\frac{q+1}{p+1}\frac{(p+1)!q!}{(p+q+2)!}\\
+        &=\frac{(p+1)!(q+1)!}{(p+1)(p+q+2)!}=\frac{p!(q+1)!}{(p+(q+1)+1)!}
+    \end{align*}
+    C'est exactement $\mathcal{P}_{q+1}$.\\
+    \bf{Conclusion :} Par le principe de récurrence, $\mathcal{P}_q$ est vraie pour tout $q\in\mathbb{N}$.
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\bbw$}{}
+    Pour tout entier naturel $n$, on pose $I_n=\int_1^e{x(\ln x)^n\dx}$.\\
+    1. Calculer $I_0$ et $I_1$.\\
+    2. Montrer que $J_n=2I_n+nI_{n-1}$ est indépendant de $n$. Déterminer sa valeur.\\
+    3.\hspace{0.2cm}Montrer que la suite $(I_n)$ est décroissante puis, en utilisant la question $\mathbf{2.}$, démontrer l'encadrement
+    \begin{equation*}
+        \frac{e^2}{n+3} \leq I_n \leq \frac{e^2}{n+2}.
+    \end{equation*}  
+    4. En déduire $\lim\limits_{n\to+\infty}{I_n}$ et $\lim\limits_{n\to+\infty}{nI_n}$.
+    \tcblower
+    \boxed{1.} On a : 
+    \begin{align*}
+        &I_0=\int_1^e{x\,\dx}=\frac{e^2-1}{2}.\\
+        &I_1=\int_1^e{x\ln x\,\dx}=\left[\frac{1}{2}x^2\ln x\right]_1^e-\frac{1}{2}\int_1^e{x\,\dx}=\frac{e^2}{2}-\frac{e^2-1}{4}=\frac{e^2+1}{4}.
+    \end{align*}
+    \boxed{2.} Soit $n\in\mathbb{N}$. On a :
+    \begin{align*}
+        I_n &= \int_1^e{x\ln^nx\,\dx} = \left[\frac{1}{2}x^2\ln^nx\right]_1^e-\frac{n}{2}\int_1^e{x\ln^{n-1}x\,\dx}\\
+        &=\frac{e^2}{2}-\frac{n}{2}I_{n-1}
+    \end{align*}
+    On en déduit que $2I_n=e^2-nI_{n-1}$.\\
+    Ainsi, $J_n = 2I_n + nI_{n-1} = e^2$\\
+    \boxed{3.} Soit $n\in\mathbb{N}$. On a : 
+    \begin{align*}
+        I_{n+1} - I_{n} = \int_1^e{x\ln^{n+1}x\,\dx} - \int_1^e{x\ln^{n}x\,\dx} = \int_1^e{x\ln^nx(\ln x-1)\,\dx}
+    \end{align*}
+    Or, pour $x\in\left[1,e\right]$, $\ln x \in [0,1]$ donc $\ln x - 1 \leq 0$. Ainsi, $x\ln^nx(\ln x-1) \leq 0$.\\
+    On en déduit que $I_{n+1}-I_n\leq0$ et donc que $(I_n)$ est décroissante.\\
+    Montrons que $I_n \leq \frac{e^2}{n+2}$ :
+    \begin{align*}
+        &I_n \leq I_{n-1}\\
+        \iff&nI_n \leq nI_{n-1}\\
+        \iff&(n+2)I_n \leq 2I_n + nI_{n-1}\\
+        \iff&I_n \leq \frac{e^2}{n+2}
+    \end{align*}
+    Montrons que $\frac{e^2}{n+3} \leq I_n$ :
+    \begin{align*}
+        &I_{n+1} \leq I_n\\
+        \iff&(n+1)I_{n+1} \leq (n+1)I_n\\
+        \iff&(n+3)I_{n+1} \leq 2I_{n+1} + (n+1)I_n\\
+        \iff&I_{n+1} \leq \frac{e^2}{n+3} \iff \frac{e^2}{n+3} \leq I_{n+1} \leq I_n
+    \end{align*}
+    \boxed{4.} On a :
+    \begin{equation*}
+        \lim\limits_{n\to+\infty}{\frac{e^2}{n+3}}=0 \hspace{1cm} \text{et} \hspace{1cm} \lim\limits_{n\to+\infty}{\frac{e^2}{n+2}}=0
+    \end{equation*} 
+    Ainsi, d'après le theorème des gendarmes, on a :
+    \begin{equation*}
+        \lim\limits_{n\to+\infty}{I_n}=0
+    \end{equation*}
+    On a: 
+    \begin{equation*}
+        \lim\limits_{n\to+\infty}{\frac{ne^2}{n+3}}=e^2 \hspace{1cm} \text{et} \hspace{1cm} \lim\limits_{n\to+\infty}{\frac{ne^2}{n+2}}=e^2
+    \end{equation*} 
+    Ainsi, d'après le théorème des gendarmes, on a :
+    \begin{equation*}
+        \lim\limits_{n\to+\infty}{I_n}=e^2
+    \end{equation*}
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\bbb$}{}
+    Calculer, pour tout entier naturel $n$, le nombre $I_n=\int_0^1{x^n\sqrt{1-x}\dx}$.
+    \tcblower
+    On a :
+    \begin{align*}
+        I_n &= \int_0^1x^n\sqrt{1-x}\dx=\left[-\frac{2}{3}x^n(1-x)^{3/2}\right]_0^1-\int_0^1{-\frac{2}{3}nx^{n-1}(1-x)^{3/2}\dx}\\
+        &=\frac{2n}{3}\int_0^1{x^{n-1}(1-x)\sqrt{1-x}\dx}\\
+        &=\frac{2n}{3}\int_0^1{x^{n-1}\sqrt{1-x} - x^n\sqrt{1-x}\dx} = \frac{2n}{3}(I_{n-1} - I_n)
+    \end{align*}
+    On obtient que
+    \begin{equation*}
+        I_n = \frac{2n}{2n+3}I_{n-1}.
+    \end{equation*}
+    Calculons $I_0$ et $I_1$:
+    \begin{align*}
+        &I_0 = \int_0^1{\sqrt{1-x}\dx} = \left[-\frac{2}{3}(1-x)^{3/2}\right]_0^1 = \frac{2}{3}.\\
+        &I_1 = \frac{2}{5}I_0 = \frac{2}{5}\cdot\frac{2}{3}
+    \end{align*}
+    On a alors :
+    \begin{align*}
+        I_n &= \frac{2n}{2n+3}I_{n-1} = \frac{2n}{2n+3}\cdot\frac{2(n-1)}{2n+1}\cdot...\cdot I_1\\
+        &= \frac{2^{n+1}n!}{\prod\limits_{k=0}^{n}{2k+3}}
+    \end{align*}
+    On peut donc faire une preuve belle, rigoureuse, et \textbf{triviale} par récurrence mais j'ai la flemme.
+\end{exercice}
+
+\end{document}
