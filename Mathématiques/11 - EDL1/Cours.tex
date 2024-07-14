@@ -1,0 +1,354 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{10}
+\def\pagetitle{Équations algébriques.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\thispagestyle{fancy}
+
+\section{Ensemble des solutions d'une ED linéaire d'ordre 1.}
+
+\begin{defi}{}{}
+    Soient $a,b:I\to\K$ deux applications continues sur $I$. On considère l'équation différentielle
+    \begin{equation*}
+        y'+a(x)y=b(x) \quad (E).
+    \end{equation*}
+    \begin{itemize}
+        \item On dit que $y:I\to\K$ est \bf{solution} de $(E)$ sur $I$ si elle est dérivable sur $I$ et si elle est telle que $\forall x \in I, ~ y'(x)+a(x)y(x)=b(x)$.
+        \item La fonction $b$ est souvent appelée \bf{second membre} de l'équation.
+        \item L'\bf{équation homogène} associée à $(E)$ est $y'+a(x)y=0 \quad (E_0)$.
+    \end{itemize}
+\end{defi}
+
+Ci-dessous, $S$ et $S_0$ désignent respectivement les ensembles de solutions de $(E)$ et $(E_0)$.
+
+\begin{prop}{Lien entre $S$ et $S_0$.}{}
+    Si $S$ est non vide, alors, en considérant $z_p\in S$ (une << solution particulière >> de l'équation), on a
+    \begin{equation*}
+        S=\{z_p + y, \quad y \in S_0\}.
+    \end{equation*}
+    \tcblower
+    Soit $z:I\to\K$ dérivable sur $I$.
+    \begin{align*}
+        z\in S &\iff \forall x \in I, ~ z'(x)+a(x)z(x)=b(x) \iff \forall x \in I, ~ z'(x) +a(x)z(x)=z_p'(x)+a(x)z_p(x)\\
+        &\iff \forall x \in I, ~ (z-z_p)'(x)+a(x)(z-z_p)(x)=0 \iff z-z_p \in S_0.
+    \end{align*}
+    Donc $z\in S \iff z-z_p \in S_0 \iff \exists y \in S_0 \mid z - z_p = y \iff \exists y\in S_0 \mid z = z_p + y$.
+\end{prop}
+
+\section{Résolution de l'équation homogène.}
+
+On va donner toutes les solution de $(E_0)$.\n
+\bf{Cas particulier} (Terminale) : le cas où $a$ est une fonction constante égale à $a\in\K$. On a vu que les solutions de $y'+ay=0$ sont les fonctions de la forme $x\mapsto \l e^{-ax}$ où $\l\in\K$.\n
+Ci-dessous, on traite le cas général pour $a:I\to\K$.
+
+\begin{thm}{$\star$}{}
+    Soit $(E_0)$ l'équation $y'+a(x)y=0$, où $a:I\to\K$ est continue sur $I$.\\
+    Soit $A$ une primitive de $a$ sur $I$. L'ensemble $S_0$ des solutions de $(E_0)$ sur $I$ est
+    \begin{equation*}
+        S_0=\left\{ x\mapsto \l e^{-A(x)} \mid \l\in\K \right\}.
+    \end{equation*}
+    \tcblower
+    \boxed{\supset} Soit $\l\in\K$ et $f:x\mapsto \l e^{-A(x)}$. Montrons que $f\in S_0$.\\
+    $\bullet$ Si $\K=\R$, alors $A$ est dérivable sur $I$, $\exp$ est dérivable sur $\R$ donc $f$ est dérivable sur $I$ comme composée.
+    \begin{equation*}
+        \forall x \in I, ~ f'(x) = \l(-A'(x))e^{-A(x)} = -\l a(x)e^{-A(x)}=-a(x)f(x).
+    \end{equation*}
+    Ainsi, $f'(x)+a(x)f(x)=0$, donc $f\in S_0$.\\
+    $\bullet$ Si $\K=\C$, on sait dériver $t\mapsto e^{\phi(t)}$ où $\phi$ est dérivable à valeurs complexes.\n
+    \boxed{\subset} Soit $y\in S_0$. Montrons que $\exists \l \in \K \mid \forall x \in I, ~ y(x)e^{A(x)}=\l$.\\
+    Il suffira de prouver que $p:x\mapsto y(x)e^{A(x)}$ est constante sur $I$, $p$ est dérivable comme produit:
+    \begin{equation*}
+        \forall x \in I, \quad p'(x)=y'(x)e^{A(x)}+y(x)A'(x)e^{A(x)}=e^{A(x)}\underbrace{\left(y'(x) + a(x)y(x)\right)}_{=0 \nt{ car } y\in S_0} 
+    \end{equation*}
+    La fonction $p$ est constante sur $I$ donc $\exists \l \in \K \mid \forall x \in I p(x)=\l$ donc $y(x)e^{A(x)}=\l$ donc $y(x)=\l e^{-A(x)}$.
+\end{thm}
+
+
+\begin{ex}{}{}
+    Résoudre sur $]0,1[$ l'équation $t(1-t)y'+y=0$.
+    \tcblower
+    La fonction $t:\mapsto t(1-t)$ ne s'annule pas sur $]0,1[$. Le problème est équivalent à:
+    \begin{equation*}
+        y'+\frac{1}{t(1-t)}y=0.
+    \end{equation*}
+    Notons $a:t\mapsto\frac{1}{t(1-t)}$. On a besoin d'une primitive, et $a(t)=\frac{1}{t}-\frac{1}{t-1}$.\\
+    On pose $A:t\mapsto \ln|t|-\ln|t-1|$. Par théorème, $S=\{t\mapsto \l e^{-\ln\frac{t}{1-t}} \mid \l \in \R\}$
+\end{ex}
+
+\begin{lemme}{Une remarque intéressante.}{}
+    Si $a$ est continue sur $I$, la seule solution de $y'+a(x)y=0$ qui s'annule sur $I$, c'est la fonction nulle.
+    \tcblower
+    Soit $y\in S_0$ : $\exists \l \in \K \mid \forall x \in I,~ y(x)=\l e^{-A(x)}$ où $A$ est primitive de $a$.\\
+    Supposons que $y$ s'annule sur $I$, $\exists x_0\in I\mid \l e^{-A(x_0)}=0$.\\
+    Alors $\l=0$ ou $e^{-A(x_0)}=0$ : $\l = 0$, donc $y$ est nulle.
+\end{lemme}
+
+\section{Équation générale : obtenir une solution particulière.}
+
+Il s'agit ici de trouver une solution de l'équation $y'+a(x)y=b(x)\quad(E)$.
+
+\subsection{Trouver une solution à vue.}
+
+\quad Lorsque $a$ et $b$ sont des fonctions constantes ($a$ non nulle), notre équation a une solution constante. On a déjà croisé ce genre de situation en physique en regardant un circuit $RC$ soumis à un échelon de tension.\n
+Plus précisément,
+\begin{center}
+    \fbox{L'équation $y'+ay=b$ a pour solution particulière la fonction constante $z_p:x\mapsto\frac{b}{a}$.}
+\end{center}
+\quad Plus généralement, lorsque $b$ sera une fonction polynomiale de degré $n$, on pourra chercher une solution polynomiale de degré $n$.
+
+\begin{ex}{}{}
+    Deviner une solution pour les équations ci-dessous
+    \begin{equation*}
+        (1)~y'+2y=1 \qquad (2)~y'+2y=e^x \qquad (3)~y'+y=x.
+    \end{equation*}
+    \tcblower
+    \boxed{1.} $x\mapsto\frac{1}{2}$ solution.\\
+    \boxed{2.} $x\mapsto\frac{1}{3}e^x$ solution.\\
+    \boxed{3.} $x\mapsto x-1$ solution
+\end{ex}
+
+\subsection{Principe de superposition.}
+
+Pratique lorsque le second membre se présente comme somme de deux fonctions.
+
+\begin{prop}{Principe de superposition.}{}
+    Soient $a,b_1,b_2$ trois fonctions continues sur $I$. Si
+    \begin{itemize}
+        \item $y_1$ est solution sur $I$ de $y'+a(x)y=b_1(x)$ \quad $(E_1)$,
+        \item $y_2$ est solution sur $I$ de $y'+a(x)y=b_2(x)$ \quad $(E_2)$,
+    \end{itemize}
+    alors $y_1+y_2$ est solution sur $I$ de l'équation $y'+a(x)y=b_1(x)+b_2(x)\quad (E_3)$.
+    \tcblower
+    $y_1$ et $y_2$ sont dérivables sur $I$ car solutions d'EDL1 donc $y_1+y_+2$ est dérivable sur $I$ comme somme.
+    \begin{equation*}
+        (y_1+y_2)'+a(y_1+y_2)=(y_1'+ay_1) + (y_2' + ay_2) = b_1 + b_2.
+    \end{equation*}
+\end{prop}
+
+\begin{ex}{}{}
+    Trouver une solution de l'équation $y'+2y=1+e^x$.
+    \tcblower
+    $\bullet$ $y'+2y=1$ a pour solution $x\mapsto\frac{1}{2}$.\\
+    $\bullet$ $y'+2y=e^x$ a pour solution $x\mapsto\frac{e^x}{3}$.\\
+    Par principe de superposition, $\frac{1}{2}+\frac{1}{3}e^x$ est solution de $(E)$.
+\end{ex}
+
+\subsection{Méthode générale : variation de la constante.}
+
+\begin{prop}{Variation de la constante.}{}
+    Si $a$ et $b$ sont continues sur $I$, l'équation $y'+a(x)y=b(x)$ possède une solution $z$ de la forme $z=\l u$ où $u$ est une solution non nulle de l'équation homogène, et $\l$ une fonction dérivable sur $I$.
+    \tcblower
+    On cherche une solution de $(E)$ de la forme $z:x\mapsto \l(x) u(x)$ où $u\in S_0$ non nulle et $\l$ dérivable à choisir.\\
+    La fonction $z$ étant dérivable sur $I$ comme produit, on a
+    \begin{equation*}
+        z'+az = (\l u)' + a(\l u) = \l' u + \l u' + \l a u = \l' u + \l\underbrace{(u'+au)}_{=0},
+    \end{equation*}
+    où on a utilisé à la dernière ligne que $u$ est solution de $(E_0)$. Ainsi,
+    \begin{equation*}
+        z~\nt{est solution de } (E) \iff z' + az = b \nt{ sur } I \iff \l' u = b \nt{ sur } I.
+    \end{equation*}
+    Nous avons vu plus haut que, puisque $u$ est une solution de $(E_0)$ qui n'est pas la fonctio nnulle, elle ne s'annule nulle part sur $I$. On peut donc écrire
+    \begin{equation*}
+        z \nt{ est solution de } (E) \iff \l' = b/u \nt{ sur } I.
+    \end{equation*}
+    Notre fonction $z$ sera donc solution ssi $\l$ est choisie parmi les primitives $b/u$.
+\end{prop}
+
+\begin{ex}{}{}
+    Résolution de $x^4y'+3x^3y=1$ sur $\R_+^*$.
+    \tcblower
+    \fbox{\bf{Homogène.}} On résout $x^4y'+3x^3y=0$, équivalente à $y'+\frac{3}{x}y=0$ sur $\R_+^*$.\\
+    Posons $a:x\mapsto \frac{3}{x}$ et $A:x\mapsto3\ln(x)$, $S_0=\{x\mapsto \l x^{-3} \mid \l \in \K\}$.\\
+    \fbox{\bf{Générale.}} On cherche une solution de $y'+\frac{3}{x}y=\frac{1}{x^4}$. Soit $u:x\mapsto x^{-3}$.\\
+    C'est une solution non nulle de $(E_0)$. Soit $\l$ dérivable sur $\R_+^*$. On cherche une solution $z=\l u$. Pour $x\in\R_+^*$,
+    \begin{align*}
+        z'(x)+\frac{3}{x}z(x) &= \l'(x)u(x)+\l(x)u'(x)+\frac{3}{x}\l'u(x)\\
+        &=\l'(x)u(x)+\l(x)(u'(x)+\frac{3}{x}u(x))\\
+        &=\l'(x)u(x).
+    \end{align*}
+    Donc
+    \begin{align*}
+        z \nt{ solution de } (E) &\iff \forall x \in \R_+^*, ~ z'(x)+\frac{3}{x}z(x)=\frac{1}{x^4}\\
+        &\iff \forall x \in \R_+^*, ~ \l'(x)x^{-3} = x^{-4}\\
+        &\iff \forall x \in \R^*_+, ~ \l'(x) = x^{-1}
+    \end{align*}
+    On chosit $\l=\ln$. La solution trouvée est donc $z:x\mapsto\frac{\ln(x)}{x^3}$.\\
+    \fbox{\bf{Conclusion.}} $S=\{x \mapsto \frac{\ln(x)}{x^3} + \frac{\l}{x^3} \mid \l \in \R\}$.
+\end{ex}
+
+\section{Synthèse.}
+
+\begin{thm}{}{}
+    Soient $a:I\to\K$ et $b:I\to\K$ deux fonctions continues. L'équation
+    \begin{equation*}
+        y'+a(x)y=b(x) \quad (E)
+    \end{equation*}
+    a des solutions. Si $z_p$ est une telle solution (<< particulière >>) et $A$ une primitive de $a$ sur $I$, alors l'ensemble des solution de $(E)$ est
+    \begin{equation*}
+        S=\left\{ x \mapsto z_p(x) + \l e^{-A(x)}, \quad \l \in \K \right\}.
+    \end{equation*}
+\end{thm}
+
+\begin{defi}{}{}
+    Soient $x_0\in I$ et $y_0\in \R$. On appelle \bf{problème de Cauchy} la donnée d'une équation différentielle et d'une condition initiale (valeur imposée en un point)
+    \begin{equation*}
+        \begin{cases}
+            y'+a(x)y &= \quad b(x)\\
+            y(x_0) &= \quad y_0
+        \end{cases}
+    \end{equation*}
+\end{defi}
+
+\pagebreak
+
+\begin{thm}{de Cauchy-Lipschitz, cas linéaire.}{}
+    Soient $a,b:I\to\K$ continues, $x_0\in I$ et $y_0\in\K$.\\
+    Le problème de Cauchy $\displaystyle \begin{cases}y'+a(x)y &= \quad b(x)\\ y(x_0) &= \quad y_0\end{cases}$ admet une unique solution sur $I$.
+    \tcblower
+    D'après le théorème précédent, l'équation différentielle addmet des solutions, on en fixe une, que l'on note $z_p$.\\
+    Si $A$ est primitive de $a$ sur $I$, alors les solutions sont de la forme $y:x\mapsto z_p(x)+\l e^{-A(x)}$.\\
+    Parmi ces fonctions, on veut distinguer celles qui satisfont la condition initiale. On écrit donc
+    \begin{equation*}
+        y(x_0) = y_0 \iff z_pp(x_0) + \l e^{-A(x_0)} = y_0 \iff \l = e^{A(x_0)}(y_0-z_p(x_0)).
+    \end{equation*}
+    Il existe donc une unique valeur pour $\l$ pour laquelle $y(x_0)=y_0$; notons la $\l_0$.\\
+    Le problème de Cauchy possède une unique solution : la fonction $y=z_p+\l_0 e^{-A}$.
+\end{thm}
+
+\section{Exercices}
+
+\begin{exercice}{$\bww$}{}
+    Résoudre les équations différentielles ci-dessous
+    \begin{center}
+        1. $y' - 2y = 2$ sur $\mathbb{R}$ \hspace{0.5cm} 2. $(x^2+1)y'+xy=x$ \hspace{0.5cm} 3. $y' + \tan(x)y = \sin(2x)$ sur $]-\frac{\pi}{2}, \frac{\pi}{2}[$\\
+        4. $y'-\ln(x)y = x^x$ sur $\mathbb{R}_+^*$ \hspace{1cm} 5. $(1-x)y' - y = \frac{1}{1-x}$ sur $]-\infty, 1[$
+    \end{center}
+    \tcblower
+    1. Solutions de l'équation homogène : $S_0=\{x\mapsto\lambda e^{2x} ~ | ~ \lambda\in\mathbb{R}\}$\\
+    Solution particulière, avec $y$ constante : $S_p : x\mapsto -1$.\\
+    Ensemble de solutions : $S = \{\lambda e^{2x} - 1 ~ | ~ \lambda\in\mathbb{R}\}$.\\[0.2cm]
+    2. L'équation se réecrit comme $y' + \frac{x}{x^2+1}y=\frac{x}{x^2+1}$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto\frac{\lambda}{\sqrt{x^2+1}} ~ | ~ \lambda \in \mathbb{R}\}$\\
+    Solution particulière : $S_p:x\mapsto1$ est solution évidente.\\
+    Ensemble de solutions : $S = \{x\mapsto\frac{\lambda}{\sqrt{x^2+1}}+1 ~ | ~ \lambda\in\mathbb{R}\}$.\\[0.2cm]
+    3.Soit $I = ~ ]-\frac{\pi}{2}, \frac{\pi}{2}[$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto \lambda \cos x ~ | ~ \lambda \in \mathbb{R}\}$.\\
+    Solution particulière : Soit $u\in S_0$ et $\lambda:I\rightarrow\mathbb{K}$ dérivable sur $I$. On cherche $z=\lambda'u$.
+    \begin{align*}
+        z \text{ est solution } &\iff \forall{x\in I}, ~ \lambda'(x)\cos(x) = \sin(2x)\\
+        &\iff \forall{x}\in I, ~ \lambda'(x) = \frac{\sin(2x)}{\cos(x)}=2\sin(x)\\
+        &\iff \lambda =-2\cos
+    \end{align*}
+    Ainsi, $z=-2\cos^2$.\\
+    Ensemble de solutions : $S = \{x\mapsto \lambda\cos x - 2\cos^2x\ ~ | ~ \lambda \in \mathbb{R}\}$.\\
+    4. Soit $I=\mathbb{R}^*_+$.\\
+    Solutions de l'équation homogène : $S_0=\{x\mapsto\lambda \frac{x^x}{e^x} ~ | ~ \lambda \in\mathbb{R}\}$\\
+    Solution particulière : Soit $u\in S_0$ et $\lambda : I \rightarrow \mathbb{K}$ dérivable sur $I$. On cherche $z=\lambda'u$.
+    \begin{align*}
+        z \text{ est solution} &\iff \forall{x\in I}, ~ \lambda'(x)\frac{x^x}{e^x} = x^x\\
+        &\iff \forall{x \in I}, ~ \lambda'(x) = e^x\\
+        &\iff \lambda = e^\cdot
+    \end{align*}
+    Ainsi, $z:x \mapsto x^x$\\
+    Ensemble de solutions : $S = \{x\mapsto \lambda\frac{x^x}{e^x} + x^x ~ | ~ \lambda \in \mathbb{R}\}$\\
+    5. Soit $I=]-\infty,1[$. L'équation se réecrit comme $y' - \frac{1}{1-x}y = \frac{1}{(1-x)^2}$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto\frac{\lambda}{1-x} ~ | ~ \lambda\in\mathbb{R}\}$.\\
+    Solution particulière : Soit $u\in S_0$ et $\lambda:I\rightarrow\mathbb{K}$ dérivable sur $I$. On cherche $z=\lambda'u$.
+    \begin{align*}
+        z \text{ est solution} &\iff \forall{x\in I}, ~ \frac{\lambda'(x)}{1-x} = \frac{1}{(1-x)^2}\\
+        &\iff \forall{x\in I}, ~ \lambda'(x) = \frac{1}{1-x}\\
+        &\iff \forall{x\in I}, ~ \lambda(x) = -\ln(1-x) 
+    \end{align*} 
+    Ainsi, $z:x\mapsto -\frac{\ln(1-x)}{1-x}$.\\
+    Ensemble de solutions : $S = \{x \mapsto \frac{\lambda}{1-x} - \frac{\ln(1-x)}{1-x} ~ | ~ \lambda \in \mathbb{R}\}$
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\bww$}{}
+    Résoudre sur $R_+^*$ le problème de Cauchy $\begin{cases} y' - \frac{2}{x}y = x^2\cos x\\ y(\pi)=0 \end{cases}$.
+    \tcblower
+    Solution homogène : $S_0 = \{x \mapsto \lambda x^2 ~ | ~ \lambda \in\mathbb{R}\}$.\\
+    Solution particulière : Soit $u\in S_0$ et $\lambda : I \rightarrow \mathbb{K}$ dérivable sur $I$. On cherche $z = \lambda'u$.
+    \begin{align*}
+        z \text{ est solution} &\iff \forall{x\in I} ~ \lambda'(x)x^2 = x^2\cos x\\
+        &\iff \forall{x\in I} ~ \lambda'(x) = \cos x\\
+        &\iff \lambda = \sin
+    \end{align*}
+    Ainsi, $z:x\mapsto x^2\sin x$.\\
+    Ensemble de solutions : $S=\{x\mapsto\lambda x^2 + x^2\sin x ~ | ~ \lambda \in \mathbb{R}\}$\\
+    Conditions initiales : Soit $y \in S$. On a :
+    \begin{align*}
+        y(\pi) = 0 &\iff \exists{\lambda\in\mathbb{R}} ~ | ~ \lambda\pi^2 + \pi^2\sin(\pi) = 0\\
+        &\iff \lambda\pi^2 = 0\\
+        &\iff \lambda = 0
+    \end{align*}
+    L'unique solution de ce problème de Cauchy est donc : $y:x\mapsto x^2\sin x$.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Trouver toutes les fonctions $f$ dérivables sur $\mathbb{R}$ telles que
+    \begin{equation*}
+        \forall{x \in \mathbb{R}} ~ f'(x) + f(x) = \int_0^1{f(t)dt}
+    \end{equation*}
+    \tcblower
+    \bf{Analyse.}\\
+    On suppose qu'il existe $y$ dérivable sur $\mathbb{R}$ solution de cette équation.\\[0.1cm]
+    Soit $x\in\mathbb{R}$.\\
+    En dérivant l'égalité, on obtient : $y''(x) + y'(x) = 0$. On pose $g(x)=y'(x)$.\\
+    On a : $g'(x) + g(x) = 0$.\\
+    Solution générale : $S = \{x\mapsto \lambda e^{-x} ~ | ~ x\in\mathbb{R}\}$.\\
+    Ainsi, $g \in S$ et $\exists (\lambda, \mu) \in \mathbb{R}^2 ~ | ~ y(x) = -\lambda e^{-x} + \mu$.\\
+    On a :
+    \begin{align*}
+        y'(x) + y(x) = \int_0^1y(t)dt &\iff \lambda e^{-x} - \lambda e^{-x} + \mu = \left[\lambda e^{-t} + \mu t\right]_0^1\\
+        &\iff \mu = \lambda e^{-1} + \mu - \lambda\\
+        &\iff \lambda(e^{-1} -1) = 0
+        \iff \lambda = 0
+    \end{align*}
+    Ainsi, l'ensemble des solutions est : $\{x\mapsto\mu ~ | ~ \mu \in \mathbb{R}\}$.\\
+    \bf{Synthèse}.\\
+    Soit $x\in\mathbb{R}$ et $\mu\in\mathbb{R} ~ | ~ y(x)=\mu$. On a $y'(x) + y(x) = \mu$ et $\int_0^1y(t)dt=\int_0^1\mu dt=\mu$
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Soit l'équation différentielle $x^2y' - y = 0$.\\
+    1. Résoudre sur $\mathbb{R}^*_+$ et sur $\mathbb{R}^*_-$.\\
+    2. Trouver toutes les solutions définies sur $\mathbb{R}$
+    \tcblower
+    \boxed{1.} On se ramène à l'équation : $y' - \frac{1}{x^2}y = 0$.\\
+    Pour $x\in\mathbb{R}^*_+$, l'ensemble de solutions $S_+ = \{x\mapsto \lambda e^{-\frac{1}{x}} ~ | ~ \lambda \in \mathbb{R}\}$.\\
+    Pour $x\in\mathbb{R}^*_-$, l'ensemble de solutions $S_- = \{x\mapsto \mu e^{-\frac{1}{x}} ~ | ~ \mu \in \mathbb{R}\}$.\\
+    \boxed{2.} Une solution de $y$ sur $\mathbb{R}$ est solution sur $\mathbb{R}^*_-$ et $\mathbb{R}^*_+$. Ainsi, $\exists(\lambda, \mu)\in\mathbb{R}^2$ tels que
+    \begin{equation*}
+        \forall{x\in\mathbb{R}}, y(x) = \begin{cases} \lambda e^{-\frac{1}{x}} \text{ si } x>0\\ \mu e^{-\frac{1}{x}} \text{ si } x<0\end{cases}
+    \end{equation*}
+    On a :
+    \begin{align*}
+        \mu e^{-\frac{1}{x}} \xrightarrow[x\to0^-]{}+\infty ~ \text{ et } ~ \lambda e^{-\frac{1}{x}} \xrightarrow[x\to0^+]{} 0
+    \end{align*}
+    Donc $y$ est prolongeable en $0$ si et seulement si $\mu=0$. On a alors $y(0)=0$.\\
+    On a :
+    \begin{align*}
+        &\text {x > 0 : } \frac{y(x) - y(0)}{x - 0} = \frac{\lambda e^{-\frac{1}{x}}}{x}=-\lambda\left(-\frac{1}{x}\right)e^{-\frac{1}{x}} \xrightarrow[x\to0^+]{}0 ~ \text{\emph{c.c.}}\\
+        &\text {x < 0 : } \frac{y(x) - y(0)}{x - 0} = 0 \xrightarrow[x\to0^-]{} 0
+    \end{align*}
+    Donc $y$ est dérivable en $0$ et $y'(0)=0$.\\
+    La fonction est alors continue et dérivable sur $\mathbb{R}$ et on a $0^2y'(0)-y(0)=0$, l'équation est donc satisfaite en $0$.\\
+    Les solutions sont donc les fonctions : 
+    \begin{equation*}
+        y(x) = \begin{cases}
+            \lambda e^{-\frac{1}{x}} \text{ si } x>0\\
+            0 \text{ si } x\leq0
+        \end{cases}
+        (\lambda \in \mathbb{R})
+    \end{equation*}
+\end{exercice}
+
+\end{document}
