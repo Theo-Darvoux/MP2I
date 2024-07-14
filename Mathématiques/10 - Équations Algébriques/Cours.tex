@@ -1,0 +1,439 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{10}
+\def\pagetitle{Équations algébriques.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\newcommand*{\U}{\mathbb{U}}
+
+\thispagestyle{fancy}
+
+Soient $n\in\N$ et $a_0,...,a_n$ des nombres complexes. L'équation
+\begin{center}
+    \boxed{a_nz^n+a_{n-1}+...+a_1z+a_0=0},
+\end{center}
+d'inconnue $z\in\C$ est appelée \bf{équation algébrique} : elle s'écrit seulement avec des sommes et des produits.\\
+On parle aussi d'équation \bf{polynomiale} puisque l'application $z\mapsto\sum\limits_{k=0}^na_kz^k$ est appelée polynome.\\
+\quad Dans le cours sur les polyômes, nous énoncerons le théorème d'Alembert-Gauss (ou théorème fondamental de l'algèbre) qui affirme que si $a_1,...,a_n$ ne sont pas tous nuls, l'équation ci-dessus possède au moins une solution dans $\C$.\n
+\quad Prenons par exemple l'équation $x^6+2x^2+3=0$. On peut vite voir qu'elle ne possède pas de solution réelle. En effet, pour tout $x$ réel, $x^6+2x+3\leq3>0$. Le théorème de d'Alembert-Gauss nous apprend que dans $\C$, il y a une solution. Mais il ne nous dit pas comment la trouver ! Il n'existe d'ailleurs pas de méthode générale.\n
+\quad Dans cette partie, on va s'intéresser à des équations algébriques particulières et importantes, pour lesquelles on a une méthode de résolution.
+
+\section{Racines carrées d'un nombre complexe.}
+
+\quad Rappelons que \bf{la} racine carrée d'un nombre réel positif $a$ est \bf{le} nombre positif dont le carré vaut $a$. Il est noté $\sqrt{a}$. On réservera le symbole $\sqrt{\phantom{.}}$ pour la racine carrée d'un nombre réel positif.
+
+\begin{defi}{}{}
+    Soit $a\in\C$. Une \bf{racine carrée} de $a$ est un nombre complexe $z$ tel que $z^2=a$.
+\end{defi}
+
+\begin{prop}{}{}
+    Tout nombre complexe non nul a exactement deux racines carrées et elles sont opposées.
+    \tcblower
+    Soit $z,a\in\C^*$, $\exists (a,\rho)\in\R\times\R_+^*\mid a=\rho e^{i\a}$ et $\exists(\theta,r)\in\R\times\R_+^*\mid z=re^{i\theta}$.
+    \begin{equation*}
+        z^2=a \iff r^2e^{2i\theta} = \rho e^{i\a} \iff \begin{cases}r^2=\rho\\2\theta\equiv \a[2\pi]\end{cases}\iff\begin{cases}r=\sqrt{\rho}\\ \theta\equiv\frac{\a}{2}[\pi]\end{cases}
+    \end{equation*}
+    Deux solutions $\pm\sqrt{\rho}e^{i\frac{\a}{2}}$.
+\end{prop}
+
+\warning Attention : l'écriture $\sqrt{a}$ continue à n'avoir de sens que lorsque $a$ est un réel positif. Rappelons qu'elle désigne la solution positive de l'équation $x^2=a$. Une écriture du type << $\sqrt{1+i}$ >> n'a \bf{aucun sens}.
+
+\begin{meth}{Recherche des racines carrées sous forme trigonométrique. $\star$}{}
+    Soit l'équation $z^2=a$ (d'inconnue $z$, avec $a\in\C^*$ fixé).\\
+    On écrit $a$ sous forme trigonométrique : $a=\rho e^{i\a}$ ($\rho\in\R_+^*,~\a\in\R$).\\
+    Les racines carrées de $a$ sont
+    \begin{equation*}
+        \sqrt{\rho}e^{i\a/2} \quad\et\quad -\sqrt{\rho}e^{i\a/2}.
+    \end{equation*}
+\end{meth}
+
+\begin{meth}{Recherche des racines carrées sous forme algébrique. $\star$}{}
+    Soit l'équation $z^2=a$ (d'inconnue $z$, avec $a\in\C$ fixé).\\
+    On écrit $z$ et $a$ sous forme algébrique : $z=x+iy$ ($x,y\in\R$) et $a=\a+i\b$ ($\a,\b\in\R$).\\
+    On a $z^2=x^2-y^2+2ixy$. Ainsi,
+    \begin{equation*}
+        z^2=a\iff\begin{cases}|z|^2&=\quad|a|\\z^2&=\quad a\end{cases} \iff \begin{cases}x^2+y^2&=\quad\sqrt{\a^2+\b^2}\\ x^2-y^2 &= \quad \a\\2xy&=\quad\b\end{cases}
+    \end{equation*}
+    Les deux premières lignes permettent de calculer $x^2$ et $y^2$ et donc $x$ et $y$ au signe près.\\
+    La dernière ligne permet de savoir si $x$ et $y$ sont de mêmes signes ou de signes opposés.
+\end{meth}
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item Calculer les racines carrées de $-4i$, ainsi que celles du nombre $3-4i$.
+        \item Calculer de deux façons les racines carrées du nombres $1+i$.\\
+        En déduire une expression de $\cos\left( \frac{\pi}{8} \right)$ et $\sin\left( \frac{\pi}{8} \right)$ 
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Les racines de $-4i$: $\pm 2e^{-i\frac{\pi}{4}}$.\\
+    Les racines de $3-4i$: soit $z\in\C$, $\exists(a,b)\in\R^2\mid z=a+ib$.
+    \begin{equation*}
+        z^2=3-4i\iff \begin{cases}|a+ib|^2=|3-4i|\\ (a+ib)^2 = (3-4i)^2\end{cases}\iff \begin{cases}a^2+b^2=5\\a^2-b^2=3\\2ab = -4\end{cases}\iff \begin{cases}a=\pm4\\b=\pm1\\ab=-2\end{cases}\iff\begin{cases}a=-2 \et b=1\\ \qquad\quad\ou\\a=2~~\et b=-1\end{cases}
+    \end{equation*}
+    Les racines sont donc $-2+i$ et $2-i$.
+\end{ex}
+
+\section{Racines \texorpdfstring{$n$}{Lg}-èmes de l'unité et équation \texorpdfstring{$z^n=a$}{Lg}}
+
+\begin{defi}{}{}
+    Soit $n\in\N^*$. On appelle \bf{racine $n$-ème de l'unité} toute solution complexe de l'équation
+    \begin{equation*}
+        z^n=1.
+    \end{equation*}
+    On note $\U_n$ l'ensemble des racines $n$èmes de l'unité.
+\end{defi}
+
+Soit $n\in\N^*$.\\
+\quad Remarquons que $1\in\U_n$. À quelle condition a-t-on $-1\in\U_n$ ?\\
+\quad Démontrer que $\U_n$ est stable par conjugaison : $\forall z\in \C,~ z\in\U_n\ra\ov{z}\in\U_n$.
+
+\begin{thm}{Description des racines $n$èmes de l'unité. $\star$}{}
+    Soit $n\in\N^*$. On a
+    \begin{equation*}
+        \U_n=\left\{e^{\frac{2ik\pi}{n}},~k\in\lb0,n-1\rb\right\} \quad \nt{(ensemble de cardinal $n$)}.
+    \end{equation*}
+    \tcblower
+    Soit $z\in\C$ : $\exists (r,\theta)\in\R_+^* \mid z=re^{i\theta}$.
+    \begin{equation*}
+        z^n=1 \iff \begin{cases} r^n = 1 \\ n\theta \equiv 0[2\pi]\end{cases} \iff \begin{cases} r = 1 \\ \theta \equiv 0[\frac{2\pi}{n}]\end{cases}
+    \end{equation*}
+    Les solutions sont donc tous les $e^{\frac{2ik\pi}{n}}$ avec $k\in\Z$.\\
+    \boxed{\supset} Soit $z\in\C$ tel que $\exists k\in\lb0,n-1\rb\mid z=e^\frac{2ik\pi}{n}$, on a bien $z^n=1$ donc $z\in\U_n$.\\
+    \boxed{\subset} Soit $z\in\U_n$, $\exists k\in\Z\mid z=e^\frac{2ik\pi}{n}$. Division euclidienne : $\exists!(q,r)\in\Z^2\mid k=qn+r$ et $0\leq r \leq n-1$. Alors:
+    \begin{equation*}
+        z=e^{\frac{2i(qn+r)\pi}{n}}=e^{2iq\pi}\cdot e^{\frac{2ir\pi}{n}}=e^{\frac{2ir\pi}{n}}.
+    \end{equation*}
+    Donc $z\in\left\{ e^\frac{2ik\pi}{n}, ~ k\in\lb0,n-1\rb \right\}$ car $r\in\lb0,n-1\rb$.\\
+    Par double inclusion, on a bien $\U_n=\left\{ e^\frac{2ik\pi}{n}, ~ k\in\lb0,n-1\rb \right\}$.
+\end{thm}
+
+\begin{prop}{Propriétés algébriques des racines $n$èmes de 1.}{}
+    Soit $n\in\N^*$. Les racines $n$èmes de l'unité forment une progression géométrique de raison $\w=e^{\frac{2i\pi}{n}}$:
+    \begin{equation*}
+        \U_n=\{1,\w,\w^2,...,\w^{n-1}\}.
+    \end{equation*}
+    Les nombres $\w,\w^2,...,\w^{n-1}$ sont les $n-1$ solutions de $\sum\limits_{k=0}^{n-1}x^k=0$.\\
+    Si $n\geq2$, alors la somme des racines $n$èmes de l'unité est nulle.
+    \tcblower
+    Pour $k\in\lb0,n-1\rb$, $e^{\frac{2ik\pi}{n}}=\left(e^{\frac{2i\pi}{n}}\right)^k=\w^k$ avec $\w=e^\frac{2i\pi}{n}$.
+\end{prop}
+
+\begin{corr}{Cas particulier important : racines troisièmes de l'unité. $\star$}{}
+    Notons \boxed{j=e^{\frac{2i\pi}{3}}}. L'équation $z^3=1$ a pour solutions les trois éléments de $\U_3=\{1,j,j^2\}$.
+    \begin{equation*}
+        j=e^{\frac{ei\pi}{3}=-\frac{1}{2}}+i\frac{\sqrt{3}}{2} \quad\et\quad j^2=e^{\frac{4i\pi}{3}}=j^{-1}=\ov{j}.
+    \end{equation*}
+    Les nombres $j$ et $j^2$ sont les solutions de $x^2+x+1+0$.
+    \tcblower
+    $j^2=\left( e^{\frac{2i\pi}{3}} \right)=e^\frac{4i\pi}{3}$, \quad $j^2\cdot j = j^3=1$ donc $j^2=j^{-1}=\ov{j}$.
+\end{corr}
+
+\begin{meth}{Résoudre $z^n=a$, avec $a\in\C^*$ quelconque.}{}
+    Soit $a\in\C^*$. On peut l'écrire $a=\rho e^{i\a}$, avec $\rho\in\R_+^*$ et $\a\in\R$. Le nombre $z_0:=\rho^{\frac{1}{n}}e^{\frac{i\a}{n}}$ est une solution de l'équation $z^n=a$. Ainsi, pour $z\in\C$,
+    \begin{equation*}
+        z^n=a \iff z^n = z_0^n \iff \left( \frac{z}{z_0} \right)^n=1 \iff \frac{z}{z_0}\in\U_n.
+    \end{equation*}
+    L'ensemble des solutions de $z^n=a$ est donc $\{z_0e^{\frac{2ik\pi}{n}},~k\in\lb0,n-1\rb\}$.\n
+    Les points dont l'affixe est solution de l'équation forment un polygone régulier à $n$ sommets.
+\end{meth}
+
+\begin{ex}{$\star$}{}
+    Résolution de $z^3=8i$.
+    \tcblower
+    Posons $z_0=2e^\frac{i\pi}{6}$ une solution de $z^3=8i$. Soit $z\in\C$, alors $z^3=8i\iff z^3=z_0^3 \iff \left( \frac{z}{z_0} \right)^3=1$.\\
+    Ainsi, $\frac{z}{z_0}\in\U_3$ donc les solutions sont dans $\{z_0,~z_0j,~z_0j^2\}$.
+\end{ex}
+
+\section{Équations du second degré.}
+
+\begin{defi}{}{}
+    On appelle \bf{équation du second degré} toute équation de la forme
+    \begin{equation*}
+        az^2+bz+c=0,
+    \end{equation*}
+    où $a,b,c\in\C$ avec $a\neq0$. Les solutions de l'équation sont appelées ses \bf{racines}.
+\end{defi}
+
+\begin{prop}{Équations du second degré, coefficients complexes.}{}
+    Soient $a,b,c\in\C$ avec $a\neq 0$. On cosidère l'équation
+    \begin{equation*}
+        az^2+bz+c=0
+    \end{equation*}
+    et on note $\D$ le nombre complexes $b^2-4ac$, qu'on appelle \bf{discriminant} de l'équation
+    \begin{itemize}
+        \item Si $\D\neq0$, alors $\D$ a exactement deux raacines carrées que l'on note $\d$ et $-\d$.\\
+        L'équation a alors exactement deux racines : $r_1=\frac{-b-\d}{2a}$ et $r_2=\frac{-b+\d}{2a}$.
+        \item Si $\D=0$, l'équation a une racine "double" : $r_1=r_2=-\frac{b}{2a}$.
+    \end{itemize}
+    Factorisation du trinôme : pour tout $z\in\C$, \boxed{az^2+bz+c=a(z-r_1)(z-r_2)}.
+\end{prop}
+
+\begin{prop}{Équations du second degré, coefficients réels.}{}
+    Soient $a,b,c\in\R$ avec $a\neq0$. On considère l'équation
+    \begin{equation*}
+        az^2+bz+c=0
+    \end{equation*}
+    et on note $\D=b^2-4ac$ son discriminant.
+    \begin{itemize}
+        \item Si $\D>0$, alors $\D$ a pour racines carrées $\sqrt{\D}$ et $-\sqrt{\D}$ et l'équation a deux racines réelles distinctes
+        \begin{equation*}
+            r_1=\frac{-b-\sqrt{\D}}{2a}\quad\et\quad r_2=\frac{-b+\sqrt{\D}}{2a}.
+        \end{equation*}
+        \item Si $\D=0$, l'équation a une racine "double" : $r=-\frac{b}{2a}$.
+        \item Si $\D<0$, alors $\D$ a pour racines carrées $i\sqrt{|\D|}$ et $-i\sqrt{\D}$ et l'équation a deux racines complexes conjuguées
+        \begin{equation*}
+            r_1=\frac{-b-i\sqrt{|\D|}}{2a}\quad\et\quad r_2=\frac{-b+i\sqrt{|\D|}}{2a}.
+        \end{equation*}
+    \end{itemize}
+\end{prop}
+
+\begin{prop}{Relations coefficients-racines.}{}
+    Soient $a,b,c\in\C$ avec $a\neq0$ et $z_1,z_2\in\C$. Il y a équivalence entre
+    \begin{enumerate}
+        \item $z_1$ et $z_2$ sont deux racines, éventuellement égales, de $az^2+bz+c=0$;
+        \item $z_1+z_2=-\frac{b}{a}\quad\et\quad z_1z_2=\frac{c}{a}$.
+    \end{enumerate}
+    \tcblower
+    Soit $z\in\C$, $a(z-z_1)(z-z_2)=a(z^2-(z_1+z_2)z+z_1z_2)$.\\
+    \boxed{\ra} On suppose 1, on regarde les cas particuliers $z=0$ et $z=1$.\\
+    \boxed{\la} $a(z-z_1)(z-z_2)=a(z^2+\frac{b}{a}z+\frac{c}{a})=az^2+bz+c$ donc $z_1$ et $z_2$ sont racines.
+\end{prop}
+
+\begin{ex}{}{}
+    Soit $z\in\C$, $r\in\R^*_+$ et $\theta\in\R$. Factoriser à vue les expressions
+    \begin{equation*}
+        z^2+2z-3, \qquad 2z^2+z-1, \qquad z^2-2r\cos(\theta)z+r^2.
+    \end{equation*}
+\end{ex}
+
+\section{Exercices.}
+
+\begin{exercice}{$\bww$}{}
+    1. Calculer les racines carrées du nombre $-8i$.\\
+    On donnera ces nombres sous forme algébrique et sous forme trigonométrique.\\
+    2. Résoudre dans $\mathbb{C}$ l'équation
+    \begin{equation*}
+        z^2 - 4z + 4 + 2i = 0
+    \end{equation*}
+    \tcblower
+    \boxed{1.} Notons $\delta$ une racine de $-8i$ :
+    \begin{equation*}
+        \delta = \sqrt{8}e^{-i\frac{\pi}{4}}= 2\sqrt{2}\left(\cos\left( -\frac{\pi}{4} \right) + i\sin\left( -\frac{\pi}{4} \right)\right) = 2\sqrt{2}\left(\frac{\sqrt{2}}{2}-\frac{\sqrt{2}}{2}i\right)=2-2i
+    \end{equation*}
+    \boxed{2.} Le discriminant $\Delta$ vaut $-8i$. Ses racines carrées sont donc $2 - 2i$ et $-2+2i$.\\
+    L'ensemble des solutions de l'équation est donc : $\left\{3-i, 1 + i\right\}$.
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Soit $n\in\mathbb{N}$, $n\geq2$. Calcul de
+    \begin{equation*}
+        \sum_{z\in\mathbb{U}_n}{z} \hspace{0.5cm} \text{et} \hspace{0.5cm} \prod_{z\in\mathbb{U}_n}z
+    \end{equation*}
+    \tcblower
+    On a :
+    \begin{align*}
+        \sum_{z\in\mathbb{U}_n}{z}&=\sum_{k=0}^{n-1}{e^{i\frac{2k\pi}{n}}}=\frac{1-e^{i2\pi}}{1-e^{i\frac{2\pi}{n}}}=0
+    \end{align*}
+    Et :
+    \begin{align*}
+        \prod_{z\in\mathbb{U}_n}{z}&=\prod_{k=0}^{n-1}{e^{i\frac{2k\pi}{n}}}=\exp\left( \sum_{k=0}^{n-1}{i\frac{2k\pi}{n}} \right) = \exp\left( i\frac{2\pi}{n}\sum_{k=0}^{n-1}{k} \right)=e^{i\pi(n-1)}=(-1)^{n-1}
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Donner une expression du périmètre du polygone régulier formé par les nombres de $\mathbb{U}_n$.\\
+    Que conjecture-t-on sur la limite lorsque $n\to+\infty$ ? Essayer de prouver votre conjecture.
+    \tcblower
+    Soit $n\in\mathbb{N}$. Le périmètre du polygone régulier formé par les nombres de $\mathbb{U}_n$ est :
+    \begin{equation*}
+        \sum_{k=0}^{n-1}{|e^{i\frac{2k\pi}{n}} - e^{i\frac{2(k+1)\pi}{n}}|}=\sum_{k=0}^{n-1}{|e^{\frac{(2k+1)\pi}{n}}||e^{-\frac{\pi}{n}} - e^{\frac{\pi}{n}}|}=2n\sin\left( \frac{\pi}{n} \right)
+    \end{equation*}
+    Et, puisque $\lim_{x\to0}{\frac{\sin(x)}{x}}=1$, alors :
+    \begin{equation*}
+        \lim_{n\to+\infty}{2n\sin\left(\frac{\pi}{n}\right)}=\lim_{n\to+\infty}2\pi\frac{\sin\frac{\pi}{n}}{\frac{\pi}{n}}=2\pi
+    \end{equation*}
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Soit $\omega\in\mathbb{U}_7$, une racine 7e de l'unité différente de 1.\\
+    1. Justifier que $1+\omega+\omega^2+\omega^3+\omega^4+\omega^5+\omega^6=0$.\\
+    2. Calculer le nombre $\frac{\omega}{1+\omega^2} + \frac{\omega^2}{1+\omega^4} + \frac{\omega^3}{1+\omega^6}$.
+    \tcblower
+    \boxed{1.} On a déjà montré que $\forall{n\in\mathbb{N}},n>2,\sum\limits_{z\in\mathbb{U}_n}z=0$ dans le 10.18.\\
+    \boxed{2.} On a :
+    \begin{align*}
+        \frac{\omega}{1+\omega^2} + \frac{\omega^2}{1+\omega^4} + \frac{\omega^3}{1+\omega^6} &=
+        \frac{2+2\omega+2\omega^2+2\omega^3+2\omega^4+2\omega^5}{\omega^6}=-\frac{2\omega^6}{\omega^6}=-2
+    \end{align*}
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\bbw$}{}
+    1. Quand dit-on qu'un nombre réel $\theta$ est un argument d'un nombre complexe $z$ ?\\
+    2. Soit $k\in\llbracket0,n-1\rrbracket$. Donner le module et un argument de $e^{\frac{2ik\pi}{n}}-1$.\\
+    3. Établir l'égalité
+    \begin{equation*}
+        \sum_{z\in\mathbb{U}_n}{|z-1|}=\frac{2}{\tan\left( \frac{\pi}{2n} \right)}.
+    \end{equation*}
+    \tcblower
+    \boxed{1.} $\theta$ est un argument de $z\neq0$ ssi $z=|z|e^{i\theta}$.\\
+    \boxed{2.} On a :
+    \begin{align*}
+        e^{\frac{2ik\pi}{n}}-1=2i\sin\left( \frac{k\pi}{n} \right)e^{\frac{ik\pi}{n}}=2\sin\left( \frac{k\pi}{n} \right)e^{i\frac{\pi(2k+n)}{2n}}
+    \end{align*}
+    Ainsi son module est $2\sin\left( \frac{k\pi}{n} \right)$ et l'un de ses arguments est $\frac{\pi(2k+n)}{2n}$.\\
+    \boxed{3.} Soit $n\in\mathbb{N}$. On a :
+    \begin{align*}
+        \sum_{z\in\mathbb{U}_n}{|z-1|}&=\sum_{k=0}^{n-1}{|e^{\frac{2ik\pi}{n}}-1|} = \sum_{k=0}^{n-1}{|e^{\frac{ik\pi}{n}}\left( e^{\frac{ik\pi}{n}} - e^{-\frac{ik\pi}{n}} \right)|}\\
+        &=\sum_{k=0}^{n-1}{\left|2i\sin\left( \frac{k\pi}{n} \right)\right|} = 2\sum_{k=0}^{n-1}{\left|\sin\left( \frac{k\pi}{n} \right)\right|}
+    \end{align*}
+    Or, $\forall{k\in\llbracket0,n-1\rrbracket}, \sin\left( \frac{k\pi}{n} \right) \geq 0$. Ainsi (formule du cours) :
+    \begin{align*}
+        \sum_{z\in\mathbb{U}_n}{|z-1|} &= 2\sum_{k=0}^{n-1}{\sin\left( \frac{k\pi}{n} \right)} = 2 \cdot \frac{ \sin \left( \frac{(n+1) \frac{\pi}{n}}{2} \right)}{\sin \left( \frac{\pi}{2n} \right)}\\
+        &= 2 \cdot \frac{\sin\left( \frac{\pi}{2n} + \frac{\pi}{2} \right)}{\sin \left( \frac{\pi}{2n} \right)} = 2 \cdot \frac{\cos\left( \frac{\pi}{2n} \right)}{\sin\left( \frac{\pi}{2n} \right)}\\
+        &= \frac{2}{\tan\left( \frac{\pi}{2n} \right)}
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $\theta$ un nombre réel appartenant à $]0,\pi[$. Résoudre l'équation
+    \begin{equation*}
+        z^2 - 2e^{i\theta}z + 2ie^{i\theta}\sin\theta=0.
+    \end{equation*}
+    On écrira les solutions sous forme algébrique \underbar{et} sous forme trigonométrique.
+    \tcblower
+    On a:
+    \begin{align*}
+        \Delta&=4e^{2i\theta}-8ie^{i\theta}\sin\theta = 4e^{i\theta}\left(\cos\theta + i\sin\theta - 2i\sin\theta \right) \\
+        &= 4e^{i\theta}(\cos\theta-i\sin\theta) = 4e^{i\theta}e^{-i\theta}\\
+        &=4
+    \end{align*}
+    On a alors :
+    \begin{align*}
+        &x_1 = e^{i\theta} + 1 = 2\cos\left( \frac{\theta}{2} \right)e^{\frac{i\theta}{2}}=2\cos\left( \frac{\theta}{2} \right)\left( \cos\left( \frac{\theta}{2} \right) + i\sin\left( \frac{\theta}{2} \right) \right)\\
+        &x_2 = e^{i\theta} - 1 = 2i\sin\left( \frac{\theta}{2} \right)e^{\frac{i\theta}{2}}=2i\sin\left( \frac{\theta}{2} \right)\left( \cos\left( \frac{\theta}{2} \right) + i\sin\left( \frac{\theta}{2} \right) \right)\\
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $n\in\mathbb{N}^*$.\\
+    1. Résoudre dans $\mathbb{C}$ l'équation $z^2 - 2\cos(\theta)z + 1 = 0$.\\
+    2. Résoudre dans $\mathbb{C}$ l'équation $z^{2n} - 2\cos(\theta)z^n + 1 = 0$.
+    \tcblower
+    \boxed{1.} $\Delta = 4\cos^2(\theta)-4=4(\cos^2(\theta)-1)=-4\sin^2(\theta) \leq 0$.
+    \begin{align*}
+        &x_1 = \frac{2\cos(\theta)+i\sqrt{4\sin^2(\theta)}}{2}=\cos(\theta)+i\sin(\theta)=e^{i\theta}\\
+        &x_2 = \cos(\theta) - i\sin(\theta) = e^{-i\theta}
+    \end{align*}
+    \boxed{2.} Posons $z' = z^n$.\\
+    On sait que $z'$ est solution de $z'^2-2\cos(\theta)z'+1=0$.\\
+    Ainsi, $z'_1 = e^{i\theta}$ et $z'_2=e^{-i\theta}$.\\
+    On en déduit :
+    \begin{align*}
+        &z_1 = {z'_1}^{\frac{1}{n}}=e^{\frac{i\theta}{n}}\\
+        &z_2={z'_2}^{\frac{1}{n}}=e^{-\frac{i\theta}{n}}
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Résoudre.
+    \begin{equation*}
+        \left( \frac{z+i}{z-i} \right)^3 + \left( \frac{z+i}{z-i} \right)^2 + \left( \frac{z+i}{z-i} \right) + 1 = 0.
+    \end{equation*}
+    \tcblower
+    Posons $\omega=\left( \frac{z+i}{z-i} \right)$. On a : $\omega^3 + \omega^2 + \omega + 1 = 0$.\\
+    On a alors $\omega\in\mathbb{U}_4 \setminus \{1\}$.\\
+    Ainsi, $\left( \frac{z+i}{z-i} \right)=i$ ou $\left( \frac{z+i}{z-i} \right) = -1$ ou $\left( \frac{z+i}{z-1} \right) = -i$.\\
+    \boxed{1.} $\left( \frac{z+i}{z-i} \right)=i\iff z+i = iz+1 \iff z(1 - i) = 1 - i \iff z = 1$.\\
+    \boxed{2.} $\left( \frac{z+i}{z-i} \right)=-1 \iff z+i = i - z \iff z = -z \iff z = 0$.\\
+    \boxed{3.} $\left( \frac{z+i}{z-i} \right)=-i \iff z+i = -1 - zi \iff z(1+i) = -1 - i \iff z=-\frac{1+i}{1+i}=-1$\\
+    L'ensemble des solutions est donc : $\{-1, 0, 1\}$.
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Résoudre dans $\mathbb{C}$ l'équation $(z+1)^n=z^n$.
+    \tcblower
+    Soit $z\in\mathbb{C}^*$. On a :
+    \begin{align*}
+        z^n=(z+1)^n &\iff \left(1+\frac{1}{z}\right)^n=1\\
+        &\iff(1+\frac{1}{z})\in\mathbb{U}_n\\
+        &\iff\exists k\in\llbracket1,n-1\rrbracket \hspace{0.2cm} | \hspace{0.2cm} 1+\frac{1}{z}=e^{i\frac{2k\pi}{n}}\\
+        &\iff\frac{1}{z}=e^{i\frac{2k\pi}{n}}-1\\
+        &\iff z=\frac{1}{e^{i\frac{2k\pi}{n}}-1}\\
+        &\iff z=\frac{e^{-i\frac{k\pi}{n}}}{2i\sin(\frac{k\pi}{n})}\\
+        &\iff z=\frac{\cos(\frac{k\pi}{n})-i\sin(\frac{k\pi}{n})}{2i\sin(\frac{k\pi}{n})}\\
+        &\iff z=-\frac{1}{2}-\frac{i}{2\tan(\frac{k\pi}{n})}
+    \end{align*}
+    Ainsi, l'ensemble des solutions est : $\{-\frac{1}{2}-\frac{i}{2\tan(\frac{k\pi}{n})} \, | \, k\in\llbracket1,n-1\rrbracket\}$.
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Résoudre dans $\mathbb{C}^2$ le système
+    \begin{equation*}
+        \begin{cases}
+            u^2 + v^2 = -1\\
+            uv = 1
+        \end{cases}
+    \end{equation*}
+    \tcblower
+    On peut prendre un couple dans $(C^*)^2$ car le système impose que les membres soient non nuls.\\
+    Soit $(u,v)\in(\mathbb{C}^*)^2$. Soit $(r,\rho)\in(\mathbb{R}_+^*)^2$ et $(\theta, \pi)\in\mathbb{R}^2$ tels que $u=re^{i\theta}$ et $v=\rho e^{i\varphi}$
+    \begin{align*}
+        (u,v) \text{ est solution } &\iff \begin{cases}
+            u^2 + v^2 = -1\\
+            uv = 1
+        \end{cases}\\
+        &\iff u^2 \text{ et } v^2 \text{ racines de } X^2 + X + 1\\
+        &\iff(u^2, v^2)\in\left\{\frac{-1-i\sqrt{3}}{2}, \frac{-1+i\sqrt{3}}{2}\right\}\\
+        &\iff\begin{cases}
+            u^2 = e^{i\frac{4\pi}{3}}\\
+            v^2 = e^{i\frac{2\pi}{3}}
+        \end{cases}\\
+        &\iff\begin{cases}
+            r = 1\\
+            \theta = \frac{2\pi}{3}[\pi]\\
+            \rho = 1\\
+            \varphi = \frac{\pi}{3}[\pi]
+        \end{cases}
+    \end{align*}
+    L'ensemble des solutions est donc :
+    \begin{equation*}
+        \left\{(e^{i\frac{2\pi}{3}}, e^{i\frac{4\pi}{3}}), (e^{i\frac{5\pi}{3}}, e^{i\frac{\pi}{3}}), (e^{i\frac{\pi}{3}}, e^{i\frac{5\pi}{3}}), (e^{i\frac{4\pi}{3}}, e^{i\frac{2\pi}{3}})\right\}
+    \end{equation*}
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\bbb$}{}
+    Soient $n\in\mathbb{N}^*$ et $z\in\mathbb{C}$ tels que $z^n=(1+z)^n=1$.\\
+    Montrer que $n$ est un multiple de $6$ et que $z^3=1$.
+    \tcblower
+    \bf{Analyse.}\\
+    On a $z^n = (1+z)^n = 1$. Ainsi, $|z|=|1+z|=1$ et $z\in\mathbb{U}$.\\[0.1cm]
+    Puisque $|z|=|1+z|$ et que $\Im(z) = \Im(1+z)$, on a :
+    \begin{align*}
+        &\sqrt{\Re(z)^2 + \Im(z)^2} = \sqrt{\Re(z+1)^2 + \Im(z+1)^2}\\
+        \Longrightarrow&\Re(z)^2=\Re(z+1)^2\\
+        \Longrightarrow&\Re(z)^2=(1 + \Re(z))^2\\
+        \Longrightarrow&\Re(z)=-\frac{1}{2}
+    \end{align*}
+    Ainsi, $\exists\theta\in\mathbb{R} \, | \, z=e^{i\theta}$, et : $\Re\left(e^{i\theta}\right)=-\frac{1}{2}$, donc $\cos(\theta)=-\frac{1}{2}$.\\[0.1cm]
+    On obtient que $\theta\in\{\frac{2\pi}{3} + 2k\pi, \frac{4\pi}{3} + 2k\pi \, | \, k\in\mathbb{Z}\}$.\\[0.1cm]
+    Ainsi, $z\in\{e^{i\frac{2\pi}{3}}, e^{i\frac{4\pi}{3}}\}$ et $z^3 = 1$.\\[0.1cm]
+    On a $z^n\in\{e^{i\frac{2n\pi}{3}}, e^{i\frac{4n\pi}{3}}\}$, or $z^n=1$ donc $\frac{2n\pi}{3}\equiv0[2\pi]$ et $\frac{4n\pi}{3}\equiv0[2\pi]$.\\[0.1cm]
+    Ainsi, $n \equiv 0[3]$ et $2n \equiv 0[3]$. $n$ est donc multiple de 6.\\[0.2cm]
+    \bf{Synthèse}.\\[0.1cm]
+    On a $z\in\{e^{i\frac{2\pi}{3}}, e^{i\frac{4\pi}{3}}\}$ et $k\in\mathbb{N}$ tel que $n=6k$.\\[0.1cm]
+    On a que $z^3=1$.\\[0.1cm]
+    De plus, $z^n\in\{e^{i4k\pi}, e^{i8k\pi}\}$, or $e^{i4k\pi} = e^{i8k\pi} = 1$. Ainsi, $z^n = 1$.\\[0.1cm]
+    Enfin, $(1+e^{i\frac{2\pi}{3}})^n = (2e^{i\frac{\pi}{3}}\cos(\frac{\pi}{3}))^{6k}=(64e^{2i\pi}\frac{1}{64})^k=1$.\\[0.1cm]
+    Et : $(1+e^{i\frac{4\pi}{3}})^n=(2e^{i\frac{2\pi}{3}}\cos(\frac{2\pi}{3}))^{6k}=(64e^{4i\pi}\frac{1}{64})^k=1$.
+\end{exercice}
+
+\end{document}
