@@ -1,0 +1,450 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{12}
+\def\pagetitle{Équations différentielles linéaires d'ordre 2 à coefficients constants.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\renewcommand*{\0}{\mathbbm{0}}
+
+\thispagestyle{fancy}
+
+\section{Ensemble des solutions d'une ED linéaire d'ordre 2.}
+
+\begin{defi}{}{}
+    Soient $a,b\in\K$ deux constantes et $f:I\to\K$. On considère l'équation différentielle
+    \begin{equation*}
+        y'' + ay' + by = f(x) \qquad (E)
+    \end{equation*}
+    On appelle \bf{solution} de $(E)$ sur $\R$, à valeurs dans $\K$ toute fonction $y:\R\to\K$, deux fois dérivable, et telle que $\forall x \in \R, ~ y''(x)+ay'(x)+by(x)=f(x)$.\n
+    On appelle \bf{équation homogène} associée à $(E)$ l'équation différentielle
+    \begin{equation*}
+        y'' + ay' + by = 0 \qquad (E_0).
+    \end{equation*}
+\end{defi}
+
+Ci-dessous, $S$ et $S_0$ désignent les ensembles de solutions de $(E)$ et $(E_0)$.
+
+\begin{prop}{Structure de $S_0$. $\star$}{2}
+    $S_0$ contient la fonction nulle et est stable par combinaisons linéaires.
+    \tcblower
+    $\bullet$ On a $0''=0'=0$ donc $0''+a0'+b0=0$ donc $0\in S_0$.\\
+    $\bullet$ Soient $y_1,y_2\in S_0$ et $\l,\mu\in\R$. On a
+    \begin{align*}
+        (\l y_1 + \mu y_2)''+a(\l y_1 + \mu y_2)' + b(\l y_1 + \mu y_2) &= \l(y_1'' + ay_1' + by_1) + \mu(y_2'' + ay_2' + by_2) = \l\cdot0 + \mu\cdot0=0
+    \end{align*}
+    Donc $(\l y_1 + \mu y_2)\in S_0$.
+\end{prop}
+
+\begin{prop}{Lien entre $S$ et $S_0$.}{}
+    Si $S$ est non vide, alors, en considérant $z_p\in S$ une << solution particulière >> de l'équation, on a
+    \begin{equation*}
+        S=\{z_p + y, \quad y \in S_0\}.
+    \end{equation*}
+    \tcblower
+    Soit $z$ deux fois dérivable sur $\R$.
+    \begin{align*}
+        z \in S \iff& z'' + az' + bz = f \iff z'' + az' + bz = z_p'' + az_p' + bz_p\\
+        \iff& (z-z_p)''+a(z-z_p)' + b(z-z_p) = 0 \iff z-z_p \in S_0\\
+        \iff& \exists y \in S_0 \mid z-z_p = y. 
+    \end{align*}
+\end{prop}
+
+\pagebreak
+
+\section{Résolution de l'équation homogène.}
+
+\begin{defi}{}{}
+    On appelle \bf{équation caractéristique} associée à $(E_0)$ l'équation
+    \begin{equation*}
+        x^2 + ax + b = 0.
+    \end{equation*}
+    où $a$ et $b$ sont les coefficients constants de $(E_0)$.
+\end{defi}
+
+\bf{Remarque.} On rappelle qu'une telle équation a deux racines $r_1$ et $r_2$ avec $r_1+r_2=-a$. On a une racine double $r_1=r_2$ si et seulement si elles valent toutes les deux $-\frac{a}{2}$.
+
+\begin{lemme}{Des solutions de $E_0$}{5}
+    Soit l'équation caractéristique $x^2+ax+b=0$ associée à $(E_0)$ et $r$ une racine de cette équation.
+    \begin{itemize}
+        \item la fonction $u:x\mapsto e^{rx}$ est solution de $(E_0)$.
+        \item Si $r$ est une racine double, $v:x\mapsto xe^{rx}$ est solution de $(E_0)$.
+    \end{itemize}
+    \tcblower
+    Le premier point est déjà connu : $u''+au'+bu=r^2u+aru+bu=u(r^2+ar+b)=0$.\\
+    Supposons que $r$ est racine double. Soit $x\in\R$. Alors:\\
+    --- $v(x)=xe^{rx},\quad v'(x)=e^{rx}(1+rx), \quad v''(x)=e^{rx}(2r+xr^2)$.\\
+    Donc : $v''(x)+av'(x)+b(x)=e^{rx}(2r+xr^2+a(1+rx)+bx)=e^{rx}(x(r^2+ar+b) + 2r + a)=0$.\\
+    En effet, $r$ est solution de $x^2+ax+b=0$ et $2r=-a$ car racine double. 
+\end{lemme}
+
+\begin{thm}{Solutions complexes de l'équation homogène. $\star$}{}
+    Soit $(a,b)\in\C^2$ et $(E_0)$ l'équation $y''+ay'+by=0$.\\
+    Soit $\D$ le discriminant de l'équation caractéristique $x^2+ax+b=0$.\\
+    On note $S_0^\C$ l'ensemble des solutions de $(E_0)$ à valeurs complexes.
+    \begin{itemize}
+        \item Si $\D\neq0$, l'équation caractéristique a deux racines distinctes $r_1$ et $r_2$ dans $\C$ et
+        \begin{equation*}
+            S_0^\C=\{x\mapsto\l e^{r_1x}+\mu e^{r_2x} \mid (\l,\mu)\in \C^2\}.
+        \end{equation*}
+        \item Si $\D=0$, l'équation caractéristique a une racine double $r$ dans $\C$ et
+        \begin{equation*}
+            S_0^\C=\{x\mapsto \l e^{rx} + \mu x e^{rx} \mid (\l, \mu) \in \C^2\}.
+        \end{equation*}
+    \end{itemize}
+    \tcblower
+    Pour $r_1,r_2\in\C$, notons $\G^\C(r_1,r_2)=\{x\mapsto \l e^{r_1x}+\mu e^{r_2x}\mid (\l,_\mu)\in\C^2\}$.\\
+    \boxed{\supset} Supposons $\D\neq0$ et notons $r_1,r_2$ les racines de l'équation caractéristique.\\
+    D'après \ref{lemme:5}, les fonctions $y_1:x\mapsto e^{r_1x}$ et $y_2:x\mapsto e^{r_2x}$ sont solutions de $(E_0)$.\\
+    D'après \ref{prop:2}, les combinaisons linéaires $\l y_1 + \mu y_2$ sont solutions de $(E_0)$ donc $S_0^\C\supset \G^\C(r_1,r_2)$.\\
+    \boxed{\subset} Soit $y\in S_0^\C$ solution de $(E_0)$ à coefficients complexes. Soit $r$ une solution complexe de l'EC.\\
+    Notons $z:x\mapsto e^{-rx}y(x)$ deux fois dérivable par produit. Notons $u:x\mapsto e^{rx}$. On a
+    \begin{align*}
+        y=uz, \qquad y'=u'z+uz', \qquad y'' = u''z+u'z' + uz''.
+    \end{align*}
+    Alors
+    \begin{align*}
+        y \nt{ est solution de } (E_0) &\iff y''+ay'+by=0 \iff (u''z+u'z'+u'z'+uz'') + (au'z+uz')+buz=0\\
+        &\iff uz''+(2\underbrace{u'}_{=ru}+au)z'+(\underbrace{u''+au'+bu}_{=0\nt{ car }u\in S_0^\C})z=0 \iff uz'' + u(2r+a)z'=0\\
+        &\iff z'' + (2r + a)z' = 0 \iff z' \nt{ est solution de } Y'+(2r+a)Y=0.
+    \end{align*}
+    On a supposé $y$ solution de $(E_0)$, alors en résolvant l'équation, il existe $\l\in\C$ tel que $\forall x \in \R, ~ z'(x)=\l e^{-(2r+a)x}$.\\
+    Supposons $\D\neq0$, l'équation caractéristique a deux racines distinctes $r_1$ et $r_2$. Mettons que $r=r_2$, alors $r_1=-r-a$ et comme $r_1\neq r_2$, on a $2r+a\neq0$. Connaissant $z'$, on connait $z$ : il existe une constante $\mu$ telle que
+    \begin{equation*}
+        \forall x \in \R \quad z(x)= -\frac{\l}{2r+a}e^{-(2r+a)x}+\mu.
+    \end{equation*}
+    d'où, en notant $\tilde{\l}=\frac{-\l}{2r+a}$ :
+    \begin{equation*}
+        \forall x \in \R \quad y(x)=e^{rx}z(x)=-\tilde{\l}e^{(-2r-a+r)x}+\mu e^{rx} = \tilde{\l}e^{r_1x}+\mu e^{r_2x}
+    \end{equation*}
+    Donc $y\in\G^\C(r_1,r_2)$.
+\end{thm}
+
+\pagebreak
+
+\begin{thm}{Solutions réelles de l'équation homogène. $\star$}{}
+    Soit $(a,b)\in\R^2$ et $(E_0)$ l'équation $y''+ay'+by=0$. Soit $\D$ le discriminant de l'équation caractéristique $x^2+ax+b=0$. Notons $S_0^\R$ l'ensemble des solutions de $(E_0)$ à valeurs réelles.
+    \begin{itemize}
+        \item Si $\D>0$, l'équation caractéristique a deux racines réelles distinctes $r_1$ et $r_2$ et
+        \begin{equation*}
+            S_0^\R=\{t\mapsto \le^{r_1t}+\mu e^{r_2t}\mid (\l,\mu)\in\R^2\}.
+        \end{equation*}
+        \item Si $\D=0$, l'équation caractéristique a une racine double $r\in\R$ et
+        \begin{equation*}
+            S_0^\R=\{t\mapsto \l e^{rt}+ \mu t e^{rt} \mid (\l,\mu)\in\R^2\}.
+        \end{equation*}
+        \item Si $\D<0$, l'EC a deux racines complexes conjugées $r_1=\g+i\w$ et $r_2=\g-i\w$ où $(\g,\w)\in\R^2$ et
+        \begin{equation*}
+            S_0^\R=\{t\mapsto e^{\g t}\left(\a\cos(\w t) + \b\sin(\w t) \right) \mid (\a,\b)\in\R^2\}=\{t\mapsto Ae^{\g t}\cos(\w t + \phi) \mid (A,\phi)\in\R^2\}.
+        \end{equation*}
+    \end{itemize}
+    \tcblower
+    Cas $\D<0$. Soit $y\in S_0^\R$, alors $y\in S_0^\C$ donc $\exists \l,\mu\in\C\mid\forall t\in\R, ~ y(t)=\l e^{r_1t}+\mu e^{r_2t}$.\\
+    Puisque $y$ est à valeurs réelles, $\ov{y(0)}=y(0)$ et $\ov{y'(0)}=y'(0)$. De plus, $\ov{r_2}=r_1$. Alors:
+    \begin{equation*}
+        \begin{cases}
+            (\l-\ov{\mu}) + (\mu - \ov{\l}) &= \quad 0 \qquad (L_1)\\
+            r_1(\l - \ov{\mu}) + \ov{r_1}(\mu - \ov{\l}) &= \quad 0 \qquad (L_2)
+        \end{cases}
+    \end{equation*}
+    L'opération $L_2\gets L_2-r_1 L_1$ amène $\mu=\ov{\l}$. Alors:
+    \begin{equation*}
+        \forall t \in \R, ~ y(t)=2e^{\g t}(\ov{l}e^{i\w t}+\ov{l}e^{-i\w t}) = e^{\g t}\cdot 2\Re(\l e^{i\w t}).
+    \end{equation*}
+    Écrivons $\l$ sous forme géométrique : $\l=re^{i\phi}$ alors
+    \begin{equation*}
+        \forall t \in \R, ~ y(t)=2e^{\g t}\Re(e^{i\phi}e^{i\w t}) = 2re^{\g t}\cos(\w t + \phi).
+    \end{equation*}
+    L'inclusion réciproque est plus simple.
+\end{thm}
+
+\begin{ex}{}{}
+    Pour chacune des équations ci-dessous, on écrit l'ensemble des solutions réelles :
+    \begin{equation*}
+        1)~y''-2y'-3y=0; \qquad 2)~y''-6y'+9y=0; \qquad 3)y''+y'+y=0.
+    \end{equation*}
+    \tcblower
+    \boxed{1)} Racines évidentes : $-1$ et $3$. Donc $S_0=\{t\mapsto \l e^{-t}+\mu e^{3t} \mid (\l, \mu)\in\R^2\}$.\\
+    \boxed{2)} Racine double : $3$. Donc $S_0=\{t\mapsto \l e^{3t} + \mu te^{3t} \mid (\l,\mu)\in\R^2\}$.\\
+    \boxed{3)} Deux racines conjuguées : $j=-\frac{1}{2}+i\frac{\sqrt{3}}{2}$ et $\ov{j}=-\frac{1}{2}-i\frac{\sqrt{3}}{2}$. Donc $S_0=\{t\mapsto Ae^{-\frac{1}{2}t}\cos(\frac{\sqrt{3}}{2}t+\phi)\mid(A,\phi)\in\R^2\}$
+\end{ex}
+
+\begin{ex2}{L'équation $y''+\w^2y=0$ : oscillateur harmonique non amorti.}{}
+  Soit, pour $\w\in\R^*_+$, l'équation $y''+\w^2y=0$.\\
+  L'équation caractéristique est $x^2+\w^2=0$, qui a pour racines $i\w$ et $-i\w$.\n
+  L'ensemble des solutions est \quad\boxed{S_0=\{t\mapsto\a\cos(\w t)+\b\sin(\w t) \mid \a,\b\in\R\}}
+\end{ex2}
+
+\section{Équation générale : obtenir une solution particulière.}
+
+\subsection{Trouver une solution à vue.}
+\quad Lorsque le second membre $f$ est une fonction constante, l'équation a une solution constante. Plus précisément, si $a,b,c\in\K$, avec $b\neq0$ :
+\begin{center}
+    \fbox{L'équation $y''+ay'+by=c$ a pour solution particulière la fonction constante $z_p:x\mapsto\frac{c}{b}$.}
+\end{center} 
+\quad Plus généralement, lorsque $b$ sera une fonction polynomiale de degré $n$, on pourra chercher une solution polynomiale de degré $n$.
+\subsection{Principe de superposition.}
+
+\begin{prop}{Principe de superposition.}{}
+    Soient $a,b\in\K$. Si
+    \begin{itemize}
+        \item $y_1$ est solution sur $\R$ de $y''+ay'+by=f_1\quad(E_1)$.
+        \item $y_2$ est solution sur $\R$ de $y''+ay'+by=f_2\quad(E_2)$.
+    \end{itemize}
+    Alors $y_1+y_2$ est solution sur $\R$ de $y''+ay'+by=f_1+f_2$.
+    \tcblower
+    Soient $y_1$ et $y_2$ solutions de $(E_1)$ et $(E_2)$ respectivement. Elles sont deux fois dérivables sur $\R$, donc $y_1+y_2$ l'est aussi. On a:
+    \begin{equation*}
+        (y_1+y_2)''+a(y_1+y_2)'+b(y_1+y_2)=(y_1''+ay_1'+by_1)+(y_2''+ay_2'+by_2)=f_1+f_2
+    \end{equation*}
+\end{prop}
+
+\subsection{Obtenir une solution pour des seconds membres particuliers.}
+
+\begin{prop}{}{}
+    Soient $a,b,A,\a\in\K$. L'équation
+    \begin{equation*}
+        y''+ay'+by=Ae^{\a x}
+    \end{equation*}
+    admet une solution particulière de la forme 
+    \begin{itemize}
+        \item $x\mapsto Be^{\a x}$ si $\a$ n'est pas racine de l'équation caractéristique.
+        \item $x\mapsto Bxe^{\a x}$ si $\a$ est racine simple de l'équation caractéristique.
+        \item $x\mapsto Bx^2e^{\a x}$ si $\a$ est racine double de l'équation caractéristique.
+    \end{itemize}
+    où $B$ est une constante à déterminer.
+    \tcblower
+    On cherche une solution particulière de la forme $y:x\mapsto z(x)e^{\a x}$ où $z$ est deux fois dérivable sur $\R$ à déterminer. Notons $u:x\mapsto e^{\a x}$. Elle est deux fois dérivable et $u'=\a u$, $u''=\a^2u$. La fonction $y$ est deux fois dérivable comme produit.
+    \begin{equation*}
+        y=zu, \qquad y'=(\a z + z')y, \qquad y''=(\a^2z + 2\a z' + z')u.
+    \end{equation*}
+    On a, $u$ ne s'annulant pas :
+    \begin{align*}
+        y \nt{ est solution de } (E_0) &\iff y'' + ay' + by = Au\\
+        &\iff (\a^2z+2\a z'+z'')\cancel{u}+a(\a z + z')\cancel{u} + bz\cancel{u} = A\cancel{u}\\
+        &\iff z'' + (2\a + a)z' + (\a^2 + a\a + b)z\underset{(*)}{=}A.
+    \end{align*}
+    $\bullet$ Si $\a$ n'est pas racine de l'équation caractéristique, il suffit de prendre $z$ constante égale à $B:=\frac{A}{\a^2+a\a+b}$ pour satisfaire $(*)$. Cela donne bien une solution particulière du type $y:x\mapsto z(x)e^{\a x}=Be^{\a x}$.\\
+    $\bullet$ Si $\a$ est racine simple, on a $\a^2+a\a+b=0$ et $2\a+a\neq0$. On choisit donc $z$ tel que $z''+(2\a+a)z'=A$. On prend $z'$ constante égale à $B:=\frac{A}{2\a+a}$, donc $z:x\mapsto Bx$. On obtient bien $y:x\mapsto z(x)e^{\a x}=Bxe^{\a x}$\\
+    $\bullet$ Si $\a$ est racine double, alors $\a^2+a\a+b=0$ et $2\a+a=0$. On choisit $z$ tel que $z''=A$. On le fait en prenant alors $z:x\mapsto \frac{A}{2}x^2$. On a bien une solution du type $y:x\mapsto z(x)e^{\a x}=Bx^2e^{\a x}$. 
+\end{prop}
+
+\quad Cas particulier important pour les applications : celui où le second membre est de la forme $t\mapsto A\cos(\w t)$ ou $t\mapsto A\sin(\w t)$. Physiquement, il s'agit de l'équation d'un oscillateur harmonique excité périodiquement. On va voir que l'on peut se ramener à une équation du type précédent.
+
+\begin{meth}{}{}
+    Soient $a,b,A\in\R$ et $\w\in\R_+^*$. Soit $(E)$ une équation du type
+    \begin{equation*}
+        y''+ay'+by=A\cos(\w t) \quad \ou \quad y''+ay'+by=A\sin(\w t).
+    \end{equation*}
+    Pour tout $t\in\R$,
+    \begin{equation*}
+        \cos(\w t)=\Re(e^{i\w t}) \quad \et \quad \sin(\w t)=\Im(e^{i\w t}).
+    \end{equation*}
+    On sait trouver une solution particulière de l'équation auxiliaure complexe
+    \begin{equation*}
+        y''+ay'+by=Ae^{i\w t}\quad(E_C)
+    \end{equation*}
+    Reste à sélectionner la partie réelle ou imaginaire pour obtenir une solution de $(E)$.
+\end{meth}
+
+\section{Synthèse.}
+
+\begin{meth}{Conseils pour la résolution des EDL2 à coefficients constants.}{}
+    \begin{itemize}
+        \item Résoudre l'équation homogène $(E_0)$ associée. Pour cela, commencer par poser l'équation caractéristique.
+        \item Rechercher une solution particulière de $(E)$ avec second membre. Le cours nous apprend à le faire lorsque ce dernier est de la forme $Ae^{\a x}$. Il va falloir discuter selon que $\a$ est racine ou pas de l'EC.
+        \item Si le second membre est de la forme $A\cos(\w t)$ ou $A\sin(\w t)$, on se ramène à un second membre exponentiel en posant une équation auxiliaire complexe.
+        \item Exprimer l'ensemble des solutions de $(E)$ à l'aide de la solution particulière et des solutions de $(E_0)$.
+        \item Conditions initiales. La notion de problème de Cauchy n'a pas été définie pour les EDL2. On vérifiera dans la pratique que pour une équation $(E)$ donnée, il existe une unique solution de $(E)$ satisfaisant une condition initiale du type $(y(t_0)=y_0 \et y'(t_0)=y'_0)$.
+    \end{itemize}
+\end{meth}
+
+\section{Exercices.}
+
+\begin{exercice}{$\bww$}{}
+    Résoudre le problème de Cauchy ci-dessous :
+    \begin{equation*}
+        \begin{cases}
+            y'' + 2y' + 10y = 5\\
+            y(0) = 1 \quad y'(0) = 0
+        \end{cases}
+    \end{equation*}
+    \tcblower
+    Polynome caractéristique : $r^2 + 2r + 10$. $\Delta = -36$. $r_{\pm}=-1\pm3i$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto e^{-x}\left(\alpha\cos(3x) + \beta\sin(3x)\right) ~ | ~ (\alpha, \beta)\in\mathbb{R}^2\}$\\
+    Solution particulière : $S_p : x\mapsto\frac{1}{2}$.\\
+    Solution générale : $S = \{x\mapsto\frac{1}{2} + e^{-x}\left( \alpha\cos(3x) + \beta\sin(3x) \right) ~ | ~ (\alpha, \beta) \in \mathbb{R}^2\}$.\\
+    Conditions initiales. Soit $(\alpha, \beta)\in\mathbb{R}^2 ~ | ~ \forall{x\in\mathbb{R}, ~ y(x)=\frac{1}{2} + e^{-x}\left( \alpha\cos(3x) + \beta\sin(3x) \right)}$.\\
+    On a $y(0)=1 \ra \alpha = \frac{1}{2}$ et $y'(0)=0 \ra \beta = \frac{1}{6}$.\\
+    L'unique solution de ce problème de Cauchy est : $x\mapsto\frac{1}{2} + e^{-x}\left( \frac{1}{2}\cos(3x) + \frac{1}{6}\sin(3x) \right)$
+\end{exercice}
+
+
+\begin{exercice}{$\bww$}{}
+    Résoudre :
+    \begin{equation*}
+        y'' - y' - 2y = 2\ch(x)
+    \end{equation*}
+    \tcblower
+    On réecrit d'abord cette équation comme : $y'' - y' - 2y = e^{x} + e^{-x}$.\\
+    Polynome caractéristique : $r^2 - r - 2$. $\Delta = 9$. $r_1 = -1$ et $r_2 = 2$.\\
+    Solutions de l'équation homogène : $S_0 = \{x \mapsto \lambda e^{-x} + \mu e^{2x} ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$.\\
+    Équation auxiliaire 1 : $y'' - y' - 2y = e^x$. Solution particulière : $S_{p,1} : x\mapsto Be^{x} ~ | ~ B\in\mathbb{R}$.\\
+    Soit $x\in\mathbb{R}$, $B\in\mathbb{R}$ et $y:x\mapsto Be^x$.\\
+    On a $y''(x) - y'(x) - 2y(x) = e^x \iff -2Be^x = e^x \iff B = -\frac{1}{2}$.\\
+    Ainsi, $S_{p,1}:x\mapsto -\frac{1}{2}e^x$.\\
+    Équation auxiliaire 2 : $y'' - y' - 2y = e^{-x}$. Solution particulière : $S_{p,2} : x\mapsto Cxe^{-x} ~ | ~ C\in\mathbb{R}$.\\
+    Soit $x\in\mathbb{R}$, $C\in\mathbb{R}$ et $y:x\mapsto Cxe^{-x}$.\\
+    On a $y''(x) - y'(x) - 2y(x) = e^{-x} \iff -3Ce^{-x} = e^{-x} \iff C = -\frac{1}{3}$.\\
+    Ainsi, $S_{p,2}: x\mapsto -\frac{1}{3}xe^{-x}$.\\
+    Par superposition, l'ensemble des solutions est :
+    \begin{equation*}
+        \{x\mapsto \lambda e^{-x} + \mu e^{2x} - \frac{1}{2}e^x - \frac{1}{3}xe^{-x} ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}
+    \end{equation*}
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Résoudre :
+    \begin{equation*}
+        y'' + 2y' + y = \cos(2t) \quad (E).
+    \end{equation*}
+    \tcblower
+    Polynome caractéristique : $r^2 + 2r + 1$. $\Delta = 0$. $r = -1$.\\
+    Solutions de l'équation homogène : $S_0 = \{x \mapsto \lambda x e^{-x} + \mu e ^{-x} ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$.\\
+    Équation auxiliaire : $y'' + 2y' + y = e^{2ix}$. Solution particulière : $S_{p,aux} : x\mapsto Be^{2ix}$ avec $B\in\mathbb{R}$.\\
+    Soit $x\in\mathbb{R}$, $B\in\mathbb{R}$ et $y:x\mapsto Be^{2ix}$.\\
+    On a : $y''(x) + 2y'(x) + y(x) = e^{2ix} \iff Be^{2ix}(-3+4i)= e^{2ix} \iff B = \frac{1}{-3+4i} = \frac{-3-4i}{25}$.\\
+    Passage à la partie réelle : $\Re(y(x)) = \Re\left( -\frac{3+4i}{25}\left( \cos(2x) + i\sin(2x) \right) \right) = -\frac{3}{25}\cos(2x) + \frac{4}{25}\sin(2x)$.\\
+    Solution générale : $S = \{x \mapsto \lambda x e^{-x} + \mu e^{-x} - \frac{3}{25}\cos(2x) + \frac{4}{25}\sin(2x) ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$.
+\end{exercice}
+
+\begin{exercice}{$\bbw$ Résonance... ou pas.}{}
+    1. \underbar{Excitation à une pulsation quelconque}. Résoudre $y'' + 4y = \cos t$\\
+    2. \underbar{Excitation à la pulsation propre : résonance}. Résoudre $y'' + 4y = \cos(2t)$
+    \tcblower
+    \boxed{1.} Polynome caractéristique : $r^2 + 4$. $\Delta=-16$. $r_1 = 2i$, $r_2=-2i$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto \lambda\cos(2x) + \mu\sin(2x) ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$.\\
+    Équation auxiliaire : $y'' + 4y = e^{it}$. Solution particulière : $S_{p,aux}:x\mapsto Be^{ix}$ avec $B\in\mathbb{R}$.\\
+    Soit $x,B\in\mathbb{R}$, et $y:x\mapsto Be^{ix}$.\\
+    On a : $y''(x) + 4y(x) = e^{ix} \iff 3Be^{ix} = e^{ix} \iff B = \frac{1}{3}$.\\
+    Passage à la partie réelle : $\Re(y(x)) = \frac{1}{3}\cos(x)$.\\
+    Solution générale : $S = \{x\mapsto \lambda \cos(2x) + \mu \sin(2x) + \frac{1}{3}\cos(x) ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$\\[0.2cm]
+    \boxed{2.} L'ensemble des solutions de l'équation homogène est encore $S_0$.\\
+    Équation auxiliaire : $y'' + 4y + e^{2it}$. Solution particulière : $S_{p,aux}:x\mapsto Bxe^{2ix}$ avec $B\in\mathbb{R}$.\\
+    Soit $x,B\in\mathbb{R}$ et $y:x\mapsto Bxe^{2ix}$.\\
+    On a : $y''(x) + 4y(x) = e^{2ix} \iff Be^{2ix}(4i-4x) + 4Bxe^{2ix} = e^{2ix} \iff B=\frac{1}{4i}=-\frac{i}{4}$\\
+    Passage à la partie réelle : $\Re(y(x)) = \Re\left( -\frac{i}{4}x(\cos(2x) + i\sin(2x)) \right)=\frac{1}{4}x\sin(2x)$.\\
+    Solution générale : $S=\{x\mapsto \lambda\cos(2x) + \mu\cos(2x) + \frac{1}{4}x\sin(2x) ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $\alpha\in\mathbb{R}$. Résoudre l'équation différentielle
+    \begin{equation*}
+        2y'' + \alpha y' + \alpha y = 0.
+    \end{equation*}
+    On discutera selon les valeurs de $\alpha$.
+    \tcblower
+    On se ramène à l'équation différentielle : $y'' + \frac{\alpha}{2}y' + \frac{\alpha}{2}y = 0$.\\
+    Polynome caractéristique : $r^2 + \frac{\alpha}{2}r + \frac{\alpha}{2}$. $\Delta=\alpha(\frac{\alpha}{4}-2)$\\
+    $\circledcirc$ Cas $\alpha\in\{0, 8\}$.
+    \begin{adjustwidth}{1cm}{}
+        Alors $\Delta=0$ et $r=-\frac{\alpha}{4}$.\\
+        Solution générale : $S = \{x\mapsto \lambda x e^{-\frac{\alpha}{4}x} + \mu e^{-\frac{\alpha}{4}x} ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$.
+    \end{adjustwidth}
+    $\circledcirc$ Cas $\alpha\in]0,8[$.
+    \begin{adjustwidth}{1cm}{}
+        Alors $\Delta<0$ et $r_\pm = -\frac{\alpha}{4} \pm i\sqrt{-\Delta}$.\\
+        Solution générale : $S = \{x\mapsto e^{-\frac{\alpha}{4}x} \left( \lambda \cos(\sqrt{-\Delta}x) + \mu\sin(\sqrt{-\Delta}x) \right) ~ | ~  (\lambda,\mu)\in\mathbb{R}^2\}$
+    \end{adjustwidth}
+    $\circledcirc$ Cas $\alpha\notin[0,8]$.
+    \begin{adjustwidth}{1cm}{}
+        Alors $\Delta>0$ et $r_1 = -\frac{\alpha}{4} + \sqrt{\Delta}$, $r_2 = -\frac{\alpha}{4} - \sqrt{\Delta}$.\\
+        Solution générale : $S=\{x\mapsto \lambda e^{r_1x} + \mu e^{r_2x} ~ | ~ (\lambda,\mu)\in\mathbb{R}^2\}$.
+    \end{adjustwidth}
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $a\in\mathbb{R}$. En discutant selon la valeur de $a$, résoudre
+    \begin{equation*}
+        y'' - 2ay' + (1+a^2)y = \sin x.
+    \end{equation*}
+    \tcblower
+    $\circledcirc$ On suppose $a\neq0$.\\
+    Polynome caractéristique : $r^2 - 2ar + (1 + a^2)$. $\Delta = -4$. $r_1 = 1 + i$, $r_2 = 1 - i$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto e^{x}\left( \lambda \cos(x) + \mu \sin(x) \right) ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$.\\
+    Équation auxiliaire : $y'' - 2ay' + (1+a^2)y = e^{ix}$. Solution particulière : $x\mapsto Be^{ix}$.\\
+    Soit $x,B \in \mathbb{R}$ et $y:x\mapsto Be^{ix}$.\\
+    On a : $-Be^{ix} - 2aiBe^{ix} + (1 + a^2)Be^{ix} = e^{ix} \iff B = \frac{1}{a^2-2ai} = \frac{a+2i}{a^3+4a}$.\\
+    Passage à la partie imaginaire : $\Im(y(x))=\Im\left( \frac{a+2i}{a^3+4a}(\cos(x)+i\sin(x)) \right)=\frac{a}{a^3+4a}\sin(x) + 2\cos(x)$.\\
+    Solution générale : $S=\{x\mapsto e^x(\lambda\cos(x) + \mu\sin(x)) + \frac{a}{a^3+4a}\sin(x) + 2\cos(x) ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$.\\[0.2cm]
+    $\circledcirc$ On suppose $a=0$.
+    Polynome caractéristique : $r^2 + r$. $\Delta = -4$. $r_1 = i$ et $r_2 = -i$.\\
+    Solutions de l'équation homogène : $\{x\mapsto \lambda\cos(x) + \mu\sin(x) ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$.\\
+    Équation auxiliaire : $y'' + y = e^{ix}$. Solution particulière : $x\mapsto Bxe^{ix}$.\\
+    Soit $x,B\in\mathbb{R}$ et $y:x\mapsto Bxe^{ix}$.\\
+    On a : $y''(x) + y(x) = e^{ix} \iff 2iBe^{ix} = e^{ix} \iff B = \frac{1}{2i} = -\frac{i}{2}$.\\
+    Passage à la partie imaginaire : $\Im(y(x)) = \Im(-\frac{ix}{2}(\cos(x)+i\sin(x)))=-\frac{x}{2}\cos(x)$\\
+    Solution générale : $S=\{x\mapsto \lambda\cos(x) + \mu\sin(x) - \frac{x}{2}\cos(x) ~ | ~ (\lambda, \mu)\in\mathbb{R}\}$.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    On considère l'équation différentielle à coefficients \emph{non constants} ci-dessous :
+    \begin{equation*}
+        (E) \qquad t^2y'' + 4ty' + (2 + t^2)y = 1 ~ \text{sur }\mathbb{R}^*_+.
+    \end{equation*}
+    Soient $y$ une fonction définie sur $\mathbb{R}^*_+$ et $z:t\mapsto t^2y(t)$.
+    \begin{adjustwidth}{0.2cm}{}
+        1. Justifier que $y$ est deux fois dérivable sur $\mathbb{R}^*_+$ si et seulement si $z$ est deux fois dérivable sur $\mathbb{R}^*_+$.\\
+        2. Démontrer que $y$ est solution de l'équation si est seulement si $z$ est solution d'une équation différentielle très simple que l'on précisera.\\
+        3. Donner l'ensemble des solutions de $(E)$.
+    \end{adjustwidth}
+    \tcblower
+    \boxed{1.} Soit $t\in\mathbb{R}^*_+$.\\ 
+    Supposons $z$ deux fois dérivable.\\
+    Alors $z'(t) = 2ty(t) + t^2y'(t)$ et $z''(t) = 2y(t) + 4ty'(t) + t^2y''(t)$.\\
+    Ainsi, $y$ est deux fois dérivable.\\[0.1cm]
+    Supposons $y$ deux fois dérivable.\\
+    $z$ est dérivable une fois comme produit de fonctions dérivable et une deuxième fois comme somme et produit de fonctions dérivables.\\[0.2cm]
+    \boxed{2.} Supposons $y$ solution de $(E)$, $y$ est alors deux fois dérivable, $z$ aussi. On a $t^2y'' + 4ty' + 2y+t^2y=1$.\\
+    Par identification, $z'' + z = 1$ $(E')$\\[0.2cm]
+    \boxed{3.} Polynome caractéristique : $r^2 + 1$. $\Delta = -4$. $r_1 = i$ et $r_2 = -i$.\\
+    Solutions de l'équation homogène : $S_0 = \{x\mapsto \lambda\cos(x) + \mu\sin(x) ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$.\\
+    Solution particulière : $S_p : x\mapsto 1$.\\
+    Solution générale : $S = \{x\mapsto \lambda \cos(x) + \mu \sin(x) + 1 ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$.\\
+    Ainsi, les solution de $(E)$ sur $\mathbb{R}^*_+$ sont : $S_E = \{x\mapsto \frac{\lambda}{x^2}\cos(x) + \frac{\mu}{x^2}\sin(x) + \frac{1}{x^2} ~ | ~ (\lambda, \mu)\in\mathbb{R}^2\}$
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Trouver toutes les fonctions $f$ dérivables sur $\mathbb{R}$ et telles que
+    \begin{equation*}
+        \forall x \in \mathbb{R}, ~ f'(x) = f(\pi - x).
+    \end{equation*}
+    \tcblower
+    \emph{Analyse.}\\
+    Supposons qu'il existe $f$ dérivable sur $\mathbb{R}$ telle que $\forall x \in \mathbb{R}, ~ f'(x) = f(\pi-x)$.\\
+    Soit $x\in\mathbb{R}$.\\
+    Alors, $f''(x) = -f'(\pi-x) = -f(\pi - \pi + x) = -f(x)$.\\
+    Ainsi, $f''(x) + f(x) = 0$\\
+    Polynome caractéristique : $r^2 + 1$. $\Delta = -4$, $r_1=i$ et $r_2=-i$.\\
+    Solution générale : $S = \{x\mapsto \lambda \cos(x) + \mu \sin(x) ~ | ~ (\lambda, \mu) \in \mathbb{R}^2\}$.\\
+    \emph{Synthèse.}\\
+    Soit $x,\lambda,\mu\in\mathbb{R}$ et $y:x\mapsto\lambda\cos(x) + \mu\sin(x)$ dérivable comme somme et produit.\\
+    On a : $y'(x) = -\lambda\sin(x) + \mu\cos(x)$.\\
+    Et : 
+    \begin{align*}
+        y'(x) = y(\pi - x) &\iff -\lambda\sin(x) + \mu\cos(x) = \lambda\cos(\pi - x) + \mu\sin(\pi - x)\\
+        &\iff -\lambda\sin(x) + \mu\cos(x) = -\lambda\cos(x) + \mu\sin(x)\\
+        &\iff (\lambda + \mu)(\cos(x) - \sin(x)) = 0
+    \end{align*}
+    Conditions initiales : pour $x=0$.
+    \begin{align*}
+        (\lambda + \mu) = 0 \iff \lambda = -\mu
+    \end{align*}
+    Ainsi, les solutions sont : $\{x\mapsto \lambda(\cos(x) - \sin(x)) ~ | ~ \lambda \in \mathbb{R}\}$.
+\end{exercice}
+
+\end{document}
