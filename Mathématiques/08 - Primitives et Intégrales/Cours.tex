@@ -637,21 +637,28 @@ Les physiciens ont un moyen pour se souvenir de la formule : ils posent \boxed{\
     On en déduit que $2I = \frac{\pi}{4}\ln2$. Ainsi, $I=\frac{\pi}{8}\ln2$
 \end{exercice}
 
-\begin{exercice}{$\bbw$}{}
+\begin{exercice}{$\bbw$ Les intégrales de Wallis. $\star$}{}
     On définit, pour tout entier $n\in\mathbb{N}$ le nombre
     \begin{equation*}
         W_n = \int_0^{\frac{\pi}{2}}{\sin^n(x)\dx}.
     \end{equation*}
     1. À l'aide d'une intégration par parties, montrer que
     \begin{equation*}
-        \forall{n\in\mathbb{N}}, \hspace{0.3cm} W_{n+2} = \frac{n+1}{n+2}W_n.
+        \forall{n\in\mathbb{N}}, \hspace{0.3cm} W_{n+2} = \frac{n+1}{n+2}W_n \quad (\star)
     \end{equation*}
     2. Démontrer les égalités suivantes pour $n\in\mathbb{N}$ :
     \begin{equation*}
         W_{2n}=\frac{(2n)!}{2^{2n}(n!)^2}\cdot\frac{\pi}{2} \hspace{0.5cm} \text{ et } \hspace{0.5cm} W_{2n+1}=\frac{2^{2n}(n!)^2}{(2n+1)!}.
     \end{equation*}
     \tcblower
-    \bf{DM n°7 : Correction.}
+    \boxed{1.\star} Pour $n\in\N$ :
+    \begin{align*}
+        W_{n+2}&=\int_0^{\frac{\pi}{2}}\sin^{n+2}(x)\dx = \int_0^\frac{\pi}{2}\sin(x)\sin^{n+1}(x)\dx\\
+        &=\cancel{\left[ -\cos(x)\sin^{n+1}(x) \right]_0^{\frac{\pi}{2}}}-\int_0^\frac{\pi}{2}-(n+1)\sin^n(x)\cos^2(x)\dx\\
+        &=(n+1)\int_0^\frac{\pi}{2}\sin^n(x)(1-\sin^2(x))\dx\\
+        &=(n+1)W_n - (n+1)W_{n+2}
+    \end{align*}
+    Donc $(n+2)W_{n+2}=(n+1)W_n$, alors $W_{n+2}=\frac{n+1}{n+2}W_n$.
 \end{exercice}
 
 \begin{exercice}{$\bbw$}{}
