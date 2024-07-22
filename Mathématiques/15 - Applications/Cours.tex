@@ -1,0 +1,697 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{15}
+\def\pagetitle{Applications : images et antécédents.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\thispagestyle{fancy}
+
+\section*{L'essentiel du premier cours sur les applications.}
+
+\begin{defi}{}{}
+    Soient $E$ et $F$ deux ensembles.\n
+    Une \bf{application} $f$ de $E$ dans $F$ est un procédé qui à tout élément $x$ de $E$ associe un unique élément dans $F$, que l'on note $f(x)$. Cet objet est aussi appelé \bf{fonction}, et décrit par
+    \begin{equation*}
+        f:\begin{cases}
+            E &\to \quad F\\
+            x &\mapsto \quad f(x)
+        \end{cases}
+    \end{equation*}
+    L'ensemble $E$ est alors appelé \bf{ensemble de départ} et l'ensemble $F$ \bf{ensemble d'arrivée} de $f$.\\
+    Soient $x\in E$ et $y\in F$ tels que
+    \begin{equation*}
+        y=f(x);
+    \end{equation*}
+    On dit que $y$ est l'\bf{image} de $x$ par $f$ et que $x$ est un \bf{antécédent} de $y$ par $f$.\\
+    L'ensemble des applications de $E$ dans $F$ est noté $F^E$ ou bien $\F(E,F)$.\\
+    L'application \bf{identité} sur un ensemble $E$ est
+    \begin{equation*}
+        \id_E : \begin{cases}
+            E &\to \quad E\\
+            x &\mapsto \quad x
+        \end{cases}
+    \end{equation*} 
+\end{defi}
+
+\begin{prop}{Égalité de deux fonctions.}{}
+    Deux applications sont égales si et seulement si elles sont égales en tout point :
+    \begin{equation*}
+        \forall (f,g) \in \F(E,G)^2, \quad f = g \iff \forall x \in E, ~ f(x) = g(x).
+    \end{equation*}
+\end{prop}
+
+\begin{defi}{}{}
+    Soient $E,F,G$ trois ensembles et $f:E\to F$ et $g:F\to G$ deux applications.\\
+    La \bf{composée} de $f$ par $g$, notée $g\circ f$ est l'application
+    \begin{equation*}
+        g \circ f : \begin{cases}
+            E &\to \quad G\\
+            x &\mapsto \quad g(f(x))
+        \end{cases}
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{Propriétés de la composition.}{}
+    \begin{itemize}
+        \item L'identité est neutre pour la composition :
+        \begin{equation*}
+            \forall f \in \F(E,F), \quad \id_F\circ f = f \quad\et\quad f\circ\id_E = f.
+        \end{equation*}
+        \item La composition est associative :
+        \begin{equation*}
+            \forall f \in \F(E,F), ~ \forall g \in \F(F,G), ~ \forall h \in \F(G,H), \quad (h\circ g)\circ f = h\circ(g\circ f).
+        \end{equation*}
+    \end{itemize}
+\end{prop}
+
+\section*{Fonctions indicatrices.}
+
+Dans ce qui suit, $E$ est un ensemble.
+
+\begin{defi}{}{}
+    Soit $A$ une partie de $E$. La \bf{fonction indicatrice} de $A$ est l'application notée $\1_A$, définie par
+    \begin{equation*}
+        \1_A : \begin{cases}
+            E &\to \quad \{0,1\}\\
+            x &\mapsto \quad \begin{cases} 1 &\text{si } x\in A,\\ 0 &\text{si } x\notin A \end{cases}
+        \end{cases}
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $E$ un ensemble et $A,B\in\P(E)$. Les égalités qui suivent sont des égalités entre applications.\\
+    Si $A$ et $B$ sont disjoints, alors $\1_{A\cup B}=\1_A + \1_B$.\\
+    Plus généralement,
+    \begin{equation*}
+        \1_{A\setminus B}=\1_A - \1_{A\cap B}, \qquad \1_{A\cap B}=\1_A\cdot\1_B, \qquad \1_{A\cup B}=\1_A+\1_B-\1_{A\cap B}.
+    \end{equation*}
+    \tcblower
+    \boxed{1.} Supposons $A\cap B=\0$. Montrons que $\1_{A\cup B}=\1_A+\1_B$. Soit $x\in E$.\\
+    --- Si $x\in A$, alors $x\notin B$ et $\1_{A\cup B}(x)=1$ et $\1_A(x)+\1_B(x)=1$.\\
+    --- Si $x\in B$, cas symétrique.\\
+    --- Si $x\notin A\cup B$, alors $x\notin A$ et $x\notin B$ donc $\1_{A\cup B}(x) = 0 = \1_A(x) + \1_B(x)$.\\
+    \boxed{2.} Supposons $A,B$ quelconques. Soit $x\in E$.\\
+    --- $\1_A = \1_{A\cap B} + \1_{A \setminus B}$ car $A=(A\cap B)\cup(A\setminus B)$ (union disjointe) donc $\1_{A\setminus B}=\1_A-\1_{A\cap B}$.\\
+    --- On a $A\cup B= A\cup (B\setminus A)$ donc $\1_{A\cup B}=\1_A + \1_{B\setminus A} = \1_A + \1_B - \1_{A\cap B}$.\\
+    --- On a \begin{align*}
+        1_A\cdot\1_B=0 &\iff \1_A(x) = 0~\ou~\1_B(x)=0 \iff x\notin A~\ou~x\notin B\\
+        &\iff \lnot (x \in A ~\et~ x\in B) \iff \lnot(x\in A\cap B)\\
+        &\iff x\notin A\cap B \iff \1_{A\cap B}(x)=0.
+    \end{align*}
+    Les deux fonctions valent $0$ sur les mêmes points, il n'y a qu'une autre image possible, elles sont donc égales en tout point.
+\end{prop}
+
+\begin{prop}{Une partie est caractérisée par sa fonction indicatrice.}{}
+    \begin{equation*}
+        \forall (A,B) \in (\P(E))^2 \quad A = B \iff \1_A = \1_B.
+    \end{equation*}
+\end{prop}
+
+
+\section{Images par une application.}
+
+\subsection{Image directe.}
+
+\begin{defi}{}{}
+    Soit $f:E\to F$ une application et $A$ une partie de $E$.\\
+    On appelle \bf{image} (directe) de $A$ par $f$ et on note $f(A)$ la partie de $F$ ci-dessous
+    \begin{equation*}
+        f(A) = \{f(x) ~ : ~ x\in A\} = \{y\in F ~ : ~ \exists x \in A ~ y=f(x)\}.
+    \end{equation*}
+    Lorsque c'est l'image de $E$ tout entier que l'on considère, on peut noter
+    \begin{equation*}
+        \Im(f)=f(E).
+    \end{equation*}
+\end{defi}
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item Que vaut $\Im(\arctan)$ ?
+        \item Soit $\exp:z\mapsto e^z$; $\C\to\C^*$ l'exponentielle complexe. Que valent $\exp(\R)$ et $\exp(i\R)$ ?
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} On a $\Im(\arctan)=\left]-\frac{\pi}{2},\frac{\pi}{2}\right[$.\\
+    \boxed{2.} On a $\exp(\R)=\R_+^*$ et $\exp(i\R)=\mathbb{U}$.
+\end{ex}
+
+\begin{prop}{$\star$}{}
+    Soit $f:E\to F$ une application. Soient $A$ et $B$ deux parties de $E$. On a
+    \begin{equation*}
+        f(A\cup B) = f(A) \cup f(B) \quad\et\quad f(A\cap B)\subset f(A)\cap f(B).
+    \end{equation*}
+    \tcblower
+    $\bullet$ Soit $y\in f(A\cup B)$ : $\exists x \in A \cup B \mid f(x) = y$. Ainsi, $x\in A$ ou $x\in B$ : $y\in f(A)$ ou $y\in f(B)$ : $y\in f(A)\cup f(B)$.\\
+    $\bullet$ Soit $y\in f(A)\cup f(B)$. Alors $y\in f(A)$ ou $y\in f(B)$ : $\exists x \in A \cup B \mid y = f(x)$ donc $y\in f(A\cup B)$.\\
+    Par double inclusion, $f(A\cup B) = f(A)\cup f(B)$.\n
+    $\star$ Soit $y\in f(A\cap B)$, $\exists x \in A \cap B \mid y = f(x)$, donc $x\in A$ et $x\in B$ donc $y\in f(A)$ et $y\in f(B)$ : $y\in f(A)\cap f(B)$.
+\end{prop}
+
+\begin{ex}{}{}
+    Soit $f:x\mapsto x^2$, définie sur $\R$. Considérons $A=[1,+\infty[$, et $B=]-\infty,1]$. Montrer que
+    \begin{equation*}
+        f(A\cap B) \neq f(A) \cap f(B).
+    \end{equation*}
+    \tcblower
+    On a $f(A\cap B) = f(\0) = \0$ et $f(A)\cap f(B)=[1,+\infty[$.
+\end{ex}
+
+\subsection{Image réciproque.}
+
+\begin{defi}{}{}
+    Soient $E$ et $F$ deux ensembles non vides et $f:E\to F$ une application. Soit $A$ une partie de $F$.\\
+    On appelle \bf{image réciproque} de $A$ par $f$, et on note $f^{-1}(A)$ la partie de $E$ ci-dessous
+    \begin{equation*}
+        f^{-1}(A)=\{x\in E ~:~ f(x)\in A\}
+    \end{equation*}
+    En particulier, si $y_0\in F$, $f^{-1}(\{y_0\})$ est l'ensemble des antécédents de $y_0$ par $f$ dans $E$.
+\end{defi}
+
+\warning La notation $f^{-1}(A)$ peut prêter à confusion.\\
+Si $f:E\to F$ n'est pas bijective, \bf{l'application $f^{-1}$ n'est pas définie}, contrairement à l'ensemble $f^{-1}(A)$. Bref, sauf dans le cas où la réciproque existe, l'image de la réciproque n'est pas l'image par la réciproque...
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item La fonction $\tan$ étant définie sur l'ensemble que l'on sait, déterminer $\tan^{-1}(\R_+)$.
+        \item Soit $f:\begin{cases}\R^2&\to\quad\R\\(x,y)&\mapsto\quad xy\end{cases}$. Que valent $f^{-1}(\R_+)$ et $f^{-1}(\{0\})$ ?
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} $\tan^{-1}(\R_+)=\{x\in D_{\tan} \mid f(x) \in \R_+\}=\bigcup_{k\in\Z}\left[ k\pi, \frac{\pi}{2}+k\pi \right[$.\\
+    \boxed{2.} $f^{-1}(\R_+)=\{(x,y)\in\R^2\mid f(x,y)\in\R_+\}=(\R_-)^2\cup(\R_+)^2$ et $f^{-1}(\{0\})=(\R\times\{0\})\cup(\{0\}\times\R)$.
+\end{ex}
+
+\begin{prop}{$\star$}{}
+    Soit $f:E\to F$ une application. Soient $A$ et $B$ deux parties de $F$. On a
+    \begin{equation*}
+        f^{-1}(A\cup B)=f^{-1}(A)\cup f^{-1}(B) \quad\et\quad f^{-1}(A\cap B)=f^{-1}(A)\cap f^{-1}(B).
+    \end{equation*}
+    \tcblower
+    Soit $x\in E$.
+    \begin{align*}
+        x \in f^{-1}(A\cup B) &\iff f(x) \in A \cup B \iff f(x) \in A \ou f(x) \in B \iff x \in f^{-1}(A) \ou x\in f^{-1}(B)\\
+        &\iff x\in f^{-1}(A)\cup f^{-1}(B).\\
+        x \in f^{-1}(A\cap B) &\iff f(x) \in A \cap B \iff f(x) \in A ~\et f(x) \in B \iff x \in f^{-1}(A) \et x \in f^{-1}(B)\\
+        &\iff x \in f^{-1}(A)\cap f^{-1}(B).
+    \end{align*}
+\end{prop}
+
+\section{Applications injectives, surjectives, bijectives.}
+
+\subsection{Injectivité.}
+
+\begin{defi}{}{}
+    Une application $f:E\to F$ est dite \bf{injective} si tout élément de $F$ a au plus un antécédent dans $E$, ce qui s'écrit:
+    \begin{equation*}
+        \forall x,x' \in E, \quad f(x) = f(x') \ra x = x'.
+    \end{equation*}
+\end{defi}
+
+\begin{meth}{}{}
+    \begin{enumerate}
+        \item Pour démontrer qu'une application $f:E\to F$ \bf{est} injective :
+        \begin{itemize}
+            \item On considère deux éléments $x$ et $x'$ de $E$,
+            \item On suppose que $f(x)=f(x')$,
+            \item On montre que $x=x'$.
+        \end{itemize}
+        \item Pour démontrer qu'une application $f:E\to F$ \bf{n'est pas} injective, il suffit d'exhiber une paire $\{x,x'\}$ d'éléments de $E$ tels que $x\neq x'$ et $f(x)=f(x')$.
+    \end{enumerate}
+\end{meth}
+
+D'une application $f:E\to F$ injective, on peut dire que c'est une \bf{injection} de $E$ vers $F$.
+
+\begin{ex}{$\star$}{}
+    \begin{enumerate}
+        \item La fonction $\sin:\R\to\R$ est-elle injective ?
+        \item Soient
+        \begin{equation*}
+            f : \begin{cases}
+                \Z^2 & \to \quad \R\\
+                (p,q) &\mapsto \quad p + \sqrt{2}q
+            \end{cases} \quad \et \quad g : \begin{cases}
+                \R^2 &\to \quad \R\\
+                (x,y) &\mapsto \quad xy
+            \end{cases}
+        \end{equation*}
+        Montrer que $f$ est injective et que $g$ ne l'est pas.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} On a $\sin(0)=\sin(\pi)=0$. Elle n'est pas injective.\\
+    \boxed{2.} Soit $(p,q)\in\Z^2$ et $(r,z)\in\Z^2$ tels que $p+q\sqrt{2}=r+s\sqrt{2}$.\\
+    Alors $p-r+(q-s)\sqrt{2}=0$, or $p-r\in\Q$ et $\sqrt{2}(q-s)\in\R\setminus\Q$ donc $p=r$ et $q=s$ : elle est injective.\n
+    $g$ n'est pas injective car $g(1,0)=g(0,1)=0$.
+\end{ex}
+
+\begin{ex}{}{}
+    Soit $f:X\mapsto\R$, où $X\in\P(\R)$. Montrer que si $f$ est strictement monotone, alors elle est injective.
+    \tcblower
+    Soient $x,x'\in X$ tels que $x>x'$. Par contraposée, on suppose $x\neq x'$. Montrons que $f(x)\neq f(x')$.\\
+    --- Si $f$ est strictement croissante, alors $f(x)>f(x')$ donc $f(x)\neq f(x')$.\\
+    --- Si $f$ est strictement décroissante, alors $f(x)<f(x')$ donc $f(x)\neq f(x')$.\\
+    Dans tous les cas, $f(x)\neq f(x')$ donc la fonction est injective.
+\end{ex}
+
+\begin{prop}{$\star$}{18}
+    La composée de deux applications injectives est injective.
+    \tcblower
+    Soient $f:E\to F$ et $g:F\to G$ injectives. Soient $x,x'\in E$ tels que $g\circ f(x)= g\circ f(x')$.\\
+    On a $g(f(x))=g(f(x'))$ donc $f(x)=f(x')$ car $g$ est injective et $x=x'$ car $f$ est injective.
+\end{prop}
+
+\begin{prop}{Une réciproque partielle.}{19}
+    Soient deux applications $f:E\to F$ et $g:F\to G$.
+    \begin{equation*}
+        g \circ f \nt{ est injective} \ra f \nt{ est injective.}
+    \end{equation*}
+    \tcblower
+    Supposons $g\circ f$ injective. Soient $x,x'\in E$ tels que $f(x)=f(x')$.\\
+    On applique $g$ : $g(f(x))=g(f(x'))$ donc $x=x'$ par injectivité de $g\circ f$.
+\end{prop}
+
+\subsection{Surjectivité.}
+
+\begin{defi}{}{}
+    Une application $f:E\to F$ est dite \bf{surjective} si tout élément de $F$ a au moins un antécédent dans $E$, ce qui s'écrit :
+    \begin{equation*}
+        \forall y \in F, ~ \exists x \in E \mid y = f(x).
+    \end{equation*}
+\end{defi}
+
+\begin{meth}{}{}
+    \begin{enumerate}
+        \item Pour démontrer qu'une application $f:E\to F$ \bf{est} surjective :
+        \begin{itemize}
+            \item On considère une élément $y$ de $F$,
+            \item On trouve/prouve l'existence de $x\in E$ tel que $y=f(x)$.
+        \end{itemize}
+        \item Pour démontrer qu'une application $f:E\to F$ \bf{n'est pas} surjective, il suffit d'exhiber un élément de $F$ n'ayant pas d'antécédent dans $E$ par $f$.
+    \end{enumerate}
+\end{meth}
+
+D'une application $f:E\to F$ surjective, on peut dire aussi que c'est une \bf{surjection} de $E$ vers $F$.
+
+\begin{ex}{$\star$}{}
+    \begin{enumerate}
+        \item La fonction $\sin:\R\to\R$ est-elle surjective ?
+        \item Soient
+        \begin{equation*}
+            f:\begin{cases}
+                \Z^2 &\to \quad \R\\
+                (p,q) &\mapsto \quad p+\sqrt{2}q
+            \end{cases} \quad\et\quad \begin{cases}
+                \R^2 &\to \quad \R\\
+                (x,y) &\mapsto \quad xy
+            \end{cases}
+        \end{equation*}
+        Montrer que $g$ est surjective et que $f$ ne l'est pas.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Elle n'est pas surjective car $2$ n'a pas d'antécédent par $\sin$.\\
+    \boxed{2.} Soit $y'\in\R$ : $\exists (x,y)\in\R^2 \mid y'=xy ~:~ (1,y')$. Donc $g$ est surjective.\n
+    Supposons que $1/2$ ait un antécédent par $f$. Notons le $(p,q)$. Alors $p+\sqrt{2}q=\frac{1}{2}$ et $2p+2\sqrt{2}=1$.\\
+    $\bullet$ Si $q=0$, alors $2p=1$, impossible car $p\in\Z$.\\
+    $\bullet$ Si $q\neq0$, alors $\frac{p}{q}+\sqrt{2}=\frac{1}{2}$ donc $\frac{p}{q}=\frac{1}{2}-\sqrt{2}$ donc $\frac{2p-q}{2q}=\sqrt{2}$. Absurde car $\sqrt{2}\notin\Q$.\\
+    On en déduit que $1/2$ n'a pas d'antécédent par $f$. Elle n'est pas surjective.
+\end{ex}
+
+\begin{prop}{Vision ensembliste de la surjectivité.}{}
+    Soit $f:E\to F$ une application. On a
+    \begin{equation*}
+        f \nt{ surjective} \iff \Im(f) = F.
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{align*}
+        f \nt{ surjective} &\iff \forall y \in F, ~ \exists x \in E \mid f(x) = y\\
+        &\iff \forall y \in F, ~ y \in f(E) ~\ou~ y\in\Im(f)\\
+        &\iff F \subset \Im(f) \iff F = \Im(f). 
+    \end{align*}
+\end{prop}
+
+\begin{prop}{$\star$}{23}
+    La composée de deux application surjectives est surjective
+    \tcblower
+    Soient $f:E\to F$ et $g:F\to G$ deux fonctions surjectives.\\
+    Soit $z\in G$ : $\exists y \in F \mid z = g(y)$ par surjectivité de $g$ et $\exists x \in E \mid g(y)=f(x)$ par surjectivité de $f$.\\
+    Alors $z=g(f(x))$ donc $g\circ f$ est surjective.
+\end{prop}
+
+\begin{prop}{Une réciproque partielle.}{24}
+    Soient deux applications $f:E\to F$ et $g:F\to G$.
+    \begin{equation*}
+        g \circ f \nt{est surjective} \ra g \nt{ est surjective.}
+    \end{equation*}
+    \tcblower
+    Supposons que $g\circ f$ est surjective. Soit $y\in G$ : $\exists x \in E \mid y=g(f(x))$ donc $f(x)$ est antécédent de $y$ par $g$.
+\end{prop}
+
+\subsection{Bijectivité et application réciproque.}
+
+\begin{defi}{}{}
+    Soit une application $f:E\to F$. Elle est dite \bf{bijective} si elle est à la fois injective et surjective, c'est-à-dire si tout élément de $F$ possède un unique antécédent dans $E$, ce qui s'écrit
+    \begin{equation*}
+        \forall y \in F, ~ \exists!x\in E \mid y = f(x).
+    \end{equation*} 
+\end{defi}
+
+\begin{defi}{}{}
+    Soit $f:E\to F$ une application bijective. On considère, pour tout élément $y$ de $F$ son unique antécédent par $f$, que l'on note $f^{-1}(y)$. Ce procédé permet de définir comme suit l'\bf{application réciproque} de $f$, notée $f^{-1}$ :
+    \begin{equation*}
+        f^{-1}:\begin{cases}
+            F &\to \quad E\\
+            y &\mapsto \quad f^{-1}(y)
+        \end{cases}
+    \end{equation*}
+\end{defi}
+
+\begin{meth}{Calcul de la réciproque d'une fonction.}{}
+    Soit $f:E\to F$ une fonction bijective et $y\in F$. S'il est possible de résoudre l'équation
+    \begin{equation*}
+        y = f(x),
+    \end{equation*}
+    c'est-à-dire exprimer $x$ en fonction de $y$, on a une expression de $f^{-1}(y)$.\n
+    Si, pour tout élément $y\in F$, on sait prouver l'existence et l'unicité d'un antécédent dans $E$, on a prouvé la bijectivité de $f$.
+\end{meth}
+
+\begin{thm}{Caractérisation de la bijectivité par l'existence d'un inverse à gauche et à droite.}{}
+    Soit $f:E\to F$ une application. Alors
+    \begin{equation*}
+        f \nt{ est bijective} \iff \exists g \in \F(F,E) ~:~ g\circ f = \id_E \quad\et\quad f\circ g = \id_F.
+    \end{equation*}
+    Autrement dit, $f$ est bijective ssi elle admet un (même) << inverse >> à gauche et à droite pour la composition. De plus, lorsque cet inverse $g$ existe, $g=f^{-1}$.
+    \tcblower
+    \boxed{\ra} Supposons $f$ bijective. Posons $g=f^{-1}$ (qui existe bien) : $f^{-1}\circ f = \id_E$ et $f\circ f^{-1}=\id_F$.\\
+    \boxed{\la} Supposons qu'il existe $g:F\to E$ telle que $g\circ f=\id_E$ et $f\circ g=\id_F$.\\
+    On a $\id_E$ et $\id_F$ bijectives, donc $g\circ f$ et $f\circ g$ aussi.\\
+    --- $g\circ f$ est surjective et injective, alors $g$ est surjective et $f$ est injective.\\
+    --- $f\circ g$ est surjective et injective, alors $f$ est surjective et $g$ est injective.\\
+    Donc $f$ est $g$ sont bijectives : $f^{-1}$ existe et $f^{-1}=g$.
+\end{thm}
+
+\begin{prop}{}{}
+    La composée de deux applications bijectives est bijective.\\
+    De plus, si $f:E\to F$ et $g:F\to G$ sont bijectives, alors
+    \begin{equation*}
+        (g\circ f)^{-1} = f^{-1} \circ g^{-1}.
+    \end{equation*}
+    \tcblower
+    Soient $f:E\to F$ et $g:F\to G$ bijectives donc $f^{-1}:F\to E$ et $g^{-1}:G\to F$ existent. On a:
+    \begin{equation*}
+        (g\circ f)\circ(f^{-1}\circ g^{-1})=g\circ f \circ f^{-1} \circ g^{-1}=g^{-1}\circ g\circ f\circ f^{-1} = \id_G
+    \end{equation*}
+    \begin{equation*}
+        (f^{-1}\circ g^{-1})(g\circ f) = f^{-1}\circ f \circ g^{-1}\circ g = f^{-1}\circ f = \id_E.
+    \end{equation*}
+    Par caractérisation, $g\circ f$ est bijective et sa réciproque est $f^{-1}\circ g^{-1}$.
+\end{prop}
+
+\section{Exercices.}
+
+\subsection*{Images directes, images réciproques.}
+
+\begin{exercice}{$\bww$}{}
+    Soit $f:E\to F$ une application. Soient deux parties $A \subset E$ et $B \subset F$. Montrer l'égalité
+    \begin{equation*}
+        f(A) \cap B = f(A \cap f^{-1}(B)).
+    \end{equation*}
+    \tcblower
+    Procédons par double inclusion.\\
+    $\circledcirc$ Soit $y\in f(A) \cap B$. Montrons que $y\in f(A \cap f^{-1}(B))$.\\
+    On a $y\in f(A)$ et $y\in B$.\\
+    $\exists x\in A ~ | ~ y = f(x)$ donc $x\in A$ et $x\in f^{-1}(B)$ car $y\in B$.\\
+    Ainsi $x\in A\cap f^{-1}(B)$ et $f(x) = y \in f(A \cap f^{-1}(B))$\\[0.15cm]
+    $\circledcirc$ Soit $y\in f(A \cap f^{-1}(B))$ Montrons que $y\in f(A) \cap B$.\\
+    $\exists x \in A \cap f^{-1}(B) ~ | ~ y = f(x)$ donc $x\in A$ et $x \in f^{-1}(B)$.\\
+    Ainsi, $f(x) = y \in f(A)$ et $f(x) = y \in B$ : $y\in f(A)\cap B$.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $f:E\to F$ une application. Soit $A$ une partie de $E$ et $B$ une partie de $F$.
+    \begin{enumerate}
+        \item \begin{enumerate}
+            \item Montrer que $A \subset f^{-1}(f(A))$.
+            \item Montrer que si $f$ est injective, la réciproque est vraie.
+        \end{enumerate}
+        \item Soit $B$ une partie de $F$. \begin{enumerate}
+            \item Montrer que $f(f^{-1}(B)) \subset B$.
+            \item Démontrer que si $f$ est surjective, la réciproque est vraie.
+        \end{enumerate}
+        \item Montrer que $f(f^{-1}(f(A))) = f(A)$.
+        \item Montrer que $f^{-1}(f(f^{-1}(B)))=f^{-1}(B)$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.a)} Soit $x\in A$. Montrons que $x\in f^{-1}(f(A))$.\\
+    On a $x\in A$ alors $f(x) \in f(A)$ et $x\in f^{-1}(f(A))$.\n
+    \boxed{1.b)} On suppose $f$ injective, soit $x \in f^{-1}(f(A))$.\\
+    On applique $f$ : $f(x) \in f(A)$. Par injectivité de $f$, $x \in A$.\n
+    \boxed{2.a)} Soit $y \in f(f^{-1}(B))$.\\
+    On a $\exists x \in f^{-1}(B) ~ | ~ y = f(x)$. Ainsi, $f(x)\in B$ : $y\in B$.\n
+    \boxed{2.b)} Supposons $f$ surjective, soit $y\in B$.\\
+    On a $\exists x \in f^{-1}(B) ~ | ~ y = f(x)$ et $f(x) = y \in f(f^{-1}(B))$.\n
+    \boxed{3.} Soit $y\in f(f^{-1}(f(A)))$. Montrons que $y\in f(A)$.\\
+    On a $\exists x \in f^{-1}(f(A)) ~ | ~ y = f(x)$ et $f(x) \in f(A)$ donc $y \in f(A)$.\\
+    Soit $y\in f(A)$. Montrons que $y\in f(f^{-1}(f(A)))$.\\
+    On a $\exists x \in A ~ | ~ y = f(x)$ alors $f(x) \in f(A)$ et $x\in f^{-1}(f(A))$. Donc $f(x) = y \in f(f^{-1}(f(A)))$.\n
+    \boxed{4.} Soit $y \in f^{-1}(f(f^{-1}(B)))$. Montrons que $y \in f^{-1}(B)$.\\
+    On a $f(y) \in f(f^{-1}(B))$ alors $y \in f^{-1}(B)$.\\
+    Soit $y\in f^{-1}(B)$. Montrons que $y\in f^{-1}(f(f^{-1}(B)))$.\\
+    On a $f(y) \in f(f^{-1}(B))$ donc $y \in f^{-1}(f(f^{-1}(B)))$.
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Soit $f:E\to F$ une application. Montrer que
+    \begin{equation*}
+        f \text{ est injective } \iff [\forall A,B \in \mathcal{P}(E) ~ f(A \cap B) = f(A) \cap f(B)]
+    \end{equation*}
+    \tcblower
+    $\circledcirc$ Supposons $f$ injective. Soient $A,B \in \mathcal{P}(E)$.\\
+    On sait déjà que $f(A \cap B) \subset f(A) \cap f(B)$.\\
+    Montrons alors que $f(A) \cap f(B) \subset f(A \cap B)$.\\
+    Soit $y \in f(A) \cap f(B)$. On a que $y \in f(A) \wedge y \in f(B)$.\\
+    Ainsi, $\exists x_A \in A ~ | ~ y = f(x_A)$ et $\exists x_B \in B ~ | ~ y = f(x_B)$.\\
+    Or $f$ est injective : $x_A = x_B$, ainsi $x_A \in A \cap B$.\\
+    On a enfin que $f(x_A) \in f(A \cap B)$, alors $y \in f(A \cap B)$.\\[0.2cm]
+    $\circledcirc$ Supposons $[\forall A,B \in \mathcal{P}(E) ~ f(A \cap B) = f(A) \cap f(B)]$. Montrons que $f$ est injective.\\
+    Soient $A,B \in \mathcal{P}(E)$.\\
+    Soient $x,x' \in E$. On suppose que $f(x) = f(x')$. Montrons que $x = x'$.\\
+    On a que $\{x\}$ et $\{x'\} \in \mathcal{P}(E)$.\\
+    Ainsi : $f(\{x\} \cap \{x'\}) = f(\{x\}) \cap f(\{x'\})$.\\
+    Supposons que $x \neq x'$. On a alors : $f(\varnothing) = f(\{x\}) \cap f(\{x'\})$ : $\varnothing = \{f(x)\} \cap \{f(x')\}$.\\
+    Or $f(x) = f(x')$ donc $\{f(x)\} \cap \{f(x')\} \neq \varnothing$. C'est absurde : $x = x'$.\\
+    On a bien montré que $f$ est injective.
+\end{exercice}
+
+\subsection*{Applications injectives, surjectives.}
+
+\begin{exercice}{$\bww$}{}
+    Soient
+    \begin{equation*}
+        f : \begin{cases}\mathbb{N}^2 &\to\quad \mathbb{Z} \\ (n,p) &\mapsto\quad (-1)^np \end{cases} \quad\et\quad g : \begin{cases}\mathbb{R} &\to\quad \mathbb{C} \\ x&\mapsto\quad \frac{1+ix}{1-ix} \end{cases}
+    \end{equation*}
+    Ces fonctions sont-elles injectives ? Surjectives ?
+    \tcblower
+    On a que $f$ n'est pas injective : $f(0,1) = f(2,1) = 1$.\\
+    Montrons que $f$ est surjective.\\
+    Soit $y\in\mathbb{Z}$. Montrons que $\exists (n,p)\in\mathbb{N}^2 ~ | ~ f(n,p) = y$.\\
+    Si $y \geq 0$, on prend $n = 0$ et $p = |y|$.\\
+    Si $y \leq 0$, on prend $n = 1$ et $p = |y|$.\\[0.2cm]
+    On a que $g$ n'est pas surjective : $0$ n'a aucun antécédent par $g$.\\
+    Montrons que $g$ est injective.\\
+    Soient $x,x' \in \mathbb{R}$, supposons $g(x) = g(x')$. Montrons que $x=x'$.\\
+    On a :
+    \begin{align*}
+        g(x) = g(x') &\iff \frac{1+ix}{1-ix} = \frac{1+ix'}{1-ix'}\\
+        &\iff (1+ix)(1-ix') = (1+ix')(1-ix)\\
+        &\iff 1 - ix' + ix + xx' = 1 - ix + ix' + xx'\\
+        &\iff 2ix = 2ix'\\
+        &\iff x = x' 
+    \end{align*}
+    On a bien que $g$ est injective.
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Dans cet exercice, on admet que $\pi$ est irrationnel.\\
+    Démontrer que $\cos_{|\mathbb{Q}}$ n'est pas injective et que $\sin_{|\mathbb{Q}}$ l'est.
+    \tcblower
+    On sait que $\cos$ est paire : $\cos_{|\mathbb{Q}}$ l'est aussi.\\
+    Alors $\cos_{|\mathbb{Q}}(\frac{1}{2}) = \cos_{|\mathbb{Q}}(-\frac{1}{2})$. Or $\frac{1}{2} \neq -\frac{1}{2}$ : $\cos_{|\mathbb{Q}}$ n'est pas injective.\\[0.2cm]
+    Soient $x,x'\in\mathbb{Q}^2$. Supposons que $\sin_{|\mathbb{Q}}(x) = \sin_{|\mathbb{Q}}(x')$. Montrons que $x=x'$.\\
+    On a :
+    \begin{align*}
+        \sin_{|\mathbb{Q}}(x) = \sin_{|\mathbb{Q}}(x') &\iff x \equiv x' [2\pi] ~ (2\pi\text{-périodicité}) \\
+        &\iff x = x' + 2k\pi ~ (k\in\mathbb{Z})\\
+    \end{align*}
+    Or, $\forall{k\in\mathbb{Z}^*}, ~ x' + 2k\pi \notin \mathbb{Q}$. On a alors que $k=0$ :
+    \begin{equation*}
+        \sin_{|\mathbb{Q}}(x) = \sin_{|\mathbb{Q}}(x') \iff x = x' + 2\cdot0\pi \iff x = x'
+    \end{equation*}
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit l'application $f:\mathbb{R} \to \mathbb{R}$ définie par $f(x)=\begin{cases}x^2 ~ \text{si x $\geq$ 0} \\ 2x^2 ~ \text{si x < 0}\end{cases}$\\
+    1. Montrer que $f$ n'est pas injective.\\
+    2. Montrer que $f_{|\mathbb{Q}}$ est injective.
+    \tcblower
+    \boxed{1.} On a $f(2) = 4$ et $f(-\sqrt{2}) = 4$ : $f$ n'est pas injective.\\
+    \boxed{2.} Soient $x,x'\in\mathbb{Q}$ tels que $f_{|\mathbb{Q}}(x)=f_{|\mathbb{Q}}(\widetilde{x})$. Montrons que $x=\widetilde{x}$.\\
+    \underline{Cas n°1 : $x$ et $\widetilde{x}$ positifs} :
+    \begin{align*}
+        f_{|\mathbb{Q}}(x) = f_{|\mathbb{Q}}(\widetilde{x}) &\iff x^2 = \widetilde{x}^2 \iff x = \widetilde{x}
+    \end{align*}
+    \underline{Cas n°2 : $x$ et $\widetilde{x}$ strictement négatifs} :
+    \begin{align*}
+        f_{|\mathbb{Q}}(x) = f_{|\mathbb{Q}}(\widetilde{x}) &\iff 2x^2 = 2\widetilde{x}^2 \iff x^2 = \widetilde{x}^2 \iff x = \widetilde{x} ~ \text{ car $x,\widetilde{x}\in\mathbb{R}^*_-$}
+    \end{align*}
+    \underline{Cas n°3 : $x\geq0$ et $\widetilde{x}<0$} :
+    \begin{align*}
+        f_{|\mathbb{Q}}(x) = f_{|\mathbb{Q}}(\widetilde{x}) &\iff x^2 = 2\widetilde{x}^2 \iff x = -\sqrt{2}\widetilde{x} \iff -\frac{x}{\widetilde{x}}=\sqrt{2}
+    \end{align*}
+    Cela est impossible par stabilité de $\mathbb{Q}$ par la division. Donc $f_{|\mathbb{Q}}(x) \neq f_{|\mathbb{Q}}(\widetilde{x})$.\\
+    Le cas où $x < 0$ et $\widetilde{x}\geq0$ est symétrique.\\
+    On a prouvé que $f_{|\mathbb{Q}}$ est injective.
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Soit $f:E\to E$. Montrer que\\
+    1. $f$ est injective si et seulement si $f \circ f$ est injective.\\
+    2. $f$ est surjective si et seulement si $f \circ f$ est surjective.
+    \tcblower
+    \boxed{1.} Supposons $f$ injective. D'après \ref{prop:18}, $f \circ f$ est injective.\\
+    Supposons $f \circ f$ injective. D'après \ref{prop:19}, $f$ est injective.\n
+    \boxed{2.} Supposons $f$ surjective. D'après \ref{prop:23}, $f \circ f$ est surjective.\\
+    Supposons $f \circ f$ surjective. D'après \ref{prop:24}, $f$ est surjective.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $E$ un ensemble et $f:E\to E$ une application.\\
+    On suppose que $f\circ f = f$ et que $f$ est injective ou surjective. Montrer que $f = \text{id}_E$.
+    \tcblower
+    $\circledcirc$ Supposons $f$ injective. Soit $x \in E$.\\
+    On a $f \circ f (x) = f(x)$. Par injectivité de $f$, $f(x) = x$ donc $f = \text{id}_E$.\\[0.15cm]
+    $\circledcirc$ Supposons $f$ surjective. Soit $y \in E$.\\
+    On a $f \circ f (y) = f(y)$ et $\exists x \in E ~ | ~ f(x) = y$ par surjectivité de $f$.\\
+    Donc $f \circ f \circ f (x) = f \circ f (x)$. Alors $f \circ f (x) = f(x)$ et $f(y) = y$ : $f = \text{id}_E$.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $E$ un ensemble non vide et $f:E\to E$ une application telle que $f \circ f \circ f = f$.\\
+    Montrer que
+    \begin{equation*}
+        f \text{ est surjective} \iff f \text{ est injective}
+    \end{equation*}
+    \tcblower
+    $\circledcirc$ Supposons $f$ injective, montrons que $f$ est surjective.\\
+    Soit $y \in E$. Par définition de $f$ : $f \circ f \circ f(y) = f(y)$.\\
+    Par injectivité de $f$ : $f\circ f(y) = y$.\\
+    Donc $f(y)$ est antécédent de $y$ : $f$ est surjective.\\[0.1cm]
+    $\circledcirc$ Supposons $f$ surjective, montrons $f$ injective.\\
+    Soient $y, y' \in E$ tels que $f(y) = f(y')$. Montrons que $y=y'$.\\
+    Par surjectivité de $f$, $\exists x,x' \in E ~ | ~ f(x) = y ~ \wedge ~ f(x') = y'$.\\
+    Ainsi, $f\circ f(x) = f \circ f (x')$.\\
+    Appliquons $f$ : $f \circ f \circ f(x) = f \circ f \circ f(x')$.\\
+    Alors : $f(x) = f(x')$ et donc $y = y'$.\\
+    On a bien prouvé l'injectivité de $f$.
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Soit $f:\begin{cases}\mathbb{N} \to \mathbb{N} \\ n \mapsto n + (-1)^n\end{cases}$.\\
+    Démontrer que $f$ est une bijection de $\mathbb{N}$ dans lui-même et donner sa réciproque.
+    \tcblower
+    Montrons que $f$ est un inverse à gauche et à droite d'elle-même. Soit $n\in\mathbb{N}$. On a :
+    \begin{align*}
+        f \circ f (n) = f(n + (-1)^n) &= n + (-1)^n + (-1)^{n + (-1)^n} \\&= n + (-1)^n(1+(-1)^{(-1)^n})
+    \end{align*}
+    Or $(-1)^n$ est toujours impair : $(-1)^{(-1)^n} = -1$. Ainsi :
+    \begin{equation*}
+        f\circ f(n) = n + (-1)^n(1-1) = n
+    \end{equation*}
+    On a bien que $f$ est un inverse à gauche et à droite d'elle même : $f$ est bijective et est sa propre réciproque.
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\bbb$}{}
+    Soient $E$ un ensemble et $(A,B)\in\mathcal{P}(E)^2$. On définit
+    \begin{equation*}
+        \Phi : \begin{cases}\mathcal{P}(E) \to \mathcal{P}(A) \times \mathcal{P}(B)\\X \mapsto (X \cap A, X \cap B)\end{cases}
+    \end{equation*}
+    1. Calculer $\Phi(\varnothing)$ et $\Phi(E \setminus (A \cup B))$. Que dire de $A$ et $B$ si $(A, \varnothing)$ admet un antécédent par $\Phi$ ?\\
+    2. Montrer que $\Phi$ injective $\iff A \cup B = E$.\\
+    3. Montrer que $\Phi$ surjective $\iff A \cap B = \varnothing$.
+    \tcblower
+    \boxed{1.} On a $\Phi(\varnothing) = (\varnothing, \varnothing)$ et $\Phi(E \setminus (A \cup B)) = ((\overline{A} \cap \overline{B}) \cap A, (\overline{A} \cap \overline{B}) \cap B) = (\varnothing, \varnothing)$.\\
+    Si $(A, \varnothing)$ admet un antécéddent par $\Phi$ alors $A$ et $B$ sont disjoints : $A \cap B = \varnothing$.\\[0.15cm]
+    \boxed{2.} 
+    $\circledcirc$ Supposons $\Phi$ injective. Montrons $A \cup B = E$.\\
+    On a que $\Phi(E) = (A,B)$ et $\Phi(A \cup B)=(A,B)$. Par injectivité de $\Phi$, $E = A \cup B$.\\[0.1cm]
+    $\circledcirc$ Supposons $A \cup B = E$. Montrons que $\Phi$ est injective.\\
+    Soient $X,Y \in \mathcal{P}(E)$ telles que $\Phi(X) = \Phi(Y)$. Montrons que $X = Y$.\\
+    On a
+    \begin{align*}
+        (X \cap A, X \cap B) = (Y \cap A, Y \cap B) &\ra X\cap A = Y \cap A ~ \wedge ~ X \cap B = Y \cap B\\
+        &\ra (X \cap A) \cup (X \cap B) = (Y \cap A) \cup (Y \cap B)\\
+        &\ra X \cap (A \cup B) = Y \cap (A \cup B)\\
+        &\ra X = Y ~ \text{car } A \cup B = E 
+    \end{align*}
+    \boxed{3.} 
+    $\circledcirc$ Supposons $\Phi$ surjective. Montrons $A \cap B = \varnothing$.\\
+    On a que $\exists X \in \mathcal{P}(E) ~ | ~ \Phi(X) = (A, \varnothing)$ puisque $(A, \varnothing) \in \mathcal{P}(a) \times \mathcal{P}(B)$ et que $\Phi$ est surjective.\\
+    Or, puisque $X$ existe, on a que $A$ et $B$ sont disjoints:  $A \cap B = \varnothing$.\\[0.1cm]
+    $\circledcirc$ Supposons $A \cap B = \varnothing$. Montrons que $\Phi$ est surjective.\\
+    Soit $Y \in \mathcal{P}(A)$ et $Z \in \mathcal{P}(B)$. Montrons que $\exists X \in \mathcal{P}(E) ~ | ~ \Phi(X) = (Y, Z)$.\\
+    On choisit $X = Y \cup Z$. On a $\Phi(X)=((Y \cup Z) \cap A, (Y \cup Z) \cap B)$.\\
+    Or $A \cap B = \varnothing$. En particulier, $Y \cap B = \varnothing$ et $Z\cap A = \varnothing$ car $Y\in\mathcal{P}(A)$ et $Z \in \mathcal{P}(B)$.\\
+    Alors, $\varPhi(X)=(Y \cap A, Z \cap B)=(Y,Z)$. On a bien que $X$ est un antécédent de $(Y,Z)$.
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Soit $f \in \mathcal{F}(E,F)$.\\
+    1. Démontrer que $f$ est injective si et seulement si elle est inversible à gauche.\\
+    Plus précisément, prouver l'assertion
+    \begin{equation*}
+        f \text{ est injective} \iff \exists g \in \mathcal{F}(F,E) ~ g \circ f = \text{id}_E
+    \end{equation*}
+    2. Démontrer que $f$ est surjective si et seulement si elle est inversible à \underline{droite}.\\
+    Plus précisément, prouver l'assertion
+    \begin{equation*}
+        f \text{ est \underline{surjective}} \iff \exists g \in \mathcal{F}(F,E) ~ f \circ g = \text{id}_F 
+    \end{equation*}
+    \tcblower
+    \boxed{1.}\\
+    $\circledcirc$ Supposons $f$ injective et soit $g:F\to E$. Soit $y \in F$.\\
+    $\bullet$ Si $y\in f(E)$, on a $\exists!x\in E ~ | ~ f(x) = y$, alors on pose $g(y)=x$.\\
+    $\bullet$ Si $y\notin f(E)$, on prend un élément $x\in F$ quelconque et on pose $g(y)=x$.\\
+    On a que $g$ est bien définie sur $F$ et $\forall x \in E, ~ g(f(x))=x$ par définition.\\[0.15cm]
+    $\circledcirc$ Supposons que $\exists g \in \mathcal{F}(F, E) ~ g \circ f = \text{id}_E$. Montrons que $f$ est injective.\\
+    Soient $x,x'\in E$ tels que $f(x)=f(x')$.\\
+    On a $f(x)=f(x') \iff g(f(x))=g(f(x')) \iff \text{id}_E(x) = \text{id}_E(x') \iff x = x'$.\\[0.2cm]
+    \boxed{2.}\\
+    $\circledcirc$ Supposons $f$ surjective et soit $g:F\to E$.\\
+    Soit $y \in F$ : $\exists x \in E ~ | ~ y = f(x)$.\\
+    Or il peut exister plusieurs $x$ différents dont $y$ est l'image, on fait le choix de n'en garder qu'un particulier.\\
+    Alors on pose $g(y) = x$. Ainsi, on a $f(g(y)) = f(x)$, c'est-à-dire $f(g(y))=y$ : $f\circ g = \text{id}_F$.\\[0.15cm]
+    $\circledcirc$ Supposons que $\exists g \in \mathcal{F}(F, E) ~ f \circ g = \text{id}_F$. Montrons que $f$ est surjective.\\
+    Soit $y \in F$. On a que $f\circ g(y) = y$ car $f \circ g = \text{id}_F$. Ainsi, $y$ est l'image de $f\circ g(y)$ : $f$ est surjective.
+\end{exercice}
+
+\vspace*{-0.1cm}
+
+\begin{exercice}{$\bbb$ Théorème de Cantor.}{}
+    Soit $f\in\mathcal{F}(E, \mathcal{P}(E))$. Montrer que $f$ n'est pas surjective.\\
+    Indication : on pourra considérer $A = \{x \in E ~ | ~ x \notin f(x)\}$.
+    \tcblower
+    Montrons que $A$ n'a pas d'antécédent par $f$.\\
+    Supposons qu'il en ait un.\\
+    Alors $\exists \alpha \in E ~ | ~ A = f(\alpha)$.\\
+    $\circledcirc$ Supposons que $\alpha \in A$. Alors $\alpha \in \{x \in E ~ | ~ x \notin f(x)\}$.\\
+    Donc $\alpha \notin f(\alpha)$ donc $\alpha \notin A$. Absurde.\\[0.15cm]
+    $\circledcirc$ Supposons que $\alpha \notin A$. Alors $\alpha \notin \{x \in E ~ | ~ x \notin f(x)\}$.\\
+    Donc $\alpha \in A$. Absurde.\\
+    $\alpha$ n'existe pas : $A$ n'a pas d'antécédent par $f$ et $f$ n'est pas surjective.
+\end{exercice}
+
+\end{document}
