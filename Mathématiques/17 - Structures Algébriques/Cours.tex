@@ -1,0 +1,575 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{17}
+\def\pagetitle{Structures algébriques.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\renewcommand*{\s}{\oldstar}
+
+\thispagestyle{fancy}
+
+\section{Loi de composition interne sur un ensemble.}
+
+\subsection{Définitions et propriétés.}
+
+\begin{defi}{\unskip et 2}{}
+    On appelle \bf{loi de composition interne} sur un ensemble $E$ (on écrire l.c.i.) une application
+    \begin{equation*}
+        \s:\begin{cases}
+            E \times E &\to \quad E\\
+            (x,y) &\mapsto \quad x\s y
+        \end{cases}
+    \end{equation*}
+    On notera que l'image de $(x,y)$ par $\s$ est notée $x\s y$ plutôt que $\s(x,y)$.\\
+    Soit $E$ un ensemble et $\s$ une l.c.i. sur $E$.
+    \begin{itemize}
+        \item La loi $\s$ est dite \bf{associative} si $\forall (x,y,z)\in E^3, ~ (x\s y)\s z = x\s (y \s z)$.
+        \item De deux éléments $x$ et $y$ de $E$, on dit qu'ils \bf{commutent} pour $\s$ lorsque $x\s y = y\s x$.
+        On dit que la loi $\s$ est \bf{commutative} si $\forall (x,y)\in E^2, ~ x \s y = y \s x$.
+        \item On appelle \bf{élément neutre} pour $\s$ tout élément $e\in E$ tel que $\forall x\in E, ~ x \s e = x$ et $e \s x = x$.
+    \end{itemize}
+\end{defi}
+
+\begin{defi}{Vocabulaire hors-programme.}{}
+    Un couple $(E,\s)$, où $E$ est un ensemble et $\s$ une l.c.i. sur $E$ est appelé \bf{magma}.\n
+    On dit que ce magma est associatif si $\s$ est associative, commutatif si $\s$ est commutative, et \bf{unifère} s'il existe dans $E$ un élément neutre pour $\s$.
+\end{defi}
+
+\begin{prop}{}{}
+    Dans un magma unifère, il y a unicité du neutre.
+    \tcblower
+    Soient $e$ et $e'$ des éléments neutres d'un magma unifère $(E,\s)$.\\
+    On a $e\s e' = e = e'$ car $e$ et $e'$ sont neutres pour $\s$ donc $e=e'$.
+\end{prop}
+
+\begin{defi}{Partie stable.}{}
+    Soit $(E,\s)$ un magma et $A\in\P(E)$. On dit que $A$ est \bf{stable} par $\s$ si
+    \begin{equation*}
+        \forall (x,y) \in A^2, ~ x \s y \in A.
+    \end{equation*}
+\end{defi}
+
+\vspace*{-0.1cm}
+
+\begin{defi}{Loi induite.}{}
+    Soit $(E,\s)$ un magma et $A\in\P(E)$ stable par $\s$. La restriction de $\s$ à $A^2$:
+    \begin{equation*}
+        \s : \begin{cases}
+            A\times A &\to \quad A\\
+            (x,y)&\mapsto\quad x\s y
+        \end{cases}
+    \end{equation*}
+    est une l.c.i. sur $A$ : on l'appelle loi induite par $\s$ sur $A$.
+\end{defi}
+
+\vspace*{-0.1cm}
+
+\begin{ex}{Ensembles de nombres.}{}
+    \begin{itemize}
+        \item $+$ est une l.c.i. associative, commutative avec 0 comme neutre sur $\N,\Z,\Q,\R,\C$.
+        \item $\times$ est une l.c.i. associative, commutative, de neutre 1 sur $\N,\Z,\Q,\R,\C$.
+        \item $-$ est une l.c.i. non associative, non commutative et sans neutre sur $\Z$. $\N$ n'est pas stable par $-$.
+    \end{itemize}
+\end{ex}
+
+\vspace*{-0.1cm}
+
+\begin{ex}{Ensemble des parties}{}
+    Soit $E$ un ensemble. L'intersection $\cap$ et la réunion $\cup$ définissent des l.c.i. sur $\P(E)$.
+    \begin{itemize}
+        \item Le magma $(\P(E),\cap)$ est associatif, commutatif et unifère, avec $E$ pour neutre.
+        \item Le magma $(\P(E),\cup)$ est associatif, commutatif et unifère, avec $\0$ pour neutre.
+    \end{itemize}
+\end{ex}
+
+\vspace*{-0.1cm}
+
+\begin{ex}{Ensembles de fonctions et composition.}{}
+    Soit $E$ un ensemble. La composition $\circ$ est une l.c.i. sur $E^E$, l'ensemble des fonctions de $E$ vers $E$.\\
+    Le magma $(E^E,\circ)$ est associatif et unifère : il admet $\id_E$ pour neutre. Si $|E|\geq2$, il n'est pas commutatif.\\
+    L'ensemble des fonctions injectives est stable par $\circ$, de même pour l'ensemble des fonctions surjectives, bijectives.
+\end{ex}
+
+\vspace*{-0.1cm}
+
+\begin{defi}{Distributivité d'une loi par rapport à une autre.}{}
+    Soit $E$ un ensemble muni de deux l.c.i. $\oplus$ et $\otimes$.\\
+    On dit que $\otimes$ est \bf{distributive par rapport à} $\oplus$ si
+    \begin{equation*}
+        \forall (x,y,z)\in E^3 \quad : \quad \begin{cases}
+            x \otimes (y \oplus z) = (x \otimes y) \oplus (x \otimes z)\\
+            (y \oplus z) \otimes x = (y \otimes x) \oplus (z \otimes x)
+        \end{cases}
+    \end{equation*}
+    (Si la loi $\oplus$ n'est pas commutative, il est primordial de vérifier les deux égalités.)
+\end{defi}
+
+\begin{ex}{}{}
+    \begin{itemize}
+        \item Dans $\N,\Z,\Q,\R,\C$, la multiplication $\times$ est distributive par rapport à l'addition $+$.
+        \item Dans $\P(E)$, $\cap$ est distributive par rapport à $\cup$.
+        \item Dans $\P(E)$, $\cup$ est distributive par rapport à $\cap$.
+    \end{itemize}
+\end{ex}
+
+\subsection{Éléments symétrisables.}
+
+\begin{defi}{Élément symétrisable.}{}
+    Soit $(E,\s)$ un magma unifère de neutre $e$, et $x\in E$.\\
+    On dit que $x$ est \bf{symétrisable} (ou \bf{inversible}) s'il existe un élément $x'$ dans $E$ tel que
+    \begin{equation*}
+        x \s x' = e \quad\et\quad x'\s x=e.
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{Unicité du symétrique / de l'inverse.}{}
+    Soit $(E,\s)$ un magma associatif et unifère de neutre $e$.\\
+    Si $x$ est un élément de $E$ symétrisable, il existe un unique $x'$ dans $E$ tel que $x\s x'=x'\s x=e$.\\
+    On appelle cet élément le \bf{symétrique} de $x$ (ou son inverse), et on le note $x^{-1}$. 
+    \tcblower
+    Soit $x\in E$ et $x',x''\in E$ tels que :
+    \begin{equation*}
+        \begin{cases}
+            x \s x' = x' \s x = e,\\
+            x \s x'' = x'' \s x = e
+        \end{cases}
+    \end{equation*}
+    On a alors $x'\s x \s x'' = (x' \s x)\s x'' = x'' = x'\s(x\s x'') = x'$  donc $x'=x''$.
+\end{prop}
+
+\begin{ex}{}{}
+    \begin{itemize}
+        \item Les inversibles de $(\Z,\times)$ sont $-1$ et $1$.
+        \item Les inversibles de $(\R,\times)$ sont les réels non nuls. (admis)
+    \end{itemize}
+    \tcblower
+    On vérifie facilement que $-1$ et $1$ sont inversibles.\\
+    Soit $p\in\Z\setminus\{-1,0,1\}$. Supposons par l'absurde qu'il existe $q\in\Z$ tel que $pq=qp=1$.\\
+    Alors $|p|\geq2$ et $|q|\geq1$ donc $|p||q|\geq2\cdot 1$ donc $|pq|\geq 2$ donc $1\geq2$, absurde.
+\end{ex}
+
+\begin{ex}{}{}
+    Les inversibles du magma $(E^E,\circ)$ sont les bijections $f:E\to E$, d'inverse $f^{-1}$.
+\end{ex}
+
+\begin{prop}{}{}
+    Soit $(E,\s)$ un magma associatif et unifère, et $x,y\in E$.
+    \begin{enumerate}
+        \item Si $x$ est symétrisable, $x^{-1}$ l'est aussi et $(x^{-1})^{-1}=x$.
+        \item Si $x$ et $y$ sont symétrisables, $x\s y$ l'est aussi et
+        \begin{equation*}
+            (x\s y)^{-1} = y^{-1} \s x^{-1}.
+        \end{equation*}
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Supposons que $x$ est symétrisable, alors $x\s x^{-1}=x^{-1}\s x = e$ : $(x^{-1})^{-1}=x$.\\
+    \boxed{2.} Supposons $x$ et $y$ symétrisables. Alors :
+    \begin{equation*}
+        \begin{cases}
+            (x\s y)\s(y^{-1}\s x^{-1}) = x \s (y \s y^{\vspace*{-0.1cm}-1}) \s x^{-1} = x\s x^{-1} = e,\\
+            (y^{-1}\s x^{-1})\s(x\s y) = y^{-1}\s(x^{-1}\s x)\s y = y^{-1}\s y = e.
+        \end{cases}
+    \end{equation*}
+    Donc $x\s y$ est inversible, d'inverse $y^{-1}\s x^{-1}$.
+\end{prop}
+
+\subsection{Itérés.}
+
+On fixe pour tout ce paragraphe un magma $(E,\s)$ associatif et unifère de neutre $e$.
+
+\begin{defi}{Itérés d'un élément.}{}
+    Soit $x\in E$.
+    \begin{enumerate}
+        \item Pour $n\in \N$, on définit $x^n$ par récurrence sur $n$.
+        --- On pose $x^0 = e$.\\
+        --- Pour tout $n\in\N$ : $x^{n+1}=x^n\s x$.
+        \item Si $x$ est inversible et $n\in\N^*$, on pose $x^{-n}=(x^{-1})^n$.
+    \end{enumerate}
+\end{defi}
+
+\begin{prop}{Propriétés des itérés.}{}
+    \begin{equation*}
+        \forall x \in E, ~ \forall (m,n) \in \N^2, ~ x^m \s x^n = x^{m+n} \quad \et \quad (x^m)^n = x^{mn}.
+    \end{equation*}
+    Si $x$ est inversible, les identités ci-dessus sont vraies pour $(m,n)\in\Z^2$.
+    \tcblower
+    Soit un élément $x$ de $E$.\n
+    Soit $m\in\N$ fixé. Pour $n\in\N$, on note $\P(n):$<< $x^m\s x^n = x^{m+n}$ >>.\\
+    \bf{Initialisation.} On a $x^m\s x^0 = x^l \s e = x^{m+0}$.\\
+    \bf{Hérédité.} Soit $n\in\N \mid \P(n)$. Alors $x^m\s x^{n+1} = x^m \s x^n \s x = x^{m+n}\s x= x^{m+n+1}$.\\
+    \bf{Conclusion.} Par récurrence, $\forall n\in\N, ~ \P(n)$.\n
+    Soit $m\in\N$ fixé. Pour $n\in\N$, on note $\m{Q}(n):$<< $(x^m)^n=x^{m\cdot n}$ >>.\\
+    \bf{Initialisation.} On a $(x^m)^0=e=x^{m\cdot0}$.\\
+    \bf{Hérédité.} Soit $n\in\N\mid\m{Q}(n)$. Alors $(x^m)^{n+1}=(x^m)^n\s x^m = x^{mn}\s x^m = x^{mn+m} = x^{m(n+1)}$.\\
+    \bf{Conclusion.} Par récurrence, $\forall n\in\N, ~ \m{Q}(n)$.
+\end{prop}
+
+\begin{ex}{Itérés d'éléments qui commutent.}{}
+    Soient $x$ et $y$ deux éléments deux $E$ qui commutent. Alors
+    \begin{equation*}
+        \forall (m,n)\in\N^2, ~ x^m \s y^n = y^n \s x^m \quad\et\quad (x\s y)^n = x^n \s y^n.
+    \end{equation*}
+    \warning Les identités ci-dessus sont FAUSSES en général lorsque $x$ et $y$ ne commutent pas.
+\end{ex}
+
+\subsection{Notations multiplicatives et additives.}
+
+\quad Utiliser la \bf{notation multiplicative}, lorsqu'on travaille avec un magma $(E,\s)$ consiste à ne pas écrire $\s$ lorsqu'on calcule l'image d'un couple $(x,y)\in E^2$. Concrètement, on note alors $xy$ à la place de $x\s y$.\n
+\quad Lorsqu'on travaille avec un magma associatif, commutatif et unifère, on pourra utiliser la notation $+$ pour la l.c.i. Le vocabulaire sur les notations introduits plus haut est alors adapté à cette \bf{notation additive}, comme explicité dans le tableau ci-dessous.
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        notation l.c.i. & $\s$ & $\cot$ & $+$\\
+        \hline
+        image de $(x,y)$ & $x\s y$ & $xy$ & $x+y$\\
+        \hline
+        notation neutre & $e$ & $e$ & 0\\
+        \hline
+        on dit & symétrisable & inversible & symétrisable\\
+        \hline
+        on dit & symétrique & inverse & opposé\\
+        \hline
+        notation symétrique & $x^{-1}$ & $x^{-1}$ & -x\\
+        \hline
+        notation itéré & $x^n$ & $x^n$ & nx\\
+        \hline
+    \end{tabular}
+\end{center}
+
+\section{Structure de groupe.} 
+
+\subsection{Définition et exemples.}
+
+\begin{defi}{}{}
+    On appelle \bf{groupe} un magma associatif et unifère dans lequel tout élément est symétrisable.\n
+    Plus précisément, un groupe est la donnée d'un couple $(G,\s)$ où $G$ est un ensemble et $\s$ une l.c.i. tels que
+    \begin{enumerate}
+        \item $\s$ est associative.
+        \item il existe dans $G$ un élément $e$ neute pour $\s$.
+        \item tout élément de $G$ est symétrisable.
+    \end{enumerate}
+    Si de surcroît $\s$ est commutative, on dit que le groupe $(G,\s)$ est \bf{abélien} (ou commutatif).
+\end{defi}
+
+\bf{Remarque.} Un groupe n'est jamais vide car il contient au moins son élément neutre.
+
+\begin{prop}{Ensembles de nombres.}{}
+    \begin{enumerate}
+        \item $(\Z,+)$, $(\Q,+)$, $(\R,+)$ et $(\C,+)$ sont des groupes abéliens.
+        \item $(\Q^*, \times)$, $(\R^*, \times)$ et $(\C^*, \times)$ sont des groupes abéliens.
+    \end{enumerate}
+\end{prop}
+
+\begin{ex}{Ce ne sont pas des groupes.}{}
+    \begin{enumerate}
+        \item $(\N,+)$ n'est pas un groupe car $1$ n'est pas symétrisable.
+        \item $(\Z^*,\times)$ n'est pas un groupe car $2$ n'est pas inversible dans $\Z$.
+        \item $(\C,+)$ n'est pas un groupe car $0$ n'a pas d'inverse dans $\C$.
+    \end{enumerate}
+\end{ex}
+
+\begin{ex}{Vérifier les axiomes de groupe sur une loi artificielle.}{}
+    On pose $G=\R^*\times\R$. Pour $(a,b)\in G$ et $(a',b')\in G$ on définit
+    \begin{equation*}
+        (a,b)\s(a',b')=(aa',ab'+b).
+    \end{equation*}
+    Montrer que $(G,\s)$ est un groupe.
+    \tcblower
+    On vérifie chacun des points de la définition de groupe...\\
+    $\s$ est-elle une l.c.i. dans $G$ ? $G$ est-il associatif ? Unifère ? Symétrisable ? 
+\end{ex}
+
+\begin{defi}{}{}
+    Soit $E$ un ensemble non-vide. On appelle \bf{permutation} de $E$ une bijection $\sigma:E\to F$.\\
+    On note $S_E$ l'ensemble des permutations de $E$.
+\end{defi}
+
+\begin{prop}{$\star$}{}
+    $(S_E,\circ)$ est un groupe, appelé \bf{groupe des permutations} de $E$, ou groupe symétrique de $E$.\\
+    Dès que $E$ contient au moins 3 éléments, le groupe $S_E$ n'est pas abélien.
+    \tcblower
+    Soient $\sigma,\sigma'\in S_E$. On a $\sigma\circ\sigma':E\to E$ une bijection comme composée.\\
+    --- $\circ$ est une l.c.i. sur $E$.\\
+    --- \bf{Associativité.} On sait déjà que $(\F(E,E), \circ)$ est associatif.\\
+    --- \bf{Unifère.} $\id_E\in S_E$ est neutre pour $\circ$.\\
+    --- \bf{Symétrie.} Si $f\in S_E$, c'est une bijection alors $f^{-1}\in S_E$ et est le symétrique de $f$.\\
+    Supposons que $|E|\geq3$. Soient $a,b,c\in E$ différents.\\
+    On définit $\sigma$ telle que $\sigma(a)=b$, $\sigma(b)=c$, $\sigma(c)=a$ et $\sigma(x)=x$ pour $x\in E\setminus\{a,b,c\}$.\\
+    On définit $\sigma'$ telle que $\sigma'(a)=b$, $\sigma'(b)=a$ et $\sigma'(x)=x$ pour $x\in E\setminus\{a,b\}$.\\
+    On a $\sigma'\circ\sigma(a)=a$ et $\sigma\circ\sigma'(a)=c$ donc $\sigma'\circ\sigma\neq\sigma\circ\sigma'$ : pas commutatif.
+\end{prop}
+
+\begin{prop}{Produit de deux groupes.}{}
+    Soient $(G,\s)$ et $(G',\top)$ deux groupes. On note $e$ le neutre de $G$ et $e'$ celui de $G'$.\\
+    Pour $(x,x')$ et $(y,y')$ deux éléments de $G\times G'$, on pose
+    \begin{equation*}
+        (x,x')\heartsuit(y,y')=(x\s y, x' \top y').
+    \end{equation*}
+    Muni de la l.c.i. $\heartsuit$, le produit cartésien $G\times G'$ est un groupe, de neutre $(e,e')$.
+    \tcblower
+    On vérifie chacun des points de la définition de groupe...
+\end{prop}
+
+\pagebreak
+
+\begin{prop}{Produit de $n$ groupes.}{}
+    Soient $G_1,...,G_n$ $n$ groupes (les l.c.i. étant sous-jacentes et notées multiplicativement).\\
+    Pour $(x_1,...,x_n)$ et $(y_1,...,y_n)$ deux éléments $G_1\times ... \times G_n$, on pose
+    \begin{equation*}
+        (x_1,...,x_n)\heartsuit(y_1,...,y_n)=(x_1y_1,...,x_ny_n).
+    \end{equation*}
+    Muni de la l.c.i. $\heartsuit$, le produit cartésien $G_1\times ... \times G_n$ est un groupe, de neutre $(e_1,...,e_n)$.
+\end{prop}
+
+\subsection{Sous-groupes.}
+
+\begin{defi}{}{}
+    Soit $(G,\s)$ un groupe et $H$ une partie de $G$.\\
+    On dit que $H$ est un \bf{sous-groupe} de $G$ si $H$ est stable par $\s$ et si $(H,\s)$ est un groupe.
+\end{defi}
+
+\begin{prop}{Élément neutre et inverses dans un sous-groupe.}{}
+    Soit $(G,\s)$ un groupe et $H$ un sous-groupe de $G$.
+    \begin{enumerate}
+        \item L'élément neutre du groupe $H$ n'est autre que celui de $G$.
+        \item Soit $x\in H$. L'inverse de $x$ dans le groupe $(H,\s)$ et celui dans le groupe $(G,\s)$ sont égaux.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soit $e$ le neutre de $G$. On a $\forall x \in G, ~ e\s x = x\s e = x$ donc $\forall x \in H, ~ e\s x = x\s e = x$ car $H\subset G$.\\
+    Par unicité du neutre dans $H$, on a $e$ neutre de $H$.\\
+    \boxed{2.} Soit $x\in H$. On note $x'$ l'inverse de $x$ dans $H$ et $x''$ dans $G$.\\
+    Alors $x'\s x = x \s x' = e$ et $x''\s x = x\s x'' = e$, donc par unicité du neutre dans $G$, $x'=x''$. 
+\end{prop}
+
+\begin{thm}{Caractérisation des sous-groupes.}{}
+    Soit $(G,\s)$ un groupe de neutre $e$ et $H\subset G$. On équivalence entre :
+    \begin{enumerate}
+        \item $H$ est un sous-groupe de $G$.
+        \item $
+            \begin{cases}
+                \bullet ~ e \in H,\\
+                \bullet ~ \forall (x,y) \in H^2, ~ x \s y^{-1} \in H
+            \end{cases}$
+        \item $
+            \begin{cases}
+                \bullet ~ e \in H\\
+                \bullet ~ \forall (x,y) \in H^2, ~ x \s y \in H\\
+                \bullet ~ \forall x \in H, ~ x^{-1} \in H
+            \end{cases}$
+    \end{enumerate}
+    \bf{Remarque.} On utilisera presque \bf{toujours} cette caractérisation. 
+    \tcblower
+    \boxed{\circled{1}\ra\circled{2}} Supposons $H$ sous-groupe de $G$. Alors $H$ est stable par $\s$ et $(H,\s)$ est un groupe.\\
+    --- $\bullet$ $e$ est le neutre de $G$, c'est aussi celui de $H$ donc $e\in H$.\\
+    --- $\bullet$ Soit $(x,y)\in H^2$. $y^{-1}$ est l'inverse de $y$ et $y^{-1}\in H$, alors $x\s y^{-1}\in H$ par stabilité de $H$ par $\s$.\\
+    \boxed{\circled{2}\ra\circled{3}} Supposons $e\in H$ et $\forall (x,y) \in H^2, ~ x \s y^{-1} \in H$.\\
+    --- $\bullet$ $e\in H$ donc $e\in H$.\\
+    --- $\bullet$ Soient $(x,y)\in H^2$ : $x\s y= x\s(y^{-1})^{-1}\in H$ par hypothèse.\\
+    --- $\bullet$ Soit $x\in H$, on a $x^{-1}=e\s x^{-1}\in H$ car $e,x\in H$.\\
+    \boxed{\circled{3}\ra\circled{1}} Supposons $e\in H$, $\forall (x,y)\in H^2, ~ x\s y\in H$ et $\forall x \in H, ~ x^{-1} \in H$.\\
+    --- $\bullet$ $H$ est stable par $\s$ car $\forall (x,y)\in H^2, ~ x\s y\in H$ et $\s$ est l.c.i. sur $H$ par déf.\\
+    --- $\bullet$ $\s$ est associative sur $H$ car elle l'est sur $G$.\\
+    --- $\bullet$ $H$ est unifère car $e$ est neutre et $e\in H$.\\
+    --- $\bullet$ tout élément de $H$ est symétrisable car $\forall x \in H, ~ x^{-1} \in H$.
+\end{thm}
+
+\begin{prop}{Sous-groupes usuels.}{}
+    \begin{enumerate}
+        \item $(\Q,+)$ est un sous-groupe de $(\R,+)$, qui est lui-même un sous-groupe de $(\C,+)$.
+        \item $\R_+^*$ est un sous-groupe de $(\R^*,\times)$.
+        \item $\mathbb{U}$ et $\mathbb{U}_n$ sont des sous-groupes de $(\C^*, \times)$.
+    \end{enumerate}
+\end{prop}
+
+\begin{ex}{Une intersection de sous-groupes est un sous-groupe. $\star$}{}
+    Soient $H$ et $H'$ deux sous-groupes d'un groupe $(G,\s)$. Montrer que $H\cap H'$ est sous-groupe de $G$.
+    \tcblower
+    $\bullet$ Soit $e$ le neutre de $G$, on a alors $e\in H$ et $e\in H'$ car sous-groupes donc $e\in H\cap H'$.\\
+    $\bullet$ Soient $x,y\in H\cap H'$.\\
+    --- On a $x\in H$ et $y\in H$ donc $x\s y^{-1}\in H$ car $H$ est un groupe.\\
+    --- On a $x\in H'$ et $y\in H'$ donc $x\s y^{-1}\in H'$ car $H'$ est un groupe.\\
+    --- Alors $x\s y^{-1}\in H\cap H'$.
+\end{ex}
+
+\pagebreak
+
+\begin{ex}{Une union de sous-groupes n'est pas toujours un sous-groupe.}{}
+    Montrer que $\mathbb{U}_2\cup\mathbb{U}_3$ n'est pas un sous-groupe de $(\C^*,\times)$.\n
+    On note $\ds H=\bigcup_{n\in\N^*}\mathbb{U}_n$. Montrer que $H$ est un sous-groupe de $(\C^*,\times)$.
+    \tcblower
+    \boxed{1.} On a $\mathbb{U}_2\cup \mathbb{U}_3=\{-1,1,j,j^2\}$ et $-1\times j = -j \notin \mathbb{U}_2\cup\mathbb{U}_3$ : pas stable par $\times$.\\
+    \boxed{2.} On a $1\in H$ car $1\in \mathbb{U}_1$.\\
+    $\bullet$ Soient $z,\tilde{z}\in H$ : $\exists k,\tilde{k}\in N^* \mid z \in \mathbb{U}_k \et \tilde{z}\in\mathbb{U}_{\tilde{k}}$ donc $(z\cdot\tilde{z})^{k\tilde{k}}=(z^{k})^{\tilde{k}}(\tilde{z}^{\tilde{k}})^k=1$ donc $z\tilde{z}\in\mathbb{U}_{k\tilde{k}}\subset H$.\\
+    $\bullet$ Soit $z\in H$ : $\exists p \in \N^* \mid z \in \mathbb{U}_p$, or $\mathbb{U}_p$ est un groupe donc $z^{-1}\in\mathbb{U}_p\subset H$.
+\end{ex}
+
+\begin{ex}{Centre d'un groupe. $\star$}{}
+    Soit $(G,\s)$ un groupe. On note
+    \begin{equation*}
+        Z(G)=\{x\in G \mid \forall a \in G, ~ x \s a = a \s x\}.
+    \end{equation*}
+    Montrer que $Z(G)$ est un sous-groupe de $G$.
+    \tcblower
+    $\bullet$ Soit $e$ le neutre de $G$. On a $\forall a \in G, ~ e \s a = a \s e = a$ donc $e\in Z(G)$.\\
+    $\bullet$ Soient $a,b\in Z(G)$ et $x\in G$. On a $(a\s b)\s x = a \s x \s b = x \s (a \s b)$ donc $a\s b \in Z(G)$.\\
+    $\bullet$ Soient $x\in Z(G)$ et $a\in G$. On a $x^{-1}\s a = (a^{-1} \s x)^{-1} = ( x \s a^{-1})^{-1} = a \s x^{-1}$ donc $x^{-1}\in Z(G)$.\\
+    Par caractérisation, le centre d'un groupe est un sous-groupe.
+\end{ex}
+
+\begin{prop}{Sous-groupes de $(\Z,+)$ (programme de spé). $\star\star$}{}
+    Pour $n\in\N$, on note $n\Z=\{nk\mid k \in \Z\}$.\\
+    Les sous-groupes de $(\Z,+)$ sont exactement les $n\Z$, avec $n\in\N$.
+    \tcblower
+    Soit $n\in\N$. Montrons que $n\Z$ est un sous-groupe de $\Z$ :\\
+    --- $\bullet$ $0\in n\Z$ car $0 = n0$.\\
+    --- $\bullet$ Soient $p,p'\in n\Z$ : $\exists k,k' \in \Z \mid p=kn \et p'=k'n$, alors $p+p'=(k+k')n \in n\Z$.\\
+    --- $\bullet$ Soit $p\in\Z$ : $\exists k \in \Z \mid p = kn$ donc $p^{-1}=-p=(-k)n\in n\Z$.\\
+    Par caractérisation, c'est bien un sous-groupe de $\Z$.\n
+    Soit $H$ un sous-groupe de $\Z$. Montrons qu'il existe $n\in\N$ tel que $H=n\Z$.\\
+    $\to$ Cas particulier : $H=\{0\}$, alors $H=0\Z$. Supposons $H\neq\{0\}$ pour la suite.\\
+    On a alors $H\cap\N^*$ une partie non-vide de $\N^*$. Notons $n$ son plus petit élément. Montrons que $H=n\Z$.\\
+    \boxed{\supset} Soit $p\in n\Z$ : $\exists k \in \Z \mid p = nk$ : $p$ est itéré de $n$ avec $n\in H$ donc $p\in H$.\\
+    \boxed{\subset} Soit $p\in H$ : $\exists!(q,r)\in\Z^2 \mid p = nq+r \et 0 \leq r < n$ (division euclidienne).\\
+    --- Alors $r=p-nq$ avec $p\in H \et nq\in H$ donc $r\in H$.\\
+    --- Supposons $r\neq0$, alors $r\in H\cap \N^*$, or $n=\min(H\cap\N^*)$ et $r<n$ : absurde !\\
+    --- Donc $r=0$ et $p=nq$ donc $p\in n\Z$.\n
+    Par double-inclusion, $H=n\Z$.
+\end{prop}
+
+\begin{ex}{(*) Sous-groupes de $(\R,+)$.}{}
+    Pour $a\in\R_+$, on note $a\Z=\{ak\mid k\in \Z\}$.\\
+    Soit $H$ un sous-groupe de $(\R,+)$. Ou bien il existe $a\in\R_+$ tel que $H=a\Z$, ou bien $H$ est dense dans $\R$.
+\end{ex}
+
+\subsection{Morphismes de groupes.}
+
+\begin{defi}{}{}
+    Soient $(G,\s)$ et $(G',\top)$ deux groupes.\n
+    On appelle \bf{morphisme de groupe} de $G$ dans $G'$ toute application $f:G\to G'$ telle que
+    \begin{equation*}
+        \forall (x,y)\in G^2, ~ f(x \s y) = f(x) \top f(y).
+    \end{equation*}
+    Si de surcroît $f$ est bijective, on dit qu'une telle application $f$ est un \bf{isomorphisme} de groupes.\\
+    Un morphisme d'un groupe $G$ vers lui même est appelé \bf{endomorphisme} de $G$.\\
+    Si un tel endomorphisme est bijectif, on parle d'\bf{automorphisme} de $G$.
+\end{defi}
+
+\begin{defi}{}{}
+    On dit que deux groupes sont \bf{isomorphes} s'il existe un isomorphisme de l'un vers l'autre.
+\end{defi}
+
+\begin{ex}{}{}
+    \begin{itemize}
+        \item L'exponentielle réelle est un isomorphisme de $(\R,+)$ dans $(\R^*,\times)$.
+        \item L'exponentielle complexe est un morphisme de groupes de $(\C,+)$ dans $(\C^*,\times)$.
+        \item $t\mapsto e^{it}$ est un morphisme de groupes de $(\R,+)$ dans $(\mathbb{U},\times)$.
+        \item Le logarithme népérien est un isomorphisme de groupes de $(\R^*,\times)$ dans $(\R,+)$.
+    \end{itemize}
+\end{ex}
+
+\begin{ex}{}{}
+    Justifier que les groupes $(\R^2,+)$ et $(\C,+)$ sont isomorphes.
+    \tcblower
+    On pose $f:(a,b)\mapsto a+ib$. Soient $(a,b)$ et $(a',b')$ dans $\R^2$.
+    \begin{align*}
+        f((a,b) + (a',b')) &= f((a+a',b+b')) = (a+a') + i(b+b') = a+ib + a'+ib' \\&= f(a,b) + f(a',b').
+    \end{align*}
+    La fonction $f$ est un morphisme de groupes de $(\R^2,+)$ dans $(\C,+)$.\n
+    Elle est bijective par unicité de la forme algébrique : c'est un isomorphisme. Les groupes sont donc isomorphes.
+\end{ex}
+
+\begin{prop}{$\star$}{}
+    Soient $G$ et $G'$ deux groupes de neutres respectifs $e$ et $e'$, et $f:G\to G'$ un morphisme de groupes.
+    \begin{enumerate}
+        \item $f(e)=e'$.
+        \item $\forall x \in G, ~ f(x^{-1}) = f(x)^{-1}$.
+        \item $\forall x \in G, ~ \forall p\in\Z, ~ f(x^p) = f(x)^p$.
+        \item Si $H$ est un sous-groupe de $G$, alors $f(H)$ est un sous-groupe de $G'$.
+        \item Si $H'$ est un sous-groupe de $G'$, alors $f^{-1}(H')$ est un sous-groupe de $G$.
+        \item Si $f$ est un isomorphisme de $G$ vers $G'$, alors $f^{-1}$ est un isomorphisme de $G'$ vers $G$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} On a $f(e)=f(e\cdot e)=f(e)\cdot f(e) = f(e)^{-1}\cdot f(e)\cdot f(e)=f(e)^{-1}\cdot f(e)=e'$.\\
+    \boxed{2.} Soit $x\in G$. On a $f(x\cdot x^{-1})=f(x)f(x^{-1})=f(e)=e'$ donc par unicité de l'inverse $f(x)^{-1}=f(x^{-1})$.\\
+    \boxed{3.} Soit $x\in G$. Par récurrence sur $p\in\N$.\\
+    --- \bf{Initialisation.} $f(x^0)=f(e)=e'=f(x)^0$.\\
+    --- \bf{Hérédité.} Soit $p\in\N\mid f(x^p)=f(x)^p$. Alors $f(x^{p+1})=f(x^p\cdot x)=f(x)^pf(x)=f(x)^{p+1}$.\\
+    \boxed{4.\star} Soit $H$ un sous-groupe de $G$.\\
+    --- $\bullet$ $e'\in f(H)$ car $e\in H$.\\
+    --- $\bullet$ Soient $y,\tilde{y}\in f(H)$, d'antécédents $x,\tilde{x}$ : $y\tilde{y}^{-1}=f(x)f(\tilde{x})^{-1}=f(x\cdot\tilde{x}^{-1})\in f(H)$.\\
+    Par caractérisation, $f(H)$ est un sous-groupe de $G'$.\\
+    \boxed{5.\star} Soit $H'$ un sous-groupe de $G'$.\\
+    --- $\bullet$ $e\in f^{-1}(H)$ car $e'\in H'$.\\
+    --- $\bullet$ Soient $x,\tilde{x}\in f^{-1}(H)$ : $f(x\tilde x^{-1})=f(x)f(\tilde{x})^{-1}\in H$ par stabilité puisque $f(x)$ et $f(\tilde{x})^{-1}$ dans $H$.\\
+    Par caractérisation, $f^{-1}(H')$ est un sous-groupe de $G$.\\
+    \boxed{6.} Soit $f$ un isomorphisme de $G$ vers $G'$. Sa réciproque $f^{-1}$ existe.\\
+    --- Soient $y,y'\in G'$ : $f^{-1}(yy')=f^{-1}(f(f^{-1}(y)))f(f^{-1}(f(y')))=f^{-1}(f(f^{-1}(y)f^{-1}(y')))=f^{-1}(y)f^{-1}(y')$.
+\end{prop}
+
+\begin{defi}{}{}
+    Soient $G$ et $G'$ deux groupes de neutres respectifs $e$ et $e'$, et $f:G\to G'$ un morphisme de groupes.
+    \begin{enumerate}
+        \item On appelle \bf{noyau} de $f$ et on note $\Ker f$ l'ensemble
+        \begin{equation*}
+            \Ker f = \{x \in G \mid f(x)=e'\}.
+        \end{equation*}
+        \item On appelle \bf{image} de $f$ et on note $\Im f$ l'ensemble
+        \begin{equation*}
+            \Im f = \{y \in G' \mid \exists x \in G ~:~ y = f(x)\}.
+        \end{equation*}
+    \end{enumerate}
+\end{defi}
+
+\begin{prop}{$\star\star$}{}
+    Soient $G$ et $G'$ deux groupes de neutres respectifs $e$ et $e'$, et $f:G\to G'$ un morphisme de groupes.
+    \begin{enumerate}
+        \item $\Ker f$ est un sous-groupe de $G$ et
+        \begin{center}
+            $f$ est injective $\iff$ $\Ker f = \{e\}$.
+        \end{center} 
+        \item $\Im f$ est un sous-groupe de $G'$ et
+        \begin{center}
+            $f$ est surjective $\iff$ $\Im f = G'$.
+        \end{center}
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} On a $\Ker f=f^{-1}(\{e'\})$ donc $\Ker f$ est un sous-groupe de $G$ comme image réciproque du sous-groupe $\{e'\}$.\\
+    \boxed{\ra} Supposons $f$ injective.\\
+    --- $\bullet$ $e\in\Ker f$ car $\Ker f$ est un sous-groupe de $G$.\\
+    --- $\bullet$ Soit $x\in\Ker f$. Alors $f(x)=f(e)=e'$ et par injectivité de $f$, $x=e$.\\
+    Par double inclusion, $\Ker f = \{e\}$.\\
+    \boxed{\la} Supposons $\Ker f = \{e\}$. Soient $x,x'\in G$ tels que $f(x)=f(x')$.\\
+    On a $f(x)f(x)^{-1}=f(x')f(x)^{-1}$ donc $e'=f(x')f(x)^{-1}=f(x'x^{-1})$.\\
+    Alors $x'x^{-1}\in\Ker f$ : $x'x^{-1}=e$, on multiplie par $x$ à droite : $x'=x$.\n
+    \boxed{2.} $\Im f = f(G)$ est l'image d'un sous-groupe de $G$ par un morphisme, c'est un sous-groupe de $G'$.\\
+    On a déjà l'équivalence, vraie pour n'importe quelle application de $\F(G,G')$.
+\end{prop}
+
+\section{Structure d'anneau.}
+
+\subsection{Définitions et règles de calcul.}
+
+\begin{defi}{}{}
+    On appelle \bf{anneau} tout triplet $(A,+,\times)$
+\end{defi}
+
+\subsection{Groupe des inversibles dans un anneau.}
+\subsection{Nilpotents dans un anneau.}
+\subsection{Sous-anneaux, morphismes d'anneaux.}
+\subsection{Anneaux intègres.}
+
+\section{Structure de corps.}
+
+\subsection{Définitions et exemples.}
+\subsection{Notation fractionnaire dans un corps.}
+\subsection{Corps des fractions d'un anneau intègre.}
+
+\section{Exercices.}
+
+\end{document}
