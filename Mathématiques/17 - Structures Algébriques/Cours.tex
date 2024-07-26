@@ -286,7 +286,7 @@ On fixe pour tout ce paragraphe un magma $(E,\s)$ associatif et unifère de neut
 \end{ex}
 
 \begin{defi}{}{}
-    Soit $E$ un ensemble non-vide. On appelle \bf{permutation} de $E$ une bijection $\sigma:E\to F$.\\
+    Soit $E$ un ensemble non-vide. On appelle \bf{permutation} de $E$ une bijection $\sigma:E\to E$.\\
     On note $S_E$ l'ensemble des permutations de $E$.
 \end{defi}
 
@@ -556,20 +556,485 @@ On fixe pour tout ce paragraphe un magma $(E,\s)$ associatif et unifère de neut
 \subsection{Définitions et règles de calcul.}
 
 \begin{defi}{}{}
-    On appelle \bf{anneau} tout triplet $(A,+,\times)$
+    On appelle \bf{anneau} tout triplet $(A,+,\times)$, où $A$ est un ensemble et $+$ et $\times$ des l.c.i telles que
+    \begin{itemize}
+        \item $(A,+)$ est un groupe abélien, de neutre $0_A$.
+        \item $(A,\times)$ est un magma associatif et unifère, de neutre $1_A$.
+        \item $\times$ est distributive par rapport à $+$.
+    \end{itemize}
+    Les lois $+$ et $\times$ sont appelées respectivement \bf{addition} et \bf{multiplication} de l'anneau $A$.\\
+    Si de surcroît $\times$ est commutative, on dit que l'anneau $A$ est commutatif.
 \end{defi}
 
+\begin{ex}{Ensembles de nombres.}{}
+    $(\Z,+,\times)$, $(\Q,+,\times)$, $(\R,+,\times)$ et $(\C,+,\times)$ sont des anneaux commutatifs.
+\end{ex}
+
+\begin{ex}{Anneau de fonctions.}{}
+    On rappelle que, pour $X$ une partie de $\R$, $\F(X,\R)$, ensemble des fonctions définies sur $X$ et à valeurs réelles a été muni d'une addition et d'une multiplication de la manière suivante :
+    \begin{equation*}
+        \forall f,g\in\F(X,R), \quad f+g=\begin{cases}
+            X&\to\quad \R\\x&\mapsto\quad f(x)+g(x)
+        \end{cases} ~\et~ f\times g : \begin{cases}
+            X &\to \R\\
+            x &\mapsto \quad f(x)g(x)
+        \end{cases}
+    \end{equation*}
+    Le triplet $(\F(X,\R), +, \times)$ est un anneau commutatif.\\
+    L'élément neutre pour $+$ est la fonction nulle sur $X$.\\
+    L'élément neutre pour $\times$ est la fonction constante sur $X$ égale à $1$.\\
+    En particulier, $(\R^\N,+,\times)$ est un anneau commutatif : celui des suites.
+\end{ex}
+
+\begin{ex}{Pas des anneaux.}{}
+    \begin{itemize}
+        \item $(2\Z,+,\times)$ n'est pas un anneau car il n'y a pas de neutre pour $\times$.
+        \item $(\F(\R,\R),+,\circ)$ n'est pas un anneau car $\circ$ n'est pas distributive par rapport à $+$.
+    \end{itemize}
+\end{ex}
+
+\begin{prop}{}{}
+    Soit $(A,+,\times)$ un anneau. En utilisant la notation multiplicative pour la loi $\times$,
+    \begin{enumerate}
+        \item $\forall a \in A, ~ 0_A\times a = a \times 0_A = 0_A$.
+        \item $\forall (a,b)\in A^2, ~ a(-b)=(-a)b=-(ab)$.
+        \item $\forall (a,b)\in A^2, ~ (-a)(-b)=ab$.
+        \item $\forall (a,b)\in A^2, ~ \forall n \in \Z, ~ a(nb)=(na)b=n(ab)$.
+    \end{enumerate}
+\end{prop}
+
+\begin{prop}{Identités remarquables : si ça commute, d'accord.}{}
+    Soit $(A,+,\times)$ un anneau et $(a,b)\in A^2$.
+    \begin{enumerate}
+        \item Si $ab=ba$, alors $\ds\forall n \in \N, ~ (a+b)^n=\sum_{k=0}^n\binom{n}{k}a^kb^{n-k}$.
+        \item Si $ab=ba$, alors $\ds\forall n \in \N^*, ~ a^n-b^n=(a-b)\sum_{k=0}^{n-1}a^kb^{n-k-1}$.
+    \end{enumerate}
+    \tcblower
+    Exactement les mêmes preuves que lorsqu'on $A=\R$.
+\end{prop}
+
 \subsection{Groupe des inversibles dans un anneau.}
+
+\begin{defi}{}{}
+    Dans un anneau $(A,+,\times)$, les \bf{inversibles} sont les éléments de $A$ inversibles pour la loi $\times$.\\
+    L'ensemble des éléments de $A$ qui sont inversibles sera noté $U(A)$.
+\end{defi}
+
+\begin{ex}{}{}
+    \begin{itemize}
+        \item $U(\Z)=\{-1,1\}$.
+        \item $U(\R)=\R^*$.
+        \item Pour $X\subset\R$, $U(\F(X,\R))$ est l'ensemble des fonctions ne s'annulant pas sur $X$.
+    \end{itemize}
+\end{ex}
+
+\begin{prop}{}{}
+    Si $(A,+,\times)$ est un anneau, $(U(A),\times)$ est un groupe. On l'appelle \bf{groupe des inversibles}.\\
+    On a notamment
+    \begin{equation*}
+        \forall (a,b)\in(U(A))^2, ~ ab\in U(A) \quad\et\quad (ab)^{1}=b^{-1}a^{-1}.
+    \end{equation*}
+\end{prop}
+
 \subsection{Nilpotents dans un anneau.}
+
+\begin{defi}{}{}
+    Dans un anneau $(A,+,\times)$, on dit d'un élément $a\in A$ qu'il est \bf{nilpotent} s'il possède une puissance nulle, c'est à dire :
+    \begin{equation*}
+        \exists p \in \N^* \mid a^p=0_A.
+    \end{equation*}
+\end{defi}
+
+\begin{ex}{}{}
+    Soit $(A,+,\times)$ un anneau et $(a,b)\in A^2$.
+    \begin{enumerate}
+        \item Montrer que si $a$ est nilpotent, et si $b$ commute avec $a$, alors $ab$ est nilpotent.
+        \item Montrer que si $ab$ est nilpotent, alors $ba$ est nilpotent. 
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soit $a$ nilpotent : $\exists p \in \N^* \mid a^p = 0_A$. Alors $(ab)^p=a^pb^p=0_Ab^p=0_A$.\\
+    \boxed{2.} Soient $a,b\in A$ tel que $\exists p \in \N^* \mid (ab)^p = 0_A$. Alors $(ba)^{p+1}=b(ab)^pa=b0_Aa=0_A$?
+\end{ex}
+
+\begin{ex}{}{}
+    Soit $(A,+,\times)$ un anneau non réduit à $\{0_A\}$ et $a\in A$ nilpotent d'ordre $p$.
+    \begin{enumerate}
+        \item Montrer que $a$ n'est pas inversible.
+        \item Montrer que $1_A-a$ est inversible et exprimer son inverse.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Supposons $a$ inversible. Alors $a^p$ l'est aussi, $1_A=a^{-p}a^p=a^{-p}0_A=0_A$, absurde.\\
+    \boxed{2.} $\ds\left( 1_A-a \right)\sum_{k=0}^{p-1}a^k=1_A-a^p=1_A$, de même a droite.
+\end{ex}
+
 \subsection{Sous-anneaux, morphismes d'anneaux.}
+
+\begin{prop}{}{}
+    Soit $(A,+,\times)$ un anneau et $B\subset A$. On dit que $B$ est un \bf{sous-anneau} de $A$ si
+    \begin{itemize}
+        \item $\forall (a,b)\in B^2, ~ a-b\in B$.
+        \item $\forall (a,b)\in B^2, ~ ab \in B$.
+        \item $1_A\in B$.
+    \end{itemize}
+    Muni des lois induites par $+$ et $\times$, $B$ est un anneau.
+    \tcblower
+    Montrons que $(B,+)$ est un groupe abélien.\\
+    --- $bullet$ $1_A\in B$ donc $1_A-1_A\in B$ donc $0_A\in B$.\\
+    --- $\bullet$ $\forall (a,b)\in B, ~ a-b \in B$.\\
+    Par caractérisation c'est un sous groupe, abélien car $(A,+)$ l'est.\\
+    Montrons que $(B,\times)$ est un magma unifère et associatif.\\
+    --- $\bullet$ $B$ est stable par $\times$.\\
+    --- $\bullet$ Associatif car $\times$ l'est dans $A$.\\
+    --- $\bullet$ Unifère car $1_A\in B$ et est neutre pour $\times$.\\
+    $\times$ se distribue déjà sur $+$ dans $A$, donc aussi dans $B$.
+\end{prop}
+
+\begin{ex}{}{}
+    \begin{itemize}
+        \item $A$ est un sous-anneau de $A$. Si $0_A\neq1_A$, alors $\{0_A\}$ n'est pas un sous-anneau de $A$.
+        \item Montrer que $\Z$ est le seul sous-anneau de $\Z$.
+    \end{itemize}
+\end{ex}
+
+\begin{ex}{Anneau de Gauss. $\star$}{}
+    Soit l'ensemble
+    \begin{equation*}
+        \Z[i]=\{a+ib \mid (a,b) \in \Z^2\}.
+    \end{equation*}
+    Montrer que $(\Z[i], +, \times)$ est un anneau commutatif et déterminer ses éléments inversibles.
+    \tcblower
+    Vérifions qu'il s'agit d'un sous-anneau de $(\C,+,\times)$.\\
+    Soit $(z,z')\in\Z[i]$ : $\exists! (a,b)\in\Z^2\mid z=a+ib$ et $\exists!(a',b')\in\Z^2\mid z'=a'+ib'$.\\
+    --- $\bullet$ $1=1+0i$ et $(1,0)\in\Z^2$ donc $1\in\Z[i]$.\\
+    --- $\bullet$ On a $z-z'=(a-a')+i(b-b')$ donc $z-z'\in\Z[i]$.\\
+    --- $\bullet$ On a $zz'=(aa'-bb')+i(ab'+a'b)$ donc $zz'\in\Z[i]$.\\
+    Donc c'est bien un anneau.\n
+    Soit un inversible $z=a+ib$ de $\Z[i]$. On a $zz'=1$ donc $|zz'|=1$ donc $|z||z'|=1$.\\
+    On a que $|z|$ et $|z'|$ sont entiers donc $|z|=|z'|=1$, donc $z\in\{\pm1,\pm i\}$.\\
+    On vérifie facilement que c'est exactement l'ensemble des inversibles de $\Z[i]$.
+\end{ex}
+
+\pagebreak
+
+\begin{defi}{}{}
+    Soient $(A,+,\times)$ et $(A',+,\times)$ deux anneaux.\\
+    On appelle \bf{morphisme d'anneaux} de $A$ dans $A'$ toute application $f:A\to A'$ telle que
+    \begin{itemize}
+        \item $\forall (a,b)\in A^2, ~ f(a+b)=f(a)+f(b)$,
+        \item $\forall (a,b)\in A^2, ~ f(ab)=f(a)r(b)$,
+        \item $f(1_A)=1_{A'}$.
+    \end{itemize}
+    Si de surcroît $f$ est bijective, on dit qu'une telle application $f$ est un \bf{isomorphisme} d'anneaux.
+\end{defi}
+
+\begin{ex}{}{}
+    La conjugaison
+    \begin{equation*}
+        \nt{conj}:\begin{cases}
+            \C &\to \quad \C\\
+            z &\mapsto \quad \ov{z}
+        \end{cases}
+    \end{equation*}
+    est un isomorphisme de l'anneau $(\C,+,\times)$ dans lui-même.
+\end{ex}
+
 \subsection{Anneaux intègres.}
+
+\begin{defi}{}{}
+    Soit $(A,+,\times)$ un anneau. On dit d'un élément $a$ de $A$ qu'il est un \bf{diviseur de zéro} si $a\neq 0_A$ et s'il existe un élément $b$ dans $A\setminus\{0_A\}$ tel que $ab=ba=0_A$.
+\end{defi}
+
+\begin{ex}{}{}
+    \begin{itemize}
+        \item Dans l'anneau $(\Z,+,\times)$, il n'y a pas de diviseurs de zéro.
+        \item Dans l'anneau $(\R^\R,+,\times)$, il existe des diviseurs de zéro.
+    \end{itemize}
+\end{ex}
+
+\begin{defi}{}{}
+    On appelle anneau \bf{intègre} tout anneau commutatif sans diviseurs de zéro. Dans un tel anneau,
+    \begin{equation*}
+        \forall (a,b)\in A^2 \quad (ab=0_A) \ra (a = 0_A ~\ou~ b=0_A).
+    \end{equation*}
+\end{defi}
+
+\begin{ex}{}{}
+    $\Z$ est un anneau intègre, l'anneau $\K[X]$ des polynômes aussi, mais pas celui des matrices $M_n(\K)$ ($n\geq2$).
+\end{ex}
 
 \section{Structure de corps.}
 
 \subsection{Définitions et exemples.}
+
+\begin{defi}{}{}
+    On appelle \bf{corps} tout anneau commutatif $(K,+,\times)$ non réduit à $\{0_K\}$ dans lequel tout élément non nul est inversible.
+\end{defi}
+
+\begin{prop}{}{}
+    Tout corps est un anneau intègre, la réciproque est fausse.
+    \tcblower
+    Soit $(K,+,\times)$ un corps. C'est un anneau commutatif.\\
+    Supposons qu'il existe un diviseur de zéro, noté $x\in K$.\\
+    Alors $x\neq0_K$  et $\exists y \in K\setminus\{0_K\} \mid xy=0_K$ et $yy^{-1}=1_K$ donc $y^{-1}xy=y^{-1}0_K$ donc $x=0_K$. Absurde.
+\end{prop}
+
+\begin{ex}{$\star$}{}
+    Soit
+    \begin{equation*}
+        \Q[\sqrt{2}]=\left\{x\in\R \mid \exists (a,b)\in\Q^2, ~ x = a+b\sqrt{2}\right\}.
+    \end{equation*}
+    Montrer que $\Q[\sqrt{2}]$ est un corps.
+    \tcblower
+    --- $\bullet$ $\Q[\sqrt{2}]$ est un sous-anneau de $(\R,+,\times)$.\\
+    --- $\bullet$ $\Q[\sqrt{2}]$ est commutatif car $\R$ l'est.\\
+    Soit $x\in\Q[\sqrt{2}]$ non nul, $\exists (a,b)\in\Q^2\mid x=a+b\sqrt{2}$.\\
+    Alors $(a+b\sqrt{2})(a-b\sqrt{2})=a^2-2b^2$ donc $(a+b\sqrt{2})\times\left( \frac{a}{a^2-2b^2} + \frac{b}{a^2-2b^2} \right)=1$.\\
+    Notons $c=\frac{a}{a^2-2b^2}$ et $d=\frac{b}{a^2-2b^2}$. On a $c+d\sqrt{2}$ inverse de $a+b\sqrt{2}$. Montrons que $a^2-2b^2\neq0$.\\
+    Supposons que $a^2-2b^2=0$, alors $a^2=2b^2$ et si $b=0$, alors $a=0$, impossible.\\
+    Si $b\neq0$, alors $\frac{a^2}{b^2}=2$ donc $\left|\frac{a}{b}\right|=\sqrt{2}$, absurde car $\sqrt{2}\notin\Q$.\\
+    Alors $\Q[\sqrt{2}]$ est un corps.
+\end{ex}
+
 \subsection{Notation fractionnaire dans un corps.}
+
+Soit $(K,+,\times)$ un corps, $a\in K$ et $b\in K^*$. On note $ab^{-1}=\frac{a}{b}$.\\
+Pour $(a,c)\in K^2$ et $(b,d)\in(K^*)^2$, on peut vérifier que
+\begin{equation*}
+    \frac{a}{b}+\frac{c}{d}=\frac{ad+bc}{bd} \qquad \frac{a}{b}\times\frac{c}{d}=\frac{ac}{bd} \qquad \frac{a}{b}=\frac{c}{d}\iff ad = bc \qquad \frac{1}{a}=a^{-1}.
+\end{equation*}
+
 \subsection{Corps des fractions d'un anneau intègre.}
 
+\begin{thm}{}{}
+    Pour tout anneau intègre $A$, il existe un unique corps commutatif $K$ contenant $A$ et vérifiant
+    \begin{equation*}
+        \forall x \in K, ~ \exists (a,b) \in A\times A^* \mid x = \frac{a}{b}. 
+    \end{equation*}
+    Le corps $K$ est appelé \bf{corps des fractions} de l'anneau $A$.
+\end{thm}
+
+\bf{Exemple.} Le corps des fractions de $\Z$ n'est autre que $\Q$.
+
 \section{Exercices.}
+
+\subsection*{Groupes, sous-groupes, morphismes de groupes.}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $(E,\s)$ un magma associatif fini.\\
+    Démontrer qu'il existe dans $E$ un élément idempotent, c'est-à-dire un élément $x$ tel que $x^2=x$.
+    \tcblower
+    Soit $x\in E$. On considère la suite $(u_n)$ telle que $u_0=1$ et $\forall n \in \N, ~ u_{n+1}=u_n^2$. Soit $n\in\N$.\\
+    Puisque $E$ est fini, $\exists p>q \in \N \mid u_{2p}=u_{2q}$ donc $x^{2p}=x^{2q}$.\\
+    Alors on pose $n=p-q$ et $a=x^{2p}$. Ainsi : $a^{2^n}=a$.\\
+    Si $n=1$, $a$ est idempotent. Sinon, on a:
+    \begin{equation*}
+        a^{2^{n}-1}a^{2^{n}-1}=a^{2^{n+1}-2}=a^{2^n}a^{2^n-2}=aa^{2^n-2}=a^{2^n-1}
+    \end{equation*}
+    Donc $a^{2^n-1}$ est idempotent.
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Pour $x$ et $y$ dans $]-1,1[$, on pose $x\s y=\frac{x+y}{1+xy}$. Montrer que $(]-1,1[,\s)$ est un groupe abélien.
+    \tcblower
+    Soit $y\in]-1,1[$. On pose $f_y:x\mapsto\frac{x+y}{1+xy}$ définie sur $]-1,1[$. On a $f_y':x\mapsto\frac{1-y^2}{(1+xy)^2}$.
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzTabInit[espcl=8]{$x$/0.6,$f_y'(x)$/0.6,$f_y$/1.0}{$-1$,$1$}
+            \tkzTabLine{,+,}
+            \tkzTabVar{-/$-1$,+/$1$}
+        \end{tikzpicture}
+    \end{center}
+    Donc $]-1,1[$ est stable part $\s$, c'est bien une l.c.i.\\
+    --- Le neutre est 0.\\
+    --- On peut vérifier l'associativité par calcul direct.\\
+    --- Pour $x\in]-1,1[$, $x\s y = \frac{x+y}{1+xy}=\frac{y+x}{1+yx}=y\s x$.\\
+    --- Tout élément $x$ admet un symétrique $-x$.\\
+    On a bien vérifié tous les points de la définition de groupe abélien.
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Soient $(G,\s)$ un groupe et $H$ un sous-groupe de $G$. Pour $a\in G$, on pose
+    \begin{equation*}
+        aHa^{-1}=\{a\s h\s a^{-1}, ~ h \in H\}.
+    \end{equation*}
+    Montrer que $aHa^{-1}$ est un sous-groupe de $G$.
+    \tcblower
+    Soit $e$ le neutre de $G$ et de $H$. On fixe $a\in G$.\\
+    --- $\bullet$ On a $e\in H$ et $e\s e \s e^{-1}=e$ donc $e\in aHa^{-1}$.\\
+    --- $\bullet$ Soient $x,y\in H$. On a $x\s y = axa^{-1}ay^{-1}a^{-1}=axy^{-1}a^{-1}\in aHa^{-1}$ car $xy^{-1}\in H$ car $H$ est un groupe.\\
+    Par caractérisation, $aHa^{-1}$ est un sous-groupe de $G$.
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\bww$}{}
+    Soit $(a_n)_{n\in\N}\in\R^\N$. Posons
+    \begin{equation*}
+        H=\{x\in\R \mid \cos(a_nx)\to1\}.
+    \end{equation*}
+    Montrer que $H$ est un sous-groupe de $(\R,+)$.
+    \tcblower
+    --- $\bullet$ On a $\cos(a_n0)=\cos(0)=1$ donc $0\in H$.\\
+    --- $\bullet$ Soient $x,y\in H$. On a \begin{align*}
+        \cos(a_n(x-y))=&\cos(a_nx - a_ny)=\cos(a_nx)\cos(a_ny)+\sin(a_nx)\sin(a_ny)\to1\\
+        \nt{car}\quad&\sin(a_nx)\sin(a_ny)=\sqrt{1-\cos^2(a_nx)}\sqrt{1-\cos^2(a_ny)}\to0.
+    \end{align*}
+    Par caractérisation, $H$ est un sous-groupe de $(\R,+)$.
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Soit l'ensemble d'applications
+    \begin{equation*}
+        G=\{x\mapsto ax + b, ~ a\in\R^*, ~ b\in\R\}.
+    \end{equation*}
+    En vous appuyant sur un groupe connu, montrer que $(G,\circ)$ est un groupe.
+    \tcblower
+    Montrons que $(G,\circ)$ est sous-groupe de $(S_\R,\circ)$.\\
+    --- $\bullet$ $\id_\R\in G$ car $\forall x\in\R, ~ \id_\R(x)=1x+0$.\\
+    --- $\bullet$ Soient $f:x\mapsto ax+b,g:x\mapsto mx+p\in$ deux fonctions de $G$. Alors:
+    \begin{equation*}
+        \forall x \in \R, ~ f\circ g^{-1}(x)=a(\frac{x-p}{m})+b=\frac{a}{m}x+\frac{bm-ap}{m}.
+    \end{equation*}
+    Par caractérisation, $G$ est un sous-groupe de $S_\R$.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $G$ un groupe noté multiplicativement, et $H$ et $K$ deux sous-groupes de $G$. On définit
+    \begin{equation*}
+        HK=\{x\in G\mid \exists h\in H, ~ \exists k \in K, ~ x = hk\}.
+    \end{equation*}
+    Démontrer que $HK$ est un sous-groupe de $G$ si et seulement si $HK=KH$.
+    \tcblower
+    \boxed{\ra} Supposons $HK$ sous-groupe de $G$.\\
+    \boxed{\subset} Soit $x\in HK$ : $\exists h\in H, ~ \exists k\in K \mid x=hk$ donc $x^{-1}=k^{-1}h^{-1}\in KH$ donc $x\in KH$.\\
+    \boxed{\supset} Soit $x\in KH$ : $\exists k\in K, ~ \exists h\in H \mid x=kh$ donc $x^{-1}=h^{-1}k^{-1}\in HK$ donc $x\in HK$.\\
+    On a l'égalité des ensembles.\\
+    \boxed{\la} Supposons $HK=KH$.\\
+    --- $\bullet$ On a $1_G=1_H1_K$ donc $1_G\in HK$.\\
+    --- $\bullet$ Soient $x=hk,x'=h'k'\in HK$. $xx'=hkh'k'$ or $kh'\in KH$ et $KH=HK$ donc $\exists \tilde{h},\tilde{k}\in H\times K\mid kh'=\tilde{h}\tilde{k}$.\\
+    Ainsi, $x\tilde{x}=h\tilde{h}\tilde{k}k'\in HK$.\\
+    --- $\bullet$ Soit $x=hk\in HK$. On a $x^{-1}=k^{-1}h^{-1}\in KH = HK$ donc $x^{-1}\in HK$.\\
+    Par caractérisation, $HK$ est sous-groupe de $G$.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $G$ un groupe noté multiplicativement. Pour $a\in G$, on pose $\t_a:x\mapsto ax$.
+    \begin{enumerate}
+        \item Pour tout $a\in G$, montrer que $\t_a\in S_G$.
+        \item Montrer que $\d:a\mapsto \t_a$ est un morphisme injectif de $G$ dans $S_G$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soit $a\in G$. On a $\t_a$ bijective car $\t_{a^{-1}}$ est sa réciproque, et de $G$ vers $G$ car $a\in G$.\\
+    \boxed{2.} Soient $a,b\in G$. On a $\d(ab)=\t_{ab}=\t_{a}\circ\t_{b}=\d(a)\d(b)$.\\
+    Supposons $\d(a)=\d(b)$. Alors pour $x\in G, ~ ax=bx$ donc $axx^{-1}=bxx^{-1}$ donc $a=b$. C'est un morphisme injectif.
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Soit $G$ un groupe. Montrer qu'une partie $H$ finie, non vide et stable par la loi de $G$ est nécessairement un sous-groupe de $G$.
+    \tcblower
+    Soit $H$ une telle partie et $x\in H$. On note $e$ le neutre de $G$.\\
+    Puisque $H$ est fini, $\exists k>q\in N \mid x^k=x^q$ donc $x^{k-q}=e$ donc $e\in H$ comme itéré de $x$.\\
+    On a d'ailleurs $x^{-1}=x^{k-q-1}\in H$.\\
+    Par hypothèse, $H$ est stable par la loi de $G$ donc c'est un sous-groupe.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $(G,\cdot)$ un groupe. On note $\nt{Aut}(G)$ l'ensemble des automorphismes de $G$.\\
+    Pour $g\in G$, on note $\sigma_g$ l'application $x\mapsto gxg^{-1}$.
+    \begin{enumerate}
+        \item Démontrer que $(\nt{Aut}(G),\circ)$ est un groupe.
+        \item Montrer que pour tout $g\in G, ~ \sigma_g \in \nt{Aut}(G)$.
+        \item Démontrer que l'application $\sigma:g\mapsto\sigma_g$ est un morphisme de groupes de $G$ dans $\nt{Aut}(G)$.
+        \item Montrer que $\Ker(\sigma)=Z(G)$, où $Z(G)$ est le centre de $G$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Montrons que c'est un sous-groupe de $S_G$.\\
+    --- $\bullet$ On a $\id_G\in\nt{Aut}(G)$.\\
+    --- $\bullet$ Soient $\phi,\psi\in\nt{Aut}(G)$. On a $\phi\circ\psi^{-1}$ bijective de $G$ dans $G$ car $\phi$ et $\psi$ le sont donc $\phi\psi^{-1}\in\nt{Aut(G)}$.\\
+    Par caractérisation, c'est un sous-groupe de $S_G$.\\
+    \boxed{2.} Soit $g\in G$. On a $\sigma_g$ bijective car $\sigma_{g^{-1}}$ est sa réciproque. Soient $x,y\in G$.\\
+    C'est un morphisme car $\sigma_g(xy)=gxyg^{-1}=gxg^{-1}gyg^{-1}=\sigma_g(x)\sigma_g(y)$.\\
+    C'est un endomorphisme car $\forall x \in G, ~ gxg^{-1}\in G$ par stabilité.\\
+    \boxed{3.} Soient $g,h,x\in G$. On a $\sigma(gh)(x)=\sigma_{gh}(x)=ghxh^{-1}g^{-1}=\sigma_g\sigma_h(x)=\sigma(g)\sigma(h)(x)$.\\
+    \boxed{4.} \boxed{\subset} Soient $x\in\Ker(\sigma)$ et $g\in G$. On a $\sigma(x)=\id_G$ donc $xgx^{-1}=g$ donc $xg=gx$ par comp. à droite.\\
+    \boxed{\supset} Soient $x\in Z(G)$, $g\in G$. On a $gx=xg$ donc $g=xgx^{-1}=\sigma_x(g)=\sigma(x)(g)$ donc $\sigma_x=\id_G$ donc $x\in\Ker(\sigma)$.\\
+    Par double inclusion, $\Ker(\sigma)=Z(G)$.
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Soit $(G,\cdot)$ un groupe fini et $\chi$ un morphisme de groupes non constant de $(G,\cdot)$ dans $(\C^*,\times)$. Calculer
+    \begin{equation*}
+        S=\sum_{x\in G}\chi(x).
+    \end{equation*}
+    \tcblower
+    Soit $\tilde{x}\in G$ tel que $\chi(\tilde{x})\neq1$ (existe car $\chi$ non constant).\\
+    On pose $\sigma_{\tilde{x}}:x\mapsto x\tilde{x}$, c'est une bijection de $G$ dans $G$. Alors :
+    \begin{equation*}
+        \chi(\tilde{x})S=\sum_{x\in G}\chi(\tilde{x})\chi(x)=\sum_{x\in G}\chi(x\tilde{x})\underset{\sigma_{\tilde{x}}}{=}\sum_{x\in G}\chi(x)=S.
+    \end{equation*}
+    Alors $S(\chi(\tilde{x})-1)=0$. Donc $S=0$.
+\end{exercice}
+
+\subsection*{Anneaux, corps.}
+
+\begin{exercice}{$\bbw$}{}
+    Montrer que dans un anneau, la somme de deux éléments nilpotents qui commutent est nilpotent.
+    \tcblower
+    Soient $a,b$ deux éléments nilpotents d'ordre $p$ et $q$. On a:
+    \begin{equation*}
+        (a+b)^{p+q}=\sum_{k=0}^{p+q}\binom{p+q}{k}a^kb^{p+q-k}
+    \end{equation*}
+    Pour $k\geq p$, on a $a^{k}=0$. Pour $k\leq p$, on a $p+q-k\geq q$ donc $b^{p+q-k}=0$.\\
+    Dans tous les cas, les termes de la somme sont nuls. Donc $(a+b)^{p+q}=0$.
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Soit $(A,+,\times)$ un anneau. On suppose qu'il existe deux éléments $a,b$ de $A$ tels que
+    \begin{equation*}
+        ab+ba=1_A \quad\et\quad a^2b+ba^2=a
+    \end{equation*}
+    \begin{enumerate}
+        \item Montrer que $a^2b=ba^2$ et $2aba=a$.
+        \item Montrer que $a$ est inversible et que $a^{-1}=2b$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} $a^2b+aba=a$ et $aba+ba^2=a$ donc $a^2b=ba^2$ d'après la première équation.\\
+    Alors $a^2b+ba^2+2aba=2a$ donc $a+2aba=2a$ donc $2aba=a$.\\
+    \boxed{2.} On a $a^2b+aba=a$ donc $a+aba=a+ba^2$ donc $aba=ba^2$; et $ba^2+aba=a$ donc $aba=ab^2$.\\
+    On a alors $a=2aba=2a^2b=2ba^2$ donc $ab=ba=2ba^2b$. Or $ab+ba=1_A$ et $ab=ba$ donc $2ab=2ba=1_A$.
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\bbw$}{}
+    Soit $E$ un ensemble. On définit sur $E$ la différence symétrique
+    \begin{equation*}
+        \D : \begin{cases}
+            E \times E &\to \quad E\\
+            (A,B) &\mapsto \quad A\D B = (A\cup B) \setminus (A \cap B) 
+        \end{cases}
+    \end{equation*}
+    \begin{enumerate}
+        \item Montrer que $(\P(E),\D)$ est un groupe commutatif.
+        \item Montrer que $(\P(E),\D,\cap)$ est un anneau commutatif.
+        \item Démontrer que si $E$ possède au moins deux éléments, alors l'anneau $(\P(E),\D,\cap)$ n'est pas intègre.
+    \end{enumerate}
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    On appelle anneau de Boole un anneau $A$ dans lequel $\forall x \in A, ~ x^2 = x$.
+    \begin{enumerate}
+        \item Montrer que $(\{0,1\},+,\times)$ est un anneau de Boole, (avec $+$ telle que $1+1=0$).
+        \item Montrer que pour un ensemble $E$, $(\P(E),\D,\cap)$ est un anneau de Boole.
+        \item Donner un exemple d'anneau de Boole infini.
+        \item Démontrer que pour tout élément $x$ d'un anneau de Boole, $x+x=0_A$ puis démontrer qu'un anneau de Boole est toujours commutatif.
+        \item Démontrer qu'il n'existe pas d'anneau de Boole à trois éléments.
+    \end{enumerate}
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Soit $(A,+,\times)$ un anneau commutatif fini.\\
+    Démontrer que $A$ est un corps si et seulement si il possède exactement un élément nilpotent et exactement deux éléments idempotents (élements $x$ tels que $x^2=x$).
+\end{exercice}
 
 \end{document}

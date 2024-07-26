@@ -11,6 +11,7 @@ Allez dans les répertoires et ouvrez les fichiers .pdf seulement, les .tex serv
 ## Liens utiles
 
 [Présentation de la filière / du lycée](https://mp2i.cpge-pv.fr/)\
+[Les TP/TD d'informatique](https://ineskkk.github.io/mp2i-pv/)\
 [Cahier de Prépa](https://cahier-de-prepa.fr/mp2i-pv/)\
 [Anthony Lick, cours d'informatique](https://anthonylick.com/)
 
