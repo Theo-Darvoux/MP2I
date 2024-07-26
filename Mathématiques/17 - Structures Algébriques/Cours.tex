@@ -679,7 +679,7 @@ On fixe pour tout ce paragraphe un magma $(E,\s)$ associatif et unifère de neut
     Muni des lois induites par $+$ et $\times$, $B$ est un anneau.
     \tcblower
     Montrons que $(B,+)$ est un groupe abélien.\\
-    --- $bullet$ $1_A\in B$ donc $1_A-1_A\in B$ donc $0_A\in B$.\\
+    --- $\bullet$ $1_A\in B$ donc $1_A-1_A\in B$ donc $0_A\in B$.\\
     --- $\bullet$ $\forall (a,b)\in B, ~ a-b \in B$.\\
     Par caractérisation c'est un sous groupe, abélien car $(A,+)$ l'est.\\
     Montrons que $(B,\times)$ est un magma unifère et associatif.\\
@@ -1019,6 +1019,17 @@ Pour $(a,c)\in K^2$ et $(b,d)\in(K^*)^2$, on peut vérifier que
         \item Montrer que $(\P(E),\D,\cap)$ est un anneau commutatif.
         \item Démontrer que si $E$ possède au moins deux éléments, alors l'anneau $(\P(E),\D,\cap)$ n'est pas intègre.
     \end{enumerate}
+    \tcblower
+    \boxed{1.} On a $\D$ associative, commutative, unifère et admettant un symétrique.\\
+    \boxed{2.} On a $(\P(E),\D)$ groupe abélien.\\
+    --- $\bullet$ $(\P(E), \cap)$ est un magma associatif et unifère, on sait que $\cap$ est commutatif.\\
+    --- $\bullet$ Distributivité : soient $A,B,C\in\P(E)$. Montrons que $(A\D B)\cap C=(A\cap C)\D(B\cap C)$.\\
+    \boxed{\subset} Soit $x\in(A\D B)\cap C$. Alors $x\in A\D B$ et $x\in C$ alors ($x\in A$ ou bien $x\in B$).\\
+    Alors $x\in A$ et $x\in C$ ou bien $x\in B$ et $x\in C$ donc $x\in(A\cap C)\D(B\cap C)$.\\
+    \boxed{\supset} Soit $x\in(A\cap C)\D(B\cap C)$. $x\in A\cap C$ ou bien $x\in B\cap C$ donc ($x\in A$ et $x\in C$) ou bien ($x\in B$ et $x\in C$).\\
+    Alors ($x\in A$ ou bien $x\in B$) et $x\in C$ donc $x\in (A\D B)\cap C$.\\
+    \boxed{3.} Supposons $|E|\geq2$. Par l'absurde, on suppose $(\P(E),\D,\cap)$ intègre. Soient $x,y\in E\mid x\neq y$.\\
+    Alors $\{x\}\cap\{y\}=\0$ donc $\{x\}=\0$ ou $\{y\}=0$, contradiction. Donc l'anneau n'est pas intègre.
 \end{exercice}
 
 \begin{exercice}{$\bbb$}{}
@@ -1030,11 +1041,38 @@ Pour $(a,c)\in K^2$ et $(b,d)\in(K^*)^2$, on peut vérifier que
         \item Démontrer que pour tout élément $x$ d'un anneau de Boole, $x+x=0_A$ puis démontrer qu'un anneau de Boole est toujours commutatif.
         \item Démontrer qu'il n'existe pas d'anneau de Boole à trois éléments.
     \end{enumerate}
+    \tcblower
+    \boxed{1.} On vérifie la définition, c'est long...\\
+    \boxed{2.} On a $(\P(E),\D,\cap)$ un anneau commutatif (exercice précédent).\\
+    De plus, pour $A\in\P(E)$, $A\cap A=A$ donc $A^2=A$, c'est un anneau de Boole.\\
+    \boxed{3.} $(\P(\N), \cup, \cap)$.\\
+    \boxed{4.} Soit $x\in A$. On a $x+x=(x+x)^2=4x^2=4x$ donc $2x=0_A$.\\
+    Soit $x,y\in A$. On a $x+y=(x+y)^2=x^2+xy+yx+y^2=x+xy+yx+y$ donc $xy=-yx=yx$.\\
+    \boxed{5.} Supposons qu'il existe $(\{0_A,1_A,x\},+,\times)$ un anneau de boole à trois éléments (donc $0_A\neq1_A$).\\
+    $\bullet$ Si $1_A+x=0$, alors $1_A+x+x=x$ donc $1_A=x$, absurde.\\
+    $\bullet$ Si $1_A+x=1$, alors $1_A+x+x=1_A+x$ donc $0_A=x$, absurde.\\
+    $\bullet$ Si $1_A+x=x$, alors $1_A=0_A$, absurde.\\
+    Dans tous les cas, on a contradiction donc un anneau de Boole ne peut pas avoir trois éléments.
 \end{exercice}
 
 \begin{exercice}{$\bbb$}{}
     Soit $(A,+,\times)$ un anneau commutatif fini.\\
     Démontrer que $A$ est un corps si et seulement si il possède exactement un élément nilpotent et exactement deux éléments idempotents (élements $x$ tels que $x^2=x$).
+    \tcblower
+    \boxed{\ra} On suppose que $(A,+,\times)$ est un corps : $A\neq\{0_A\}, ~ \forall x \in A, ~ x^{-1}\in A$ et $A$ est intègre.\\
+    Supposons par l'absurde qu'il existe deux éléments nilpotents $x$ et $y$ d'ordres $p<q$.\\
+    Alors $x^p=y^q$ et $\frac{x^p}{y^{q-1}}=\frac{y^q}{x^{p-1}}$ donc $x^px^{-(p-1)}=y^qy^{-(-q-1)}$.\\
+    Donc $x=y$. Absurde, on a l'unicité du nilpotent, qui est $0_A$.\\
+    Supposons par l'absurde qu'il existe un idempotent $a\in A$ tel que $a\notin\{0_A,1_A\}$.\\
+    Alors $a^2=a$ donc $a^2-a=0_A$ donc $a(a-1)=0_A$ donc $a=0_A$ ou $a=1_A$ par intégrité de l'anneau. Absurde.\\
+    Les idempotents sont exactement $0_A$ et $1_A$.\n
+    \boxed{\la} On suppose que $A$ a deux idempotents et un nilpotent. Montrons que c'est un corps.\\
+    --- On a $A\neq\{0_A\}$ car deux idempotents donc $1_A\neq0_A$.\\ 
+    --- Soit $x\in A^*$, $A$ est fini donc $\exists k,q \in \N \mid x^k=x^q$ donc $x^{k-q}=1_A$ car $x$ non nilpotent donc $x^{-1}=x^{k-q-1}\in A$.\\
+    --- Soient $x,y\in A \mid xy=0_A$. Si $x$ ou $y$ nilpotent, alors $x$ ou $y$ égal à 0 donc intègre.\\
+    Sinon, $x\neq0_A$ et $y\neq0_A$ donc $x=0_Ay^{-1}=0_A$ ou $y=0_Ax^{-1}=0_A$. Donc intègre.\\
+    Donc $A$ est un corps. 
 \end{exercice}
+
 
 \end{document}
