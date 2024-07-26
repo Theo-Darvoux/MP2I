@@ -1,0 +1,188 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{19}
+\def\pagetitle{Éléments d'arithmétique dans $\N$.}
+
+\usepackage{pythonhighlight}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\thispagestyle{fancy}
+
+Ce petit exposé d'arithmétique sera suivi d'un cours plus ambitieux : \emph{Arithmétique dans $\Z$}.\n
+On va d'ores et déjà expliquer que tout entier naturel supérieur à 2 se décompose comme un produit de nombres premiers, mais nous attendrons le vrai cours d'arithmétique pour énoncer le théorème fondamental de l'arithmétique, qui à l'existence de cette décomposition ajoute l'unicité, à l'ordre des facteurs près.
+
+\section{Divisibilité dans \texorpdfstring{$\N$}{Lg}.}
+
+\subsection{Définition.}
+
+\begin{defi}{}{}
+    Soit $(a,b)\in\N^2$. On dit que $b$ \bf{divise} $a$ (on note $b\mid a$) s'il exisite $k\in\N$ tel que $a=kb$.\\
+    Si $b\mid a$, on dit encore que $b$ est un \bf{diviseur} de $a$ ou que $a$ est un \bf{multiple} de $b$.
+\end{defi}
+
+Pour un entier naturel $a$, on notera $\m{D}(a)$ l'ensemble des diviseurs de $a$.
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item 1, 2, 3, 4, 6 et 12 sont les diviseurs de 12.
+        \item 1 divise tout nombre entier : $\forall n \in \N, ~ n = 1n$.
+        \item Tous les entiers sont diviseurs de 0 : $\forall n\in\Z, ~ 0/n=0$.
+        \item Pour tout entier naturel $n$, $4^n-1$ est multple de 3 : $4^n-1=3\sum_{k=0}^{n-1}4^k$.
+    \end{enumerate}
+\end{ex}
+
+\begin{prop}{}{}
+    Dans $\N$, les diviseurs d'un entier naturel $a$ non nul sont compris entre 1 et $a$.
+    \tcblower
+    Soit $a\in\N^*$ et $b\in\m{D}(a)$ : $\exists k \in \N \mid a = kb$.\\
+    Si $b=0$, alors $a=0$ : impossible donc $b\geq1$.\\
+    Si $b>a$, alors $kb>a$ donc $a>a$ : impossible donc $b\leq a$.
+\end{prop}
+
+\begin{prop}{}{}
+    La relation $\mid$ est une relation d'ordre non total sur $\N$.
+\end{prop}
+
+\subsection{Division euclidienne.}
+
+\begin{thm}{}{}
+    Soit $(a,b)\in\N\times\N^*$.
+    \begin{equation*}
+        \exists!(q,r)\in\N^2 \mid a=bq+r \quad\et\quad 0 \leq r < b.
+    \end{equation*}
+    Les entiers $q$ et $r$ sont appelés respectivement \bf{quotient} et \bf{reste} de la division euclidienne de $a$ par $b$.
+    \tcblower
+    \bf{Unicité.} Soient $(q,r)\in\N^2$ et $(q',r')\in\N^2$ tels que $a=bq+r=bq'+r'$ et $r,r'<b$.\\
+    Alors $b(q-q')+(r-r')=0$, or $-b<r'-r<b$ donc $-b<b(q-q')<b$ donc $-1<q-q'<1$ donc $q=q'$.\\
+    Alors $r-r'=0$ donc $r=r'$ : $(q,r)=(q',r')$.\n
+    \bf{Existence.} Posons $q=\left\lf\frac{a}{b}\right\rf$ et $r=a-bq$. On a:
+    \begin{align*}
+        \left\lf\frac{a}{b}\right\rf \leq \frac{a}{b} < \left\lf\frac{a}{b}\right\rf+1 \quad\nt{donc}\quad& q\leq\frac{a}{b}<q+1\\
+        \nt{donc}\quad& bq \leq a < bq+b\\
+        \nt{donc}\quad&0\leq a-bq<b
+    \end{align*}
+    Donc $r\in[0,b[$ et $a=bq+r$.
+\end{thm}
+
+\pagebreak
+
+\begin{prop}{}{}
+    Soient $(a,b)\in\N\times\N^*$.
+    \begin{equation*}
+        b \mid a \iff \exists!q\in\N\mid a=bq.
+    \end{equation*}
+\end{prop}
+
+\subsection{Diviseurs communs à deux entiers naturels.}
+
+\begin{defi}{}{}
+    Soit $(a,b)\in\N^2\setminus\{(0,0)\}$. On appelle \bf{Plus Grand Commun Diviseur} (PGCD) de $a$ et $b$, et on note $a\land b$ le plus grand diviseur commun à $a$ et $b$ pour la relation $\leq$ :
+    \begin{equation*}
+        a \land b = \max(\m{D}(a)\cap\m{D}(b)).
+    \end{equation*}
+    \tcblower
+    $\bullet$ $1\in\m{D}(a)$ et $1\in\m{D}(b)$ donc $1\in\m{D}(a)\cap\m{D}(b)$.\\
+    $\bullet$ Si $a\neq0$ et $b\neq0$, alors $\m{D}(a)\subset\lb1,a\rb$ et $\m{D}(b)\subset\lb1,b\rb$. Alors $\m{D}(a)\cap\m{D}(b)\subset\lb1,\min(a,b)\rb$.\\
+    $\bullet$ Si $a\neq0$ et $b=0$ SPDG, $\m{D}(b)=\N$ donc $\m{D}(a)\cap\m{D}(b)=\m{D}(a)\subset\lb1,a\rb$.\\
+    Dans tous les cas, $\m{D}(a)\cap\m{D}(b)$ est majoré par $\max(a,b)$, c'est une partie de $\N$ non vide et majorée : le max existe. 
+\end{defi}
+
+\begin{lemme}{}{}
+    Soit $(a,b,c,q)\in\N^4$ tel que $a=bq+c$. Alors $\m{D}(a)\cap\m{D}(b)=\m{D}(b)\cap\m{D}(c)$.
+    \tcblower
+    Soit $k\in\m{D}(a)\cap\m{D}(b)$ : $\exists a',b'\in\N\mid a=ka', ~ b=kb'$. Alors $ka'=kb'q+c$ et $c=k(a'-b'q)$.\\
+    $\bullet$ Si $k>0$, alors puisque $c\geq0$, $a'-b'q\geq0$ donc $k\mid c$ et $k\mid b$.\\
+    $\bullet$ Si $k=0$, alors $a=b=0$ puis $c=0$ donc $k\mid b$ et $k\mid c$.\\
+    On a bien $\m{D}(a)\cap\m{D}(b)\subset \m{D}(b)\cap\m{D}(c)$.\n
+    Soit $k\in\m{D}(b)\cap\m{D}(c)$ : $\exists b',c'\in\N\mid b=kb'$ et $c=kc'$.\\
+    Alors $a=bq+c=k(b'q+c)$ donc $k\mid a$. On a $\m{D}(b)\cap\m{D}(c)\subset\m{D}(a)\cap\m{D}(b)$.\n
+    Alors $\m{D}(a)\cap\m{D}(b)=\m{D}(b)\cap\m{D}(c)$.
+\end{lemme}
+
+\begin{prop}{}{}
+    \begin{equation*}
+        \forall (a,b) \in \N^2 \setminus \{(0,0)\}, \quad \m{D}(a)\cap\m{D}(b)=\m{D}(a\land b).
+    \end{equation*}
+    \tcblower
+    On suppose que $b\neq0$. On pose $r_{-1}=a$ et $r_0=b$.\\
+    Par itération, on définit deux suites $(q_n)$ et $(r_n)$ telles que pour $n\in\N$, si $r_n$ est non nul, on effectue la division euclidienne de $r_{n-1}$ par $r_n$ en notant $q_{n+1}$ et $r_{n+1}$ respectivement son quotient et son reste. Ainsi, si $r_n\neq0$, on a $r_{n+1}<r_n$. La suite $(r_n)$ est donc strictement décroissante puis stationnaire à 0. Notons $p$ le rang de son dernier terme non nul.
+    \begin{align*}
+        &a=bq_1+r_1; \qquad r_0=r_1q_2+r_2; \quad ... \quad; r_{p-1}=r_pq_{p+1}+0.
+    \end{align*}
+    D'après le lemme précédent, on a les égalités suivantes entre ensembles de diviseurs :
+    \begin{equation*}
+        \m{D}(a)\cap\m{D}(b)=\m{D}(r_0)\cap\m{D}(r_1)=\m{D}(r_1)\cap\m{D}(r_2)=...=\m{D}(r_p)\cap\m{D}(0)=\m{D}(r_p).
+    \end{equation*}
+    Or $r_p=\max(\m{D}(r_p))=\max(\m{D}(a)\cap\m{D}(b))=a\land b$.
+\end{prop}
+
+\begin{algo}{Algorithme d'Euclide (écrit en Python)}{}
+    \texttt{def PGCD(a,b):\\
+    \hspace*{1cm} while b!=0:\\
+    \hspace*{2cm} a,b=b,a\%b\\
+    \hspace*{1cm} return a}
+\end{algo}
+
+\begin{ex}{}{}
+    Calculer le PGCD de 342 et 95 puis donner $\m{D}(342)\cap\m{D}(95)$.
+    \tcblower
+    $392=95\times3+57$; $95=57\times1+38$; $57=38\times1+19$; $38=19\times2+0$ donc $\PGCD(342,95)=19$.\\
+    $\m{D}(342)\cap\m{D}(95)=\m{D}(19)=\lb1,19\rb$.
+\end{ex}
+
+\section{Nombres premiers}
+
+\begin{defi}{}{}
+    Un entier $p\in\N\setminus\{0,1\}$ est dit \bf{premier} si ses seuls diviseurs sont 1 et $p$.
+\end{defi}
+
+\bf{Exemples.} 2, 3, 5, 7, 11...
+
+\begin{prop}{}{}
+    Tout entier naturel supérieur ou égal à 2 admet un diviseur premier.
+    \tcblower
+    Pour $n\in\N$, on pose $\P(n):$ << $n$ a un diviseur premier >>.\\
+    \bf{Initialisation.} $\P(2)$ est vraie car $2$ est premier et $2\mid2$.\\
+    \bf{Hérédité.} Soit $n\geq\in\N \mid \forall k \in \lb2,n\rb, ~ \P(k)$.\\
+    $\bullet$ Si $n+1$ est premier, alors $n+1\mid n+1$ : $\P(n+1)$ vraie.\\
+    $\bullet$ Si $n$ n'est pas premier, $\exists(q,q')\in\lb2,n\rb^2\mid n+1=qq'$.\\
+    Alors $q$ a un diviseur premier par hypothèse, ce diviseur divise aussi $n+1$ par transitivité : $\P(n+1)$ vraie.\\
+    Par récurrence, $\forall n\geq2, ~ \P(n)$ est vraie.
+\end{prop}
+
+\begin{prop}{}{}
+    Tout entier naturel $n$ non premier et supérieur à 2 admet un diviseur premier inférieur à $\sqrt{n}$.
+    \tcblower
+    Soit $n\geq2$ non premier : $\exists(q,q')\in\lb2,n-1\rb^2\mid n=qq'$ donc $q\leq\sqrt{n}$ ou $q'\leq\sqrt{n}$.\\
+    En effet, si $q\geq\sqrt{n}$ et $q'\geq\sqrt{n}$, alors $qq'>n$ : impossible.\\
+    SPDG, $q\leq\sqrt{n}$. Or $q\geq2$ donc $q$ a un diviseur premier $p$ donc $p\leq q \leq \sqrt{n}$ et $p\mid n$.
+\end{prop}
+
+\begin{thm}{d'Euclide.}{}
+    Il existe une infinité de nombres premiers.
+    \tcblower
+    Supposons qu'il en existe un nombre fini $n$ de nombres premiers $p_1,p_2,...p_n$.\\
+    On pose $N=1+\prod_{k=1}^np_k$. Alors $\forall k\in\lb1,n\rb, ~ N>p_k$, donc $N$ admet un diviseur premier.\\
+    Ainsi, $\exists k_0 \in \lb1,n\rb ~:~ p_{k_0}\mid N$ et $p_{k_0}\mid N-1$ donc $p_{k_0}\mid N - (N-1)=1$, absurde.
+\end{thm}
+
+\begin{prop}{Existence d'une décomposition en facteurs premiers.}{}
+    Pour tout entier $n\geq2,$ il existe un entier $r\geq1$ et des nombres premiers $p_1,...,p_r$ et des entiers non nuls $\a_1,...,\a_r$ tels que
+    \begin{equation*}
+        n=p_1^{\a_1}\times...\times p_r^{\a_r}.
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{Théorème de La Vallée Poussin-Hadamard.}{}
+    Soit la fonction $\pi$ qui à $n$ associe le nombre de nombres premiers inférieurs ou égaux à $n$. Alors
+    \begin{equation*}
+        \lim_{n\to+\infty}\frac{\pi(n)\ln(n)}{n}=1.
+    \end{equation*}
+\end{prop}
+
+\end{document}
