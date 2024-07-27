@@ -1,0 +1,1126 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{20}
+\def\pagetitle{Calcul Matriciel}
+
+\usepackage{pythonhighlight}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\thispagestyle{fancy}
+
+Dans tout ce qui suit, $n$ et $p$ et $q$ désigneront des entiers naturels non nuls, et $\K$ le corps $\R$ ou $\C$.
+
+\section{Matrices rectangulaires et opérations.}
+
+\subsection{Combinaisons linéaires de matrices de \texorpdfstring{$M_{n,p}(\K)$}{Lg}}
+
+\begin{defi}{}{}
+    \begin{itemize}
+        \item On appelle \bf{matrice} de type $(n,p)$ à coefficients dans $\K$ un tablaeu d'éléments de $\K$ ayant $n$ lignes et $p$ colonnes.
+        \item L'ensemble des matrices à $n$ lignes et $p$ colonnes, à coefficients dans $\K$ est noté $M_{n,p}(\K)$.
+        \item L'ensemble $M_{n,n}(\K)$ est noté $M_n(\K)$. Les matrices de cet ensemble sont qualifiées de carrées.
+        \item Soit $A\in M_{n,p}(\K)$. Les \bf{coefficients} de $A$ sont écrits à l'aide d'un double indice : $a_{i,j}$ désigne le coefficient qui est sur la ligne $i$ et sur la colonne $j$. Ainsi, $A=(a_{i,j})_{\substack{1\leq i \leq n\\1\leq j \leq p}}$.
+        \item La matrice $A$ écrite ci-dessus se représente entre parenthèses:
+        \begin{equation*}
+            A = \begin{pmatrix}
+                a_{1,1} & a_{1,2} & \cdots & a_{1,p} \\
+                a_{2,1} & a_{2,2} & \cdots & a_{2,p} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                a_{n,1} & a_{n,2} & \cdots & a_{n,p}
+            \end{pmatrix}
+        \end{equation*}
+    \end{itemize}
+\end{defi}
+
+\bf{Remarque.} Ayant $\R\subset \C$, on a l'inclusion $M_{n,p}(\R)\subset M_{n,p}(\C)$.
+
+\begin{defi}{}{}
+    Soient $A=(a_{i,j})_{\substack{1\leq i \leq n\\1\leq j \leq p}}$ et $B=(b_{i,j})_{\substack{1\leq i \leq n\\1\leq j\leq p}}$ deux matrices de même type.\\
+    On dit que $A$ et $B$ sont \bf{égales} et on note $A=B$ si
+    \begin{equation*}
+        \forall i \in \lb1,n\rb, ~ \forall j \in \lb1,p\rb, ~ a_{i,j}=b_{i,j}.
+    \end{equation*}
+\end{defi}
+
+On va munir $M_{n,p}(\K)$ d'une structure de groupe additif.
+
+\begin{defi}{Somme de deux matrices.}{}
+    Soient $A=(a_{i,j})$ et $B=(b_{i,j})$ deux matrices de $M_{n,p}(\K)$.\\
+    On appelle \bf{somme} de $A$ et $B$, et on note $A+B$ la matrice de $M_{n,p}(\K)$
+    \begin{equation*}
+        A+B=(c_{i,j})\in M_{n,p}(\K) \quad\nt{où}\quad\forall i\in\lb1,n\rb, ~ \forall j \in \lb1,p\rb, ~ c_{i,j}=a_{i,j}+b_{i,j}.
+    \end{equation*}
+\end{defi}
+
+\pagebreak
+
+\begin{prop}{$(M_{n,p}(\K),+)$}{}
+    Le couple $(M_{n,p}(\K),+)$ est un groupe abélien. Plus précisément,
+    \begin{enumerate}
+        \item $+$ est une loi de composition interne sur $M_{n,p}(\K)$.
+        \item $+$ est associative.
+        \item $+$ est commutative.
+        \item il existe une matrice dans $M_{n,p}(\K)$ qui est neutre pour l'addition : c'est la matrice nulle dont tous les coefficients sont nuls et elle est notée $0_{n,p}$.
+        \item toute matrice $A$ de $M_{n,p}(\K)$ possède un symétrique $-A$ dans $M_{n,p}(\K)$.\\
+        Si $A=(a_{i,j})$, la matrice $-A$ est la matrice $(-a_{i,j})$ et on a $-A+A=A+(-A)=0_{np}$.
+    \end{enumerate}
+    \tcblower
+    Soit $A=(a_{i,j})\in M_{n,p}(\K)$ et $B=(-a_{i,j})=(-1)\cdot A$. Alors $A+B=B+A=0_{n,p}$.\\
+    Soit $(i,j)\in\lb1,n\rb\times\lb1,p\rb$ : $[A+B]_{i,j}=a_{i,j}-a_{i,j}=0$. Idem pour $B+A$.\\
+    Donc $A$ est bien symétrisable et $-A=B=(-1)\cdot A$.
+\end{prop}
+
+\begin{defi}{Multiplication par un scalaire.}{}
+    SOient $A=(a_{i,j})$ une matrice de $M_{n,p}(\K)$ et $\l\in\K$. On appelle multiple de $A$ par le scalaire $\l$, et on note $\l\cdot A$ ou plus simplement $\l A$ la matrice:
+    \begin{equation*}
+        \l A = (\l a_{i,j}).
+    \end{equation*}
+    Si $A$ et $B$ sont deux matrices de $M_{n,p}(\K)$ et $\l,\mu\in\K$, $\l A+\mu B$ est une \bf{combinaison linéaire} de $A$ et $B$.
+\end{defi}
+
+\begin{prop}{Propriétés de la multiplication par un scalaire.}{}
+    \begin{itemize}
+        \item $\forall A \in M_{n,p}(\K)$, $1\cdot A=A$.
+        \item $\cdot$ est distributif sur $+$.
+        \item $\forall \l, \mu \in \K, ~ \forall A \in M_{n,p}(\K), ~ \l(\mu\cdot A)=(\l\mu)\cdot A$.
+    \end{itemize}
+    \tcblower
+    Soit $A\in M_{n,p}(\K)$ et $\l,\mu\in\K$. Soient $(i,j)\in\lb1,n\rb\times\lb1,p\rb$.
+    \begin{equation*}
+        [(\l+\mu)A]_{i,j}=(\l+\mu)[A]_{i,j}=\l[A]_{i,j}+\mu[A]_{i,j}=[\l A]_{i,j}+[\mu A]_{i,j}=[\l A + \mu A]_{i,j}.
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{Autour du zéro et du symétrique.}{}
+    \begin{itemize}
+        \item $\forall A \in M_{n,p}(\K), ~ 0A=0_{n,p}$.
+        \item $\forall \l \in \K, ~ \l0_{n,p}=0_{n,p}$.
+        \item $\forall A \in M_{n,p}(\K), ~ -A=(-1)A$.
+        \item $\forall \l \in \K, ~ \forall A \in M_{n,p}(\K), ~ \l A = 0_{n,p} \ra (\l = 0 ~\ou~ A=0_{n,p})$.
+    \end{itemize}
+    \tcblower
+    Soit $\l\in\K$ et $A\in M_{n,p}(\K)$. Supposons que $\l A=0_{n,p}$ et $A\neq 0_{n,p}$.\\
+    Alors $\exists (i_0,j_0)\in\lb1,n\rb\times\lb1,p\rb\mid[A]_{i_0,j_0}\neq0$ et $\l [A]_{i_0,j_0}=0$ donc $\l=0$ par intégrité de $\K$.
+\end{prop}
+
+\begin{defi}{Matrice élémentaire.}{}
+    Soient $n,p\in\N^*$. Dans $M_{n,p}(\K)$, on note pour $(i,j)\in\lb1,n\rb\times\lb1,p\rb$ la matrice $E_{i,j}$ dont tous les coefficients sont nuls sauf celui à la position $(i,j)$ qui vaut 1.
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $A=(a_{i,j})\in M_{n,p}(\K)$. Alors:
+    \begin{equation*}
+        A=\sum_{i=1}^n\sum_{j=1}^p a_{i,j}E_{i,j}.
+    \end{equation*}
+    On a décomposé $A$ comme combinaison linéaire des $E_{i,j}$.
+\end{prop}
+
+\subsection{Produit matriciel.}
+
+Définir le produit de deux matrices en multipliant coefficient par coefficient n'a pas d'intérêt. Même si la définition qui suit peut sembler étrange au premier abord, nous verrons que le produit matriciel :\\
+--- a un lien avec la résolution des systèmes linéaires (partie 3).\\
+--- a un lien avec la composition des applications linéaires (second semestre).
+
+\begin{defi}{Produit matriciel.}{}
+    Soient deux matrices $A=(a_{i,j})\in M_{n,p}(\K)$ et $B=(b_{i,j})\in M_{p,q}(\K)$.\\
+    On appelle \bf{produit} de $A$ et $B$, et on note $AB$ la matrice de $M_{n,q}(\K)$ :
+    \begin{equation*}
+        AB=(c_{i,j}) \quad\nt{où}\quad \forall (i,j)\in\lb1,n\rb\times\lb1,q\rb, ~ c_{i,j}=\sum_{k=1}^pa_{i,k}b_{k,j}.
+    \end{equation*}
+\end{defi}
+
+\pagebreak
+
+\begin{ex}{}{}
+    Soient $A=\begin{pmatrix}
+        1 & 2 & 3 \\
+        4 & 5 & 6
+    \end{pmatrix}$, ~ $B=\begin{pmatrix}
+        3 & -1\\
+        5 & 0
+    \end{pmatrix}$, ~ $C=\begin{pmatrix}
+        0 & x \\
+        y & 0 \\
+        z & 0
+    \end{pmatrix}$, avec $x,y,z\in\R$.\\
+    Calculer $AA$, $AB$, $AC$, $BA$, $BC$, $CA$, $CB$, $CC$, lorsque le produit a un sens.
+    \tcblower
+    $AC=\begin{pmatrix}
+        2y+3z & x \\ 5y + 6z & 4x
+    \end{pmatrix}$, ~ $BA = \begin{pmatrix}
+        -1 & 1 & 3\\ 5 & 10 & 15
+    \end{pmatrix}$, ~ $BB=\begin{pmatrix}
+        4 & -3 \\ 15 & -5
+    \end{pmatrix}$, ~ $CA=\begin{pmatrix}
+        4x & 5x & 6x \\ y & 2y & 3y \\ z & 2z & 3z
+    \end{pmatrix}$, ~ $CB=\begin{pmatrix}
+        5x & 0\\ 3y & -y\\ 3z & -z
+    \end{pmatrix}$
+\end{ex}
+
+\begin{prop}{Propriétés du produit matriciel. $\star$}{}
+    Soient $A,B,C\in M(\K)$ et $\l,\mu\in\K$. Lorsque les produits ont un sens, on a :
+    \begin{enumerate}
+        \item $A(B+C)=AB+AC$.
+        \item $(A+B)C=AC+BC$.
+        \item $(\l A)B = A(\l B) = \l(AB)\quad\et\quad (\l A)(\mu B)=(\l \mu)AB$.
+        \item $(AB)C=A(BC)$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soient $A\in M_{n,p}(\K)$ et $B,C\in M_{p,q}(\K)$. Alors $A(B+C)\in M_{n,q}(\K)$ et $(AB+AC)\in M_{n,q}(\K)$.\\
+    Soit $(i,j)\in\lb1,n\rb\times\lb1,q\rb$.
+    \begin{align*}
+        [A(B+C)]_{i,j}&=\sum_{k=1}^p[A]_{i,k}[B+C]_{k,j}=\sum_{k=1}^p[A]_{i,k}[B]_{k,j}+\sum_{k=1}^p[A]_{i,k}[C]_{k,j}\\
+        &=[AB]_{i,j}+[AC]_{i,j}=[AB+AC]_{i,j}.
+    \end{align*}
+    \boxed{2.} Distributivité à droite : pareil.\\
+    \boxed{3.} Soient $A\in M_{n,p}(\K)$ et $B\in M_{p,q}(\K)$ et $\l,\mu\in\K$. Soit $(i,j)\in\lb1,n\rb\times\lb1,q\rb$.
+    \begin{equation*}
+        [(\l A)(\mu B)]_{i,j}=\sum_{k=1}^p[\l A]_{i,k}[\mu B]_{k,j}=\l \mu \sum_{k=1}^p[A]_{i,k}[B]_{k,j}=\l\mu[AB]_{i,j}=[(\l \mu)AB]_{i,j}.
+    \end{equation*}
+    \boxed{\star} Soient $A\in M_{n,p}(\K)$ et $B\in M_{p,q}(\K)$ et $C\in M_{q,r}(\K)$. Soit $(i,j)\in\lb1,n\rb\times\lb1,r\rb$.
+    \begin{align*}
+        [(AB)C]_{i,j} &= \sum_{k=1}^q[AB]_{i,k}[C]_{k,j}=\sum_{k=1}^q\left(\sum_{l=1}^p[A]_{i,l}[B]_{l,k}\right)[C]_{k,j}\\
+        &=\sum_{l=1}^p\sum_{k=1}^q[A]_{i,l}[B]_{l,k}[C]_{k,j}=\sum_{l=1}^p[A]_{i,l}\sum_{k=1}^q[B]_{l,k}[C]_{k,j}\\
+        &=\sum_{l=1}^p[A]_{i,l}[BC]_{l,j}=[A(BC)]_{i,j}.
+    \end{align*}
+\end{prop}
+
+\begin{prop}{Produit par la matrice nulle.}{}
+    \begin{equation*}
+        \forall A \in M_{n,p}(\K), \quad A\cdot0_{p,q}=0_{n,q} \quad\et\quad 0_{q,n}\cdot A=0_{q,p}.
+    \end{equation*}
+    \tcblower
+    Soit $A\in M_{n,p}(\K)$ et $(i,j)\in\lb1,n\rb\times\lb1,p\rb$.
+    \begin{equation*}
+        [A\cdot0_{p,q}]_{i,j}=\sum_{k=1}^p[A]_{i,k}[0_{p,q}]_{k,j}=\sum_{k=1}^p[A]_{i,k}\cdot0=0=[0_{n,q}]_{i,j}.
+    \end{equation*}
+\end{prop}
+
+\begin{ex}{Deux propriétés que le produit matriciel NE possède PAS.}{}
+    Considérons $A=\begin{pmatrix}0&1\\0&0\end{pmatrix}$ et $B=\begin{pmatrix}1&0\\0&0\end{pmatrix}$. On a $AB=0_{2,2}$ et $BA=\begin{pmatrix}0&1\\0&0\end{pmatrix}$. Ainsi,
+    \begin{enumerate}
+        \item Même lorsque les deux produits $AB$ et $BA$ ont un sens, et ont même type, l'égalité $AB=BA$ n'est pas toujours vraie : $A$ et $B$ ne commutent pas toujours.
+        \item Le produit $AB$ peut être nul sans que ni $A$ ni $B$ ne soit la matrice nulle.
+    \end{enumerate}
+\end{ex}
+
+\begin{defi}{Matrice diagonale.}{}
+    On appelle matrice \bf{diagonale} d'ordre $n$ toute matrice $D=(d_{i,j})\in M_n(\K)$ telle que
+    \begin{equation*}
+        \forall 1 \leq i,j \leq n, \quad i \neq j \ra d_{i,j}=0.
+    \end{equation*}
+    Pas de contrainte sur les coefficients $d_{i,i}$ dits coefficients diagonaux.\\
+    On note parfois, pour $d_1,...,d_n\in\K$,
+    \begin{equation*}
+        \nt{Diag}(d_1,...,d_n):=\begin{pmatrix}
+            d_1&0&...&0\\
+            0&d_2&\ddots&\vdots\\
+            \vdots&\ddots&\ddots&0\\
+            0&...&0&d_n
+        \end{pmatrix}
+    \end{equation*}
+\end{defi}
+\bf{Exemples.} $\begin{pmatrix}1&0\\0&-1\end{pmatrix}$ est diagonale, $\begin{pmatrix}1&0&0\\0&0&0\\0&0&3\end{pmatrix}$ aussi.
+
+\begin{prop}{Effet de la multiplication par une matrice diagonale.}{16}
+    Soit une matrice $M\in M_{n,p}(\K)$ et deux matrices diagonales.
+    \begin{equation*}
+        D=\nt{Diag}(d_1,...,d_n)\in M_n(\K) \quad\et\quad D'=\nt{Diag}(d_1',...,d_p')\in M_p(\K).
+    \end{equation*}
+    \begin{itemize}
+        \item La matrice $DM$ s'obtient en multipliant la ligne $i$ de $M$ par $d_i$, pour tout $i\in\lb1,n\rb$.
+        \item La matrice $MD'$ s'obtient en multipliant la collone $j$ de $M$ par $d'_j$, pour tout $i\in\lb1,p\rb$.
+    \end{itemize}
+\end{prop}
+
+\begin{defi}{}{}
+    Soit $n\in\N^*$. On appelle \bf{matrice identité} d'ordre $n$, et on note $I_n$ la matrice diagonale $M_n(\K)$ dont tous les coefficients diagonaux sont égaux à 1.
+    \begin{equation*}
+        I_n = \begin{pmatrix}
+            1&0&...&0\\
+            0&1&\ddots&\vdots\\
+            \vdots&\ddots&\ddots&&0\\
+            0&...&0&1
+        \end{pmatrix}
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{}{}
+    La matrice identité est neutre pour la multiplication matricielle :
+    \begin{equation*}
+        \forall A \in M_{n,p}(\K), ~ I_nA=A ~\et~ AI_p=A.
+    \end{equation*}
+    \tcblower
+    Application directe de \ref{prop:16}.
+\end{prop}
+
+
+\subsection{Transposition.}
+
+\begin{defi}{}{}
+    Soit $A=(a_{i,j})\in M_{n,p}(\K)$.\\
+    On appelle \bf{transposée} de la matrice $A$, et on note $A^\top$ la matrice de $M_{p,n}(\K)$ définie par
+    \begin{equation*}
+        A^\top=(a_{j,i}).
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{Transposée d'une combinaison linéaire.}{}
+    Pour toutes matrices $A$ et $B$ de $M_{n,p}(\K)$ et pour tous scalaires $\l,\mu$ de $\K$ :
+    \begin{equation*}
+        (\l A + \mu B)^{\top} = \l A^{\top} + \mu B^{\top}.
+    \end{equation*}
+    \tcblower
+    Soit $(i,j)\in\lb1,p\rb\times\lb1,n\rb$ : $[(\l A+\mu B)^\top]_{i,j}=[\l A + \mu B]_{j,i}=[\l A]_{j,i}+[\mu B]_{j,i}=[\l A^\top + \mu B^\top]_{j,i}$.
+\end{prop}
+
+\pagebreak
+
+\begin{prop}{Transposée d'un produit. $\star$}{}
+    Soient $A\in M_{n,p}(\K)$ et $B\in M_{p,q}(\K)$. Alors
+    \begin{equation*}
+        (AB)^\top = B^\top A^\top.
+    \end{equation*}
+    \tcblower
+    On a $AB\in M_{n,q}(\K)$ donc $(AB)^\top\in M_{q,n}(\K)$. Soient $(i,j)\in\lb1,q\rb\times\lb1,n\rb$.
+    \begin{align*}
+        [(AB)^\top]_{i,j}&=[AB]_{j,i}=\sum_{k=1}^p[A]_{j,k}[B]_{k,i}=\sum_{k=1}^p[A^\top]_{k,j}[B^\top]_{i,k}\\
+        &=\sum_{k=1}^p[B^\top]_{i,k}[A^\top]_{k,j}=[B^\top A^\top]_{i,j}.
+    \end{align*}
+\end{prop}
+
+\section{Matrices carrées.}
+
+\subsection{Structure d'anneau de \texorpdfstring{$M_n(\K)$}{Lg}}
+On rappelle que $M_n(\K)$ est l'ensemble des matrices carrées à $n$ lignes et $n$ colonnes.\n
+Pour $A=(a_{i,j})\in M_n(\K)$, on appellera \bf{coefficients diagonaux} les $n$ coefficients $a_{i,i}$ avec $i\in\lb1,n\rb$.
+
+\begin{prop}{Anneau ($M_n(\K), +, \times$)}{}
+    $(M_n(\K),+,\times)$ est un anneau.
+    \begin{itemize}
+        \item $0_n$ est le neutre additif.
+        \item $I_n$ est le neutre multiplicatif.
+    \end{itemize}
+\end{prop}
+
+\begin{defi}{}{}
+    Soit $A\in M_n(\K)$. On définit la puissance $p$-ième de $A$:
+    \begin{equation*}
+        A^0 = I_n; \quad\et\quad A^{p+1} = A^p\cdot A.
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{Toujours vrai.}{}
+    \begin{equation*}
+        \forall A \in M_n(\K), ~ \forall (p,q)\in\N^2, ~ \forall \l\in \K, ~ A^{p+q}=A^pA^q; ~ (\l A)^p = \l^pA^p; ~ (A^p)^q=A^{pq}.
+    \end{equation*}
+    \tcblower
+    Les deux premiers points ont été montrés par récurrence pour un anneau quelconque.\\
+    Soit $A\in M_{n}(\K)$ et $\l\in \K$. Soit $\P_n:$ << $(\l A)^p = \l^pA^p$ >>.\\
+    \bf{Initialisation.} $(\l A)^0=I_n$ et $\l^0A^0=I_n$.\\
+    \bf{Hérédité.} Soit $n\in\N\mid \P_n$; $(\l A)^{n+1}=(\l^pA^p)(\l A)=\l^{p+1}(A^pA)=\l^{p+1}A^{p+1}$.\\
+    Par récurrence, $\forall n \in \N, ~ \P_n$.
+\end{prop}
+
+\begin{prop}{}{}
+    Soient $A,B\in M_n(\K)\mid AB=BA$. Alors:
+    \begin{enumerate}
+        \item $\forall (p,q)\in\N^2, ~ A^pB^q=B^qA^p$.
+        \item $\forall p \in \N, ~ (AB)^p=A^pB^p$.
+        \item $\forall p \in \N, ~ A^p-B^p=(A-B)\sum_{k=0}^{p-1}A^kB^{p-k-1}$; ~ $(A+B)^p=\sum_{k=0}^p\binom{p}{k}A^kB^{p-k}$.
+    \end{enumerate}
+    \tcblower
+    Vrai dans un anneau quelconque.
+ \end{prop}
+
+\begin{ex}{}{}
+    Calculer les puissances de la matrice $A$ définie par
+    \begin{equation*}
+        A=\begin{pmatrix}
+            1&0&1\\
+            0&1&0\\
+            1&0&1
+        \end{pmatrix}
+    \end{equation*}
+    \tcblower
+    Par récurrence triviale, $\forall p\in\N^*, ~ A^p=\begin{pmatrix}
+        2^{p-1}&0&2^{p-1}\\
+        0&1&0\\
+        2^{p-1}&0&2^{p-1}
+    \end{pmatrix}$.\\
+    On conjecture la propriété en regardant les premières puissances de $A$.
+\end{ex}
+
+\pagebreak
+
+\begin{ex}{}{}
+    Soit $a\in\K$. On considère les matrices
+    \begin{equation*}
+        \begin{pmatrix}
+            0&1&0&0\\
+            0&0&1&0\\
+            0&0&0&1\\
+            0&0&0&0
+        \end{pmatrix}
+        \quad\et\quad M_a = \begin{pmatrix}
+            1&a&0&0\\
+            0&1&a&0\\
+            0&0&1&a\\
+            0&0&0&1
+        \end{pmatrix}
+    \end{equation*}
+    Vérifier que $N$ est nilpotente puis calculer l'inverse de $M_a$.
+    \tcblower
+    On vérifie facilement que $N^4=0$. On a $M_a=I_4+aN$ et $I_4=I_4^4+aN^4=(I_4+aN)\sum_{k=0}^{3}I_4(-aN)^k$\\
+    Donc $M_a^{-1}=I_4-aN+a^2N^2-a^3N^3$
+\end{ex}
+
+\begin{ex}{Puissance de la matrice Attila.}{}
+    Soit $J$ la matrice de $M_n(\K)$ dont tous les coefficients sont égaux à 1. Déterminer ses puissances.
+    \tcblower
+    On a $J^2\in M_n(\K)$ où tous les coefficients valent $n$ : $J^2=nJ$.\\
+    Par récurrence triviale, $\forall p \in \N^*, ~ J^p = n^{p-1}J$.
+\end{ex}
+
+\begin{prop}{Produit de deux matrices élémentaires de $M_n(\K)$.}{}
+    Soit $(E_{i,j}, ~ 1 \leq i,j \leq n)$ la base canonique de $M_n(\K)$. On a
+    \begin{equation*}
+        \forall i,j,k,l \in \lb1,n\rb, ~ E_{i,j}E_{k,l} = \d_{j,k}E_{i,l}.
+    \end{equation*}
+    où pour tout couple $(i,j)\in\N^2$, on définit le \bf{symbole de Kronecker} par $\d_{i,j}=\begin{cases}
+        1 &\nt{si} \quad i=j\\
+        0 &\nt{si} \quad i\neq j.
+    \end{cases}$
+\end{prop}
+
+\subsection{Trace d'une matrice carrée.}
+
+\begin{defi}{}{}
+    Soit $A=(a_{i,j})\in M_n(\K)$. On appelle \bf{trace} de la matrice $A$ et on note $\tr(A)$ la somme de ses coefficients diagonaux :
+    \begin{equation*}
+        \tr(A)=\sum_{i=1}^na_{i,i}.
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{Trace et opérations. $\star$}{}
+    Pour toutes matrices $A$ et $B$ carrées d'ordre $n$, pour tout $\l,\mu \in \K$,
+    \begin{itemize}
+        \item $\tr(A^\top)=\tr(A)$.
+        \item $\tr(\l A + \mu B)=\l\tr(A)+\mu\tr(B)$.
+        \item \boxed{\tr(AB)=\tr(BA)}.
+    \end{itemize}
+    \tcblower
+    $\bullet$ $\tr(\l A + \mu B)=\sum_{i=1}^n[\l A + \mu B]_{i,i}=\l\sum_{i=1}^n[A]_{i,i}+\mu\sum_{i=1}^n[B]_{i,i}=\l\tr(A)+\mu\tr(A)$.\\
+    $\star$ $\tr(AB)=\sum_{i=1}^n[AB]_{i,i}=\sum_{i=1}^n\sum_{j=1}^n[A]_{i,j}[B]_{j,i}=\sum_{i=1}^n\sum_{j=1}^n[B]_{j,i}[A]_{i,j}=\sum_{k=1}^n[BA]_{k,k}=\tr(BA)$.
+\end{prop}
+
+\subsection{Parties remarquables de \texorpdfstring{$M_n(\K)$}{Lg}}
+
+$\bullet$ \underline{\bf{Matrices diagonales.}}
+
+\begin{prop}{Matrices diagonales.}{}
+    Notons $D_n(\K)$ l'ensemble des matrices carrées diagonales de taille $n$.
+    \begin{enumerate}
+        \item $0_n\in D_n(\K)$.
+        \item $D_n(\K)$ est stable par combinaisons linéaires.
+        \item $D_n(\K)$ est stable par produit matriciel.
+    \end{enumerate}
+    \tcblower
+    Soient $D=\nt{Diag}(d_1,...,d_n)$ et $D'=\nt{Diag}(d_1',...,d_n')$ dans $D_n(\K)$. Soient $\l,\mu\in\K$.
+    \begin{equation*}
+        \l D + \mu D' = \begin{pmatrix}
+            \l d_1 + \mu d_1'&&&\\
+            & \ddots&&\\
+            &&\ddots&\\
+            &&&\l d_n + \mu d_n' 
+        \end{pmatrix} ~:~ \l D + \mu D'\in D_n(\K).
+    \end{equation*}
+    \begin{equation*}
+        DD'=\begin{pmatrix}
+            d_1d_1' &&&\\
+            &\ddots&&\\
+            &&\ddots&\\
+            &&& d_nd_n'
+        \end{pmatrix} ~:~ DD'\in D_n(\K).
+    \end{equation*}
+\end{prop}
+
+$\bullet$ \underline{\bf{Matrices triangulaires.}}
+
+\begin{defi}{Matrice triangulaire.}{}
+    Soit $T=(t_{i,j})\in M_n(\K)$. On dit qu'elle est \bf{triangulaire supérieure} si tous ses coefficients sous la diagonale sont nuls, c'est-à-dire
+    \begin{equation*}
+        \forall i,j \in \lb1,n\rb \quad i > j \ra t_{i,j}=0.
+    \end{equation*}
+    On dire que $T$ est \bf{triangulaire inférieure} si tous ses coefficients sur la diagonale sont nuls c'est-à-dire
+    \begin{equation*}
+        \forall i,j \in \lb1,n\rb \quad i < j \ra t_{i,j} = 0.
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{$\star$}{}
+    Notons ici $T_n^+(\K)$ (resp $T_n^-(\K)$) l'ensemble des matrices triangulaires supérieures (resp. inférieures) de taille $n$, à coefficients dans $\K$.
+    \begin{enumerate}
+        \item $T_n^+(\K)$ et $T_n^-(\K)$ contiennent la matrice nulle et sont stables par combinaison linéaire.
+        \item $T_n^+(\K)$ et $T_n^-(\K)$ sont stables par produit matriciel.
+    \end{enumerate}
+    \tcblower
+    Soient $T,T'\in T_n^+(\K)$ et $\l,\mu\in\K$.\\
+    \boxed{1.} Soient $i,j\in\lb1,n\rb$ tels que $i>j$
+    \begin{equation*}
+        [\l T + \mu T']_{i,j}=\l[T]_{i,j}+\mu[T']_{i,j}=0~:~\l T + \mu T'\in T_n^+(\K).
+    \end{equation*}
+    \boxed{\star} Soient $i,j\in\lb1,n\rb$ tels que $i>j$.
+    \begin{equation*}
+        [TT']_{i,j}=\sum_{k=1}^n\underbrace{[T]_{i,k}}_{0~\nt{si}~k<i}\times\underbrace{[T']_{k,j}}_{0~\nt{si}~k>j}=\sum_{k=1}^{i-1}\underbrace{[T]_{i,k}}_{0}[T']{k,j}+\sum_{k=i}^n[T]_{i,k}\underbrace{[T']_{k,j}}_{0}=0.
+    \end{equation*}
+    Donc $TT'\in T_n^+(\K)$
+\end{prop}
+
+$\bullet$ \bf{Matrices symétriques, antisymétriques.}
+
+\begin{defi}{Symétrie, antisymétrie.}{}
+    Soit $A\in M_n(\K)$. $A$ est symétrique si $A^\top=A$, antisymétrique si $A^\top=-A$.\\
+    L'ensemble des matrices symétriques de $M_n(\K)$ est $S_n(\K)$; antisymétriques de $M_n(\K)$ est $A_n(\K)$.\\
+    \bf{Remarque.} $S$ est symétrique $\iff$ $\forall(i,j)\in\lb1,n\rb^2, ~ [S]_{i,j}=[S]_{j,i}$.\\
+    \bf{Remarque.} $S$ est antisymétrique $\iff$ $\forall (i,j)\in\lb1,n\rb^2, ~ [S]_{i,j}=-[S]_{j,i}$.
+\end{defi}
+
+\begin{ex}{}{}
+    Monter que $S_n(\K)$ contient $0_n$, est stable par combinaison linéaire, mais pas par produit.
+    \tcblower
+    $\bullet$ $0_n^\top=0_n=-0_n$ donc $0_n\in S_n(\K)\cap A_n(\K)$.\\
+    $\bullet$ Soient $S,\tilde{S}\in S_n(\K)$ et $\l,\mu\in\K$.
+    \begin{equation*}
+        (\l S + \mu \tilde{S})^\top = \l S^\top + \mu\tilde{S}^\top = \l S + \mu \tilde{S} \in S_n(\K).
+    \end{equation*}
+    $\bullet$ $\begin{pmatrix}1&1\\1&1\end{pmatrix}\begin{pmatrix}1&0\\0&0\end{pmatrix}=\begin{pmatrix}1&0\\1&0\end{pmatrix}\notin S_2(\K)$.
+\end{ex}
+
+\begin{ex}{$\star$}{}
+    Démontrer que toute matrice de $M_n(\R)$ s'écrit de manière unique comme somme d'une matrice symétrique et d'une matrice antisymétrique.
+    \tcblower
+    Soit $M\in M_n(\K)$. Supposons l'existence de $S\in S_n(\K)$ et $A\in A_n(\K)$ tels que $S+A=M_n(\K)$.\\
+    Alors $(S+A)^\top=M^\top$ : $S^\top+A^\top=M^\top$ donc $S-A$ donc
+    \begin{equation*}
+        \begin{cases}
+            S+A=M\\
+            S-A=M^\top
+        \end{cases} \quad\nt{donc}\quad \begin{cases}
+            2S=M+M^\top\\
+            2A=M-M^\top
+        \end{cases} \quad\nt{donc}\quad \begin{cases}
+            S=\frac{M+M^\top}{2}\\
+            A=\frac{M-M^\top}{2}
+        \end{cases}
+    \end{equation*}
+    Ainsi, $(S,A)$ est unique.\n
+    Soient $S=\frac{1}{2}(M+M^\top)$ et $A=\frac{1}{2}(M-M^\top)$.\\
+    On a $S+A=M$ et $S\top=\frac{1}{2}(M^\top+M)=S$ et $A^\top=\frac{1}{2}(M^\top-M^{\cancel{\top^\top}})=-A$.\\
+    Donc $(S,A)$ convient et est unique.
+\end{ex}
+
+\subsection{Groupe des matrices inversibles.}
+
+\begin{defi}{}{}
+    Le groupe des inversibles de l'anneau $(M_n(\K),+,\times)$ est appelé \bf{groupe linéaire} et noté $GL_n(\K)$.\n
+    Ainsi, une matrice $A\in M_n(\K)$ est \bf{inversible} (c'est-à-dire appartient à $GL_n(\K)$) si
+    \begin{equation*}
+        \exists B\in M_n(\K) \quad AB=I_n \quad\et\quad BA=I_n.
+    \end{equation*}
+    Lorsque $A$ est inversible, une telle matrice $B$ est unique : on l'apelle \bf{inverse} de $A$, notée $A^{-1}$.
+\end{defi}
+
+\begin{prop}{Propriétés de groupe de $GL_n(\K)$.}{}
+    \begin{enumerate}
+        \item $I_n\in GL_n(\K)$.
+        \item $\forall (A,B)\in(GL_n(\K))^2 \quad AB\in GL_n(\K) ~\et~ (AB)^{-1}=B^{-1}A^{-1}$.
+        \item $\forall A\in GL_n(\K)\quad A^{-1}\in GL_n(\K) ~\et~ (A^{-1})^{-1}=A$.
+        \item $\forall A \in GL_n(\K)\quad\forall p\in \N\quad A^p\in GL_n(\K) ~\et~ (A^p)^{-1}=(A^{-1})^p$.
+    \end{enumerate}
+    \tcblower
+    Exactement pareil que pour un groupe quelconque.
+\end{prop}
+
+\begin{prop}{$GL_n(\K)$ est stable par transposition. $\star$}{}
+    Si $A\in M_n(\K)$ est une matrice inversible, alors
+    \begin{center}
+        $A^\top$ est inversible ~et~ $(A^\top)^{-1}=(A^{-1})^\top$.
+    \end{center}
+    \tcblower
+    Soit $A\in GL_n(\K)$ : $A^{-1}$ existe et $(A^{-1})^\top$ aussi.\\
+    $\bullet$ $A^\top\cdot(A^{-1})^\top=(A^{-1}A)^\top=I_n^\top=I_n$, ~ $(A^{-1})^\top(A^\top)=(AA^{-1})^\top=I_n^\top=I_n$.\\
+    Donc $A^\top$ est inversible et $(A^\top)^{-1}=(A^{-1})^\top$
+\end{prop}
+
+\begin{prop}{Inversibilité des matrices diagonales.}{}
+    Soit $D=\nt{Diag}(d_1,...,d_n)\in M_n(\K)$.
+    \begin{equation*}
+        D\in GL_n(\K) \iff (\forall i \in \lb1,n\rb, ~ d_i \neq 0) \iff D^{-1}=\nt{Diag}(d_1^{-1},...,d_n^{-1}).
+    \end{equation*}
+    \tcblower
+    Supposons que $\forall i \in \lb1,n\rb, ~ d_i\neq0$. On pose $\tilde{D}=\nt{Diag}(d_1^{-1},...,d_n^{-1})$.\\
+    Alors $D\tilde{D}=\nt{Diag}(1,...,1)=\tilde{D}D$ donc $\tilde{D}=D^{-1}$.\n
+    Par contraposée, supposons $\exists i \in \lb1,n\rb\mid d_i=0$.\\
+    Alors $\forall M\in M_n(\K), ~ DM$ a sa ligne $i$ nulle donc $DM\neq I_n$.\\
+    Donc $D$ n'a pas d'inverse a droite : elle n'est pas inversible.
+\end{prop}
+
+\begin{prop}{Inversibilité et inverse d'une matrice de taille 2. $\star$}{}
+    Soit $A=\begin{pmatrix}a&c\\b&d\end{pmatrix}\in M_2(\K)$. On appelle déterminant de $A$ le réel $\det(A)=ad-bc$. On a
+    \begin{equation*}
+        A^2-\tr(A)A+\det(A)I_2=0.
+    \end{equation*}
+    La matrice $A$ est inversible si et seulement si $\det(A)\neq0$. Si c'est le cas, on a
+    \begin{equation*}
+        A^{-1}=\frac{1}{\det(A)}\begin{pmatrix}d&-c\\-b&a\end{pmatrix}
+    \end{equation*}
+    \tcblower
+    On a $A^2=\begin{pmatrix}a^2+bc&ac+cd\\ab+bd&bc+d^2\end{pmatrix}$; ~ $\tr(A)A-\det(A)I_2=(a+d)\begin{pmatrix}a&c\\b&d\end{pmatrix}-\begin{pmatrix}ad-bc&0\\0&ad-bc\end{pmatrix}=...=A^2$.\\
+    On a $A^2-\tr(A)A+\det(A)I_2=0_2$.\\
+    \boxed{\la} Supposons $\det(A)\neq0$. Alors $A^2-\tr(A)A=-\det(A)I_2$.\\
+    Alors $A(A-\tr(A)I_2)=-\det(A)I_2$ donc $A\left( \frac{1}{\det(A)}(\tr(A)I_2-A) \right)=I_2$.\\
+    Posons $B=\frac{1}{\det(A)}\left( \tr(A)I_2-A \right)$. On a $AB=I_2$ et $BA=I_2$ donc $A$ inversible et $A^{-1}=B$.\\
+    \boxed{\ra} Supposons $\det(A)=0$, alors $A^2-\tr(A)A=0_2$ donc $A(A-\tr(A)I_2)=0_2$.\\
+    Supposons $A$ inversible par l'absurde. Alors $A-\tr(A)I_2=0_2$ puis $A=\tr(A)I_2$ et $\det(A)=\tr(A)^2$.\\
+    Donc $\tr(A)=0$ : $A=0_2$, absurde car $0_2$ n'est pas inversible.\\
+    Alors $A$ est inversible. 
+\end{prop}
+
+\bf{Remarque.} On définira la notion de déterminant d'une matrice carrée de taille quelconque en fin d'année, mais ce n'est pas une mince affaire... 
+
+\section{Systèmes linéaires et matrices.}
+
+\subsection{Écriture matricielle des systèmes linéaires. Structures des ensembles de solutions.}
+
+\begin{defi}{}{}
+    Soit $A=(a_{i,j})\in M_{n,p}(\K)$, ~ $X=\begin{pmatrix}x_1\\\vdots\\x_p\end{pmatrix}$ et $B=\begin{pmatrix}b_1\\\vdots\\b_n\end{pmatrix}$.\\
+    L'équation $AX=B$, d'inconnue $X\in M_{p,1}(\K)$ est appelée \bf{système linéaire} de $n$ équations linéaires sur $\K^p$, de \bf{second membre} $B$. Il s'écrit aussi
+    \begin{equation*}
+        \begin{pmatrix}
+            a_{1,1} & a_{1,2} & ... & a_{1,p}\\
+            \vdots & \vdots & & \vdots\\
+            a_{n,1} & a_{n,2} & ... & a_{n,p}
+        \end{pmatrix} \begin{pmatrix}
+            x_1\\
+            \vdots\\
+            x_p
+        \end{pmatrix} = \begin{pmatrix}
+            b_1\\
+            \vdots\\
+            b_n
+        \end{pmatrix} ~ i.e. \begin{cases}
+            a_{1,1}x_1 ~+~ a_{1,2}x_2 ~+~ ... ~+~ a_{1,p}x_p ~=~ b_1\\
+            a_{2,1}x_1 ~+~ a_{2,2}x_2 ~+~ ... ~+~ a_{2,p}x_p ~=~ b_2\\
+            \vdots\\
+            a_{n,1}x_1 ~+~ a_{n,2}x_2 ~+~ ... ~+~ a_{n,p}x_p ~=~ b_n
+        \end{cases}
+    \end{equation*}
+    On appelle \bf{solution} du système toute matrice colonne $X\in M_{p,1}(\K)$ vérifiant $AX=B$, ou encore tout $p$-uplet $(x_1,...,x_p)\in\K^p$ qui soit solution de chacune des $n$ équations.\n
+    Ainsi, l'ensemble des solutions d'un système linéaire est une partie de $M_{p,1}(\K)$ ou de $\K^p$, les notions de $p$-uplet et de matrice colonne à p lignes étant délibérément confondues.
+\end{defi}
+
+\begin{prop}{}{}
+    Un système linéaire de la forme $AX=0_{n,1}$ est dit \bf{homogène}.\\
+    L'ensemble $S_0$ de ses solutions contient le $p$-uplet nul et il est stable par combinaisons linéaires.
+    \begin{equation*}
+        S_0 = \{X\in M_{p,1}(\K) \mid AX=0_{n,1}\}.
+    \end{equation*}
+    \tcblower
+    $\bullet$ $A0_{p,1}=0_{n,1}$ donc $0_{p,1}\in S_0$.\\
+    $\bullet$ Soient $(\l,\mu)\in\K^2$ et $(X,Y)\in S_0$. $A(\l X+\mu Y)=\l(AX)+\mu(AY)=0$.
+\end{prop}
+
+\begin{defi}{}{}
+    Le système linéaire $AX=B$ est dit \bf{compatible} s'il possède une solution.
+\end{defi}
+
+\begin{prop}{Critère de compatibilité.}{}
+    Le système linéaire $AX=B$ est compatible ssi $BB$ est une combinaison linéaire des colonnes de $A$.
+    \tcblower
+    Soient $c_1,...,c_p$ les colonnes de $A$.
+    \begin{align*}
+        AX=B \nt{ est compatible} \iff& \exists X \in M_{p,1}(\K) \mid AX=B\\
+        \iff& \exists (x_1,...,x_p)\in\K^p \mid \sum_{i=1}^px_ic_i = B\\
+        \iff& B \nt{ est combinaison linéaire des colonnes de } A.
+    \end{align*}
+\end{prop}
+
+\begin{prop}{}{}
+    Soit $AX=B$ un système linéaire compatible et $X_{pa}\in M_{p,1}(\K)$ une solution particulière du système. L'ensemble des solutions $S$ s'écrit :
+    \begin{equation*}
+        S=\{X_{pa}+Y, ~ Y \in S_0\}.
+    \end{equation*}
+    où $S_0$ est l'ensemble des solutions de $AX=0_{n,1}$, système homogène associé.
+    \tcblower
+    Soit $X\in M_{p,1}(\K)$.
+    \begin{align*}
+        X \in S \iff& AX=B \iff AX=AX_{pa} \iff A(X-X_{pa})=0_{n,1}\\
+        \iff& X-X_{pa}\in S_0 \iff \exists Y \in S_0 \mid X-X_{pa}=Y\\
+        \iff& \exists Y \in S_0 \mid X = X_{pa}+Y.
+    \end{align*}
+\end{prop}
+
+\subsection{Méthode du pivot et résolution des systèmes linéaires.}
+
+\begin{ex}{Révisons la méthode du pivot.}{}
+    On résout à l'aide de l'algorithme du pivot le système linéaire
+    \begin{equation*}
+        \systeme{
+            3x + 4y + 9z = 8,
+            20x + 30y + 70z = 60,
+            x + y + 2z = 2
+        }
+    \end{equation*}
+\end{ex}
+
+\begin{defi}{}{}
+    On appelle \bf{opération élémentaire} sur les lignes d'un système ou d'une matrice l'une des opérations suivantes :
+    \begin{enumerate}
+        \item Échange des $i$èmes et $j$èmes lignes. On note $L_i\leftrightarrow L_j$.
+        \item Multiplication d'une ligne par un scalaire $\l$ non nul. On note $L_i\gets \l L_i$.
+        \item Ajout à la ligne $L_i~(i\neq j)$ multipliée par un scalaire $\mu$. On note $L_i \gets L_i+\mu L_j$.
+    \end{enumerate}
+\end{defi}
+
+\begin{defi}{Un peu de vocabulaire sur les systèmes linéaires.}{}
+    Dans un système ou dans une matrice, on appelle \bf{ligne nulle} une ligne où tous les coefficients sont nuls; elle correspond alors à l'équation $0=0$.\\
+    On appelle \bf{pivot} d'une ligne non nulle le premier coefficient non nul.\n
+    On dit qu'un système linéaire est \bf{échelonné} s'il a une structure en escalier. Plus précisément, si les lignes sous une ligne nulle sont toutes nulles et qu'à chaque ligne (non nulle), le pivot de la ligne se trouve strictement à droite du pivot de la ligne au-dessus.\n
+    Dans un système échelonné, on dit qu'une \bf{inconnue} et \bf{principale} si sur une des lignes du système, son coefficient est un pivot. Elle est dite \bf{secondaire} sinon.
+\end{defi}
+
+\begin{ex}{}{}
+    \begin{equation*}
+        (\cursive{L}_1)\systeme{
+            \boxed{1}x+y+z=0,
+            \boxed{2}y+z=2,
+            \boxed{4}y-z=-1,
+            0=\boxed{5}
+        } \quad (\cursive{L}_2) \systeme{
+            \boxed{1}x - y + z + t =0,
+            \boxed{2}z - t = 2,
+            0=0
+        }
+    \end{equation*}
+    \begin{itemize}
+        \item Dans les systèmes linéaires ci-dessus, on a encadré les \fbox{pivots}.
+        \item Le système $(\cursive{L}_2)$ est échelonné, contrairement au système $(\cursive{L}_1)$ qui ne l'est pas.
+        \item Dans le système $(\cursive{L}_2)$, $x$ et $z$ sont des inconnues principales, et $y$ et $t$ des inconnues secondaires.
+    \end{itemize}
+\end{ex}
+
+\begin{meth}{Écriture paramétrique de l'ensemble des solutions d'un système échelonné}{}
+    Lorsqu'un système échelonné a des inconnues secondaires, on peut donner une représentation paramétrique de l'ensemble des solutions :
+    \begin{itemize}
+        \item en prenant les inconnues secondaires comme des paramètres prenant des valeurs quelconques dans $\K$,
+        \item et en exprimant les inconnues principales en fonction de ces paramètres.
+    \end{itemize}
+\end{meth}
+
+\begin{prop}{Existence et unicité de solutions pour un système échelonné.}{}
+    \begin{enumerate}
+        \item Un système linéaire échelonné est compatible si et seulement si il ne comporte pas de pivot sur la colonne des seconds membres.
+        \item Un système échelonné compatible a une unique solution si et seulement si il n'a que des inconnues principales, ce qui n'arrive que pour une matrice carrée.\\
+        Son ensemble de solutions est alors un singleton; un tel système est dit \bf{de Cramer}.
+        \item Si le système échelonné possède au moins une inconnue secondaire, alors il possède une infinité de solutions. On sait donenr une écriture paramétrique de cet ensemble de solutions.
+    \end{enumerate}
+\end{prop}
+
+\begin{thm}{admis.}{}
+    L'algorithme du pivot transforme un système linéaire quelconque en un système linéaire échelonné ayant le même ensemble de solutions que le système de départ.
+\end{thm}
+
+\subsection{Systèmes linéaires et inversibilité des matrices.}
+
+\begin{thm}{Caractérisation de l'inversibilité d'une matrice en termes de systèmes linéaires.}{}
+    Soit $A\in M_n(\K)$. Les trois assertions ci-dessous sont équivalentes.
+    \begin{enumerate}
+        \item $A$ est inversible.
+        \item Le système homogène $AX=0_{n,1}$ a pour unique solution la colonne nulle $0_{n,1}$.
+        \item Pour tout $Y\in M_{n,1}(\K)$, le système linéaire $AX=Y$, d'inconnue $X\in M_{n,1}(\K)$, possède une unique solution.
+    \end{enumerate}
+\end{thm}
+
+\pagebreak
+
+\begin{corr}{un côté suffit.}{}
+    Pour une matrice carrée, l'existence d'un inverse à gauche (ou à droite) suffit pour que cette matrice soit inversible. Alors son inverse n'est autre que son inverse à gauche (ou à droite).\\
+    Plus précisément, pour $A\in M_{n}(\K)$ :
+    \begin{align*}
+        (\exists B \in M_n(\K) \quad BA=I_n) \ra (A \in GL_n(\K) ~\et~ A^{-1}=B).\\
+        (\exists B\in M_n(\K) \quad AB=I_n) \ra (A\in GL_n(\K) ~\et~ A^{-1}=B).
+    \end{align*}
+    \tcblower
+    Soit $A\in M_n(\K)$.\\
+    $\bullet$ Supposons $\exists B \in M_n(\K) \mid BA = I_n$. On pose $AX=0_{n,1}$ avec $X\in M_{n,1}(\K)$.\\
+    Supposons $X$ solution : $B(AX)=B0_{n,1}$, donc $X=0_{n,1}$ est l'unique solution de $AX=0_{n,1}$.\\
+    Alors $A$ est inversible par caractérisation. On a $BA=I_n$ donc $BAA^{-1}=A^{-1}$ donc $B=A^{-1}$.\\
+    $\bullet$ Supposons $\exists B \in M_n(\K)\mid B=I_n$.\\
+    On a un inverse à gauche pour $B$ : $B$ est inversible et $B^{-1}=A$. Donc $A^{-1}=(B^{-1})^{-1}=B$. 
+\end{corr}
+
+\begin{corr}{vers une méthode de calcul effectif de l'inverse}{}
+    Soit $A\in M_n(\K)$. S'il existe une matrice $B\in M_n(\K)$ telle que
+    \begin{equation*}
+        \forall (X,Y) \in M_{n,1}(\K) \quad AX=Y \iff X=BY.
+    \end{equation*}
+    alors $A$ est inversible et $A^{-1}=B$.
+    \tcblower
+    Soit $Y\in M_{n,1}(\K)$. L'unique solution de $AX=Y$ d'inconnue $X\in M_{n,1}(\K)$ est $BY$.\\
+    Par caractérisation, $A$ est inversible.\\
+    Notons $E_1,E_2,...,E_n$ les colonnes de $I_n$. Par hypothèse, $AX=E_j$ a pour unique solution $BE_j$ pour tout $j$.\\
+    Or $AX=E_j$ a aussi pour solution $A^{-1}E_j$. Ainsi, $\forall j \in \lb1,n\rb, ~ BE_j=A^{-1}E_j$. Alors :
+    \begin{equation*}
+        B=BI_n = B(E_1\mid E_2 \mid ... \mid E_n) = (BE_1 \mid ... \mid BE_n) = A^{-1}(E_1 \mid ... \mid E_n) = A^{-1}I_n = A^{-1} 
+    \end{equation*}
+\end{corr}
+
+\begin{meth}{calcul de l'inverse : en posant le système.}{}
+    Soit $A\in M_n(\K)$. Pour calculer l'inverse de $A$ (s'il existe) :
+    \begin{enumerate}
+        \item on pose le système linéaire $AX=Y$, avec $X,Y\in M_{n,1}(\K)$;
+        \item on échelonne le système : s'il n'y a que des inconnues principales, le système est de Cramer et la matrice $A$ est inversible;
+        \item on peut alors réaliser des opérations élémentaires supplémentaires sur les lignes, pour éliminer les coefficients au dessus de la diagonale : on obtient une égalité du type $X=BY$ et
+        \begin{center}
+            \boxed{A^{-1}=B}.
+        \end{center}
+    \end{enumerate}
+\end{meth}
+
+\begin{ex}{}{}
+    Inversibilité et inverse de $A=\begin{pmatrix}1&1&1\\0&1&1\\0&0&1\end{pmatrix}$.
+    \tcblower
+    \boxed{1.} On pose $AX=Y$ avec $X=\begin{pmatrix}x\\y\\z\end{pmatrix}$ et $Y=\begin{pmatrix}a\\b\\c\end{pmatrix}$.
+    \begin{equation*}
+        AX=Y \iff \systeme{x+y+z=a,y+z=b,z=c}.
+    \end{equation*}
+    \boxed{2.} On échelonne (c'est déjà fait). Pas d'inconnues secondaires : une unique solution. Donc $A\in GL_3(\R)$.\\
+    \boxed{3.} On résout :
+    \begin{equation*}
+        \systeme{x=a-b,y=b-c,z=c} \quad\nt{i.e.}\quad\begin{pmatrix}x\\y\\z\end{pmatrix}=\begin{pmatrix}1&-1&0\\0&1&-1\\0&0&1\end{pmatrix}\begin{pmatrix}a\\b\\c\end{pmatrix}.
+    \end{equation*}
+    On a $AX=Y\iff X=BY$ avec $B=\begin{pmatrix}1&-1&0\\0&1&-1\\0&0&1\end{pmatrix}$. Donc $A^{-1}=B$.
+\end{ex}
+
+\pagebreak
+
+\begin{prop}{CNS d'inversibilité d'une matrice triangulaire.}{}
+    Une matrice triangulaire est inversible ssi ses coefficients diagonaux sont tous non nuls.
+    \tcblower
+    Soit $T=\begin{pmatrix}t_1&&&(*)\\&t_2&&\\&&\ddots&\\(0)&&&t_n\end{pmatrix}$ une matrice triangulaire. Soit $X\in M_{n,1}(\K)$ : $X=\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}$.\\
+    On pose $TX=0_{n,1}$. Alors :
+    \begin{equation*}
+        \begin{cases}
+            t_1x_1 + ... &= 0\\
+            \quad t_2x_2 + ... &= 0\\
+            \hspace*{1.2cm}\vdots\\
+            \quad\quad t_nx_n &= 0
+        \end{cases}
+    \end{equation*}
+    \begin{align*}
+        T \nt{ est inversible } \iff& X=0_{n,1} \nt{ est l'unique solution de } TX=0\\
+        \iff& \nt{ pas d'incconues secondaires pour ce système.}\\
+        \iff& \forall i \in \lb1,n\rb, ~ t_i \neq 0.
+    \end{align*}
+\end{prop}
+
+\subsection{Méthode du pivot et calcul de l'inverse.}
+
+À voir dans le poly : matrices de transposition, dilatation et transvection.
+
+\setthmcounter{64}
+
+\begin{prop}{}{}
+    Les opérations élémentaires préservent l'inversibilité.
+\end{prop}
+
+\begin{meth}{calcul de l'inverse : en opérant sur l'identité en parallèle.}{}
+    Soit $A\in M_n(\K)$. On va travailler par opérations sur la matrice $(A\mid I_n)\in M_{n,2n}(\K)$.
+    \begin{itemize}
+        \item On échelonne $A$, en faisant les opérations élémentaires sur $(A \mid I_n)$.
+        \begin{equation*}
+            \left(\quad A \quad \Biggr| \quad I_n \quad\right) \quad \substack{\curvearrowright\\\nt{pivot}} \quad \left( \quad T \quad \Biggr| \quad * \quad \right).
+        \end{equation*}
+        La matrice $A$ est inversible ssi la matrice $T$ l'est, c'est-à-dire si cette dernière n'a que des coefficients diagonaux non nuls.
+        \item Dans le dernier cas, à l'aide d'opérations élémentaires, on transforme $T$ en la matrice $I_n$. La matrice à droite de la membrane n'est autre que $A^{-1}$.
+        \begin{equation*}
+            \left(\quad T \quad \Biggr| \quad * \quad \right) \quad \substack{\curvearrowright\\\nt{pivot}} \quad \left( \quad I_n \quad \Biggr| \quad A^{-1} \quad \right).
+        \end{equation*}
+        \item Complexité ? Le nombre d'opérations algébriques (somme, produit) effectuées est un $O(n^3)$.
+    \end{itemize}
+\end{meth}
+\bf{Explications.} Transformer $A$ en $I_n$ en faisant des opérations élémentaires sur les lignes revient à multiplier $A$ à gauche par des matrices de permutation, de dilation ou de transvection $E_1,...,E_N$ où $N\in\N$. On a
+\begin{equation*}
+    E_NE_{N-1}...E_1A=I_n.
+\end{equation*}
+La matrice $E_NE_{N-1}...E_1$ est un inverse à gauche de $A$. En travaillant sur la "double-matrice" $(A\mid I_n)$, on calcule ce produit au fur et à mesure, en réalisant toutes les opérations faites sur $A$, simultanément sur la matrice à droite de la membrane.
+
+\begin{ex}{Une diagonalisation.}{}
+    Soient
+    \begin{equation*}
+        A=\frac{1}{2}\begin{pmatrix}5&-1&1\\-2&6&2\\-1&1&7\end{pmatrix} \quad\et\quad P=\begin{pmatrix}1&1&-1\\1&-1&1\\-1&1&1\end{pmatrix}.
+    \end{equation*}
+    \begin{enumerate}
+        \item Montrer que $P$ est inversible et calculer $P^{-1}$.
+        \item Montrer que $A=P^{-1}DP$, où \small$D=\begin{pmatrix}2&0&0\\0&3&0\\0&0&4\end{pmatrix}$\normalsize.
+        \item Calculer $D^n$ puis $A^n$.
+        \item Justifier que $D$ est inversible et donner son inverse. En déduire $A^{-1}$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.}
+    \begin{align*}
+        \left(\quad P \quad \Biggr| \quad I_3 \quad \right) =& \begin{pmatrix}1&1&-1&|&1&0&0\\1&-1&1&|&0&1&0\\-1&1&1&|&0&0&1\end{pmatrix} \substack{\sim\\L_2\gets L_2-L_1\\L_3\gets L_3+L_1} \begin{pmatrix}1&1&-1&|&1&0&0\\0&-2&2&|&-1&1&0\\0&2&0&|&1&0&1\end{pmatrix}\\
+        \substack{\sim\\ L_3\gets L_3+L_2}&\begin{pmatrix}1&1&-1&|&1&0&0\\0&-2&2&|&-1&1&0\\0&0&2&|&0&1&1\end{pmatrix}\substack{\sim\\ L_2\gets -\frac{1}{2}L_2\\ L_3\gets\frac{1}{2}L_3}\begin{pmatrix}1&1&-1&|&1&0&0\\0&1&-1&|&\frac{1}{2}&-\frac{1}{2}&0\\0&0&1&|&0&\frac{1}{2}&\frac{1}{2}\end{pmatrix}\\
+        \substack{\sim\\ L_2\gets L_2 + L_3\\ L_1\gets L_1+L_3}&\begin{pmatrix}1&1&0&|&1&\frac{1}{2}&\frac{1}{2}\\0&1&0&|&\frac{1}{2}&0&\frac{1}{2}\\0&0&1&|&0&\frac{1}{2}&\frac{1}{2}\end{pmatrix}\substack{\sim\\ L_1\gets L_1 - L_2}\begin{pmatrix}1&0&0&|&\frac{1}{2}&\frac{1}{2}&0\\0&1&0&|&\frac{1}{2}&0&\frac{1}{2}\\0&0&1&|&0&\frac{1}{2}&\frac{1}{2}\end{pmatrix}=P^{-1}
+    \end{align*}
+\end{ex}
+
+\begin{ex*}{Suite du 66}
+    \boxed{2.} Facile.\\
+    \boxed{3.} $A^n=P^{-1}D^nP$.\\
+    \boxed{4.} $D$ est inversible car diagonale à coefficients diagonaux non nuls, et $D^{-1}=\begin{pmatrix}\frac{1}{2}&0&0\\0&\frac{1}{3}&0\\0&0&\frac{1}{4}\end{pmatrix}$.\\
+    Alors $A=P^{-1}DP$ inversible comme produit d'inversibles, $A^{-1}=(P^{-1}DP)^{-1}=P^{-1}D^{-1}P$.
+\end{ex*}
+
+\section{Exercices.}
+
+\subsection*{Combinaisons linéaires de matrices. Produit de matrices.}
+
+\begin{exercice}{$\bww$}{}
+    Soit $A$ une matrice carrée de $M_n(\C)$ et $\s(A)$ la somme de ses coefficients.\\
+    Notons $J$ la matrice de $M_n(\C)$ dont tous les coefficients sont égaux à 1. Monter que $JAJ=\s(A)J$.
+    \tcblower
+    Soit $(i,j)\in\lb1,n\rb^2$.
+    \begin{equation*}
+        [JAJ]_{i,j}=\sum_{k=1}^n[JA]_{i,k}[J]_{k,j}=\sum_{k=1}^n\sum_{l=1}^n[J]_{k,l}[A]_{l,k}=\sum_{k=1}^n\sum_{l=1}^n[A]_{l,k}=\s(A)=\s(A)[J]_{i,j}=[\s(A)J]_{i,j}.
+    \end{equation*}
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Soit $\theta$ un réel. Calculer les puissances des trois matrices définies ci-dessous:
+    \begin{equation*}
+        A=\begin{pmatrix}
+            0&1&-\sin(\theta)\\
+            -1&0&\cos(\theta)\\
+            -\sin(\theta)&\cos(\theta)&0
+        \end{pmatrix}, \qquad B = \begin{pmatrix}
+            1 & 1 & -\sin(\theta)\\
+            -1 & 1 & \cos(\theta)\\
+            -\sin(\theta) & \cos(\theta) & 1
+        \end{pmatrix}, \qquad C = \begin{pmatrix}
+            \cos \theta & -\sin \theta & 0\\
+            \sin \theta & \cos \theta & 0\\
+            0 & 0 & -1
+        \end{pmatrix}.
+    \end{equation*}
+    \tcblower
+    \fbox{A.} On a $A^3=0_3$ donc $\forall n \geq 3, ~ A^n=0$.\\
+    \fbox{B.} On a $B=A+I_3$ donc $\forall n \in \N, ~ B^n=\sum_{k=0}^n\binom{n}{k}A^k=\sum_{k=0}^2\binom{n}{k}A^k$.\\
+    \fbox{C.} On montre facilement par récurrence que $\forall n \in \N^*, ~ C^n=\begin{pmatrix}\cos(n\theta)&-\sin(n\theta)&0\\\sin(n\theta)&\cos(n\theta)&0\\0&0&(-1)^n\end{pmatrix}$.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soient $a,b\in\R$. Calculer les puissances de la matrice $\begin{pmatrix}a+b&0&a\\0&b&0\\a&0&a+b\end{pmatrix}$.
+    \tcblower
+    Soit $\g = \begin{pmatrix}1&0&1\\0&0&0\\1&0&1\end{pmatrix}$. Par récurrence, $\forall n \in \N, ~ \g^n=\begin{pmatrix}n&0&n\\0&0&0\\n&0&n\end{pmatrix}$.\\
+    On a de plus $A=a\g+bI_3$ donc $A^n=\sum_{k=0}^n\binom{n}{k}a^kb^{n-k}\g^k$. 
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $(a,b,c)\in\K^3$. On considère la matrice
+    \begin{equation*}
+        A=\begin{pmatrix}
+            a^2&ab&ac\\ab&b^2&bc\\ac&bc&c^2
+        \end{pmatrix}
+    \end{equation*}
+    \begin{enumerate}
+        \item Exprimer $A$ à l'aide d'une matrice colonne et de sa transposée.
+        \item Calculer les puissances de $A$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} On pose $\g = \begin{pmatrix}a\\b\\c\end{pmatrix}$. On a $\g\g^\top=\begin{pmatrix}a\\b\\c\end{pmatrix}\begin{pmatrix}a&b&c\end{pmatrix}=\begin{pmatrix}a^2&ab&ac\\ab&b^2&bc\\ac&bc&c^2\end{pmatrix}=A$.\\
+    \boxed{2.} On a $A^2=\g(\g^\top\g)\g^\top=\g(\tr(A)I_1)\g^\top=\tr(A)\g\g^\top=\tr(A)A$.\\
+    Par récurrence : $\forall n \in \N, ~ A^n=\tr(A)^{n-1}A$.  
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\bww$}{}
+    Soient $A$ et $B$ deux matrices symétriques. Démontrer que $AB$ est symétrique ssi $AB=BA$.
+    \tcblower
+    \boxed{\ra} Supposons $AB\in S_n(\K)$. Alors $AB=(AB)^\top=B^\top A^\top=BA$.\\
+    \boxed{\la} Supposons $AB=BA$. Alors $(AB)^\top=(BA)^\top$ puis $B^\top A^\top=A^\top B^\top$ et $BA=AB$.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $A=(a_{i,j})$ une matrice carrée de $M_n(\K)$. Elle est dite centro-symétrique si
+    \begin{equation*}
+        \forall i,j\in\lb1,n\rb, ~ a_{n+1_i,n+1-j}=a_{i,j}.
+    \end{equation*}
+    On note $C_n(\K)$ l'ensemble des matrices centro-symétriques de taille $n$.
+    \begin{enumerate}
+        \item Donner une exemple de matrice de $C_2(\R)$ et de $C_3(\R)$.
+        \item Montrer que $C_n(\K)$ est stable par combinaison linéaire.
+        \item Montrer que $C_n(\K)$ est stable par produit.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} $I_2\in C_2(\R)$ et $I_3\in C_3(\R)$.\\
+    \boxed{2.} Soient $A,B\in C_n(\K)$, $\l,\mu\in\K$ et $(i,j)\in\lb1,n\rb^2$.
+    \begin{align*}
+        [\l A + \mu B]_{i,j}&=\l[A]_{i,j}+\mu[B]_{i,j}=\l[A]_{n+1-i,n+1-j}+\mu[B]_{n+1-i,n+1-j}\\
+        &=[\l A +\mu B]_{n+1-i,n+1-j}
+    \end{align*}
+    Donc $(\l a+\mu B)\in C_n(\K)$.\\
+    \boxed{3.} Soient $A,B\in C_n(\K)$, $(i,j)\in\lb1,n\rb^2$.
+    \begin{align*}
+        [AB]_{i,j}&=\sum_{k=1}^n[A]_{i,k}[B]_{k,j}=\sum_{k=1}^n[A]_{n+1-i,n+1-k}[B]_{n+1-k,n+1-j}\\
+        &=[AB]_{n+1-i,n+1-j}
+    \end{align*}
+    Donc $(AB)\in C_n(\K)$.
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Soient $A$ et $B$ deux matrices de $M_n(\K)$. Démontrer que $AB-BA\neq I_n$. 
+    \tcblower
+    On suppose par l'absurde que $AB-BA=I_n$ alors $\tr(AB-BA)=\tr(I_n)=n$. Soient $(i,j)\in\lb1,n\rb^2$.
+    \begin{align*}
+        \tr(AB-BA)&=\sum_{i=1}^n[AB]_{i,i}-[BA]_{i,i}=\sum_{i=1}^n\sum_{j=1}^n[A]_{i,j}[B]_{j,i}-[B]_{i,j}[A]_{j,i}\\
+        &=\sum_{i=1}^n\sum_{j=1}^n[A]_{i,j}[B]_{j,i}-\sum_{i=1}^n\sum_{j=1}^n[A]_{j,i}[B]_{i,j}=0
+    \end{align*}
+    Donc $n=0$, absurde.
+\end{exercice}
+
+\vspace*{-0.2cm}
+
+\begin{exercice}{$\bww$}{}
+    Soit $A=(a_{i,j})\in M_n(\R)$. Justifier l'équivalence $\tr(A^\top A)=0\iff A=0_{n,n}$.
+    \tcblower
+    \boxed{\ra} Supposons que $\tr(A^\top A)=0$. Alors
+    \begin{equation*}
+        \sum_{i=1}^n[A^\top A]_{i,i} = \sum_{i=1}^n\sum_{j=1}^n[A^\top]_{i,j}[A]_{j,i}=\sum_{i=1}^n\sum_{j=1}^n[A]_{i,j}^2=0
+    \end{equation*}
+    C'est une somme nulle de termes positifs, tous les termes sont nuls donc $A=0_{n,m}$.\\
+    \boxed{\la} Supposons que $A=0_{n,n}$. Alors $A^\top A=0_{n,n}$ et $\tr(A^\top A)=0$.
+\end{exercice}
+
+\vspace*{-0.2cm}
+
+\begin{exercice}{$\bbb$}{}
+    Soit un couple de matrices $(A,B)\in M_n(\K)^2$ tel que
+    \begin{equation*}
+        \forall X \in M_n(\K), \quad AXB=0.
+    \end{equation*}
+    Montrer que $A=0$ ou $B=0$.
+    \tcblower
+    Supposons par l'absurde que $A\neq0_n$ et $B\neq0_n$ : $\exists(i,j,k,l)\in\lb1,n\rb^4\mid[A]_{i,j}\neq0\et[B]_{k,l}\neq0$.\\
+    On note $C_{i}$ la matrice colonne de $M_{n,1}(\K)$ dont tous les coefficients sont nuls sauf le $i$-ème qui vaut 1.\\
+    On note $L_i$ la matrice ligne de $M_{1,n}(\K)$ dont tous les coefficients sont nuls sauf le $i$-ème qui vaut 1.\\
+    Alors $L_i\underbrace{AC_jL_kB}_{=0}C_l=[A]_{i,j}[B]_{k,l}I_1=0_1$ donc $[A]_{i,j}[B]_{k,l}=0$ donc $[A]_{i,j}=0$ ou $[B]_{k,l}=0$. Absurde.
+\end{exercice}
+
+\subsection*{Matrices inversibles et leurs inverses.}
+
+\begin{exercice}{$\bww$}{}
+    Pour tout $\theta\in\R$, on note $A(\theta)=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin(\theta)&\cos(\theta)\end{pmatrix}$.
+    \begin{enumerate}
+        \item Pour $\theta,\theta'\in\R$, calculer $A(\theta)A(\theta')$.
+        \item Soit $\theta\in\R$. Justifier que $A(\theta)$ est inversible et calculer $A(\theta)^{-1}$.
+        \item Expliciter le morphisme de groupes qui a été croisé dans cet exercice.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} $A(\theta)A(\theta')=...=A(\theta+\theta')$.\\
+    \boxed{2.} $\det(A\theta)=\cos^2\theta+\sin^2\theta=1$ donc inversible et $A^{-1}(\theta)=\frac{1}{\det(A(\theta))}\begin{pmatrix}\cos\theta&\sin\theta\\-\sin(\theta)&\cos\theta\end{pmatrix}=A(-\theta)$.\\
+    \boxed{3.} On a $\phi:\begin{cases}\R&\to\quad GL_2(\R)\\\theta\mapsto A(\theta)\end{cases}$ de $(\R,+)$ dans $(GL_2(\R),\times)$.
+\end{exercice}
+
+\vspace*{-0.2cm}
+
+\begin{exercice}{$\bbw$}{}
+    \begin{enumerate}
+        \item Soit $N$ une matrice nilpotente, c'est-à-dire qu'il existe $n\in\N\mid N^n=0$.\\
+        En considérant $I_n-N^n$, montrer que $I_n-N$ est inversible et exprimer son inverse en fonction de $N$.
+        \item En utilisant ce qui précède, calculer l'inverse de $\begin{pmatrix}1&1&0\\0&1&1\\0&0&1\end{pmatrix}$.
+        \item Vérifier en recalculant l'inverse à l'aide du pivot.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} On a $I_n^p-N^p=(I_n-N)\sum_{k=0}^{n-1}N^k\cancel{I_n^{n-1-k}}=I_n$.\\
+    Donc $\sum_{k=0}^{n-1}N^k=(I_n-N)^{-1}$.\\
+    \boxed{2.} On pose $N=\begin{pmatrix}0&-1&0\\0&0&-1\\0&0&0\end{pmatrix}$, on a $N^3=0_3$.\\
+    De plus, $I_n-N=\begin{pmatrix}1&1&0\\0&1&1\\0&0&1\end{pmatrix}$, d'inverse $I_n+N+N^2=\begin{pmatrix}1&-1&1\\0&1&-1\\0&0&1\end{pmatrix}$.\\
+    \boxed{3.} Et puis quoi encore ?
+\end{exercice}
+
+\vspace*{-0.3cm}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $n\in\N^*$ et $\w=e^{\frac{2i\pi}{n}}$. On considère $M=(m_{i,j})\in M_n(\C)$ définie par :
+    \begin{equation*}
+        \forall i,j \in \lb1,n\rb, ~ m_{i,j}=\w^{(i-1)(j-1)}.
+    \end{equation*}
+    On pose $\ov{M}=(\ov{m_{i,j}})$.
+    \begin{enumerate}
+        \item Calculer $M\ov{M}$.
+        \item Justifier que $M$ est inversible et donner $M^{-1}$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soit $(i,j)\in\lb1,n\rb^2$.
+    \begin{align*}
+        [M\ov{M}]_{i,j}&=\sum_{k=1}^n[M]_{i,k}[\ov{M}]_{k,j}=\sum_{k=1}^n\w^{(i-1)(k-1)}\ov{\w}^{(k-1)(j-1)}\\
+        &=\sum_{k=1}^n\left(\w^{i-1}\ov{\w}^{j-1}\right)^{k-1}=\w^{j-i}\sum_{k=1}^n\w^{k(i-j)}
+    \end{align*}
+    Si $i=j, ~ [M\ov{M}]_{i,j}=n$. Sinon, $[M\ov{M}]_{i,j}=\w^{j-i}\frac{1-\w^{n(i-j)}}{1-\w^{i-j}}=...=\w^{i-j}$.\\
+    \boxed{2.} On montre par le calcul que $\frac{1}{n}\ov{M}$ est l'inverse de $M$.
+\end{exercice}
+
+\vspace*{-0.3cm}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $A$ une matrice inversible telle que la somme des coefficients de chaque ligne vaut $s$.\\
+    Démontrer que $s\neq0$ puis que la somme des coefficients sur chaque ligne de $A^{-1}$ vaut $s^{-1}$.
+    \tcblower
+    Supposons par l'absurde que $s=0$. Soient $i,j\in\lb1,n\rb$. Alors $\sum_{k=1}^n[A]_{i,k}=s=0$.\\
+    Donc $[A^{-1}]_{j,i}\sum_{k=1}^n[A]_{i,k}=0$, donc :
+    \begin{align*}
+        \sum_{i=1}^n[A^{-1}]_{j,i}\sum_{k=1}^n[A]_{i,k}=0=\sum_{i=1}^n\sum_{j=1}^n[A^{-1}]_{j,i}[A]_{i,k}.
+    \end{align*}
+    Donc $\ds\sum_{k=1}^n\sum_{i=1}^n[A^{-1}]_{j,i}[A]_{i,k}=\sum_{k=1}^n[A^{-1}A]_{j,k}=\sum_{j=1}^n[I_n]_{j,k}=0$.\\
+    Or, $\sum_{j=1}^n[I_n]_{j,k}=1$ donc $1=0$, absurde, donc $s\neq0$.\\
+    Soit $i\in\lb1,n\rb$ et $k\in\lb1,n\rb$. Alors $\ds\sum_{j=1}^n[A^{-1}]_{i,j}[A]_{j,k}=[I_n]_{i,k}.$. On a $\ds\sum_{k=1}^n[A]_{i,j}=s$ donc $\ds[A^{-1}]_{k,i}\sum_{k=1}^n[A]_{i,j}=s[A^{-1}]_{k,i}$.\\
+    $\ds\sum_{i=1}^n[A^{-1}]_{k,i}\sum_{k=1}^n[A]_{i,j}=s\sum_{i=1}^n[A^{-1}]_{k,i}=\sum_{i=1}^n\sum_{j=1}^n[A^{-1}]_{k,i}[A]_{i,j}=\sum_{k=1}^n[I_n]_{k,j}=1$. Or $s\neq0$ donc $\ds\sum_{i=1}^n[A^{-1}]_{k,i}=s^{-1}$.
+\end{exercice}
+
+\vspace*{-0.2cm}
+
+\begin{exercice}{$\bbw$}{}
+    Dans tout l'exercice, $n$ est un entier supérieur à 2.
+    \begin{enumerate}
+        \item Soit $M\in M_n(\R)$. On suppose qu'il existe $a\in\R$ et $b\in\R^*$ tels que
+        \begin{equation*}
+            M^2 + aM + bI_n = 0.
+        \end{equation*}
+        Montrer que $M$ est inversible et exprimer son inverse en fonction de $M$.
+        \item Soit $J\in M_n(\R)$ la matrice dont tous les coefficients sont égaux à 1.\\
+        Calculer $J^2$. Montrer que $J-I_n$ est inversible et calculer son inverse.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} On a $M(M+ai_N)=-bI_n$ donc $M(-\frac{1}{b}M-\frac{a}{b}I_n)=I_n$ donc $M^{-1}=-\frac{1}{b}M-\frac{a}{b}I_n$.\\
+    \boxed{2.} Soit $(i,j)\in\lb1,n\rb^2$. $[J^2]_{i,j}=...=n$. On a $(J-I_n)^2=J^2-2J+I_n$.\\
+    Donc d'après 1., $J-I_n\in GL_n(\R)$ et $(J-I_n)^{-1}=\frac{1}{n-1}J-I_n$.
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Soient $A$ et $B$ dans $M_n(\R)$ telles que $AB=A+B$. Montrer que $A$ et $B$ commutent.
+    \tcblower
+    On a $A+B=AB$ donc $AB-A-B+I_n=I_n$ donc $(A-I_n)(B-I_n)=I_n$.\\
+    Alors $(A-I_n)^{-1}=(B-I_n)$ donc $(A-I_n)$ et $(B-I_n)$ commutent.\\
+    Donc $(A-I_n)(B-I_n)=(B-I_n)(A-I_n)$ donc $AB-A-B+I_n=BA-A-B+I_n$ donc $AB=BA$. 
+\end{exercice}
+
+\end{document}
