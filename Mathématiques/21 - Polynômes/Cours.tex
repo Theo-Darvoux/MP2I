@@ -1,0 +1,1229 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{21}
+\def\pagetitle{Polynômes}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\thispagestyle{fancy}
+
+\section{Polynômes à travers leurs coefficients.}
+
+\subsection{Combinaisons linéaires et produits de polynômes formels.}
+
+\begin{defi}{}{}
+    On appelle \bf{polynôme} à coefficients dans $\K$ une suite d'éléments de $\K$ nulla à.p.d.c.r.\n
+    L'\bf{ensemble des polynômes} à coefficients dans $\K$ est noté $\K[X]$.
+    \begin{itemize}
+        \item La suite nulle est un polynôme. Il est appelé \bf{polynôme nul} et noté $0$, ou $0_{\K[X]}$.
+        \item La suite $(1,0,0,...)$ est un polynôme. Il est appelé polynôme constant égal à 1 et noté 1.
+        \item La suite $(0,1,0,...)$ est un polynôme. Il est noté $X$ et appelé \bf{indéterminée}.
+        \item Soit $n\in\N$. La suite dont tous les termes sont nuls sauf celui de rang $n$ qui vaut 1 est un polynôme qu'on notera $X^n$. On l'appelle \bf{monôme} d'ordre $n$.
+    \end{itemize}
+\end{defi}
+
+\begin{defi}{}{}
+    Soient $P=(a_k)_{k\in\N}$ et $Q=(b_k)_{k\in\N}$ deux polynômes de $\K[X]$. Soit $\l\in\K$.\\
+    La suite $(a_k+b_k)_{k\in\N}$ est un polynôme de $\K[X]$, qui sera noté $P+Q$.\\
+    La suite $(\l a_k)_{k\in\N}$ est un polynôme de $\K[X]$, qui sera noté $\l\P$.
+\end{defi}
+
+\begin{corr}{}{}
+    Soit $P=(a_k)_{k\in\N}$ un polynome de $\K[X]$ et $m$ un entier tel que $\forall k > m, ~ a_k = 0$. Alors
+    \begin{equation*}
+        P=\sum_{k=0}^ma_kX^k
+    \end{equation*}
+\end{corr}
+
+\begin{nota}{}{}
+    Un polynôme $P=(a_k)_{k\in\N}$ de $\K[X]$ sera désormais noté
+    \begin{equation*}
+        P=\sum a_kX^k.
+    \end{equation*}
+    Il s'agit juste d'une notation, qui permet d'oublier que les polynômes, formellement, sont des suites (on n'a pas besoin de savoir cela dans la pratique).
+\end{nota}
+
+\begin{corr}{}{}
+    Soient $P=\sum a_kX^k$ et $Q=\sum b_kX^k$ deux polynômes de $\K[X]$ et $\l,\mu$ deux scalaires de $\K$. Alors
+    \begin{equation*}
+        \l P + \mu Q = \sum (\l a_k + \mu b_k)X^k.
+    \end{equation*}
+\end{corr}
+
+\begin{defi}{}{}
+    Soient $P=\sum a_kX^k$ et $Q=\sum b_kX^k$ deux polynômes de $\K[X]$.\\
+    Soit $(c_k)_{k\geq0}$ la suite définie pour tout $k\in\N$ par
+    \begin{equation*}
+        c_k=\sum_{i=0}^ka_ib_{k-i}.
+    \end{equation*}
+    La suite $c$ est un polynôme : on l'appelle \bf{produit} de $P$ et $Q$ et on le note $PQ$ :
+    \begin{equation*}
+        \left( \sum a_kX^k \right)\left( \sum b_kX^k \right) = \sum \left( \sum_{i=0}^ka_ib_{k-i} \right)X^k.
+    \end{equation*}
+\end{defi}
+
+\subsection{Évaluation d'un polynôme.}
+
+\begin{defi}{où l'on retrouve les fonctions polynomiales.}{}
+    Soit $P=\sum a_kX^k$ un polynôme de $\K[X]$.\\
+    Pour $\a\in\K$, on appelle \bf{évaluation} de $P$ en $\a$, et on note $P(\a)$ le nombre
+    \begin{equation*}
+        P(\a)=\sum_{k=0}^{+\infty}a_k\a^k \quad (P\in\K[X] ~\et~ P(\a) \in \K);
+    \end{equation*}
+    La somme précédente est finie puisque la suite $(a_n)$ est par définition nulle apdcr.\\
+    On parlera de $\tilde{P}:x\mapsto P(x)$ comme de la \bf{fonction polynomiale associée} à $P$.
+\end{defi}
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item Soit $P=X^3-3X+4$. Évaluer $P$ en $2$ et $-1$.
+        \item Quelle est la fonction polynomiale associée à $P=X^2-1$ ? à $Q=X$ ?
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} $P(2)=6$ et $P(-1)=6$.\\
+    \boxed{2.} $\tilde{P}:x\mapsto x^2-1$, ~ $\tilde{Q}:x\mapsto x$.
+\end{ex}
+
+\begin{prop}{opérations et évaluations.}{}
+    Soient $P,Q\in\K[X]$, $x\in\K$ et $(\l,\mu)\in\K^2$.
+    \begin{equation*}
+        (\l P + \mu Q)(x) = \l P(x) + \mu Q(x), \quad\et\quad (PQ)(x)=P(x)Q(x).
+    \end{equation*}
+\end{prop}
+
+\begin{ex}{Méthode de Horner.}{}
+    Soit $n\in\N$ et $a_0,...,a_n\in\K$, et $P=\sum a_kX^k$. Soit $\a\in\K$. On peut calculer $P(\a)$ ainsi :
+    \begin{equation*}
+        P(\a) = ((...((a_n\a + a_{n-1})\a + a_{n-2})\a + ...)\a + a_1)\a + a_0.
+    \end{equation*}
+    Le nombre d'opérations à effectuer est en $O(n)$.
+\end{ex}
+
+\begin{defi}{}{}
+    Soit $P\in\K[X]$. Une \bf{racine} de $P$ dans $\K$ est un nombre $\a\in\K$ tel que $P(\a)=0$.
+\end{defi}
+
+\begin{ex}{}{}
+    Donner une racine réelle de $P=X^5-X^4+X^3-X^2+X-1$.\\
+    Donner les racines de $X^5-1$ dans $\C$.
+    \tcblower
+    $\bullet$ On a $P(1)=0$.\\
+    $\bullet$ L'ensemble des racines est $\U_5$
+\end{ex}
+
+\subsection{Structure d'anneau de \texorpdfstring{$\K[X]$}{Lg}.}
+
+\begin{thm}{}{}
+    $(\K[X],+,\times)$ est un anneau commutatif.
+    \tcblower
+    Preuve hors-programme. Écrite dans l'autre poly.
+\end{thm}
+
+\begin{prop}{Cohérence de la notation $X^n$}{}
+    Pour tout $n\in\N$, le polynôme $X^n$ est bien le $n$ème itéré de $X$.
+\end{prop}
+
+\begin{ex}{}{}
+    Dans la pratique, on calcule en se ramenant à faire des produits de monômes $X^k$ comme on le faisait avec les fonctions polynomiales.
+    \begin{itemize}
+        \item Développer $(X^3+3)(X^4-5X^2+X)$.
+        \item À l'aide d'identités remarquables, factoriser $1+X^4+X^8$.
+    \end{itemize}
+    \tcblower
+    $\bullet$ C'est $X^7-5X^5+4X^4-15X^2+3X$.\\
+    $\bullet$ $1+X^4+X^8=1+2X^4+X^8-X^4=(1+X^4)^2-X^4=(X^4+1-X^2)(X^4+1+X^2)$.
+\end{ex}
+
+\begin{ex}{Formule de Vandermonde. $\star$}{}
+    Soient $(p,q,n)\in\N^3$. En considérant $(X+1)^p(X+1)^q$, montrer que
+    \begin{equation*}
+        \sum_{k=0}^n\binom{p}{k}\binom{q}{n-k}=\binom{p+q}{n}.
+    \end{equation*}
+    \tcblower
+    On a $(X+1)^p(X+1)^q=(X+1)^{p+q}=\sum_{k=0}^{p+q}\binom{p+q}{k}X^k$ d'une part.\\
+    D'autre part :
+    \begin{equation*}
+        (X+1)^p(X+1)^q=\left(\sum_{i=0}^p\binom{p}{i}X^i\right)\left( \sum_{i=0}^q\binom{q}{i}X^i \right)=\sum_{n\in\N}\sum_{i=0}^n\binom{p}{i}\binom{q}{n-i}X^n.
+    \end{equation*}
+    Par unicité, on a $\ds\binom{p+q}{n}=\sum_{k=0}^n\binom{p}{k}\binom{q}{n-k}$.
+\end{ex}
+
+\subsection{Composition.}
+
+\begin{defi}{Composition.}{}
+    Soient deux polynômes $P=\sum a_kX^k$ et $Q$. Leur \bf{composée} $P\circ Q$ est définie par
+    \begin{equation*}
+        P\circ Q = \sum_{k\in\N}a_kQ^k.
+    \end{equation*}
+\end{defi}
+
+\bf{Remarques.}
+\begin{enumerate}
+    \item On vérifiera que $X\circ P=P\circ X=X$, ce qui explique que l'on écrit parfois $P(X)$ au lieu de $P$.
+    \item De la même façon, on écrira $P(X^2)$, ou $P(Q(X))$ pour désigne $P\circ X^2$ et $P\circ Q$.
+    \item L'écriture $P(X+1)$ peut être trompeuse : il s'agit de $P\circ(X+1)$, et non de $P\times(X+1)$. Pour le produit, on écrira $(X+1)P$.
+\end{enumerate}
+
+\subsection{Degré.}
+
+\begin{defi}{}{}
+    Soit $P=\sum a_kX^k$ un polynôme de $\K[X]$, non nul.\\
+    On appelle \bf{degré} de $P$, et on note $\deg(P)$ l'indice du dernier coefficient non nul de $P$:
+    \begin{equation*}
+        \deg(P)=\max\{k\in\N ~:~ a_k\neq0\}.
+    \end{equation*}
+    Par ailleurs, on pose $\deg(0_{\K[X]})=-\infty$.
+\end{defi}
+
+\begin{defi}{}{}
+    Soit $P=\sum a_kX^k$ et $d\in\N$.
+    \begin{equation*}
+        \deg(P)=d \iff \left( P=a_dX^d + \sum_{k=0}^{d-1}a_kX^k ~\et~ a_d \neq 0 \right).
+    \end{equation*}
+    Si $P$ est un polynôme non nul de degré $d\in\N$, alors $a_d$ est appelé \bf{coefficient dominant} de $P$.\\
+    Si ce coefficient vaut $1$, le polynôme $P$ est dit \bf{unitaire.}\\
+    Notation locale du coefficient dominant de $P$ : $\cd(P)$.
+\end{defi}
+
+\pagebreak
+
+\begin{ex}{}{}
+    Soit $n\in\N^*$ et $P=(X+2)^n-(X+1)^n$. Calculer le degré de $P$ et son coefficient dominant.
+    \tcblower
+    On a:
+    \begin{align*}
+        P&=\sum_{k=0}^n\binom{n}{k}X^k2^{n-k} - \sum_{k=0}^n\binom{n}{k}X^l=\sum_{k=0}^n\binom{n}{k}X^k(2^{n-k}-1)\\
+        &=(2^{n-n+1}-1)X^{n-1}+\sum_{k=0}^{n-2}\binom{n}{k}X^k(2^{n-k}-1)=nX^{n-1}+...
+    \end{align*}
+    Donc $\deg(P)=n-1$ et $\cd(P)=n$.
+\end{ex}
+
+\begin{prop}{$\star$}{}
+    Soient $P,Q\in\K[X]$ deux polynômes. On a les résultats suivants :
+    \begin{enumerate}
+        \item $\deg(P+Q)\leq\max(\deg(P),\deg(Q))$, avec égalité si $\deg(P)\neq\deg(Q)$.
+        \item $\forall \l \in \K, ~ \deg(\l P) \leq \deg(P)$ avec égalité si $\l\neq0$.
+        \item \boxed{\deg(PQ)=\deg(P)+\deg(Q)}.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soient $P=\sum a_kX^k$ et $Q=\sum b_kX^k$.\\
+    --- Si l'un est nul (supposons $P$), alors $P+Q=Q$ donc $\deg(P+Q)=\deg(Q)=\max(\deg(P),\deg(Q))$.\\
+    --- Si $P\neq0$ et $Q\neq0$. On note $p=\deg(p)$ et $q=\deg(Q)$.\\
+    Alors $P+Q=\sum_{k=0}^m (a_k+b_k)X^k$ où $m=\max(p,q)$ donc $\deg(P+Q)\leq m = \max(p,q)$.\\
+    $\bullet$ Supposons $p\neq q$.\\
+    --- Si $p<q$, alors $P+Q=b_qX^q + ...$ donc $\deg(P+Q)=q$.\\
+    --- Si $p>q$, alors $P+Q=a_pX^p+...$ donc $\deg(P+Q)=p$.\\
+    \boxed{2.} Trivial.\\
+    \boxed{\star} Soient $P=\sum a_kX^k$ et $Q=\sum b_kX^k$.\\
+    \bf{1er cas.} $P=0$ ou $Q=0$ (supposons $Q=0$ SPDG).\\
+    D'une part, $\deg(PQ)=\deg(0)=-\infty$.\\
+    D'autre part, $\deg(P)+\deg(Q)=\deg(P) + (-\infty) = -\infty$.\\
+    \bf{2e cas.} $P\neq0$ et $Q\neq0$. Notons $p=\deg(P)$ et $q=\deg(Q)$.\\
+    Alors $PQ=a_pb_qX^{p+q} + ...$, donc $\deg(PQ)=p+q=\deg(P)+\deg(Q)$.\\
+    Bonus : $\cd(PQ)=\cd(P)\cd(Q)$.
+\end{prop}
+
+\bf{Complément.} $\deg(P\circ Q)=\deg(P)\times\deg(Q)$ (avec $Q\neq0$).
+
+\vspace{0.7cm}
+
+\begin{ex}{Polynômes de Tchebychev. $\star$}{}
+    Soit $(T_n)_{n\in\N}$ une suite de polynômes définie par
+    \begin{equation*}
+        T_0=1, \quad T_1=X, \quad \forall n\in\N, ~ T_{n+2}=2XT_{n+1}-T_n.
+    \end{equation*}
+    \begin{enumerate}
+        \item Calculer $T_2,T_3,T_4$ et $T_5$.
+        \item Donner pour tout entier $n$ le degré et le coefficient dominant de $T_n$.
+        \item Démontrer que pour tout $n\in\N$ et tout $\theta\in\R$, $\cos(n\theta)=T_n(\cos(\theta))$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} $T_2=2X^2-1$, $T_3=4X^3-3X$, $T_4=8X^4-8X^2+1$, $T_5=16X^5-20X^3+5X$.\\
+    \boxed{2.} Conjectures : pour $n\in\N$, $\deg(T_n)=n$ et $\cd(T_n)=2^{n-1}$. Par récurrence sur $n$:\\
+    \bf{Initialisation.} Faux au rang $0$, mais vrai aux rangs $1$ et $2$.\\
+    \bf{Hérédité.} Soit $n\in\N^*$ tel que les conjectures sont vraies aux rangs $n$ et $n+1$.
+    \begin{align*}
+        T_{n+2} = 2XT_{n+1}-T_n \quad \nt{donc} \quad \deg(T_{n+2})\leq\max(\deg(2XT_{n+1}), \deg(-T_n))=\max(n+2,n)=n+2.
+    \end{align*}
+    Il y a égalité car $n+2\neq n$ donc $\deg(T_{n+2})=n+2$. La première conjecture est vérifiée.\\
+    De plus, $\exists Q_n \in \K[X] \mid T_{n+1}=2^nX^{n+1}+Q_n$ et $\deg(Q_n)\leq n$.\\
+    Or $T_{n+2}=2X(2^nX^{n+1}+Q_n)-T_n=2^{n+1}X^{n+2}+(2XQ_n-T_n)$ on a bien $\cd(T_{n+2})=2^{n+1}=2^{n+2-1}$.\\
+    Par récurrence, on conclut.\\
+    \boxed{3.} Soit $\theta\in\R$ fixé. Pour $n\in\N$, on pose $\P_n$ : << $\cos(n\theta)=T_n\cos(\theta)$ >>.\\
+    \bf{Initialisation.} On a $T_0(\cos(\theta))=1=\cos(0)$; ~ $T_1(\cos(\theta))=\cos(\theta)$ donc $\P_0$ et $\P_1$ sont vérifiées.\\
+    \bf{Hérédité.} Soit $n\in\N$ tel que $\P_n$ et $\P_{n+1}$.\\
+    On rappelle que $2\cos(a)\cos(b)=\cos(a+b)+\cos(a-b)$ et que $\cos$ est paire.
+    \begin{align*}
+        T_{n+2}(\cos\theta)&=(2XT_{n+1}-T_n)(\cos\theta)=2\cos\theta T_{n+1}(\cos\theta)-T_n(\cos\theta)\\
+        &=2\cos\theta\cos((n+1)\theta)-\cos(n\theta)=\cos((n+2)\theta)+\cos(-n\theta)-\cos(n\theta)\\
+        &=\cos((n+2)\theta).
+    \end{align*}
+    Donc $\P_{n+2}$ est vraie. Par récurrence, on conclut.
+\end{ex}
+
+\pagebreak
+
+\begin{corr}{}{}
+    Pour $n\in\N$, on notera $\K_n[X]$ l'ensemble des polynômes à coefficients dans $\K$, de degré inférieur ou égal à $n$. Cet ensemble contient le polynôme nul et est stable par combinaisons linéaires.
+    \tcblower
+    Soit $n\in\N$.\\
+    $\bullet$ $\deg(0_{\K[X]})\leq n$ donc $0_{\K[X]}\in\K_n(X)$.\\
+    $\bullet$ Soient $P,Q\in\K_n[X]$ et $\l,\mu\in\K$ : $\deg(\l P + \mu Q) \leq \max(\deg(P),\deg(Q))\leq n$.
+\end{corr}
+
+\begin{corr}{}{}
+    L'anneau $\K[X]$ est intègre : il est commutatif, et sans diviseurs de zéro ;
+    \begin{equation*}
+        \forall P,Q\in\K[X], ~ PQ=0 \ra (P=0 ~\ou~ Q=0).
+    \end{equation*}
+    Ainsi, pouvouns-nous << simplifier >> par un polynôme non nul :
+    \begin{equation*}
+        \forall A,B,C\in\K[X], ~ (AB=AC ~\et~ A\neq0) \ra B=C.
+    \end{equation*}
+    \tcblower
+    Soient $P,Q\in\K[X]$ tels que $PQ=0$. Alors $\deg(P)+\deg(Q)=-\infty$ alors $\deg(P)=-\infty$ ou $\deg(Q)=-\infty$ alors $P=0$ ou $Q=0$.\\
+    Soient $A,B,C\in\K[X]$ tels que $AB=AC$ et $A\neq0$. Alors $A(B-C)=0$ donc $B-C=0$ donc $B=C$.
+\end{corr}
+
+\begin{corr}{Les inversibles de l'anneau des polynômes sont ceux constants non nuls.}{}
+    \begin{equation*}
+        U(\K[X])=\K_0[X]\setminus\{0_{\K[X]}\}.
+    \end{equation*}
+    \tcblower
+    Soit $P\in U(\K[X])$ : $\exists Q \in \K[X] \mid PQ=1_{\K[X]}$.\\
+    Alors $\deg(P)+\deg(Q)=\deg(1_{\K[X]})=0$, alors $\deg(P)=\deg(Q)=0$ donc $\exists a \in \K \mid P=a1_{\K[X]}$.
+\end{corr}
+
+\subsection{Dérivation dans \texorpdfstring{$\K[X]$}{Lg}.}
+
+\begin{defi}{}{}
+    Soit $P=\sum a_kX^k$ un polynôme de $\K[X]$. Le polynôme
+    \begin{equation*}
+        P'=\sum_{k\in\N}(k+1)a_{k+1}X^k
+    \end{equation*}
+    est appelé \bf{polynôme dérivé} de $P$.
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $P\in\R[X]$. La fonction polynomiale associée au polynôme dérivé $P'$ est la dérivée de la fonction polynomiale associée à $P$.
+    \tcblower
+    Soit $\ds P\in\R[X]\mid P=\sum_{k=0}^na_kX^k$, on pose $\ds\tilde{P}:x\mapsto \sum_{k=0}^na_kx^k$ dérivable : $\ds\tilde{P}':x\mapsto\sum_{k=0}^{n-1}(k+1)a_{k+1}x^k$.\\
+    Donc pour $x\in\R$, $P'(x)=\tilde{P}'(x)$.
+\end{prop}
+
+\begin{prop}{}{}
+    \begin{equation*}
+        \forall P \in \K[X], ~ \deg(P)~\nt{est constant} \iff P' = 0_{\K[X]}.
+    \end{equation*}
+    \tcblower
+    Soit $P=\sum a_kX^k$.
+    \begin{align*}
+        P~\nt{est constant} &\iff \forall k \geq 1, ~ a_k = 0 \iff \forall k \geq 0, ~ a_{k+1}=0\\
+        &\iff \forall k \geq 0, ~ (k+1)a_{k+1}=0 \iff P'=0_{\K[X]}.
+    \end{align*}
+\end{prop}
+
+\vspace*{-0.3cm}
+
+\begin{prop}{Degré du polynôme dérivé.}{}
+    \begin{equation*}
+        \forall P \in \K[X], ~ \deg(P')=\begin{cases}\deg(P)-1 &\nt{si $P$ n'est pas constant.}\\ -\infty &\nt{si $P$ est constant.}\end{cases}
+    \end{equation*}
+    \tcblower
+    Soit $P=\sum a_kX^k$. On suppose $P\neq0$. On note $n=\deg(P)$. On a $P=a_nX^n+...$ donc $P'=na_nX^{n-1}+...$\\
+    $\bullet$ Si $n\geq1$, $na_n\geq0$ donc $\deg(P')=n-1=\deg(P)-1$.\\
+    $\bullet$ Si $n=0$, $P=a_0$ donc $P'=0_{\K[X]}$ donc $\deg(P')=-\infty$.
+\end{prop}
+
+\begin{prop}{Dérivation et opérations.}{}
+    Soient $P,Q\in\K[X]$ et $\l,\mu\in\K$.
+    \begin{align*}
+        (\l P + \mu Q)' = \l P' + \mu Q' \quad &\nt{et} \quad (PQ)' = P'Q + PQ'.\\
+        \forall n \in \N, ~ (P^n)'=nP'P^{n-1} \quad &\nt{et} \quad (P\circ Q)'=Q'\cdot P'\circ Q.
+    \end{align*}
+\end{prop}
+
+\begin{defi}{}{}
+    Soit $P\in\K[X]$ et $k\in\N$. On définit la \bf{dérivée $k$-eme} de $P$, que l'on note $P^{(k)}$, en posant
+    \begin{equation*}
+        P^{(0)}=P \quad \et \quad \forall k \in \N, ~ P^{(k+1)}=(P^{(k)})'.
+    \end{equation*}
+\end{defi}
+
+\begin{ex}{}{}
+    \begin{equation*}
+        \forall n,k \in \N, ~ \forall a \in \K, ~ ((X-a)^n)^{(k)} = \begin{cases}\frac{n!}{(n-k)!}(X-a)^{n-k} \quad \nt{si} ~ 0 \leq k \leq n\\ 0 \quad \nt{si } k > n\end{cases}
+    \end{equation*}
+    \tcblower
+    Soient $n,k\in\N$ et $a\in\K$.\\
+    On a $((X-a)^n)^{(1)}=n(X-a)^{n-1}$, $((X-a)^n)^{(2)}=n(n-1)(X-a)^{n-2}$.\\
+    En itérant: $((X-a)^n)^{(k)}=n(n-1)...(n-(k-1))(X-a)^{n-k}$.\\
+    Si $k>n$, alors $((X-a)^n)^{(k)}=0$, sinon $((X-a)^n)^{(k)}=\frac{n!}{(n-k)!}(X-a)^{n-k}$.
+\end{ex}
+
+\begin{prop}{Linéarité de la dérivée $n$ème et formule de Leibniz (admis).}{}
+    \begin{equation*}
+        \forall (P,Q)\in\K[X], ~ \forall (\l,\mu)\in\K^2, ~ \forall n \in \N, ~ (\l P + \mu Q)^{(n)} = \l P^{(n)} + \mu Q^{(n)}.
+    \end{equation*}
+    \begin{equation*}
+        \forall (P,Q)\in\K[X], ~ \forall n \in \N, ~ (PQ)^{(n)} = \sum_{k=0}^n\binom{n}{k}P^{(k)}Q^{(n-k)}.
+    \end{equation*}
+\end{prop}
+
+\begin{prop}{Formule de Taylor pour les polynômes}{}
+    Soit $n\in\N$, $P\in\K_n[X]$ et $a\in\K$. Alors :
+    \begin{equation*}
+        P=\sum_{k=0}^n\frac{P^{(k)}(a)}{k!}(X-a)^k
+    \end{equation*}
+    \tcblower
+    \bf{Initialisation.} $\frac{P^{(0)}(a)}{0!}(X-a)^0=P(a)$ avec $P\in\K_0[X]$, or $P$ constant donc $P=P(a)$. Vrai.\\
+    \bf{Hérédité.} Soit $n\in\N$ tel que la propriété soit vraie. Soit $P\in\K_{n+1}[X]$, alors $P'\in\K_n[X]$ :
+    \begin{equation*}
+        P'=\sum_{k=0}^n\frac{P^{(k+1)}(a)}{k!}(X-a)^k.
+    \end{equation*}
+    On pose $Q=\sum_{k=0}^{n+1}\frac{P^{(k)}(a)}{k!}(X-a)^k$ donc $(P-Q)'=...=0$ donc $\exists c\in\K\mid P-Q=c$.\\
+    Or $Q(a)=...=P(a)$ donc $c=0$ donc $P=Q$ donc la propriété est vraie au rang $n+1$.\\
+    Par récurrence, la propriété est vraie pour tout $n\in\N$.
+\end{prop}
+
+\section{Racines et factorisation d'un polynôme.}
+
+\subsection{Divisibilité et division euclidienne dans \texorpdfstring{$\K[X]$}{Lg}.}
+
+\begin{defi}{}{}
+    Soit $(A,B)\in\K[X]^2$. On dit que $B$ \bf{divise} $A$ s'il existe un polynôme $Q\in\K[X]$ tel que $A=BQ$.\\
+    On note alors $B\mid A$.
+\end{defi}
+
+\begin{ex}{}{}
+    Tous les polynômes divisent le polynôme nul.\\
+    Pour $n\in\N^*$, $X-1$ divise $X^n-1$ :
+    \begin{equation*}
+        X^n - 1 = (X-1)\sum_{k=0}^{n-1}X^k, \quad \nt{notamment} \quad X^3-1=(X-1)(X^2+X+1).
+    \end{equation*}
+\end{ex}
+
+\pagebreak
+
+\begin{prop}{}{}
+    Soient deux polynômes $A$ et $B$ de $\K[X]$, $A$ étant non nul. Si $B$ divise $A$, alors $\deg(B)\leq\deg(A)$.
+    \tcblower
+    Supposons $B\mid A$ et $A\neq0$ : $\exists Q \in \K[X]\mid A=BQ$.\\
+    Donc $\deg(A)=\deg(BQ)=\deg(B)+\deg(Q)$ donc $\deg(A)-\deg(B)=\deg(Q)\geq0$ car $Q\neq0$.\\
+    On a bien $\deg(B)\leq\deg(A)$.
+\end{prop}
+
+\vspace*{-0.3cm}
+
+\begin{defi}{}{}
+    La relation divise sur $\K[X]$ est réflexive et transitive, mais elle n'est pas antisymétrique :
+    \begin{equation*}
+        (A \mid B \et B \mid A) \iff \exists \l \in \K^* ~:~ A=\l B.
+    \end{equation*}
+    On dit alors que $A$ et $B$ sont \bf{associés}.
+\end{defi}
+
+\begin{thm}{$\star$}{}
+    Soit $(A,B)\in\K[X]^2$ avec $B\neq0$. Il existe un unique couple $(Q,R)\in\K[X]^2$ tel que
+    \begin{equation*}
+        A=BQ+R \quad\et\quad \deg(R) < \deg(B).
+    \end{equation*}
+    \tcblower
+    \bf{Unicité.} Soient $(Q_1,R_1)$ et $(Q_2,R_2)$ dans $\K[X]^2$ tels que ...\\
+    On a $BQ_1+R_1 = BQ_2+R_2$ donc $B(Q_1-Q_2)=R_2-R_1$ : $\deg(B)+\deg(Q_1-Q_2)=\deg(R_2-R_1)$.\\
+    Or $\deg(R_2-R_1)\leq\max(\deg(R_2),\deg(R_1))\leq\deg(B)$ donc $\deg(B)+\deg(Q_1-Q_2)<\deg(B)$.\\
+    Donc $\deg(Q_1-Q_2)<0$ donc $Q_1-Q_2=0$, puis $R_1-R_2=0$ : $(Q_1,R_1)=(Q_2,R_2)$.
+\end{thm}
+
+\begin{ex}{}{}
+    Poser la division de $A=X^5+3X^3-2X^2+1$ par $B=X^2-2X-1$.
+    \tcblower
+    $X^5+2X^2+8X+16=(X^2-2X-1)(X^2+2X^2+8X+16) + 40X + 16$.
+\end{ex}
+
+\begin{corr}{}{}
+    Soit $(A,B)\in\K[X]^2$, avec $B\neq0$.\\
+    On a que $B$ divise $A$ ssi le reste dans la division euclidienne de $A$ par $B$ est le polynôme nul.
+    \tcblower
+    \boxed{\la} Trivial.\\
+    \boxed{\ra} Si $B\mid A$, alors $\exists Q \in \K[X] \mid A = BQ$ donc $A=BQ+0$. Par unicité de la division euclidienne, le reste est nul.
+\end{corr}
+
+\begin{ex}{}{}
+    Soit $\theta\in\R$ et $n\geq2$.\\
+    Déterminer le reste dans la division euclidienne de $P=(\sin\theta X + \cos \theta)^n$ par $X^2+1$.\\
+    Prouver qu'il n'existe aucune valeur de $\theta$ ni de $n$ pour lesquelles $X^2+1$ divise $(\sin \theta X + \cos \theta)^n$.
+    \tcblower
+    On a $X^2+1\neq0$ donc $\exists!(Q,R)\in\K[X]^2\mid P=(X^2+1)Q+R ~\et~ \deg(R)<2$, donc $\exists a,b\in\K\mid R=aX+b$.\\
+    Alors $(\sin\theta X + \cos\theta)^n=(X^2+1)Q+aX+b$, et en évaluant en $i$ : $e^{in\theta}=ai+b$.\\
+    Par unicité, $a=\sin(n\theta)$ et $b=\cos(n\theta)$, donc $R=\sin(n\theta)X+\cos(\theta)$.\\
+    Ainsi, $R=0\iff \sin(n\theta)=\cos(n\theta)=0$, impossible car $\cos^2(n\theta)+\sin^2(n\theta)=1$. Donc $R\neq0$.
+\end{ex}
+
+\subsection{Racines et divisibilité.}
+
+\begin{defi}{bis.}{}
+    Soit $P\in\K[X]$. Une \bf{racine} (ou un zéro) de $P$ dans $\K$ est un nombre $\a\in\K$ tel que $P(\a)=0$.
+\end{defi}
+
+\begin{thm}{Racine et divisibilité par un polynôme de degré 1. $\star$}{}
+    Soit $P\in\K[X]$ et $\a\in\K$.
+    \begin{equation*}
+        P(\a) = 0 \iff X - \a \mid P. 
+    \end{equation*}
+    \tcblower
+    \boxed{\ra} Supposons $P(\a)=0$. On a $\exists!(Q,R)\in\K[X]^2 \mid P=(X-\a)Q+R ~\et~ \deg(R)<\deg(X-a)$.\\
+    Donc $R$ est constant : $\exists \l \in \K \mid R = \l\cdot1_{\K[X]}$ donc $P=(X-\a)Q+\l$.\\
+    Évaluons en $\a$ : $P(\a)=\l=0$ donc $\l=0$ donc $R=0$ et $(X-\a)\mid P$.\\
+    \boxed{\la} Supposons que $X-\a\mid P$ : $\exists Q \in \K[X] \mid P=(X-\a)Q$. Alors $P(\a)=(\a-\a)Q(\a)=0$.
+\end{thm}
+
+\begin{prop}{}{}
+    Soit $P\in\K[X]$ et $p\in\N^*$ et $\a_1,...,\a_p\in\K$ deux-à-deux distincts.
+    \begin{equation*}
+        \a_1,...,\a_p \nt{ sont racines de } P \iff \exists Q \in \K[X] \mid P = Q\prod_{k=1}^p(X-\a_k).
+    \end{equation*}
+    \tcblower
+    \boxed{\la} Trivial.\\
+    \boxed{\ra} Supposons que $\a_1,...,\a_p$ sont racines de $P$.\\
+    En particulier, $\a_1$ est racine de $P$ donc $X-\a_i \mid P$ donc $\exists Q_1\in\K[X] \mid P=(X-\a_1)Q_1$.\\
+    Évaluons en $\a_2$ : $P(\a_2)=(\a_2-\a_1)Q_1(\a_2)=0$ or $\a_2\neq a_1$ donc $Q_1(\a_2)=0$ donc $X-\a_2 \mid Q$.\\
+    Ainsi, $\exists Q_2\in\K[X] \mid Q_1 = (X-\a_2)Q_2$, puis $P=(X-\a_1)(X-\a_2)Q_2$, on itère...\\
+    On a alors $\exists Q_p \in \K[X] \mid P=(X-\a_1)(X-\a_2)...(X-\a_p)Q_p$.
+\end{prop}
+
+\begin{ex}{}{}
+    Soit $(p,q,r)\in\N^3$. Justifier qu'il existe $Q\in\C[X]$ tel que $P=X^{3p+2}+X^{3q+1}+X^{3r}=(X^2+X+1)Q$.
+    \tcblower
+    On sait que $X^2+X+1=(X-j)(X-\ov{j})$. Vérifions que $j,\ov{j}$ sont racines de $P$.\\
+    On a $P(j)=j^{3p+2}+j^{3q+1}+j^{3r}=j^2+j+1=0$; $P(\ov{j})=\ov{j}^{3p+2}+\ov{j}^{3q+1}+\ov{j}^{3r}=\ov{j^{3p+2}+j^{3q+1}+j^{3r}}=\ov{0}=0$.\\
+    Donc $j,\ov{j}$ sont racines distinctes de $P$, donc $(X-j)(X-\ov{j})\mid P$ dans $\C[X]$.\\
+    Donc $\exists Q \in \C[X] \mid P=(X^2+X+1)Q$.
+\end{ex}
+
+\begin{defi}{}{}
+    Soit $P\in\K[X]$. On dit que $P$ est \bf{scindé} sur $\K$ s'il s'écrit comme produit de polynômes de degré 1.
+\end{defi}
+
+\begin{corr}{}{}
+    Soit $P\in\K[X]$ un polynôme de degré $n\in\N^*$.\\
+    Si $P$ possède $n$ racines distinctes $\a_1,...,\a_n\in\K$, alors $P$ est scindé sur $\K$.
+    \begin{equation*}
+        \exists \l \in \K^* \mid P = \l\prod_{i=1}^n(X-\a_i), \quad (\l = \cd(P)).
+    \end{equation*}
+    \tcblower
+    On a $\exists Q \in \K[X] \mid P = Q\prod_{i=1}^n(X-\a_i)$.\\
+    Ainsi, $\deg(P)=\deg(Q)+n$ donc $\deg(Q)=0$ donc $\exists \l \in \K^* \mid Q=\l\cdot 1_{\K[X]}$.
+\end{corr}
+
+\subsection{Racines et rigidité des polynômes.}
+
+\begin{thm}{}{}
+    Soient $P\in\K[X]$ et $n\in\N$.
+    \begin{enumerate}
+        \item Si $P\neq0$ et $P\in\K_n[X]$, alors $P$ admet au plus $n$ racines distinctes.
+        \item Si $P\in\K_n[X]$ et $P$ admet au moins $n+1$ racines distinctes, alors $P=0$.
+        \item Si $P$ admet une infinité de racines, alors $P=0$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Supposons $P\neq0$ et possède $p$ racines $\a_1,...,\a_p$ distinctes.\\\
+    Alors $\exists Q \in \K[X] \mid P = Q\prod_{i=1}^p(X-\a_i)$. Or $P\neq0$ donc $\deg(\prod(X-\a_i))\leq\deg(P)$ donc $p\leq\deg(P)$.\\
+    \boxed{2.} Contraposée.\\
+    \boxed{3.} Conséquence de 2.
+\end{thm}
+
+\begin{corr}{Montrer que $P=Q$ en prouvant que $P-Q$ a "trop" de racines.}{}
+    Si $P$ et $Q$ sont de degré inférieur à $n$ et que $P-Q$ possède $n+1$ racines, alors $P=Q$.\n
+    Notamment, si $P$ et $Q$ coïncident sur une infinité de valeurs de $\K$, alors $P=Q$.\\
+    En particulier, lorsque les fonctions polynomiales associées à $P$ et $Q$ sont égales, $P=Q$.
+    \tcblower
+    On a $P-Q\in\K[X]$. D'après le théorème, si $P-Q$ a $n+1$ racines, alors $P-Q=0$.
+\end{corr}
+
+\begin{ex}{}{}
+    Trouver tous les polynômes $P$ de $\R[X]$ tels que $\forall n \in \N, ~ P(n)=n^{666}$.
+    \tcblower
+    Soit $P\in\R[X] \mid \forall n \in \N, ~ P(n)=n^{666}$. Alors $\forall n \in \N, ~ (P-X^{666})(n)=0$.\\
+    Ainsi, $P-X^{666}$ a une infinité de racines, dont $P=X^{666}$.
+\end{ex}
+
+\begin{ex}{Factorisation des polynômes de Tchebychev.}{}
+    Reprenons la suite $(T_n)_{n\in\N}$ définie par $T_0=1$, $T_1=X$ et $\forall n \in \N, ~ T_{n+2}=2XT_{n+1}-T_n$.\n
+    Nous avons démontré que pour tout $n\in\N^*$, $T_n$ est de degré $n$, de coefficient dominant $2^{n-1}$ et que pour tout $\theta$ réel, $T_n(\cos\theta)=\cos(n\theta)$.
+    \begin{enumerate}
+        \item Démontrer que $T_n$ est l'unique polynôme de $\R[X]$ tel que $\forall \theta \in \R, ~ T_n(\cos\theta)=\cos(n\theta)$.
+        \item Démontrer que pour tout $n\in\N^*$,
+        \begin{equation*}
+            T_n=2^{n-1}\prod_{k=0}^{n-1}\left( X - \cos\left( \frac{(2k+1)\pi}{2n} \right) \right)
+        \end{equation*}
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soit $n\in\N$. Soit $\tilde{T}_n\in\R[X]\mid\forall \theta\in\R,~\tilde{T}_n(\cos(\theta))=\cos(n\theta)$.\\
+    Alors $\forall \theta\in\R$, $(T_n-\tilde{T}_n)(\cos\theta)=0$. donc $T_n-\tilde{T}_n$ possède une infinité de racines d'où $T_n=\tilde{T}_n$.\\
+    \boxed{2.} Soient $n\in\N$ et $\theta\in\R$.
+    \begin{equation*}
+        \cos(n\theta)=0\iff n\theta\equiv\frac{\pi}{2}[\pi]\iff\exists k \in \Z \mid n\theta=\frac{\pi}{2}+k\pi.
+    \end{equation*}
+    Donc pour $k\in\Z$, $\theta_k=\frac{\pi}{2n}+\frac{k\pi}{n}$ et $\forall k \in \Z, ~ T_n(\cos(\theta_k))=0$.\\
+    On a que les nombres $\cos\theta_k$ avec $k\in\lb0,n-1\rb$ sont distincts par stricte décroissance de $\cos$ sur $[0,\pi]$.\\
+    On a donc $n$ racines donc $T_n$ est scindé et :
+    \begin{equation*}
+        T_n=2^{n-1}\prod_{k=0}^{n-1}\left(X-\cos\left( \frac{\pi}{2n} + \frac{k\pi}{2n} \right)\right)
+    \end{equation*}
+\end{ex}
+
+\subsection{Multiplicité d'une racine.}
+
+\begin{defi}{}{}
+    Soit $P\in\K[X]$ et $\a\in\K$ une racine de $P$. On dit que la racine $\a$ est de \bf{multiplicité} $m\in\N$ si
+    \begin{center}
+        $(X-\a)^m$ divise $P$ \quad et \quad $(X-\a)^{m+1}$ ne divise par $P$. 
+    \end{center} 
+    On dira que $\a$ est de multiplicité \bf{au moins} égale à $k\in\N$ si $(X-\a)^k$ divise $P$.\\
+    Une racine de multiplicité 1 est dite \bf{simple}. Une racine qui n'est pas simple est dite \bf{multiple.}
+\end{defi}
+
+\vspace*{-0.5cm}
+
+\begin{prop}{$\star$}{}
+    Soient $P\in\K[X]$, $\a\in\K$ et $m\in\N$. Il y a équivalence entre les deux assertions suivantes.
+    \begin{enumerate}
+        \item $\a$ est racine de $P$ de multiplicité $m$.
+        \item $\exists Q \in \K[X] \mid P = (X-\a)^mQ$ et $Q(\a)\neq0$.
+    \end{enumerate}
+    \tcblower
+    \boxed{\ra} Supposons que $(X-\a)^m \mid P$ et $(X-\a)^{m+1}\cancel{\mid} P$ : $\exists Q \in \K[X]\mid P=(X-\a)^mQ$.\\
+    Par l'absurde, on suppose que $Q(\a)=0$. Alors $X-\a\mid Q$ donc $\exists \tilde{Q}\in\K[X]\mid Q=(X-\a)\tilde{Q}$ donc $P=(X-\a)^{m+1}\tilde{Q}$.\\
+    C'est absurde, donc $Q(\a)\neq0$.\\
+    \boxed{\la} Supposons que $\exists Q \in \K[X] \mid P=(X-\a)^mQ$ et $Q(\a)\neq0$.\\
+    Supposons que $(X-\a)^{m+1}$ divise $P$ : $\exists \tilde{Q} \in \K[X] \mid P=(X-\a)^{m+1}\tilde{Q}$.\\
+    Alors $(X-\a)^mQ=(X-\a)^{m+1}\tilde{Q}$ donc $Q=(X-\a)\tilde{Q}$ par intégrité de $\K[X]$.\\
+    On évalue en $\a$ : $Q(\a)=0$, absurde donc $(X-\a)^{m+1}\cancel{\mid}P$. 
+\end{prop}
+
+\vspace*{-0.5cm}
+
+\begin{lemme}{}{}
+    Soient $P\in\K[X]$, $\a\in\K$ et $k\in\N^*$.\\
+    Si $(X-\a)^k\mid P$, alors $(X-\a)^{k-1}\mid P'$.
+    \tcblower
+    Supposons que $(X-\a)^k\mid P$ : $\exists Q \in \K[X] \mid P = (X-\a)^kQ$.\\
+    Alors $P'=k(X-\a)^{k-1}Q + (X-\a)^kQ'=(X-\a)^{k-1}(kQ + (X-\a)Q')$.
+\end{lemme}
+
+\vspace*{-0.5cm}
+
+\begin{thm}{Caractérisation de la multiplicité.}{}
+    Soit $P\in\K[X]$, $\a\in\K$ et $m\in\N^*$. On a $(1)\iff(2)$ et $(3)\iff(4)$.
+    \begin{enumerate}
+        \item $\a$ est une racine de $P$ de multiplicité au moins $m$.
+        \item $P(\a)=P'(\a)=P''(\a)=...=P^{(m-1)}(\a)=0$.
+        \item $\a$ est une racine de $P$ de multiplicité $m$.
+        \item $P(\a)=P'(\a)=P''(\a)=...=P^{(m-1)}(\a)=0\quad\et\quad P^{(m)}(\a)\neq0$.
+    \end{enumerate}
+    \tcblower
+    $\bullet$ Supposons $\a$ de multiplicité au moins $m$.\\
+    Alors $(X-\a)^m\mid P$ donc $(X-\a)^{m-1}\mid P', ..., (X-\a)^1 \mid P^{(m-1)}$.\\
+    $\bullet$ Supposons $P(\a)=P'(\a)=...=P^{(m-1)}(\a)=0$.\\
+    Taylor : $P=...=(X-\a)^m\sum_{k=m}^n\frac{P^{(k)}(\a)}{k!}(X-\a)^{k-m}$.\\
+    Alors $(X-\a)^m\mid P$ donc $(3)\iff(4)$.\\
+    $\bullet$ Notons $p$ la multiplicité de $\a$ :
+    \begin{align*}
+        p = m &\iff p\geq m \et \lnot(p\geq m+1) \\
+        &\iff P(\a)=P'(\a)=...=P^{(m-1)}(\a)=0 \et \lnot(P(\a)=P'(\a)=...=P^{(m)}(\a)=0)\\
+        &\iff P(\a) = P'(\a) = ... = P^{(m-1)}(\a)=0 \et P^{(m)}(\a) \neq 0
+    \end{align*}
+    Donc $(1)\iff(2)$.
+\end{thm}
+
+\begin{ex}{}{}
+    En nous appuyant sur une racine multiple "facile", factorisons $P=X^4+X^3-7X^2-13X-6$.
+    \tcblower
+    On a $P(-1)=0$, $P'=4X^3+3X^2-14X-13$ et $P'(-1)=0$, $P''=12X^2+6X-14$ et $P''(-1)=-8$.\\
+    Alors $-1$ est racine de multiplicité 2 par théorème.\\
+    Donc $P=(X+1)^2(X^2-X-6)=(X+1^2)(X+2)(X-3)$.
+\end{ex}
+
+\begin{corr}{}{}
+    Soit $P\in\K[X]$ et $\a\in\K$.
+    \begin{center}
+        $\a$ est racine simple de $P$ $\iff$ $P(\a)=0$ et $P'(\a)\neq0$.
+    \end{center}
+\end{corr}
+
+\begin{prop}{}{}
+    Soit $P\in\K[X]$ et $\a_1,...,\a_p$ $p$ racines de $P$ distinctes deux-à-deux, de multiplicités respectives au moins égales à $k_1,...,k_p$. Alors, $\prod\limits_{i=1}^p(X-\a_i)^k$, divise $P$.
+\end{prop}
+
+\begin{corr}{}{}
+    Soient $P\in\K[X]$ et $n\in\N$.
+    \begin{enumerate}
+        \item Si $P\neq0$ et $P\in\K_n[X]$, alors $P$ admet au plus $n$ racines comptées avec leurs multiplicité.
+        \item Si $P\in\K_n[X]$ et $P$ admet au moins $n+1$ racines comptées avec leur mulitplicité, alors $P=0$.
+    \end{enumerate}
+\end{corr}
+
+\begin{corr}{Cas d'un degré égal au nombre de racines, comptées avec leur multiplicité.}{}
+    Soit $P\in\K[X]$ un polynôme de degré $n\in\N^*$.\\
+    Si $P$ possède $p$ racines $\a_1,...,\a_p$ dans $\K$, de multiplicités $m_1,...,m_p$ et si $m_1+...+m_p=n$,\\
+    alors $P$ est scindé sur $\K$.
+\end{corr}
+
+\subsection{Existence de racines : théorème d'Alembert-Gauss.}
+
+\begin{thm}{de d'Alembert-Gauss, ou théorème fondamental de l'algèbre (admis).}{}
+    Tout polynôme non constant de $\C[X]$ admet au moins une racine dans $\C$.
+\end{thm}
+
+\begin{ex}{}{}
+    Soit $P\in\K[X]\setminus\K_0[X]$. Montrer que $\tilde{P}:z\mapsto P(z),$ application de $\C$ vers $\C$ est surjective.
+    \tcblower
+    Soit $\w\in\C$. D'après d'Alembert-Gaus, $P-\w$ admet une racine complexe, donc $\exists \a \in \C \mid P(\a)=\w$.
+\end{ex}
+
+\vspace*{-0.3cm}
+
+\begin{prop}{une racine réelle.}{}
+    Un polynôme de $\R[X]$ de degré impair possède au moins une racine réelle.
+    \tcblower
+    On a $\tilde{P}:x\mapsto P(x)$ est continue et change de signe donc $\exists c \in \R \mid \tilde{P}(c)=0$ par TVI.
+\end{prop}
+
+\subsection{Décomposition en facteurs irréductibles de \texorpdfstring{$\C[X]$}{Lg} et \texorpdfstring{$\R[X]$}{Lg}.}
+
+\begin{prop}{}{}
+    Soit $P\in\K[X]$ non constant.\\
+    Il est irréductible dans $\K[X]$ si ses seuls diviseurs sont constants ou associés à $P$.
+\end{prop}
+
+\vspace*{-0.3cm}
+
+\begin{prop}{}{}
+    Un polynôme $P$ est irréductible ssi ses diviseurs sont de degré 0 ou $\deg P$ et que $P$ est non constant.
+    \tcblower
+    Soit $P\in\K[X]\setminus\K_0[X]$.\\
+    \boxed{\ra} Supposons $P$ irréductible. Soit $Q$ un diviseur de $P$.\\
+    --- Si $Q$ est constant, alors $\deg(Q)=0$.\\
+    --- Si $\exists \l\in\K^*\mid Q=\l P$, alors $\deg(Q)=\deg(P)$.\\
+    \boxed{\la} Supposons que les diviseurs de $P$ sont de degré 0 ou $\deg P$. Soit $Q$ un diviseur de $P$.\\
+    --- Si $\deg Q = 0$, alors $Q$ est constant non nul.\\
+    --- Si $\deg Q = \deg P$, alors $\exists \tilde{Q} \in \K_0[X] \mid P = Q\tilde{Q}$.\\
+    Donc $\exists \l\in\K^* \mid \tilde{Q}=\l\cdot1_{\K[X]}$ donc $P=\l Q$.
+\end{prop}
+
+\begin{prop}{}{}
+    Les irréductibles de $\C[X]$ sont les polynômes de degré 1.
+    \tcblower
+    \boxed{\la} Soit $P\in\C[X]$ de degré 1. Ses diviseurs sont de degré $0$ ou $1=\deg(P)$ donc $P$ irréductible.\\
+    \boxed{\ra} Supposons $P$ irréductible et non constant. Alors il admet une racine $\a\in\C$ et $(X-\a)\mid P$.\\
+    Or $P$ est irréductible donc $\deg(P)=\deg(X-\a)=1$.
+\end{prop}
+
+\begin{prop}{Factorisation en produit d'irréductibles à coeff. dans $\C$.}{}
+    Tout polynôme non constant de $\C[X]$ est scindé dans $\C[X]$.\\
+    Plus précisément, pour tout $P\in\C[X]$, il existe $\l\in\C$, $p\in\N^*$, $\a_1,...,\a_p\in\C$ deux-à-deux distincts\\et $m_1,...,m_p\in\N^*$ tels que
+    \begin{equation*}
+        P=\l\prod_{k=1}^p(X-\a_k)^{m_k}.
+    \end{equation*}
+    \tcblower
+    Soit $P\in\C[X]$. D'après d'Alembert-Gauss, $P$ a une racine $\a_1$ dont on note $m_1$ la multiplicité.\\
+    Alors $\exists Q\in\C[X] \mid P = (X-\a_1)^{m_1}Q$ et $Q(\a_1)\neq0$.\\
+    Si $Q$ est constant, on s'arrête, sinon $Q$ a une racine $\a_2\neq\a_1$...
+\end{prop}
+
+\begin{lemme}{}{68}
+    Soit $P\in\R[X]$, $\a\in\C\setminus\R$, et $m\in\N^*$. Si $\a$ est racine de $P$, alors $\ov{\a}$ l'est aussi et
+    \begin{equation*}
+        B_\a = (X-\a)(X-\ov{\a})=(X^2-2\Re(\a)X+|\a|^2)
+    \end{equation*}
+    divise $P$ dans $\R[X]$.\n
+    Si $\a$ a pour multiplicité $m$, alors $\ov{a}$ aussi et $B_\a^m$ divise $P$ dans $\R[X]$.
+    \tcblower
+    Notons $P\sum^n a_kX^k$ où $n\in\N$ et $a_0,...,a_n\in\R$. Supposons $P(\a)=0$.
+    \begin{equation*}
+        P(\ov{\a})=\sum_{k=0}^na_k\ov{\a}^k=\sum_{k=0}^n\ov{a_k\a^k}=\ov{P(\a)}=0.
+    \end{equation*}  
+    Puisque $\a\notin\R$, $(X-\a)(X-\ov{\a})\mid P$ dans $\C[X]$ : $\exists Q \in \C[X] \mid P=(X-\a)(X-\tilde{\a})Q$.\\
+    On note $B_\a=(X-\a)(X-\ov{\a})=X^2-(\a+\ov{\a})X+\a\ov{\a}=X^2+2\Re(\a)X+|\a|^2$. Donc $P=B_\a Q$.\\
+    On a $B_\a\neq0$. Donc $\exists!(\tilde{Q},R)\in\R[X]^2\mid P = B_\a\tilde{Q}+R$ et $\deg(R)<\deg(B_\a)$.\\
+    C'est aussi la division euclidienne de $P$ par $B_\a$ sur $\C[X]$, mais $P=B_\a Q + 0$ avec $\deg(0)<\deg(B_\a)$.\\
+    Par unicité de la division euclidienne, $R=0$ et $Q=\tilde{Q}$.
+\end{lemme}
+
+\begin{prop}{}{}
+    Les polynômes irréductibles de $\R[X]$ sont
+    \begin{itemize}
+        \item Les polynômes de degré 1,
+        \item Les polynômes de degré 2, n'ayant pas de racines réelles.
+    \end{itemize}
+    \tcblower
+    \boxed{\la} Soit $P\in\R_2[X]$.\\
+    --- Si $P$ de degré 1, alors irréductible.\\
+    --- Si $P$ de degré 2 sans racines réelles, on prend $Q$ diviseur de $P$, alors $\deg(Q)\leq2$.\\
+    On a $\deg(Q)\neq1$ car sinon $Q$ a une racine réelle, donc $\deg Q=0\ou\deg(P)$ donc $P$ irréductible.\\
+    \boxed{\ra} Supposons $P$ irréductible non constant. On a $P\in\C[X]$ donc il admet une racine $\a\in\C$.\\
+    --- Si $\a\in\R$, alors $X-\a\mid P$ donc $P$ est irréductible car $\deg(P)=\deg(X-\a)=1$.\\
+    --- Si $\a\notin\R$, alors $\ov{\a}$ est racine de $P$ dont $B_{\a}=(X-\a)(X-\ov{\a})\in\R[X]$ divise $P$.\\
+    Or $P$ est irréductible donc $\deg(B_\a)=\deg(P)=2$. $P$ est sans racine réelle, il aurait sinon un diviseur de degré $1$.
+\end{prop}
+
+\begin{prop}{Factorisation en produit d'irréductibles à coeff. dans $\R$.}{}
+    Tout polynôme de $\R[X]$ s'écrit comme produit de polynômes irréductibles de $\R[X]$.
+\end{prop}
+
+\begin{meth}{Factorisation d'un polynôme en produit d'irréductibles.}{}
+    \begin{itemize}
+        \item Renseignements utiles : le degré de $P$ et son coefficient dominant.
+        \item On cherche les racines complexes de $P$ en posant l'équation $P(z)=0$ avec $z\in\C$, ainsi que la multiplicité de ces racines. On obtient une factorisation dans $\C[X]$.
+        \item Les racines réelles donnent des facteurs de degré 1. Les racines non réelles sont "couplées" avec leur conjuguées pour obtenir des polynômes de degré 2 sans racines réelles, comme dans le lemme \ref{lemme:68}. On obtient une factorisation dans $\R[X]$.
+    \end{itemize}
+\end{meth}
+
+\begin{ex}{$\star$}{}
+    Factorisation de $X^6-1$ en produit d'irréductibles de $\R[X]$.
+    \tcblower
+    On a
+    \begin{align*}
+        X^6-1 &= (X+1)(X-1)(X-j)(X-j^2)(X+j)(X+j^2)\\
+        &= (X-1)(X+1)(X^2-X+1)(X^2+X+1)
+    \end{align*}
+\end{ex}
+
+\section{Compléments.}
+
+\subsection{Relations coefficients-racines pour un polynôme scindé.}
+
+\begin{defi}{}{}
+    Soient $x_1,...,x_n\in\K$. On appelle \bf{fonctions symétriques élémentaires} de $x_1,...,x_n$ les nombres définis par
+    \begin{equation*}
+        \forall k \in \lb1,n\rb, ~ \s_k=\sum_{i_1<i_2<...<i_k}x_{i_1}x_{i_2}...x_{i_k}.
+    \end{equation*}
+    On a notamment
+    \begin{equation*}
+        \s_1=\sum_{i=1}^nx_i, \quad \s_n=\prod_{i=1}^n x_i, \quad \s_2=\sum_{i<j}x_ix_j.
+    \end{equation*}
+\end{defi}
+
+\begin{ex}{}{}
+    Soient $x,y,z$ trois scalaires de $\K$ et $\s_1,\s_2,\s_3$ les fonctions symétriques élémentaires associées. Démontrer
+    \begin{equation*}
+        x^2+y^2+z^2 = \s_1^2-2\s_2
+    \end{equation*}
+    \begin{equation*}
+        x^3+y^3+z^3=\s_1^3+3\s_3-3\s_1\s_2
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{equation*}
+        \s_1^2-2\s_2=x^2+\cancel{xy+xz+yx}+y^2+\cancel{yz+zx+zy}+z^2-\cancel{2xy-2xz-2yz}=x^2+y^2+z^2.
+    \end{equation*}
+\end{ex}
+
+\vspace*{-0.3cm}
+
+\begin{prop}{Relations coefficients-racines : formules de Viète. $\star$}{}
+    Soit $P$ un polynôme de degré $n\in\N^*$, scindé sur $\K$ : il s'écrit donc
+    \begin{equation*}
+        P=\sum_{k=0}^na_kX^k \quad\et\quad P=a_n\prod_{k=1}^n(X-\a_k),
+    \end{equation*}
+    où $a_0,...,a_n$ sont ses coefficients et $\a_1,...,\a_n$ ses racines, répétées avec leur multiplicité. On a
+    \begin{center}
+        \boxed{P=a_n\left( X^n - \s_1 X^{n-1} + \s_2 X^{n-2} - ... + (-1)^k\s_kX^{n-k} + ... + (-1)^n\s_n \right)}
+    \end{center}
+    avec $\s_1,...,\s_n$ les fonctions symétriques élémentaires des racines $\a_1,...,\a_n$.\\
+    Ces nombres s'expriment donc en fonction des coefficients de $P$ :
+    \begin{equation*}
+        \forall k \in \lb1,n\rb, ~ \s_k = (-1)^k\frac{a_{n-k}}{a_n}.
+    \end{equation*}
+    En particulier, pour la somme des racines $\s_1$ et le produit des racines $\s_n$,
+    \begin{equation*}
+        \s_1 = -\frac{a_{n-1}}{a_n} \quad\et\quad \s_n=(-1)^n\frac{a_0}{a_n}.
+    \end{equation*}
+    \tcblower
+    En colle : savoir énoncer la proposition, et la prouver dans le cas $n=3$.\\
+    Soit $P=\l(X-\a_1)(X-\a_2)(X-\a_3)$ avec $\l\in\K$. On a:
+    \begin{align*}
+        P&=\l(X^3+(-\a_1-\a_2-\a_3)X^2+(\a_1\a_2+\a_1\a_3+\a_2\a_3)X-\a_1\a_2\a_3)\\&=\l(X^3-\s_1X^2+\s_2X-\s_3).
+    \end{align*}
+\end{prop}
+
+\vspace*{-0.3cm}
+
+\begin{ex}{}{}
+    Trouver tous les triplets $(x,y,z)\in\R^3$ tels que
+    \begin{equation*}
+        x+y+z=2; \quad x^2+y^2+z^2=14; \quad x^3+y^3+z^3=20.
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{align*}
+        (x,y,z) \nt{ solution} &\iff \begin{cases}
+            \s_1 = 2\\ \s_1^2-2\s_2 = 14\\ \s_1^3-3\s_1\s_2+3\s_3=20
+        \end{cases} \iff \begin{cases}
+            \s_1 = 2\\\s_2=-5\\\s_3=-6
+        \end{cases}\\
+        &\iff (X^3-2X^2+(-5)X-(-6)) \nt{ a pour racines } x,y,z\\
+        &\iff (X^2-X-6)(X-1) \nt{ a pour racines } x,y,z\\
+        &\iff (x,y,z) \nt{ est une permutation de } (1,-2,3).
+    \end{align*}
+\end{ex}
+
+\subsection{Interpolation de Lagrange.}
+
+\begin{defi}{}{}
+    Soit $n\in\N^*$ et $(x_1,...,x_n)\in\K^n$, où les $x_i$ sont deux-à-deux distincts. On pose
+    \begin{equation*}
+        \forall i \in \lb1,n\rb,, ~ L_i = \prod_{\substack{k=1}\\k\neq i}^n\frac{X-x_k}{x_i-x_k}
+    \end{equation*}
+    Les polynômes $(L_1,...,L_n)$ sont appelés \bf{polynômes de Lagrange} associés à $(x_1,...,x_n)$.
+\end{defi}
+
+\begin{ex}{}{}
+    Écrire la famille des quatre polynômes de Lagrage associés à $(-1,0,1,2)$.
+\end{ex}
+
+\begin{prop}{}{}
+    Soit $n\in\N^*$ et $(L_1,...,L_n)$ la famille de polynômes de Lagrange associés à un $n$-uplet $(x_1,...,x_n)$ de scalaires deux-à-deux distincts.\\
+    Tous les polynômes $L_i$ sont de degré $n-1$. De plus, $\forall (i,j)\in\lb1,n\rb^2,~L_i(x_j)=\d_{i,j}$.
+\end{prop}
+
+\begin{thm}{$\star$}{}
+    Soit $n\in\N^*$, $(x_1,...,x_n)\in\K^n$ deux-à-deux distincts et $(y_1,...,y_n)\in\K^n$.
+    \begin{equation*}
+        \exists!P\in\K_{n-1}[X], ~ \forall i \in \lb1,n\rb, ~ P(x_i)=y_i.
+    \end{equation*}
+    En notant $(L_1,...,L_n)$ la famille de polynômes de Lagrange associés à $(x_1,...,x_n)$, on a
+    \begin{equation*}
+        P=\sum_{i=1}^ny_iL_i.
+    \end{equation*}
+    \tcblower
+    \bf{Existence.} Soit $P\sum_{i=1}^ny_iL_i$. On a $\deg(P)\leq n-1$ car les $L_i\in\K_{n-1}[X]$ sont stables par combinaisons linéaires.\\
+    Soit $k\in\lb1,n\rb$. $P(x_k)=\sum_{i=1}^ny_iL_i(x_k)=y_kL_k(x_k)=y_k$.\n
+    \bf{Unicité.} Soient $P,Q\in\K_{n-1}[X]$ tels que $\forall i \in \lb1,n\rb, ~ P(x_i)=y_i=Q(x_i)$.\\
+    Alors $P-Q$ a $n$ racines, donc $P-Q=0$ donc $P=Q$.
+\end{thm}
+
+\begin{corr}{L'ensemble des polynômes interpolateurs.}{}
+    Soit $n\in\N^*,~(x_1,...,x_n)\in\K^n$ (scalaires deux-à-deux distincts) et $(y_1,...,y_n)\in\K^n$.\\
+    Soit $P$ l'unique polynôme de $\K_{n-1}[X]$ tel que $\forall i \in \lb1,n\rb, ~ P(x_i)=y_i$.\n
+    Les polynômes $Q\in\K[X]$ tels que $\forall i \in \lb1,n\rb, ~ Q(x_i)=y_i$ sont ceux de la forme
+    \begin{equation*}
+        Q=P+A\prod_{i=1}^n(X-x_i), \quad \nt{où } A\in\K[X].
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{align*}
+        \forall i \in \lb 1,n \rb, ~ Q(x_i)=y_i=P(x_i) &\iff Q-P \nt{ a } x_1,...,x_n \nt{ pour racines}\\
+        &\iff \prod_{i=1}^n(X-x_i)\mid Q-P\\
+        &\iff \exists A \in \K[X] , ~ Q=P+A\prod_{i=1}^n(X-x_i)
+    \end{align*}
+\end{corr}
+
+\pagebreak
+
+\section{Exercices. \texorpdfstring{$\star$}{Lg}}
+
+\subsection*{Polynômes à travers leurs coefficients / L'anneau $\K[X]$.}
+
+\begin{exercice}{$\bbw$ $\star$}{}
+    On note $I=]-\frac{\pi}{2},\frac{\pi}{2}[$.
+    \begin{enumerate}
+        \item Montrer que pour tout $n\in\N$, il existe un polynome $P_n\in\R[X]$ tel que
+        \begin{equation*}
+            \forall x \in I, ~ \tan^{(n)}(x)=P_n(\tan(x)).
+        \end{equation*}
+        \item Montrer qu'un tel polynôme $P_n$ est unique.
+        \item Donner pour tout entier $n$ le degré et le coefficient dominant de $P_n$.
+        \item Démontrer que pour tout entier naturel $n$, les coefficients de $P_n$ sont des entiers.
+    \end{enumerate}
+    \tcblower
+    \boxed{\star} Soit $x\in I$. Pour $n\in\mathbb{N}$, on note l'énoncé $H_n$. Montrons le par récurrence.\\
+    \bf{Initialisation.} C'est vrai pour $n=0$ : $\forall x\in I, ~ \tan(x)=X(\tan(x))$.\\
+    \bf{Hérédité.} Soit $n\in\mathbb{N}$ tel que $H_n$. On a $\tan^{(n+1)}(x)=(1+\tan^2(x))P_n'(\tan(x))$ donc $P_{n+1}=(1+X^2)P_n'$\\
+    Alors $H_{n+1}$ est vraie et $\forall n\in\mathbb{N}, H_n$ par récurrence.\\
+    \boxed{2.} Supposons qu'il en existe un autre, $Q_n$, on a $\forall x\in I, P_n(\tan x) - Q_n(\tan x) = 0$ donc $P_n=Q_n$.\\
+    \boxed{3.} Pour $n\in\mathbb{N}$, on note $H_n$: <<deg$(P_n)=n+1$, cd$(P_n)=n!$>>.\\
+    \bf{Initialisation.} Triviale.\\
+    \bf{Hérédité.} Soit $n\in\mathbb{N}$ tel que $H_n$.\\
+    On a $P_{n+1}=(1+X^2)P_n'$ donc $\deg(P_{n+1})=\deg(P_n)-1+2=n+1$ car $\deg(P_n)\geq0$.\\
+    On a $\cd(P_{n+1})=\cd(P_n')=(n+1)\cdot\cd(P_n)=(n+1)!$\\
+    Alors $H_{n+1}$ est vraie et $\forall n \in \mathbb{N}, H_n$ par récurrence.\\
+    \boxed{4.} Pour $n\in\mathbb{N}$, on note l'énoncé $H_n$.\\
+    \bf{Initialisation.} Triviale.\\
+    \bf{Hérédité.} Soit $n\in\mathbb{N}$ tel que $H_n$. On note $(\alpha_k)_{k\in\mathbb{N}}$ les coefficients de $P_n$, entiers.
+    \begin{equation*}P_{n+1}=(1+X^2)P_n'=(1+X^2)\sum\limits_{k=0}^{n}(k+1)\alpha_{k+1}X^{k}=\sum\limits_{k=0}^n(k+1)\alpha_{k+1}X^k+\sum\limits_{k=2}^{n+2}(k-1)\alpha_{k-1}X^{k}\end{equation*}
+    Les coefficients de $P_{n+1}$ sont donc des sommes et produits d'entiers, donc sont des entiers.\\
+    Par récurrence, $\forall{n\in\mathbb{N}}, ~ H_n$ est vrai.
+\end{exercice}
+
+\vspace*{-0.5cm}
+
+\begin{exercice}{$\bww$}{}
+    En calculant de deux façons différentes le coefficient devant $X^n$ dans l'écriture de $(1-X^2)^n$, obtenir une identité sur les coefficients binomiaux.
+    \tcblower
+    D'une part
+    \begin{align*}
+        (1-X^2)^n &= (1-X)^n(1+X)^n = \sum_{i=0}^n\binom{n}{i}(-1)^iX^i\sum_{j=0}\binom{n}{j}X^j\\
+        &=\sum_{i=0}^n\sum_{j=0}^n\binom{n}{i}\binom{n}{j}(-1)^iX^{i+j}
+    \end{align*}
+    Donc le coefficient devant $X^n$ est $\sum_{i=0}^n\binom{n}{i}\binom{n}{n-i}(-1)^i$.\\
+    D'autre part, $(1-X^2)^n=\sum_{i=0}^n\binom{n}{i}(-1)^iX^{2i}$. Donc si $n$ est impair, le coefficient devant $X^n$ est nul.\\
+    Si $n$ est pair, il est $\binom{n}{n/2}(-1)^{n/2}$.\\
+    On en déduit l'identité: 
+    \begin{equation*}
+        \sum_{i=0}^n\binom{n}{i}\binom{n}{n-i}(-1)^i=\binom{n}{n/2}(-1)^{n/2}
+    \end{equation*}
+\end{exercice}
+
+\vspace*{-0.5cm}
+
+\begin{exercice}{$\bbw$}{}
+    Trouver tous les polynômes $P$ de $\mathbb{R}[X]$ tels que $4P=(P')^2$.
+    \tcblower
+    Soit $P$ un tel polynôme on suppose $P$ non constant.\\
+    On a $\deg(P)=2\cdot(\deg(P)-1)$ donc $\deg(P)=2\deg(P)-2$ donc $\deg(P)=2$.\\
+    Alors $\exists (a,b,c)\in\mathbb{R}^*\times\mathbb{R}^2 ~ | ~ P = aX^2 + bX + c$.\\
+    Donc $4a^2X^2 + 4abX + b^2 = 4aX^2 + 4bX + 4c$ donc $4a^2=4a$, $ab = b$ et $b^2=4c$.\\
+    Alors $a=1$, $b\in\mathbb{R}$ et $c=\frac{b^2}{4}$.\\
+    Les solutions sont donc dans $\{0\}\cup\{X^2+bX+\frac{b^2}{4} ~ | ~ b\in\mathbb{R}\}$.
+\end{exercice}
+
+\vspace*{-0.5cm}
+
+\begin{exercice}{$\bbw$}{}
+    Trouver tous les polynômes $P$ dans $\R[X]$ qui satisfont $P(X+1)=XP'$.
+    \tcblower
+    Soit $P\neq0$ un tel polynôme. On pose $n=\deg(P)$. On note $P=\sum a_kX^k$.\\
+    \bf{Analyse.} On a $P(X+1)=\sum_{k=0}^n a_k(X+1)^k~\substack{\nt{hyp.}\\=}\sum_{k=0}^{n-1}(k+1)a_{k+1}X^{k+1}=\sum_{k=1}^nka_kX^k$.\\
+    Donc $a_n=na_n$ donc $n=0$ ou $n=1$ car $a_n\neq0$.\\
+    On vérifie facilement que les polynômes constants ne sont pas solution, donc $n=1$.\\
+    Notons $P=aX+b$. On a $aX+a+b=aX$ donc $a+b=0$.\\
+    \bf{Synthèse.} Soit un polynôme $P=aX+b$ tels que $a+b=0$. Alors $P(X+1)=aX+a+b=aX=XP'$.
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Soit $Q$ un polynôme de $\K[X]$.\\
+    Démontrer que l'équation $P-P'=Q$ possède une unique solution dans $\K[X]$.
+    \tcblower
+    Soient $A,B$ deux solutions de l'équation. On a $A-A'=B-B'=Q$.\\
+    Alors $A-B=A'-B'$ donc $(A-B)=(A-B)'$ donc $\deg(A-B)=\deg(A-B)-1$.\\
+    Cela est uniquement possible si $A-B=0$. Donc $A=B$.
+\end{exercice}
+
+\subsection*{Racines et factorisation d'un polynôme.}
+
+\begin{exercice}{$\bbw$ Approximation de $\pi$ par $\frac{22}{7}$.}{}
+    \begin{enumerate}
+        \item Poser la division euclidienne de $X^4(1-X)^4$ par $X^2+1$.
+        \item Démontrer l'égalité $\int_0^1\frac{x^4(1-x)^4}{1+x^2}\dx=\frac{22}{7}-\pi$.
+        \item Prouver l'inégalité $\frac{1}{1260}\leq\frac{22}{7}-\pi\leq\frac{1}{630}$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} On a $X^4(1-X)^4=(X-X^2)^4=X^8-4X^7+6X^6-4X^5+X^4$.\\
+    Alors $X^4(1-X)^4=(X^2+1)(X^6-4X^5+5X^4-4X^2+4)-4$.\\
+    \boxed{2.}
+    \begin{align*}
+        \int_0^1\frac{x^4(1-x)^4}{1+x^2}\dx&=\int_0^1(x^6-4x^5+5x^4-4x^2+4)\dx-4\int_0^1\frac{1}{x^2+1}\dx\\
+        &=\left[ \frac{x^7}{7} - \frac{4x^6}{6} + x^5 - \frac{4x^3}{3} + 4x \right]_0^1 - 4\left[ \arctan(x) \right]_0^1\\
+        &=\frac{1}{7}-\frac{4}{6}+1-\frac{4}{3}+4-\pi = \frac{22}{7}-\pi.
+    \end{align*}
+    \boxed{3.} $\forall x \in [0,1], ~ \frac{1}{2}\leq\frac{1}{x^2+1}\leq1$. De plus, $\frac{1}{2}\int_0^1x^4(1-x)^4\dx=\frac{1}{1260}$ et $\int_0^1x^4(1-x)\dx=\frac{1}{630}$.\\
+    Donc $\frac{1}{1260}\leq\frac{22}{7}-\pi\leq\frac{1}{630}$.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Donner le reste dans la division euclidienne de $X^{2023}+X^3+1$ par\\
+    a) $X^2-1$, \quad b) $(X-1)^2$.
+    \tcblower
+    \fbox{a)} $\exists Q\in\C[X] \mid X^{2023}+X^3+1=(X^2-1)Q+aX+b$ avec $a,b\in\C$.\\
+    En évaluant en $1$ et $-1$ : $3 = a+b$ et $-1=b-a$ donc $(a,b)=(2,1)$. Le reste est $2X+1$.\\
+    \fbox{b)} $\exists Q \in \C[X] \mid X^{2023}+X^3+1=(X-1)^2Q+aX+b$ avec $a,b\in\C$.\\
+    La racine 1 est de multiplicité 2, c'est une racine du polynôme dérivé.\\
+    Ce polynôme dérivé est : $2023X^{2022}+3X^2=2(X-1)Q+(X-1)^2Q'+a$.\\
+    On évalue en 1 les deux polynômes: $a+b=3$ et $2026=a$ donc $(a,b)=(2026,-2023)$. Le reste est $2026X-2023$.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soient $(A,B,P)\in\K[X]^3$ tels que $P$ est non constant et $A\circ P \mid B\circ P$. Montrer que $A\mid B$.
+    \tcblower
+    On a $\exists (Q,R) \in \C[X] \mid B = AQ+R$ donc $B\circ P = (A\circ P)(Q\circ P)+R\circ P$.\\
+    Or $A\circ P\mid B\circ P$ donc $R\circ P=0$ car $\deg(R\circ P)<\deg(A\circ P)$. Or $\deg P > 0$ donc $R=0$.\\
+    Ainsi, $B=AQ$ donc $A\mid B$. 
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Trouver tous les polynômes de $\R[X]$ tels que $(X+4)P(X)=XP(X+1)$.
+    \tcblower
+    Soit $P\in\R[X]$ tel que $(X+4)P(X)=XP(X+1)$.\\
+    On évalue en 0 : $4P(0)=0$ donc $0$ est racine. On en déduit que $-3,-2,-1,0$ sont racines.\\
+    Alors $P=X(X+1)(X+2)(X+3)\tilde{P}$ avec $\tilde{P}\in\R[X]$.\\
+    Ainsi, $X(X+1)(X+2)(X+3)(X+4)\tilde{P}(X)=X(X+2)(X+3)(X+4)(X+5)\tilde{P}(X+1)$.\\
+    Donc $(X+1)\tilde{P}(X)=(X+5)\tilde{P}(X+1)$ donc $\tilde{P}(1)=0$ donc $P(1)=0$.\\
+    À partir de là, on peut montrer que tout entier naturel est racine de $P$. Donc $P=0$.\\
+    Il n'y a que le polynôme nul qui est solution.
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\bww$}{}
+    Démontrer qu'il n'existe pas de polynôme $P$ dans $\R[X]$ tel que
+    \begin{equation*}
+        \forall n\in\N, ~ P(n)=n^{666}+(-1)^n.
+    \end{equation*}
+    \tcblower
+    Soit $P\in\R[X]$. On suppose que $\forall n \in \N, ~ P(n)=n^{666}+(-1)^n$. Soit $n\in\N$.\\
+    On a $(P-X^{666})(n)=(-1)^n$ donc $P-X^{666}$ change de signe une infinité de fois.\\
+    Il a donc un nombre infini de racines par TVI, et donc c'est le polynôme nul. Ainsi $P=X^{666}$.\\
+    C'est absurde car $X^{666}(n)\neq n^{666} + (-1)^n$. Donc il n'existe pas de tel polynôme.
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Montrer, que pour tout $n\in\N^*$, le polynôme $P=\sum\limits_{k=0}^n\frac{X^k}{k!}$ n'a que des racines simples dans $\C$.
+    \tcblower
+    Soit $\a$ racine de $P$. On a $\a\neq0$ car $P(0)=1$.\\
+    On a $\ds P'=\sum_{k=1}^{n}\frac{kX^{k-1}}{k!}=\sum_{k=0}^{n-1}\frac{X^k}{k!}$ donc $\ds P'(\a)=P(\a)-\frac{\a^n}{n!}=-\frac{\a^n}{n!}\neq0$ car $\a\neq0$.\\
+    C'est donc une racine simple.
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Soit $n\in\N^*$. Montrer que $(X-1)^3$ divise $P_n=nX^{n+2}-(n+2)X^{n+1}+(n+2)X-n$.
+    \tcblower
+    Montrons que $1$ est racine triple de $P_n$.\\
+    $\bullet$ On a $P_n(1)=n-n-2+n+2-n=0$.\\
+    $\bullet$ On a $P_n'(1)=n(n+2)-(n+1)(n+2)+(n+2)=0$.\\
+    $\bullet$ On a $P_n''(1)=n(n+1)(n+2)-n(n+1)(n+2)=0$.\\
+    C'est bien une racine de multiplicité 3, donc $(X-1)^3\mid P_n$.
+\end{exercice}
+
+\subsection*{Factorisation de polynômes.}
+
+\begin{exercice}{$\bbw$}{}
+    Factoriser $X^6+X^3+1$ en produit d'irréductibles de $\R[X]$.
+    \tcblower
+    On a $X^6+X^3+1 = (X^3)^2+X^3+1$ donc $z$ est solution ssi $z^3\in\{j,j^2\}$.\\
+    $\bullet$ Si $z^3=j$, alors $z^3/\left(e^{\frac{2i\pi}{9}}\right)^3=1$ donc $z\in \{e^{\frac{2i\pi}{9}}, je^{\frac{2i\pi}{9}},j^2e^{\frac{2i\pi}{9}}\}=\{e^{\frac{2i\pi}{9}}, e^{\frac{8i\pi}{9}}, e^{\frac{14i\pi}{9}}\}$.\\
+    $\bullet$ Si $z^3=j^2=\ov{j}$, alors $z\in\{e^{-\frac{2i\pi}{9}}, e^{-\frac{8i\pi}{9}}, e^{-\frac{14i\pi}{9}}\}$. On va noter $\a,\b,\g$ ces valeurs.\\
+    Alors $X^6+X^3+1=(X^2-2\Re(\a)+|\a|^2)(X^2-2\Re(\b)+|\b|^2)(X^2-2\Re(\g)+|\g|^2)$. 
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Soit $n\geq2$. Factoriser $(X+i)^n-(X-i)^n$ en produit d'irréductibles de $\C[X]$.
+    \tcblower
+    On a:
+    \begin{align*}
+        P_n &= \sum_{k=0}^n\binom{n}{k}X^{n-k}i^k - \sum_{k=0}^n\binom{n}{k}X^{n-k}(-i)^k = \sum_{k=0}^n\binom{n}{k}X^{n-k}\left( i^k - -(i)^k \right) \\
+        &= \sum_{k=1}^n\binom{n}{k}X^{n-k}\left( i^k - (-i)^k \right)
+    \end{align*}
+    Soit $z\in\C$, on a 
+    \begin{align*}
+        (z+i)^n=(z-i)^n \et z\neq\pm i &\iff \left( \frac{z+i}{z-i} \right)^n = 1\\
+        &\iff \exists k \in \lb1,n-1\rb, ~ \frac{z+i}{z-i} = e^{\frac{2ik\pi}{n}}\\
+        &\iff \exists k \in \lb1,n-1\rb, ~ z+i = e^{\frac{2ik\pi}{n}}(z-i)\\
+        &\iff \exists k \in \lb1,n-1\rb, ~ z = -i\times\frac{1+e^{\frac{2ik\pi}{n}}}{1-e^{\frac{2ik\pi}{n}}}=-i\times\frac{e^{\frac{ik\pi}{n}}+e^{-\frac{ik\pi}{n}}}{e^{\frac{ik\pi}{n}}-e^{-\frac{ik\pi}{n}}}\\
+        &\iff \exists k \in \lb1,n-1\rb, ~ z = -\nt{cotan}\left( \frac{k\pi}{n} \right)
+    \end{align*}
+    Or $P_n$ est de degré $n-1$ et a $n-1$ racines distinctes et $\cd(P_n)=2ni$, donc:
+    \begin{equation*}
+        P_n = 2ni\prod_{i=1}^{n-1}\left( X + \nt{cotan}\left( \frac{k\pi}{n} \right) \right)
+    \end{equation*}
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Soit $n\in\N^*$. Factoriser $\sum\limits_{k=0}^{n-1}X^k$ dans $\C[X]$. En déduire $\prod\limits_{k=1}^n\sin\left( \frac{k\pi}{n} \right)=\frac{n}{2^{n-1}}$.
+    \tcblower
+    On a:
+    \begin{equation*}
+        \sum_{k=0}^{n-1}X^k=\frac{X^{n}-1}{X-1}=\prod_{k=1}^{n-1}\left( X-e^{\frac{2ik\pi}{n}} \right)
+    \end{equation*}
+    On évalue en 1.
+    \begin{align*}
+        \sum_{k=0}^{n-1}1^k&=n=\prod_{k=1}^{n-1}\left( 1-e^{\frac{2ik\pi}{n}} \right)=\prod_{k=1}^{n-1}-e^{\frac{ik\pi}{n}}\prod_{k=1}^{n-1}2i\sin\left( \frac{k\pi}{n} \right)\\
+        &=2^{n-1}i^{n-1}(-1)^{n-1}\exp\left( \frac{i\pi}{n-1}\sum_{k=1}^{n-1} k \right)\prod_{k=1}^{n-1}\sin\left( \frac{k\pi}{n} \right)\\
+        &=2^{n-1}\exp\left( 2(n-1)i\pi \right)\prod_{k=1}^{n-1}\sin\left( \frac{k\pi}{n} \right)\\
+        &=2^{n-1}\prod_{k=1}^{n-1}\sin\left( \frac{k\pi}{n} \right)
+    \end{align*}
+    Donc $\ds\prod_{k=1}^{n}\sin\left( \frac{k\pi}{n} \right)=\frac{n}{2^{n-1}}$.
+\end{exercice}
+
+\subsection*{Divers.}
+
+\begin{exercice}{$\bww$}{}
+    Soit $P$ un polynôme de $\R[X]$ de degré $n\geq2$ scindé dans $\R[X]$ à racines simples.
+    \begin{enumerate}
+        \item Montrer que $P'$ est scindé à racines simples.
+        \item Prouver que la moyenne arithmétique des racines de $P$ et celle des racines de $P'$ sont égales.
+    \end{enumerate}
+    \tcblower
+    On note $P=\sum_{k=0}^n a_kX^k$.\\
+    \boxed{1.} Soient $(\a_1,...,\a_n)\in\R^n$ les racines de $P$, ordonnées par ordre croissant.\\
+    On applique le théorème de Rolle sur les intervalles $[\a_i,\a_{i+1}]$ pour $i\in\lb1,n-1\rb$.\\
+    On obtient qu'il existe $\b_i\in]\a_i,\a_{i+1}[$ racine de $P'$ pour tout $i\in\lb1,n-1\rb$.\\
+    Alors $P'$ est scindé à racines simples car les intervalles sont distincts.\\
+    \boxed{2.} On a $\sum_{i=1}^n\a_n=-\frac{a_{n-1}}{a_n}$ donc la moyenne des $\a_i$ vaut $-\frac{a_{n-1}}{na_n}$.\\
+    De plus, $P'=\sum_{k=1}^{n}ka_kX^{k-1}$ donc $\sum_{i=1}^{n-1}\b_i=-\frac{(n-1)a_{n-1}}{na_n}$ donc la moyenne des $\b_i$ vaut $-\frac{a_{n-1}}{na_n}$.\\
+    Les moyennes arithmétiques sont égales.
+\end{exercice}
+
+\vspace*{-0.4cm}
+
+\begin{exercice}{$\bbw$}{}
+    Démontrer qu'il existe un nombre fini de polynômes unitaires de $\Z[X]$ ayant un degré égal à $n$ et des racines complexes de module inférieur à 1.
+    \tcblower
+    Soit $n\in\N$. Notons $\E_n$ l'ensemble de ces polynômes. Soit $P\in\E_n$ de racines $\w_1,...,\w_n\in\C$.
+    \begin{equation*}
+        P=\left( X^n + \sum_{k=1}(-1)^n\s_k X^{n-k} \right) = \prod_{k=1}^n(X-\w_k)
+    \end{equation*}
+    On a que $\ds\forall k \in \lb 1, n\rb, ~ |\s_k|=\left|\sum_{I\in\P_k(\lb1,n\rb)}\prod_{i\in I}\w_i\right|\leq\sum_{I\in\P_k(\lb1,n\rb)}\prod_{i\in I}1=\binom{n}{k}$.\\
+    Donc $\ds|\E|\leq\sum_{k=1}^n|\s_k|\leq\sum_{k=1}^n\binom{n}{k}\leq2^n-1$. C'est un ensemble fini.
+\end{exercice}
+
+\vspace*{-0.4cm}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $n\in\N^*$ et $P=nX^n-\sum\limits_{k=0}^{n-1}X^k$.
+    \begin{enumerate}
+        \item Prouver que $1$ est racine simple de $P$.
+        \item (*) En vous intéressant à $(X-1)P$, démontrer que toutes les racines complexes de $P$ sont simples.
+        \item Donner la somme et le produit des racines.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} $P(1)=n-n=0$. $P'(1)=n^2-\frac{n(n-1)}{2}=\frac{n(n-1)}{2}\neq0$.\\
+    \boxed{2.} Soit $\w\in\C$ racine de $P$. On a $P(0)=-1$ donc on peut supposer $\w\notin\{0,1\}$.
+    \begin{equation*}
+        (X-1)P=(X-1)(nX^n - \sum_{k=0}^{n-1}X^k)=...=nX^{n+1}-(n+1)X^n+1.
+    \end{equation*}
+    Donc $(X-1)P'=n(n+1)(X^n-X^{n-1})$ et $(\w-1)P'(\w)=\w^{n-1}n(n+1)(\w-1)\neq0$ car $\w\notin\{0,1\}$.\\
+    Donc $P'(\w)\neq0$ par intégrité de $\C[X]$, donc $\w$ est racine simple de $P$.\\
+    \boxed{3.} La somme des racines est $\frac{1}{n}$, le produit est $\frac{(-1)^n}{n}$.
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Soit $n\in\N$.
+    \begin{enumerate}
+        \item Exprimer de deux façons différentes l'unique polynôme $P$ de degré $n$ tel que $\forall i \in \lb0,n\rb, ~ P(i)=i^n$.
+        \item En considérant son coefficient dominant, démontrer l'identité
+        \begin{equation*}
+            \sum_{i=0}^n(-1)^{n-i}\binom{n}{i}i^n=n!
+        \end{equation*}
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Le polynôme $X^n$ est évident.\\
+    On pose $L_j$ les polynômes de Lagrange associés à $(0,...,n)$. On a $P=\sum_{i=0}^ni^nL_i$.
+    \begin{align*}
+        P&=\sum_{i=0}^ni^n\prod_{\substack{j=0\\j\neq i}}^n\frac{X-j}{i-j}=\sum_{i=0}^ni^n(-1)^{n-i}\prod_{j=0}^{i-1}\frac{1}{i-k}\prod_{j=i+1}^n\frac{1}{k-i}\prod_{k\neq i}(X-k)
+    \end{align*}
+    \boxed{2.} Le coefficient dominant est 1. Ainsi:
+    \begin{equation*}
+        \sum_{i=0}^ni^n(-1)^{n-i}\frac{1}{i!}\cdot\frac{1}{(n-i)!}=1.
+    \end{equation*}
+    On multiplie par $n!$ des deux côtés :
+    \begin{equation*}
+        \sum_{i=0}^n(-1)^{n-i}\frac{n!}{i!(n-i)!}i^n=\sum_{i=0}^n(-1)^{n-i}\binom{n}{k}i^n=n!
+    \end{equation*}
+\end{exercice}
+
+\end{document}
