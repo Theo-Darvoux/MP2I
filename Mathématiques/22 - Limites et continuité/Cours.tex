@@ -1,0 +1,735 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{22}
+\def\pagetitle{Limites et continuité.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\thispagestyle{fancy}
+
+\setcounter{section}{-1}
+
+\section{Introduction : deux préalables.}
+
+\subsection{Retour sur la notion d'intervalle.}
+
+\begin{defi}{}{}
+    On dit qu'une partie $A$ de $\R$ est \bf{convexe} si pour tout $a,b\in A$ avec $a\leq b$, on a $[a,b]\subset A$.
+\end{defi}
+
+\begin{prop}{Caractérisation des intervalles.}{}
+    Les intervalles de $\R$ sont exactement les parties convexes de $\R$.
+    \tcblower
+    $\bullet$ Soit $I=]a,b]$ un intervalle de $\R$, où $a\in\R\cup\{-\infty\}$ et $b\in\R$.\\
+    Soit $(a',b')\in I^2 \mid a' \leq b'$. Soit $x\in[a',b']$. Alors $a<a'\leq x \leq b' \leq b$ donc $x\in]a,b]$.\\
+    Ainsi, $I$ est convexe.\\
+    $\bullet$ Soit $C\in\P(\R)$ un convexe de $\R$. On traite le cas où $C$ est borné.\\
+    --- Si $C\neq0$, alors $\exists s,i\in\R \mid \sup(C)=s \et \inf(C)=i$ on a donc $C\subset[g,d]$.\\
+    Soit $\e>0, ~ \exists bb \in C \mid d-\e < b \leq d$ et $\exists a \in C \mid g \leq a < g + \e$.\\
+    Par convexité de $C$, $[a,b]\subset C$ donc $[g+\e, d-\e]\subset C$ donc $]g,d[\in C\subset[g,d]$.\\
+    Donc $C=[g,d]$ ou $C=[g,d[$ ou $C=]g,d]$ ou $C=]g,d[$ : c'est un intervalle.\\
+    --- Si $C=\0$, c'est un intervalle.
+\end{prop}
+
+\begin{ex}{Applications de la caractérisation.}{}
+    Justifier que
+    \begin{enumerate}
+        \item $\R^*$ n'est pas intervalle.
+        \item une intersection d'intervalles est un intervalle.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} On a $1\in\R^*$ et $-1\in\R^*$ mais $[-1,1]\not\subset\R^*$, donc $\R^*$ n'est pas convexe, ce n'est pas un intervalle.
+\end{ex}
+
+Dans tout le cours, les lettres $I$ et $J$ désigneront des intervalles de $\R$ non-vides et non réduits à un point.
+
+\subsection{Propriété vraie au voisinage d'un point.}
+
+La notion suivante jouera pour les fonctions, le rôle que jouait pour les suites le <<à partir d'un certain rang>>.
+
+\begin{defi}{}{}
+    Soit $f:I\to\R$ une fonction. Soit $a\in\ov{\R}$ un élément ou une borne de $I$.\\
+    On dit qu'une propriété portant sur $f$ est vraie \bf{au voisinage de} $a$ si
+    \begin{itemize}
+        \item \boxed{a\in\R} il existe $\eta>0$ tel que la propriété est vraie sur $[a-\eta,a+\eta]\cap I$,
+        \item \boxed{a=+\infty} il existe $A\in\R$ tel que la propriété est vraie sur $[A,+\infty[$.
+        \item \boxed{a=-\infty} il existe $A\in\R$ tel que la propriété est vraie sur $]-\infty,A]$.
+    \end{itemize}
+\end{defi}
+
+\section{Limites d'une fonction.}
+
+\subsection{Définitions et premières propriétés.}
+
+\begin{defi}{}{}
+    Soit $f:I\to \R, a \in \ov{\R}$ un élément ou une borne de $I$ et $L\in\ov{\R}$.\\
+    Les équivalences ci-dessous définissent l'assertion $f$ \bf{admet} $L$ \bf{pour limite en} $a$, ce qui sera notée
+    \begin{equation*}
+        f(x)\xrightarrow[x\to a]{}L.
+    \end{equation*}
+    \begin{enumerate}
+        \item Cas $a$ fini, $L=l$, fini :
+        \begin{equation*}
+            f(x)\xrightarrow[x\to a]{} l \iff \forall \e > 0, ~ \exists \eta > 0 ~ \forall x \in I \cap [a - \eta, a + \eta] \quad |f(x)-l|\leq\e.
+        \end{equation*}
+        \item etc...
+    \end{enumerate}
+\end{defi}
+
+\vspace*{-0.4cm}
+
+\begin{prop}{Unicité de la limite.}{}
+    Soit $f:I\to\R$ et $a\in\ov{\R}$ un élément ou une borne de $I$. Si $f$ admet une limite en $a$, celle-ci est unique. Plus précisément, pour $L,L'\in\ov{R}$, si $f$ admet $L$ et $L'$ pour limite en $a$, alors $L=L'$.\\
+    On pourra donc parler, lorsqu'elle existe, de \bf{la} limite de la fonction en $a$, que l'on notera $\lim_{x\to a}f(x)$. 
+    \tcblower
+    Supposons $a,l,l'$ finis. Supposons que $f(x)\xrightarrow[x\to a]{}l$ et $f(x)\xrightarrow[x\to a]{}l'$.\\
+    Soit $\e>0$ et $x\in I$. Alors $|l-l'|=|l-f(x)+f(x)-l'|\leq|f(x)-l|+|f(x)-l'|$.\\
+    On a $\exists \eta > 0 \mid \forall x \in I\cap[a-\eta, a+\eta], ~ |f(x)-l|\leq\frac{\e}{2}$ et $\exists \eta' > 0 \mid \forall x \in I\cap[a-\eta',a+\eta'], ~ |f(x)-l'|\leq\frac{\e}{2}$.\\
+    Posons $\a=\min(\eta,\eta')$. Alors pour $x\in I\cap[a-\a,a+\a]$, on a :
+    \begin{equation*}
+        |l-l'|\leq\frac{\e}{2}+\frac{\e}{2} \quad\nt{donc}\quad l-l'=0 \quad\nt{donc}\quad l=l'.
+    \end{equation*}
+\end{prop}
+
+\vspace*{-0.4cm}
+
+\begin{prop}{Quand la limite est finie.}{}
+    Soit $f:I\to\R$ et $a\in\ov{R}$ un élément ou une borne de $I$.
+    \begin{itemize}
+        \item Si $f$ admet une limite finie en $a$, alors elle est bornée au voisinage de $a$.
+        \item Si de surcroît, $f$ est définie en $a$ (qui est forcément fini, dans ce cas) alors $\lim_{x\to a}f(x)=f(a)$.
+    \end{itemize}
+    \tcblower
+    $\bullet$ On pose $\e=1$. $|f(x)-l|\leq\e$ est vraie au voisinage de $a$, donc $l-1\leq f(x)\leq l+1$.\\
+    $\bullet$ Supposons $f$ définie en $a\in I$ et $f(x)\xrightarrow[x\to a]{}l$.\\
+    Alors $\forall \e>0, ~ \exists \eta > 0 \mid |f(a)-l|\leq\e$ car $a\in I\cap[a-\eta,a+\eta]$. Donc $f(a)=l$.
+\end{prop}
+
+\subsection{Caractérisation séquentielle de la limite.}
+
+\begin{thm}{Caractérisation séquentielle de la limite. $\star$}{}
+    Soit $f$ une fonction définie sur un intervalle $I$, $a$ un élément ou une borne de $I$ et $L$ un élément de $\ov{\R}$. Il y a équivalence entre :
+    \begin{enumerate}
+        \item $f(x)\xrightarrow[x\to a]{}L$.
+        \item $\forall (u_n) \in I^\N, ~ u_n \to a \ra f(u_n)\to L$.
+    \end{enumerate}
+    \tcblower
+    On suppose $a$ et $l$ finis.\\
+    \boxed{\ra} Supposons que $f(x)\xrightarrow[x\to a]{} l$. \\
+    Soit $(u_n)\in I^\N \mid u_n \to a$. Soit $\e>0 ~:~ \exists \eta > 0 \mid \forall x \in I\cap[a-\eta,a+\eta], ~ |f(x)-l|\leq \e$.\\
+    On a $u_n\to a$ donc $\exists n_0 \in \N \mid \forall n \geq n_0, ~ u_n \in [a-\eta, a +\eta]$.\\
+    De plus, $\forall n \in \N, ~ u_n \in I$ donc $\forall n \geq n_0, ~ u_n\in I\cap[a-\eta,a+\eta], ~\nt{donc}~ |f(u_n)-l|\leq \e$ alors $f(u_n)\to l$.\\
+    \boxed{\la} Supposons que $\forall(u_n)\in I^\N, ~ u_n\to a \ra f(u_n)\to l$.\\
+    Par l'absurde, on suppose que $\exists \e>0 \mid \forall \eta>0, ~ \exists x \in I\cap[a-\eta,a+\eta], ~ |f(x)-l|>\e$.\\
+    Soit $n\in\N^*$. On pose $\eta=\frac{1}{n}>0$ donc $\exists x_n \in I\cap[a-\frac{1}{n},a+\frac{1}{n}],~ |f(x_n)-l|>\e$. Ceci construit la suite $(x_n)$.\\
+    On a donc $\forall n \in \N^*, ~ a-\frac{1}{n}\leq x_n \leq a+\frac{1}{n}$. Alors $x_n\to a$ par théorème des gendarmes.\\
+    Donc $f(x_n)\to l$ par supposition, or $\forall n \in \N^*, ~ |f(x_n)-l|>\e$, c'est absurde. 
+\end{thm}
+
+\vspace*{-0.4cm}
+
+\begin{meth}{}{}
+    Pour prouver que $f:I\to\R$ n'\bf{admet pas} de limite en $a$, il suffit d'exhiber deux suites $(u_n)$ et $(v_n)$ d'éléments de $I$ telles que :
+    \begin{equation*}
+        \begin{cases}
+            u_n \to a\\
+            v_n \to a
+        \end{cases}
+        \quad\et\quad
+        \begin{aligned}
+            (f(u_n)) \et (f(v_n))\hspace*{2cm}\\
+            \nt{ne convergent pas vers la même limite.}
+        \end{aligned}
+    \end{equation*}
+\end{meth}
+
+\vspace*{-0.4cm}
+
+\begin{ex}{$\star$}{}
+    Montrer que $\cos$ et $\sin$ n'ont pas de limite en $+\infty$.
+    \tcblower
+    Soit $n\in\N$. On a $2\pi n\to+\infty$ et $2\pi n + \frac{\pi}{2}\to+\infty$.\\
+    Or $\forall n \in \N, ~ \sin(u_n)=0\to0$ et $\sin(v_n)=1\to1$ donc pas de limite.
+\end{ex}
+
+\subsection{Opérations sur les fonctions admettant une limite.}
+
+\begin{prop}{}{}
+    Soient $f:I\to\R$, $g:I\to\R$ et soit $a\in\ov{\R}$ un élément ou une borne de $I$.\\
+    Supposons que $f$ et $g$ admettent en $a$ des limites finies, respectivement $l$ et $l'$.
+    \begin{enumerate}
+        \item La fonction $f+g$ admet $l+l'$ pour limite en $a$.
+        \item La fonction $fg$ admet $ll'$ pour limite en $a$.
+        \item Si $l\neq0$, alors $f$ ne s'annule pas au voisinage de $a$ et $1/f$ admet pour limite $1/l$ en $a$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soit $(u_n)\in I^\N\mid u_n\to a$ donc $f(u_n)\to l$ et $g(u_n)\to l'$.\\
+    Ainsi, $f(u_n)+g(u_n)\to l+l'$, donc $(f+g)(u_n)\to l+l'$ donc $(f+g)(x)\xrightarrow[x\to a]{}l+l'$.\\
+    \boxed{2.} Idem.\\
+    \boxed{3.} Supposons $l'>0$. La propriété $g(x)\in[l'-\frac{l'}{2},l'+\frac{l'}{2}]$ est vraie au voisinage de $a$.\\
+    Alors $f(u_n)\to l$ et $g(u_n)\to l'$ donnent $\frac{f(u_n)}{f(g_n)}\to\frac{l}{l'}$. 
+\end{prop}
+
+\vspace*{-0.4cm}
+
+\begin{ex}{Cas d'une limite infinie : débrouillez-vous.}{}
+    La limite $\ds\lim_{x\to0_+}\frac{1}{x\ln(x)}$ existe-t-elle ? Que vaut-elle ?
+    \tcblower
+    On a $x\ln(x)\xrightarrow[x\to0_+]{}0_-$ par croissances comparées, donc $\ds\frac{1}{x\ln(x)}\xrightarrow[x\to0_+]{}-\infty$.
+\end{ex}
+
+\vspace*{-0.4cm}
+
+\begin{prop}{Conservation des inégalités larges par passage à la limite.}{}
+    Soient $f$ et $g$ deux fonctions définies sur $I$, $a\in\ov{\R}$ élément ou borne de $I$ et $(l,l')\in\R^2$.
+    \begin{equation*}
+        \nt{Si } \begin{cases}
+            \forall x \in I, ~ f(x) \leq g(x)\\
+            f(x)\xrightarrow[x\to a]{}l \et g(x)\xrightarrow[x\to a]{}l'
+        \end{cases} \quad \nt{alors } l\leq l'.
+    \end{equation*}
+    \tcblower
+    Soit $(u_n)\in I^\N\mid u_n\to a$. On a $f(u_n)\to l$ et $g(u_n)\to l'$ or $\forall n \in \N, ~ f(u_n)\leq g(u_n)$ donc $l\leq l'$.
+\end{prop}
+
+\vspace*{-0.4cm}
+
+\begin{prop}{Composition des limites : deux fonctions.}{}
+    Soit $f:I\to J$ et $g:J\to \R$, où $I$ et $J$ sont des intervalles de $\R$.\\
+    Soient $a\in\ov{J}$ et $b\in\ov{I}$ et $c\in\ov{\R}$.
+    \begin{equation*}
+        \nt{Si } \begin{cases}
+            f(x)\xrightarrow[x\to a]{}b\\
+            g(y)\xrightarrow[y\to b]{}c
+        \end{cases} \quad \nt{alors } g\circ f(x) \xrightarrow[x\to a]{}c.
+    \end{equation*}
+    \tcblower
+    Supposons que $f(x)\xrightarrow[x\to a]{}b$ et $g(y)\xrightarrow[y\to b]{}c$. Soit $(u_n)\in I^\N\mid u_n\to a$.\\
+    Alors $f(u_n)\to b$ donc $g(f(u_n))\to c$. On a $g\circ f(u_n)\to c$ pour toute suite $u_n\to a$.\\
+    Par caractérisation, $g\circ f(x)\xrightarrow[x\to a]{}c$.
+\end{prop}
+
+\subsection{Limite à gauche, limite à droite.}
+
+\begin{defi}{}{}
+    Soit $f:I\to\R$ et $a$ un élément ou une borne finie de $I$. On dit que $f$ admet en $a$ une
+    \begin{itemize}
+        \item \bf{limite à gauche} si $a\neq\inf(I)$ et si $f_{|]-\infty,a[\cap I}$ admet une limite en $a$.
+        \item \bf{limite à droite} si $a\neq\sup(I)$ et si $f_{|]a,+\infty[\cap I}$ admet une limite en $a$.
+    \end{itemize}
+    Lorsqu'elles existent, ces limites sont notées respectivement
+    \begin{equation*}
+        \lim_{\substack{x\to a\\ x<a}}f(x)\et\lim_{\substack{x\to a\\ x>a}}f(x) \quad (ou \lim_{x\to a_-}f(x) \et \lim_{x\to a_+} f(x)).
+    \end{equation*}
+    Supposons que $f$ n'est pas définie en $a$. Si $f$ admet une limite à gauche et à droite en $a$ et que ces limites sont égales à $L\in\R$, on appelle ce nombre limite en $a$ et on écrit
+    \begin{equation*}
+        f(x)\xrightarrow[\substack{x\to a\\ x \neq a}]{}L.
+    \end{equation*}
+\end{defi}
+
+\vspace*{-0.4cm}
+
+\begin{ex}{quand les limites à gauche et à droite coïncident.}{}
+    Démontrer que
+    \begin{equation*}
+        \frac{\sin x}{x}\xrightarrow[\substack{x\to0\\x\neq0}]{}1.
+    \end{equation*}
+    \tcblower
+    Soit $x>0$. $\ds\frac{\sin x}{x}=\frac{\sin x - \sin 0}{x-0}\xrightarrow[x\to 0]{}\sin'(0)=\cos(0)=1$.
+\end{ex}
+
+\begin{prop}{}{}
+    Soit $I$ un intervalle ouvert, $f:I\to\R$, $a\in I$, $l\in\R$ et $f$ définie en $a$. Alors:
+    \begin{equation*}
+        f(x)\xrightarrow[x\to a]{}l \iff \begin{cases}f(x)\xrightarrow[x\to a_-]{}l\\f(x)\xrightarrow[x\to a_+]{}l\\f(a)=l\end{cases}
+    \end{equation*}
+\end{prop}
+
+\subsection{Théorèmes d'existence de limite.}
+
+\begin{thm}{des gendarmes, pour les fonctions.}{}
+    Soient $f,g,h$ définies sur $I$, $a\in\ov{I}$ et $l\in\R$.
+    \begin{equation*}
+        \nt{Si } \begin{cases}
+            \forall x \in I, ~ f(x) \leq g(x) \leq h(x),\\
+            f(x) \xrightarrow[x\to a]{}l ~\et~ h(x)\xrightarrow[x\to a]{}l
+        \end{cases} \quad \nt{alors} \quad g(x)\xrightarrow[x\to a]{}l.
+    \end{equation*} 
+    \tcblower
+    On applique le théorème des gendarmes (suites) sur $f(u_n),g(u_n),h(u_n)$ avec la caractérisation séquentielle.
+\end{thm}
+
+\begin{ex}{}{}
+    Montrer que la fonction $\ds f:\begin{cases}\R^* &\to \quad \R\\ x &\mapsto \quad x\sin\left( \frac{1}{x} \right)\end{cases}$ admet une limite en $0$, que l'on précisera.
+    \tcblower
+    Soit $x>0$. On a $-1\leq\sin\left( \frac{1}{x} \right)\leq1$ et $-x\leq x\sin\left( \frac{1}{x} \right)\leq x$.\\
+    Par encadrement, $f(x)\xrightarrow[x\to0_+]{}0$ donc $f$ admet 0 comme limite à droite en $a$.\\
+    Par parité, $f(x)\xrightarrow[x\to0_-]{}0$ donc $f(x)\xrightarrow[x\to0]{}0$.
+    \begin{equation*}
+        x\sin\left( \frac{1}{x} \right)=\frac{\sin\left( \frac{1}{x} \right)}{\frac{1}{x}}=\frac{\sin(y)}{y}\xrightarrow[y\to0]{}1.
+    \end{equation*}
+    En effet, en posant $y=\frac{1}{x}\to0$ on retrouve le sinus cardinal.
+\end{ex}
+
+\vspace*{-0.4cm}
+
+\begin{prop}{de minoration, de majoration.}{}
+    Soient $f$ et $g$ définies sur $I$ et $a\in\ov{I}$.
+    \begin{itemize}
+        \item Si $\forall x \in I, ~ f(x) \leq g(x)$ et $f(x)\xrightarrow[x\to a]{}+\infty$, alors $g(x)\xrightarrow[x\to a]{}+\infty$.
+        \item Si $\forall x \in I, ~ f(x) \leq g(x)$ et $g(x)\xrightarrow[x\to a]{}-\infty$, alors $f(x)\xrightarrow[x\to a]{}-\infty$
+    \end{itemize}
+\end{prop}
+
+\vspace*{-0.4cm}
+
+\begin{thm}{de la limite monotone, pour les fonctions.}{}
+    \begin{itemize}
+        \item Soit $I=]a,b[$ un intervalle ouvert de $\R$ et $f:I\to\R$. Si $f$ est croissante sur $I$, alors elle admet en tout point de $]a,b[$ une limite à gauche et une limite à droite. De plus,
+        \begin{equation*}
+            \forall c \in ]a,b[, ~ \lim_{x\to c_-} f(x) \leq f(c) \leq \lim_{x\to c_+} f(x).
+        \end{equation*}
+        Il existe aussi une limite à droite en $a$ et une limite à gauche en $b$.
+        \item Soit $f$ une fonction croissante, définie sur $[A,+\infty[$ avec $A\in\R$.\\
+        Si elle est majorée, elle admet une limite finie en $+\infty$. Sinon elle tend vers $+\infty$ en $+\infty$.
+    \end{itemize}
+    \tcblower
+    On pose $A=\{f(x)\mid x\in]a,c[\}$. On a $A\subset \R$ et $A\neq\0$.\\
+    Alors $\forall x \in A, ~ f(c)\geq x$ car $f$ est croissante, donc $s:=\sup(A)$ existe.\\
+    Soit $\e>0, ~ \exists x_0 \in ]a,c[, ~ s-\e\leq f(x_0) \leq s+\e$. Par croissance de $f$ : $\forall x \in [x_0,c[, ~ f(x_0)\leq f(x)$.\\
+    Or $f(x_0)\geq s-\e$ et $f(x)\leq s$ donc $\forall x \in [x_0,c[, ~ |f(x)-s|\leq \e$ au voisinage de $c$ à gauche.\\
+    On a bien l'existence de $\lim_{x\to c}f(x)$ : c'est $s$, et $s\leq f(c)$ car $f(c)$ majore $A$.
+\end{thm}
+
+\section{Continuité en un point.}
+
+\subsection{Définitions.}
+
+\begin{defi}{}{}
+    Soit $f:I\to\R$ et $a\in I$. On dit que $f$ est \bf{continue en $a$} si
+    \begin{equation*}
+        f(x)\xrightarrow[x\to a]{}f(a).
+    \end{equation*}
+\end{defi}
+
+\begin{defi}{}{}
+    Soit $f:I\to\R$ et $a\in I$. On dit que $f$ est \bf{continue à gauche en $a$} si $f$ admet $f(a)$ pour limite à gauche en $a$. On dit que $f$ est \bf{continue à droite en $a$} si $f$ admet $f(a)$ pour limite à droite en $a$. 
+\end{defi}
+
+\begin{ex}{}{}
+    La fonction $f:x\mapsto\lf x\rf$ est-elle continue à gauche en $2$ ? continue à droite en $2$ ?
+    \tcblower
+    On a $\forall x \in [1,2[, ~ f(x)=1$ donc $f(x)\xrightarrow[x\to2_-]{}1$, or $f(2)=2$, donc $f$ n'est pas continue à gauche en $2$.\\
+    On a $\forall x \in [2,3[, ~ f(x)=2$ donc $f(x)\xrightarrow[x\to2_+]{}2$ et $f(2)=2$, donc $f$ est continue à droite en $2$.
+\end{ex}
+
+\begin{prop}{}{}
+    Soit une fonction $f:I\to\R$ et $a\in I$.\\
+    Elle est continue en $a$ si et seulement si elle est continue à gauche et à droite en $a$.
+\end{prop}
+
+\begin{ex}{}{}
+    Établir la continuité en 0 de la fonction $\ds f:x\mapsto \begin{cases}
+        0 &\nt{si } x\leq 0\\
+        \exp(-1/x) &\nt{si } x>0. 
+    \end{cases}$
+    \tcblower
+    On a $\forall x \leq 0, ~ f(x)=f(0)=0$ donc $f$ est continue à gauche en 0.\\
+    On a $\forall x>0, ~ f(x)=e^{-\frac{1}{x}}\xrightarrow[x\to0_+]{}0$ et $f(0)=0$ donc $f$ est continue à droite en 0.\\
+    Donc $f$ est continue en 0.
+\end{ex}
+
+\begin{prop}{Caractérisation séquentielle de la continuité en un point.}{}
+    Soit une fonction $f:I\to\R$ et $a\in I$. Il y a équivalence entre :
+    \begin{enumerate}
+        \item $f$ est continue en $a$.
+        \item Pour toute suite $u\in I^\N$ tendant vers $a$, $(f(u_n))$ tend vers $f(a)$.
+    \end{enumerate}
+\end{prop}
+
+\vspace*{-0.4cm}
+
+\begin{rappel}{}{}
+    Soit $f:I\to I$ stable par $f$ et $(u_n)$ définie par $u_0\in I$, $\forall n \in \N,~u_{n+1}=f(u_n)$.\\
+    Si $(u_n)$ converge vers une limite $l$, que $l\in I$ et que $f$ est continue en $l$, alors $f(l)=l$. 
+\end{rappel}
+
+\vspace*{-0.4cm}
+
+\begin{ex}{CCINP 43}{}
+    Soit $x_0\in\R$. On définit la suite $(u_n)$ par $u_0=x_0$ et $\forall n \in\N,~u_{n+1}=\arctan(u_n)$.\\
+    Montrer que $(u_n)$ converge et déterminer sa limite.
+    \tcblower
+    \bf{Monotonie.}\\
+    --- Si $u_0=u_1$, alors $(u_n)$ est constante égale à $u_0$.\\
+    --- Si $u_0<u_1$, alors $(u_n)$ est croissance par récurrence triviale.\\
+    --- Si $u_0>u_1$, alors $(u_n)$ est décroissante par récurrence triviale.\n
+    On veut connaitre les variations en fonction de $x_0$, on pose donc $g:x\mapsto\arctan(x)-x$.\\
+    On a alors $\forall x \in \R, ~ g'(x)=-\frac{x^2}{1+x^2}<0$. Alors $\forall x \in ]-\infty,0[,~g(x)>0$ et $\forall x \in ]0,+\infty[,~g(x)<0$.\\
+    --- Si $x_0=0$, $(u_n)$ est constante égale à 0.\\
+    --- Si $x_0<0$, $(u_n)$ est strictement croissante.\\
+    --- Si $x_0>0$, $(u_n)$ est strictement décroissante.\n
+    \bf{Convergence.}\\
+    On a $\R_+$ et $\R_-$ stables par $\arctan$ et 0 son seul point fixe sur $\R$.\\
+    --- Si $x_0=0$, on a la convergence vers 0 car la suite est constante.\\
+    --- Si $x_0>0$, on a $(u_n)$ décroissante et minorée par 0, donc elle converge vers 0 comme seul point fixe de $\arctan$.\\
+    --- Si $x_0<0$, on a $(u_n)$ croissante et majorée par 0, donc elle converge vers 0 comme seul point fixe de $\arctan$.
+\end{ex}
+
+\vspace*{-0.4cm}
+
+\begin{ex}{(*) Une équation fonctionnelle classique.}{}
+    Trouver toutes les fonctions $f$ continues sur $\R$ telles que
+    \begin{equation*}
+        \forall (x,y) \in \R^2, ~ f(x+y)=f(x)+f(y).
+    \end{equation*}
+    \tcblower
+    \bf{Analyse.} Soit $f:\R\to\R$ continue sur $\R$ telle que $\forall (x,y)\in\R^2,~f(x+y)=f(x)+f(y)$.\\
+    $\bullet$ $f(0+0)=f(0)+f(0)$ donc $f(0)=0$.\\
+    $\bullet$ $f(x-x)=f(x)+f(-x)=0$ donc $f(x)=f(-x)$ : la fonction est paire.\\
+    $\bullet$ $\forall n \in \N, ~ f(n)=f(n-1)+f(1)=...=nf(1)$.\\
+    $\bullet$ Soit $r=\frac{p}{q}\in\Q$. $f(qr)=qf(r)$ donc $f(r)=rf(1)$.\\
+    $\bullet$ Soit $x\in\R$ : $\exists (r_n)\in\Q^\N\mid r_n\to x$ et $\forall n \in \N,~f(r_n)=r_n(f_1)\to xf(1)$.\\
+    Donc $f(x)=xf(1)$ donc $f$ est linéaire : $x\mapsto ax$ avec $a\in\R$.\n
+    \bf{Synthèse.} Soit $a\in\R$ et $f:x\mapsto ax$. Soient $x,y\in\R$ : $f(x+y)=a(x+y)=ax + ay=f(x)+f(y)$.\\
+    De plus, $f$ est continue sur $\R$, c'est une fonction linéaire. Les fonction linéaires sont donc les seules fonctions qui conviennent.
+\end{ex}
+
+\subsection{Prolongement par continuité.}
+
+\begin{defi}{}{}
+    Soit $I$ un intervalle et $a\in I$. Soit $f:I\setminus\{a\}\to\R$. Si $f$ admet une limite finie en $a$, on pose
+    \begin{equation*}
+        f(a) := \lim_{x\to a}f(x).
+    \end{equation*} 
+    La fonction $f$ est alors définie sur $I$ et elle est automatiquement continue en $a$. On dit que l'on a réalisé au point $a$ un \bf{prolongement de $f$ par continuité.}
+\end{defi}
+
+\begin{ex}{}{}
+    Prolongement par continuité en 0 de la fonction sinus cardinal $\ds f:x\mapsto\frac{\sin x}{x}$.
+\end{ex}
+
+\subsection{Opérations sur les fonctions continues en un point.}
+
+\begin{prop}{Combinaisons linéaires, produit, inverse de fonctions continues.}{}
+    Soient $f:I\to\R$, $g:I\to\R$ et $a\in I$. Supposons que $f$ et $g$ sont continues en $a$. Alors,
+    \begin{itemize}
+        \item pour tous $\l,\mu\in\R$, la fonction $\l f + \mu g$ est continue en $a$.
+        \item La fonction $fg$ est continue en $a$.
+        \item Si $f(a)\neq0$, alors, la fonction $(1/f)$ est définie et continue au voisinage de $a$.
+    \end{itemize}
+\end{prop}
+
+\begin{prop}{Composition de fonctions continues.}{}
+    Soit $f:I\to J$ et $g:J\to\R$ où $I$ et $J$ sont des intervalles de $\R$. Soit $a\in I$.
+    \begin{center}
+        Si $f$ est continue en $a$ et $g$ est continue en $f(a)$, alors $g\circ f$ est continue en $a$.
+    \end{center}
+\end{prop}
+
+\section{Propriétés des fonctions continues sur un intervalle.}
+
+\subsection{Continuité sur un intervalle, opérations.}
+
+\begin{defi}{}{}
+    Une fonction $f:I\to\R$ est dite \bf{continue sur $I$} si elle est continue en tout point de $I$.\\
+    L'ensemble des fonctions continues sur $I$ pourra être noté $\m{C}(I,\R)$ ou $\m{C}(I)$.
+\end{defi}
+
+\vspace*{-0.4cm}
+
+\begin{prop}{}{}
+    $\m{C}(I,\R)$ est stable par combinaisons linéaires et par produit.\\
+    Le quotient de deux fonctions continues sur $I$ est continu sur $I$ si la fonction au dénominateur ne s'annule pas sur $I$.
+\end{prop}
+
+\vspace*{-0.4cm}
+
+\begin{prop}{}{}
+    Soit $f:I\to J$ et $g:J\to\R$.
+    \begin{center}
+        Si $f$ est continue sur $I$ et $g$ continue sur $J$, alors $g\circ f$ est continue sur $I$.
+    \end{center}
+\end{prop}
+
+\vspace*{-0.4cm}
+
+\begin{ex}{}{}
+    Démontrer la continuité sur $\R$ de la fonction $f$ définie sur $\R$ par
+    \begin{equation*}
+        f(0)=1 \quad\et\quad \forall x \in \R^*, ~ f(x)=\frac{\arctan(x)}{x}.
+    \end{equation*}
+\end{ex}
+
+\subsection{Théorème des valeurs intermédiaires (and friends).}
+
+\begin{thm}{des valeurs intermédiaires.}{}
+    Soient deux réels $a\leq b$ et $f:[a,b]\to\R$ continue. Alors, pour tout réel $y$ entre $f(a)$ et $f(b)$,
+    \begin{equation*}
+        \exists c \in [a,b] \quad y = f(c).
+    \end{equation*}
+\end{thm}
+
+\vspace*{-0.4cm}
+
+\begin{corr}{}{}
+    Si une fonction continue sur un intervalle y change de signe, alors elle s'annule sur cet intervalle.\\
+    Si une fonction continue sur un intervalle ne s'y annule pas, alors $f>0$ ou $f<0$ sur $I$.
+\end{corr}
+
+\vspace*{-0.4cm}
+
+\begin{ex}{}{}
+    Montrer qu'une fonction polynomiale de degré impair s'annule au moins une fois sur $\R$.
+    \tcblower
+    Soit $P\in\R[X]$ de degré impair et $\tilde{P}:x\mapsto P(x)$. On a $\tilde{P}(x)\xrightarrow[x\to+\infty]{}+\infty$ et $\tilde{P}(x)\xrightarrow[x\to-\infty]{}-\infty$.\\
+    Donc $\tilde{P}$ change de signe et est continue. Par TVI, elle s'annule.
+\end{ex}
+
+\begin{ex}{$\star$}{}
+    Soit $f:[a,b]\to[a,b]$ continue sur $[a,b]$. Montrer l'existence d'un point fixe pour $f$.
+    \tcblower
+    Soit $g:x\mapsto f(x)-x$, continue comme somme.\\
+    On a $f(b)\in[a,b]$ donc $g(b)\leq0$ et $f(a)\in[a,b]$ donc $g(a)\geq0$.\\
+    Ainsi, $g$ change de signe et est continue. Par TVI, $\exists x_0 \in [a,b] \mid f(x_0)-x_0=0$...
+\end{ex}
+
+\begin{corr}{$\star$}{}
+    L'image d'un intervalle par une fonction continue est un intervalle.
+    \tcblower
+    Soit $f$ continue sur un intervalle $I$. Soient $a,b\in I~:~a\leq b$. Soit $y\in[a,b]$.\\
+    On a $\exists \a \in I \mid a = f(\a)$ et $\exists \b \in I \mid b = f(\b)$ et $f$ continue sur $[\min(\a,\b), \max(\a,\b)]$.\\
+    En effet, $[\min(\a,\b),\max(\a,\b)]\subset I$ par convexité de $I$.\\
+    Par TVI, $\exists \g \in [\min(\a,\b),\max(\a,\b)]\mid y=f(\g)$ donc $y\in f(I)$.
+\end{corr}
+
+\begin{corr}{TVI strictement monotone.}{}
+    Soit $f:[a,b]\to\R$ continue et strictement monotone sur $[a,b]$. Pour tout réel $y$ entre $f(a)$ et $f(b)$,
+    \begin{equation*}
+        \exists!c\in[a,b]\quad y=f(c).
+    \end{equation*}
+    \tcblower
+    \bf{Existence.} TVI.\\
+    \bf{Unicité.} On sait que toute fonction strictement monotone est injective.
+\end{corr}
+
+\begin{thm}{Théorème de la bijection continue.}{}
+    Soit $f:I\to\R$ une fonction continue et strictement monotone sur $I$.
+    \begin{itemize}
+        \item Elle réalise une bijection de $I$ dans $f(I)$, qui est un intervalle.
+        \item De plus, sa réciproque $f^{-1}:J\to I$ est strictement monotone, de même monotonie que $f$, et elle est continue sur $J$.
+    \end{itemize}
+    \tcblower
+    On a $J=f(I)$ est un intervalle comme image d'un intervalle par une fonction continue.\\
+    $\bullet$ $J=f(I)$ donc $\forall y \in J, ~ \exists x \in I \mid y = f(I)$ : surjective.\\
+    $\bullet$ $f$ est injective sur $I$ car elle y est strictement monotone.\\
+    $\bullet$ $f$ est donc bijective de $I$ vers $J$. Il existe donc $f^{-1}:J\to I$.\\
+    $\bullet$ Supposons $f$ strictement croissante. Soient $y,y'\in J \mid y<y'$. Supposons $f^{-1}(y)\geq f^{-1}(y')$.\\
+    On applique $f$ croissante : $y\geq y'$ : absurde donc $f^{-1}(y)<f^{-1}(y')$ : même monotonie.
+\end{thm}
+
+\begin{prop}{}{}
+    Soit une fonction définie sur un intervalle et à valeurs réelles.\\
+    Si elle est continue sur l'intervalle et injective, alors elle est strictement monotone.
+\end{prop}
+
+\subsection{Théorème des bornes atteintes.}
+
+\begin{thm}{$\star\star$}{}
+    Soit $f:[a,b]\to\R$ continue sur $[a,b]$. Alors $f$ est bornée et atteint ses bornes sur $[a,b]$: 
+    \begin{equation*}
+        \exists c \in [a,b] \mid f(c)=\min_{[a,b]}f.
+    \end{equation*}
+    \begin{equation*}
+        \exists d \in [a,b] \mid f(d)=\max_{[a,b]}f.
+    \end{equation*}
+    \tcblower
+    Notons $A=f([a,b])$ non vide. On pose $S=\sup(A)$ si $A$ est majoré, $+\infty$ sinon.\\
+    Alors $\exists (\a_n)\in A^\N \mid \a_n \to S$ et $\forall n\in\N,~\a_n\in A$.\\
+    Ainsi, $\forall n\in \N, ~ \exists x_n\in[a,b]\mid \a_n = f(x_n)$. On a donc une suite $(x_n)$ d'éléments de $[a,b]$.\\
+    C'est une suite bornée. D'après Bolzano-Weierstrass, elle admet une suite extraite convergente :
+    \begin{equation*}
+        \exists \phi\in\N^\N \mid \exists l \in \R, ~ x_{\phi(n)} \to l \in [a,b] ~ \nt{(car $\forall n \in \N, ~ x_{\phi(n)} \in [a,b]$)}.
+    \end{equation*}
+    Ainsi, $f$ est continue en $l\in[a,b]$ et $f(x_{\phi(n)})\to f(l)$ et $f(x_n)\to S$.\\
+    Par unicité de la limite, $S=f(l)$ donc $S$ est fini et atteinte en $l$. C'est le maximium de $f$ sur $[a,b]$.
+\end{thm}
+
+\pagebreak
+
+\begin{corr}{Image d'un segment. $\star$}{}
+    L'image d'un segment par une fonction continue est un segment.
+    \tcblower
+    Soit $[a,b]$ avec $a,b\in\R$ et $a\leq b$. Soit $f$ continue sur $[a,b]$.\\
+    D'après le TBA, $f$ est bornée sur $[a,b]$ et y atteint ses bornes, on pose $m=\min_{[a,b]}f$ et $M=\max_{[a,b]}f$.\\
+    Alors $m,M\in f([a,b])\subset[m,M]$. Ainsi, par TVI, $[m,M]\subset f([a,b])$ donc $[m,M]=f([a,b])$.
+\end{corr}
+
+\section{Exercices.}
+
+\subsection*{Limites.}
+
+\begin{exercice}{$\bww$}{}
+    Calculer (en montrant qu'elles existent) : $\ds\lim_{x\to0_+}x\left\lf\frac{1}{x}\right\rf, \qquad \lim_{x\to+\infty}x\left\lf\frac{1}{x}\right\rf$.
+    \tcblower
+    Soit $x\in\R_+^*$. On a $\left\lf\frac{1}{x}\right\rf\leq\frac{1}{x}<\left\lf\frac{1}{x}\right\rf+1$ et $\frac{1}{x}-1<\left\lf\frac{1}{x}\right\rf\leq\frac{1}{x}$ donc $1-x<x\left\lf\frac{1}{x}\right\rf\leq1$.\\
+    Ainsi, $x\left\lf\frac{1}{x}\right\rf\xrightarrow[x\to0_+]{}1$ par théorème des gendarmes.\n
+    Soit $x>1$. On a $\left\lf\frac{1}{x}\right\rf=0$ car $\frac{1}{x}<1$ donc $x\left\lf\frac{1}{x}\right\rf=0$ pour $x>1$ donc $f(x)\xrightarrow[x\to+\infty]{}0$.
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Soient $f:[0,1]\to[0,1]$ et $g:[0,1]\to[0,1]$. On suppose que $fg$ admet $1$ pour limite en $0$.\\
+    Montrer que $f$ et $g$ admettent $1$ pour limite en $0$.
+    \tcblower
+    Soit $x\in[0,1]$. On a $0\leq f(x)g(x)\leq f(x)\leq1$.\\
+    Or $f(x)g(x)\xrightarrow[x\to0]{}1$ donc par théorème des gendarmes, $f(x)\xrightarrow[x\to0]{}1$. On en déduit que $g(x)\xrightarrow[x\to0]{}1$.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Montrer que la fonction $\ds f:x\mapsto\frac{x^x}{\lf x \rf^{\lf x \rf}}$ n'a pas de limite en $+\infty$.
+    \tcblower
+    Soit $n\in\N$. On a $\ds f(n)=\frac{n^n}{n^n}=1\to1$ et $\ds f(n+\frac{1}{2})=\frac{(n+\frac{1}{2})^{n+\frac{1}{2}}}{n^n}=\left( 1+\frac{1}{2n} \right)^n\left( n+\frac{1}{2} \right)^\frac{1}{2}\to+\infty$.\\
+    Donc $f$ n'a pas de limite en $+\infty$.
+\end{exercice}
+
+\subsection*{Continuité (locale).}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $f:\R_+^*\to\R$ croissante, et telle que $\ds x\mapsto\frac{f(x)}{x}$ est décroissante.\\
+    Montrer que $f$ est continue sur $\R_+^*$.
+    \tcblower
+    Soit $a\in\R_+^*$ et $x<a$. On a $x\frac{f(a)}{a}\leq f(x) \leq f(a)$ donc $f(x)\xrightarrow[x\to a_-]{}f(a)$ par gendarmes.\\
+    Soit $x>a$. Alors $f(a)\leq f(x) \leq x\frac{f(a)}{a}$ donc $f(x)\xrightarrow[x\to a_+]{}f(a)$ par gendarmes.\\
+    Donc $f$ est continue sur $\R_+^*$.
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Soit $f:\R\to\R$, à la fois $1$-périodique et $\sqrt{2}$-périodique, et continue en 0.
+    \begin{enumerate}
+        \item Soit $n\in\N$. Montrer que $(\sqrt{2}-1)^n$ est une période de $f$.
+        \item Montrer que $f$ est constante.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soient $a,b\in\Z^2$. On a $f(x+a)=f(x+b\sqrt{2})=f(x)$ donc $f(a+b\sqrt{2})=f(0)$.\\
+    Par le binôme de Newton, on trouve que $(\sqrt{2}-1)^n$ s'écrit comme $a+b\sqrt{2}$ et est donc période de $f$.\\
+    \boxed{2.} On a $u_n:=(\sqrt{2}-1)^n\to0$ et $u_n=a_n+b_n\sqrt{2}$. Soit $x\in\R$.\\
+    On pose $p_n=\lf\frac{x}{u_n}\rf$. Alors $p_nu_n\leq x <(p_n+1)u_n$ et $(p_nu_n)\to x$ car $0\leq x - p_nu_n<u_n$.\\
+    Or, $p_nu_n=a'_n+b'_n\sqrt{2}$ et $f(p_nu_n)=f(0)$ donc $f(x)=f(0)$ car $f$ est continue en 0.
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\bbw$}{}
+    Montrer que la fonction $\1_\Q$ n'est continue en aucun point de $\R$.
+    \tcblower
+    Supposons par l'absurde que $\lf1_\Q\rf$ soit continue sur $\R$.\\
+    Soit $x\in\Q$. Posons $(x_n)$ telle que $\forall n \in \N, ~ x_n = \frac{\lf 10^nx\rf}{10^n}$. On a $x_n\to x$.\\
+    On pose $a_n=x-\frac{1}{\pi n}\to x$ et $b_n=x+\frac{1}{\pi n}\to x$.\\
+    De plus, $\forall n \in \N, ~ a_n \leq x \leq b_n$, $\1_\Q(a_n)=\1_\Q(b_n)=0$ donc $x\notin\Q$ : absurde.\n
+    Soit $x\in\R\setminus\Q$. On a $\1_\Q(x_n)=1$ or $x_n\to x$ et $\1_\Q$ continue en $x$ donc $\1_\Q(x)=1$, absurde.\\
+    Donc $\1_\Q$ n'est pas continue sur $\R$.
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Montrer que la fonction $f:x\mapsto\ln(x)\ln(1-x)$ est prolongeable par continuité sur les bords de son intervalle de définition.
+    \tcblower
+    Soit $x\in]0,1[$. On a $f(x)=(x-1)\ln(1-x)\frac{\ln(x)}{x-1}$ or $(x-1)\ln(1-x)\to0$ par CC et $\ln(x)/x-1\to1$ en 1.\\
+    Donc $f(x)\xrightarrow[x\to1]{}0$. De même, $f(x)\xrightarrow[x\to0]{}0$.\\
+    Donc $f$ est prolongeable par continuité en 0 et en 1, et $f(0)=f(1)=0$.
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Trouver les fonctions $f:\R\to\R$ continues en 0 telles que
+    \begin{equation*}
+        \forall x \in \R, ~ f(2x)-f(x)=x.
+    \end{equation*}
+    \tcblower
+    \bf{Analyse.} Soit $f:\R\to\R$ continue en 0 telle que $\forall x \in \R, ~ f(2x)-f(x)=x$.\\
+    Par récurrence triviale, $\forall n \in \N, ~ f(x)-f(\frac{x}{2^n})=x\sum_{k=1}^n\left( \frac{1}{2} \right)^k$.\\
+    Or $f$ est continue en 0 donc $f(x)-f(\frac{x}{2^n})\to f(x)-f(0)$ et $x\sum_{k=1}^n\left( \frac{1}{2} \right)^k\to x$.\\
+    Donc par unicité de la limite, $f(x)-f(0)=x$ donc $f$ est solution si $\exists a \in \R \mid \forall x \in \R, ~ f(x)=a+x$.\\
+    \bf{Synthèse.} Soit $a\in\R$. Soit $f:x\mapsto a + x$. Soit $x\in\R$. On a $f(2x)-f(x)=a+2x-a-x=x$ et $f(0)=a$.
+\end{exercice}
+
+\subsection*{Continuité (globale).}
+
+\begin{exercice}{$\bww$}{}
+    Soit $f:\R\to\R_+$ continue telle que $\lim_{x\to+\infty}\frac{f(x)}{x}<1$. Montrer que $f$ possède un point fixe.
+    \tcblower
+    Soit $g:x\mapsto\frac{f(x)}{x}$. Elle est continue puisque $f$ l'est. On a $g\xrightarrow[x\to+\infty]{}l<1$.\\
+    --- Si $f(0)=0$, alors $f$ admet un point fixe qui est 0;\\
+    --- Si $f(0)>0$, alors $g(x)\xrightarrow[x\to0_-]{}-\infty$ et $g(x)\xrightarrow[x\to0_+]{}+\infty$ donc par TVI il existe un point fixe.\\
+    --- Si $f(0)<0$, même raisonnement.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $f:\R\to\R$ une fonction décroissante et continue.\\
+    Prouver que $f$ possède un unique point fixe.
+    \tcblower
+    Soit $g:x\mapsto f(x)-x$.\\
+    \bf{Unicité.} On a $g$ strictement décroissante, donc injective : elle ne peut s'annuler qu'une unique fois.\\
+    \bf{Existence.} Supposons par l'absurde que $g$ ne s'annule pas.\\
+    On a que $g$ est continue, donc elle est soit strict. positive, soit strict. négative.\\
+    Si $g$ positive : $\forall x \in \R, ~ f(x)>x$, donc $f(x)\xrightarrow[x\to+\infty]{}+\infty$, absurde car $f$ décroissante.\\
+    Si $g$ négative : $\forall x \in \R, ~ f(x)<x$, donc $f(x)\xrightarrow[x\to-\infty]{}-\infty$, absurde car $f$ décroissante.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $f$ une fonction continue sur $\R$ et admettant des limites finies $M$ et $m$ en $+\infty$ et $-\infty$.\\
+    Montrer que $f$ est bornée.
+    \tcblower
+    On pose $\e=1$, $\exists A<0,~\forall x \leq A, ~ |f(x)-m|\leq 1$ et $\exists B > 0, ~ \forall x \geq B, ~ |f(x)-M|\leq1$.\\
+    Donc $\forall x \leq A, ~ m-1 \leq f(x) \leq m+1$ et $\forall x \geq B, ~ M-1\leq f(x) \leq M+1$.\\
+    Donc $f$ est bornée sur $]-\infty, A]$ et sur $[B,+\infty[$.\\
+    De plus, $f$ est continue sur $[A,B]$ donc d'après le TBA, elle y est aussi bornée.\\
+    Ainsi, $f$ est bornée sur $\R$ tout entier.
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Soient $f$ et $g$ deux fonctions de $\R$ dans $\R$. Montrer que si $f$ est continue et que $g$ est bornée, alors $g\circ f$ et $f\circ g$ sont bornées.
+    \tcblower
+    \boxed{g\circ f.} On a $f(\R)\subset\R$ donc $g(f(\R))\subset g(\R)$.\\
+    Or $g$ est bornée par $M\in\R$ donc $g(f(\R))\subset[-M,M]$ donc $g\circ f$ est bornée.\\
+    \boxed{f\circ g.} On a $\exists M\in\R \mid g(\R)\subset[-M,M]$, et $f$ continue sur $[-M,M]\subset\R$.\\
+    D'après le TBA, $f$ est bornée sur $[-M,M]$ donc $f(g(\R))$ est borné, donc $f\circ g$ est bornée.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $f$ une fonction continue sur $\R$ telle que $\forall x \in \R^*, ~ |f(x)|\leq|x|$.
+    \begin{enumerate}
+        \item Prouver que 0 est un point fixe de $f$ et que c'est le seul.
+        \item Prouver que pour tout segment $[a,b]$ inclus dans $\R_+^*$, il existe $k\in[0,1[$ tel que $\forall x \in [a,b], ~ |f(x)|\leq k|x|$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soit $x\in\R^*$. On a $|f(x)|<|x|$ donc $-|x|<f(x)<|x|$ et $f$ continue sur $\R$.\\
+    Ainsi, d'après le théorème des gendarmes, $f(x)\xrightarrow[x\to0]{}0$, donc $f(0)=0$ par continuité de $f$ en 0.\\
+    Supposons qu'il en existe un autre, $l\in\R^*$. Alors $f(l)=l$ et $|f(l)|<|l|$, donc $|l|<|l|$, absurde.\\
+    \boxed{2.} Soit $[a,b]\subset\R^*_+$ un segment.\\
+    Supposons par l'absurde que $\forall k \in [0,1[, ~ \exists x \in [a,b], ~ |f(x)|>k|x|$, donc $k|x|<|f(x)|\leq|x|$.\\
+    Donc $-k|x|<-|f(x)|<k|x|$ donc $0<-|f(x)|<0$ en prenant $k=0$ donc $f(x)=0$.\\
+    De plus, en faisant tendre $k$ vers 1, on a $|x|\leq|f(x)|\leq|x|$ donc $f|(x)|=|x|=0$, absurde car $x\in\R^*$.
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Soit $f:[0,1]\to\R$ continue, telle que $f(0)=f(1)$. Montrer que pour tout $p\in\N^*$, l'équation
+    \begin{equation*}
+        f\left( x+\frac{1}{p} \right)=f(x)
+    \end{equation*}
+    admet au moins une solution.
+    \tcblower
+    Soit $p\in\N^*$. On pose $g:x\mapsto f\left( x+\frac{1}{p} \right)$. Soit $x\in[0,1]$, on a:
+    \begin{equation*}
+        \sum_{k=0}^{p-1} g\left(\frac{k}{p}\right) = \sum_{k=0}^{p-1} f\left( \frac{k+1}{p} \right) - f\left( \frac{1}{p} \right) = f(1) - f(0) = 0
+    \end{equation*}
+    Si l'un des $g\left( \frac{k}{p} \right)$ est nul, on a une solution.\\
+    Sinon, on les suppose tous non nuls, et puiqu'on a une somme nulle: $\exists i,j \in \lb0,p-1\rb \mid g\left( \frac{i}{p} \right)\geq0$ et $g\left( \frac{j}{p} \right)\leq0$.\\
+    Puisque $g$ est continue sur $[0,1]$, elle l'est sur $[\frac{i}{p},\frac{j}{p}]$ (en supposant $i\leq j$), donc on y applique le TVI.\\
+    On a alors $\exists c\in[\frac{i}{p},\frac{j}{p}]\mid g(c)=0$. On a donc une solution.\\
+    Dans tous les cas, on a une solution pour $f\left( x+\frac{1}{p} \right)=f(x)$ pour tout $p\in\N^*$.
+\end{exercice}
+
+\end{document}
