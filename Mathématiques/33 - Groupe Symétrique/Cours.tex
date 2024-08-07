@@ -52,7 +52,7 @@
 \end{ex}
 
 \begin{prop}{}{}
-    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{enumerate}
         \item $(S_n, \circ)$ est une groupe, appelé \textbf{groupe symétrique}.
         \item $S_n$ est fini et son cardinal vaut $n!$.
         \item Ce groupe n'est pas abélien dès que $n\geq3$.
@@ -64,9 +64,11 @@
     Soient $\s,\s'\in S_n ~ | ~ \s_{|\{1,2,3\}}=\t$ et $\s'_{|\{1,2,3\}}=\t'$, fixes sur $\lb4,n\rb$, alors $\s\s'\neq\s'\s$.
 \end{prop}
 
+\vspace*{-0.3cm}
+
 \begin{defi}{Vocabulaire}{}
     Soit $\s\in S_n$.
-    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{enumerate}
         \item Si $x\in\lb1,n\rb$, l'ensemble $\{\s^k(x),k\in\Z\}$ est appelé \textbf{orbite} de $x$.
         \item On dit que $x$ est un \textbf{point fixe} de $\s$ si $\s(x)=x$. 
         \item On appelle \textbf{support} de $\s$ l'ensemble des éléments de $\lb1,n\rb$ qui ne sont pas des points fixes.
@@ -74,15 +76,13 @@
     \end{enumerate}
 \end{defi}
 
-\pagebreak
-
 \begin{prop}{}{}
     Deux permutations dont les supports sont disjoints commutent.
     \tcblower
     Soient $\s,\s'\in S_n$. On note $S(\s)=\{x \in \lb1,n\rb ~ | ~ \s(x)\neq x\}$.\\
     Supposons $S(\s)\cap S(\s') = \0$.\\
     Soit $x\in\lb1,n\rb$.
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item Si $x\in S(\s)$ : $x\notin S(\s')$ donc $\s\s'(x)=\s(x)\in S(\s)$ par bijectivité de $\s$.
         \item Si $x\notin S(\s)$ : Soit $x\in S(\s')$ et on se ramène au 1er cas, soit $x\notin S(\s')$ et $\s\s'(x)=x=\s'\s(x)$.
     \end{itemize}
@@ -100,6 +100,7 @@
     On note alors $\g=(a_1~a_2~...~a_p)$.
 \end{defi}
 
+\vspace*{0.3cm}
 
 \begin{ex}{Conjugué d'un cycle}{}
     Soit $\g=(a_1,...,a_p)$ un $p$-cycle et $\s\in S_n$. Montrer que
@@ -114,7 +115,7 @@
     \textbf{Remarque:} Ceci démontre que tous les $p$-cycles sont conjugués.\\
     Soient $\g=(a_1~...~a_p)$ et $\g'=(b_1~...~b_p)$ deux $p$-cycles.\\
     Posons $\s\in S_n$ telle que :
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item $\forall j \in \lb 1, p \rb ~ \s(a_j) = b_j$.
         \item Notons $\lb 1, n \rb \setminus \{a_1, ..., a_p\} := \{a_1', ..., a_{n-p}'\}$ et $\lb 1, n \rb \setminus \{b_1, ... b_p\} := \{b_1', ... , b_{n-p}'\}$.
     \end{itemize}
@@ -122,6 +123,8 @@
     Alors $\s$ est bien une bijection de $\lb1,n\rb$ dans lui-même car injective et de même cardinal.\\
     On a donc $\g'=(b_1~...~b_p) = (\s(a_1)~...~\s(a_p))=\s\g\s^{-1}$ donc $\g$ et $\g'$ sont conjugués.
 \end{ex}
+
+\vspace*{0.3cm}
 
 \begin{ex}{Calculs sur un cycle}{}
     Soit $\g=(a_1~...~a_p)$. Déterminer $\g^{-1}$ et $\g^p$.
@@ -133,7 +136,7 @@
     Ainsi, $\g^{-1}=(a_p ~ a_{p-1} ~ ... ~ a_2 ~ a_1)$.\n
     \textbf{La puissance $\g^p$ :}\n
     On a $\g=(a, \g(a), ..., \g^{p-1}(a))$ pour un $a\in\lb1,n\rb$.
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item $\g^p(a)=\g(\g^{p-1}(a))=a$.
         \item Soit $j\in\lb1,p-1\rb$, $\g^p(\g^j(a))=\g^j(\g^p(a))=\g^j(a)$.
         \item Soit $b\in\lb1,n\rb\setminus\{a,\g(a),...,\g^{p-1}(a)\}$, alors $\g^p(b)=b$ car point fixe.
@@ -149,6 +152,8 @@
     Une transposition est donc une permutation de la forme $(a,b)$ où $\{a,b\}$ est une paire de $\lb1,n\rb$.
 \end{defi}
 
+\vspace*{0.3cm}
+
 \begin{prop}{Involutivité}{}
     Si $\t$ est une transposition, alors 
     \begin{equation*}
@@ -159,6 +164,8 @@
     On en déduit que $\t^{-1}=\t$.
 \end{prop}
 
+\pagebreak
+
 \begin{lemme}{Décomposition d'un cycle en produit de transpositions}{}
     Soit $\g=(a_1~...~a_p)$. Alors
     \begin{equation*}
@@ -166,7 +173,7 @@
     \end{equation*}
     \tcblower
     Notons $\pi=(a_1~a_2)(a_2~a_3)...(a_{p-1}~a_p)$. Montrons que $\g=\pi$.
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item Soit $b\in\lb1,n\rb\setminus\{a_1,...,a_p\}$ : $\g(b)=b$ et $\forall j \in \lb1,p-1\rb, ~ (a_j~a_{j+1})(b)=b$ car $b\notin\{a_j,a_{j+1}\}$.\n
         Alors $\gamma(b)=\pi(b)=b$.
         \item Soit $j\in\lb1,p-1\rb$. Alors $\pi(a_j)=\left[...(a_{j-1}~a_j)(a_j~a_{j+1})...\right](a_j)=\left[...(a_{j-1}~a_j)\right](a_{j+1})=a_{j+1}$.
@@ -189,7 +196,7 @@
     Soit $\s\in S_n$.\\
     \textbf{Une relation d'équivalence sur $\lb1,n\rb$}.\\
     Pour $i,j\in\lb1,n\rb$, on note $i\sim j$ si $\exists k \in \Z ~ | ~ j = \s^k(i)$.
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item Soit $i\in\lb1,n\rb$. $i=\s^0(i)$ donc $i \sim i$.
         \item Soient $i,j\in\lb1,n\rb ~ | ~ i \sim j$. Alors $\exists k \in \Z ~ | ~ j = \s^k(i) ~ : ~ i = \s^{-k}(j)$ et $j \sim i$.
         \item Soient $h,i,j\in\lb1,n\rb ~ | ~ h \sim i$ et $i \sim j : \exists k,l \in \Z ~ | ~ i = \s^k(h)$ et $j=\s^l(i)$ donc $j=\s^{l+k}(h)$ et $j \sim h$.
@@ -218,21 +225,25 @@
     On pose alors $\g_j=(x_j~\s(x_j)~...~\s^{p_j-1}(x_j))$, il est clair que $\s=\g_1\g_2...\g_r$.
 \end{thm}
 
+\vspace*{-0.3cm}
+
 \begin{ex}{Une décomposition}{}
     Soit $\s=\begin{pmatrix}1&2&3&4&5&6&7&8\n5&4&1&7&8&6&2&3\end{pmatrix}$.
-    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{enumerate}
         \item Décomposer $\s$ en produit de cycles à supports disjoints.
         \item Déterminer $\s^4$, $\s^{12}$ et $\s^{666}$.
     \end{enumerate}
     \tcblower
     \boxed{1} $\s=(1~5~8~3)(2~4~7)$\\
     \boxed{2} On a:
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item $\s^4=(\g_1\g_2)^4\underset{\text{comm}}{=}\g_1^4\g_2^4=\g_2$ car $\g_1^4=id$ et $\g_2^4=\g_2^3\g_2=\g_2$.
         \item $\s^{12}=(\gamma_1^{4})^3(\g_2^3)^4=id$
         \item $\s^{666}=(1~8)(3~5)$ car $\s^{666}=\underset{id^{55}}{\cancel{\s^{12\times55}}}\s^6$.
     \end{itemize}
 \end{ex}
+
+\vspace*{-0.3cm}
 
 \begin{corr}{}{}
     Toute permutation est un produit de transpositions.\\
@@ -261,7 +272,7 @@
 
 \begin{defi}{}{}
     Soit $\s \in S_{n}$
-    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{enumerate}
         \item Une paire $\{ i, j \}$ de $\lb 1, n \rb$ est une \textbf{inversion} pour $\s$ si $i - j$ et $\s(i) - \s(j)$ sont de signe opposé.
         \item Le nombre d'inversion de $\s$ est noté $Inv(\s)$
         \item On appelle \textbf{signature} de $\s$ le nombre $\e(\s) = (-1)^{Inv(\s)}$
@@ -290,14 +301,14 @@
 \end{ex}
 
 \begin{prop}{}{}
-    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{enumerate}
         \item L'identité a pour signature $1$.
         \item Les transpositions ont pour signature $-1$.
     \end{enumerate}
     \tcblower
     \boxed{1} Il est clair que $\text{Inv}(\id_{\lb 1, n \rb}) = 0$ donc $\e(\s)=1^{0} = 1$.\\
     \boxed{2} Soit $\{i,j\}$ une paire de $\lb1,n\rb$, $\tau\in S_n$ : $\exists(a,b)\in\lb1,n\rb~|~\tau=(a~b)$ où $a\leq b$.
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item Cas $\{i,j\}\cap\{a,b\}=\0:~\tau(i)=i$ et $\tau(j)=j$ donc $i-j$ est de même signe.
         \item Cas $i=a$ et $j\neq b$ : $\tau(a)=b$ et $\tau(j)=j ~ : ~ |\lb a+1,b-1\rb$.
         \item Cas $i\neq a, j=b$ : $\tau(i)=i$ et $\tau(b)=a$ : $|\lb a+1,b-1 \rb$.
@@ -306,8 +317,6 @@
     Bilan : $\text{Inv}(\tau)=2|\lb a+1,b-1\rb|+1=2(b-a)-1$, impair.\\
     Donc $\e(\tau)=-1$.
 \end{prop}
-
-\pagebreak
 
 \begin{prop}{La signature comme un produit}{}
     \begin{equation*}
@@ -343,9 +352,11 @@
     Donc le produit vaut bien 1.
 \end{prop}
 
+\vspace*{0.4cm}
+
 \begin{thm}{}{}
     La signature est l'unique application $\e : S_{n} \to \{ -1, 1 \}$ telle que
-    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{enumerate}
         \item $\forall \s, \s^{'} \in S_{n} ~~ \e(\s \s^{'}) = \e(\s) \e(\s^{'})$
         \item Pour toute transposition $\tau \in S_{n}, ~ \e(\tau) = -1$
     \end{enumerate}
@@ -365,11 +376,13 @@
     \boxed{2} On le sait déjà (proposition 18).
 \end{thm}
 
+\vspace*{0.4cm}
+
 \begin{corr}{}{}
     La signature est l'unique morphisme de groupes non trivial de $(S_{n}, \circ)$ dans $(\C^{*}, \times)$
     \tcblower
     Montrons l'existence dans un premier point puis l'unicité.
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item La fonction constante
         $\1 : \left\{ \begin{array}{ll}
              S_{n} \to \C^{*}  \n
@@ -386,5 +399,82 @@
         \end{enumerate}
     \end{itemize}
 \end{corr}
+
+\vspace*{0.4cm}
+
+\section{Exercices.}
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    Écrire explicitement $s_{1}$, $s_{2}$ et $s_{3}$.
+    \tcblower
+    $s_{1} = \{ id_{1} \}$, $s_{2} = \left\{ id_{\llbracket 1, 2 \rrbracket}; 
+    \begin{pmatrix}
+        1 & 2 \\
+        2 & 1 
+    \end{pmatrix}
+    \right\}$ \\
+    $s_{3} = \left\{ id_{\llbracket 1, 3 \rrbracket}; 
+    \begin{pmatrix}
+        1 & 2 & 3\\
+        2 & 1 & 3
+    \end{pmatrix};
+    \begin{pmatrix}
+        1 & 2 & 3\\
+        1 & 3 & 2
+    \end{pmatrix};
+    \begin{pmatrix}
+        1 & 2 & 3\\
+        3 & 2 & 1
+    \end{pmatrix};
+    \begin{pmatrix}
+        1 & 2 & 3\\
+        2 & 3 & 1
+    \end{pmatrix};
+    \begin{pmatrix}
+        1 & 2 & 3\\
+        3 & 1 & 2
+    \end{pmatrix}
+    \right\}$ 
+\end{exercice}
+
+\vspace*{0.4cm}
+
+\begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
+    Soit $n$ et $p$ deux entiers naturels supérieurs à 2 tels que $p \leq n$\\
+    Combien $S_{n}$ contient-il de $p$-cycles ?
+    \tcblower
+    Choisir un $p$-cycles, c'est choisir un $p$-uplet d'éléments distinct deux à deux, on a donc une bijection entre l'ensemble des $p$-cycles et $A_{p}(\llbracket 1, n \rrbracket)$\\
+    Or $|A_{p}(\llbracket 1, n \rrbracket)|$ = $\frac{n!}{(n-p)!}$\\
+    Ainsi on a exactement $\frac{n!}{(n-p)!}$, $p$-cycles distincts.
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\blacklozenge\blacklozenge\blacklozenge$}{}
+    Centre de $S_{n}$\\
+    On note $Z(S_{n})$ le centre de $S_{n}$, c'est-à-dire l'ensemble des permutations qui commutent avec toutes les autres.
+    \begin{enumerate}
+        \item Que vaut $Z(S_{2})$ ?
+        \item Montrer que $Z(S_{n})$ est trivial dès que $n \geq 3$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1} $S_{2}$ est un groupe abélien donc on a $Z(S_{2}) = S_{2}$\\
+    \boxed{2} Soit $n \in \N_{\geq 3}$, $id_{\llbracket 1, n \rrbracket} \in Z(S_{n})$ étant donné que $id_{\llbracket 1, n \rrbracket}$ est le neutre du groupe $S_{n}$\\
+    Supposons qu'il en existe au moins un autre, on le notera $\gamma$\\
+    $\gamma \neq id_{\llbracket 1, n \rrbracket}$ donc $\exists k \in \llbracket 1, n \rrbracket ~|~ \gamma(k) \neq k$\\
+    Notons $z \in (\llbracket 1, n \rrbracket - \{\gamma^{2}(k)\})$ (possible $n \geq 3$) \\
+    $\gamma = \begin{pmatrix}
+        k & \gamma(k) & ... & ... \\
+        \gamma(k) & \gamma^{2}(k) & ... & ...
+    \end{pmatrix}$\\
+    Posons $\beta = \begin{pmatrix}
+        k & \gamma(k) & ... & ... \\
+        \gamma(k) & z & ... & ...
+    \end{pmatrix}$\\
+    $\beta \circ \gamma(k) = z$ et $\gamma \circ \beta(k) = \gamma \circ \gamma(k) = \gamma^{2}(k)$\\
+    Donc $\beta \circ \gamma(k) \neq \gamma \circ \beta(k)$ (voir ensemble de définition de $Z$)\\
+    Ainsi on a $\beta \circ \gamma \neq \gamma \circ \beta$\\
+    On en deduit que $\forall n \in \N_{n\geq 3}$, $Z(S_{n}) = \{ id_{\llbracket 1, n \rrbracket} \}$
+\end{exercice}
 
 \end{document}
