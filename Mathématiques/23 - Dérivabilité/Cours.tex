@@ -1,0 +1,791 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{23}
+\def\pagetitle{Dérivabilité.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\thispagestyle{fancy}
+
+\section{Dérivabilité : du point de vue local au point de vue global.}
+
+\vspace*{0.4cm}
+
+\subsection{Définition et exemples.}
+
+\vspace*{0.4cm}
+
+\begin{defi}{Dérivabilité en un point.}{}
+    Soit $f:I\to\R$ et $a\in I$. La fonction $f$ est dite \bf{dérivable en $a$} si le taux d'accroissement
+    \begin{equation*}
+        \frac{f(x)-f(a)}{x-a}
+    \end{equation*}
+    admet une limite quand $x$ tend vers $a$.\\
+    Lorsqu'elle existe, cette limite est appelée \bf{nombre dérivé} en $a$ et noté $f'(a)$.
+\end{defi}
+
+\vspace*{0.4cm}
+
+Une autre écriture du taux d'accroissement de $f$ au point $a$ est
+\begin{equation*}
+    \frac{f(a+h)-f(a)}{h},
+\end{equation*}
+On se demande alors si une limite finie existe lorsque $h$ tend vers $0$.
+
+\vspace*{0.8cm}
+
+\begin{defi}{Dérivabilité sur un intervalle.}{}
+    On dit que $f$ est \bf{dérivable sur $I$} si elle est dérivable en tout point de $I$.\\
+    On appelle alors \bf{dérivée} de $f$ la fonction $f'$, on pourra noter $\m{D}(I,\R)$ l'ensemble des fonctions réelles dérivables sur $I$.
+\end{defi}
+
+\vspace*{0.4cm}
+
+\begin{prop}{}{}
+    Une fonction dérivable en un point y est continue.
+    \tcblower
+    Soit $f:I\to\R$ et $a\in I$. On suppose $f$ dérivable en $a$. Soit $x\in I\setminus\{a\}$.
+    \begin{equation*}
+        f(x)-f(a)=\frac{f(x)-f(a)}{x-a}(x-a)\xrightarrow[x\to a]{}0
+    \end{equation*}
+    Donc $f(x)\xrightarrow[x\to a]{}f(a)$ donc $f$ est continue en $a$. Alors $\m{D}(I,\R)\subset\m{C}(I,\R)$.
+\end{prop}
+
+\pagebreak
+
+\vspace*{0.4cm}
+
+\begin{ex}{}{}
+    Soit $a\in\R$ et $f:x\mapsto x^a$, définie sur $\R^*_+$.
+    \begin{enumerate}
+        \item Pour quelles valeurs de $a$ la fonction $f$ est-elle prolongeable par continuité en $0$ ?
+        \item Pour quelles valeurs de $a$ la fonction ainsi obtenue est-elle dérivable en 0 ?
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} On a $x^a\xrightarrow[x\to0_+]{}\begin{cases}
+        0 &\nt{si}\quad a>0\\
+        +\infty &\nt{si}\quad a<0\\
+        1 &\nt{si}\quad a=0
+    \end{cases}$. Donc prolongeable ssi $a\geq0$.\\
+    \boxed{2.} Soit $a\geq0$ et $x>0$.
+    \begin{equation*}
+        \frac{x^a-0^a}{x-0}=\begin{cases}
+            x^{a-1} &\nt{si}\quad a > 0 \xrightarrow[x\to0]{}\begin{cases}
+                1 &\nt{si} \quad a=1\\
+                0 &\nt{si} \quad a>1\\
+                +\infty &\nt{si} \quad a\in]0,1[
+            \end{cases}\\
+            0 &\nt{si} \quad a=0 \xrightarrow[x\to0]{}0
+        \end{cases}
+    \end{equation*}
+    \bf{Bilan:} $x\mapsto x^a$ est prolongeable en 0 ssi $a\geq 0$; est dérivable en 0 ssi $a\in\{0\}\cup[1,+\infty[$.
+\end{ex}
+
+\vspace*{0.4cm}
+
+\begin{ex}{}{5}
+    Représenter au voisinage de 0 les fonctions $f$ et $g$ définies sur $\R^*$ par
+    \begin{equation*}
+        \forall x \in \R^*, ~ f(x)=x\sin\left( \frac{1}{x} \right) \quad\et\quad g(x)=x^2\sin\left( \frac{1}{x} \right).
+    \end{equation*}
+    Prolonger par continuité en 0, puis dire si ces prolongements sont dérivables en 0.
+    \tcblower
+    On a $|x\sin\frac{1}{x}|\leq|x|\to0$ et $|x^2\sin\frac{1}{x}|\leq x^2\to0$.\\
+    On pose $f(0)=g(0)=0$.\\
+    Soit $x\neq0$. Alors:
+    \begin{equation*}
+        \frac{f(x)-f(0)}{x-0}=\frac{x\sin\frac{1}{x}}{x}=\sin\frac{1}{x}.
+    \end{equation*}
+    Donc pas de limite en 0.
+    \begin{equation*}
+        \frac{g(x)-g(0)}{x-0}=x\sin\frac{1}{x}\xrightarrow[x\to0]{}0
+    \end{equation*}
+    Donc $g$ dérivable en 0 et $g'(0)=0$.\\
+    Soit $v:x\mapsto|x|.$ On a $v(x)\xrightarrow[x\to0]{}0=v(0)$ donc $v$ est continue en 0.\\
+    Soit $x\in\R^*$. $\frac{v(x)-v(0)}{x-0}=\frac{|x|}{x}=\begin{cases}
+        1&\nt{si}\quad x>0\\
+        -1&\nt{si}\quad x<0
+    \end{cases}$ : pas de limite en 0.
+\end{ex}
+
+\vspace*{0.4cm}
+
+\begin{defi}{}{}
+    Soit $f:I\to\R$ et $a\in I$. On dit que $f$ est
+    \begin{itemize}
+        \item \bf{dérivable à gauche} en $a$ si le taux d'accroissement en $a$ admet une limite à gauche.
+        \item \bf{dérivable à droite} en $a$ si le taux d'accroissement en $a$ admet une limite à droite.
+    \end{itemize}
+\end{defi}
+
+\vspace*{0.4cm}
+
+\begin{prop}{Caractérisation de la dérivabilité en $a$.}{}
+    Soit $f:I\to\R$ et $a\in I\setminus\{\inf(I),\sup(I)\}$.
+    \begin{equation*}
+        f \nt{ est dérivable en $a$} \iff \begin{cases}
+            f \nt{ est dérivable à gauche en $a$}\\
+            f \nt{ est dérivable à droite en $a$}\\
+            f'_g(a)=f'_d(a)
+        \end{cases}
+    \end{equation*}
+    Dans le cas où $f$ est dérivable en $a$, on a $f'(a)=f'_g(a)=f'_d(a)$.
+\end{prop}
+
+\pagebreak
+
+\subsection{Dérivabilité et opérations.}
+
+\begin{prop}{Somme, produit, quotient. $\star$}{}
+    Soient $f,g:I\to\R$ deux fonctions dérivables en $a\in I$. Alors,
+    \begin{itemize}
+        \item pour tous $\l$ et $\mu$ réel, $\l f + \mu g$ est dérivable en $a$ et
+        \begin{equation*}
+            (\l f + \mu g)'(a)=\l f'(a)+\mu g'(a),
+        \end{equation*}
+        \item $fg$ est dérivable en $a$ et
+        \begin{equation*}
+            (fg)'(a)=f'(a)g(a)+f(a)g'(a),
+        \end{equation*}
+        \item Si $g(a)\neq0$, alors $g$ ne s'annule pas au voisinage de $a$ et $f/g$ est dérivable en $a$ : on a
+        \begin{equation*}
+            \left( \frac{f}{g} \right)'(a)=\frac{g(a)f'(a)-f(a)g'(a)}{g(a)^2}.
+        \end{equation*}
+    \end{itemize}
+    \tcblower
+    $\bullet$ Soit $x\in I\setminus\{a\}$.
+    \begin{equation*}
+        \frac{(\l f + \mu g)(x)-(\l f + \mu g)(a)}{x - a } = \frac{\l(f(x)-f(a))}{x-a}+\frac{\mu(g(x)-g(a))}{x-a}\xrightarrow[x\to a]{}\l f'(a) + \mu g'(a).
+    \end{equation*}
+    donc $(\l f + \mu g)$ est dérivable en $a$ de dérivée $\l f'(a)+\mu g'(a)$.\\
+    $\bullet$ Soit $x\in I\setminus\{a\}$.
+    \begin{equation*}
+        \frac{(fg)(x)-(fg)(a)}{x-a}=\frac{g(x)(f(x)-f(a))}{x-a}+\frac{f(x)(g(x)-g(a))}{x-a}\xrightarrow[x\to a]{}g(a)f'(a)+f(a)g'(a).
+    \end{equation*}
+    Car $f$ et $g$ sont continues en $a$. Donc $fg$ est continue en $a$ de dérivée $g(a)f'(a)+f(a)g'(a)$.
+\end{prop}
+
+\vspace*{0.4cm}
+
+\begin{corr}{du local au global.}{}
+    \begin{center}
+        $\m{D}(I,\R)$ est stable par combinaisons linéaires et par produit.
+    \end{center}
+\end{corr}
+
+\vspace*{0.4cm}
+
+\begin{thm}{Composition}{}
+    Soit $f:I\to J$, $g: J\to \R$, et $a\in I$.\\
+    On suppose $f$ dérivable en $a$, et $g$ dérivable en $f(a)$, alors :
+    \begin{center}
+        $g\circ f$ est dérivable en $a$ \quad et \quad $(g\circ f)'(a)=f'(a)g'(f(a))$.
+    \end{center}
+    \tcblower
+    Soit $x\in I\setminus\{a\}$. Soit $\Lambda:y\mapsto\frac{g(y)-g(f(a))}{y-f(a)}$ définie sur $J\setminus\{f(a)\}$.\\
+    Alors $\Lambda(y)\xrightarrow[y\to f(a)]{}g'(f(a))$ par dérivabilité de $g$ en $f(a)$. On prolonge par continuité :
+    \begin{equation*}
+        \Lambda(f(a)):=g'(f(a)).
+    \end{equation*}
+    Alors :
+    \begin{equation*}
+        \frac{g\circ f(x)-g\circ f(a)}{x-a}=\frac{f(x)-f(a)}{x-a}\Lambda(f(x))\xrightarrow[x\to a]{}f(a)g'f(a) \nt{ par continuité.}
+    \end{equation*}
+\end{thm}
+
+\vspace*{0.4cm}
+
+\begin{corr}{du local au global.}{}
+    Soit $f\in\m{D}(I,J)$ et $g\in\m{D}(J,\R)$ : $g\circ f \in \m{D}(I,\R)$ et $(g\circ f)'=f'g'\circ f$.
+\end{corr}
+
+\vspace*{0.4cm}
+
+\begin{ex}{jongler avec les théorèmes globaux et le point de vue local.}{}
+    Établir la dérivabilité de $f:x\mapsto\sqrt{x\sin(x)}$ sur $[0,\pi[$.
+    \tcblower
+    $\bullet$ Posons $u:x\mapsto x\sin x$ dérivable sur $]0,\pi[$ et $v:x\mapsto\sqrt{x}$ dérivable sur $\R_+^*$.\\
+    On a alors $v\circ u$ dérivable sur $]0,\pi[$, donc $f$ dérivable sur $]0,\pi[$.\\
+    $\bullet$ Soit $x\in]0,\pi[$.
+    \begin{equation*}
+        \frac{f(x)-f(0)}{x-0}=\frac{\sqrt{x\sin(x)}}{x}=\sqrt{\frac{\sin x}{x}}\xrightarrow[x\to0]{}1.
+    \end{equation*}
+    Alors $f'(0)=1$.
+\end{ex}
+
+\pagebreak
+
+\subsection{Dérivabilité d'une réciproque.}
+
+\begin{thm}{Dérivabilité d'une réciproque.}{}
+    Soit $f$ une fonction continue et strictement monotone réalisant une bijection de $I$ dans $J$.\\
+    On note $f^{-1}:J\to I$ sa fonction réciprouqe. Supposons $f$ dérivable en un point $a\in I$.
+    \begin{center}
+        $f^{-1}$ est dérivable au point $f(a)$ \quad si et seulement si \quad $f'(a)\neq0$.
+    \end{center}
+    De plus, lorsqu'il y a dérivabilité en $f(a)$, on a $\ds(f^{-1})'(f(a))=\frac{1}{f'-a}$.
+    \tcblower
+    Soit $y\in J\setminus\{f(a)\}$.
+    \begin{align*}
+        \frac{f^{-1}(y)-f^{-1}(f(a))}{y-a}&=\left( \frac{f(f^{-1})(y)-f(a)}{f^{-1}(y)-f^{-1}(f(a))} \right)^{-1}\\
+        &=\left( \frac{f(f^{-1}(y)-f(a))}{f^{-1}(y)-a} \right)^{-1}\xrightarrow[y\to a]{}\begin{cases}
+            \frac{1}{f'(a)} &\nt{si} \quad f'(a)\neq0\\
+            \infty &\nt{si} \quad f'(a)=0.
+        \end{cases}
+    \end{align*}
+\end{thm}
+
+\begin{corr}{du local au global.}{}
+    Soit $f:I\to\R$ réalisant une bijection de $I$ dans $J$ et $f^{-1}:J\to I$ sa réciproque.\\
+    Supposons $f$ dérivable sur $I$ et $f'$ ne s'annulant pas sur $I$, alors $f^{-1}$ est dérivable sur $J$ et
+    \begin{equation*}
+        (f^{-1})'=\frac{1}{f'\circ f^{-1}}
+    \end{equation*}
+    \tcblower
+    Soit $b\in J ~:~ \exists!a\in I \mid f(a)=b$. On a $a\in I$ donc $f'(a)\neq0$.\\
+    Alors $f^{-1}$ est dérivable en $f(a)=b$, et $(f^{-1})(b)=(f^{-1})'(f'(a))=\frac{1}{f'(a)}=\frac{1}{f'(f^{-1}(b))}$.
+\end{corr}
+
+\begin{ex}{}{}
+    Justifier brièvement que $\sh$ réalise une bijection de $\R$ dans $\R$. Notons $\argsh$ sa réciproque.\\
+    Montrer que cette réciproque est dérivable sur $\R$ et que
+    \begin{equation*}
+        \forall x \in \R, ~ \argsh'(x)=\frac{1}{\sqrt{1+x^2}}.
+    \end{equation*}
+    \tcblower
+    C'est une bijection par stricte croissance. On a $\sh$ dérivable et $\sh'=\ch$ ne s'annulant pas.\\
+    Ainsi, $\argsh$ est dérivable et :
+    \begin{equation*}
+        \argsh':x\mapsto\frac{1}{\ch(\argsh(x))}=\frac{1}{\sqrt{1+x^2}}.
+    \end{equation*}
+\end{ex}
+
+\subsection{Extremum local et point critique.}
+
+\begin{defi}{}{}
+    Soit $f:I\to\R$ et $a\in I$.\\
+    On dit que $f$ admet un \bf{extremum local} en $a$ si $f(a)$ est un extremum de $f$ au voisinage de $a$.\\
+    Plus précisément, on dit que $f$ admet un extremum local en $a$ s'il existe $\eta>0$ tel que
+    \begin{equation*}
+        \forall x \in I\cap[a-\eta, a+\eta], ~ f(x) \leq f(a).
+    \end{equation*}
+\end{defi}
+
+\begin{prop}{Extremum local et dérivabilité.}{crit}
+    Soit $f:]a,b[\to\R$ et $c\in]a,b[$.\\
+    Si $f$ admet un extremum local en $c$ et y est dérivable, alors $f'(c)=0$.\\
+    Un point $c$ où la dérivée de $f$ s'annule est appelé un \bf{point critique} de $f$.
+    \tcblower
+    Supposons que $f$ admette un extremum local en $c$ et y est dérivable :
+    \begin{equation*}
+        \exists \eta > 0 ~ \forall x \in I \cap [c - \eta, c + \eta], ~ f(x) \leq f(c).
+    \end{equation*}
+    Soit $x \in I \setminus \{c\}$.\\
+    $\bullet$ Si $x\in I\cap]c,c+\eta[$ :
+    \begin{equation*}
+        f(x)-f(c)\leq 0 ~\et~ x-c>0 ~~\nt{donc}~~ \frac{f(x)-f(c)}{x-c}\leq0.
+    \end{equation*}
+    On passe à la limite, $f$ est dérivable en $c$ : $f'(c)\leq0$.\\
+    $\bullet$ Si $x\in I\cap[c-\eta,c]$ :
+    \begin{equation*}
+        f(x)-f(c)\leq0 ~\et~ x-c<0 ~~\nt{donc}~~ \frac{f(x)-f(c)}{x-c}\geq0.
+    \end{equation*}
+    On passe à la limite, $f$ est dérivable en $c$ : $f'(c)\geq0$.\\
+    Par antisymétrie, $f'(c)=0$.
+\end{prop}
+
+\bf{Exemple 18:} La réciproque est fausse et toutes les hypothèses comptent.
+
+\section{Propriétés des fonctions dérivables sur un intervalle.}
+
+Dans tout ce qui suit, $a$ et $b$ sont deux réels tels que $a<b$.
+
+\subsection{Théorème de Rolle.}
+
+\vspace*{0.4cm}
+
+\setthmcounter{18}
+
+\begin{thm}{de Rolle. $\star$}{}
+    Soit $f:[a,b]\to\R$ continue sur $[a,b]$ et dérivable sur $]a,b[$ et telle que $f(a)=f(b)$, alors
+    \begin{equation*}
+        \exists c \in ]a,b[, ~ f'(c)=0.
+    \end{equation*}
+    \tcblower
+    On a $f$ continue sur $[a,b]$, donc d'après le TBA : $\exists c,d \in[a,b] ~ f(c)=\max_{[a,b]} f$ et $f(d)=\min_{[a,b]} f$.\\
+    $\bullet$ Cas $c\in]a,b[$ ou $d\in]a,b[$ (SPDG on prend $c$).\\
+    Alors $f$ admet un extremum en $c$, $c\in]a,b[$ et $f$ est dérivable en $c$ donc d'après \ref{prop:crit} : $f'(c)=0$.\\
+    $\bullet$ Cas $c\in\{a,b\}$ et $d\in\{a,b\}$. Alors $f(c)=f(a)=f(b)=f(d)$. Donc $\min f = \max f$ donc $f$ est constante.\\
+    Alors $\forall c \in ]a,b[, ~ f'(c)=0$.
+\end{thm}
+
+\vspace*{0.4cm}
+
+\begin{ex}{}{}
+    Soit $f\in\m{D}(I,\R)$. Montrer que si $f$ s'annule $n$ ($n\in\N^*$) fois, alors $f'$ s'annule au moins $n-1$ fois.
+    \tcblower
+    Notons $a_1,...,a_n$ les $n$ points où $f$ s'annule, dans l'ordre croissant. Soit $i\in\lb1,n-1\rb$. On applique le théorème :\\
+    $\bullet$ $f$ est continue sur $[a_i,a_{i+1}]$ car elle y est dérivable.\\
+    $\bullet$ $f$ est dérivable sur $]a_i,a_{i+1}[$.\\
+    $\bullet$ $f(a_i)=f(a_{i+1})=0$.\\
+    D'après le théorème de Rolle, $\exists c_i \in ]a_i,a_{i+1}[ \mid f'(c_i)=0.$\\
+    On a donc obtenu $n-1$ zéros de $f'$ : $c_1,...,c_{n-1}$, ils sont distincts car dans des intervalles disjoints.
+\end{ex}
+
+\subsection{Égalité des accroissement finis.}
+
+\vspace*{0.4cm}
+
+\begin{thm}{Égalité des accroissements finis. $\star$}{}
+    Soit $f:[a,b]\to\R$ une fonction continue sur $[a,b]$ et dérivable sur $]a,b[$. Alors
+    \begin{equation*}
+        \exists c \in ]a,b[ \quad \frac{f(b)-f(a)}{b-a}=f'(c).
+    \end{equation*}
+    \tcblower
+    Posons $\Phi:x\mapsto f(x)-\frac{f(b)-f(a)}{b-a}(x-a)$. Alors $\Phi(a)=\Phi(b)=f(a)$.\\
+    De plus, $\Phi$ est continue sur $[a,b]$ et dérivable sur $]a,b[$ comme somme.\\
+    D'après le théorème de Rolle, $\exists c \in ]a,b[ \mid \Phi'(c)=0$. On dérive $\Phi$ : $\forall x \in ]a,b[, ~ \Phi'(c)=f'(x)-\frac{f(b)-f(a)}{b-a}$.\\
+    On a $\Phi'(c)=0$ donc $f'(c)=\frac{f(b)-f(a)}{b-a}$.
+\end{thm}
+
+\vspace*{0.4cm}
+
+\bf{Remarque.} Idée de preuve à retenir : on pose une fonction auxiliaire $\Phi:x\mapsto f(x)-A(x-a)$ en choissisant $A$ de manière à "compenser la pente" et ainsi pouvoir appliquer le théorème de Rolle à $\Phi$.
+
+\vspace*{0.8cm}
+
+\begin{ex}{}{}
+    En appliquant l'EAF à $\ln$ sur $[k,k+1]$, calculer
+    \begin{equation*}
+        \lim_{n\to+\infty}\sum_{k=n+1}^{2n}\frac{1}{k}.
+    \end{equation*}
+    \tcblower
+    On a $\ln$ continue sur $[k,k+1]$ et dérivable sur $]k,k+1[$. D'après les AF :
+    \begin{equation*}
+        \exists c_k \in ]k,k+1[ \mid \frac{\ln(k+1)-\ln(k)}{k+1-k}=\ln'(c_k).
+    \end{equation*}
+    Donc $\ln(k+1)-\ln(k)=c_k^{-1}$. Or $k\leq c_k \leq k+1$ donc $\ln(k+1)-\ln(k)\leq\frac{1}{k}\leq\ln(k)-\ln(k+1)$.
+    \begin{equation*}
+        \sum_{k=n+1}^{2n}\ln(k+1)-\ln(k) \leq \sum_{k=n+1}^{2n}\frac{1}{k}\leq\sum_{k=n+1}^{2n}\ln(k)-\ln(k+1).
+    \end{equation*}
+    \begin{equation*}
+        \ln(2n+1)-\ln(n+1)\leq\sum_{k=n+1}^{2n}\frac{1}{k}\leq\ln(2n)-\ln(n).
+    \end{equation*}
+    Par encadrement, la somme tend vers $\ln2$.
+\end{ex}
+
+\begin{thm}{Caractérisation des fonctions monotones parmis les fonctions dérivables.}{}
+    Soit $I$ un intervalle, et $f:I\to\R$ une fonction dérivable sur $I$.
+    \begin{enumerate}
+        \item $f$ est croissante sur $I$ ssi $f'$ est positive sur $I$.
+        \item $f$ est décroissante sur $I$ ssi $f'$ est négative sur $I$.
+        \item $f$ est constante sur $I$ ssi $f'$ est nulle sur $I$.
+        \item Si $f'$ est strictement positive sur $I$, alors $f$ y est strictement croissante. Réciproque fausse.
+        \item Si $f'$ est strictement négative sur $I$, alors $f$ y est strictement décroissante. Réciproque fausse.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Supposons $f$ croissante sur $I$. Soit $a\in I$ et $x\in I\setminus\{a\}$ avec $x>a$.\\
+    Comme $f$ est croissante, $f(x)\geq f(a)$ donc $\frac{f(x)-f(a)}{x-a}\geq0$, on fait tendre $x$ vers $a$, puisque $f$ est dérivable en $a$, $f'(a)\geq0$.\\
+    Supposons $f'$ positive sur $I$. Soient $x,y\in I$ avec $x < y$. On a $[x,y]\subset I$ : $f$ continue sur $[x,y]$, dérivable sur $]x,y[$.
+    \begin{equation*}
+        \exists c \in ]x,y[ ,~ \frac{f(y)-f(x)}{y-x}=f'(c).
+    \end{equation*}
+    On a $f(y)-f(x)=f'(c)(y-x)$ donc $f(y)-f(x)\geq0$.\\
+    \boxed{4.} Supposons $f'$ strictement positive sur $I$. Soient $x,y\in I$ et $x<y$, alors $f(y)-f(x)=f'(c)(y-x)$\\
+    Donc $f(y)-f(x)>0$.\\
+    Contre-exemple : $x\mapsto x^3$ est strictement croissante mais sa dérivée $3x^2$ est nulle en 0. 
+\end{thm}
+
+\begin{thm}{de la limite de la dérivée.}{}
+    Soit $a\in I$, $f:I\to\R$ dérivable sur $I\setminus\{a\}$ et continue en $a$, et $l\in\R$.
+    \begin{center}
+        Si $f'(x)\xrightarrow[x\to a]{}l$ alors $f$ est dérivable en $a$ est $f'(a)=l$.
+    \end{center}
+    Si de surcroît, $f'$ est continue sur $I\setminus\{a\}$, alors $f$ est de classe $\m{C}^1$ sur $I$.
+    \tcblower
+    On suppose que $f'(x)\xrightarrow[x\to a]{}l$. Soit $x\in I\setminus\{a\}$ tel que $x>a$ SPDG.\\
+    On a $f$ continue sur $[a,x]$ car dérivable sur $I\setminus\{a\}$ et continue en $a$ et $f$ est dérivable sur $]a,x[$.
+    \begin{equation*}
+        \exists c_x \in ]a,x[, ~ \frac{f(x)-f(a)}{x-a} = f'(c_x).
+    \end{equation*}
+    On a $a\leq c_x \leq x$ donc $c_x\xrightarrow[x\to a]{}a$, or $f(x)\xrightarrow[x\to a]{}l$ donc $f'(c_x)\xrightarrow[x\to a]{}l$.\\
+    Donc $\frac{f(x)-f(a)}{x-a}\xrightarrow[x\to a]{}l$.
+\end{thm}
+
+\begin{prop}{limite $\pm\infty$ pour la dérivée.}{}
+    Soit $a\in I$. Soit $f:I\to\R$ dérivable sur $I\setminus\{a\}$ et continue en $a$.
+    \begin{center}
+        Si $f'(x)\xrightarrow[x\to a]{}+\infty$, alors $\frac{f(x)-f(a)}{x-a}\xrightarrow[x\to a]{}+\infty$.
+    \end{center}
+\end{prop}
+
+\begin{ex}{Un prolongement $\m{C}^1$.}{}
+    Soit $a$ un réel, et $f:x\mapsto x^ae^{-\frac{1}{x}}$, définie sur $\R_+^*$.\\
+    Justifier que $f$ est prolongeable en 0 en une fonction de classe $\m{C}^1$ sur $\R_+^*$.
+    \tcblower
+    $\bullet$ Par croissances comparées : $x^ae^{-\frac{1}{x}}\xrightarrow[x\to0_+]{}0$, on pose $f(0)=0$.\\
+    Alors $f$ est définie et continue sur $\R_+$, dérivable comme produit et composée.
+    \begin{equation*}
+        \forall x \in \R_+^*, ~ f'(x)=e^{-\frac{1}{x}}\cdot x^{a-2}(ax+1)\xrightarrow[x\to0_+]{}0.
+    \end{equation*}
+    Donc $f:\R_+\to\R$ est dérivable sur $\R_+^*$ et continue en 0 et $f'(x)\xrightarrow[x\to0_+]{}0$ donc $f'(0)=0$ par théorème.
+\end{ex}
+
+\subsection{Inégalité des accroissements finis.}
+
+\begin{defi}{}{}
+    Soit $f:I\to\R$ et $K\geq0$. On dit que $f$ est $K$-\bf{lipschitzienne} sur $I$ si
+    \begin{equation*}
+        \forall (x,y) \in I^2, \quad |f(x)-f(y)|\leq K|x-y|.
+    \end{equation*}
+    On dira que $f$ est \bf{lipschitzienne} sur $I$ s'il existe $K\geq0$ tel que $f$ est $K$-lipschitzienne.
+\end{defi}
+
+\begin{prop}{}{}
+    Une fonction lipschitzienne est continue.
+    \tcblower
+    Soit $f:I\to\R$ lipschitzienne : $\exists K\geq0 \mid \forall x,y \in I, ~ |f(x)-f(y)|\leq K|x-y|$.\\
+    Soit $a\in I$. On a $\forall x \in I, ~ |f(x)-f(a)|\leq K|x-a|$ donc $f$ est continue en tout point de $I$.
+\end{prop}
+
+\begin{thm}{Inégalité des accroissements finis.}{}
+    Soit $f\in\m{D}(I,\R)$. Si $|f'|$ est majorée par un réel $K$, alors $f$ est $K$-lipschitzienne.
+    \tcblower
+    On suppose $f'$ bornée sur $I$ par un réel $K$. Soient $x,y\in I^2$ tels que $x\leq y$ (SPDG).\\
+    On a $f$ continue sur $[x,y]$ et dérivable sur $]x,y[$. donc :
+    \begin{equation*}
+        \exists c \in ]x,y[, ~ \left|\frac{f(y)-f(x)}{y-x}\right|=|f'(c)|\leq K.
+    \end{equation*}
+    Ainsi, $|f(y)-f(x)|\leq K|y-x|$ donc $f$ est $K$-lipschitzienne.
+\end{thm}
+
+\begin{ex}{}{}
+    Démontrer :
+    \begin{equation*}
+        \forall x,y \in [1,+\infty[, ~ \left|\frac{\sin x}{x} - \frac{\sin y}{y}\right| \leq 2|x,y|.
+    \end{equation*}
+    \tcblower
+    Soit $f:x\mapsto\frac{\sin x}{x}$ dérivable sur $[1,+\infty[$. On a $f':x\mapsto\frac{x\cos x - \sin x}{x^2}$. Soit $x\in[1,+\infty[$.
+    \begin{align*}
+        |f'(x)| &= \left|\frac{x\cos x - \sin x}{x^2}\right| \leq \left|\frac{\cos x}{x}\right| + \left|\frac{\sin x}{x^2}\right|\\
+        &\leq \frac{1}{x} + \frac{1}{x^2} \leq 2 \nt{ car } x\in[1,+\infty[
+    \end{align*}
+    \bf{Remarque: } 2 n'est pas la meilleure constante de lipschitz pour cette fonction.
+\end{ex}
+
+\section{Fonctions de classe \texorpdfstring{$\m{C}^n$}{Lg}.}
+
+\subsection{Retour sur les fonctions de classe \texorpdfstring{$\m{C}^1$}{Lg}.}
+
+\begin{defi}{}{}
+    Une fonction $f:I\to\R$ est dite \bf{de classe} $\m{C}^1$ sur $I$ si
+    \begin{itemize}
+        \item elle est dérivable sur $I$.
+        \item sa dérivée $f'$ est continue sur $I$.
+    \end{itemize}
+    Certains auteurs parlent aussi de fonctions << continument dérivables >>.\\
+    L'ensemble des fonctions de classe $\m{C}^1$ sur $I$ sera noté $\m{C}^1(I,\R)$.
+\end{defi}
+
+\begin{prop}{}{}
+    Toute fonction de classe $\m{C}^1$ sur un segment est lipschitzienne.
+    \tcblower
+    Soit $f\in\m{C}^1([a,b],\R)$. D'après le TBA, $f'$ est bornée sur $[a,b]$ et atteint ses bornes. Posons $M=\sup|f'|$.\\
+    On a $f$ est dérivable et $f'$ majorée par $M$ donc d'après l'IAF, $f$ est $M$-lipschitzienne sur $[a,b]$.
+\end{prop}
+
+\begin{ex}{Une fonction dérivable mais pas $\m{C}^1$ : un exemple en cinq étapes. $\star$}{}
+    \begin{enumerate}
+        \item \bf{Une définition sur $\R^*$} : $f:\R^*\to\R$; $x\mapsto x^2\sin(\frac{1}{x})$.
+        \item \bf{Prolongement en 0} : Pour $x\in\R^*, ~ |f(x)|\leq x^2$ donc $f\to0$ en 0, on pose $f(0)=0$.
+        \item \bf{Dérivabilité sur $\R^*$} : Par produit et composée : $f':x\mapsto 2x\sin(1/x)-\cos(1/x)$.
+        \item \bf{Dérivabilité en 0} : vu en exmple \ref{ex:5}. On a $f'(0)=0$.
+        \item \bf{De classe $\m{C}^1$ ?} Non car $\cos(1/x)$ n'a pas de limite en 0. Elle ne peut donc pas y être continue.  
+    \end{enumerate}
+\end{ex}
+
+\subsection{Dérivabilité d'ordre supérieur et fonctions de classe \texorpdfstring{$\m{C}^n$}{Lg}}
+
+\begin{defi}{}{}
+    On définit pour $n\in\N$ l'ensemble des fonctions $n$ \bf{fois dérivables} sur $I$ : $\m{D}^n(I,\R)$, et pour $f$ dans cet ensemble, sa \bf{dérivée $n$ème} $f^{(n)}$.
+    \begin{itemize}
+        \item On pose $\m{D}^0(I,\R)=\F(I,\R)$ toutes les fonctions définies sur $I$ qui sont 0 fois dérivables, et $f^{(0)}=f$.
+        \item Si $\m{D}^n(I,\R)$ est bien défini, alors $\m{D}^{n+1}(I,\R)$ est l'ensemble des fonctions de $\m{D}^n(I,\R)$ dérivables sur $I$.  
+    \end{itemize}
+\end{defi}
+
+\begin{lemme}{}{}
+    Si $f$ est $n$ fois dérivable sur $I$ et si $(k,l)\in\N^2$ vérifie $k+l\leq n$, alors
+    \begin{equation*}
+        f^{(k+l)}=\left( f^{(k)} \right)^(l).
+    \end{equation*}
+    En particulier, pour $n\in\N$, si $f$ est dérivable $n+a$ fois sur $I$ :
+    \begin{equation*}
+        f^{(n+1)}=\left( f^{(n)} \right)' \quad\et\quad f^{(n+1)}=\left( f' \right)^{(n)}.
+    \end{equation*}
+\end{lemme}
+
+\begin{defi}{}{}
+    Soit $n\in\N$. On dit que $f:I\to\R$ est \bf{de classe} $\m{C}^n$ sur $I$ si
+    \begin{itemize}
+        \item elle est dérivable $n$ fois sur $I$.
+        \item sa dérivée $n$ème $f^{(n)}$ est continue sur $I$.
+    \end{itemize}
+    Notamment, les fonctions de classe $\m{C}^0$ sur $I$ sont les fonctions qui y sont continues.\\
+    L'ensemble des fonctions de classe $\m{C}^n$ sur $I$ sera noté $\m{C}^n(I,\R)$.
+\end{defi}
+
+\begin{prop}{}{}
+    Soit $n\in\N$ et $f:I\to\R$.
+    \begin{equation*}
+        f\in\m{C}^{n+1}(I,\R) \iff (f \in \m{D}(I,\R) \et f'\in\m{C}^n(I,\R)).
+    \end{equation*}
+    \tcblower
+    \boxed{\ra} Supposons $f\in\m{C}^{n+1}(I,\R)$. Alors $f\in\m{D}^{n+1}(I,\R)\subset\m{D}(I,\R)$, donc $f'\in\m{D}^n(I,\R)$.\\
+    Or $f\in\m{C}^{n+1}(I,\R)$ donc $f^{(n+1)}=(f')^{(n)}$ est continue : $f'\in\m{C}^n(I,\R)$.\\
+    \boxed{\la} Supposons $f\in\m{D}(I,\R)$ et $f'\in\m{C}^n(I,\R)$. On a $f'\in\m{D}^{n}(I,\R)$ donc $f\in\m{D}^{n+1}(I,\R)$.\\
+    De plus, $f'\in\m{C}^{n+1}(I,\R)$ donc $(f')^{(n)}=f^{(n+1)}$ est continue, donc $f\in\m{C}^{n+1}(I,\R)$.
+\end{prop}
+
+\begin{defi}{}{}
+    On appelle fonction \bf{de classe} $\m{C}^{\infty}$ sur $I$ une fonction qui est de classe $\m{C}^n$ sur $I$ pour tout $n\in\N$ :
+    \begin{equation*}
+        C^{\infty}(I,\R):=\bigcap_{n\in\N}\m{C}^n(I,\R).
+    \end{equation*}
+\end{defi}
+
+\bf{Exemples:} Les fonctions usuelles sont de classe $\m{C}^{\infty}$ sur leurs intervalles de définition.
+
+\subsection{Stabilité par opérations de la classe \texorpdfstring{$\m{C}^n$}{Lg}.}
+
+Dans ce qui suit, $n\in\N\cup\{\infty\}$.
+
+\begin{prop}{$\m{C}^n(I,\R)$ est stable par combinaison liénaire.}{}
+    \begin{equation*}
+        \forall f, g \in \m{C}^n(I,\R), ~ \forall \l, \mu \in \R, ~ (\l f + \mu g)^{(n)}=\l f^{(n)} + \mu g^{(n)}.
+    \end{equation*}
+    Et $\m{C}^n(I,\R)$ est stable par combinaison linéaire.
+\end{prop}
+
+\vspace*{-0.4cm}
+
+\begin{thm}{$\m{C}^n(I,\R)$ est stable par produit / Formule de Leibniz.}{}
+    Soient $f,g\in\m{C}^n(I,\R)$, alors $fg\in\m{C}^n(I,\R)$ et :
+    \begin{equation*}
+        (fg)^{(n)}=\sum_{k=0}^n\binom{n}{k}f^{(k)}g^{(n-k)}.
+    \end{equation*}
+    \tcblower
+    Pour $n\in\N$, on note $\P_n$ l'énoncé du théorème.\\
+    \bf{Initialisation.} Soient $f,g\in\m{C}^0(I,\R)$. On a $fg\in C^0(I,\R)$ par produit de fonctions continues sur $I$.\\
+    De plus, $(fg)^{(0)}=fg=\binom{0}{0}f^{(0)}g^{(0-0)}$.\\
+    \bf{Hérédité.} Soit $n\in\N$ tel que $\P_n$ soit vraie. On prend $f,g\in\m{C}^{n+1}(I,\R)$.\\
+    On a $(fg)'=f'g+fg'\in\m{C}^n(I,\R)$ par hypothèse et par produit de fonctions $\m{C}^n$.
+    \begin{equation*}
+        (f'g)^{(n)}=\sum_{k=0}^n\binom{n}{k}f^{(k+1)}g^{(n-k)}\quad\et\quad(fg')^{(n)}=\sum_{k=0}^n\binom{n}{k}f^{(k)}g^{(n-k+1)}
+    \end{equation*}
+    Donc :
+    \begin{align*}
+        (fg)^{(n+1)}&=\sum_{k=0}^n\binom{n}{k}f^{(k+1)}g^{(n-k)}+\sum_{k=0}^nf^{(k)}g^{(n-k+1)}\\
+        &=\sum_{k=1}^n\left( \binom{n}{k}+\binom{n}{k-1} \right)f^{(k)}g^{(n-k+1)} + f^{(n+1)}g^{(0)} + f^{(0)}g^{(n+1)}\\
+        &=\sum_{k=0}^{n+1}\binom{n+1}{k}f^{(k)}f^{(k)}g^{(n-k+1)}
+    \end{align*}
+    Par récurrence, $\forall n \in \N, ~ \P_n$ est vraie.\\
+    On a de plus que $\m{C}^n$ est stable par produit, et donc que $\m{C}^{\infty}$ l'est par intersection.
+\end{thm}
+
+\vspace*{-0.4cm}
+
+\begin{ex}{}{}
+    Soit $n\in\N^*$ et $f:x\mapsto x^n\cos(x)$.\\
+    Justifier que $f$ est de classe $\m{C}^\infty$ sur $\R$ et calculer $f^{(k)}(0)$ pour $k\in\lb0,n\rb$.
+    \tcblower
+    Soit $k\in\lb0,n\rb$. On a $f$ de classe $\m{C}^\infty$ comme produit de fonctions $\m{C}^\infty$.\\
+    On a $\frac{d^k}{dx^k}(x^n)=\frac{n!}{(n-k)!}x^{n-k}$, donc pour $k<n, ~ f^{(k)}(0)=0$.\\
+    Sinon, $f^{(n)}(0)=n!\cos(0)=n!$
+\end{ex}
+
+\begin{prop}{}{}
+    \begin{itemize}
+        \item Si $f,g\in\m{C}^n(I,\R)$, et $g$ ne s'annule pas sur $I$, alors $f/g\in\m{C}^n(I,\R)$.
+        \item Si $f:I\to J$ et $g:J\to\R$ de classes $C^n$ sur $I$ et $J$, alors $g\circ f$ est de classe $\m{C}^n$ sur $I$.
+        \item Si $f:I\to J$ est bijective et de classe $\m{C}^n$ sur $I$ ($n\geq1$) et que $f'$ ne s'annule par sur $I$, alors $f^{-1}\in\m{C}^n(J,I)$.
+    \end{itemize}
+\end{prop}
+
+\section{Exercices. \texorpdfstring{$\star$}{Lg}}
+
+\begin{exercice}{$\bww$}{}
+    Soit $f$ une fonction définie au voisinage d'un réel $a$ et dérivable en $a$. Montrer que la limite suivante existe et la calculer :
+    \begin{equation*}
+        \lim_{h\to0}\frac{f(a+h)-f(a-h)}{2h}.
+    \end{equation*}
+    \tcblower
+    On a:
+    \begin{equation*}
+        \frac{f(a+h)-f(a-h)}{2h}=\frac{f(a+h)-f(a)}{2h}+\frac{f(a)-f(a-h)}{2h}\xrightarrow[h\to0]{}\frac{f'(a)}{2}+\frac{f'(a)}{2}=f'(a).
+    \end{equation*}
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Trouver toutes les fonctions $f:\R\to\R$ telles que
+    \begin{equation*}
+        \forall x,y\in\R, ~ f(x)-f(y)\leq(x-y)^2
+    \end{equation*}
+    \tcblower
+    \bf{Analyse.} Soit $f:\R\to\R$ telle que ... On a $f$ continue. Soient $(x,y)\in\R^2, ~ x>y$.\\
+    On a $0\leq|f(x)-f(y)|\leq(x-y)^2$ donc $0\leq\frac{|f(x)-f(y)|}{x-y}\leq x-y$.\\
+    Par continuité de $f$ en $x$, et en faisant tendre $y$ vers $x$ : $f'(x)=0$. On a donc $f$ constante.\\
+    \bf{Synthèse.} Soit $f$ une fonction constante égale à $c\in\R$. Soient $x,y\in\R^2$.
+    \begin{equation*}
+        |f(x)-f(y)|=c-c=0\leq(x-y)^2.
+    \end{equation*}
+    \bf{Conclusion.} Les fonctions constantes sont exactement les fonctions qui conviennent.
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Montrer qu'il n'existe pas de fonction $f:\R\to\R_+^*$ telle que $f\circ f = f'$.
+    \tcblower
+    Supposons par l'absurde qu'une telle fonction $f$ existe.\\
+    On a $f$ strictement croissante car $f'=f\circ f$ à valeurs strictement positives.\\
+    On a donc $l=\lim_{x\to-\infty} f(x)$ existe par TLM car $f$ est croissante et minorée par 0.\\
+    De plus, $f''=f'\cdot(f'\circ f)$ strictement positive ... donc $l'=\lim_{x\to-\infty}f'(x)$ existe par TLM.\\
+    Or on a $l'=0$ car sinon $f$ ne serait pas minorée en $-\infty$.\\
+    Ainsi : $f(l)=\lim_{x\to-\infty}f(f(x))=\lim_{x\to-\infty}f'(x)=0$, absurde car $f$ est à valeurs dans $\R_+^*$.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $f:\R\to\R$, dérivable et tendant vers une même limite finie $l\in\R$ en $+\infty$ et $-\infty$.\\
+    Montrer que la dérivée de $f$ s'annule sur $\R$.
+    \tcblower
+    On pose $g:x\mapsto f(\tan(x))$ de $]-\frac{\pi}{2},\frac{\pi}{2}[$ vers $\R$.
+    \begin{equation*}
+        g(x)\xrightarrow[x\to-\frac{\pi}{2}]{}l \quad\et\quad g(x)\xrightarrow[x\to\frac{\pi}{2}]{}l
+    \end{equation*}
+    Donc on pose $g(-\frac{\pi}{2})=g(\frac{\pi}{2})=l$ par continuité.\\
+    On a donc $g$ continue sur $[-\frac{\pi}{2},\frac{\pi}{2}]$ et dérivable sur $]-\frac{\pi}{2},\frac{\pi}{2}[$, à valeurs égales en $-\frac{\pi}{2}$ et en $\frac{\pi}{2}$.\\
+    D'après le théorème de Rolle, $\exists c \in ]-\frac{\pi}{2},\frac{\pi}{2}[, ~ g'(c)=(1+\tan^2(c))f'(\tan(c))=0$.\\
+    Or $(1+\tan^2(c))\geq1$ donc $f'(\tan(c))=0$ donc $f'$ s'annule sur $\R$.
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $n\in\N^*$ et $f$ de classe $\m{C}^n$ sur $[a,b]$ telle que $f(a)=0$ et $\forall k \in \lb0,n-1\rb$, $f^{(k)}(b)=0$.\\
+    Démontrer que les fonctions $f',f^{(2)},...$ et $f^{(n)}$ s'annulent sur $]a,b[$.
+    \tcblower
+    Pour $k\in\N^*$, on note $\P_k$ la proposition : << $f^{(k)}$ s'annule sur $]a,b[$ >>.\\
+    \bf{Initialisation.} On a $f$ continue sur $[a,b]$, dérivable sur $]a,b[$ et $f(a)=f(b)=0$. Rolle.\\
+    \bf{Hérédité.} Soit $k\in\lb1,n-1\rb$ tel que $\P_k$. On a $f^{(k+1)}$ existante car $f\in\m{C}^n([a,b],\R)$.\\
+    On a par hypothèse $\exists c_k \in ]a,b[, ~ f^{(k)}(c_k)=0$. De plus, $f^{(k)}$ est continue sur $[c_k,b]$ et dérivable sur $]c_k,b[$.\\
+    On a aussi que $f^{(k)}(c_k)=f^{(k)}(b)=0$, on a le résultat par théorème de Rolle puique $]c_k,b[~\subset~]a,b[$.\\
+    \bf{Conclusion.} Par principe de récurrence, $\forall k \in \lb1,n\rb, ~ f^{(k)}$ s'annule sur $]a,b[$.
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Soit $f$ une fonction dérivable sur $[0,1]$ telle que $f(0)=f(1)=f'(0)=0$.\\
+    Montrer que la tangente à la courbe de $f$ en un certain point de $]0,1[$ est une droite qui passe par l'origine.
+    \tcblower
+    On cherche une valeur $x_0\in]0,1[$ telle que $f'(x_0)(0-x_0)+f(x_0)=0$, c'est-à-dire : $x_0f'(x_0)-f(x_0)=0$.\\
+    On pose donc la fonction $g:x\mapsto\frac{f(x)}{x}$, continue et dérivable sur $]0,1[$, de dérivée $g':x\mapsto\frac{xf'(x)-f(x)}{x^2}$.\\
+    On a $f'(0)=0$ donc $\frac{f(x)-f(0)}{x-0}=g(x)\xrightarrow[x\to0]{}0$, on prolonge donc $g$ par continuité en 0 : $g(0)=0$.\\
+    On a alors $g$ continue sur $[0,1]$ et dérivable sur $]0,1[$. On utilise le TFA:
+    \begin{equation*}
+        \exists x_0 \in ]0,1[, ~ g'(x_0)=0.
+    \end{equation*}
+    Alors $x_0f'(x_0)-f(x_0)=0$. C'est exactement ce qu'on voulait montrer.
+\end{exercice}
+
+\vspace*{0.4cm}
+
+\begin{exercice}{$\bbw$}{}
+    En appliquant le théorème des accroissements finis entre $k$ et $k+1$ à la fonction $f:x\mapsto \ln|\ln(x)|$, demontrer que la suite $(S_n)$ de terme général $\ds\sum_{k=1}^n\frac{1}{k\ln(k)}$ diverge.
+    \tcblower
+    Soit $k>1$. On a $f$ continue sur $[k,k+1]$ et dérivable sur $]k,k+1[$. AF:
+    \begin{equation*}
+        \exists c \in ]k,k+1[, ~ f'(c)=f(k+1)-f(k)
+    \end{equation*}
+    De plus, $k<c<k+1\ra k\ln(k)<c\ln(c)<(k+1)\ln(k+1)\ra\frac{1}{(k+1)\ln(k+1)}<\frac{1}{c\ln(c)}<\frac{1}{k\ln(k)}$.\\
+    Et puisque $\forall x \in ]1,+\infty[, ~ f'(x)=\frac{1}{x\ln(x)}$, on a $\frac{1}{(k+1)\ln(k+1)}<\ln(k+1)-\ln(k)<\frac{1}{k\ln(k)}$. Donc :
+    \begin{equation*}
+        \sum_{k=2}^n\frac{1}{(k+1)\ln(k+1)}<\ln(n+1)<\sum_{k=2}^n\frac{1}{k\ln(k)}.
+    \end{equation*}
+    Donc $S_n\geq\ln(n+1)\to+\infty$ donc $S_n$ diverge.
+\end{exercice}
+
+\vspace*{0.4cm}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $a\in\R_+^*$. On définit sur $\R_+^*$ la fonction $f:x\mapsto\frac{1}{2}\left( x+\frac{a}{x} \right)$.
+    \begin{enumerate}
+        \item Démontrer que $f$ possède un unique point fixe $l$ sur $\R_+^*$ que l'on exprimera à l'aide de $a$.\\
+        Justifier que $[l,+\infty[$ est stable par $f$.
+        \item Démontrer que $f$ est $\frac{1}{2}$-lipschitzienne sur $[l,+\infty[$.
+        \item Soit $u$ la suite définie par $u_0\in[l,+\infty[$ et par $\forall n \in \N, ~ u_{n+1}=f(u_n)$.\\
+        Démontrer qu'il existe une constante $C>0$ telle que
+        \begin{equation*}
+            \forall n \in \N, ~ |u_n-l|\leq C\cdot\left( \frac{1}{2} \right)^n.
+        \end{equation*}
+        \item Pourquoi dit-on que la convergence vers le point fixe se fait à une vitesse \emph{linéaire} ?
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soit $l\in\R^+_*$. On a :
+    \begin{align*}
+        \frac{1}{2}\left( l + \frac{a}{l} \right) = l &\iff l + \frac{a}{l} = 2l \iff \frac{a}{l}=l \iff l^2 = a \iff l = \sqrt{a}.
+    \end{align*}
+    On élimine $-\sqrt{a}$ car $l>0$. On a donc bien l'existence et l'unicité de $l$. Soit $x>l$. On a :
+    On a $f$ dérivable sur $\R_+^*$ et $f'(x)=\frac{1}{2}-\frac{a}{2x^2}\geq0$ pour $x>\sqrt{a}=l$. D'où la stabilité de $[l,+\infty[$ par $f$.\\
+    \boxed{2.} On a clairement $f'$ majorée par $\frac{1}{2}$ sur $[l,+\infty[$, on applique l'IAF.\\
+    \boxed{3.} Pour $n\in\N$, on note $\P_n$ la proposition : << $|u_n-l|\leq |u_0-l|\left( \frac{1}{2} \right)^n$ >>.\\
+    \bf{Initialisation.} Triviale.\\
+    \bf{Hérédité.} Soit $n\in\N$ tel que $\P_n$.
+    \begin{equation*}
+        |u_{n+1}-l|=|f(u_n)-f(l)|\leq\frac{1}{2}|u_n-l|\leq|u_0-l|\left(\frac{1}{2}\right)^{n+1}.
+    \end{equation*}
+    \bf{Conclusion.} Par principe de récurrence, $\forall n \in \N, ~ \P_n$ est vraie.\\
+    \boxed{4.} On dit cela car $|u_{n+1}-l|\leq C|u_n-l|$, la distance au point fixe pour deux termes consécutifs est proportionnelle d'un facteur constant $C$.
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\bbw$}{}
+    Démontrer que
+    \begin{equation*}
+        \forall n \in \N, ~ \forall x \in [0,\frac{\pi}{2}[, ~ \tan^{(n)}(x) \geq 0.
+    \end{equation*}
+    \tcblower
+    Soit $x\in[0,\frac{\pi}{2}[$. Pour $n\in\N$, on pose $\P_n$ : << $\tan^{(n)}(x)\geq 0$ >>.\\
+    \bf{Initialisation.} On a $\tan(x)\geq0$ car $x\in[0,\frac{\pi}{2}[$.\\
+    \bf{Hérédité.} Soit $n\in\N$ tel que $\forall k \in \lb0,n\rb, ~ \P_n$. On a $\tan\in\m{C}^{\infty}([0,\frac{\pi}{2}[)$ donc :
+    \begin{align*}
+        \tan^{(n+1)}(x) &= (1+\tan^2(x))^{(n)} = (\tan^2(x))^(n)\\
+        &=\sum_{k=0}^n\binom{n}{k}\tan^{(k)}(x)\tan^{(n-k)}(x)\geq0 ~ \nt{par somme}.
+    \end{align*} 
+    On a bien $\P_n+1$.\\
+    \bf{Conclusion.} Par récurrence forte, $\forall n \in \N, ~ \P_n$.
+\end{exercice}
+
+\begin{exercice}{$\bbw$ $\star$}{}
+    Montrer que pour tout $n\in\N^*$ et pour tout $x\geq0$,
+    \begin{equation*}
+        \frac{d^n}{dx^n}\left( x^{n-1}\ln(x) \right)=\frac{(n-1)!}{x}.
+    \end{equation*}
+    \tcblower
+    Soit $n\in\N^*$ et $x\in\R^*_+$. On pose $f:x\mapsto x^{n-1}\ln(x)$, $\m{C}^n$ sur $\R_+^*$ par produit.
+    \begin{align*}
+        f^{(n)}(x) &= \sum_{k=0}^n\binom{n}{k}(x^{n-1})^{(k)}(\ln(x))^{(n-k)}\\
+        &=\sum_{k=0}^{n-1}\binom{n}{k}\frac{(n-1)!}{\cancel{(n-1-k)!}}x^{\cancel{n-k}-1}\times(-1)^{k+1}\frac{\cancel{(n-k-1)!}}{\cancel{x^{n-k}}}\\
+        &=\frac{(n-1)!}{x}\sum_{k=0}^{n-1}(-1)^{k+1}=\frac{(n-1)!}{x}\left( (1-1)^n + 1 \right)\\
+        &=\frac{(n-1)!}{x}.
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\bbb$}{}
+    Soit $n\in\N$ et $f\in\m{C}^n(\R,\R)$. Montrer que pour tout $x\in\R$,
+    \begin{equation*}
+        \frac{d^n}{dx^n}\left( x^{n-1}f\left( \frac{1}{x} \right) \right)=\frac{(-1)^n}{x^{n+1}}f^{(n)}\left( \frac{1}{x} \right).
+    \end{equation*}
+\end{exercice}
+
+\end{document}
