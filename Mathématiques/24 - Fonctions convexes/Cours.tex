@@ -1,0 +1,358 @@
+\documentclass[11pt]{article}
+
+\def\chapitre{24}
+\def\pagetitle{Fonctions convexes.}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\thispagestyle{fancy}
+
+$I$ est un intervalle de $\R$. Rappelons que c'est une partie convexe de $\R$ si $a,b\in I$ avec $a\leq b$, alors $[a,b] \subset I$.
+
+\section{Convexité d'une fonction.}
+
+\begin{lemme}{}{}
+    Soient $a$ et $b$ deux réels tels que $a\leq b$. On a
+    \begin{equation*}
+        [a,b] = \{(1-\l)a + \l b \mid \l \in [0,1]\} = \{a + \l(b-a) \mid \l \in [0,1]\}.
+    \end{equation*}
+\end{lemme}
+
+\begin{defi}{}{}
+    Une fonction $f:I\to\R$ est dite \bf{convexe} sur $I$ si pour tout $(x,y)\in I^2$ et tout $\l\in[0,1]$,
+    \begin{equation*}
+        f((1-\l)x + \l y) \leq (1-\l)f(x)+\lf(y).
+    \end{equation*}
+    L'opposé d'une fonction convexe est dite \bf{concave}.
+    \begin{center}
+        \includegraphics*[scale=0.8]{defi.png}
+    \end{center}
+\end{defi}
+
+\section{Inégalité des pentes.}
+
+\begin{prop}{Inégalité des pentes.}{}
+    Si $f$ est une fonction convexe sur $I$, alors
+    \begin{equation*}
+        \forall (x,y,z) \in I^3, ~ (x<y<z) \ra \left( \frac{f(y)-f(x)}{y-x} \leq \frac{f(z)-f(x)}{z-x} \leq \frac{f(z)-f(y)}{z-y} \right).
+    \end{equation*}
+    \begin{center}
+        \includegraphics*[scale=0.8]{pentes.png}
+    \end{center}
+    Refaites le dessin pour vous rappeler du sens de l'inégalité !
+\end{prop}
+
+\begin{prop}{Caractérisation de la convexité par la croissance des pentes des sécantes.}{}
+    Soit $f:I\to\R$. Il y a équivalence entre
+    \begin{enumerate}
+        \item $f$ est convexe sur $I$.
+        \item Pour tout $a\in I$, la fonction $T_a:x\mapsto \frac{f(x)-f(a)}{x-a}$ est croissante sur $I\setminus\{a\}$.
+    \end{enumerate}
+\end{prop}
+
+\begin{prop}{Position du graphe par rapport aux sécantes.}{}
+    Soit $f$ une fonction convexe sur $I$ et $a,b\in I$ tels que $a<b$.\\
+    Considérons l'unique droite affine passant par les points $(a,f(a))$ et $(b,f(b))$, \bf{sécante} de $f$.\\
+    Le graphe de $f$ est en dessous de cette sécante sur $[a,b]$, et au dessus à l'extérieur de $[a,b]$.
+\end{prop}
+
+\section{Fonctions convexes dérivables.}
+
+\begin{prop}{Caractérisation des fonctions convexes parmi les fonctions dérivables.}{}
+    Soit $f:I\to\R$ une fonction dérivable sur $I$. Il y a équivalence entre
+    \begin{enumerate}
+        \item $f$ est convexe sur $I$.
+        \item $f'$ est croissante sur $I$.
+    \end{enumerate}
+    Notamment, si $f$ est une fonction deux fois dérivable sur $I$, $f$ est convexe sur $I$ ssi $f''\geq0$ sur $I$.
+\end{prop}
+
+\begin{ex}{}{}
+    \begin{itemize}
+        \item $\exp$, $\ch$ et les puissances paires sont convexes sur $\R$.
+        \item $\ln$ est concave sur $\R_+^*$. Les fonctions $x\mapsto x^a$ avec $a\in[0,1]$ sont concaves sur $\R_+^*$.
+        \item Les puissances impaires sont concaves sur $\R_-$, convexes sur $\R_+$.
+    \end{itemize}
+\end{ex}
+
+\begin{prop}{Position du graphe par rapport aux tangentes.}{}
+    Le graphe d'une fonction $f\in\m{D}(I,\R)$ convexe est au-dessus de toutes ses tangentes : Si $a\in I$,
+    \begin{equation*}
+        \forall x \in I, ~ f(x) \geq f'(a)(x-a)+f(a).
+    \end{equation*}
+\end{prop}
+
+\begin{ex}{}{}
+    Les fonctions $\exp$ et $\ln$ sont respectivement convexe et concave.
+    \begin{equation*}
+        \forall x \in \R, ~ e^x \geq x + 1 \qquad\qquad \forall x \in \R_+, ~ \ln(x) \leq x-1
+    \end{equation*}
+\end{ex}
+
+\begin{ex}{}{}
+    La fonction $\sin$ est concave sur $[0,\frac{\pi}{2}]$ : on a l'encadrement $\forall x \in [0,\frac{\pi}{2}], ~ \frac{2}{\pi}x \leq \sin x \leq x$.  
+\end{ex}
+
+\section{Inégalité de Jensen.}
+
+\begin{lemme}{}{}
+    Soient $x_1,...,x_n$ $n$ éléments d'un intervalle $I$ et $\l_1,...,\l_n\in\R_+$ tels que $\ds\sum_{k=1}^n\l_k=1$.\\
+    Le nombre $\ds\sum_{i=1}^n\l x_i$ est dans $I$.
+\end{lemme}
+
+\begin{thm}{Inégalité de Jensen. $\star$}{}
+    Soit $n\in\N^*$. Si $f$ est une fonction convexe sur un intervalle $I$, l'inégalité
+    \begin{equation*}
+        f\left( \sum_{i=1}^n\l_ix_i \right) \leq \sum_{i=1}^n\l_if(x_i),
+    \end{equation*}
+    est vraie pour tous $x_1,...,x_n\in I$ et $\l_1,...,\l_n\in\R_+$ sommant à 1.
+\end{thm}
+
+\vspace*{-0.4cm}
+
+\begin{ex}{Inégalité arithmético-géométrique.}{}
+    En utilisant la concavité de $\ln$ sur $\R_+^*$, on démontre que
+    \begin{equation*}
+        \forall n \in \N^*, ~ \forall x_1,...,x_n \in \R_+^*, ~ (x_1x_2...x_n)^{\frac{1}{n}}\leq\frac{x_1+x_2+...+x_n}{n}.
+    \end{equation*}
+\end{ex}
+
+\section{Exercices.}
+
+\begin{exercice}{$\bww$}{}
+    \begin{enumerate}
+        \item Démontrer que la fonction $f:x\mapsto\ln(\ln(x))$ est concave sur $]1,+\infty[$.
+        \item Montrer que
+        \begin{equation*}
+            \forall a,b > 1, ~ \ln\left( \frac{a+b}{2} \right) \geq \sqrt{\ln(a)\ln(b)}.
+        \end{equation*}
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} On a $f$ dérivable sur $]1,+\infty[$ comme composée, et $f':x\mapsto\frac{1}{x\ln(x)}$.\\
+    On a $f'$ dérivable comme quotient, et $f'':x\mapsto\frac{\ln(x)+1}{(x\ln(x))^2}$, négative sur $]1,+\infty[$, donc $f$ y est concave.\\
+    \boxed{2.} D'après l'inégalité de Jensen :
+    \begin{align*}
+        \ln(\ln(\frac{1}{2}a+\frac{1}{2}b)) \geq \frac{1}{2}\ln(\ln(a))+\frac{1}{2}\ln(\ln(b))
+    \end{align*}
+    Donc $\ln(\ln(\frac{a+b}{2}))\geq\ln(\sqrt{\ln(a)\ln(b)})$, donc $\ln(\frac{a+b}{2})\geq\sqrt{\ln(a)\ln(b)}$ par croissance de $\exp$.
+\end{exercice}
+
+\begin{exercice}{$\bww$}{}
+    Soit $n\in\N^*$ et $(x_1,...,x_n)\in(\R_+^*)^n$ et $\a\in\R$.\\
+    En discutant selon les valeurs de $\a$, comparer
+    \begin{equation*}
+        \left( \sum_{i=1}^nx_i \right)^\a \quad\et\quad n^{\a-1}\sum_{i=1}^nx_i^\a
+    \end{equation*}
+    \tcblower
+    On pose $f_\a:x\mapsto x^\a$. On a $f''_\a=\a(\a-1)f_{\a-2}$. On a donc $f_\a$ convexe si $\a\notin[0,1]$, concave sinon.\\
+    On a donc, d'après l'inégalité de Jensen, dans le cas $\a\notin[0,1]$ :
+    \begin{equation*}
+        f_\a\left( \sum_{i=1}^n\frac{1}{n}x_i \right) \leq \sum_{i=1}^n\frac{1}{n}f_\a(x_i) \ra \frac{1}{n^\a}\left( \sum_{i=1}^nx_i \right)^\a \leq \frac{1}{n}\sum_{i=1}^nx_i^\a
+    \end{equation*}
+    Ainsi, $n^{\a-1}\sum_{i=1}^nx_i^\a\leq\left( \sum_{i=1}^n x_i \right)^\a$ si $\a\in[0,1]$ et dans l'autre sens si $\a\notin[0,1]$.
+\end{exercice}
+
+\vspace*{-0.6cm}
+
+\begin{exercice}{$\bww$}{}
+    Soit $n\in\N^*$
+    \begin{enumerate}
+        \item Montrer que $f:x\mapsto\ln(1+e^x)$ est convexe sur $\R$.
+        \item Montrer que
+        \begin{equation*}
+            \forall (x_1,...,x_n) \in (\R_+^*)^n, ~ 1 + \left( \prod_{k=1}^n x_k \right)^{\frac{1}{n}} \leq \left( \prod_{k=1}^n(1+x_k)  \right)^{\frac{1}{n}}
+        \end{equation*}
+        \item Montrer que
+        \begin{equation*}
+            \forall (a_1,...,a_n,b_1,...,b_n)\in(\R_+^*)^{2n}, ~ \left( \prod_{k=1}^na_k \right)^{\frac{1}{n}} + \left( \prod_{k=1}^nb_k \right)^{\frac{1}{n}} \leq \left( \prod_{k=1}^n(a_k+b_k) \right)^{\frac{1}{n}}
+        \end{equation*}
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} On a $f'':x\mapsto\frac{e^x}{(1+e^x)^2}>0$ donc $f$ est convexe sur $\R$.\\
+    \boxed{2.} Soient $x_1,...,x_n\in\R_+^*$. On a:
+    \begin{align*}
+        f\left( \sum_{k=1}^n\frac{1}{n}x_k \right) \leq \sum_{k=1}^n\frac{1}{n}f(x_k) &\ra \ln(1+\exp\left( \frac{1}{n}\sum_{k=1}^nx_k \right)) \leq \sum_{k=1}^n\frac{1}{n}\ln(1+e^{x_k})\\
+        &\iff 1 + \exp\left( \frac{1}{n}\sum_{k=1}^nx_k \right) \leq \exp\left( \sum_{k=1}^n\frac{1}{n}\ln(1+e^{x_k}) \right)\\
+        &\iff 1 + \left( \prod_{k=1}^n e^{x_k} \right)^{\frac{1}{n}} \leq \left( \prod_{k=1}^n (1+e^{x_k}) \right)^{\frac{1}{n}}
+    \end{align*}
+    On a plus qu'à poser $X_k:=\ln(x_k)\in\R_+^*$ pour $k\in\lb1,n\rb$.\\
+    \boxed{3.} Soient $a_1,...,a_n,b_1,...,a_n\in\R_+^*$.
+    \begin{align*}
+        \left( \prod_{k=1}^na_k \right)^\frac{1}{n} + \left( \prod_{k=1}^nb_k \right)^{\frac{1}{n}} &= \left( \prod_{k=1}^n a_k \right)^{\frac{1}{n}}\left( 1+\prod_{k=1}^n\frac{b_k}{a_k} \right)^{\frac{1}{n}}\\
+        &\leq \left(\prod_{k=1}^na_k\right)^{\frac{1}{n}}\left( \prod_{k=1}^n(1+\frac{b_k}{a_k}) \right)^{\frac{1}{n}}\\
+        &=\left( \prod_{k=1}^n(a_k+b_k) \right)^{\frac{1}{n}}
+    \end{align*}
+\end{exercice}
+
+\vspace*{-0.6cm}
+
+\begin{exercice}{$\bbw$}{}
+    \begin{enumerate}
+        \item Montrer que la fonction $f:x\mapsto \frac{1}{e^x+1}$ est convexe sur $\R_+$.
+        \item En déduire que pour tout $x_1,...,x_n\geq1$,
+        \begin{equation*}
+            \sum_{k=1}^n\frac{1}{1+x_k} \geq \frac{n}{1+\sqrt[n]{x_1...x_n}}.
+        \end{equation*}
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} On a $f'':x\mapsto\frac{e^x(e^{2x}-1)}{(e^x+1)^4}\geq0$.\\
+    Donc $f$ est convexe sur $\R_+$.\\
+    \boxed{2.} Soient $x_1,...,x_n\in[1,+\infty[^n$. On pose $X_k=e^{x_k}$. On a d'après Jensen:
+    \begin{align*}
+        f\left( \sum_{k=1}\frac{1}{n}x_k \right) \leq \sum_{k=1}^n\frac{1}{n}f(x_k) &\iff 1/\left[\exp\left( \sum_{k=1}^n\frac{1}{n}x_k \right)+1\right]\leq \sum_{k=1}^n\frac{1}{n}\cdot\frac{1}{1+e^{x_k}}\\
+        &\iff 1/\left[\left( \prod_{k=1}^n e^{x_k} \right)^{\frac{1}{n}}+1\right]\leq\frac{1}{n}\sum_{k=1}^n\frac{1}{1+e^{x_k}}\\
+        &\iff  1/\left[ \left( \prod_{k=1}^n X_k \right)^{\frac{1}{n}} +1 \right] \leq \frac{1}{n}\sum_{k=1}^n\frac{1}{1+X_k}\\
+        &\iff \frac{n}{1+\sqrt[n]{X_1...X_n}} \leq \sum_{k=1}^n\frac{1}{1+X_k}
+    \end{align*}
+\end{exercice}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $f:[0,1]\to\R$ deux fois dérivable et telle que $\forall x \in [0,1], ~ f''(x)\geq1$.\\
+    Montrer que $f(0)-2f(\frac{1}{2})+f(1)\geq\frac{1}{4}$.
+    \tcblower
+    On pose $g:x\mapsto f(x)-\frac{1}{2}x^2$, alors $g''(x)=f''(x)-1\geq0$ pour $x\in[0,1]$, donc $g$ est convexe.\\
+    Inégalité de Jensen : $g\left( \frac{0+1}{2} \right)\leq\frac{g(0)+g(1)}{2}$.\\
+    Ainsi, $f(\frac{1}{2})-\frac{1}{8}\leq \frac{1}{2}f(0)+\frac{1}{2}f(1)-\frac{1}{4}$ puis $\frac{1}{4}\leq f(0) - 2f(\frac{1}{2})+ f(1)$ en réarrangeant.
+\end{exercice}
+
+\vspace*{0.5cm}
+
+\begin{exercice}{$\bbw$}{}
+    Soit $f$ une fonction convexe et de classe $\m{C}^1$ sur $[a,b]$. Prouver que
+    \begin{equation*}
+        (b-a)f\left( \frac{a+b}{2} \right)\leq \int_a^bf(t)\dt\leq(b-a)\frac{f(a)+f(b)}{2}.
+    \end{equation*}
+    \tcblower
+    Soit $\phi$ l'affine telle que $\phi(a)=f(a)$ et $\phi(b)=f(b)$. Par convexité de $f$, on a $\forall x \in [a,b], ~ f(x) \leq \phi(x)$.
+    \begin{equation*}
+        \int_a^bf(t)\dt \leq \int_a^b\phi(t)\dt = (b-a)\frac{f(a)+f(b)}{2}
+    \end{equation*}
+    On a $f$ au dessus de ses tangentes, en particulier celle en $\frac{a+b}{2}$, notée $\psi$ donc :
+    \begin{equation*}
+        \int_a^b \phi(t)\dt = (b-a)f\left( \frac{a+b}{2} \right) \leq \int_a^b f(t)\dt
+    \end{equation*}
+\end{exercice}
+
+\vspace*{0.5cm}
+
+\begin{exercice}{$\bbw$}{}
+    Montrer que toute fonction convexe sur $\R$ et majorée est constante.
+    \tcblower
+    Soit $f$ une fonction convexe sur $\R$, majorée par $M$, et soient $x<y$ deux réels.\\
+    $\bullet$ Soit $z>y$.
+    \begin{equation*}
+        \frac{f(y)-f(x)}{y-x} \leq \frac{f(z)-f(x)}{z-x} \leq \frac{M-f(x)}{z-x}
+    \end{equation*}
+    On fait tendre $z$ vers $+\infty$ : $\frac{f(y)-f(x)}{y-x}\leq0$.\\
+    $\bullet$ Soit $z<x$.
+    \begin{equation*}
+        \frac{f(y)-f(x)}{y-x} \geq \frac{f(x)-f(z)}{x-z} \geq \frac{f(x)-M}{x-z}
+    \end{equation*}
+    On fait tendre $z$ vers $-\infty$ : $\frac{f(y)-f(x)}{y-x}\geq0$.\\
+    Donc $f(x)=f(y)$ pour tous $x<y$ réels. La fonction est constante.
+\end{exercice}
+
+\vspace*{0.5cm}
+
+\begin{exercice}{$\bbw$}{}
+    Soient deux réels $a<b$ et $f:[a,b]\to\R_+$ une fonction convexe.
+    \begin{enumerate}
+        \item Montrer que $f$ est continue sur $]a,b[$.
+        \item Donner le graphe d'une fonction convexe sur $[a,b]$ et discontinue en $a$ et $b$.
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soient $x\in]a,b[$ et $c\in]a,b[$ tels que $x<c$.
+    \begin{equation*}
+        \frac{f(x)-f(a)}{x-a} \leq \frac{f(c)-f(x)}{c-x} \quad\et\quad \frac{f(b)-f(c)}{b-c}\geq\frac{f(c)-f(x)}{c-x}
+    \end{equation*}
+    Donc en multipliant par $c-x>0$ :
+    \begin{equation*}
+        \frac{f(x)-f(a)}{x-a}(c-x) \leq f(c) - f(x) \leq \frac{f(b)-f(c)}{b-c}(c-x)
+    \end{equation*}
+    De plus, $x\neq a$ et $c\neq b$, donc par théorème des gendarmes, $f(x)-f(c)\xrightarrow[x\to c]{}0$. Donc $f$ est continue.\\
+    \boxed{2.}
+    \begin{equation*}
+        f:\begin{cases}
+            [a,b] &\to \quad \R_+\\
+            x &\mapsto \quad \begin{cases}
+                x^2 + 80085 &\nt{si } x\in\{a,b\}\\
+                x^2 &\nt{si } x\in]a,b[
+            \end{cases}
+        \end{cases}
+    \end{equation*}
+    On a $f$ convexe sur $[a,b]$, $a<b$ et discontinue en $a$ et en $b$.
+\end{exercice}
+
+\pagebreak
+
+\begin{exercice}{$\bbw$}{}
+    Soit $f$ une fonction convexe sur un intervalle $I$ et admettant sur $I$ un minimum $m$.\\
+    Démontrer que l'ensemble des points pour lesquels ce minimum est atteint est un intervalle.
+    \tcblower
+    Soient $a,b\in\R$ tels que $a<b$, et $I=[a,b]$. On note $\E=\{x\in I \mid f(x)=m\}$.\\
+    Soient $c,d\in\E$. Montrons que $[c,d]\subset\E$ : que $\E$ est un convexe de $\R$.\\
+    Soit $\a\in[c,d]$, il existe $\l\in[0,1]$ tel que $\a=(1-\l)c+\l d$.\\
+    Ainsi, $f(\a)=f((1-\l)c+\l d)\leq(1-\l)f(c)+\l f(d)=(1-\l)m+\l m = m$.\\
+    Or $m$ est le minimum de $f$ sur $I$ et $\a\in I$, et $f(\a)\leq m$, donc $f(\a)=m$, donc $\a\in\E$.\\
+    Ainsi, $[c,d]\subset\E$ donc $\E$ est un intervalle.
+\end{exercice}
+
+\begin{exercice}{$\bbb$ Inégalités de Hölder et de Minkowski.}{}
+    Soit $(p,q)\in]0,+\infty[^2$ tel que $\frac{1}{p}+\frac{1}{q}=1$.
+    \begin{enumerate}
+        \item À l'aide de $\ln$, montrer que $\forall(\a,\b)\in]0,+\infty[^2, ~ \a\b \leq \frac{1}{p}\a^p+\frac{1}{q}\b^q$.
+        \item Montrer l'inégalité de Hölder :
+        \begin{equation*}
+            \forall (a_1,...,a_n,b_1,...,b_n)\in\R^{2n}, ~ \sum_{i=1}^n|a_i||b_i|\leq\left( \sum_{i=1}^n|a_i|^p \right)^{\frac{1}{p}}\times\left( \sum_{i=1}^n|b_i|^q \right)^{\frac{1}{q}}.
+        \end{equation*}
+        \item Montrer l'inégalité de Minkowski :
+        \begin{equation*}
+            \forall p \in ]1,+\infty[, ~ \forall (a_1,...,a_n,b_1,...,b_n) \in \R^{2n}, ~ \left( \sum_{i=1}^n|a_i+b_i|^p \right)^{\frac{1}{p}}\leq\left( \sum_{i=1}^n|a_i|^p \right)^{\frac{1}{p}}+\left( \sum_{i=1}^n|b_i|^p \right)^{\frac{1}{p}}
+        \end{equation*}
+    \end{enumerate}
+    \tcblower
+    \boxed{1.} Soient $\a,\b\in\R_+^*$. On a $\ln$ concave donc
+    \begin{equation*}
+        \ln\left(\frac{1}{p}\a^p+\frac{1}{q}\b^q\right)\geq\frac{1}{q}\ln\a^p+\frac{1}{q}\ln\b^q=\ln(\a\b)
+    \end{equation*}
+    Par croissance de $\exp$, on a alors $\a\b \leq \frac{1}{p}\a^p+\frac{1}{q}\b^q$.\\
+    \boxed{2.} Soient $a_1,...,a_n,b_1,...,b_n\in\R$. On pose $\ds A=\left(\sum_{i=1}^n|a_i|^p\right)^{\frac{1}{p}}$ et $\ds B=\left( \sum_{i=1}^n|b_i|^q \right)^{\frac{1}{q}}$.\\
+    L'inégalité est immédiate si $A=0$ ou $B=0$. Supposons $A\neq0$ et $B\neq0$. Alors:
+    \begin{equation*}
+        \sum_{i=1}^n|a_i||b_i|\leq\frac{1}{p}\sum_{i=1}^n|a_i|+\frac{1}{q}\sum_{i=1}^n|b_i| \quad \nt{(Q1)}
+    \end{equation*}
+    Donc
+    \begin{equation*}
+        \frac{|a_i|}{A}\times \frac{|b_i|}{B}\leq\frac{1}{p}\left( \frac{|a_i|}{A} \right)^p + \frac{1}{q}\left( \frac{|b_i|}{B} \right)^q
+    \end{equation*}
+    Donc
+    \begin{equation*}
+        \sum_{i=1}^n|a_i||b_i|\leq AB\left( \frac{1}{p}\frac{A^p}{A^p} + \frac{1}{q}\frac{B^q}{B^q} \right)=AB\cancel{\left( \frac{1}{p} + \frac{1}{q} \right)}
+    \end{equation*}
+    \boxed{3.} Soit $p\in]1,+\infty[$ et $a_1,...,a_n,b_1,...,b_n\in\R$.
+    \begin{equation*}
+        \forall i \in \lb1,n\rb, ~ |a_i+b_i|^p\leq|a_i||a_i+b_i|^{p-1}+|b_i||a_i+b_i|^{p-1}
+    \end{equation*}
+    On applique Hölder avec $\frac{1}{p}+\frac{p-1}{p}=1$ et $\frac{p-1}{p}>0$.
+    \begin{equation*}
+        \sum_{i=1}^n|a_i||a_i+b_i|^{p-1}\leq\left( \sum_{i=1}^n|a_i|^p \right)^{\frac{1}{p}}\left( \sum_{i=1}^n|a_i+b_i|^p \right)^{\frac{p-1}{p}}
+    \end{equation*}
+    \begin{equation*}
+        \sum_{i=1}^n|b_i||a_i+b_i|^{p-1}\leq\left( \sum_{i=1}^n|b_i|^p \right)^\frac{1}{p}\left( \sum_{i=1}^n|a_i+b_i|^p \right)^{\frac{p-1}{p}}
+    \end{equation*}
+    Donc :
+    \begin{equation*}
+        \sum_{i=1}^n|a_i+b_i|^p\leq\left[ \left( \sum_{i=1}^n|a_i|^p \right)^\frac{1}{p} + \left( \sum_{i=1}^n|b_i|^p \right)^\frac{1}{p} \right]\left( \sum_{i=1}^n|a_i+b_i|^p \right)^{\frac{p-1}{p}}
+    \end{equation*}
+    Si $\ds\sum_{i=1}^n|a_i+b_i|^p>0$, alors :
+    \begin{equation*}
+        \left( \sum_{i=1}^n|a_i+b_i|^p \right)^{\frac{1}{p}}\leq\left( \sum_{i=1}^n|a_i|^p \right)^\frac{1}{p}+\left( \sum_{i=1}^n|b_i|^p \right)^\frac{1}{p}
+    \end{equation*}
+    Sinon, l'inégalité est évidente.
+\end{exercice}
+
+\end{document}

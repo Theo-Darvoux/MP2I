@@ -690,7 +690,7 @@ Dans ce qui suit, $n\in\N\cup\{\infty\}$.
     On cherche une valeur $x_0\in]0,1[$ telle que $f'(x_0)(0-x_0)+f(x_0)=0$, c'est-à-dire : $x_0f'(x_0)-f(x_0)=0$.\\
     On pose donc la fonction $g:x\mapsto\frac{f(x)}{x}$, continue et dérivable sur $]0,1[$, de dérivée $g':x\mapsto\frac{xf'(x)-f(x)}{x^2}$.\\
     On a $f'(0)=0$ donc $\frac{f(x)-f(0)}{x-0}=g(x)\xrightarrow[x\to0]{}0$, on prolonge donc $g$ par continuité en 0 : $g(0)=0$.\\
-    On a alors $g$ continue sur $[0,1]$ et dérivable sur $]0,1[$. On utilise le TFA:
+    On a alors $g$ continue sur $[0,1]$ et dérivable sur $]0,1[$. On utilise le TAF:
     \begin{equation*}
         \exists x_0 \in ]0,1[, ~ g'(x_0)=0.
     \end{equation*}
@@ -786,6 +786,8 @@ Dans ce qui suit, $n\in\N\cup\{\infty\}$.
     \begin{equation*}
         \frac{d^n}{dx^n}\left( x^{n-1}f\left( \frac{1}{x} \right) \right)=\frac{(-1)^n}{x^{n+1}}f^{(n)}\left( \frac{1}{x} \right).
     \end{equation*}
+    \tcblower
+    Laissé en exercice au lecteur \dSmiley[1.5]
 \end{exercice}
 
 \end{document}
