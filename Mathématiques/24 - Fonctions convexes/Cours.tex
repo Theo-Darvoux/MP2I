@@ -20,6 +20,10 @@ $I$ est un intervalle de $\R$. Rappelons que c'est une partie convexe de $\R$ si
     \begin{equation*}
         [a,b] = \{(1-\l)a + \l b \mid \l \in [0,1]\} = \{a + \l(b-a) \mid \l \in [0,1]\}.
     \end{equation*}
+    \tcblower
+    Soit $\l\in[0,1]$. On a $0\leq\l\leq1$ donc $0\leq\l(b-a)\leq b-a$ donc $a\leq a+\l(b-a)\leq b$.\\
+    Soit $x\in[a,b]$. Soit $\l\in[0,1]$. On a $x=a+\l(b-a)\iff\frac{x-a}{b-a}=\l$ avec $a\neq b$.\\
+    Si $a=b$, alors $x=a=b$ pour tout $\l$. On a bien le résultat par double inclusion.
 \end{lemme}
 
 \begin{defi}{}{}
@@ -44,6 +48,11 @@ $I$ est un intervalle de $\R$. Rappelons que c'est une partie convexe de $\R$ si
         \includegraphics*[scale=0.8]{pentes.png}
     \end{center}
     Refaites le dessin pour vous rappeler du sens de l'inégalité !
+    \tcblower
+    Soit $f$ convexe sur $I$ et $x,y,z\in I$ tels que $x<y<z$. On a $\exists\l\in[0,1], ~ y=x=(z-x)\l$ avec \boxed{\l=\frac{y-x}{z-x}}.\\
+    Par convexité : $f(\underbrace{x+\l(z-x)}_{y})\leq f(x)+\l(f(z)-f(x))$ donc ... $\frac{f(y)-f(x)}{y-x}\leq\frac{f(z)-f(x)}{z-x}$.\\
+    D'autre part, $f(y) \leq f(x) \leq f(x) + \l(f(z)-f(x))$ donc $f(y)-f(z)\leq(f(x)-f(z))(1-\l)$\\
+    Donc $f(y)-f(z)\leq(f(x)-f(z))\frac{z-y}{z-x}$ donc $\frac{f(z)-f(y)}{z-y} \geq \frac{f(z)-f(x)}{z-x}$.
 \end{prop}
 
 \begin{prop}{Caractérisation de la convexité par la croissance des pentes des sécantes.}{}
@@ -52,12 +61,30 @@ $I$ est un intervalle de $\R$. Rappelons que c'est une partie convexe de $\R$ si
         \item $f$ est convexe sur $I$.
         \item Pour tout $a\in I$, la fonction $T_a:x\mapsto \frac{f(x)-f(a)}{x-a}$ est croissante sur $I\setminus\{a\}$.
     \end{enumerate}
+    \tcblower
+    \boxed{\ra} Supposons $f$ convexe sur $I$. Soit $a\in I$, et $T_a:x\mapsto\frac{f(x)-f(a)}{x-a}$. Soient $x,y\in I\setminus\{a\}$ tels que $x<y$.\\
+    On distingue $a<x<y$, $x<a<y$ et $x<y<a$, et on applique l'inégalité des pentes, pour obtenir $T_a(x)\leq T_a(y)$. \\
+    \boxed{\la} Supposons que $\forall a \in I, ~ T_a$ est croissante sur $I\setminus\{a\}$.\\
+    Soient $a,b\in I$ tels que $a<b$ et $\l\in[0,1]$. Par hypothèse, $T_a$ est croissante sur $]a,b]$ et $a+(b-a)\l\leq b$.\\
+    Si $\l\neq0$, alors $a<a+(b-a)\l\leq b$ donc $T_a(a+(b-a)\l)\leq T_a(b)$ ... $f(a+(b-a)\l)\leq f(a)+\l(f(b)-f(a))$.
 \end{prop}
 
 \begin{prop}{Position du graphe par rapport aux sécantes.}{}
     Soit $f$ une fonction convexe sur $I$ et $a,b\in I$ tels que $a<b$.\\
     Considérons l'unique droite affine passant par les points $(a,f(a))$ et $(b,f(b))$, \bf{sécante} de $f$.\\
     Le graphe de $f$ est en dessous de cette sécante sur $[a,b]$, et au dessus à l'extérieur de $[a,b]$.
+    \tcblower
+    La droite reliant $(a,f(a))$ et $(b,f(b))$ peut être vue comme l'affine $g:x\mapsto\frac{f(b)-f(a)}{b-a}(x-a)+f(a)$.\\
+    Montrons que $\forall x \in [a,b], ~ f(x)\leq g(x)$ et que $\forall x \notin [a,b], ~ f(x)\geq g(x)$.\\
+    Sur $[a,b]$, c'est la définition de la convexité.\\
+    Pour $x>b$,
+    \begin{equation*}
+        \frac{f(x)-f(a)}{x-a}\geq\frac{f(b)-f(a)}{b-a} \ra f(x)\frac{f(b)-f(a)}{b-a}(x-a)+f(a)\ra f(x) \geq g(x)
+    \end{equation*}
+    Pour $x<a$,
+    \begin{equation*}
+        \frac{f(x)-f(a)}{x-a}\leq\frac{f(b)-f(a)}{b-a} \ra f(x) \geq \frac{f(b)-f(a)}{b-a}(x-a)+f(x)=g(x)
+    \end{equation*}
 \end{prop}
 
 \section{Fonctions convexes dérivables.}
@@ -69,6 +96,21 @@ $I$ est un intervalle de $\R$. Rappelons que c'est une partie convexe de $\R$ si
         \item $f'$ est croissante sur $I$.
     \end{enumerate}
     Notamment, si $f$ est une fonction deux fois dérivable sur $I$, $f$ est convexe sur $I$ ssi $f''\geq0$ sur $I$.
+    \tcblower
+    \boxed{\ra} Supposons $f$ convexe sur $I$. Soient $a,b\in I$ et $c,d\in[a,b]$ tels que $a<c<d<b$.
+    \begin{equation*}
+        \frac{f(c)-f(a)}{c-a}\leq\frac{f(b)-f(a)}{b-a}\leq\frac{f(d)-f(b)}{d-b}.
+    \end{equation*}
+    On a $f$ dérivable en $a$, donc $f'(a)\leq\frac{f(b)-f(a)}{b-a}$ ; dérivable en $b$ donc $\frac{f(b)-f(a)}{b-a}\leq f'(b)$ donc $f'(a)\leq f'(b)$.\\
+    \boxed{\la} Supposons $f'$ croissante sur $I$. Soient $a,b\in I$ tels que $a\leq b$, $\l \in[0,1]$ et $c=a+(b-a)\l$.\\
+    Montrons que $f(c)\leq f(a)+(f(b)-f(a))\l$. On suppose $\l\notin\{0,1\}$, sinon c'est trivial. On applique les AF:
+    On a $f$ continue sur $[a,c]$ et dérivable sur $]a,c[$ : $\exists \phi \in ]a,c[, ~ \frac{f(c)-f(a)}{c-a}=f'(\phi)$.\\
+    On a $f$ continue sur $[c,b]$ et dérivable sur $]c,b[$ : $\exists \psi \in ]c,b[, ~ \frac{f(b)-f(c)}{b-c}=f'(\phi)$.\\
+    Alors $a<\phi<c<\psi<b$ donc $f'(\phi)<f'(\psi)$ donc $\frac{f(c)-f(a)}{c-a}\leq\frac{f(b)-f(c)}{b-c}$\\
+    De plus, $(c-a)=(b-a)\l$ et $b-c=(1-\l)(b-a)$; donc on multiplie par $\l(1-\l)(b-a)\geq0$ :
+    \begin{equation*}
+        (1-\l)(f(c)-f(a))\leq\l(f(b)-f(c)) \ra f(c) \leq (1-\l)f(a) + \l f(b).
+    \end{equation*}
 \end{prop}
 
 \begin{ex}{}{}
@@ -84,6 +126,12 @@ $I$ est un intervalle de $\R$. Rappelons que c'est une partie convexe de $\R$ si
     \begin{equation*}
         \forall x \in I, ~ f(x) \geq f'(a)(x-a)+f(a).
     \end{equation*}
+    \tcblower
+    Soit $f\in\m{D}(I,\R)$ convexe et $a\in I$. Soient $x,y\in I$ tels que $a<y<x$.
+    \begin{equation*}
+        \frac{f(y)-f(a)}{y-a} \leq \frac{f(x)-f(a)}{x-a} \ra f'(a) \leq \frac{f(x)-f(a)}{x-a}\ra f'(a)(x-a)+f(a)\leq f(x).
+    \end{equation*}
+    On fait pareil à gauche pour avoir une double inégalité.
 \end{prop}
 
 \begin{ex}{}{}
@@ -102,6 +150,11 @@ $I$ est un intervalle de $\R$. Rappelons que c'est une partie convexe de $\R$ si
 \begin{lemme}{}{}
     Soient $x_1,...,x_n$ $n$ éléments d'un intervalle $I$ et $\l_1,...,\l_n\in\R_+$ tels que $\ds\sum_{k=1}^n\l_k=1$.\\
     Le nombre $\ds\sum_{i=1}^n\l x_i$ est dans $I$.
+    \tcblower
+    Supposons $x_1\leq...\leq x_n$ et $\forall i \in \lb1,n\rb$, $\l_i x_1 \leq \l x_i \leq \l_i x_n$.
+    \begin{equation*}
+        \sum_{i=1}^n\l_ix_1 \leq \sum_{i=1}^n\l_ix_i \leq \sum_{i=1}^n\l_ix_n \ra x_1 \leq \sum_{i=1}^n\l_ix_i \leq x_n \in I
+    \end{equation*}
 \end{lemme}
 
 \begin{thm}{Inégalité de Jensen. $\star$}{}
@@ -110,6 +163,31 @@ $I$ est un intervalle de $\R$. Rappelons que c'est une partie convexe de $\R$ si
         f\left( \sum_{i=1}^n\l_ix_i \right) \leq \sum_{i=1}^n\l_if(x_i),
     \end{equation*}
     est vraie pour tous $x_1,...,x_n\in I$ et $\l_1,...,\l_n\in\R_+$ sommant à 1.
+    \tcblower
+    \bf{Initialisation.} Triviale pour $n=1$.\\
+    \bf{Hérédité.} Soit $n\in\N^*$ tel que le résultat soit vrai pour $n$. Soit $f$ convexe sur $I$.\\
+    Soient $x_1,...,x_{n+1}\in I$ et $\l_1,...,\l_{n+1}\in\R_+$ sommant à 1. On a:
+    \begin{equation*}
+        \sum_{i=1}^{n+1}\l_ix_i = \sum_{i=1}^n\l_ix_i + \l_{n+1}x_{n+1}.
+    \end{equation*}
+    $\bullet$ Si $\l_{n+1}\neq1$, alors $\ds\sum_{i=1}^{n+1}\l_ix_i=(1-\l_{n+1})\sum_{i=1}^{n}\frac{\l_i}{1-\l_{n+1}}x_i + \l_{n+1}x_{n+1}$. Appliquons $f$ convexe :
+    \begin{align*}
+        f\left( \sum_{i=1}^{n+1}\l_ix_i \right) &= f\left( (1-\l_{n+1})\sum_{i=1}^n\frac{\l_i}{1-\l_{n+1}}x_i + \l_{n+1}x_{n+1} \right)\\
+        &\leq (1-\l_{n+1})f\left( \sum_{i=1}^n\frac{\l_i}{1-\l_{n+1}}x_i \right) + \l_{n+1}f(x_{n+1})
+    \end{align*}
+    Notons $\forall i \in \lb1,n\rb, ~ \mu_i = \frac{\l_i}{1-\l_{n+1}}$; $\mu_i\geq0$.
+    \begin{equation*}
+        \sum_{i=1}^n\mu_i=\frac{1}{1-\l_{n+1}}\sum_{i=1}^n\l_i=\frac{1}{1-\l_{n+1}}\left( \sum_{i=1}^{n+1}\l_i - \l_{n+1} \right) = 1.
+    \end{equation*}
+    D'après Jensen au rang $n$, $\ds f\left( \sum_{i=1}^n\mu_ix_i \right)\leq\sum_{i=1}^n\mu_if(x_i)$. Alors:
+    \begin{equation*}
+        f\left( \sum_{i=1}^{n+1}\l_ix_i \right) \leq \cancel{(1-\l_{n+1})}\sum_{i=1}^n\frac{\l_i}{\cancel{1-\l_{n+1}}}f(x_i)+\l_{n+1}f(x_{n+1}) \leq \sum_{i=1}^{n+1}\l_if(x_i)
+    \end{equation*}
+    $\bullet$ Si $\l_{n+1}=1$, alors:
+    \begin{equation*}
+        \sum_{i=1}^n\l_1+\l_{n+1}=1\ra\sum_{i=1}^n\l_i = 0 \ra \forall i \in \lb1,n\rb, ~ \l_i=0\ra\sum_{i=1}^{n+1}\l_if(x_i)=f(x_{n+1}).
+    \end{equation*}
+    \bf{Conclusion.} Par récurrence, c'est vrai pour tout $n\in\N^*$.
 \end{thm}
 
 \vspace*{-0.4cm}
@@ -155,8 +233,6 @@ $I$ est un intervalle de $\R$. Rappelons que c'est une partie convexe de $\R$ si
     \end{equation*}
     Ainsi, $n^{\a-1}\sum_{i=1}^nx_i^\a\leq\left( \sum_{i=1}^n x_i \right)^\a$ si $\a\in[0,1]$ et dans l'autre sens si $\a\notin[0,1]$.
 \end{exercice}
-
-\vspace*{-0.6cm}
 
 \begin{exercice}{$\bww$}{}
     Soit $n\in\N^*$
@@ -287,8 +363,6 @@ $I$ est un intervalle de $\R$. Rappelons que c'est une partie convexe de $\R$ si
     On a $f$ convexe sur $[a,b]$, $a<b$ et discontinue en $a$ et en $b$.
 \end{exercice}
 
-\pagebreak
-
 \begin{exercice}{$\bbw$}{}
     Soit $f$ une fonction convexe sur un intervalle $I$ et admettant sur $I$ un minimum $m$.\\
     Démontrer que l'ensemble des points pour lesquels ce minimum est atteint est un intervalle.
@@ -300,6 +374,8 @@ $I$ est un intervalle de $\R$. Rappelons que c'est une partie convexe de $\R$ si
     Or $m$ est le minimum de $f$ sur $I$ et $\a\in I$, et $f(\a)\leq m$, donc $f(\a)=m$, donc $\a\in\E$.\\
     Ainsi, $[c,d]\subset\E$ donc $\E$ est un intervalle.
 \end{exercice}
+
+\pagebreak
 
 \begin{exercice}{$\bbb$ Inégalités de Hölder et de Minkowski.}{}
     Soit $(p,q)\in]0,+\infty[^2$ tel que $\frac{1}{p}+\frac{1}{q}=1$.
