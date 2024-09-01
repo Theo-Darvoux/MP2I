@@ -49,7 +49,7 @@ Dans ce chapitre, $E$ désignera un $\R$-espace vectoriel, les scalaires sont \b
     \bf{Bilinéarité:} Par symétrie, la linéarité à gauche suffit.\\
     Soient $X,X',Y\in M_{n,1}(\R)$, $\l,\mu\in\R$.
     \begin{equation*}
-        \Lg \l X + \mu X', Y \Rg = (\Lg X + \mu X')^{\top}Y=\l X^{\top}Y + \mu X'^{\top}Y=\l\Lg X,Y \Rg + \mu \Lg X', Y \Rg
+        \Lg \l X + \mu X', Y \Rg = ( X + \mu X')^{\top}Y=\l X^{\top}Y + \mu X'^{\top}Y=\l\Lg X,Y \Rg + \mu \Lg X', Y \Rg
     \end{equation*}
     \bf{Positive:}
     \begin{equation*}
@@ -75,8 +75,7 @@ Dans ce chapitre, $E$ désignera un $\R$-espace vectoriel, les scalaires sont \b
         \tr(A^\top B) = \sum_{j=1}^p\left[ A^\top B \right]_{j,j} = \sum_{j=1}^p\sum_{i=1}^n\left[ A^T \right]_{j,i}\left[ B \right]_{i,j} = \sum_{i=1}^n\sum_{j=1}^pa_{i,j}b_{i,j}
     \end{equation*}
     \bf{Symétrie:} Claire.\\
-    \bf{Bilinéarité:} Suffisante à droite.\\
-    Soient $A,B,B'\in M_{n,p}(\R)$ et $\l,\mu\in\R^2$.
+    \bf{Bilinéarité:} Suffisante à droite. Soient $A,B,B'\in M_{n,p}(\R)$ et $\l,\mu\in\R^2$.
     \begin{align*}
         \Lg A, \l B + \mu B' \Rg &= \tr(A^\top(\l B + \mu B')) = \tr(\l A^\top B + \mu A^\top B')\\
         &= \l\tr(A^\top B) + \mu\tr(A^\top B')=\l\Lg(A,B)+\mu\Lg(A,B').
@@ -87,6 +86,8 @@ Dans ce chapitre, $E$ désignera un $\R$-espace vectoriel, les scalaires sont \b
     \end{equation*}
     \bf{Définie:} Supposons $\Lg A,A \Rg = 0$, somme de termes positifs est nulle : les termes sont nuls.
 \end{prop}
+
+\vspace*{-0.4cm}
 
 \begin{prop}{}{cinq}
     Soient $a,b\in\R$ tels que $a<b$.\\
@@ -100,8 +101,7 @@ Dans ce chapitre, $E$ désignera un $\R$-espace vectoriel, les scalaires sont \b
     \begin{equation*}
         \Lg f,g \Rg = \int_a^bf(t)g(t)\dt=\int_a^bg(t)f(t)\dt=\Lg f,g \Rg.
     \end{equation*}
-    \bf{Bilinéarité:} La linéarité  à gauche suffit.\\
-    Soient $f,\tilde{f},g\in\C([a,b],\R)$ et $\l,\mu\in\R$.
+    \bf{Bilinéarité:} La linéarité  à gauche suffit. Soient $f,\tilde{f},g\in\C([a,b],\R)$ et $\l,\mu\in\R$.
     \begin{align*}
         \Lg \l f + \mu \tilde{f}, g \Rg &= \int_a^b(\l f(t) + \mu \tilde{f}(t))g(t)\dt\\
         &= \l\int_a^bf(t)g(t)\dt+\mu\int_a^b\tilde{f}(t)g(t)\dt\\
@@ -117,6 +117,8 @@ Dans ce chapitre, $E$ désignera un $\R$-espace vectoriel, les scalaires sont \b
     \end{equation*}
     Donc $\forall t \in [a,b], ~ f(t)=0$.
 \end{prop}
+
+\vspace*{-0.4cm}
 
 \begin{ex}{Un produit scalaire intégral sur l'espace des polynômes.}{}
     Pour $P$ et $Q$ deux polynômes de $\R[X]$, on note
@@ -204,6 +206,8 @@ Dans ce chapitre, $E$ désignera un $\R$-espace vectoriel, les scalaires sont \b
     \end{equation*}
 \end{prop}
 
+\pagebreak
+
 \begin{ex}{Avec $n$ vecteurs.}{}
     Développer $\left\|\sum\limits_{k=1}^nx_k\right\|^2$, pour $n$ vecteurs $x_1,...,x_n$ de $(E,\Lg.,.\Rg)$.
     \tcblower
@@ -249,7 +253,7 @@ Dans ce chapitre, $E$ désignera un $\R$-espace vectoriel, les scalaires sont \b
     \bf{On a $\Lg x, y \Rg < \|x\|\|y\|$.}
 \end{thm}
 
-\begin{ex}{Des inégalités de Cauchy-Schwarzenigger écrites au carré.}{}
+\begin{ex}{Des inégalités de Cauchy-Schwarz écrites au carré.}{}
     $\bullet$ Soient $(a_1,...,a_n)\in\R^n$ et $(b_1,...,b_n)\in\R^n$. En utilisant le produit scalaire canonique :
     \begin{equation*}
         \left( \sum_{i=1}^na_ib_i \right)^2 \leq \left( \sum_{i=1}^na_i^2 \right)\left( \sum_{i=1}^nb_i^2 \right).
@@ -259,6 +263,8 @@ Dans ce chapitre, $E$ désignera un $\R$-espace vectoriel, les scalaires sont \b
         \left( \int_a^bf(t)g(t)\dt \right)^2\leq\left( \int_a^bf(t)^2\dt \right)\left( \int_a^bg(t)^2\dt \right)
     \end{equation*}
 \end{ex}
+
+\pagebreak
 
 \begin{prop}{Inégalité triangulaire.}{}
     Soit $\|\cdot\|$ la norme associée au produit scalaire $\Lg.,.\Rg$ sur $E$. Alors,
@@ -406,6 +412,8 @@ Pour $i,j,k,l\in\lb1,n\rb$ : $\Lg E_{i,j}, E_{k,l} \Rg = \tr(E_{i,j}^\top E_{k,l
         X^\bot = \{y\in E: \quad \forall x \in X, \quad \Lg x, y \Rg = 0\}.
     \end{equation*}
 \end{defi}
+
+\pagebreak
 
 \begin{ex}{Conséquences immédiates de la définition.}{}
     Si $X$ et $Y$ sont deux parties de $E$,
@@ -774,6 +782,9 @@ Pour $i,j,k,l\in\lb1,n\rb$ : $\Lg E_{i,j}, E_{k,l} \Rg = \tr(E_{i,j}^\top E_{k,l
     \end{equation*}
     Reste à calculer $I,J$ et $\int_0^1(\exp-\l\id - \mu)^2$.
 \end{ex}
+
+\pagebreak
+
 \section{Exercices.}
 
 \begin{exercice}{37.6}{}

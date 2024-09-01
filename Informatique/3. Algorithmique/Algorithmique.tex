@@ -1,0 +1,416 @@
+\documentclass[french, 11pt]{article}
+
+\input{/home/theo/MP2I/setup.tex}
+
+\def\chapitre{3}
+\def\pagetitle{Algorithmique}
+
+\begin{document}
+
+\input{/home/theo/MP2I/title.tex}
+
+\section{Introduction.}
+
+\begin{defi}{Algorithmique.}{}
+    L'algorithmique est la branche de l'informatique qui étudie la conception et l'analyse des algorithmes.\\
+    Elle comporte troix axes d'étude :\\
+    --- La conception.\\
+    --- La correction.\\
+    --- L'efficacité.
+\end{defi}
+
+\begin{defi}{Algorithme.}{}
+    Un \bf{algorithme} est une méthode systématique de résolution de problèmes.\\
+    C'est une suite d'opérations élémentaires ne dépendant que des données en entrée, permettant de donner une réponse à une question posée.\\
+    Quand le calcul se termine, la réponse doit être correcte quelle que soit l'entrée fournie.
+\end{defi}
+
+\subsection{Conception : spécifier un problème.}
+
+\begin{defi}{Entrée.}{}
+    L'\bf{entrée} d'un algorithme est la nature des données sur lesquelles il est appliqué.
+\end{defi}
+
+\begin{defi}{Sortie.}{}
+    La \bf{sortie} d'un algorithme est la description du résultat que l'algorithme doit fournir.
+\end{defi}
+
+\begin{defi}{Problème de décision.}{}
+    Quand la répotitlense attendue à une question est \texttt{oui} ou \texttt{non}, on parle de problème de décision.
+\end{defi}
+
+\begin{defi}{Décidabilité.}{}
+    On dit d'un problème de décision qu'il est décidable s'il est possible de trouver un algorithme qui le résout.
+\end{defi}
+
+\subsection{Correction : critères de vérification.}
+
+\begin{defi}{Arrêt.}{}
+    On dit qu'un algorithme s'arrête si le calcul se termine en un temps fini, quelle que soit l'entrée.
+\end{defi}
+
+\begin{defi}{Correction.}{}
+    Un algorithme est \bf{correct} si sa réponse est correcte pour toute entrée pour laquelle son calcul se termine.
+\end{defi}
+
+\begin{defi}{Correction partielle.}{}
+    Si l'algorithme est correct mais ne s'arrête pas sur toutes les entrées, il a une \bf{correction partielle}, sinon \bf{totale}.
+\end{defi}
+
+\subsection{Efficacité : vitesse d'exécution, place mémoire occupée.}
+
+\begin{defi}{Complexité temporelle.}{}
+    La \bf{complexité temporelle} d'un algorithme est son temps d'exécution, en général en fonction de la taille de l'entrée.
+\end{defi}
+
+\vspace*{-0.3cm}
+
+\begin{defi}{}{}
+    La \bf{complexité spatiale} d'n algorithme est la place mémoire occupée en plus de l'entrée pendant le calcul, en fonction de la taille de l'entrée.
+\end{defi}
+
+\subsection{Pourquoi s'embêter avant de programmer.}
+
+\subsubsection{Terminaison.}
+
+\begin{thm}{Problème de l'arrêt.}{}
+    Il ne peut pas exister d'algorithme avec correction totale permettant de décider si un algorithme donné s'arrête pour une entrée donnée.
+    \tcblower
+    Supposons l'existence d'un algorithme \texttt{Arrêt} : Algorithme $a$, entrée $e$ $\mapsto$ Vrai s'il s'arrête, Faux sinon.\\
+    On considère l'algorithme suivant : \texttt{Paradoxe} : Algorithme $a$ $\mapsto$ si \texttt{Arrêt}($a$, $a$) alors boucle infinie, sinon fin.\\
+    Si \texttt{Paradoxe(Paradoxe)} se termine, alors \texttt{Arrêt(Paradoxe, Paradoxe)} est faux, ce qui est contradictoire.\\
+    Si \texttt{Paradoxe(Paradoxe)} ne se termine pas, alors \texttt{Arrêt(Paradoxe, Paradoxe)} est vrai, ce qui est contradictoire.\\
+    Donc \texttt{Arrêt} ne peut pas exister.
+\end{thm}
+
+\subsection{Complexité temporelle.}
+
+\begin{defi}{}{}
+    Pourquoi ne pas se contenter d'améliorations matérielles ?\\
+    Pour un algorithme de complexité temporelle en $n^3$, multiplier la taille de l'entrée par 10 multiplie le temps d'exécution par 1000.\\
+    Pour un algorithme de complexité temporelle en $n^2$, multiplier la taille de l'entrée par 10 multiplie le temps d'exécution par 100.\\
+    Cela ne peut pas être compensé par des améliorations matérielles.
+\end{defi}
+
+\section{Correction totale.}
+
+\subsection{Terminaison.}
+
+\begin{meth}{Cas facile : pas de boucles ou d'appels récursifs.}{}
+    Dans ce cas, le nombre de chemins dans le graphe de flot do contrôle est fini.\\
+    Si les appels à d'autres algorithmes se terminent, alors la terminaison de l'algorithme est assurée.
+\end{meth}
+
+\subsubsection{Variant de boucle.}
+
+\begin{defi}{Variant.}{}
+    Un \bf{variant de boucle} est une expression qui prend des valeurs entières positives dont la valeur diminue strictement à chaque itération.\\
+    Si on est assurés de la terminaison de chaque itération dans une boucle, alors l'existence d'un variant de boucle nous assure la terminaison.\\
+    \warning Un variant ne diminue pas forcément jusqu'à 0, il suffit qu'il soit minoré par une constante.
+\end{defi}
+
+\subsubsection{Appels récursifs.}
+
+\begin{defi}{Appel récursif.}{}
+    On appelle \bf{appel récursif} pour une fonction le fait de s'appeller elle-même.
+\end{defi}
+
+\vspace*{-0.3cm}
+
+\begin{defi}{Variant d'appel.}{}
+    Un \bf{variant d'appel} est une expression qui prend des valeurs entières positives et dont la valeur diminue strictement à chaque appel récursif.\\
+    Si on est assurés que les autres calculs de l'algorithme se terminent, alors l'existence d'un variant d'appel nous assure qu'on sort de la fonction.
+\end{defi}
+
+\subsection{Correction.}
+
+\subsubsection{Invariant de boucle.}
+
+\begin{defi}{Invariant.}{}
+    Un \bf{invariant de boucle} est un prédicat.\\
+    C'est une expression booléenne qui vérifie les propriétés suivantes :\\
+    --- Vrai avant d'entrer dans la boucle.\\
+    --- S'il est vrai à l'entrée d'une itération et qu'on sort de l'itération, alors il est vrai en sortie.\\
+    Si on sort de la boucle, les propriétés de l'invariant de boucles assurent qu'il est encore vrai.
+\end{defi}
+
+\begin{meth}{Cas des fonctions récursives.}{}
+    La preuve de la correction des fonctions récursives se fait en général par récurrence sur la taille de l'entrée.\\
+    On peut supposer que les appels récursifs sur des entrées de taille strictement inférieure se terminent et donnent une réponse correcte.
+\end{meth}
+
+\begin{defi}{Pas facile de trouver un invariant.}{}
+    En 1951, Rice a démontré qu'aucune propriété sémantique n'est décidable. Une des conséquences est qu'il n'y a pas de méthode générale pour décider un invariant.
+\end{defi}
+
+\section{Complexité temporelle.}
+
+\subsection{Notation de Landau.}
+
+\subsubsection{Définitions.}
+
+On conseille de voir le chapitre 29 de mathématiques pour plus de détails.\\
+Soient $f$ et $g$ deux fonctions de $\N$ dans $\R_+$.
+
+\begin{defi}{Grand O.}{}
+    On dit que $f$ est en grand O de $g$, et on note $f\in O(g)$, si :
+    \begin{equation*}
+        \exists C>0, \exists n_0\in\N, \forall n\geq n_0, ~ f(n)\leq C\cdot g(n).
+    \end{equation*}
+\end{defi}
+
+\vspace*{-0.3cm}
+
+\begin{defi}{Grand Omega.}{}
+    On dit que $f$ est en grand Omega de $g$, et on note $f\in\Omega(g)$ si :
+    \begin{equation*}
+        \exists C>0, \exists n_0\in\N, \forall n\geq n_0, ~ f(n)\geq C\cdot g(n).
+    \end{equation*}
+\end{defi}
+
+\vspace*{-0.3cm}
+
+\begin{defi}{Grand Theta.}{}
+    On dit que $f$ est en grand Theta de $g$, et on note $f\in\Theta(g)$ si :
+    \begin{equation*}
+        \exists C,D>0, \exists n_0 \in \N, \forall n \geq n_0, ~ C\cdot g(n) \leq f(n) \leq D\cdot g(n).
+    \end{equation*}
+\end{defi}
+
+\vspace*{-0.3cm}
+
+\begin{prop}{Trivial.}{}
+    \begin{equation*}
+        f\in\Theta(g) \iff f\in O(g) \et f\in\Omega(g) \iff f\in O(g) \et g \in O(f)
+    \end{equation*}
+\end{prop}
+
+\vspace*{-0.3cm}
+
+\begin{prop}{Symétrie.}{}
+    La relation $\Theta$ est symétrique : $f \in \Theta(g) \iff g \in \Theta(f)$.
+\end{prop}
+
+\subsubsection{Des qualificatifs pour les ordres de grandeur.}
+
+\begin{defi}{}{}
+    On dit d'une fonction en $\Omega(n)$ qu'elle est au moins linéaire.\\
+    Si elle est en $O(n)$, elle est au plus linéaire, si elle est en $\Theta(n)$, elle est linéaire.
+\end{defi}
+
+\vspace*{-0.3cm}
+
+\begin{defi}{}{}
+    \begin{equation*}
+        \begin{array}{|c|c|c|}
+            \hline
+            \text{Notation} & \text{Nom} & \text{Exemple} \\
+            \hline
+            O(1) & \text{Constante} & 1, 2, 3, \ldots \\
+            \hline
+            O(\log n) & \text{Logarithmique} & \log n, \log_2 n, \log_{10} n \\
+            \hline
+            O(\sqrt{n}) & \text{Racinaire} & \sqrt{n}, \sqrt{2n}, \sqrt{3n}, \ldots \\
+            \hline
+            O(n) & \text{Linéaire} & n, 2n, 3n, \ldots \\
+            \hline
+            O(n\log n) & \text{Linéarithmique} & n\log n, 2n\log n, 3n\log n, \ldots \\
+            \hline
+            O(n^2) & \text{Quadratique} & n^2, 2n^2, 3n^2, \ldots \\
+            \hline
+            O(n^3) & \text{Cubique} & n^3, 2n^3, 3n^3, \ldots \\
+            \hline
+            O(n^k) & \text{Polynomiale} & n^k, 2n^k, 3n^k, \ldots \\
+            \hline
+            O(a^n) & \text{Exponentielle} & 2^n, 2^{n+1}, 2^{n+2}, \ldots \\
+            \hline
+            O(n!) & \text{Factorielle} & n!, (n+1)!, (n+2)!, \ldots \\
+            \hline
+        \end{array}
+    \end{equation*}
+\end{defi}
+
+\subsection{Comparaison et calculs.}
+
+\begin{defi}{}{}
+    Soient deux fonctions $f$ et $g$ allent de $\N$ vers $\R_+$, ne convergeant pas vers 0.
+    \begin{equation*}
+        \frac{f(n)}{g(n)}\xrightarrow[n\to+\infty]{}l \in \R \ra f \in O(g)
+    \end{equation*}
+    De plus, $f\in\Theta(g) \iff l \neq 0$.
+    \tcblower
+    $\bullet$ Supposons que $f/g$ converge et notons $l$ sa limite.\\
+    Toute suite convergente est bornée donc il existe $C\in\R_+^*$ tel que $f(n)<C\cdot g(n)$.\n
+    \boxed{\ra} Supposons par contraposée que $l=0$.  Alors $g/f$ diverge vers $+\infty$ comme inverse.
+    \begin{equation*}
+        \forall \e>0, \exists N\in\N, \forall n \geq N, ~ g(n)>\e \cdot f(n) ~\nt{donc}~ g\notin O(f) ~\nt{donc}~ f\notin\Theta(g).
+    \end{equation*}
+    \boxed{\la} Supposons $l\neq0$. Alors $g/f$ converge, donc $g\in O(f)$ (et $f\in O(g)$) donc $f\in\Theta(g)$.\\
+    \warning La réciproque du $\bullet$ est fausse.
+\end{defi}
+
+\vspace*{-0.3cm}
+
+\begin{prop}{}{}
+    Soient $f_1,f_2,g_1,g_2$ de $\N$ dans $[1,+\infty[$ tels que $f_1\in O(g_1)$ et $f_2\in O(g_2)$. Alors:
+    \begin{equation*}
+        f_1+g_1\in O(g_1); \quad f_1+f_2\in O(g_1+g_2); \quad f_1f_2 \in O(g_1g_2).
+    \end{equation*}
+\end{prop}
+
+\vspace*{-0.3cm}
+
+\begin{prop}{}{}
+    Soient $f,g,h$ de $\N$ dans $]1,+\infty[$ tels que $f\in O(g)$ et $h$ non bornée et croissante apdcr.\\
+    Alors $f\circ h\in O(g\circ h)$.
+    \tcblower
+    Puisque $f\in O(g)$, on a $\exists C>0,\exists n_0\in\N, \forall n \geq n_0, ~ f(n)<C\cdot g(n)$.\\
+    Puisque $h$ est croissante et non bornée : $\exists n_1\in\N, \forall n \geq n_1, ~ h(n)\geq n$.\\
+    Alors $\forall n \geq \max(n_0,n_1), ~ f(h(n))<C\cdot g(h(n))$ donc $f\circ h(n) < C\cdot g\circ h(n)$.
+\end{prop}
+
+\vspace*{-0.3cm}
+
+\begin{corr}{}{}
+    Soient $k>l\geq0$. On a $n^l\in O(n^k)$ et $n^l\notin\Theta(n^k)$.
+\end{corr}
+
+\vspace*{-0.3cm}
+
+\begin{corr}{}{}
+    Soit $k\in\N$. Toute fonction polynomiale associée à un polynôme de degré $k$ et de coefficient dominant non nul est d'ordre de grandeur $\Theta(n^k)$.
+\end{corr}
+
+\vspace*{-0.3cm}
+
+\begin{corr}{}{}
+    Soit $k\geq1$ fixé. Alors $k^n\in O((k+1)^n)$ et $k^n\notin\Theta((k+1)^n)$
+\end{corr}
+
+\vspace*{-0.3cm}
+
+\begin{prop}{}{}
+    \begin{equation*}
+        \forall k \in \N, ~ (\log n)^k \in O(n) ~ \et ~ (\log n)^k \notin \Theta(n).
+    \end{equation*}
+\end{prop}
+
+\vspace*{-0.3cm}
+
+\begin{corr}{}{}
+    \begin{equation*}
+        \forall k \in \N, ~ n^k \in O(2^n) ~ \et ~ n^k \notin \Theta(2^n).
+    \end{equation*}
+\end{corr}
+
+\subsection{Comment considérer les entrées de taille \texorpdfstring{$n$}{Lg} ?}
+
+Notation locale : pour $k\in\N$, on note $E_n$ l'ensemble des entrées de taille $n$ pour un algorithme donné.
+
+\begin{defi}{}{}
+    Soit un algorithme $A$ possédant une correction totale. On note $c_A$ la fonction qui à une instance $E$ de l'entrée de $A$ associe le nombre d'opérations élémentaires nécessaires au déroulement de $A$ sur $E$.
+\end{defi}
+
+\vspace*{-0.3cm}
+
+\begin{defi}{}{}
+    On appelle \bf{complexité dans le pire des cas} de $A$ la fonction $C_A:n\mapsto \max_{E\in E_n}(c_A(E))$.\\
+    C'est une garantie de complexité, on ne fera pas pire quelle que soit l'entrée, même si la complexité dans le pire des cas est mauvaise, en pratique, l'algorithme peut être utilisable.
+\end{defi}
+
+\vspace*{-0.3cm}
+
+\begin{defi}{}{}
+    On appelle \bf{complexité dans le meilleur des cas} de $A$ la fonction $C_A:n\mapsto \min_{E\in E_n}(c_A(E))$.\\
+    Elle est toujours inférieure à la complexité dans le pire des cas. Si elles sont égales, la complexité est la même sur toute entrée.
+\end{defi}
+
+\subsection{Complexité temporelle : quelques exemples de calculs.}
+
+\subsubsection{Schéma général.}
+
+\begin{meth}{Dans le pire des cas.}{}
+    La plupart du temps, on suit le schéma suivant :\\
+    --- Trouver un majorant significatif de la complexité.\\
+    --- Trouver une famille d'entrées pour laquelle la complexité est minorée par $\a f(n)$, pour $\a$ constante.\\
+    On conclut à $\Theta(f)$.
+\end{meth}
+
+\subsubsection{Tri bulle.}
+
+\begin{defi}{}{}
+    \begin{algorithm}[H]
+        \caption{Tri à bulles.}
+        \Entree{Liste de réels $L$.}
+        \Sortie{$L$ triée dans l'ordre croissant.}
+        permutation $\gets$ Vrai.\\
+        \Tq{permutation}{
+            permutation $\gets$ Faux.\\
+            \Pour{$i$ allant de 0 à $n-1$}{
+                \Si{$L[i]>L[i+1]$}{
+                    Échanger $L[i]$ et $L[i+1]$.\\
+                    permutation $\gets$ Vrai.
+                }
+            }
+            $n\gets n-1$.
+        }
+    \end{algorithm}
+    Opérations élémentaires :\\
+    --- Comparaisons : à chaque fois.\\
+    --- Affectations : pas toujours.\\
+    On ne compte que les comparaisons, pas les affectations.
+\end{defi}
+
+\begin{prop}{}{}
+    La complexité temporelle dans le meilleur des cas du tri à bulles est en $\Theta(n)$.
+    \tcblower
+    Dans le meilleur des cas, on ne fait qu'une itération dans la boucle tant que, donc on fait $n$ comparaisons.\\
+    On peut donc minorer la complexité par $n$. On peut la majorer par $n$ dans le cas où la liste en entrée est triée.\\
+    On a donc bien une complexité en $\Theta(n)$.
+\end{prop}
+
+\subsubsection{Recherche dichotomique.}
+
+\begin{prop}{}{}
+    On s'intéresse à l'algorithme de recherche dichotomique dans une liste triée.\\
+    La complexité temporelle dans le meilleur des cas est en $\Theta(1)$.\\
+    La complexité temporelle dans le pire des cas est en $\Theta(\log n)$.
+    \tcblower
+    On note $N$ la taille du tableau d'origine, et $T(n)$ le nombre d'opérations élémentaires sur un tableau de taille $n$.\\
+    On a la relation de récurrence suivante : $T(0)=1$ et pour $n>0$, $T(n)=\a+T(n/2)$.\\
+    Pour simplifier les calculs, on suppose que $n=2^k$. Alors $T(n)=T(2^k)=\a+T(2^{k-1})=...=ka+T(1)$.\\
+    Cas général : $\forall n \in \N, ~ \exists k \in \N ~ 2^k \leq n \leq 2^{k+1}$ donc $T(n)=O(k)=O(\log_2 n)$.\\
+    Si l'élément à trouver dans le tableau n'y est pas, on a un complexité en $\Omega(\log n)$, d'où le $\Theta(\log n)$.
+\end{prop}
+
+\pagebreak
+
+\section{Visions plus globales de la complexité.}
+
+D'après le programme de MP2I-MPI : << On limite l'étude de la complexité dans le cas moyen et du coût amorti à quelques exemples simples >>.
+
+\subsection{Complexité en moyenne.}
+
+\begin{defi}{}{}
+    Soit un algorithme $A$ avec correction totale et $\cursive{E}_n$ l'ensemble de ses entrées de taille $n$.\\
+    On note $c_A$ qui à une entrée $E$ associe le nombre d'opérations élémentaires au déroulement de $A$ sur $E$.
+    On appelle complexité en moyenne de $A$ la fonction :
+    \begin{equation*}
+        c_A^{moy}:n\mapsto \frac{1}{|\cursive{E}_n|}\sum_{E\in\cursive{E}_n}c_A(E).
+    \end{equation*}
+    En supposant un tirage uniforme sur les entrées d'une taille donnée.
+\end{defi}
+
+\subsection{Complexité amortie.}
+
+\begin{defi}{}{}
+    On considère une structure de données et une suite d'opérations valides $p_1,...,p_n$.\\
+    On suppose qu'on connaît le coût $c_i$ de l'opération $p_i$. On cherche à déterminer le coût moyen d'une opération.\\
+    L'objectif est de trouver $f:\N\to\R_+$ telle que
+    \begin{equation*}
+        \sum_{i=1}^nc_i = O(nf(n)).
+    \end{equation*}
+    Alors la complexité amortie sera en $O(f(n))$.
+\end{defi}
+
+\end{document}
