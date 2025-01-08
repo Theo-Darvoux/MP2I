@@ -1,22 +1,22 @@
 \documentclass[french, 11pt]{article}
 
-\input{/home/theo/MP2I/setup.tex}
+\input{setup.tex}
 
 \def\chapitre{3}
 \def\pagetitle{Algorithmique}
 
 \begin{document}
 
-\input{/home/theo/MP2I/title.tex}
+\input{title.tex}
 
 \section{Introduction.}
 
 \begin{defi}{Algorithmique.}{}
-    L'algorithmique est la branche de l'informatique qui étudie la conception et l'analyse des algorithmes.\\
+    L'\bf{algorithmique} est la branche de l'informatique qui étudie la conception et l'analyse des algorithmes.\\
     Elle comporte troix axes d'étude :\\
-    --- La conception.\\
-    --- La correction.\\
-    --- L'efficacité.
+    $\hra$ La conception.\\
+    $\hra$ La correction.\\
+    $\hra$ L'efficacité.
 \end{defi}
 
 \begin{defi}{Algorithme.}{}
@@ -36,17 +36,17 @@
 \end{defi}
 
 \begin{defi}{Problème de décision.}{}
-    Quand la répotitlense attendue à une question est \texttt{oui} ou \texttt{non}, on parle de problème de décision.
+    Quand la réponse attendue à une question est \texttt{oui} ou \texttt{non}, on parle de \bf{problème de décision}.
 \end{defi}
 
 \begin{defi}{Décidabilité.}{}
-    On dit d'un problème de décision qu'il est décidable s'il est possible de trouver un algorithme qui le résout.
+    On dit d'un problème de décision qu'il est \bf{décidable} s'il est possible de trouver un algorithme qui le résout.
 \end{defi}
 
 \subsection{Correction : critères de vérification.}
 
 \begin{defi}{Arrêt.}{}
-    On dit qu'un algorithme s'arrête si le calcul se termine en un temps fini, quelle que soit l'entrée.
+    On dit qu'un algorithme s'\bf{arrête} si le calcul se termine en un temps fini, quelle que soit l'entrée.
 \end{defi}
 
 \begin{defi}{Correction.}{}
@@ -65,7 +65,7 @@
 
 \vspace*{-0.3cm}
 
-\begin{defi}{}{}
+\begin{defi}{Complexité spatiale.}{}
     La \bf{complexité spatiale} d'n algorithme est la place mémoire occupée en plus de l'entrée pendant le calcul, en fonction de la taille de l'entrée.
 \end{defi}
 
@@ -97,7 +97,7 @@
 \subsection{Terminaison.}
 
 \begin{meth}{Cas facile : pas de boucles ou d'appels récursifs.}{}
-    Dans ce cas, le nombre de chemins dans le graphe de flot do contrôle est fini.\\
+    Dans ce cas, le nombre de chemins dans le graphe de flot de contrôle est fini.\\
     Si les appels à d'autres algorithmes se terminent, alors la terminaison de l'algorithme est assurée.
 \end{meth}
 
@@ -129,8 +129,8 @@
 \begin{defi}{Invariant.}{}
     Un \bf{invariant de boucle} est un prédicat.\\
     C'est une expression booléenne qui vérifie les propriétés suivantes :\\
-    --- Vrai avant d'entrer dans la boucle.\\
-    --- S'il est vrai à l'entrée d'une itération et qu'on sort de l'itération, alors il est vrai en sortie.\\
+    $\hra$ Vrai avant d'entrer dans la boucle.\\
+    $\hra$ S'il est vrai à l'entrée d'une itération et qu'on sort de l'itération, alors il est vrai en sortie.\\
     Si on sort de la boucle, les propriétés de l'invariant de boucles assurent qu'il est encore vrai.
 \end{defi}
 
@@ -331,8 +331,8 @@ Notation locale : pour $k\in\N$, on note $E_n$ l'ensemble des entrées de taille
 
 \begin{meth}{Dans le pire des cas.}{}
     La plupart du temps, on suit le schéma suivant :\\
-    --- Trouver un majorant significatif de la complexité.\\
-    --- Trouver une famille d'entrées pour laquelle la complexité est minorée par $\a f(n)$, pour $\a$ constante.\\
+    $\hra$ Trouver un majorant significatif de la complexité.\\
+    $\hra$ Trouver une famille d'entrées pour laquelle la complexité est minorée par $\a f(n)$, pour $\a$ constante.\\
     On conclut à $\Theta(f)$.
 \end{meth}
 
@@ -356,8 +356,8 @@ Notation locale : pour $k\in\N$, on note $E_n$ l'ensemble des entrées de taille
         }
     \end{algorithm}
     Opérations élémentaires :\\
-    --- Comparaisons : à chaque fois.\\
-    --- Affectations : pas toujours.\\
+    $\hra$ Comparaisons : à chaque fois.\\
+    $\hra$ Affectations : pas toujours.\\
     On ne compte que les comparaisons, pas les affectations.
 \end{defi}
 
@@ -412,5 +412,7 @@ D'après le programme de MP2I-MPI : << On limite l'étude de la complexité dans
     \end{equation*}
     Alors la complexité amortie sera en $O(f(n))$.
 \end{defi}
+
+\fin
 
 \end{document}

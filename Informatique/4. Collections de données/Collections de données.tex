@@ -1,42 +1,38 @@
 \documentclass[french, 11pt]{article}
 
-\input{/home/theo/MP2I/setup.tex}
+\input{setup.tex}
 
 \def\chapitre{4}
 \def\pagetitle{Structures de données}
 
 \begin{document}
 
-\input{/home/theo/MP2I/title.tex}
+\input{title.tex}
 
 \section{Listes chaînées, piles et files.}
 
 \begin{defi}{Liste chaînée.}{}
-    Une \bf{liste chaînée} est une structure qu'on peut définir inductivement :
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
-        \item Soit c'est une liste vide.
-        \item Soit c'est un noeud, appelé \bf{cellule}, qui contient une valeur et une référence à une autre liste chaînée.
-    \end{itemize}
+    Une \bf{liste chaînée} est une structure qu'on peut définir inductivement :\\
+    $\hra$ Soit c'est une liste vide.\\
+    $\hra$ Soit c'est un noeud, appelé \bf{cellule}, qui contient une valeur et une référence à une autre liste chaînée.
 \end{defi}
+
+\vspace*{-0.7cm}
 
 \begin{defi}{Pile.}{}
-    Une \bf{pile} est une structure de données qui permet de stocker des éléments et de les retirer dans l'ordre inverse de leur insertion.\\
-    Interface :
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
-        \item \bf{Empiler} un élément.
-        \item \bf{Dépiler} un élément.
-        \item \bf{Tester} si la pile est vide.
-    \end{itemize}
+    Une \bf{pile} est une structure de données qui permet de stocker des éléments et de les retirer dans l'ordre inverse de leur insertion. On peut :\\
+    $\hra$ \bf{Empiler} un élément.\\
+    $\hra$ \bf{Dépiler} un élément.\\
+    $\hra$ \bf{Tester} si la pile est vide.
 \end{defi}
 
+\vspace*{-0.7cm}
+
 \begin{defi}{File.}{}
-    Une \bf{file} est une structure de données qui permet de stocker des éléments et de les retirer dans l'ordre de leur insertion.\\
-    Interface :
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
-        \item \bf{Enfiler} un élément.
-        \item \bf{Défiler} un élément.
-        \item \bf{Tester} si la file est vide.
-    \end{itemize}
+    Une \bf{file} est une structure de données qui permet de stocker des éléments et de les retirer dans l'ordre de leur insertion. On peut :\\
+    $\hra$ \bf{Enfiler} un élément.\\
+    $\hra$ \bf{Défiler} un élément.\\
+    $\hra$ \bf{Tester} si la file est vide.
 \end{defi}
 
 \section{Arbres.}
@@ -45,11 +41,9 @@
 
 \begin{defi}{Arbre binaire.}{}
     Un \bf{arbre binaire} est une structure de données hiérarchique où chaque élément est un \bf{noeud}.\\
-    Il est défini de manière inductive :
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
-        \item Soit c'est une arbre vide.
-        \item Soit il est constitué d'un noeud et de deux arbre binaires disjoints, appelés \bf{fils gauche} et \bf{fils droit}
-    \end{itemize}
+    Il est défini de manière inductive :\\
+    $\hra$ Soit c'est une arbre vide.\\
+    $\hra$ Soit il est constitué d'un noeud et de deux arbre binaires disjoints, appelés \bf{fils gauche} et \bf{fils droit}.
 \end{defi}
 
 \begin{defi}{Racine}{}
@@ -121,12 +115,10 @@
 
 \begin{defi}{Parcours en profondeur. $\star$}{}
     Un \bf{parcours en profondeur} est un parcours où on termine d'explorer une branche avant d'en visiter une autre.\\
-    Il existe trois types de parcours en profondeur :
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
-        \item \bf{Préfixe} : on visite le noeud, puis le fils gauche, puis le fils droit.
-        \item \bf{Infixe} : on visite le fils gauche, puis le noeud, puis le fils droit.
-        \item \bf{Postfixe} : on visite le fils gauche, puis le fils droit, puis le noeud.
-    \end{itemize}
+    Il existe trois types de parcours en profondeur :\\
+    $\hra$ \bf{Préfixe} : on visite le noeud, puis le fils gauche, puis le fils droit.\\
+    $\hra$ \bf{Infixe} : on visite le fils gauche, puis le noeud, puis le fils droit.\\
+    $\hra$ \bf{Postfixe} : on visite le fils gauche, puis le fils droit, puis le noeud.
 \end{defi}
 
 \begin{defi}{Parcours en largeur. $\star$}{}
@@ -139,14 +131,11 @@
 \subsubsection{Définitions.}
 
 \begin{defi}{File de priorité.}{}
-    Une \bf{file de priorité} est une structure de données qui permet de stocker des éléments d'un ensemble totalement ordonné.\\
-    Interface :
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
-        \item Insérer un nouvel élément.
-        \item Extraire l'élément le plus grand.
-        \item Modifier la valeur d'un élément.
-        \item Tester si la file est vide.
-    \end{itemize}
+    Une \bf{file de priorité} est une structure de données qui permet de stocker des éléments d'un ensemble totalement ordonné. On peut :\\
+    $\hra$ Insérer un nouvel élément.\\
+    $\hra$ Extraire l'élément le plus grand.\\
+    $\hra$ Modifier la valeur d'un élément.\\
+    $\hra$ Tester si la file est vide.
 \end{defi}
 
 \begin{defi}{Tas.}{}
@@ -273,12 +262,16 @@
     Alors $\alpha2^H\sum_{h=0}^H\frac{h}{2^h} = O(2^H = n)$.
 \end{defi}
 
+\vspace*{-0.9cm}
+
 \subsection{Arbres binaires de recherche.}
 
 \begin{defi}{Arbre binaire de recherche.}{}
     Un \bf{arbre binaire de recherche (ABR)} a des noeuds étiquettés dans un ensemble totalement ordonné et tel que l'étiquette de chaque noeud interne est supérieure aux étiquettes de son sours-arbre gauche, et inférieure aux étiquettes de son sous-arbre droit.\\
     Ce type d'arbres n'est pas nécéssairement strict.
 \end{defi}
+
+\vspace*{-0.7cm}
 
 \begin{prop}{Élément minimal.}{}
     Le minimum se trouve à l'extrémité gauche de l'arbre.
@@ -309,13 +302,11 @@
 \subsection{Arbres rouge-noir.}
 \subsubsection{Définitions.}
 \begin{defi}{Arbre rouge-noir. $\star$}{}
-    Un \bf{arbre rouge-noir (ARN)} est un ABR strict dont toutes les feuilles sont vides, dont chaque noeud est coloré en rouge, ou en noir, tel que :
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
-        \item Chaque feuille est noire.
-        \item La racine est noire.
-        \item Les fils rouges d'un noeud noir sont noirs.
-        \item Tout chemin de la racine à une feuille contient le même nombre de noeuds noirs.
-    \end{itemize}
+    Un \bf{arbre rouge-noir (ARN)} est un ABR strict dont toutes les feuilles sont vides, dont chaque noeud est coloré en rouge, ou en noir, tel que :\\
+    $\hra$ Chaque feuille est noire.\\
+    $\hra$ La racine est noire.\\
+    $\hra$ Les fils rouges d'un noeud noir sont noirs.\\
+    $\hra$ Tout chemin de la racine à une feuille contient le même nombre de noeuds noirs.
 \end{defi}
 
 \begin{defi}{Hauteur noire.}{}
@@ -351,7 +342,7 @@
     \begin{equation*}
         h\geq\log(n!)=\sum_{k=1}^n\log(k)\geq\sum_{k=n/2}^n\log(k)\geq\frac{n}{2}\log\left(\frac{n}{2}\right).
     \end{equation*}
-    On en conclut que $h=\Omega(\frac{n}{2})$.
+    On en conclut que $h=\Omega(n\log n)$.
 \end{thm}
 
 \begin{defi}{Tri par tas. $\star$}{}
@@ -407,6 +398,13 @@
             tri\_rapide($\m{T}$, pivot+1, fin)
         }
     \end{algorithm}\noindent
+\end{defi}
+
+\vspace*{-0.7cm}
+
+\begin{prop}{}{}
+    Le tri rapide termine et est correct.
+    \tcblower
     \textbf{Terminaison.}\\
     Les boucles while internes de \texttt{partitionner} se terminent car $O(1)$ et $sup$ et $inf$ sont variants.
     La boucle while externe se termine car $sup - inf$ est un variant.
@@ -421,7 +419,11 @@
     Les deux boucles internes gardent le prédicat, tout comme le reste des instructions.\\
     C'est bien un invariant, il est vérifié en fin de boucle.\\
     L'échange final permet de mettre le pivot au bon endroit.\\
-    \texttt{Partitionner} fonctionne donc correctement, et par récurrence sur fin-debut, \texttt{tri\_rapide} aussi.\\
+    \texttt{Partitionner} fonctionne donc correctement, et par récurrence sur fin-debut, \texttt{tri\_rapide} aussi.
+\end{prop}
+
+\begin{prop}{}{}
+    Le tri rapide a une complexité en $O(n^2)$ dans le pire des cas, et en $O(n\log n)$ en moyenne.
     \textbf{Complexité.}\\
     On prend la comparaison comme opération élémentaire.\\
     On note $S$ le nombre de noeuds de l'arbre des appels.\\
@@ -443,7 +445,7 @@
         \ra~&\frac{\ov{T}(n)}{n+1}=\ov{T}(0) + 2\sum_{k=0}^{n+1}\frac{1}{k} = O(\log n) \qquad \text{(téléscopage)}\\
         \ra~&\ov{T}(n)=O(n\log n)
     \end{align*}
-\end{defi}
+\end{prop}
 
 \begin{defi}{Tri rapide avec doublons. $\star$}{}
     \begin{algorithm}[H]
@@ -476,19 +478,14 @@
 
 \begin{defi}{}{}
     Les \bf{dictionnaires} permettent de manipuler des ensembles d'associations.\\
-    On appelle \bf{clé} un élément de l'ensemble de départ et \bf{valeur} son élément associé.\\
-    Interface:
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
-        \item \bf{Insertion} (clé, valeur).
-        \item \bf{Recherche} de clé.
-        \item \bf{Suppression} de clé.
-    \end{itemize}
+    On appelle \bf{clé} un élément de l'ensemble de départ et \bf{valeur} son élément associé. On peut :\\
+    $\hra$ \bf{Insertion} (clé, valeur).\\
+    $\hra$ \bf{Recherche} de clé.\\
+    $\hra$ \bf{Suppression} de clé.\n
     Contraintes:
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
-        \item Les clés sont toutes de mêmes types.
-        \item Les valeurs sont toutes de mêmes types.
-        \item Les clés sont uniques.
-    \end{itemize}
+    $\hra$ Les clés sont toutes de mêmes types.\\
+    $\hra$ Les valeurs sont toutes de mêmes types.\\
+    $\hra$ Les clés sont uniques.\\
     Si les clés sont des entiers, on peut utiliser un tableau.\\
     On parle de table à adressage direct, on appelle chaque case du tableau une \bf{alvéole}.
 \end{defi}
@@ -508,8 +505,7 @@
 \subsection{Résolution des collisions par sondage.}
 
 \begin{defi}{}{}
-    Principe : S'il n'y a pas de place, on en cherche ailleurs.\\
-    Comment choisir le <<ailleurs>> ?\\
+    Principe : S'il n'y a pas de place, on en cherche ailleurs. Comment choisir le <<ailleurs>> ?\\
     On définit un cycle $\s$, qu'on applique successivement au hachage d'une clé, jusqu'à trouver une place libre.
 \end{defi}
 
@@ -534,5 +530,7 @@
     \underline{2ème cas:} La recherche réussit.\\
     Comme on est susceptible de s'arrêter avant la fin du parcours, la complexité est meilleure que dans le premier cas, donc en $O(1+\alpha)$.
 \end{thm}
+
+\fin
 
 \end{document}

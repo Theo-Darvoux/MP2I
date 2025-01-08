@@ -1,13 +1,13 @@
 \documentclass[french, 11pt]{article}
 
-\input{/home/theo/MP2I/setup.tex}
+\input{setup.tex}
 
 \def\chapitre{7}
 \def\pagetitle{Récursivité et Induction}
 
 \begin{document}
 
-\input{/home/theo/MP2I/title.tex}
+\input{title.tex}
 
 \section{Récurrence sur \texorpdfstring{$\N$}{Lg}}
 
@@ -21,8 +21,10 @@
     Alors $E$ est minoré et non vide, il a un minimum $m$ non nul tel que $P(m)$ est faux.\\
     Ainsi, $P(m-1)$ est vrai car $m-1<m$ et $m$ est le minimum de $E$, or $P(m-1)\ra P(m)$.\\
     On en déduit que $P(m)$ est vrai, ce qui est absurde, donc $E=\0$.\n
-    \bf{Remarques:} Ce principe repose sur les propriétés de $\N$, qui possède un ordre total, a un élément plus petit 0 et est le plus petit sous-ensemble de $\R$ tel que $0\in\N$ et $n\in\N\ra n+1\in\N$.
+    \bf{Remarques.} Ce principe repose sur les propriétés de $\N$, qui possède un ordre total, a un élément plus petit 0 et est le plus petit sous-ensemble de $\R$ tel que $0\in\N$ et $n\in\N\ra n+1\in\N$.
 \end{prop}
+
+\vspace*{-0.4cm}
 
 \section{Ensembles ordonnés.}
 \subsection{Définitions.}
@@ -33,6 +35,8 @@
     C'est un \bf{prédécesseur immédiat} de $y$ si $\forall z>x, ~ z\geq y$.\\
     On dit que $x$ est \bf{minimal} si $\forall y \in E, ~ y \geq x$.
 \end{defi}
+
+\vspace*{-0.4cm}
 
 \begin{defi}{Ordre total.}{}
     La relation d'ordre est totale si $\forall x,y\in E, ~ x\leq y$ ou $y \leq x$.\n
@@ -47,8 +51,7 @@
     \tcblower
     \fbox{$\ra$} Supposons que tout sous-ensemble non-vide de $E$ admet un élément minimal.\\
     Soit $(u_n)_{n\in\mathbb{N}}$ une suite infinie décroissante de $E$.\\
-    Soit $F=\{u_n ~ | ~ n \in \mathbb{N}\}\subset E$.\\
-    Alors $\exists k \in \mathbb{N} ~ | ~ u_k = \min(F)$, or $(u_n)$ est décroissante donc $\forall n \geq k, ~ u_n = u_k$.\\
+    Soit $F=\{u_n ~ | ~ n \in \mathbb{N}\}\subset E$. Alors $\exists k \in \mathbb{N} ~ | ~ u_k = \min(F)$, or $(u_n)$ est décroissante donc $\forall n \geq k, ~ u_n = u_k$.\\
     On a bien montré que cette suite est stationnaire.\\[0.2cm]
     \fbox{$\la$} Supposons que toute suite infinie décroissante de $E$ est stationnaire.\\
     Soit $F\subset E ~ | ~ F \neq \varnothing$.\\
@@ -58,7 +61,7 @@
     On a bien montré l'équivalence.
 \end{prop}
 
-\pagebreak
+\vspace*{-0.5cm}
 
 \begin{defi}{}{}
     Soit une famille $(E_i,\leq_i)_{i\in I}$ d'ensembles ordonnés.\\
@@ -69,6 +72,8 @@
     Cet ordre n'est pas total.
 \end{defi}
 
+\vspace*{-0.5cm}
+
 \begin{prop}{Ordre sur les produits d'ensembles.}{}
     Un ordre produit sur une famille finie de $N$ ensembles tous munis d'un ordre bien fondé est bien fondé.
     \tcblower
@@ -77,9 +82,10 @@
     Alors $(u_n)$ est stationnaire à partir du rang $k_N$, donc l'ordre est bien fondé.
 \end{prop}
 
+\vspace*{-0.5cm}
+
 \begin{corr}{Ordre lexicographique.}{}
-    Soit $E$ un ensemble ordonné par $\leq$.\\
-    L'ordre lexicographique sur $E^n$ est :
+    Soit $E$ un ensemble ordonné par $\leq$. L'ordre lexicographique sur $E^n$ est :
     \begin{equation*}
         (x_i)_{i\in\lb1,n\rb} < (y_i)_{i\in\lb1,n\rb} \ra \exists N \in \lb1,n\rb \mid \forall i < N, ~ x_i = y_i \land x_N < y_N.
     \end{equation*}
@@ -87,12 +93,14 @@
     Si l'ordre de $E$ est bien fondé, alors l'ordre lexicographique sur $E^n$ l'est aussi.
 \end{corr}
 
+\vspace*{-0.5cm}
+
 \subsection{Ensembles inductifs.}{}
 
-\begin{defi}{Ensemble défini inductivement. $\star$}{}
+\begin{defi}{Ensemble défini inductivement. $\star$}{ind}
     Soit $E$ un ensemble non vide. Une définition de $X \subseteq E$ consiste à se donner :\\
-    \hspace*{2em}$\circledcirc$ Un ensemble $B\subseteq E$ non vide d'assertions.\\
-    \hspace*{2em}$\circledcirc$ Un ensemble $R$ de règles : $\forall r_i \in R, ~ r_i : E^{n_i} \to E$ avec $n_i$ l'arité de $r_i$.
+    $\hra$ Un ensemble $B\subseteq E$ non vide d'assertions.\\
+    $\hra$ Un ensemble $R$ de règles : $\forall r_i \in R, ~ r_i : E^{n_i} \to E$ avec $n_i$ l'arité de $r_i$.
 \end{defi}
 
 \begin{thm}{Point fixe. $\star$}{}
@@ -116,10 +124,9 @@
 \subsection{Théorème de l'induction.}
 
 \begin{thm}{Induction structurelle. $\star$}{}
-    Soit $X\subseteq E$ défini inductivement (cf question précédente) et $\m{P}$ un prédicat sur $E$.\\
-    Si on a que :\\
-    \hspace*{2em}$(B)$ $\m{P}(x)$ est vraie pour tout $x\in B$.\\
-    \hspace*{2em}$(I)$ $\m{P}$ est héréditaire : $\forall r_i\in R, ~ \forall (x_1,...,x_{n_i})\in E^{n_i}, ~ \m{P}(x_1),...,\m{P}(x_{n_i})\Longrightarrow \m{P}(r_i(x_1, ..., x_{n_i}))$.\\
+    Soit $X\subseteq E$ défini inductivement (cf \ref{defi:ind}) et $\m{P}$ un prédicat sur $E$. On suppose :\\
+    \hspace*{2em}$(B)$\hspace*{0.025cm}: $\m{P}(x)$ est vraie pour tout $x\in B$.\\
+    \hspace*{2em}$(I)$ : $\m{P}$ est héréditaire : $\forall r_i\in R, ~ \forall (x_1,...,x_{n_i})\in E^{n_i}, ~ \m{P}(x_1),...,\m{P}(x_{n_i})\Longrightarrow \m{P}(r_i(x_1, ..., x_{n_i}))$.\\
     Alors $\m{P}(x)$ est vraie pour tout $x\in X$.
     \tcblower
     On suppose $(B)$ et $(I)$, montrons que $\m{P}(x)$ est vraie pour tout $x\in E$.\\
@@ -127,14 +134,12 @@
     On a alors $X \subset Y$ donc $\forall x \in X, ~ \m{P}(x)$ est vrai.
 \end{thm}
 
-\pagebreak
-
 \begin{ex}{}{}
     Pour un arbre binaire strict A, on note $\cursive{N}(A)$ son nombre de noeuds, $\cursive{F}(A)$ son nombre de feuilles.\\
     On a alors $\cursive{N}(A)=2\cursive{F}(A)-1$.
     \tcblower
     On définit inductivement l'ensemble $\cursive{A}$ des arbres binaires stricts par :
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item Assertions : $\{0\}$ l'arbre restreint à sa racine.
         \item Règles : $\{R_0:(g,d) \mapsto \nt{Noeud}(g,d)\}$, l'arbre obtenu en donnant un ancêtre commun à $g,d\in\cursive{A}$.
     \end{itemize}
@@ -147,21 +152,20 @@
 
 \begin{corr}{Induction bien fondée.}{}
     Soit $E$ muni d'un ordre bien-fondé et $\P$ un prédicat sur $E$. Si :
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item $\P$ est vraie sur tout élément minimal de $E$.
         \item $\forall x\in E, ~ (\forall y<x, ~ \P(y)) \Longrightarrow \P(x)$.
     \end{itemize}
     Alors $\P$ est vraie pour tout $x\in E$.
     \tcblower
-    $\bullet$ Les assertions sont les minimaux.\\
-    $\bullet$ Les règles sont une famille de fonction permettant de passer au successeur immédiat.
+    Les assertions sont les minimaux, les règles sont des fonctions permettant de passer au successeur immédiat.
 \end{corr}
 
 \subsection{Correction des récursives.}
 
 \begin{meth}{Correction des récursives.}{}
     L'ensemble des valeurs des paramètres des fonctions récursives peut être défini par induction :
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item Assertions : cas de base.
         \item Règles : lien entre les paramètres de l'appel récursif et ceux de l'appel courant.
     \end{itemize}

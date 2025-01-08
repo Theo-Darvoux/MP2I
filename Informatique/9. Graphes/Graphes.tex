@@ -1,13 +1,13 @@
 \documentclass[french, 11pt]{article}
 
-\input{/home/theo/MP2I/setup.tex}
+\input{setup.tex}
 
 \def\chapitre{29}
 \def\pagetitle{Graphes}
 
 \begin{document}
 
-\input{/home/theo/MP2I/title.tex}
+\input{title.tex}
 
 \section{Graphes.}
 \subsection{Définitions.}
@@ -16,9 +16,11 @@
     Un \textbf{graphe} est la donnée d'un ensemble de relations entre des paires d'éléments.
 \end{defi}
 
+\vspace*{-0.5cm}
+
 \begin{defi}{Graphe Orienté}{}
     Un \textbf{graphe orienté} est la donnée de deux ensembles :
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item un ensemble fini $S$ de \textbf{sommets} \textit{(vertices)}.
         \item un ensemble $A\subset S\times S$ d'\textbf{arcs} \textit{(edges)}.
     \end{itemize}
@@ -34,17 +36,23 @@
     On dit que $s$ est \textbf{voisin} de $t$ ou que $s$ et $t$ sont \textbf{adjacents}.
 \end{nota}
 
+\vspace*{-0.8cm}
+
 \begin{defi}{Degrés}{}
     Dans un graphe non orienté, le \textbf{degré} d'un sommet $s$ est le nombre d'arêtes auxquelles il est incident.\\
     Dans un graphe orienté, le \textbf{degré entrant} d'un sommet $s$ est le nombre d'arcs dont il est la cible, le \textbf{degré sortant} est le nombre d'arcs dont il est l'origine.\\
     On note le degré d'un sommet $s$ par $\d(s)$, le degré sortant par $\d_-(s)$ et entrant par $\d_+(s)$.
 \end{defi}
 
+\vspace*{-0.8cm}
+
 \begin{defi}{Sous-graphes}{}
     Soit un graphe $G=(S,A)$.\\
     Le graphe $G'=(S',A')$ est un \textbf{sous-graphe} de $G$ si $S'\subset S$ et $A'\subset A$.\\
     Soit $S''\subset S$, le sous-graphe \textbf{induit} de $G$ par $S''$ est le graphe $G''=(S'',A'')$ où $A''=\{(s,t)\in A\mid s,t\in S''\}$.
 \end{defi}
+
+\vspace*{-0.8cm}
 
 \subsection{Dénombrement.}
 
@@ -55,12 +63,16 @@
     \end{equation*}
 \end{prop}
 
+\vspace*{-0.8cm}
+
 \begin{prop}{}{}
     Dans un graphe non-orienté $(S,A)$, la somme des degrés est égale au double du nombre d'arêtes.
     \begin{equation*}
         \sum_{s\in S}\d(s)=2|A|
     \end{equation*} 
 \end{prop}
+
+\vspace*{-0.8cm}
 
 \begin{prop}{}{}
     Dans un graphe orienté $(S,A)$ à $n$ sommets, il y a au plus $n^2$ arcs.\\
@@ -69,6 +81,8 @@
     \textbf{Graphe orienté:} L'ensemble des arcs est un sous-ensemble de $S\times S$, de cardinal $n^2$.\\
     \textbf{Graphe non-orienté:} L'ensemble des arêtes est un ensemble de $2$-combinaisons de $S$, de cardinal $\binom{n}{2}$.
 \end{prop}
+
+\vspace*{-0.8cm}
 
 \begin{corr}{}{}
     En fixant un ensemble de sommets de cardinal $n$, le nombre de graphes orientés sur cet ensemble est $2^{n^2}$ et le nombre de graphes non-orientés sur cet ensemble est $2^{\frac{n(n-1)}{2}}$.
@@ -82,6 +96,8 @@
     Pour chaque sommet, on a le choix de le mettre ou non, d'où $2^n$ possibilités.
 \end{prop}
 
+\vspace*{-0.5cm}
+
 \subsection{Connexité.}
 
 \begin{defi}{Chemin $\star$}{}
@@ -94,11 +110,15 @@
     \textbf{Remarque:} Il existe toujours un chemin de longueur 0 d'un sommet vers lui-même.
 \end{defi}
 
+\vspace*{-0.5cm}
+
 \begin{defi}{Chemin simple}{}
     Un chemin est simple si un arc / une arête n'y apparaît au plus qu'une fois.\\
     Il est élémentaire si un sommet n'y apparaît au plus qu'une fois.\\
     \textbf{Remarque:} Tout chemin élémentaire est simple, la réciproque est fausse.
 \end{defi}
+
+\vspace*{-0.5cm}
 
 \begin{prop}{}{}
     Soient deux sommets $s,t$ d'un graphe $G$ orienté ou non.\\
@@ -114,9 +134,13 @@
     \textbf{Conclusion:} Par récurrence, la propriété est vraie pour tout $n\in\N$.
 \end{prop}
 
+\vspace*{-0.5cm}
+
 \begin{defi}{Connexité}{}
     Un graphe non-orienté est \textbf{connexe} si pour tout couple de sommets, il existe un chemin entre ces deux sommets.
 \end{defi}
+
+\vspace*{-0.5cm}
 
 \begin{defi}{Forte connexité $\star$}{}
     Un graphe orienté est \textbf{fortement connexe} si pour tout couple de sommets $(s,t)$, il existe un chemin de $s$ vers $t$ et un chemin de $t$ vers $s$.
@@ -127,14 +151,20 @@
     Dans un graphe orienté, la forte connexité est une relation d'équivalence.
 \end{prop}
 
+\vspace*{-0.7cm}
+
 \begin{defi}{Composantes connexes}{}
     Les classes d'équivalences définies par ces relations sont appelées les composantes (fortement) connexes du graphe.
 \end{defi}
+
+\vspace*{-0.7cm}
 
 \begin{defi}{}{}
     Un graphe est \textbf{connexe} s'il possède une unique composante connexe.\\
     \textbf{Remarque:} La composante connexe d'un sommet $s$ d'un graphe $G$ est le plus grand sous-graphe connexe de $G$ contenant $s$. 
 \end{defi}
+
+\vspace*{-0.7cm}
 
 \begin{prop}{}{card}
     Soit $G=(S,A)$ un graphe connexe, alors $|A|\geq|S|-1$.
@@ -162,6 +192,8 @@
     À chaque fois qu'on colorie une arête, on colorie 0 ou 1 sommet, donc $|A|\geq|S|-1$.
 \end{prop}
 
+\vspace*{-0.7cm}
+
 \begin{defi}{Cycles}{}
     Un \textbf{cycle} est un chemin simple dont les extrêmités sont identiques.\\
     Un cycle est élémentaire si un sommet ne peut y apparaître plus d'une fois, en dehors des extrêmités.\\
@@ -181,6 +213,7 @@
     Montrons qu'il n'y en a pas d'autres.\\
     Soit $u\in S$. $G$ étant connexe, il existe un chemin élémentaire $s\leadsto u$ dans $G$. Si la première arête de ce chemin n'est pas $st$, alors il ne contient pas $st$ car élémentaire, donc c'est un chemin de $G'$ et $u$ appartient à la même composante connexe que $s$ dans $G'$. Sinon, le chemin s'écrit $st\leadsto u$ ne contenant $s$ qu'au début car élémentaire. En particulier, $t\leadsto u$ est un chemin de $G'$ donc $u$ et $t$ appartiennent à la même composante connexe de $G'$. Par conséquent, $G'$ est formé de deux composantes connexes. 
 \end{lemme}
+
 
 \begin{prop}{}{}
     Soit un graphe connexe $G=(S,A)$. Alors $|A| \geq |S|-1$.
@@ -205,16 +238,18 @@
     Le graphe possède un nombre fini de chemins élémentaires, en particulier, il possède un chemin élémentaire de longueur maximale, soit $\rho:u\leadsto v$. Si $\d_+(i)=0$, alors la propriété est vraie. Sinon, soit $w\to u$ une arête du graphe. Si $w$ n'apparaît pas dans $\rho$, alors $w\to u \leadsto v$ est un chemin élémentaire strictement plus long que $\rho$, ce qui est impossible. Si $w$ apparaît dans $\rho$, $w\to u \leadsto w$ est un cycle, ce qui est impossible.
 \end{prop}
 
+\vspace*{-0.7cm}
+
 \begin{defi}{Source}{}
     Dans un graphe orienté, on appelle une \textbf{source} (resp. un \textbf{puit}) un sommet dont le degré entrant (resp. sortant) est nul.\\
     \textbf{Remarque:} Avec les mêmes arguments, on montre que tout graphe non-orienté non-vide possède au moins un sommet de degré au plus 1.
 \end{defi}
 
-\pagebreak
+\vspace*{-0.7cm}
 
 \begin{prop}{Équivalences $\star$}{}
     Soit $G=(S,A)$ un graphe non-orienté. Les propriétés suivantes sont équivalentes :
-    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{enumerate}
         \item $G$ est connexe et acyclique.
         \item $G$ est connexe et $|A|=|S|-1$.
         \item $G$ est connexe minimal (= on ne peut enlever une arête de $G$ et préserver la connexité)
@@ -236,7 +271,14 @@
     Soient $s,t$ distincts dans $S$. Si $st\in A$, il y a bien un chemin entre $s$ et $t$. Sinon, le graphe $G'=(S,A\cup\{st\})$ contient un cycle par hypothèse, ce cycle contient l'arête $st$. Il existe donc un chemin qui ne contient pas $st$ (celui du cycle, sans $st$), on en déduit que $G$ est connexe.
 \end{prop}
 
+\vspace*{-0.7cm}
+
 \subsection{Compléments.}
+
+\begin{defi}{Arbres, forêts.}{}
+    Un graphe acyclique et connexe est appelé un \textbf{arbre}.\\
+    Un graphe acyclique est appelé une \textbf{forêt}. 
+\end{defi}
 
 \begin{prop}{}{}
     Soit un graphe non-vide, non-orienté, acyclique $G=(S,A)$, on a $|A|\leq|S|-1$.
@@ -251,22 +293,19 @@
     Par principe de récurrence, la propriété est donc vraie pour tout graphe non-orienté acyclique non-vide.
 \end{prop}
 
-\begin{defi}{Arbres, forêts.}{}
-    Un graphe acyclique et connexe est appelé un \textbf{arbre}.\\
-    Un graphe acyclique est appelé une \textbf{forêt}. 
-\end{defi}
+\vspace*{-0.7cm}
 
 \begin{defi}{Ordre topologique}{}
     Un \textbf{ordre topologique} sur un graphe orienté est un ordre total sur les sommets de ce graphe qui est compatible avec les arcs. Si $s\to t$ est un arc, alors $s<t$.
 \end{defi}
 
-\pagebreak
+\vspace*{-0.7cm}
 
-\begin{prop}{Tri de Kahn. $\star$}{}
+\begin{prop}{Tri topologique de Kahn. $\star$}{}
     Un graphe orienté admet un ordre topologique si et seulement si il est acyclique.
     \tcblower
     L'implication directe est immédiate car l'existence d'un cycle interdit tout ordre topologique.\\
-    \begin{algorithm}[H]
+    \hspace*{0.28cm}\begin{algorithm}[H]
         \LinesNumbered
         \caption{Tri topologique de Kahn}
         \Entree{$G=(S,A)$ un graphe acyclique orienté (DAG).}
@@ -291,16 +330,21 @@
         }
     \end{algorithm}
     \textbf{Terminaison:} Lignes 3 et 11 : chaque itération se termine, il y en a un nombre fini.
-    Ligne 8 : chaque itération se termine, le nombre de sommets non défilés décroît strictement car un sommet ne peut être enfilé au plus qu'un fois dans sources, d'où le nombre fini d'itérations.\n
-    \textbf{Correction:} Montrons que les propriétés suivantes forment un invariant de la boucle ligne 8 :
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    Ligne 8 : chaque itération se termine, le nombre de sommets non défilés décroît strictement car un sommet ne peut être enfilé au plus qu'un fois dans sources, d'où le nombre fini d'itérations.
+\end{prop}
+
+\begin{prop}{}{}
+    Le tri topologique de Kahn a une correction totale.
+    \tcblower
+    Montrons que les propriétés suivantes forment un invariant de la boucle ligne 8 :
+    \begin{itemize}
         \item[(i)] $A \subseteq S\times S$.
         \item[(ii)] $(S,A)$ est un graphe orienté acyclique.
         \item[(iii)] La file sources est exactement constituée des sources de $G$.
         \item[(iv)] \{S, résultat\} est un recouvrement disjoint de $S_0$, $S\cap$ resultat$=\varnothing$.
         \item[(v)] $s\to t\in A \iff (s\to t \in A_0 ~$et$~ s\notin$ resultats).
         \item[(vi)] La liste resultats est un tri topologique du sous-graphe de $G_0$ induit par les sommets dans resultat. 
-    \end{itemize}\vspace{0.2cm}
+    \end{itemize}
     \textbf{Avant la boucle}, tout est immédiat.\\
     \textbf{Notation:} on ajout des prime pour ce qu'on obtient en fin d'itération; $A_0$ est pour $A$ avant la boucle.\\
     Supposons les conditions vraies au début d'une itération.\\
@@ -313,19 +357,24 @@
     On a donc bien (vi) en fin d'itération. On sait qu'un DAG non vide contient au moins une source. D'après (iii), en sortie de boucle, sources est vide donc $S=\varnothing$. D'après (iv), resultats contient tous les sommets de $G_0$. Alors (vi) permet de conclure que l'algorithme est correct.
 \end{prop}
 
+\vspace*{-1.1cm}
+
 \section{Implémentation de graphes.}
+
+\vspace*{-0.2cm}
 
 \subsection{Matrices d'adjacence.}
 \begin{defi}{Matrice d'adjacence $\star$}{}
     Soit un graphe $G=(S,A)$ possédant $n$ sommets $S=\{s_1,...s_n\}$. La matrice d'adjacence de $G$ est carrée de taille $n\times n$ sur les entiers dont le coefficient $(i,j)$ vaut 1 ssi $s_i\to s_j\in A$ si orienté, $s_i-s_j\in A$ si non orienté et 0 sinon.\\
-    \textbf{Remarque:} Dans le cas non-orienté, la matrice d'adjacence est symétrique et sa diagonale ne contient que des 0.  
+    \textbf{Remarque:} Dans le cas non-orienté, la matrice est symétrique et sa diagonale ne contient que des 0.  
 \end{defi}
+
+\vspace*{-0.8cm}
 
 \begin{prop}{}{}
     Soit $M$ la matrice d'adjacence d'un graphe et $n\in\N$, pour tout couple de sommets $s,t$, $M_{s,t}^n$ donne le nombre de chemins de longueur $n$ de $s$ vers $t$.
     \tcblower
-    On note $C_n(s,t)$ le nombre de chemins de longueur $n$ de $s$ vers $t$.\\
-    Par récurrence sur $n$.\\
+    On note $C_n(s,t)$ le nombre de chemins de longueur $n$ de $s$ vers $t$. Par récurrence sur $n$.\\
     \textbf{Cas de base:}, $M^0=I$ et il existe un chemin de longueur 0 de $s$ vers $t$ ssi $t=s$.\\
     \textbf{Cas de base:}, $M_{s,t}=C_1(s,t)$ pour tout $s$ et $t$ par construction de $M$.\\
     \textbf{Hérédité:} Supposons que pour un certain $n\geq0$, on a $\forall s,t\in S ~ M_{s,t}^n=C_n(s,t)$.\\
@@ -336,26 +385,26 @@
     La fonction chemin a une correction totale.
     \tcblower
     \textbf{Terminaison:} Le variant d'appel récursif est $len$, entier positif diminuant strictement à chaque appel.\\
-    Le variant de boucle est $M.n-k$. Ces deux variants assurent la terminaison de l'appel car les autres instructions se terminent.\\
-    \textbf{Correction:} Par récurrence sur $len$.\\
-    \textbf{Cas de base:} Si $len=0$, correct par la ligne 15.\\
-    \textbf{Hérédité:} Supposons que tout appel à chemin soit corect pour un certain $len\geq0$. Considérons un appel avec $len+1$. Montrons l'invariant : <<Il n'existe pas de chemin de longueur $len+1$ de $i$ vers $j$ qui commence par un arc $i\to k'$ pour $k'<k$.\\
+    Le variant de boucle est $n-k$. Ces deux variants assurent la terminaison car les autres instructions se terminent.\\
+    \textbf{Correction:} Par récurrence sur $len$. \textbf{Cas de base:} Si $len=0$, correct par la ligne 15.\\
+    \textbf{Hérédité:} Supposons que tout appel à chemin soit corect pour un certain $len\geq0$. Considérons un appel avec $len+1$. Montrons l'invariant : <<Il n'existe pas de chemin de longueur $len+1$ de $i$ vers $j$ qui commence par un arc $i\to k'$ pour $k'<k$.
     Avant la boucle, l'ensemble des $\{k'~|~k'<k\}$ est vide donc l'invariant est vrai.\\
     Supposons l'invariant vrai en début d'une itération $l$, si on atteint la fin de l'itération, il n'existe pas de chemin de longueur $len+1$ $i\to k'\leadsto j$ avec $k'<k$ par hypothèse et il n'existe pas de chemin $i\to k \leadsto j$ car sinon on passerait à la ligne 19 par hypothèse. Donc l'invariant est vrai en fin d'itération.\\
     Si on sort en ligne 19, l'hypothèse nous assure l'existence du chemin, sinon on sort ligne 22 et l'invariant assure l'inexistence du chemin.
 \end{prop}
+
+\vspace*{-0.8cm}
 
 \begin{prop}{}{}
     La complexité temporelle de la fonction chemin est en $\Theta(n^l)$ avec $n=|S|$ et $l=len$.
     \tcblower
     On note $T(l)$ le nombre d'opérations élémentaires de chemin quand $len=l$.\\
     On a $T(l)\leq nT(l-1)+ n + 1$ et $nT(l-1)\leq n^2T(l-2)+n^2 + n$ ... et $n^{l-1}T(1)\leq n^lT(0)+n^l+n^{l-1}$.\\
-    Alors $T(l)\leq n^lT(0) + 2\frac{1-n^{l+1}}{1-n}=O(n^l)$.\n
-    Soit $G=(S,A)$ où $S=\{s_1,...,s_n\}$ et $A=\{s_i\to s_j ~ | ~ i,j\in\lb0,n-2\rb\}$.\\
-    L'appel à chemin($M, 0, n-1, l$) vérifie $U(l)=(n-1)(1+T(l-1))$ et par la même somme téléscopique, on obtient $U(l)=(n-1)^l=U(n^l)$.\\
-    D'où $T(l)=\Omega(n^l)$.\\
-    On a donc cherché une majoration toujours valide, puis une complexité pour une famille particulière.
+    Alors $T(l)\leq n^lT(0) + 2\frac{1-n^{l+1}}{1-n}=O(n^l)$. Soit $G=(S,A)$ où $S=\{s_1,...,s_n\}$ et $A=\{s_i\to s_j ~ | ~ i,j\in\lb0,n-2\rb\}$.\\
+    L'appel à chemin($M, 0, n-1, l$) vérifie $U(l)=(n-1)(1+T(l-1))$ et par la même somme téléscopique, on obtient $U(l)=(n-1)^l=U(n^l)$. D'où $T(l)=\Omega(n^l)$.
 \end{prop}
+
+\vspace*{-1cm}
 
 \subsection{Listes d'adjacences.}
 
@@ -363,11 +412,16 @@
     Soit un graphe $G=(S,A)$ à $n$ sommets $\{s_1,...s_n\}$. La représentation par listes d'adjacences de $G$ est la donnée de $n$ listes telles que la $i$ème liste contient les sommets de $G$ qui sont voisins de $s_i$.
 \end{defi}
 
+\vspace*{-1cm}
+
 \section{Parcours de graphes.}
+
+\vspace*{-0.3cm}
+
 \subsection{Parcours générique.}
 
 \begin{defi}{Algorithme générique. $\star$}{}
-    \begin{algorithm}[H]
+    \hspace*{0.28cm}\begin{algorithm}[H]
         \LinesNumbered
         \caption{Parcours générique.}
         \Entree{Graphe $G$, sommet $s_0$ de $G$.}
@@ -383,16 +437,14 @@
             }
         }
     \end{algorithm}
-    \bf{Terminaison:} La boucle (6) de se termine.\\
-    Pour la boucle (2), |S$|^2$+|decouverts|+|marqués|$\times(|-|S|-1|)$ est un variant de boucle car si le test (4) est faux, cette quantité diminue de 1, si il est vrai, elle diminue au moins de 1. Cette boucle se termine.
 \end{defi}
-
-\pagebreak
 
 \begin{prop}{Correction totale.}{}
     L'algorithme de parcours générique marque exactement les sommets atteignables à partir de $s_0$.\\
     De plus, l'ensemble \{\{s, parent(s)\} | parent(s) existe\} est un arbre dont les sommets sont exactement les sommets atteignables à partir de $s_0$.
     \tcblower
+    \bf{Terminaison:} La boucle (6) de se termine.\\
+    Pour la boucle (2), |S$|^2$+|decouverts|+|marqués|$\times(|-|S|-1|)$ est un variant de boucle car si le test (4) est faux, cette quantité diminue de 1, si il est vrai, elle diminue au moins de 1. Cette boucle se termine.\\
     \boxed{1.} Montrons que tout sommet atteignable à partir de $s_0$ est marqué, par récurrence sur la distance à $s_0$.\\
     \bf{Cas de base.} dist$(s_0,s)=0$ alors $s=s_0$ et $s_0$ est marqué à la première itération.\\
     \bf{Hérédité.} Supposons que tout sommet à distance $n\geq0$ de $s_0$ sont marqués. Soit $t$ un sommet à distance $n+1$ de $s_0$ et un chemin de $s_0$ à $t$ de longueur $n+1$.\\
@@ -401,9 +453,7 @@
     Considérons le graphe orienté $H$ dont les arcs sont les (s, parent(s)) quand parent(s)$\neq\0$, chacun de ces arcs correspond à une arête de $G$. Montrons que le graphe non-orienté sous-jacent à $H$ est connexe. On peut montrer que tout chemin de $H:s\to$parent(s)$\to$parent(parent(s))$\to...$ s'arrête sur $s_0$ par récurrence sur la distance à $s_0$. Donc le graphe non-orienté sous-jacent à $H$ est un arbre d'après la proposition 29.6. Si $G$ est non-orienté, les arêtes de ce graphe sont des arêtes de $G$ et on a le résultat, s'il est orienté, les arcs de $H$ sont des arcs inversés de $G$ et on a le résultat car dans $H$ il existe pour tout $s$ un chemin vers $s_0$.
 \end{prop}
 
-\begin{defi}{Arbre couvrant.}{}
-    Soit $G$ un graphe. Un arbre couvrant de $G$ est un arbre qui possède les mêmes sommets que $G$ et est un sous-graphe de $G$.
-\end{defi}
+\vspace*{-0.7cm}
 
 \subsection{Parcours en largeur.}
 
@@ -412,15 +462,16 @@
     Sa complexité est en $O(|A|)$ sur un graphe $G=(S,A)$.
 \end{defi}
 
+\vspace*{-0.7cm}
+
 \begin{prop}{}{}
     Soient deux sommets $u$ et $v$ atteignables à partir de $s_0$. Lors d'un parcours en largeur à partir de $s_0$, on a :
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item Si $u$ est marqué avant $v$, alors dist$(s_0,u)\leq$ dist$(s_0,v)$.
         \item Si dist$(s_0,u)<$ dist$(s_0,v)$ alors $u$ est marqué avant $v$.
     \end{itemize}
     \tcblower
-    On numérote les sommets selon leur ordre de marquage dans le parcours : $s_0,s_1,...,s_n$.\\
-    On a l'invariant :
+    On numérote les sommets selon leur ordre de marquage dans le parcours : $s_0,s_1,...,s_n$. On a l'invariant :
     \begin{itemize}[topsep=0pt,itemsep=-0.2 ex]
         \item[(i)] La file découvert contient dans l'ordre : $s_k,...s_{k+l}$ avec $k,l\in\N$. De plus, il existe $k'\in\lb k,k+l\rb$ tel que les sommets les plus anciens non marqués sont à une distance $d_{k'}$ de $s_0$ et les plus récents non marqués à une distance $d_{k'}+1$ de $s_0$.
         \item[(ii)] Si $d_i<d_{k'}$, alors $s_i$ est déjà marqué.
@@ -435,7 +486,7 @@
 
 \begin{defi}{Parcours en largeur.}{}
     Ici, le poids est la distance à $s_0$.\\
-    \begin{algorithm}[H]
+    \hspace*{0.28cm}\begin{algorithm}[H]
         \LinesNumbered
         \caption{Parcours en largeur.}
         \Entree{Graphe $G$, sommet $s_0$ de $G$.}
@@ -455,8 +506,9 @@
             }
         }
     \end{algorithm}
-    On groupe les itérations de la boucle tant que entre deux défilement d'étoiles, qu'on appelle phase.
 \end{defi}
+
+\vspace*{-0.8cm}
 
 \begin{lemme}{}{}
     Si on numérote les phases par $i\geq0$, alors pour tout $i\geq0$, et tout sommet $v$, à la fin de la $i^{\nt{ème}}$ phase, soit poids($v)=+\infty$, soit poids($v)\leq i$. De plus, $v$ est dans découverts ssi poids$(v)=i$.
@@ -464,29 +516,27 @@
     Avant la boucle, c'est immédiat.\\
     Supposons le lemme vrai en début de phase $i$, la file contient tous les sommets de poids $i$, suivis de l'$\bigstar$.\\
     On défile chaque sommet $u$ tel que poids$(u)=i$. Si $v$ est successeur de $u$, :\\
-    $\bullet$ Si $u\to v$ est tendu, alors poids$(v)>$ $\nt{poids}(u)+\w(u\to v)=i+1$.\\
+    $\hra$ Si $u\to v$ est tendu, alors poids$(v)>$ $\nt{poids}(u)+\w(u\to v)=i+1$.\\
     Par hypothèse, poids$(v)\leq i$ ou égal à $+\infty$, donc poids$(v)=+\infty$, donc il n'existe pas $w\to v$ avec poids$(w)<i$.\\
-    Donc à la fin de la $i^{\nt{ème}}$ étape, poids$(v)=i+1$ et $v$ est dans découverts.\n
-    $\bullet$ Si $u\to v$ n'est pas tendu, alors poids$(v)\leq i$.\\
+    Donc à la fin de la $i^{\nt{ème}}$ étape, poids$(v)=i+1$ et $v$ est dans découverts.\\
+    $\hra$ Si $u\to v$ n'est pas tendu, alors poids$(v)\leq i$.\\
     À la fin de la $i^{\nt{ème}}$ étape, poids$(v)\leq i < i+1$ et $v$ n'est pas dans découverts.
 \end{lemme}
 
+\vspace*{-0.8cm}
+
 \begin{thm}{}{}
-    À la fin de l'algorithme de parcours en largeur, poids$(v)$ est la longueur d'un plus court chemin de $s$ à $v$ dans $G$ pour tout $v$.
+    À la fin de l'algorithme, poids$(v)$ est la longueur d'un plus court chemin de $s$ à $v$ dans $G$ pour tout $v$.
     \tcblower
-    Soit un sommet $v$ et un chemin $s=v_0\to v_1 \to ... \to v_l = v$.\\
-    On note $d: S \to \N, ~ v\mapsto$ la valeur finale de poids($v$).\\
+    Soit un sommet $v$ et un chemin $s=v_0\to v_1 \to ... \to v_l = v$; $d: S \to \N, ~ v\mapsto$ la valeur finale de poids($v$).\\
     Montrons que pour tout $j\in\lb0,l\rb$, on a $d(v_j)\leq j$ par récurrence sur $j$.\\
     \bf{Cas de base:} Si $j=0$, on a $d(v_0)=d(s)=0$, vrai.\\
     \bf{Hérédité:} Supposons $d(v_j)\leq j$ pour $j\in\lb0,l-1\rb$.\\
-    Au moment où on atteint la valeur finale de poids($v_j$), on extrait $v_j$ de la file.\\
-    On regarde $v_j\to v_{j+1}$.\\
-    $\bullet$ S'il n'est pas tendu, poids($v_{j+1}) \leq $ poids$(v_j)+\w(v_j\to v_{j+1})=d(v_j)+1\leq j+1$\\
+    Au moment où on atteint la valeur finale de poids($v_j$), on extrait $v_j$ de la file. On regarde $v_j\to v_{j+1}$.\\
+    $\hra$ S'il n'est pas tendu, poids($v_{j+1}) \leq $ poids$(v_j)+\w(v_j\to v_{j+1})=d(v_j)+1\leq j+1$\\
     Donc $d(v_{j+1})\leq$ poids($v_{j+1}) \leq j+1$.\\
-    $\bullet$ S'il est tendu, alors poids$(v_{j+1})$ prend la valeur poids($v_j)+\w(v_j\to v_{j+1})=d(v_j)+1$.\\
-    Donc poids$(v_{j+1})\leq j+1$.\n
-    On applique le résultat à $j=l$:\\
-    La longueur du chemin initial est supérieure à la longueur du chemin trouvé par l'algorithme. Comme on n'a pas mis de condition sur le chemin initial, le chemin trouvé par l'algorithme est le chemin le plus court.
+    $\hra$ S'il est tendu, alors poids$(v_{j+1})$ prend la valeur poids($v_j)+\w(v_j\to v_{j+1})=d(v_j)+1$, donc poids$(v_{j+1})\leq j+1$.\\
+    On applique le résultat à $j=l$ : la longueur du chemin initial est supérieure à la longueur du chemin trouvé par l'algorithme. Comme on n'a pas mis de condition sur le chemin initial, le chemin trouvé par l'algorithme est le chemin le plus court.
 \end{thm}
 
 \subsection{Parcours en profondeur.}
@@ -494,7 +544,7 @@
 \begin{defi}{Parcours en profondeur.}{}
     Le parcours obtenu en prenant une pile pour sac s'appelle un \bf{parcours en profondeur.}\\
     Sa complexité est en $O(|A|)$ sur un graphe $G=(S,A)$.\n
-    \begin{algorithm}[H]
+    \hspace*{0.28cm}\begin{algorithm}[H]
         \LinesNumbered
         \caption{Parcours en profondeur récursif.}
         \Entree{Graphe $G$, sommet $s$ de $G$.}
@@ -510,7 +560,7 @@
 
 \begin{defi}{}{}
     On peut vouloir parcourir tous les sommets, pas uniquement la composante connexe d'un sommet donné.\n
-    \begin{algorithm}[H]
+    \hspace*{0.28cm}\begin{algorithm}[H]
         \LinesNumbered
         \caption{Générique de parcours de graphe.}
         \Entree{un graphe $G$.}
@@ -536,7 +586,7 @@
 
 \begin{prop}{}{}
     Sur les graphes bipartis, il y a un lien entre :
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item La couverture minimum par sommets.
         \item Les couplages parfaits : extraire un ensemble d'arêtes tel que deux arêtes ne partagent pas d'extrêmité commune et tout sommet du graphe est une extrêmité d'une des arêtes.
     \end{itemize}
@@ -545,14 +595,14 @@
 
 \begin{thm}{Caractérisation.}{}{}
     Soit $G$ un graphe, il y a équivalence entre :
-    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{enumerate}
         \item $G$ est biparti.
         \item $G$ ne contient pas de cycle de longueur impaire.
     \end{enumerate}
     \tcblower
     \fbox{$\ra$} Supposons $G$ biparti. Par l'absurde, on suppose l'existence d'un cycle $s_0\to...\to s_{2k+1}=s_0$ de longueur impaire.
     Sans perte de généralité, $s_0\in S_1$.\\
-    Alors pour tout $i$ pair, $s_i\in S_1$ et pour tout $i$ impair, $s_i\in S_2$ donc $s_0\in S_1\cap S_2$, absurde.\n
+    Alors pour tout $i$ pair, $s_i\in S_1$ et pour tout $i$ impair, $s_i\in S_2$ donc $s_0\in S_1\cap S_2$, absurde.\\
     \fbox{$\la$} Supposons $G$ sans cycle de longueur impaire.\\
     \underline{1er cas:} pas de cycles. Alors $G$ est une forêt et on colorie les sommets de chaque arbre en alternant par parité du niveau, donc $G$ est biparti.\\
     \underline{2ème cas:} il existe un cycle. On prend une composante connexe de $G$, notée $H$. Alors $H$ possède un arbre couvrant, on fabrique $S_1$ et $S_2$ à partir de cet arbre.\\
@@ -560,6 +610,8 @@
     Si $uv$ appartient à l'arbre couvrant, c'est correct.\\
     Si $uv$ n'y appartient pas, alors il existe un chemin de $u$ à $v$ dans $H$, on en extrait un sous-chemin élémentaire $u \leadsto v$. En ajoutant l'arête $uv$, on obtient un cycle, de longueur paire par hypothèse, donc $u\leadsto v$ est de longueur impaire. On en déduit que $u$ et $v$ sont dans des ensembles différents.
 \end{thm}
+
+\vspace*{-1cm}
 
 \subsection{Graphes pondérés.}
 
@@ -570,9 +622,13 @@
     On attribue parfois le poids $+\infty$ à une arête pour signifier qu'elle n'existe pas.
 \end{defi}
 
+\vspace*{-0.7cm}
+
 \begin{defi}{Poids d'un chemin.}{}
     Le \bf{poids} d'un chemin est la somme des poids de ses arêtes.
 \end{defi}
+
+\vspace*{-1cm}
 
 \subsubsection{Chemins de poids minimal.}
 
@@ -580,13 +636,11 @@
     Soit $G$ un graphe orienté pondéré sans cycle de poids négatif, $s$ un sommet de $G$ et $G'$ induit par l'ensemble des sommets atteignables à partir de $s$. Le graphe $G'$ possède un arbre couvrant de racine $s$ contenant les chemins de poids minimaux de $s$ vers les autres sommets de $G'$.
 \end{prop}
 
+\vspace*{-0.7cm}
+
 \begin{defi}{Initialisation de poids.}{}
     Principe : on accumule en maintenant à jour les meilleures données <<jusque-là>> :
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
-        \item Le poids minimal d'un chemin de $s$ à chaque sommet pour l'instant.
-        \item Le prédecesseur de chaque sommet sur un chemin de poids minimal.
-    \end{itemize}
-    \begin{algorithm}[H]
+    \hspace*{0.28cm}\begin{algorithm}[H]
         \LinesNumbered
         \caption{Initialisation de poids.}
         \Entree{un graphe $G$ et un sommet $s$.}
@@ -605,8 +659,10 @@
     Si $u\to v$ est tendu, alors l'inégalité triangulaire n'est pas vérifiée.
 \end{defi}
 
+\vspace*{-0.7cm}
+
 \begin{defi}{Relâcher un arc.}{}
-    \begin{algorithm}[H]
+    \hspace*{0.28cm}\begin{algorithm}[H]
         \LinesNumbered
         \caption{Relâcher un arc.}
         \Entree{poids, pred, $G$, $u\to v$ tendu.}
@@ -616,8 +672,10 @@
     \end{algorithm}
 \end{defi}
 
+\vspace*{-0.7cm}
+
 \begin{defi}{Algorithme de Ford. $\star$}{}
-    \begin{algorithm}[H]
+    \hspace*{0.28cm}\begin{algorithm}[H]
         \LinesNumbered
         \caption{Algorithme de Ford.}
         \Entree{un graphe $G$ et un sommet $s$.}
@@ -638,7 +696,7 @@
 \subsection{Algorithme de Dijkstra.}
 
 \begin{defi}{Algorithme de Dijkstra. $\star$}{}
-    \begin{algorithm}[H]
+    \hspace*{0.28cm}\begin{algorithm}[H]
         \LinesNumbered
         \caption{Algorithme de Dijkstra.}
         \Entree{Graphe $G$ pondéré sans cycle de poids strictement négatif, $s$ sommet de $G$.}
@@ -660,17 +718,19 @@
     \end{algorithm}
 \end{defi}
 
+\vspace*{-0.8cm}
+
 \begin{prop}{}{}
     Pendant l'exécution de l'algorithme, l'arc $u\to v$ est tendu ssi $u$ est dans découverts ou si c'est le sommet le plus récent extrait de découverts.
 \end{prop}
 
+\vspace*{-0.8cm}
+
 \begin{nota}{}{}
-    Pour $i\in\N$, on note :
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
-        \item $u_i$ le sommet extrait à l'itération $i$.
-        \item $d_i$ le poids associé à $u_i$ juste après l'extraction de $u_i$.
-    \end{itemize}
+    Pour $i\in\N$, on note : $u_i$ le sommet extrait à l'itération $i$ et $d_i$ le poids associé à $u_i$ juste après l'extraction de $u_i$.
 \end{nota}
+
+\vspace*{-0.8cm}
 
 \begin{lemme}{}{}
     Pour un graphe $G$ de poids positifs, on a $i<j\ra d_i \leq d_j$.
@@ -681,6 +741,8 @@
     Si $u_i\to u_{i+1}$ est tendu,  on le relâche, alors poids$(u_{i+1})$ devient poids$(u_i)+\w(u_i\to u_{i+1})=d_{i+1}$.\\
     Si $u_{i+1}$ n'est pas dans découverts au début de la $i^{\nt{ème}}$ itération, il est nécessairement ajouté à découverts pendant la $i^{\nt{ème}}$ itération : le poids qui lui est associé est alors $d_{i+1}=\nt{poids}(u_i)+\w(u_i\to u_{i+1})$.
 \end{lemme}
+
+\vspace*{-0.8cm}
 
 \begin{lemme}{}{}
     Chaque sommet est extrait de découverts au plus une fois.
