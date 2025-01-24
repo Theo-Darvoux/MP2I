@@ -42,8 +42,8 @@
 \begin{defi}{Arbre binaire.}{}
     Un \bf{arbre binaire} est une structure de données hiérarchique où chaque élément est un \bf{noeud}.\\
     Il est défini de manière inductive :\\
-    $\hra$ Soit c'est une arbre vide.\\
-    $\hra$ Soit il est constitué d'un noeud et de deux arbre binaires disjoints, appelés \bf{fils gauche} et \bf{fils droit}.
+    $\hra$ Soit c'est un arbre vide.\\
+    $\hra$ Soit il est constitué d'un noeud et de deux arbres binaires disjoints, appelés \bf{fils gauche} et \bf{fils droit}.
 \end{defi}
 
 \begin{defi}{Racine}{}
@@ -62,7 +62,7 @@
 \end{defi}
 
 \begin{prop}{Dénombrement. $\star$}{}
-    Dans un arbre binaire strict non vide, le nombre de feulles est égal au nombre de noeuds internes plus un.
+    Dans un arbre binaire strict non vide, le nombre de feuilles est égal au nombre de noeuds internes plus un.
     \tcblower
     On a d'abord : $|\texttt{feuilles}|=|\texttt{noeuds}|-|\texttt{noeuds internes}|$.\\
     On dénombre les liaisons père-fils : $N=2\cdot|\texttt{noeuds internes}|$ (les noeuds internes ont deux fils).\\
@@ -145,7 +145,7 @@
 \subsubsection{Implémentation.}
 
 \begin{defi}{Percoler vers le bas. $\star$}{}
-    \begin{algorithm}[H]
+    \hspace*{0.2cm}\begin{algorithm}[H]
         \LinesNumbered
         \caption{Percoler vers le bas}
         \Entree{Un tas $A$, un indice $i$ et une valeur $v$}
@@ -175,7 +175,7 @@
 \end{defi}
 
 \begin{defi}{Percoler vers le haut.}{}
-    \begin{algorithm}[H]
+    \hspace*{0.2cm}\begin{algorithm}[H]
         \LinesNumbered
         \caption{Percoler vers le haut}
         \Entree{Un tas $A$, un indice $i$ et une valeur $v$}
@@ -191,7 +191,7 @@
 \end{defi}
 
 \begin{defi}{Modification.}{}
-    \begin{algorithm}[H]
+    \hspace*{0.2cm}\begin{algorithm}[H]
         \LinesNumbered
         \caption{Modification}
         \Entree{Un tas $A$, un indice $i$ et une valeur $v$}
@@ -207,7 +207,7 @@
 \end{defi}
 
 \begin{defi}{Insertion.}{}
-    \begin{algorithm}[H]
+    \hspace*{0.2cm}\begin{algorithm}[H]
         \LinesNumbered
         \caption{Insertion}
         \Entree{Un tas $A$ et une valeur $v$}
@@ -218,7 +218,7 @@
 \end{defi}
 
 \begin{defi}{Extraction.}{}
-    \begin{algorithm}[H]
+    \hspace*{0.2cm}\begin{algorithm}[H]
         \LinesNumbered
         \caption{Extraction}
         \Entree{Un tas $A$}
@@ -234,7 +234,7 @@
 \end{defi}
 
 \begin{defi}{Construire un tas. $\star$}{}
-    \begin{algorithm}[H]
+    \hspace*{0.2cm}\begin{algorithm}[H]
         \LinesNumbered
         \caption{Construire un tas}
         \Entree{Un tableau $T$}
@@ -267,7 +267,7 @@
 \subsection{Arbres binaires de recherche.}
 
 \begin{defi}{Arbre binaire de recherche.}{}
-    Un \bf{arbre binaire de recherche (ABR)} a des noeuds étiquettés dans un ensemble totalement ordonné et tel que l'étiquette de chaque noeud interne est supérieure aux étiquettes de son sours-arbre gauche, et inférieure aux étiquettes de son sous-arbre droit.\\
+    Un \bf{arbre binaire de recherche (ABR)} a des noeuds étiquettés dans un ensemble totalement ordonné et tel que l'étiquette de chaque noeud interne est supérieure aux étiquettes de son sous-arbre gauche, et inférieure aux étiquettes de son sous-arbre droit.\\
     Ce type d'arbres n'est pas nécéssairement strict.
 \end{defi}
 
@@ -282,19 +282,19 @@
     Soit un arbre binaire de recherche de hauteur $h$.\\
     \underline{1er cas:} Pas de sous-arbre gauche, la racine est le minimum.\\
     \underline{2ème cas:} Il y a un sous-arbre gauche, le minimum y appartient, or ce sous-arbre est de hauteur inférieure.\\
-    Par hyothèse, le minimum est à l'extrémité gauche de ce sous-arbre.\\
+    Par hypothèse, le minimum est à l'extrémité gauche de ce sous-arbre.\\
     Donc le minimum est à l'extrémité gauche de l'arbre.\\
     Par récurrence, on a bien la propriété.
 \end{prop}
 
 \begin{prop}{Parcours infixe. $\star$}{}
-    Soit $\cursive{A}$ un ABR de hauteur $h$ et $P_h$ : <<Le parcours infixe de $\cursive{A}$ donne une liste triée>>.
+    Soit $\cursive{A}$ un ABR et $\P_h$ : <<Le parcours infixe de $\cursive{A}$ de hauteur $h$ donne une liste triée>>.
     \tcblower
     \bf{Initialisation.} Pour $h=0$ c'est trivial car l'arbre est réduit à sa racine.\\
-    \bf{Hérédité.} Supposons $P_h$ vrai pour toute hauteur \bf{strictement} inférieure à $h$. Montrons $P_h$.\\
+    \bf{Hérédité.} Soit $h\in\N$ tel que $\forall k < h, ~ \P_k$. Montrons $\P_h$.\\
     On note $\cursive{A}_g$ le fils gauche de $\cursive{A}$, $\cursive{A}_d$ son fils droit et $r$ sa racine.\\
     Par supposition, le parcours est correct sur $\cursive{A}_g$ et $\cursive{A}_d$ car ils sont de hauteurs strictement inférieures à $h$.\\
-    Le parcours infixe parcourt d'abord $\cursive{A}_g$, puis $r$, puis $\cursive{A}_g$.\\
+    Le parcours infixe parcourt d'abord $\cursive{A}_g$, puis $r$, puis $\cursive{A}_d$.\\
     On a que tout élément de $\cursive{A}_g$ est inférieur à $r$ et que tout élément de $\cursive{A}_d$ est supérieur à $r$ par propriété des ABR.\\
     Donc le parcours de $\cursive{A}_g$ puis $r$ puis $\cursive{A}_d$ est dans l'ordre croissant.
 \end{prop}
@@ -305,7 +305,7 @@
     Un \bf{arbre rouge-noir (ARN)} est un ABR strict dont toutes les feuilles sont vides, dont chaque noeud est coloré en rouge, ou en noir, tel que :\\
     $\hra$ Chaque feuille est noire.\\
     $\hra$ La racine est noire.\\
-    $\hra$ Les fils rouges d'un noeud noir sont noirs.\\
+    $\hra$ Les fils d'un noeud rouge sont noirs.\\
     $\hra$ Tout chemin de la racine à une feuille contient le même nombre de noeuds noirs.
 \end{defi}
 
@@ -338,11 +338,11 @@
     \tcblower
     L'action de l'algorithme est d'appliquer une permutation sur l'entrée, dépendant uniquement de l'ordre relatif de ses éléments.
     On considère l'arbre de flot de contrôle de l'algorithme sur une entrée donnée. On arrive à une feuille si le tri est terminé, correspondant à une unique permutation de l'entrée. On a donc $n!$ feuilles.\\
-    On note $h$ la hauteur de cet arbre, et on a alors que $2^h \geq n!$ donc $h\geq\log(n!)$. Alors :
+    On note $h$ la hauteur de cet arbre, alors $2^h \geq n!$ donc $h\geq\log(n!)$, puis :
     \begin{equation*}
         h\geq\log(n!)=\sum_{k=1}^n\log(k)\geq\sum_{k=n/2}^n\log(k)\geq\frac{n}{2}\log\left(\frac{n}{2}\right).
     \end{equation*}
-    On en conclut que $h=\Omega(n\log n)$.
+    Conclusion : $h=\Omega(n\log n)$.
 \end{thm}
 
 \begin{defi}{Tri par tas. $\star$}{}
@@ -423,7 +423,7 @@
 \end{prop}
 
 \begin{prop}{}{}
-    Le tri rapide a une complexité en $O(n^2)$ dans le pire des cas, et en $O(n\log n)$ en moyenne.
+    Le tri rapide a une complexité en $O(n^2)$ dans le pire des cas, et en $O(n\log n)$ en moyenne.\\
     \textbf{Complexité.}\\
     On prend la comparaison comme opération élémentaire.\\
     On note $S$ le nombre de noeuds de l'arbre des appels.\\
@@ -478,11 +478,11 @@
 
 \begin{defi}{}{}
     Les \bf{dictionnaires} permettent de manipuler des ensembles d'associations.\\
-    On appelle \bf{clé} un élément de l'ensemble de départ et \bf{valeur} son élément associé. On peut :\\
+    On appelle \bf{clé} un élément de l'ensemble de départ et \bf{valeur} son élément associé. Interface :\\
     $\hra$ \bf{Insertion} (clé, valeur).\\
     $\hra$ \bf{Recherche} de clé.\\
     $\hra$ \bf{Suppression} de clé.\n
-    Contraintes:
+    Contraintes:\\
     $\hra$ Les clés sont toutes de mêmes types.\\
     $\hra$ Les valeurs sont toutes de mêmes types.\\
     $\hra$ Les clés sont uniques.\\
