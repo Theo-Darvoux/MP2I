@@ -191,7 +191,7 @@
 
 \begin{defi}{Substitution.}{}
     Soit $\phi$ une formule sur un esemble $\{p_1,,...,p_n\}$ et soient $\{\phi_1,...,\phi_n\}$ des formules.\\
-    La substitution des $\phi_i$ aux $p_i$ est la formule obtenue en remplaçant simultanément chaque $p_i$ par $\phi_i$.\\
+    La substitution des $\phi_i$ aux $p_i$ est la formule obtenue en rempla\cc{c}ant simultanément chaque $p_i$ par $\phi_i$.\\
     On la note $\phi[\phi_1/p_i,...,\phi_n/p_n]$.\n
     La substitution se définit inductivement :
     \begin{itemize}
@@ -212,7 +212,7 @@
     \bf{Cas de base.} Trivial si $\phi=\top$ ou $\phi=\bot$. Si $\phi=p_i$, alors $\phi[]=\phi_i$ et $\w(\phi)=\w(p_i)=v(\phi_i)$.\\
     \bf{Hérédité.} Si $\phi=\lnot\phi'$, $\w(\phi)=\w(\lnot\phi')=\lnot\w(\phi')=\lnot v(\phi'[...])=v(\lnot\phi'[...])=v(\phi[...])$.\\
     Si $\phi=\phi_1\lor\phi_2$, $\w(\phi)=\w(\phi_1\lor\phi_2)=\w(\phi_1)\lor\w(\phi_2)=v(\phi_1[...])\lor v(\phi_2[...])=v(\phi_1[...]\lor\phi_2[...])=v(\phi)$.\\
-    De même pour la conjonction, avec $\phi_1, \phi_2$ vérifiant l'hypothèse. Par d'induction structurelle, la propriété est vérifiée.\n
+    De même pour la conjonction, avec $\phi_1, \phi_2$ vérifiant l'hypothèse. Par théorème d'induction structurelle, la propriété est vérifiée.\n
     Supposons $\phi$ une tautologie. Soit $v$ une valuation de la formule substituée., il existe $\w$ telle que $\w(\phi)=v(\phi[...])$.\\
     Comme $\phi$ est tautologie, $w(\phi)=1$ donc $v(\phi[...])=1$ donc $v\models\phi[...]$, c'est une tautologie.
 \end{prop}
@@ -351,5 +351,6 @@
     Deux formules $F$ et $G$ sont $\a$-équivalentes si on peut passer de l'une à l'autre en renommant des variables liées.
 \end{defi}
 
+\fin
 
 \end{document}

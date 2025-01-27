@@ -29,7 +29,7 @@
 \end{defi}
 
 \begin{defi}{Graphe.}{}
-    Un graphe est un objet mathématique qui contient deux types de données:
+    Un graphe est un objet mathématique qui contient deux types de données:\\
     $\hra$ Des sommets.\\
     $\hra$ Des arcs.\\
     On peut suivre une suite d'arcs: on obtient un chemin.
@@ -70,7 +70,7 @@
 \end{defi}
 
 \begin{defi}{Typage statique, dynamique.}{}
-    Un langage possède un typage \bf{statique} si les vérifications des types sont faites au moment de la compilation..\\
+    Un langage possède un typage \bf{statique} si les vérifications des types sont faites au moment de la compilation.\\
     Un langage possède un typage \bf{dynamique} si les vérifications des types sont faites au moment de l'exécution.
 \end{defi}
 
@@ -91,7 +91,7 @@
 
 \begin{defi}{Le langage C.}{}
     Le langage C est compilé et possède un typage faible et statique.\\
-    Les fichiers source en C possèdent l'extension \texttt{.c}.\\
+    Les fichiers source en C possèdent l'extension \boxed{\bf{.c}}.\\
     On les compile en ligne de commande avec la commande \boxed{\bf{gcc}}.\\
     On peut spécifier le nom de l'exécutable au moment de la compilation avec l'option \texttt{-o}.\n
     \bf{Exemple:} \texttt{gcc -o executable source.c}
@@ -125,12 +125,12 @@
 \begin{defi}{Entiers.}{}
     Il existe plusieurs types d'\bf{entiers} en C:\\
     $\hra$ Des types dont on sait comparer les tailles, sans que la norme ne les fixe : \texttt{int}, \texttt{unsigned int}.\\
-    $\hra$ Des types dont la taille est fixée par la norme : \texttt{int8\_t}, \texttt{uint\_8t}, \texttt{int32\_t}, ...\n
+    $\hra$ Des types dont la taille est fixée par la norme : \texttt{int8\_t}, \texttt{uint8\_t}, \texttt{int32\_t}, ...\n
     Aucun type entier ne permet de représenter tout $\N$ ou $\Z$.
 \end{defi}
 
 \begin{defi}{Entiers signés.}{}
-    Ce sont des types qui peuvent représenter des entiers positifs et négatifs de façon symétrique.\\
+    Ce sont des types qui peuvent représenter des entiers positifs et négatifs de fa\cc{c}on symétrique.\\
     $\hra$ \texttt{int8\_t}: $2^8$ valeurs représentées dans $\lb-2^7, 2^7-1\rb$.\n
     Pour représenter les entiers positifs le premier bit est à 0, puis on a l'écriture du nombre en base 2 avec le bit de poids fort à gauche.
 \end{defi}
@@ -169,14 +169,14 @@
 
 \begin{defi}{}{}
     Une opération entre un entier et un double entraîne une conversion implicite de l'entier en double. Une somme entre deux entiers signés entraîne en général la conversion de l'entier du type le plus petit vers l'autre.\\
-    On évite en général les opération entre entiers signés et non signés.\n
+    On évite en général les opérations entre entiers signés et non signés.\n
     \bf{Attention:} 1/2 donne 0, mais 1.0/2 donne 0.5 en C.
 \end{defi}
 
 \subsubsection{Booléens.}
 \begin{defi}{Booléens.}{}
-    Les booléns n'existent pas par défaut en C. Pour les utiliser, il faut inclure le fichier d'en-tête \texttt{stdbool.h}.\\
-    Les booléns sont représentés par le type \texttt{bool}, codé sur un octet. Il possède deux valeurs : \texttt{true} et \texttt{false}.\\
+    Les booléens n'existent pas par défaut en C. Pour les utiliser, il faut inclure le fichier d'en-tête \texttt{stdbool.h}.\\
+    Les booléens sont représentés par le type \texttt{bool}, codé sur un octet. Il possède deux valeurs : \texttt{true} et \texttt{false}.\\
     Ce type supporte trois opérations :
     $\hra$ \texttt{!} : la négation.
     $\hra$ \texttt{\&\&} : \bf{et} logique.
@@ -192,7 +192,7 @@
     En C, une \bf{variable} est une << boîte >> dans laquelle on met une valeur.\\
     Une variable possède 4 caractéristiques ne pouvant pas être modifiées à l'exécution:\\
     $\hra$ Son nom, son type, son adresse.\\
-    $\hra$ La façon dont les données sont interprétées.\\
+    $\hra$ La fa\cc{c}on dont les données sont interprétées.\\
     En revanche, la valeur de la variable peut être modifiée pendant l'exécution.
 \end{defi}
 
@@ -205,11 +205,11 @@
     $\hra$ Il commence par une lettre ou un underscore.\\
     $\hra$ Il ne contient que des lettres, des chiffres ou des underscores.\\
     $\hra$ Il ne peut pas être un mot-clé.\n
-    Les règles de \bf{bonne partique} sont les suivantes:\\
+    Les règles de \bf{bonne pratique} sont les suivantes:\\
     $\hra$ Éviter de prendre des indentifiants des librairies standard.\\
     $\hra$ Les identifiants doivent être uniques.\\
     $\hra$ Les identifiants doivent être intelligibles.\\
-    $\hra$ Éviter les underscore en premier caractère.
+    $\hra$ Éviter les underscores en premier caractère.
 \end{defi}
 
 \vspace*{-0.7cm}
@@ -219,7 +219,7 @@
 \begin{defi}{Déclaration.}{}
     Avant de pouvoir utiliser une variable en C, il faut la \bf{déclarer}: annoncer qu'on va l'utiliser en spécifiant son nom et son type.\\
     \bf{Exemple:} \c{int n = 1;}\n
-    Suite à cette déclaration, le système réserve en mémoire une boîte de taille \texttt{sizeof(int)} à laquelle on peut accéder via le nom $a$.\\
+    Suite à cette déclaration, le système réserve en mémoire une boîte de taille \texttt{sizeof(int)} à laquelle on peut accéder via le nom $n$.\\
     On peut déclarer plusieurs variables de même type en une seule ligne : \texttt{int a, b, c;}.
 \end{defi}
 
@@ -227,7 +227,7 @@
 
 \begin{defi}{Affectation.}{}
     Pour donner une valeur à une variable, ou pour la modifier, on utilise le nom de la variable suivi de l'opérateur d'\bf{affectation} \texttt{=}, puis de l'expression qui va lui donner sa valeur.\\
-    \bf{Exemple:} \c{int{a; a = 3;}}\n
+    \bf{Exemple:} \c{int a; a = 3;}\n
     Il faut \bf{toujours} initialiser les valeurs.
 \end{defi}
 
@@ -235,7 +235,7 @@
 
 \begin{defi}{Initialisation.}{}
     La première affectation s'appelle l'\bf{initialisation} de la variable.\\
-    On peut déclarer et initialiser une variable sur la même ligne : \c{double pi = 3.0;}.
+    On peut déclarer et initialiser une variable sur la même ligne : \c{double pi = 3.0;}
 \end{defi}
 
 \vspace*{-0.7cm}
@@ -313,7 +313,7 @@
     \end{center}
 \end{defi}
 
-\begin{defi}{Boucle inconditionnelle.}
+\begin{defi}{Boucle inconditionnelle.}{}
     Les \bf{boucles inconditionnelles} permettent de répéter un bloc d'instructions un nombre de fois donné.\\
     En C, on utilise la structure \c{for} pour cela:
     \begin{center}
@@ -356,10 +356,10 @@
     \begin{center}
         \c{void* malloc(size_t size);}
     \end{center}
-    Le type \texttt{void*} peut être implicitement converti en tout type de pointeur.\\
-    Si \texttt{malloc} n'arrive pas à allouer de mémoire, il renvoie \texttt{NULL}.\\
+    Le type \c{void*} peut être implicitement converti en tout type de pointeur.\\
+    Si \c{malloc} n'arrive pas à allouer de mémoire, il renvoie \c{NULL}.\\
     Il n'y a pas de moyen de connaître la taille d'une zone allouée, il faut donc utiliser les méthodes usuelles.\\
-    On accède au contenu de la $i^{\nt{ème}}$ case d'un pointeur \texttt{p} en écrivant \texttt{p[i]}.
+    On accède au contenu de la $i^{\nt{ème}}$ case d'un pointeur \texttt{p} en écrivant \c{p[i]}.
 \end{defi}
 
 \begin{defi}{Libération.}{}
@@ -392,30 +392,30 @@
 \begin{defi}{La pile.}{}
     La pile ne contient pas que des couples identifiants-valeurs, mais également les noms des fonctions appelées. Ce sont les appels qui sont empilés.\n
     À chaque invocation de fonction, un bloc de données est créé, et empilé sur la pile du processus, c'est le bloc d'activation de l'appel (stack frame).\\
-    C'est dans ce bloc que sont écrites toutes les données locales à l'appel de la fonction, au retour de l'appel, le bloc est effacé de la pile. L'empilement et le dépilement de blocs se font rapidement car la structure de pile est faite pour ça.\n
-    Le bloc d'activation contient en particuler:\\
+    C'est dans ce bloc que sont écrites toutes les données locales à l'appel de la fonction, au retour de l'appel, le bloc est effacé de la pile. L'empilement et le dépilement de blocs se font rapidement car la structure de pile est faite pour \cc{c}a.\n
+    Le bloc d'activation contient en particulier:\\
     $\hra$ Les paramètres de la fonction initialisés avec les valeurs des arguments.\\
     $\hra$ Les variables et tableaux locaux.\\
     $\hra$ Un emplacement pour la valeur de retour affecté avec l'évaluation de l'expression qui suit le retour.\\
-    $\hra$ L'adresse de l'instruction à exéctuer après le retour.\n
+    $\hra$ L'adresse de l'instruction à exécuter après le retour.\n
     La gestion de la pile d'appels incombe entièrement au système d'exploitation.\\
-    Les information locales à un appel sont perdues à la sortie de l'appel, la fonction appelante ne récupère que la valeur de retour.
+    Les informations locales à un appel sont perdues à la sortie de l'appel, la fonction appelante ne récupère que la valeur de retour.
 \end{defi}
 
 \begin{defi}{Le tas.}{}
-    Parfois, on a besoin qu des informations survivent à un appel. La meilleure solution est alors de les stocker dans le tas. Si on alloue de la mémoire dans une fonction et qu'on renvoie l'adresse de l'emplacement mémoire, la fonction appelante peut récupérer la valeur de retour et accéder à l'emplacement mémoire.\n
+    Parfois, on a besoin que des informations survivent à un appel. La meilleure solution est alors de les stocker dans le tas. Si on alloue de la mémoire dans une fonction et qu'on renvoie l'adresse de l'emplacement mémoire, la fonction appelante peut récupérer la valeur de retour et accéder à l'emplacement mémoire.\n
     Les paramètres d'une fonction peuvent être de type pointeur, la fonction recopie alors l'adresse, ce qui lui permet d'en modifier le contenu. À la sortie de l'appel, le bloc d'activation disparaît donc cette copie aussi, mais son contenu ne disparaît pas car stocké dans le tas, ou dans un autre bloc.
 \end{defi}
 
 \begin{defi}{Tableaux.}{}
-    Un \bf{tableau} est une suite d'éléments de même type, stockés en mémoire de façon contigue.\\
+    Un \bf{tableau} est une suite d'éléments de même type, stockés en mémoire de fa\cc{c}on contiguë.\\
     En C, un tableau est un pointeur sur la première case du tableau.\\
     Pour accéder à la $i^{\nt{ème}}$ case d'un tableau, on écrit \c{t[i]}.\n
     \bf{Exemple:} \c{int t[5]; t[0] = 3; t[1] = 4; t[2] = t[0] + t[1];}
 \end{defi}
 
 \begin{defi}{Tableaux multidimensionnels.}{}
-    Les \bf{tableaux multidimensionnels} dont les données sont déterminées statiquement sont rangés en mémoire comme un tableau unidimensionnel, dans lequel on découpe chaque ligne. Au contraire, les tableaux dont les données sont déterminées dynamiquement ne représentent pas une zone mémoire contigue.\n
+    Les \bf{tableaux multidimensionnels} dont les données sont déterminées statiquement sont rangés en mémoire comme un tableau unidimensionnel, dans lequel on découpe chaque ligne. Au contraire, les tableaux dont les données sont déterminées dynamiquement ne représentent pas une zone mémoire contiguë.\n
     \bf{Exemple:} \c{int t[2][3]; t[0][0] = 3; t[1][2] = 4;}
 \end{defi}
 
@@ -424,10 +424,10 @@
 \end{defi}
 
 \begin{defi}{Arguments du main.}{}
-    Pour donner un argument à une command dans le shell, on l'écrit après la command.\\
-    Les programmes en C récupères ces arguments comme valeur de paramètre du \texttt{main}.\\
+    Pour donner un argument à une commande dans le shell, on l'écrit après la commande.\\
+    Les programmes en C récupèrent ces arguments comme valeurs de paramètre du \texttt{main}.\\
     Pour s'en servir, on écrit \c{int main(int argc, char* argv[])}.\\
-    Au lancement du programme, les paramètres \texttt{argc} et \texttt{argv} reçoivent:\\
+    Au lancement du programme, les paramètres \texttt{argc} et \texttt{argv} re\cc{c}oivent:\\
     $\hra$ \texttt{argc} : le nombre d'arguments passés au programme.\\
     $\hra$ \texttt{argv} : un tableau de chaînes de caractères contenant les arguments passés au programme.\n
     \bf{Exemple:} \texttt{./a.out 3 4} donne \texttt{argc = 3} et \texttt{argv = ["./a.out", "3", "4"]}.
@@ -446,9 +446,9 @@
 \begin{defi}{Syntaxe.}{}
     La création d'un type structuré se fait grâce au spécifiacteur \texttt{struct} suivi du nom du type.
     \begin{center}
-        \c struct point { double x; double y; };|
+        \c{struct point { double x; double y; }}
     \end{center}
-    Cette instruction crée le type \c{struct point} qui contient deux champs de type \c{double}| nommés \texttt{x} et \texttt{y}.\\
+    Cette instruction crée le type \c{struct point} qui contient deux champs de type \c{double} nommés \texttt{x} et \texttt{y}.\\
     Une structure peut \bf{s'auto-référencer}, c'est-à-dire contenir un champ de type pointeur sur elle-même.
 \end{defi}
 
@@ -515,10 +515,10 @@
 
 \begin{defi}{Types de base.}{}
     OCaml possède des types de base:\\
-    $\hra$ \ocaml{int} : entiers \texttt{(+, -, *, /, mod)} codé sur 63 bits.\\
+    $\hra$ \ocaml{int} : entiers \texttt{(+, -, *, /, mod)} codés sur 63 bits.\\
     $\hra$ \ocaml{float} : flottants \texttt{(+., -., *., /.)} en norme IEE.\\
     $\hra$ \ocaml{bool} : booléens \texttt{(\&\&, ||, not)}.\\
-    $\hra$ \ocaml{char} : caractères codé sur 8 bits en ASCII.\\
+    $\hra$ \ocaml{char} : caractères codés sur 8 bits en ASCII.\\
     $\hra$ \ocaml{string} : chaînes de caractères \texttt{($\hat{\phantom{a}}$)}.
 \end{defi}
 
@@ -548,7 +548,7 @@
     \begin{center}
         \ocaml{let nom = expression}
     \end{center}
-    où nom est un identifiant. Les règles de construction d'un identifiant sont globaleme,nt les mêmes qu'en C. L'identifiant commence nécessairement par une minuscule.\n
+    où nom est un identifiant. Les règles de construction d'un identifiant sont globalement les mêmes qu'en C. L'identifiant commence nécessairement par une minuscule.\n
     Une définition n'est pas une expression. 
 \end{defi}
 
@@ -595,14 +595,14 @@
     On utilise le mot-clé \ocaml{fun}.\\
     Pour appliquer une fonction à une valeur, on écrit la fonction, un espace puis la valeur.
 \end{defi}
-
+Synta
 \begin{defi}{Fonctions.}{}
     La syntaxe précédente est un peu lourde, OCaml possède une autre syntaxe pour définir et donner directement un nom à une fonction : \ocaml{let suivant x = x + 1}\\
     Cette expression est sémantiquement équivalente à la précédente, mais possède une autre syntaxe. La deuxième écriture est un sucre syntaxique.
 \end{defi}
 
 \begin{defi}{Sémantique statique.}{}
-    Le type d'une fonction contient une flèche : $t \to u$ signifie que la fonction possède un unique paramètre de type $t$ et que son évaluation est de type $u$.\n
+    Le type d'une fonction contient une flèche : $t \to u$ signifiant que la fonction possède un unique paramètre de type $t$ et que son évaluation est de type $u$.\n
     Si une fonction possède deux arguments, son type est : $t_1\to t_2 \to u$.\\
     L'application d'une fonction est prioritaire sur les opérateurs arithmétiques.
 \end{defi}
@@ -613,7 +613,7 @@
 
 \begin{defi}{Curryfication.}{}
     On a vu que dans le type d'une fonction, le symbole flèche semble avoir deux significations différentes, en fait, ce n'est pas le cas: on ne définit que des fonctions à un seul argument en OCaml.\\
-    La notation \texttt{fun x y $\to$ e} est un sucre syntaxique pour \ocaml{fun x $\to$ (fun y $\to$ e)}.\\
+    La notation \ocaml{fun x y -> e} est un sucre syntaxique pour \ocaml{fun x -> (fun y -> e)}.\\
     Dans cette notation, on voit que l'argument est unique.\n
     L'associativité de $\to$ se fait de gauche à droite, donc \texttt{x $\to$ (y $\to$ e)} peut s'écrire \texttt{x $\to$ y $\to$ e}.
 \end{defi}
@@ -640,7 +640,7 @@
 \end{defi}
 
 \begin{defi}{Listes.}{}
-    Les \bf{listes} sont des listes chaînées. Elles s'écrivent entre crochets et ses élément sont séparés par des points-virgules.
+    Les \bf{listes} sont des listes chaînées. Elles s'écrivent entre crochets et ses éléments sont séparés par des points-virgules.
     Cette syntaxe est un sucre syntaxique pour : \texttt{t::s} où $t$ est la tête de liste et $s$ la suite.
     Les listes sont immuables.\n
     \bf{Exemple:} \ocaml{[1; 2; 3]} est une liste d'entiers.\n
@@ -689,7 +689,7 @@
     match e with | m1 -> e1 | m2 -> e2 | ... | mn -> en
     \end{pygmented}
     $\hra$ \texttt{e} est évalué en \texttt{v}.\\
-    $\hra$ Si \texttt{v} s'identifie avec le premier motif possible.\\
+    $\hra$ \texttt{v} s'identifie avec le premier motif possible.\\
     $\hra$ L'expression associée est évaluée en substituant aux variables de motif les valeurs associées.\\
     $\hra$ La valeur obtenue est la valeur de l'expression.\n
     \bf{Sémantique statique:}\\
@@ -718,8 +718,8 @@
 \begin{defi}{Types énumérés.}{}
     Un \bf{type énuméré} (ou somme) représente un ensemble fini de valeurs.\\
     En OCaml, on utilise le mot-clé \ocaml{type} pour définir un type énuméré.\\
-    Le nom d'un type commence par une lettre miniscule, chaque valeur particulière d'un type énuméré s'appelle un constructeur et son identifiant commence par une majuscule. Dans la déclaration d'un type somme, les noms des constructeurs sont séparés par des barres verticales.\\
-    On peut évaleur une expression de type énuméré par filtrage.\\
+    Le nom d'un type commence par une lettre minuscule, chaque valeur particulière d'un type énuméré s'appelle un constructeur et son identifiant commence par une majuscule. Dans la déclaration d'un type somme, les noms des constructeurs sont séparés par des barres verticales.\\
+    On peut évaluer une expression de type énuméré par filtrage.\\
     \bf{Exemple:} \ocaml{type jour = Lundi | Mardi | Mercredi | Jeudi | Vendredi | Samedi | Dimanche}.\\
     \bf{Sémantique dynamique:}\\
     Un constructeur est constant.\\
@@ -738,7 +738,7 @@
 \end{defi}
 
 \begin{defi}{Types récursifs et polymorphismes.}{}
-    En OCaml, on peut définir des types récursifs, on peut définir des types polumorphes en leur ajoutant un paramètre sous la forme de variable de type avant son nom.\\
+    En OCaml, on peut définir des types récursifs, on peut définir des types polymorphes en leur ajoutant un paramètre sous la forme de variable de type avant son nom.\\
     \bf{Exemple:} \ocaml{type 'a liste = Vide | Maillon of 'a * 'a liste}.\n
     On peut utiliser plusieurs paramètres de type.\\
     \bf{Exemple:} \ocaml{type ('a, 'b) couple = 'a * 'b}.\n
@@ -748,8 +748,8 @@
 
 \begin{defi}{Enregistrements.}{}
     Un \bf{enregistrement} est un type qui permet d'agréger des données (dont le type existe).\\
-    Il y a un champ par type, et il faut donner une valeur à chaque champs, sinon le compilateur renvoie une erreur.\\
-    Pour récurpérer la valeur d'un champ, on utilise le nom de la variable point le nom du champ.\n
+    Il y a un champ par type, et il faut donner une valeur à chaque champ, sinon le compilateur renvoie une erreur.\\
+    Pour récupérer la valeur d'un champ, on utilise le nom de la variable point le nom du champ.\n
     \bf{Exemples:}\\
     Définition du type: \ocaml{type point = { x : float; y : float }}\\
     Déclaration d'une instance de ce type: \ocaml{let p = { x = 3.0; y = 4.0 }}\\
@@ -767,7 +767,7 @@
         \ocaml{let v1, v2, ... = (e1, e2, ...)}
     \end{center}
     Quitte à utiliser un joker pour les valeurs qui ne nous intéressent pas.\\
-    On ajoute le motif \texttt{(m1, m2, ...)} dans les motifs autorisés, avec parenthèses facultative, mais le motif doit être de même taille que le n-uplet filtré.
+    On ajoute le motif \texttt{(m1, m2, ...)} dans les motifs autorisés, avec parenthèses facultatives, mais le motif doit être de même taille que le n-uplet filtré.
 \end{defi}
 
 \begin{defi}{Type option.}{}
@@ -789,8 +789,8 @@
     Une variable de type référence est immuable, mais son contenu est mutable.\\
     On utilise le mot-clé \ocaml{ref} devant une valeur pour créer une référence sur cette valeur.\n
     \bf{Exemple:} \ocaml{let r = ref 3} crée une référence sur l'entier 3.\n
-    Le type d'une référence est \ocaml{'a ref} est en réalité le type \ocaml{{ mutable contents : 'a }}.\\
-    Le déréférencement se fait avec l'opérateur \texttt{!} et l'affectation avec \texttt{:=}.\n
+    Le type d'une référence est \ocaml{'a ref} est en réalité le type \ocaml{ { mutable contents : 'a } }.\\
+    Le déréférencement se fait avec l'opérateur \texttt{!} et l'affectation avec \texttt{:=}\n
     On teste l'égalité des contenus avec \texttt{=} et \texttt{<>}.\\
     On teste l'égalité des adresses avec \texttt{==} et \texttt{!=}.\n
     Il est possible de filtrer une référence comme un enregistrement avec un unique champ contents.

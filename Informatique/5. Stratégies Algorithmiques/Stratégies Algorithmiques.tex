@@ -26,7 +26,7 @@
 
 \begin{defi}{Algorithmes gloutons.}{}
     \bf{Idée.} Parier sur les maxima locaux.\\
-    \bf{Iontraintes.} La solution n'est pas toujours optimale.
+    \bf{Contraintes.} La solution n'est pas toujours optimale.
 \end{defi}
 
 \vspace*{-0.7cm}
@@ -48,14 +48,14 @@
 \end{ex}
 
 \begin{ex}{Placement d'activités.}{}
-    \bf{Problème.} attribuer des salles pour le plus de cours possibles.\\
+    \bf{Problème.} Attribuer des salles pour le plus de cours possibles.\\
     \bf{Théorème.} Le choix du cours terminant le plus tôt est optimal.
     \tcblower
     Supposons que ce choix mène à la liste de cours $(c_1,...c_n)$. Montrons par l'absurde qu'on ne peut pas avoir de suite plus longue par récurrence descendante sur la longueur du plus long préfixe commun.\\
     \bf{Initialisation.} $(d_1,...,d_n,...)$ avec $d_i=c_i$ pour $i\in\lb1,n\rb$.\\
-    On peut alors construire $(c_1,...,c_n,c_{n+1})$, car $d_{n+1}$ est plaçable : contradiction.\\
-    \bf{Hérédité.} Pour $k<n$, il ne peut pas exister une suite de cours plaçable de longueur $n+1$ ayant un préfixe commun de longueur au moins $k+1$ avec $(c_1,...,c_n)$.\\
-    Supposons qu'il existe une suite de cours plaçables $(c_1,...,c_k,d_{k+1},...,d_{n+1})$, $c_{k+1}$ est plaçable entre $c_k$ et $d_{k+1}$, ce qui est absurde.
+    On peut alors construire $(c_1,...,c_n,c_{n+1})$, car $d_{n+1}$ est pla\cc{c}able : contradiction.\\
+    \bf{Hérédité.} Pour $k<n$, il ne peut pas exister une suite de cours pla\cc{c}able de longueur $n+1$ ayant un préfixe commun de longueur au moins $k+1$ avec $(c_1,...,c_n)$.\\
+    Supposons qu'il existe une suite de cours pla\cc{c}ables $(c_1,...,c_k,d_{k+1},...,d_{n+1})$, $c_{k+1}$ est pla\cc{c}able entre $c_k$ et $d_{k+1}$, ce qui est absurde.
 \end{ex}
 
 \vspace*{-0.7cm}

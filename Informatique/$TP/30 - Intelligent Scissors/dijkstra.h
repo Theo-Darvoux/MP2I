@@ -33,7 +33,7 @@ typedef struct tas tas;
 
 couple vide = {.x = -1, .y = -1};
 
-// Convolutions
+// Convolutions (tirées de Wikipedia ou bien du tableau de la salle de TP)
 
 int laplace[5][5] = {{0, 0, -1, 0, 0}, {0, -1, -2, -1, 0}, {-1, -2, 17, -2, -1}, {0,-1,-2,-1,0}, {0,0,-1,0,0}};
 int dx[5][5] = {{0,0,0,0,0},{0,1, 0, -1,0}, {0,2, 0, -2,0}, {0,1, 0, -1,0},{0,0,0,0,0}};

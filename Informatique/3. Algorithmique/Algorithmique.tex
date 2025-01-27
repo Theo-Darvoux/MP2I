@@ -13,7 +13,7 @@
 
 \begin{defi}{Algorithmique.}{}
     L'\bf{algorithmique} est la branche de l'informatique qui étudie la conception et l'analyse des algorithmes.\\
-    Elle comporte troix axes d'étude :\\
+    Elle comporte trois axes d'étude :\\
     $\hra$ La conception.\\
     $\hra$ La correction.\\
     $\hra$ L'efficacité.
@@ -66,7 +66,7 @@
 \vspace*{-0.3cm}
 
 \begin{defi}{Complexité spatiale.}{}
-    La \bf{complexité spatiale} d'n algorithme est la place mémoire occupée en plus de l'entrée pendant le calcul, en fonction de la taille de l'entrée.
+    La \bf{complexité spatiale} d'un algorithme est la place mémoire occupée en plus de l'entrée pendant le calcul, en fonction de la taille de l'entrée.
 \end{defi}
 
 \subsection{Pourquoi s'embêter avant de programmer.}
@@ -131,7 +131,7 @@
     C'est une expression booléenne qui vérifie les propriétés suivantes :\\
     $\hra$ Vrai avant d'entrer dans la boucle.\\
     $\hra$ S'il est vrai à l'entrée d'une itération et qu'on sort de l'itération, alors il est vrai en sortie.\\
-    Si on sort de la boucle, les propriétés de l'invariant de boucles assurent qu'il est encore vrai.
+    Si on sort de la boucle, les propriétés de l'invariant de boucle assurent qu'il est encore vrai.
 \end{defi}
 
 \begin{meth}{Cas des fonctions récursives.}{}
@@ -181,7 +181,7 @@ Soient $f$ et $g$ deux fonctions de $\N$ dans $\R_+$.
 
 \begin{prop}{Trivial.}{}
     \begin{equation*}
-        f\in\Theta(g) \iff f\in O(g) \et f\in\Omega(g) \iff f\in O(g) \et g \in O(f)
+        f\in\Theta(g) \iff \left[f\in O(g) \et f\in\Omega(g)\right] \iff \left[f\in O(g) \et g \in O(f)\right]
     \end{equation*}
 \end{prop}
 
@@ -233,20 +233,18 @@ Soient $f$ et $g$ deux fonctions de $\N$ dans $\R_+$.
 \subsection{Comparaison et calculs.}
 
 \begin{defi}{}{}
-    Soient deux fonctions $f$ et $g$ allent de $\N$ vers $\R_+$, ne convergeant pas vers 0.
+    Soient deux fonctions $f$ et $g$ allant de $\N$ vers $\R_+$, ne convergeant pas vers 0.
     \begin{equation*}
         \frac{f(n)}{g(n)}\xrightarrow[n\to+\infty]{}l \in \R \ra f \in O(g)
     \end{equation*}
     De plus, $f\in\Theta(g) \iff l \neq 0$.
     \tcblower
-    $\bullet$ Supposons que $f/g$ converge et notons $l$ sa limite.\\
-    Toute suite convergente est bornée donc il existe $C\in\R_+^*$ tel que $f(n)<C\cdot g(n)$.\n
+    Supposons que $f/g$ converge vers $l\in\R$. Toute suite convergente est bornée donc $\exists C\in\R_+^*, ~ f(n)<C\cdot g(n)$.\n
     \boxed{\ra} Supposons par contraposée que $l=0$.  Alors $g/f$ diverge vers $+\infty$ comme inverse.
     \begin{equation*}
         \forall \e>0, \exists N\in\N, \forall n \geq N, ~ g(n)>\e \cdot f(n) ~\nt{donc}~ g\notin O(f) ~\nt{donc}~ f\notin\Theta(g).
     \end{equation*}
-    \boxed{\la} Supposons $l\neq0$. Alors $g/f$ converge, donc $g\in O(f)$ (et $f\in O(g)$) donc $f\in\Theta(g)$.\\
-    \warning La réciproque du $\bullet$ est fausse.
+    \boxed{\la} Supposons $l\neq0$. Alors $g/f$ converge, donc $g\in O(f)$ (et $f\in O(g)$) donc $f\in\Theta(g)$.
 \end{defi}
 
 \vspace*{-0.3cm}
@@ -380,7 +378,7 @@ Notation locale : pour $k\in\N$, on note $E_n$ l'ensemble des entrées de taille
     On a la relation de récurrence suivante : $T(0)=1$ et pour $n>0$, $T(n)=\a+T(n/2)$.\\
     Pour simplifier les calculs, on suppose que $n=2^k$. Alors $T(n)=T(2^k)=\a+T(2^{k-1})=...=ka+T(1)$.\\
     Cas général : $\forall n \in \N, ~ \exists k \in \N ~ 2^k \leq n \leq 2^{k+1}$ donc $T(n)=O(k)=O(\log_2 n)$.\\
-    Si l'élément à trouver dans le tableau n'y est pas, on a un complexité en $\Omega(\log n)$, d'où le $\Theta(\log n)$.
+    Si l'élément à trouver dans le tableau n'y est pas, on a une complexité en $\Omega(\log n)$, d'où le $\Theta(\log n)$.
 \end{prop}
 
 \pagebreak

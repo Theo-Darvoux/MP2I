@@ -1,7 +1,10 @@
+(* COPYRIGHT : MOI *)
+
 open Images
 open Yeux_rouges
 
 let dimensions (img : image) = Array.length img.pix.(0), Array.length img.pix
+
 let voisins (img : image) (x, y : int * int) =
   let mx, my = dimensions img in
   let res = ref [] in
@@ -16,7 +19,7 @@ let rec ajoute_sommets q l =
   | [] -> ()
   | (x, y)::tl -> Queue.add (x, y) q; ajoute_sommets q tl
 
-(* Dijkstra *)
+(* Dijkstra ? *)
 let rec composante_connexe (img : image) (x0, y0 : int * int) =
   let decouverts = Queue.create () in ajoute_sommets decouverts [(x0, y0)];
   let mx, my = dimensions img in
@@ -47,8 +50,6 @@ let main file (x, y) (x', y') =
   enlever_yeux_rouges img (composante_connexe img (x, y));
   enlever_yeux_rouges img (composante_connexe img (x', y'));
   sauvegarder_image img (String.sub file 0 (String.length file - 4) ^ "rendu.ppm");;
-
-(* C'est interdit les doubles poitns virgule !!!!*)
 
 main "photo1.ppm" (427, 672) (1548, 648);; 
 main "photo2.ppm" (220, 393) (369, 379);;

@@ -47,8 +47,7 @@
 \vspace*{-0.8cm}
 
 \begin{defi}{Sous-graphes}{}
-    Soit un graphe $G=(S,A)$.\\
-    Le graphe $G'=(S',A')$ est un \textbf{sous-graphe} de $G$ si $S'\subset S$ et $A'\subset A$.\\
+    Soit un graphe $G=(S,A)$. Le graphe $G'=(S',A')$ est un \textbf{sous-graphe} de $G$ ssi $S'\subset S$ et $A'\subset A$.\\
     Soit $S''\subset S$, le sous-graphe \textbf{induit} de $G$ par $S''$ est le graphe $G''=(S'',A'')$ où $A''=\{(s,t)\in A\mid s,t\in S''\}$.
 \end{defi}
 
@@ -91,9 +90,9 @@
 \end{corr}
 
 \begin{prop}{}{}
-    Soit $G=(S,A)$ un graphe $G$ possède $2^n$ sous-graphes induits.
+    Soit $G=(S,A)$ un graphe $G$ possède $2^{|S|}$ sous-graphes induits.
     \tcblower
-    Pour chaque sommet, on a le choix de le mettre ou non, d'où $2^n$ possibilités.
+    Pour chaque sommet, on a le choix de le mettre ou non, d'où $2^{|S|}$ possibilités.
 \end{prop}
 
 \vspace*{-0.5cm}
@@ -259,15 +258,15 @@
     \end{enumerate}
     \tcblower
     On sait $1\Rightarrow2,2\Rightarrow3,5\Rightarrow6$.\\
-    \fbox{$3\Rightarrow4$}. Supposons $G$ connexe minimal. Soient $s,t\in S$ distincts. Il existe un chemin élémentaire entre $s$ et $t$ car $G$ est connexe. Montrons qu'il est unique.\\
+    \fbox{$3\Rightarrow4$} Supposons $G$ connexe minimal. Soient $s,t\in S$ distincts. Il existe un chemin élémentaire entre $s$ et $t$ car $G$ est connexe. Montrons qu'il est unique.\\
     Supposons qu'il en existe deux $\rho:u_0-...-u_k$ et $\rho':v_0-...-v_l$ où $u_0=v_0=s$ et $u_k=v_l=t$.\\
     Alors $\exists i \in \lb0,k\rb \forall j \in \lb 0, i-1 \rb ~ u_j = v_j$ et $u_i\neq v_i$.\\
     Soit $h$ le plus petit entier tel que $h\geq i$ et $u_h$ est sommet de $v_i-...-v_l$, il existe car c'est au moins $u_k$.\\
     Alors $\exists!g>i \quad u_h=v_g$  et donc $u_{i-1}-u_i-...-u_k=v_g-...-v_i$ est un cycle, ce qui contredit l'hypothèse.\n
-    \fbox{$4\Rightarrow5$}. Montrons que $G$ est acylique par l'absurde. Soit un cycle de $G$ et $s,t$ deux sommets distincts de ce cycle.
+    \fbox{$4\Rightarrow5$} Montrons que $G$ est acylique par l'absurde. Soit un cycle de $G$ et $s,t$ deux sommets distincts de ce cycle.
     Le cycle donne deux chemins simples entre $s$ et $t$ avec aucune arête commune. On extrait donc deux chemin élémentaires, différents de ces chemins, ce qui contredit l'hypothèse.\\
     Donc $G$ est acyclique et connexe $|A|=|S|-1$\n
-    \fbox{$6\Rightarrow1$}. Soit $G$ acyclique maximal. Montrons que $G$ est connexe.\\
+    \fbox{$6\Rightarrow1$} Soit $G$ acyclique maximal. Montrons que $G$ est connexe.\\
     Soient $s,t$ distincts dans $S$. Si $st\in A$, il y a bien un chemin entre $s$ et $t$. Sinon, le graphe $G'=(S,A\cup\{st\})$ contient un cycle par hypothèse, ce cycle contient l'arête $st$. Il existe donc un chemin qui ne contient pas $st$ (celui du cycle, sans $st$), on en déduit que $G$ est connexe.
 \end{prop}
 
@@ -372,7 +371,7 @@
 \vspace*{-0.8cm}
 
 \begin{prop}{}{}
-    Soit $M$ la matrice d'adjacence d'un graphe et $n\in\N$, pour tout couple de sommets $s,t$, $M_{s,t}^n$ donne le nombre de chemins de longueur $n$ de $s$ vers $t$.
+    Soit $M$ la matrice d'adjacence d'un graphe et $n\in\N$, pour tout couple de sommets $(s,t)$, $M_{s,t}^n$ donne le nombre de chemins de longueur $n$ de $s$ vers $t$.
     \tcblower
     On note $C_n(s,t)$ le nombre de chemins de longueur $n$ de $s$ vers $t$. Par récurrence sur $n$.\\
     \textbf{Cas de base:}, $M^0=I$ et il existe un chemin de longueur 0 de $s$ vers $t$ ssi $t=s$.\\
@@ -639,7 +638,7 @@
 \vspace*{-0.7cm}
 
 \begin{defi}{Initialisation de poids.}{}
-    Principe : on accumule en maintenant à jour les meilleures données <<jusque-là>> :
+    Principe : on accumule en maintenant à jour les meilleures données <<jusque-là>> :\\
     \hspace*{0.28cm}\begin{algorithm}[H]
         \LinesNumbered
         \caption{Initialisation de poids.}
@@ -716,6 +715,7 @@
             }
         }
     \end{algorithm}
+    En pratique, on va garder en mémoire l'indice de tous les sommets dans la file pour les \texttt{actualiser}.
 \end{defi}
 
 \vspace*{-0.8cm}
@@ -915,5 +915,7 @@
     \end{algorithm}
 
 \end{defi}
+
+\fin
 
 \end{document}

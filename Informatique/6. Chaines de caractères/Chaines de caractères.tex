@@ -13,11 +13,13 @@
 
 \begin{defi}{Caractère.}{}
     Ils sont codés sur un octet en OCaml, les normes garantissent le code ASCII.\\
-    Leur type est \texttt{char} en C et en OCaml, le lien entre le code ASCII et le caractère peut être obtenu par conversion explicite en C, et avec \texttt{char\_of\_int} ou \texttt{int\_of\_char} en OCaml.\\
+    Leur type est \c{char} en C et en OCaml, le lien entre le code ASCII et le caractère peut être obtenu par conversion explicite en C, et avec \ocaml{char_of_int} ou \ocaml{int_of_char} en OCaml.\\
     Il existe des opérations entre caractères : \texttt{<, <=, >, >=, ==, !=, =, <>}.\\
     On a l'assurance que les minuscules, majuscules et chiffres soient dans l'ordre.\\
-    Affichage : \texttt{"\%c"} en C, \texttt{print\_char} en OCaml. 
+    Affichage : \texttt{"\%c"} en C, \ocaml{print_char} en OCaml. 
 \end{defi}
+
+\pagebreak
 
 \section{Chaînes de caractères.}
 
@@ -27,18 +29,18 @@ Les constantes littérales seront entre guillemets.
 
 \begin{defi}{}{}
     Il n'existe pas de chaîne de caractère en C, on appelle chaîne de caractères une adresse où sont stockés des caractères.\\
-    Affichage : \texttt{printf("\%s", chaine);} ou bien \texttt{printf("chaine");}
+    Affichage : \c{printf("\%s", chaine);} ou bien \c{printf("chaine");}
 \end{defi}
 
 \subsection{En OCaml.}
 
 \begin{defi}{}{}
-    Le type est \texttt{string}.\\
-    Pour accéder au $i$ème caratère, on utilise \texttt{chaine.[$i$]}.\\
+    Le type est \ocaml{string}.\\
+    Pour accéder au $i$ème caratère, on utilise \ocaml{chaine.[i]}.\\
     Les indices commencent à 0, les accès sont en temps constant. Les chaînes de caractère sont immuables.\\
-    Affichage : \texttt{print\_string chaine;} ou bien \texttt{print\_endline chaine;}.\\
-    Concaténation : \texttt{chaine1 $\Hat{}$ chaine2}.\\
-    Longueur : \texttt{String.length chaine}.
+    Affichage : \ocaml{print_string chaine;} ou bien \ocaml{print_endline chaine;}.\\
+    Concaténation : \ocaml{chaine1 ^ chaine2}.\\
+    Longueur : \ocaml{String.length chaine}.
 \end{defi}
 
 \section{Entrées et Sorties.}
@@ -46,7 +48,7 @@ Les constantes littérales seront entre guillemets.
 \begin{defi}{Flux de données.}{}
     Un \bf{flux de données} est une transmissions ininterrompue d'une suite de données.\\
     Un processus a trois flux standards :
-    \begin{itemize}[label=---, topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item \texttt{<} : entrée standard.
         \item \texttt{>} : sortie standard.
         \item \texttt{2>} : sortie d'erreur.
@@ -57,11 +59,11 @@ Les constantes littérales seront entre guillemets.
 
 \begin{defi}{}{}
     Codes usuels :  entiers : \texttt{\%d}, flottants : \texttt{\%f}, caractères : \texttt{\%c}, pointeurs : \texttt{\%p}.\\
-    Sortie standard : \texttt{printf(const char*, ...)}\\
+    Sortie standard : \c{printf(const char*, ...)}\\
     Elle bufferise par lignes.\n
-    Sortie erreur : \texttt{fprintf(FILE*, const char*, ...);} avec \texttt{stderr} pour \texttt{FILE*}.\\
+    Sortie erreur : \c{fprintf(FILE*, const char*, ...);} avec \c{stderr} pour \c{FILE*}.\\
     Elle ne bufferise pas.\n
-    Lire sur l'entrée standard : \texttt{scanf(const char*, ...);}
+    Lire sur l'entrée standard : \c{scanf(const char*, ...);}
 \end{defi}
 
 \subsection{En OCaml.}
@@ -77,10 +79,10 @@ Les constantes littérales seront entre guillemets.
 \subsection{En C.}
 
 \begin{defi}{}{}
-    On utilise \texttt{fopen(const char*, const char*);} en spécifiant le chemin du fichier et le mode d'ouverture.\\
-    Lecture : \texttt{fscanf(FILE*, const char*, ...);}\\
-    Écriture : \texttt{fprintf(FILE*, const char*, ...);}\\
-    Fermeture : \texttt{fclose(FILE*);}\n
+    On utilise \c{fopen(const char*, const char*);} en spécifiant le chemin du fichier et le mode d'ouverture.\\
+    Lecture : \c{fscanf(FILE*, const char*, ...);}\\
+    Écriture : \c{fprintf(FILE*, const char*, ...);}\\
+    Fermeture : \c{fclose(FILE*);}\n
     En cas d'oubli de fermeture, on épuise les ressources du système et les écritures peuvent ne pas se faire. 
 \end{defi}
 
@@ -88,11 +90,11 @@ Les constantes littérales seront entre guillemets.
 
 \begin{defi}{}{}
     Même principe :\\
-    Ouverture : \texttt{open\_in} en lecture, \texttt{open\_out} en écriture.\\
-    Lecture : \texttt{input\_line} ou bien \texttt{input\_char}.\\
-    Écriture : \texttt{output\_string} ou bien \texttt{output\_char}.\\
-    Fermeture : \texttt{close\_in} ou bien \texttt{close\_out}.\\
-    En fin de fichier, on obtient l'exception \texttt{End\_of\_file}.
+    Ouverture : \ocaml{open_in} en lecture, \ocaml{open_out} en écriture.\\
+    Lecture : \ocaml{input_line} ou bien \ocaml{input_char}.\\
+    Écriture : \ocaml{output_string} ou bien \ocaml{output_char}.\\
+    Fermeture : \ocaml{close_in} ou bien \ocaml{close_out}.\\
+    En fin de fichier, on obtient l'exception \ocaml{End_of_file}.
 \end{defi}
 
 \section{Recherche de motifs.}
@@ -178,7 +180,7 @@ Les constantes littérales seront entre guillemets.
 \subsection{Algorithme de Rabin-Karp.}
 
 \begin{center}
-    Sera ajouté plus tard (?).
+    Sera ajouté plus tard (non).
 \end{center}
 
 \pagebreak
@@ -248,5 +250,7 @@ Les constantes littérales seront entre guillemets.
         \Retour l'élément de la file.
     \end{algorithm}
 \end{defi}
+
+\fin
 
 \end{document}

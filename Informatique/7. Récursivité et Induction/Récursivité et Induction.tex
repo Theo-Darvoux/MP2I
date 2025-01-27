@@ -12,15 +12,15 @@
 \section{Récurrence sur \texorpdfstring{$\N$}{Lg}}
 
 \begin{prop}{Récurrence.}{}
-    Soit $P(n)$ un prédicat sur $n\in\N$.
+    Soit $\P(n)$ un prédicat sur $n\in\N$.
     \begin{equation*}
-        (P(0) ~ \nt{et} ~ \forall n\in\N, P(n) \ra P(n+1)) \ra \forall n\in\N, ~ P(n).
+        (\P(0) ~ \nt{et} ~ \forall n\in\N, \P(n) \ra \P(n+1)) \ra \forall n\in\N, ~ \P(n).
     \end{equation*}
     \tcblower
-    Supposons que $E=\{n\in\N ~ | ~ P(n)\}$ est non vide.\\
-    Alors $E$ est minoré et non vide, il a un minimum $m$ non nul tel que $P(m)$ est faux.\\
-    Ainsi, $P(m-1)$ est vrai car $m-1<m$ et $m$ est le minimum de $E$, or $P(m-1)\ra P(m)$.\\
-    On en déduit que $P(m)$ est vrai, ce qui est absurde, donc $E=\0$.\n
+    Supposons que $E=\{n\in\N ~ | ~ \P(n)\}$ est non vide.\\
+    Alors $E$ est minoré et non vide, il a un minimum $m$ non nul tel que $\P(m)$ est faux.\\
+    Ainsi, $\P(m-1)$ est vrai car $m-1<m$ et $m$ est le minimum de $E$, or $\P(m-1)\ra \P(m)$.\\
+    On en déduit que $\P(m)$ est vrai, ce qui est absurde, donc $E=\0$.\n
     \bf{Remarques.} Ce principe repose sur les propriétés de $\N$, qui possède un ordre total, a un élément plus petit 0 et est le plus petit sous-ensemble de $\R$ tel que $0\in\N$ et $n\in\N\ra n+1\in\N$.
 \end{prop}
 
@@ -46,16 +46,15 @@
 
 \begin{prop}{Ensemble bien fondé. $\star$}{}
     Soit $E$ un ensemble ordonné par la loi $\leq$. Il y a équivalence entre :\\
-    \hspace*{2em}$1.$ Tout sous-ensemble \textbf{non-vide} de $E$ admet un élément minimal.\\
+    \hspace*{2em}$1.$ Tout sous-ensemble non-vide de $E$ admet un élément minimal.\\
     \hspace*{2em}$2.$ Toute suite infinie décroissante de $E$ est stationnaire.
     \tcblower
     \fbox{$\ra$} Supposons que tout sous-ensemble non-vide de $E$ admet un élément minimal.\\
     Soit $(u_n)_{n\in\mathbb{N}}$ une suite infinie décroissante de $E$.\\
     Soit $F=\{u_n ~ | ~ n \in \mathbb{N}\}\subset E$. Alors $\exists k \in \mathbb{N} ~ | ~ u_k = \min(F)$, or $(u_n)$ est décroissante donc $\forall n \geq k, ~ u_n = u_k$.\\
     On a bien montré que cette suite est stationnaire.\\[0.2cm]
-    \fbox{$\la$} Supposons que toute suite infinie décroissante de $E$ est stationnaire.\\
-    Soit $F\subset E ~ | ~ F \neq \varnothing$.\\
-    On définit $(u_n)$ telle que $u_0 \in F$ et $u_{n+1}$ soit le prédécesseur immédiat de $u_n$ par $\leq$ s'il existe, sinon $u_n$.\\
+    \fbox{$\la$} Supposons que toute suite infinie décroissante de $E$ est stationnaire. Soit $F\subset E$ tel que $F \neq \0$.\\
+    On définit $(u_n)$ : $u_0 \in F$ et pour $n\in\N$, $u_{n+1}$ est le prédécesseur immédiat de $u_n$ par $\leq$ s'il existe, sinon $u_n$.\\
     Par construction, $(u_n)$ est infinie et décroissante donc stationnaire : $\exists k \in \mathbb{N} ~ \forall n \geq k, ~ u_n = u_k$.\\
     On en déduit que $u_k$ n'a pas de prédécesseur par $\leq$, c'est le minimum de $F$.\\
     On a bien montré l'équivalence.
@@ -64,8 +63,7 @@
 \vspace*{-0.5cm}
 
 \begin{defi}{}{}
-    Soit une famille $(E_i,\leq_i)_{i\in I}$ d'ensembles ordonnés.\\
-    L'ordre produit sur $\prod_{i\in I}E_i$ est donné par:
+    Soit une famille $(E_i,\leq_i)_{i\in I}$ d'ensembles ordonnés. L'ordre produit sur $\prod_{i\in I}E_i$ est donné par:
     \begin{equation*}
         (x_i)_{i\in I}\leq (y_i)_{i\in I} \iff \forall i \in I, ~ x_i \leq_i y_i.
     \end{equation*}
@@ -113,8 +111,7 @@
     \begin{equation*}
         X = \bigcap_{Y\in\cursive{F}}Y.
     \end{equation*}
-    Puisque $\forall Y\in \cursive{F}, ~ B\subset Y$, on en déduit que $B \subset X$. On a donc vérifié $(B)$.\\
-    Soit $r_i\in R$ et $(x_1, ..., x_{n_i})\in X^{n_i}$.\\
+    Puisque $\forall Y\in \cursive{F}, ~ B\subset Y$, on en déduit que $B \subset X$. On a donc vérifié $(B)$. Soit $r_i\in R$ et $(x_1, ..., x_{n_i})\in X^{n_i}$.\\
     Remarquons que $\forall Y \in \cursive{F}, ~ x_1, ..., x_{n_i} \in Y$, or les $Y$ sont stables par les règles d'où $\forall Y \in \cursive{F}, ~ r_i(x_1, ..., x_{n_i})\in Y$.\\
     Puisque $X$ est leur intersection, $r_i(x_1, ..., x_{n_i})\in X$ et $X$ vérifie alors $(I)$.\\
     C'est donc le plus petit ensemble vérifiant $(B)$ et $(I)$ par construction.
@@ -171,5 +168,7 @@
     \end{itemize}
     On utilise alors le théorème d'induction pour prouver la correction.
 \end{meth}
+
+\fin
 
 \end{document}
