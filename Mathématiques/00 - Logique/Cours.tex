@@ -3,15 +3,19 @@
 \def\chapitre{0}
 \def\pagetitle{Logique.}
 
-\input{/home/theo/MP2I/setup.tex}
+\input{setup.tex}
 
 \begin{document}
 
-\input{/home/theo/MP2I/title.tex}
+\input{title.tex}
 
 \thispagestyle{fancy}
 
+\vspace*{-0.8cm}
+
 \section{Négation, conjonction, disjonction.}
+
+\vspace*{-0.3cm}
 
 \subsection{Non, Ou, Et : tables de vérité.}
 
@@ -19,8 +23,9 @@
     Une \bf{assertion} est une phrase pouvant prendre l'une des deux valeurs : Vrai (V) ou Faux (F).
 \end{defi}
 
+\vspace*{-0.9cm}
+
 Il n'y a pas d'autre possibilité que Vrai ou Faux en logique classique: c'est le principe du \emph{tiers exclu}.
-\vspace*{0.3cm}
 
 \begin{defi}{}{}
     On appelle \bf{négation} d'un assertion $P$, et on note (non $P$), ou $\lnot P$ l'assertion définie par
@@ -36,6 +41,8 @@ Il n'y a pas d'autre possibilité que Vrai ou Faux en logique classique: c'est l
         \end{array}
     \end{equation*}
 \end{defi}
+
+\vspace*{-0.9cm}
 
 \begin{defi}{}{}
     Soient deux assertions $P$ et $Q$. Les assertions ($P$ et $Q$), ($P$ ou $Q$) et ($P$ ou bien $Q$) sont appelées respectivement \bf{conjonction}, \bf{disjonction} et disjonction exclusive de $P$ et $Q$, et sont définies par
@@ -58,16 +65,16 @@ Il n'y a pas d'autre possibilité que Vrai ou Faux en logique classique: c'est l
 
 \begin{ex}{}{}
     Évaluer les assertions ci-dessous.
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
-        \item <<Ali est un garçon et Elsa est une fille.>> : Vrai
-        \item <<Ali est un garçon ou Elsa est une fille.>> : Vrai
-        \item <<Ali est un garçon ou bien Elsa est une fille.>> : Faux
-        \item <<Ali est un garçon et Elsa est en MP2I.>> : Faux
-        \item <<Ali est un garçon ou Elsa est en MP2I.>> : Vrai
+    \begin{itemize}
+        \item <<Ali est un gar\cc{c}on et Elsa est une fille.>> : Vrai
+        \item <<Ali est un gar\cc{c}on ou Elsa est une fille.>> : Vrai
+        \item <<Ali est un gar\cc{c}on ou bien Elsa est une fille.>> : Faux
+        \item <<Ali est un gar\cc{c}on et Elsa est en MP2I.>> : Faux
+        \item <<Ali est un gar\cc{c}on ou Elsa est en MP2I.>> : Vrai
     \end{itemize}
 \end{ex}
 
-\pagebreak
+
 
 \subsection{Calculer avec des assertions.}
 
@@ -83,7 +90,7 @@ Considérons maintenant deux assertions $\A(P,Q,R)$ et $\B(P,Q,R)$ bien définie
 \end{nota}
 
 \begin{prop}{}{}
-    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{enumerate}
         \item ($P$ et $P$) $\equiv P$,$\quad$($P$ ou $P$) $\equiv P$.
         \item ($P$ et $Q$) $\equiv$ ($Q$ et $P$),$\quad$($P$ ou $Q$) $\equiv$ ($Q$ ou $P$).
         \item (($P$ et $Q$) et $R$) $\equiv$ ($P$ et ($Q$ et $R$)),$\quad$(($P$ ou $Q$) ou $R$) $\equiv$ ($P$ ou ($Q$ ou $R$)).
@@ -94,7 +101,7 @@ Considérons maintenant deux assertions $\A(P,Q,R)$ et $\B(P,Q,R)$ bien définie
 \end{prop}
 
 \begin{prop}{}{}
-    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{enumerate}
         \item $\lnot(\lnot P)\equiv P$. (négation de la négation).
         \item $\lnot(P$ et $Q)\equiv\lnot P$ ou $\lnot Q$,$\quad$$\lnot(P$ ou $Q)\equiv\lnot P$ et $\lnot Q$. (formules de De Morgan).
     \end{enumerate}
@@ -104,16 +111,16 @@ Considérons maintenant deux assertions $\A(P,Q,R)$ et $\B(P,Q,R)$ bien définie
 
 \subsection{Un ou deux quantificateurs.}
 
-On appelle \bf{prédicat} $\P(X)$ sur un ensemble $E$ une phrase contenant la lettre $X$ telle que lorsqu'on substitue à $X$ un élément $x$ de $E$, on obient une assertion $\P(x)$. Par exemple, la phrase
+On appelle \bf{prédicat} $\P(X)$ sur un ensemble $E$ une phrase contenant la lettre $X$ telle que lorsqu'on substitue à $X$ un élément $x$ de $E$, on obtient une assertion $\P(x)$. Par exemple, la phrase
 \begin{center}
     << $X$ est pair >>
 \end{center}
-est un prédicat sur $\Z$. Il permet d'obtenir (entre autres) les assertions "4 est pair" et "3 est pair".
+est un prédicat sur $\Z$. Elle permet d'obtenir (entre autres) les assertions "4 est pair" et "3 est pair".
 \vspace{0.3cm}
 
 \begin{defi}{}{}
     Soit un prédicat $\P(X)$ sur un ensemble $E$.
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item L'assertion << pour tout $x$ dans $E$, $\P(x)$ est vraie >> s'écrit
         \begin{equation*}
             \forall x \in E, ~ \P(x).
@@ -129,7 +136,7 @@ est un prédicat sur $\Z$. Il permet d'obtenir (entre autres) les assertions "4 
     \end{itemize}
 \end{defi}
 
-\begin{prop}{Deux quantificateur égaux commutent.}{}
+\begin{prop}{Deux quantificateurs égaux commutent.}{}
     Soient $E,F$ deux ensembles et $\P(X,Y)$ un prédicat où $X$ prend ses valeurs dans $E$ et $Y$ dans $F$.\\
     On a les synonymies:
     \begin{equation*}
@@ -144,10 +151,10 @@ est un prédicat sur $\Z$. Il permet d'obtenir (entre autres) les assertions "4 
 \begin{center}
     (A) $\quad \forall x \in E\quad\exists y \in F\quad \P(x,y); \qquad$ (B) $\quad \exists y\in F \quad \forall x \in E\quad \P(x,y)$.
 \end{center}
-$\bullet$ Dans la phrase (A), l'existence de $y$ est affirmée après qu'on a parlé d'un élément $x$ : l'élément $y$ peut donc dépendre de $x$. On peut insister sur cette dépendance en écrivant (A): $\forall x\in E\quad\exists y_x\in F\quad P(x,y_x)$.\n
+$\bullet$ Dans la phrase (A), l'existence de $y$ est affirmée après qu'on ait parlé d'un élément $x$ : l'élément $y$ peut donc dépendre de $x$. On peut insister sur cette dépendance en écrivant (A): $\forall x\in E\quad\exists y_x\in F\quad P(x,y_x)$.\n
 $\bullet$ Dans la phrase (B), $y$ est introduit en premier. Le reste de la phrase se comprend donc à $y$ fixé.
 
-\pagebreak
+
 
 \begin{ex}{Une assertion de type A}{}
     Une théorie affirme que chacun sur Terre a une âme soeur (c'est sans doute vrai, je l'ai lu sur Internet). Formaliser en introduisant quelques notations.\\
@@ -163,6 +170,8 @@ $\bullet$ Dans la phrase (B), $y$ est introduit en premier. Le reste de la phras
     \end{equation*}
     Cette assertion signifie qu'il existe une personne qui est l'âme soeur de tout le monde. C'est un peu prétentieux.
 \end{ex}
+
+\pagebreak
 
 \begin{ex}{Une assertion de type B}{}
     Soit $f$ une fonction définie sur $\R$. Écrire à l'aide de quantificateurs "la fonction $f$ est majorée".\\
@@ -249,7 +258,7 @@ Négation: << Tout MP2I aime ce petit cours de logique >>.
 
 \begin{ex}{}{}
     Maintenant que la table de $P\ra Q$ est complète, évaluer les assertions suivantes.
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item "6 est pair" $\ra$ "7 est impair" : Vrai
         \item "5 est impair" $\ra$ "7 est pair" : Faux
         \item "5 est pair" $\ra$ "7 est impair" : Vrai
@@ -273,7 +282,7 @@ Par définition, si $P$ est fausse, $P\ra Q$ est vraie... alors concentrons nous
 
 \begin{meth}{Preuve directe par implication.}{}
     Pour démontrer une implication $P\ra Q$,
-    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{enumerate}
         \item On suppose $P$ (et on l'écrit).
         \item Puis on démontre $Q$.
     \end{enumerate}
@@ -281,7 +290,7 @@ Par définition, si $P$ est fausse, $P\ra Q$ est vraie... alors concentrons nous
 
 \begin{defi}{}{}
     Dans l'écriture $P\ra Q$ d'une implication,
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item $P$ est dite condition \bf{suffisante}, il suffit que $P$ soit vraie pour que $Q$ le soit.
         \item $Q$ est dite condition \bf{nécessaire}, il faut que $Q$ soit vraie pour que $P$ le soit.
     \end{itemize}
@@ -293,6 +302,8 @@ Par définition, si $P$ est fausse, $P\ra Q$ est vraie... alors concentrons nous
         \nt{Si} \quad (P \ra Q) \nt{ et } P \nt{ sont vraies,} \quad \nt{alors } Q \nt{ est vraie.}
     \end{equation*}
 \end{prop}
+
+\vspace*{-0.8cm}
 
 \begin{ex}{Application : un syllogisme célèbre.}{}
     << Tous les hommes sont mortels >>. Ce "théorème" affirme que l'implication << Si cet être est un homme, alors il est mortel >> est vraie, quel que soit l'être que l'on considère.\\
@@ -307,7 +318,7 @@ Par exemple, l'implication
 \begin{center}
     << Si Superman est un homme, alors Superman est mortel. >>
 \end{center}
-est vraie, simplement parce que l'assertion << Superman est un homme >> est fausse. On n'a donc pas à se poser de questions sur la kryptonit, c'est à dire sur la valeur de l'assertion << Superman est mortel >>.\n
+est vraie, simplement parce que l'assertion << Superman est un homme >> est fausse. On n'a donc pas à se poser de questions sur la kryptonite, c'est à dire sur la valeur de l'assertion << Superman est mortel >>.\n
 On voit donc qu'utiliser le symbole $\ra$ à la place de << donc >> est une bien mauvaise habitude : on ne raisonne pas au conditionnel !
 \vspace*{0.3cm}
 
@@ -315,6 +326,8 @@ On voit donc qu'utiliser le symbole $\ra$ à la place de << donc >> est une bien
     Écrire << $P \ra Q$ >> n'est \bf{pas la même chose} qu'écrire << $P$ est vraie, donc $Q$ est vraie >>.\\
     Ainsi, nous utilisons volontiers le symbole $\ra$ pour \emph{énoncer} des résultats, mais pas dans les \emph{démonstrations} de ces résultats.
 \end{meth}
+
+\vspace*{-0.8cm}
 
 \begin{prop}{Transitivité de l'implication, de l'équivalence.}{}
     Les connecteurs $\ra$ et $\iff$ sont transitifs, en effets, si $P,Q,R$ sont des assertions,
@@ -324,6 +337,8 @@ On voit donc qu'utiliser le symbole $\ra$ à la place de << donc >> est une bien
     \end{center}
 \end{prop}
 
+\vspace*{-0.8cm}
+
 \subsection{Négation d'une implication.}
 
 \begin{prop}{Négation d'une implication.}{}
@@ -331,6 +346,8 @@ On voit donc qu'utiliser le symbole $\ra$ à la place de << donc >> est une bien
         \lnot (P \ra Q) \quad \equiv \quad P \text{ et } (\lnot Q).
     \end{equation*}
 \end{prop}
+
+\vspace*{-0.8cm}
 
 \warning On remarquera notamment que la négation d'une implication n'est \bf{pas} une implication.
 
@@ -364,7 +381,7 @@ On voit donc qu'utiliser le symbole $\ra$ à la place de << donc >> est une bien
 \end{thm}
 
 \begin{meth}{Preuve par contraposée d'une implication $P\ra Q$}{}
-    Au lieu d'utiliser la manière classique (\emph{supposer P, montrer Q}), on pourra choisir, si cela paraît plus simplen de prouver la contraposée: (\emph{supposer (non Q), montrer (non P)}).
+    Au lieu d'utiliser la manière classique (\emph{supposer P, montrer Q}), on pourra choisir, si cela paraît plus simple, de prouver la contraposée: (\emph{supposer (non Q), montrer (non P)}).
 \end{meth}
 
 \begin{prop}{}{}
@@ -426,7 +443,7 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
 \vspace*{0.3cm}
 
 \begin{ex}{}{}
-    On souhait démontrer par l'absurde qu'une certaine porte est fermée.\\
+    On souhaite démontrer par l'absurde qu'une certaine porte est fermée.\\
     Quelle est la première phrase de notre raisonnement ?
 \end{ex}
 
@@ -443,7 +460,7 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
 
 \begin{meth}{}{}
     Pour démontrer une unicité,
-    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{enumerate}
         \item On considère deux solutions du problème $X_1$ et $X_2$.
         \item On montre que $X_1=X_2$.
     \end{enumerate}
@@ -476,8 +493,10 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
     \bf{Conclusion:} Les fonctions solutions du problème sont exactement les fonctions affines de pente 1.
 \end{ex}
 
+\pagebreak
+
 \begin{ex}{}{}
-    Démonter que toute fonction définie sur $\R$ s'écrit de manière unique comme somme d'une fonction paire et d'une fonction impaire.
+    Démontrer que toute fonction définie sur $\R$ s'écrit de manière unique comme somme d'une fonction paire et d'une fonction impaire.
     \tcblower
     Soit $f:\R\to\R$.\\
     \bf{Analyse:} Supposons qu'il existe $g$ paire et $h$ impaire, telles que $f=g+h$. Pour $x\in\R$, on a:
@@ -534,6 +553,8 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
     $\bullet$ Conclusion : l'équation possède une unique solution : $\frac{\sqrt{2}}{2}$.
 \end{ex}
 
+\vspace*{-0.8cm}
+
 \begin{ex}{Équation $x-1=\sqrt{1+x^2}$}{}
     Soit $x$ un nombre réel.\n
     $\bullet$ Supposons que $x$ est solution.\\
@@ -550,11 +571,15 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
     - << OUI >>
 \end{exercice}
 
+\vspace*{-0.8cm}
+
 \begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
     C'est l'histoire de cinq mathématiciens qui vont au restaurant. Ils ont pris un menu avec thé ou bien café compris. À la fin du repas, le serveur demande : \textbf{tout le monde} prendra du café ? Le premier mathématicien répond <<Je ne sais pas>>. Idem pour le second, le troisième, et le quatrième. Le cinquième répond <<Quatre cafés et un thé SVP>>. Expliquer.
     \tcblower
     Le premier, deuxième, troisième et quatrième veulent un café car s'ils voulaient un thé, ils auraient répondu <<Non>>. Le cinquième sait alors qu'ils veulent tous les quatres un café et choisit un thé pour lui-même. 
 \end{exercice}
+
+\vspace*{-0.8cm}
 
 \begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
     Soit $(u_n)_{n\in\N}$ une suite de réels.\\
@@ -577,14 +602,13 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
     \end{equation*}
     2. Prouver que l'assertion est fausse.
     \tcblower
-    \boxed{1.} Sa négation est :
-    \begin{equation*}
-        \forall x \in \R \quad \exists y \in \R \quad x+y<0
-    \end{equation*}
+    \boxed{1.} Sa négation est : $\forall x \in \R \quad \exists y \in \R \quad x+y<0$
     \boxed{2.} Soit $x \in \R$. Posons $y=-(x+1)$.\\
     On a $x+y=-1$ c'est pourquoi $x+y<0$. Ainsi, la négation de l'assertion est toujours vraie.\\
     On en déduit que l'assertion est toujours fausse.
 \end{exercice}
+
+\vspace*{-0.8cm}
 
 \begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
     <<S'il fait beau, je ne prends pas mon parapluie.>>\\
@@ -596,7 +620,7 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
     <<S'il ne fait pas beau, je prends mon parapluie.>>
 \end{exercice}
 
-\pagebreak
+\vspace*{-0.8cm}
 
 \begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
     Une suite croissante est une fonction croissante sur $\N$.\\
@@ -611,6 +635,8 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
     En particulier, pour $n\in \N$, $n+1 \geq n$ donc $u_{n+1} \geq u_n$.\n
     On a bien l'équivalence. 
 \end{exercice}
+
+\vspace*{-0.8cm}
 
 \begin{exercice}{$\blacklozenge\blacklozenge\lozenge$ Récurrence standard.}{}
     Déterminer les entiers naturels $n$ tels que $2^n\geq n^2$.
@@ -652,15 +678,12 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
     \begin{equation*}
         (x^{n+1}+\frac{1}{x^{n+1}})\cdot(x+\frac{1}{x})-(x^n+\frac{1}{x^n})\in\mathbb{Z}
     \end{equation*}
-    Alors :
-    \begin{align*}
-        x^{n+2} + \frac{1}{x^{n+2}} \in \mathbb{Z}
-    \end{align*}
+    Alors : $x^{n+2} + \frac{1}{x^{n+2}} \in \mathbb{Z}$
     C'est exactement $\mathcal{P}_{n+2}$.\\
     \bf{Conclusion.} Par le principe de récurrence double, $\mathcal{P}_n$ est vraie pour tout $n\in\mathbb{N}$.
 \end{exercice}
 
-\pagebreak
+\vspace*{-0.8cm}
 
 \begin{exercice}{$\blacklozenge\lozenge\lozenge$ Récurrence forte.}{}
     Soit $(u_n)$, définie par récurrence par
@@ -674,7 +697,7 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
     \tcblower
     Soit $\mathcal{P}_n$ la proposition : <<$\forall{n\geq1}$, $u_n=3n$>>.\\
     \bf{Initialisation.} Triviale.\\
-    \bf{Hérédité.} Soit $n\geq1$ tel que $\forall k\in[1,n], \quad \mathcal{P}_k$ soit vraie. Montrons que $\mathcal{P}_{n+1}$ est vraie.\\
+    \bf{Hérédité.} Soit $n\geq1$ tel que $\forall k\in[1,n], ~ \mathcal{P}_k$ soit vraie. Montrons que $\mathcal{P}_{n+1}$ est vraie.\\
     On a :
     \begin{align*}
         u_{n+1} 
@@ -705,7 +728,7 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
     \tcblower
     \bf{Analyse.}\\
     Supposons qu'il existe $f$ une telle fonction. Soit $(x,y)\in\mathbb{R}^2$.
-    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{enumerate}
         \item Lorsque $x=y=0$, $f^2(0)-f(0)=0$. Donc $f(0) = 0$ ou $f(0) = 1$.
         \item Lorsque $y=0$, $f(x)f(0)-f(0)=x$. Ainsi, la possibilité $f(0)=0$ est éliminée.
     \end{enumerate}
@@ -727,7 +750,7 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
     \tcblower
     \bf{Analyse.}\\
     Supposons qu'il existe $f$ une telle fonction. Soit $(x,y)\in\mathbb{R}^2$.
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item[1.] On a $f(f(0)-f(0))=1-f(0)-0$ donc $f(0)=1-f(0)$ donc $f(0)=\frac{1}{2}$.
         \item[2.] Donc $f(x-f(0))=f(x-\frac{1}{2})=1-x$.
     \end{itemize}
@@ -740,7 +763,7 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
     \bf{Conclusion.} La fonction $x\mapsto\frac{1}{2}-x$ est alors solution unique.
 \end{exercice}
 
-\pagebreak
+
 
 \begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
     Déterminer les fonctions $f:\R_+^* \rightarrow \R_+^*$ telles que 
@@ -750,7 +773,7 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
     \tcblower
     \bf{Analyse.}\\
     Supposons qu'il existe $f$ une telle fonction. Soient $x,y\in\mathbb{R}^*_+$
-    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{enumerate}
         \item Lorsque $y=1$, $f(1)=xf(x)$.
         \item Lorsque $x=\frac{1}{y}$, $f(1)=yf(y)$
     \end{enumerate}
@@ -774,7 +797,7 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
     \tcblower
     \bf{Analyse.}
     Supposons qu'il existe $f$ une telle fonction. Soit $(x,y)\in\mathbb{R}^2$. 
-    \begin{enumerate}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{enumerate}
         \item On a $f(f(x)+x^2)=f(0)+4x^4$ donc $f(0)=f(f(x)+x^2)-4x^4$.
         \item On a $f(f(x)-f(x))=f(x^2+f(x))-4x^2f(x)$ donc $f(0)=f(f(x)+x^2)-4x^2f(x)$. 
         \item En soustrayant les deux: $4x^2(x^2 - f(x)) = 0$.
@@ -790,6 +813,8 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
     \bf{Conclusion.} La fonction $x\mapsto x^2$ est donc solution unique.
 \end{exercice}
 
+\pagebreak
+
 \begin{exercice}{$\blacklozenge\blacklozenge\lozenge$}{}
     Résoudre l'équation
     \begin{equation*}
@@ -804,7 +829,7 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
         \ra~& x^4 - 2x^2 + 1 = -x^4+x^2\\
         \ra~& 2x^4-3x^2+1=0
     \end{align*}
-    Posons $\omega=x^2$. On a alors $2\omega^2-3\omega+1=0$. Les racines de ce polynome sont : $\omega_1=\frac{1}{2}$ et $\omega_1=1$.\\
+    Posons $\omega=x^2$. On a alors $2\omega^2-3\omega+1=0$. Les racines de ce polynôme sont : $\omega_1=\frac{1}{2}$ et $\omega_1=1$.\\
     Ainsi, si $x$ existe alors $x\in\{-\frac{\sqrt{2}}{2},-1,1,\frac{\sqrt{2}}{2}\}$.\n
     \bf{Synthèse.}\\
     On remarque que l'équation est vérifiée lorsque $x\in\{-1,1,\frac{\sqrt{2}}{2}\}$ uniquement.\n
@@ -812,7 +837,7 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
     L'équation admet donc pour ensemble de solutions : $\{-1,1,\frac{\sqrt{2}}{2}\}$.
 \end{exercice}
 
-\pagebreak
+
 
 \begin{exercice}{$\blacklozenge\blacklozenge\blacklozenge$}{}
     Soit $E$ l'ensemble des fonctions dérivables sur $\mathbb{R}$.\\
@@ -822,7 +847,7 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
     Soit $h$ une fonction dérivable sur $\mathbb{R}$.\n
     \bf{Analyse.}\\
     On suppose qu'il existe $f\in F$ et $g\in G$ telles que $h=f+g$. On a :
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item $f$ est affine: $\exists(a,b)\in\mathbb{R}^2\mid\forall{x\in\mathbb{R}}, ~ f(x)=ax+b$ et $f'(x)=a$.  
         \item $\forall{x\in\mathbb{R}}$, $h(x)=f(x)+g(x)$ donc $h'(x)=f'(x)+g'(x)=a+g'(x)$.
         \item $h(0)=f(0)+g(0)=b$ et $h'(0)=f'(0)+g'(0)=a$
@@ -832,7 +857,7 @@ Le raisonnement par l'absurde est souvent efficace pour prouver que quelque chos
     On a donc l'unicité.\n
     \bf{Synthèse.}\\
     Soient $f$ et $g$ définis comme ci-dessus.
-    \begin{itemize}[topsep=0pt,itemsep=-0.9 ex]
+    \begin{itemize}
         \item $f$ est une fonction affine de coefficient $h'(0)$ et d'ordonnée à l'origine $h(0)$ donc $f\in F$.
         \item $g$ est dérivable sur $\mathbb{R}$, et $g(0)=g'(0)=0$, donc $g\in G$. 
     \end{itemize}

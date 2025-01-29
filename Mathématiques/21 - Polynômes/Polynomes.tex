@@ -33,7 +33,7 @@
 \end{defi}
 
 \begin{corr}{}{}
-    Soit $P=(a_k)_{k\in\N}$ un polynome de $\K[X]$ et $m$ un entier tel que $\forall k > m, ~ a_k = 0$. Alors
+    Soit $P=(a_k)_{k\in\N}$ un polynôme de $\K[X]$ et $m$ un entier tel que $\forall k > m, ~ a_k = 0$. Alors
     \begin{equation*}
         P=\sum_{k=0}^ma_kX^k
     \end{equation*}
@@ -462,7 +462,7 @@
 
 \begin{corr}{}{}
     Soit $(A,B)\in\K[X]^2$, avec $B\neq0$.\\
-    On a que $B$ divise $A$ ssi le reste dans la division euclidienne de $A$ par $B$ est le polynôme nul.
+    Alors $B$ divise $A$ ssi le reste dans la division euclidienne de $A$ par $B$ est le polynôme nul.
     \tcblower
     \boxed{\la} Trivial.\\
     \boxed{\ra} Si $B\mid A$, alors $\exists Q \in \K[X] \mid A = BQ$ donc $A=BQ+0$. Par unicité de la division euclidienne, le reste est nul.
@@ -594,7 +594,7 @@
         \cos(n\theta)=0\iff n\theta\equiv\frac{\pi}{2}[\pi]\iff\exists k \in \Z \mid n\theta=\frac{\pi}{2}+k\pi.
     \end{equation*}
     Donc pour $k\in\Z$, $\theta_k=\frac{\pi}{2n}+\frac{k\pi}{n}$ et $\forall k \in \Z, ~ T_n(\cos(\theta_k))=0$.\\
-    On a que les nombres $\cos\theta_k$ avec $k\in\lb0,n-1\rb$ sont distincts par stricte décroissance de $\cos$ sur $[0,\pi]$.\\
+    Donc les nombres $\cos\theta_k$ avec $k\in\lb0,n-1\rb$ sont distincts par stricte décroissance de $\cos$ sur $[0,\pi]$.\\
     On a donc $n$ racines donc $T_n$ est scindé et :
     \begin{equation*}
         T_n=2^{n-1}\prod_{k=0}^{n-1}\left(X-\cos\left( \frac{\pi}{2n} + \frac{k\pi}{2n} \right)\right)
@@ -955,7 +955,7 @@
 \begin{exercice}{$\bbw$ $\star$}{}
     On note $I=]-\frac{\pi}{2},\frac{\pi}{2}[$.
     \begin{enumerate}
-        \item Montrer que pour tout $n\in\N$, il existe un polynome $P_n\in\R[X]$ tel que
+        \item Montrer que pour tout $n\in\N$, il existe un polynôme $P_n\in\R[X]$ tel que
         \begin{equation*}
             \forall x \in I, ~ \tan^{(n)}(x)=P_n(\tan(x)).
         \end{equation*}
@@ -1196,7 +1196,7 @@
     \begin{equation*}
         P=\left( X^n + \sum_{k=1}(-1)^n\s_k X^{n-k} \right) = \prod_{k=1}^n(X-\w_k)
     \end{equation*}
-    On a que $\ds\forall k \in \lb 1, n\rb, ~ |\s_k|=\left|\sum_{I\in\P_k(\lb1,n\rb)}\prod_{i\in I}\w_i\right|\leq\sum_{I\in\P_k(\lb1,n\rb)}\prod_{i\in I}1=\binom{n}{k}$.\\
+    On a $\ds\forall k \in \lb 1, n\rb, ~ |\s_k|=\left|\sum_{I\in\P_k(\lb1,n\rb)}\prod_{i\in I}\w_i\right|\leq\sum_{I\in\P_k(\lb1,n\rb)}\prod_{i\in I}1=\binom{n}{k}$.\\
     Donc $\ds|\E|\leq\sum_{k=1}^n|\s_k|\leq\sum_{k=1}^n\binom{n}{k}\leq2^n-1$. C'est un ensemble fini.
 \end{exercice}
 
