@@ -385,8 +385,6 @@ Notation locale : pour $k\in\N$, on note $E_n$ l'ensemble des entrées de taille
 
 \section{Visions plus globales de la complexité.}
 
-D'après le programme de MP2I-MPI : << On limite l'étude de la complexité dans le cas moyen et du coût amorti à quelques exemples simples >>.
-
 \subsection{Complexité en moyenne.}
 
 \begin{defi}{}{}
@@ -399,18 +397,50 @@ D'après le programme de MP2I-MPI : << On limite l'étude de la complexité dans
     En supposant un tirage uniforme sur les entrées d'une taille donnée.
 \end{defi}
 
+\vspace*{-1cm}
+
 \subsection{Complexité amortie.}
 
 \begin{defi}{}{}
-    On considère une structure de données et une suite d'opérations valides $p_1,...,p_n$.\\
-    On suppose qu'on connaît le coût $c_i$ de l'opération $p_i$. On cherche à déterminer le coût moyen d'une opération.\\
-    L'objectif est de trouver $f:\N\to\R_+$ telle que
-    \begin{equation*}
-        \sum_{i=1}^nc_i = O(nf(n)).
-    \end{equation*}
-    Alors la complexité amortie sera en $O(f(n))$.
+    L'analyse amortie consiste à relativiser le coût élevé de certaines opérations réalisées sur une structure de données. Au lieu d'étudier les opérations de manière indépendante, on les étudie en tant que suite d'opérations dont on aimerait connaître la complexité moyenne.\\
+    Cela permet notamment d'exhiber que la rapidité de certaines opérations est la conséquence de la lenteur d'autres.\\
+    Par exemple, pour la structure Unir-Et-Trouver (MPI) on a des implémentations où on favorise l'union, et d'autres où on favorise la recherche du représentant.
 \end{defi}
 
+\vspace*{-0.8cm}
+
+\begin{meth}{Agrégats.}{}
+    On étudie une suite d'opérations, et on observe la moyenne de la complexité d'une opération.
+\end{meth}
+
+\vspace*{-0.8cm}
+
+\begin{ex}{Tableaux dynamiques.}{}
+    On aimerait avoir une structure dans laquelle on peut insérer un élément à la fin et accéder au $i^{\nt{ème}}$ élément.\\
+    Un tableau dynamique est composé de trois valeurs :\\
+    $\hra$ Une taille $n\in\N$, une capacité totale $m\in\N$ et un tableau de taille $m$.\\
+    Lorsqu'on ajoute un élément, on l'ajoute à la case $n$ du tableau, on incrémente $n$. Si $n$ atteint $m$, alors le tableau est plein : on en crée un nouveau de taille $\a m$ ($\a\in\R$), et on y copie les valeurs de l'ancien tableau.\\
+    Si on a un tableau dynamique dans lequel on insère $k$ éléments, à chaque fois que $n$ est de la forme $\a^i$, on doit faire une insertion lente. Chaque insertion lente est moins rapide que la précédente, mais elles se font de plus en plus rares. Si on part d'un tableau dynamique vide, on a des insertions lentes pour $i\in\{j \in \N, ~ \a^j \leq k\}$.\\
+    On note $c_i$ le coût de la $i^{\nt{ème}}$ opération :
+    \begin{equation*}
+        \frac{\sum_{i=1}^k c_i}{k} \leq \frac{\sum_{i=1}^k 1 + \sum_{j=0}^{\lf \log_\a k \rf}\a^j}{k} \leq 1 + \frac{\a^{\lf \log_\a k \rf+1}}{k} - \frac{1}{(\a-1)k} \leq 1 + \frac{ak}{k} = O(1)
+    \end{equation*}
+\end{ex}
+
+\vspace*{-0.8cm}
+
+\begin{meth}{Potentiels.}{}
+    On crée une fonction $\Phi$ et celle-ci nous renvoie une valeur selon l'état de la structure.\\
+    Alors le coût amorti d'une opération est égal à son coût réel moins la variation de $\Phi$ après son éxecution.
+\end{meth}
+
+\vspace*{-0.8cm}
+
+\begin{ex}{}{}
+    Pour le tableau dynamique, $\Phi=m-n$ quand on réalise une insertion rapide, $\Delta\Phi=-1$, et pour une insertion lente, $\Delta\Phi=(\a-1)n-1$. Dans les deux cas, le coût amorti est en $O(1)$.
+\end{ex}
+
 \fin
+
 
 \end{document}
