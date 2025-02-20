@@ -29,7 +29,7 @@ Les constantes littérales seront entre guillemets.
 
 \begin{defi}{}{}
     Il n'existe pas de chaîne de caractère en C, on appelle chaîne de caractères une adresse où sont stockés des caractères.\\
-    Affichage : \c{printf("\%s", chaine);} ou bien \c{printf("chaine");}
+    Affichage : \texttt{printf("\%s", chaine);} ou bien \c{printf("chaine");}
 \end{defi}
 
 \subsection{En OCaml.}
@@ -161,7 +161,7 @@ Les constantes littérales seront entre guillemets.
         \Entree{Un texte $T$, un motif $M$}
         \Sortie{L'ensemble $S$}
         $S \gets \0$.\\
-        $T \gets $ table de saut sur $M$.\\
+        $L \gets $ table de saut sur $M$.\\
         $s \gets 0$.\\
         \Tq{$s\leq n-m$}{
             $i \gets m-1$.\\
@@ -171,7 +171,7 @@ Les constantes littérales seront entre guillemets.
             \Si{$i=-1$}{
                 $S\gets S\cup\{s\}$.
             }
-            $s \gets s + m - \max(1, i-T[T[s+m-1]])$.
+            $s \gets s + m - \max(1, i-L[T[s+m-1]])$.
         }
         \Retour $S$.
     \end{algorithm}
