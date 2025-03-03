@@ -423,7 +423,7 @@ Notation locale : pour $k\in\N$, on note $E_n$ l'ensemble des entrées de taille
     Si on a un tableau dynamique dans lequel on insère $k$ éléments, à chaque fois que $n$ est de la forme $\a^i$, on doit faire une insertion lente. Chaque insertion lente est moins rapide que la précédente, mais elles se font de plus en plus rares. Si on part d'un tableau dynamique vide, on a des insertions lentes pour $i\in\{j \in \N, ~ \a^j \leq k\}$.\\
     On note $c_i$ le coût de la $i^{\nt{ème}}$ opération :
     \begin{equation*}
-        \frac{\sum_{i=1}^k c_i}{k} \leq \frac{\sum_{i=1}^k 1 + \sum_{j=0}^{\lf \log_\a k \rf}\a^j}{k} \leq 1 + \frac{\a^{\lf \log_\a k \rf+1}}{k} - \frac{1}{(\a-1)k} \leq 1 + \frac{ak}{k} = O(1)
+        \frac{\sum_{i=1}^k c_i}{k} \leq \frac{\sum_{i=1}^k 1 + \sum_{j=0}^{\lf \log_\a k \rf}\a^j}{k} \leq 1 + \frac{\a^{\lf \log_\a k \rf+1}}{k} - \frac{1}{(\a-1)k} \leq 1 + \frac{\a k}{k} = O(1)
     \end{equation*}
 \end{ex}
 
@@ -438,6 +438,21 @@ Notation locale : pour $k\in\N$, on note $E_n$ l'ensemble des entrées de taille
 
 \begin{ex}{}{}
     Pour le tableau dynamique, $\Phi=m-n$ quand on réalise une insertion rapide, $\Delta\Phi=-1$, et pour une insertion lente, $\Delta\Phi=(\a-1)n-1$. Dans les deux cas, le coût amorti est en $O(1)$.
+\end{ex}
+
+\begin{meth}{Banquier.}{}
+    On paie un coût fictif à chaque opération, qui dépend uniquement de l'opération choisie. Les coûts en trop serviront à financer les opérations qui ont un coût réel plus élevé que leur coût fictif.
+\end{meth}
+
+\begin{ex}{}{}
+    On a envie de fixer un coût permettant le financement des insertions lentes. L'insertion lente consiste à créer un tableau de taille $\a n$ et à recopier les $n$ premières cases. On veut donc avoir $\a n + n$ pièces dans la structure de données lors d'une insertion lente, donc que les $n$ insertions rapides précédentes aient laissé $n\a + n$ pièces.\\
+    \xmark~Un coût de $\a+1$ ne fonctionne pas car lors d'une insertion lente, les $n$ valeurs réinsérées ne contribuent pas au financement.\\
+    \cmark~Un coût de $\a + 1 + k$ avec $k=\frac{\a+1}{\a-1}$ fonctionne car il compense le déficit créé par ces $n$ valeurs :
+    \begin{equation*}
+        (\a n - n)(\a + 1 + k) \geq \a n(\a + 1) \ra k(\a - 1) \geq \a + 1 \ra k \geq \frac{\a + 1}{\a - 1}.
+    \end{equation*}
+    Le coût amorti d'une opération est alors le coût fictif de celle-ci.\\
+    Ici, toutes les insertions ont un coût amorti en $O(\a + 1 + k) = O(1)$.
 \end{ex}
 
 \fin
