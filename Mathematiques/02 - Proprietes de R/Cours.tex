@@ -3,12 +3,12 @@
 \def\chapitre{2}
 \def\pagetitle{Propriétés de \texorpdfstring{$\R$}{Lg}.}
 
-\input{/home/theo/MP2I/setup.tex}
+\input{setup.tex}
 \renewcommand*{\D}{\mathbb{D}}
 
 \begin{document}
 
-\input{/home/theo/MP2I/title.tex}
+\input{title.tex}
 
 \thispagestyle{fancy}
 
@@ -115,7 +115,7 @@
     On appelle \bf{intervalle} de $\R$ une partie de $\R$ ayant l'une des formes décrites ci-dessous:
     \begin{itemize}
         \item Segment $[a,b]=\{x\in\R:~a\leq x\et x\leq b\}$ où $a,b\in\R$.
-        \item Intervalles ouverts $]a,b[=\{x\in\R:~a<x\et x<b\}$ où $a\in\R\cup\{-\infty\}$ et $b\in\R\cup\{+\infty\}$.
+        \item Intervalles ouverts $]a,b[~=\{x\in\R:~a<x\et x<b\}$ où $a\in\R\cup\{-\infty\}$ et $b\in\R\cup\{+\infty\}$.
         \item Intervalles semi-ouverts. $[a,b[$ ou bien $]a,b]$.
     \end{itemize}
     \bf{Remarque:} les parties décrites peuvent être vides : $[5,3]=\0$.
@@ -124,7 +124,7 @@
 \begin{ex}{}{}
     L'ensemble des réels non nuls $\R^*$ n'est \bf{pas} un intervalle. C'est néanmoins une réunion d'intervalles:
     \begin{equation*}
-        \R^*=]-\infty,0[\cup]0,+\infty[.
+        \R^*=~]-\infty,0[~\cup~]0,+\infty[.
     \end{equation*}
     Pour une preuve, on attendra la caractérisation des intervalles comme parties convexes de $\R$.
 \end{ex}
@@ -142,6 +142,8 @@
         \end{cases}
     \end{equation*}
 \end{defi}
+
+\vspace*{-0.5cm}
 
 \begin{prop}{Propriétés élémentaires.}{}
     Pour tout réel $x$, $|x|=\max(x,-x)$, $|-x|=|x|$, $x\leq|x|$, $-x\leq|x|$, $-|x|\leq x\leq |x|$ et $|x|=0\iff x=0$.
@@ -167,6 +169,8 @@
     \boxed{2.} Soient $x,y\in\R$. $|xy|=\sqrt{(xy)^2}=\sqrt{x^2y^2}=\sqrt{x^2}\sqrt{y^2}=|x||y|$.\\
     \boxed{3.} Soit $(x,y)\in\R\times\R^*$. $\left|\frac{x}{y}\right|=\left|\frac{x}{y}\right|\times1=\left|\frac{x}{y}\right|\times\frac{|y|}{|y|}=\frac{|x|}{|y|}$.
 \end{prop}
+
+\vspace*{-0.5cm}
 
 \begin{thm}{Inégalité triangulaire. $\star$}{}
     \begin{equation*}
@@ -299,10 +303,14 @@
     L'ensemble des nombres décimaux est noté $\D$.
 \end{defi}
 
+\vspace*{-0.5cm}
+
 \begin{defi}{généralisation.}{}
     Soit $p$ un entier naturel supérieur ou égal à 2.\\
     On appelle \bf{fraction $p$-adique} un nombre réel qui s'écrit sous la forme $\frac{q}{p^k}$ où $q\in\Z$ et $k\in\N$.
 \end{defi}
+
+\vspace*{-0.5cm}
 
 \begin{prop}{}{}
     Soit $x\in\R$ et $n\in\N$. Le nombre décimal $d_n(x):=\frac{\lf 10^nx\rf}{10^n}$ satisfait l'encadrement
@@ -318,6 +326,8 @@
         &d_n(x)\leq x < d_n(x)+10^{-n}.
     \end{align*}
 \end{prop}
+
+\vspace*{-0.5cm}
 
 \begin{corr}{$\D$ est dense dans $\R$.}{}
     Entre deux réels distincts, il existe toujours un nombre décimal.
@@ -343,15 +353,19 @@
     On dit d'un nombre de $\R\setminus\Q$ qu'il est \bf{irrationnel}.
 \end{defi}
 
+\vspace*{-0.5cm}
+
 \begin{prop}{}{}
     $\sqrt{2}$ est irrationnel.
 \end{prop}
+
+\vspace*{-0.5cm}
 
 \begin{prop}{}{}
     L'ensemble des rationnels est stable par somme, différence, produit, et passage à l'inverse.
 \end{prop}
 
-\pagebreak
+\vspace*{-0.5cm}
 
 \begin{ex}{}{}
     Justifier que $\R\setminus\Q$ n'est pas stable par somme, ni par produit.
@@ -376,6 +390,8 @@
     Supposons que $r+\sqrt{2}$ soit rationnel, alors $r+\sqrt{2}-r$ l'est aussi par stabilité, donc $\sqrt{2}\in\Q$, absurde.\\
     Il existe donc un nombre irrationnel entre $a$ et $b$.
 \end{thm}
+
+\vspace*{-0.5cm}
 
 \begin{corr}{Écriture séquentielle de la densité de $\Q$.}{}
     Pour tout réel $x$, il existe une suite $(r_n)$ de rationnels telle que $r_n\to x$.
@@ -441,6 +457,8 @@ Dans tout ce qui suit, $A$ est une partie de $\R$.
     Alors $\frac{M+1}{2}\in[0,1[$ : $\frac{M+1}{2}\leq M$, donc $M+1\leq 2M$ donc $1 \leq M$, absurde.
 \end{ex}
 
+\vspace*{-0.5cm}
+
 \section{Exercices.}
 
 \begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
@@ -451,15 +469,14 @@ Dans tout ce qui suit, $A$ est une partie de $\R$.
     \tcblower
     On a :
     \begin{align*}
-        &\hspace{1.2cm}\frac{a^2}{b}+\frac{b^2}{a} \geq a+b\\
-        &\iff\frac{a^3-a^2b+b^3-ab^2}{ab}\geq0\\
-        &\iff\frac{a^2(a-b)+b^2(b-a)}{ab}\geq0\\
-        &\iff\frac{(a-b)(a^2-b^2)}{ab}\geq0\\
-        &\iff\frac{(a-b)^2(a+b)}{ab}\geq0
+        \frac{a^2}{b}+\frac{b^2}{a} \geq a+b &\iff\frac{a^3-a^2b+b^3-ab^2}{ab}\geq0\iff\frac{a^2(a-b)+b^2(b-a)}{ab}\geq0 \\
+        &\iff\frac{(a-b)(a^2-b^2)}{ab}\geq0\iff\frac{(a-b)^2(a+b)}{ab}\geq0
     \end{align*}
     Or $(a-b)^2\geq0$, $(a+b)\geq0$ et $ab\geq0$.\\
     Ainsi, cette inégalité est vraie pour tout $(a,b)\in\mathbb{R}^*_+$.
 \end{exercice}
+
+\vspace*{-0.5cm}
 
 \begin{exercice}{$\blacklozenge\lozenge\lozenge$}{}
     1. Montrer que $\forall(a,b)\in(\mathbb{R}_+)^2$ $\sqrt{a+b}\leq\sqrt{a}+\sqrt{b}$.\\
@@ -467,21 +484,14 @@ Dans tout ce qui suit, $A$ est une partie de $\R$.
     \tcblower
     \boxed{1.} Soit $(a,b)\in(\mathbb{R}_+)^2$.
     \begin{align*}
-        &\sqrt{a+b}\leq\sqrt{a}+\sqrt{b}\\
-        \iff&a+b\leq a + 2\sqrt{ab} + b\\
-        \iff&2\sqrt{ab} \geq 0\\
-        \iff&\sqrt{ab} \geq 0\\
-        \iff&ab \geq 0
+        \sqrt{a+b}\leq\sqrt{a}+\sqrt{b}&\iff a+b\leq a + 2\sqrt{ab} + b \iff2\sqrt{ab} \geq 0\\
+        \iff \sqrt{ab} \geq 0\iff ab \geq 0
     \end{align*}
     Ainsi, $\forall(a,b)\in(\mathbb{R}_+)^2$ $\sqrt{a+b}\leq\sqrt{a}+\sqrt{b}$.\n
     \boxed{2.} Soit $(a,b)\in(\mathbb{R}_+)^2$.\\
     Considérons $a\geq b$, alors $|a-b| = a-b$.
     \begin{align*}
-        &|\sqrt{a}-\sqrt{b}|\leq\sqrt{a-b}\\
-        \iff& a - 2\sqrt{ab} + b \leq a-b\\
-        \iff& 2b \leq 2\sqrt{ab}\\
-        \iff& b^2 \leq ab\\
-        \iff&b \leq a
+        |\sqrt{a}-\sqrt{b}|\leq\sqrt{a-b}\iff& a - 2\sqrt{ab} + b \leq a-b 2b \leq 2\sqrt{ab} \iff b^2 \leq ab \iff b \leq a
     \end{align*}
     Le raisonnement est symétrique lorsque $b\geq a$.\\
     Ainsi, $\forall(a,b)\in(\mathbb{R}_+)^2$ $|\sqrt{a}-\sqrt{b}|\leq\sqrt{|a-b|}$.
