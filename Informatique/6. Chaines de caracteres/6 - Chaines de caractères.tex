@@ -98,6 +98,9 @@ Les constantes littérales seront entre guillemets.
 \end{defi}
 
 \section{Recherche de motifs.}
+
+On cherche à déterminer si un motif $m$ apparaît dans un texte $T$, et où celui-ci apparaît.
+
 \subsection{Notations.}
 
 \begin{nota}{}{}
@@ -124,7 +127,7 @@ Les constantes littérales seront entre guillemets.
     Dans le pire des cas, cet algorithme a une complexité en $\Theta(m\cdot n)$.
 \end{defi}
 
-\subsection{Algorithme de Boyer-Moore-Horspool \texorpdfstring{$\star$}{Lg}.}
+\subsection{Algorithme de Boyer-Moore-Horspool. \texorpdfstring{$\star$}{Lg}.}
 \subsubsection{Principe.}
 
 \begin{defi}{}{}
@@ -175,63 +178,97 @@ Les constantes littérales seront entre guillemets.
         }
         \Retour $S$.
     \end{algorithm}
+    La complexité est en $O(|T|\.|M|)$, mais en pratique, Boyer-Moore est bien plus efficace que l'algorithme naïf.
 \end{defi}
-
-\subsection{Algorithme de Rabin-Karp.}
-
-\begin{center}
-    Sera ajouté plus tard (non).
-\end{center}
 
 \pagebreak
 
+\subsection{Algorithme de Rabin-Karp.}
+
+Soit $h$ sur fonction de hachage sur les chaînes de caractères, $m$ un mot de taille $n$ et $T=T_0T_1...T_{n-1}...T_l$ un texte.\\
+On calcule $h(m)$ le hachage de $m$, et pour tout $i$, on le compare au hachage du mot $T_i...T_{i+n-1}$.\\
+Si les hachages concordent, on teste naïvement si les mots sont égaux.\\
+On peut choisir $h$ comme étant la somme (des codes) des caractères, alors :
+\begin{equation*}
+    h(T_{i+1}...T_{i+n}) = h(T_i...T_{i+n-1}) + h(T_{i+n}) - h(T_i).
+\end{equation*}
+On est alors en mesure de calculer le hachage en $O(1)$, et de le mettre à jour en $O(1)$.\\
+On peut choisir d'autres $h$, mais on tient à avoir une relation de récurrence.\\
+La complexité finale de l'algorithme dépendra alors de la qualité de $h$ : moins il y aura de collisions, moins il y aura de comparaisons.
+
+\subsection{Rercherche par automate fini. (MPI)}
+
+On construit l'automate $(\Sigma, Q, q_0, F, \d)$ reconnaissant le langage $\Sigma^* m$.\\
+Lorsqu'on lit $T$, à chaque fois que l'on arrive dans un état final de l'automate, on a détecté une occurence de $m$.\\
+Si on représente $\d$ sous la forme d'une matrice, on peut effectuer une transition dans l'automate en $O(1)$.\\
+On peut alors lire $T$ et détecter les occurences en $O(|T|)$.\\
+Pour construire l'automate, on veut, à l'état $i$, renvoyer à un état $j$ tel que $m_0...m_j$ soit le plus grand préfixe de $m_0...m_il$ qui en est aussi un suffixe. 
+\begin{algorithm}
+    \caption{Construction de l'automate.}
+    \PourCh{$i\in\lb0,n-1\rb$}{
+        \PourCh{$l\in\Sigma$}{
+            \PourCh{$j\in\lb0,i+1\rb$}{
+                Tester si $m_0...m_j$ est suffixe de $m_0...m_il$.
+            }
+            $\delta_{i,l}=j$.
+        }
+    }
+\end{algorithm}
+La construction de l'automate est donc réalisée en $O(n^3|\Sigma|)$.
+
 \section{Compression.}
 \subsection{Lempel-Ziv-Welch.}
-\begin{defi}{Algorithme Lempel-Ziv-Welch}{}
-    \textbf{Principe:} parcours de gauche à droite du texte à compresser en maintenant un dictionnaire qui à un facteur du texte associe un code, qu'on suppose être le code ASCII.\n
+\begin{defi}{Lempel-Ziv-Welch Compression.}{}
+    \textbf{Principe:} parcours de gauche à droite du texte à compresser en maintenant un dictionnaire qui à un facteur du texte associe un code.\n
     \begin{algorithm}[H]
-        \caption{LZW Compression}
+        \caption{LZW-Compression}
         \Entree{Un texte}
         \Sortie{Code compressé du texte}
         Créer un dictionnaire $D$.\\
-        Mettre les codes ASCII des caractères dans le dictionnaire.\\
+        Mettre les codes des caractères dans le dictionnaire.\\
         $m \gets$ mot vide.\\
-        \Tq{il y a un caractère à lire}{
-            Soit $x$ ce caractère.\\
-            \Si{mx est une clé de $D$}{
+        r $\gets$ mot vide.  \emph{c'est le code qui sera renvoyé}.\\
+        \Tq{il y a un caractère $x$ à lire}{
+            \Si{$mx$ est une clé de $D$}{
                 $m \gets mx$.
             }\Sinon{
                 Ajouter $mx$ à $D$ avec la première valeur non utilisée.\\
-                Écrire le code de $m$ sur la sortie.\\
+                Ajouter le code de $m$ à la fin de $r$.\\
                 $m \gets x$.
             }
         }
-        écrire le code de $m$.
-    \end{algorithm}\vspace{0.2cm}
+        Ajouter le code de $m$ à la fin de $r$.\\
+        \Retour{r}.
+    \end{algorithm}
+\end{defi}
+
+\vspace*{-0.8cm}
+
+\begin{defi}{Lempel-Ziv-Welch Décompression.}{}
     \begin{algorithm}[H]
-        \caption{LZW Décompression}
+        \caption{LZW-Décompression}
         \Entree{Un code}
         \Sortie{Texte décompressé}
-        Créer un dictionnaire $D$ double associant un code à une lettre.\\
-        Remplir $D$ avec le code ASCII.\\
-        $m \gets$ mot vide.\\
-        \Tq{il y a un code à lire}{
-            Soit $x$ ce code.\\
+        Créer un dictionnaire $D$ double associant son code à chaque lettre.\\
+        $c \gets$ mot vide.\\
+        $r \gets $ mot vide \emph{c'est le texte qui sera renvoyé}.\\
+        \Tq{il y a un code $x$ à lire}{
             \Si{$x$ est une clé de $D$}{
-                $x_0 \gets$ le premier caractère du mot associé à $x$.\\
-                \Si{$mx_0\notin D$}{
-                    Ajouter $mx_0$ à $D$ avec la première valeur non attribuée.\\
-                    Écrire $m$ sur la sortie.
-                }
-            }\Sinon{
+                $m \gets D[x]$.\\
                 $m_0 \gets$ le premier caractère de $m$.\\
-                Ajouter $mm_0$ à $D$ avec la première valeur non attribuée.\\
-                Écrire $m$ sur la sortie.\\
+                \Si{$mm_0$ n'est pas une valeur de $D$}{
+                    Ajouter $mm_0$ à $D$ avec la première valeur non utilisée.\\
+                }
+                Ajouter $m$ à la fin de $r$.\\
+            }\Sinon{
+                $m_0 \gets $ le premier caractère de $m$.\\
+                Ajouter $mm_0$ à $D$ avec la première valeur non utilisée.\\
+                Ajouter $m$ à la fin de $r$. 
             }
-            $m \gets$ le mot associé à $x$.
         }
-        écrire $m$ sur la sortie.
+        \Retour{r}.
     \end{algorithm}
+    La décompression a seulement besoin du code, et du dictionnaire sur les caractères : on n'a pas besoin du dictionnaire complet. Elle consiste à décompresser tout en reconstruisant le dictionnaire.
 \end{defi}
 
 \subsection{Codage de Huffman.}
@@ -249,8 +286,11 @@ Les constantes littérales seront entre guillemets.
         }
         \Retour l'élément de la file.
     \end{algorithm}
+    L'algorithme de Huffman compresse lettre par lettre. À chaque lettre, on associe un code, qui est plus petit lorsque la lettre apparaît fréquemment dans le mot. Le code associé à une lettre ne peut pas être préfixe de celui d'une autre lettre.
 \end{defi}
 
 \fin
+
+
 
 \end{document}

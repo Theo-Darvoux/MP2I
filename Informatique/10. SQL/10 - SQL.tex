@@ -1,0 +1,155 @@
+\documentclass[french, 11pt]{article}
+
+\input{setup.tex}
+
+\def\chapitre{10}
+\def\pagetitle{SQL}
+
+\begin{document}
+
+\input{title.tex}
+
+\begin{defi}{SQL.}{}
+    SQL est un langage de requêtes pour les bases de données. Étant donnée une base de données, on utilise les requêtes pour en extraire l'information recherchée. Un base de données est composée d'une ou plusieurs tables. Chaque table possède une ligne par instance et une colonne par attribut.
+\end{defi}
+
+\vspace*{-0.7cm}
+
+\begin{defi}{Clé primaire / étrangère.}{}
+    Une clé est dite \bf{primaire} si elle est unique et propre à une table donnée.\\
+    On parle de clé \bf{étrangère} lorsqu'une table utilise une clef primaire d'une autre table.
+\end{defi}
+
+\vspace*{-0.7cm}
+
+\begin{defi}{Mots-Clés de base.}{}
+    \bf{SELECT} : indique les attributs d'une requête que l'on souhaite conserver.\\
+    \bf{FROM} : indique la ou les tables dont on tire les données.\\
+    \bf{WHERE} : indique une condition que les éléments doivent vérifier pour être conservés.\\
+    \bf{ORDER BY} : permet d'ordonner les données selon un attribut.\\
+    \bf{LIMIT} : permet de limiter le nombre de résultats retournés.\\
+    \bf{OFFSET} : permet de couper le début des résultats.
+\end{defi}
+
+\vspace*{-0.7cm}
+
+\begin{defi}{}{}
+    Le mot-clé \bf{ORDER BY} ordonne les résultats dans l'ordre croissant par défaut.\\
+    \bf{ORDER BY ... DESC} : permet d'ordonner les données dans l'ordre décroissant.
+\end{defi}
+
+\vspace*{-0.7cm}
+
+\begin{ex}{}{}
+    Une requête qui utilise tous les mots-clés :
+    \begin{center}
+        \bf{SELECT} * \bf{FROM} table \bf{WHERE} condition \bf{ORDER BY} attribut \bf{OFFSET} 5 \bf{LIMIT} 10
+    \end{center}
+\end{ex}
+
+\vspace*{-0.7cm}
+
+\begin{defi}{Calculs.}{}
+    \bf{COUNT} : permet de compter le nombre d'instances.\\
+    \bf{SUM} : permet de sommer les valeurs d'un attribut.\\
+    \bf{AVG} : permet de calculer la moyenne des valeurs d'un attribut.\\
+    \bf{MIN} : permet de trouver la valeur minimale d'un attribut.\\
+    \bf{MAX} : permet de trouver la valeur maximale d'un attribut.
+\end{defi}
+
+\vspace*{-0.7cm}
+
+\begin{defi}{GROUP BY.}{}
+    Le mot-clé \bf{GROUP BY} permet de grouper les résultats selon un attribut.\\
+    On peut utiliser les mots-clés de calculs sur les groupes ainsi formés.
+\end{defi}
+
+\vspace*{-0.7cm}
+
+\begin{ex}{}{}
+    On utilise ces mots-clés dans la partie \bf{SELECT} d'une requête :
+    \begin{center}
+        \bf{SELECT} \bf{COUNT}(*) \bf{FROM} table \bf{GROUP BY} attribut
+    \end{center}
+\end{ex}
+
+\vspace*{-0.7cm}
+
+\begin{defi}{Jointures.}{}
+    \bf{JOIN} ... \bf{ON} attr : permet de joindre deux tables qui partagent un même attribut.
+\end{defi}
+
+\vspace*{-0.7cm}
+
+\begin{ex}{}{}
+    On peut joindre deux tables en utilisant le mot-clé \bf{JOIN} :
+    \begin{center}
+        \bf{SELECT} * \bf{FROM} table1 \bf{JOIN} table2 \bf{ON} table1.attr = table2.attr
+    \end{center}
+\end{ex}
+
+\vspace*{-0.7cm}
+
+\begin{defi}{}{}
+    \bf{LEFT JOIN} : permet de joindre deux tables en gardant toutes les instances de la première table.
+\end{defi}
+
+\vspace*{-0.7cm}
+
+\begin{defi}{Opérations sur plusieurs tables.}{}
+    \bf{UNION} : permet de combiner les résultats de deux requêtes.\\
+    \bf{INTERSECT} : permet de garder les résultats communs à deux requêtes.\\
+    \bf{EXCEPT} : permet de garder les résultats d'une requête qui ne sont pas dans l'autre.
+\end{defi}
+
+\vspace*{-0.7cm}
+
+\begin{ex}{}{}
+    On peut combiner deux requêtes en utilisant le mot-clé \bf{UNION} :
+    \begin{center}
+        \bf{SELECT} * \bf{FROM} table1 \bf{UNION} \bf{SELECT} * \bf{FROM} table2
+    \end{center}
+\end{ex}
+
+\vspace*{-0.7cm}
+
+\begin{defi}{Renommage.}{}
+    \bf{AS} : permet de renommer une colonne ou une table.
+\end{defi}
+
+\vspace*{-0.7cm}
+
+\begin{ex}{}{}
+    On peut renommer une colonne en utilisant le mot-clé \bf{AS} :
+    \begin{center}
+        \bf{SELECT} t.attr \bf{FROM} table \bf{AS} t
+    \end{center}
+\end{ex}
+
+\vspace*{-0.7cm}
+
+\begin{defi}{}{}
+    \bf{DISTINCT} : on ne conserve que des entrées différentes.
+\end{defi}
+
+\vspace*{-0.7cm}
+
+\begin{defi}{}{}
+    \bf{HAVING} : permet de filtrer les résultats d'une requête après le \bf{GROUP BY}.
+\end{defi}
+
+\vspace*{-0.7cm}
+
+\begin{ex}{}{}
+    On peut filtrer les résultats d'une requête après le \bf{GROUP BY} en utilisant le mot-clé \bf{HAVING} :
+    \begin{center}
+        \bf{SELECT} * \bf{FROM} table \bf{GROUP BY} attribut \bf{HAVING} condition
+    \end{center}
+    Exemple. \bf{SELECT} salle \bf{FROM} cours \bf{GROUP BY} salle \bf{HAVING} \bf{COUNT}(*) < 3
+\end{ex}
+
+
+
+\fin
+
+\end{document}
