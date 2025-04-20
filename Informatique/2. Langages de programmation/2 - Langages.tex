@@ -618,9 +618,9 @@ Synta
     L'associativité de $\to$ se fait de gauche à droite, donc \texttt{x $\to$ (y $\to$ e)} peut s'écrire \texttt{x $\to$ y $\to$ e}.
 \end{defi}
 
-\begin{defi}{Fonction récursives.}{}
-    Il faut spécifier explicitement qu'une fonction est récursive avec le mot-clé \texttt{rec}.\\
-    Pour définir des fonctions mutuellement récursives, on utilise le mot-clé \texttt{and}.\\
+\begin{defi}{Fonctions récursives.}{}
+    Il faut spécifier explicitement qu'une fonction est récursive avec le mot-clé \ocaml{rec}.\\
+    Pour définir des fonctions mutuellement récursives, on utilise le mot-clé \ocaml{and}.\\
     \bf{Exemples:}\\
     $\hra$ \ocaml{let rec f x = if x = 0 then 1 else x * f (x-1)}.\\
     $\hra$ \ocaml{let rec f x = if x = 0 then 1 else x * g (x-1) and g x = if x = 0 then 1 else x * f (x-1)}.
@@ -741,9 +741,7 @@ Synta
     En OCaml, on peut définir des types récursifs, on peut définir des types polymorphes en leur ajoutant un paramètre sous la forme de variable de type avant son nom.\\
     \bf{Exemple:} \ocaml{type 'a liste = Vide | Maillon of 'a * 'a liste}.\n
     On peut utiliser plusieurs paramètres de type.\\
-    \bf{Exemple:} \ocaml{type ('a, 'b) couple = 'a * 'b}.\n
-    Autre exemple de liste chaînée:\\
-    \ocaml{type maillon  {valeur : int; suivant : liste} and liste = Vide | Maillon of maillon}.
+    \bf{Exemple:} \ocaml{type ('a, 'b) couple = 'a * 'b}.
 \end{defi}
 
 \begin{defi}{Enregistrements.}{}
@@ -754,8 +752,11 @@ Synta
     Définition du type: \ocaml{type point = { x : float; y : float }}\\
     Déclaration d'une instance de ce type: \ocaml{let p = { x = 3.0; y = 4.0 }}\\
     Accès au champ \texttt{x} de \texttt{p}: \texttt{p.x}\n
+    Autre exemple de liste chaînée:\\
+    \ocaml{type maillon  {valeur : int; suivant : liste} and liste = Vide | Maillon of maillon}.\n
     On peut faire du filtrage par motif en ajoutant le motif : \ocaml{{ f1 = v1; f2 = v2; ...}}.\\
     Où les \texttt{fi} sont des identifiants de champs et les \texttt{vi} des motifs compatibles avec le type du champ.
+
 \end{defi}
 
 

@@ -369,6 +369,23 @@ Notation locale : pour $k\in\N$, on note $E_n$ l'ensemble des entrées de taille
 
 \subsubsection{Recherche dichotomique.}
 
+\begin{defi}{Algorithme de la recherche dichotomique.}{}
+    \begin{algorithm}[H]
+        \caption{Recherche dichotomique.}
+        \Entree{Liste $L$ de taille $n$ d'éléments comparables triée dans l'ordre croissant, et un élément $x$.}
+        \Sortie{Un booléen indiquant si $x\in L$.}
+        milieu $\gets L[n/2]$
+        \Si{milieu $ == x$}{
+            \Retour{Vrai.}
+        }
+        \SinonSi{milieu $ > x$}{
+            \Retour{\texttt{dichotomie}($L[0:n/2],~x,~n/2$)}
+        }
+        \Retour{\texttt{dichotomie}($L[n/2+1:n],~x,~n/2$)}
+    \end{algorithm}
+    où $L[i:j]$ est la liste des éléments de $L$ d'indices dans $\lb i, j \lb$. 
+\end{defi}
+
 \begin{prop}{}{}
     On s'intéresse à l'algorithme de recherche dichotomique dans une liste triée.\\
     La complexité temporelle dans le meilleur des cas est en $\Theta(1)$.\\
@@ -380,8 +397,6 @@ Notation locale : pour $k\in\N$, on note $E_n$ l'ensemble des entrées de taille
     Cas général : $\forall n \in \N, ~ \exists k \in \N ~ 2^k \leq n \leq 2^{k+1}$ donc $T(n)=O(k)=O(\log_2 n)$.\\
     Si l'élément à trouver dans le tableau n'y est pas, on a une complexité en $\Omega(\log n)$, d'où le $\Theta(\log n)$.
 \end{prop}
-
-\pagebreak
 
 \section{Visions plus globales de la complexité.}
 
@@ -397,7 +412,9 @@ Notation locale : pour $k\in\N$, on note $E_n$ l'ensemble des entrées de taille
     En supposant un tirage uniforme sur les entrées d'une taille donnée.
 \end{defi}
 
-\vspace*{-1cm}
+\begin{ex}{}{}
+    Pour un exemple de calcul de complexité en moyenne, voir le cas du tri rapide dans le chapitre 4 - Collections de données, proposition 36.
+\end{ex}
 
 \subsection{Complexité amortie.}
 
@@ -407,13 +424,11 @@ Notation locale : pour $k\in\N$, on note $E_n$ l'ensemble des entrées de taille
     Par exemple, pour la structure Unir-Et-Trouver (MPI) on a des implémentations où on favorise l'union, et d'autres où on favorise la recherche du représentant.
 \end{defi}
 
-\vspace*{-0.8cm}
-
 \begin{meth}{Agrégats.}{}
     On étudie une suite d'opérations, et on observe la moyenne de la complexité d'une opération.
 \end{meth}
 
-\vspace*{-0.8cm}
+\pagebreak
 
 \begin{ex}{Tableaux dynamiques.}{}
     On aimerait avoir une structure dans laquelle on peut insérer un élément à la fin et accéder au $i^{\nt{ème}}$ élément.\\
@@ -440,9 +455,13 @@ Notation locale : pour $k\in\N$, on note $E_n$ l'ensemble des entrées de taille
     Pour le tableau dynamique, $\Phi=m-n$ quand on réalise une insertion rapide, $\Delta\Phi=-1$, et pour une insertion lente, $\Delta\Phi=(\a-1)n-1$. Dans les deux cas, le coût amorti est en $O(1)$.
 \end{ex}
 
+\vspace*{-0.8cm}
+
 \begin{meth}{Banquier.}{}
     On paie un coût fictif à chaque opération, qui dépend uniquement de l'opération choisie. Les coûts en trop serviront à financer les opérations qui ont un coût réel plus élevé que leur coût fictif.
 \end{meth}
+
+\vspace*{-0.8cm}
 
 \begin{ex}{}{}
     On a envie de fixer un coût permettant le financement des insertions lentes. L'insertion lente consiste à créer un tableau de taille $\a n$ et à recopier les $n$ premières cases. On veut donc avoir $\a n + n$ pièces dans la structure de données lors d'une insertion lente, donc que les $n$ insertions rapides précédentes aient laissé $n\a + n$ pièces.\\
