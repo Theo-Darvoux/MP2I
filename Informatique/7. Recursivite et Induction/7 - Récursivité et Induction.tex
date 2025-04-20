@@ -44,11 +44,13 @@
     La donnée d'un ordre sur un ensemble l'induit sur chacun de ses sous-ensembles.
 \end{defi}
 
-\begin{prop}{Ensemble bien fondé. $\star$}{}
-    Soit $E$ un ensemble ordonné par la loi $\leq$. Il y a équivalence entre :\\
+\begin{defi}{Ordre bien fondé. $\star$}{}
+    On dit qu'un ordre $\leq$ sur un ensemble $E$ est \bf{bien fondé} si il vérifie l'une des deux conditions suivantes :\\
     \hspace*{2em}$1.$ Tout sous-ensemble non-vide de $E$ admet un élément minimal.\\
-    \hspace*{2em}$2.$ Toute suite infinie décroissante de $E$ est stationnaire.
+    \hspace*{2em}$2.$ Toute suite infinie décroissante de $E$ est stationnaire.\\
+    Ces conditions sont équivalentes.
     \tcblower
+    Montrons l'équivalence des conditions.\\
     \fbox{$\ra$} Supposons que tout sous-ensemble non-vide de $E$ admet un élément minimal.\\
     Soit $(u_n)_{n\in\mathbb{N}}$ une suite infinie décroissante de $E$.\\
     Soit $F=\{u_n ~ | ~ n \in \mathbb{N}\}\subset E$. Alors $\exists k \in \mathbb{N} ~ | ~ u_k = \min(F)$, or $(u_n)$ est décroissante donc $\forall n \geq k, ~ u_n = u_k$.\\
@@ -58,7 +60,7 @@
     Par construction, $(u_n)$ est infinie et décroissante donc stationnaire : $\exists k \in \mathbb{N} ~ \forall n \geq k, ~ u_n = u_k$.\\
     On en déduit que $u_k$ n'a pas de prédécesseur par $\leq$, c'est le minimum de $F$.\\
     On a bien montré l'équivalence.
-\end{prop}
+\end{defi}
 
 \vspace*{-0.5cm}
 
@@ -158,9 +160,9 @@
     Les assertions sont les minimaux, les règles sont des fonctions permettant de passer au successeur immédiat.
 \end{corr}
 
-\subsection{Correction des récursives.}
+\subsection{Correction des fonctions récursives.}
 
-\begin{meth}{Correction des récursives.}{}
+\begin{meth}{Correction des fonctions récursives (par induction).}{}
     L'ensemble des valeurs des paramètres des fonctions récursives peut être défini par induction :
     \begin{itemize}
         \item Assertions : cas de base.
